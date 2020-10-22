@@ -12,6 +12,7 @@ namespace dotNet5781_00_6594_6401
         {
             welcom6594();
             welcome6401();
+            Console.WriteLine("123456");
             Console.ReadKey();
         }
 
