@@ -4,20 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace dotNet5781_00_6401_6594
+namespace dotNet5781_00_6594_6401
 {
     partial class Program
     {
         static void Main(string[] args)
         {
-            welcom6401();
-            welcome6594();
+            welcom6594();
+            welcome6401();
             Console.ReadKey();
         }
 
-        static partial void welcome6594();
+        static partial void welcome6401();
 
-        private static void welcom6401()
+        private static void welcom6594()
         {
             Console.Write("Enter your name: ");
             string name = Console.ReadLine();
