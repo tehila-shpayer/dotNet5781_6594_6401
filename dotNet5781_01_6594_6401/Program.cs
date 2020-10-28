@@ -101,7 +101,7 @@ namespace dotNet5781_01_6594_6401
                 }
                 catch 
                 {
-                    Console.WriteLine("Enter only a number:");
+                    Console.WriteLine("Enter a number:");
                 }
             } while (!flag) ;
             return yearInt;
