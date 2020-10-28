@@ -45,10 +45,21 @@ namespace dotNet5781_01_6594_6401
             if (d.Year < 2018)
             {
                 s.Remove(2);
-                t.Remove(0, 5);
+                g.Remove(0, 2);
+                t = g;
+                t.Remove(3);
+                g.Remove(0,3);
+                num = s + '-' + t + '-' + g;
             }
-               
-
+            else
+            {
+                s.Remove(3);
+                g.Remove(0, 3);
+                t = g;
+                t.Remove(2);
+                g.Remove(0,2);
+                num = s + '-' + t + '-' + g;
+            }
             _carNumber = num;
             _runningDate = d;
             _fuel = 0;
@@ -61,9 +72,9 @@ namespace dotNet5781_01_6594_6401
             _KM += beforeTreatKM;
             _beforeTreatKM = 0;        
         }
-        public bool Ride(int rideKM,)
+        public bool Ride(int rideKM)
         {
-            if()
+            //if(_fuel<rideKM || 
             return false;
         }
     }
