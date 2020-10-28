@@ -19,6 +19,7 @@ namespace dotNet5781_01_6594_6401
             //Buss b2 = new Buss("12345678",d2 );
             //why won't you work?????????????????
             List<Buss> busses;
+            Random r = new Random(DateTime.Now.Millisecond);
             // char c = 'e';
             string s;
             Console.WriteLine("Welcome!");
@@ -66,6 +67,10 @@ namespace dotNet5781_01_6594_6401
 
                         break;
                     case "b":
+                        Console.WriteLine("Enter the buss number you wish to ride in: ");
+                        s=Console.ReadLine();
+                      //  foreach (Buss b in busses)
+
                         break;
                     case "c":
                         break;
