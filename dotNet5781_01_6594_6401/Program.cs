@@ -18,7 +18,7 @@ namespace dotNet5781_01_6594_6401
             //Buss b = new Buss("12345678", d);
             //Buss b2 = new Buss("12345678",d2 );
             //why won't you work?????????????????
-            List<Buss> busses;
+            List<Buss> busses = new List<Buss>();
             // char c = 'e';
             string s;
             Console.WriteLine("Welcome!");
@@ -57,13 +57,14 @@ namespace dotNet5781_01_6594_6401
                         Console.WriteLine("Enter the start date of the buss activity:");
                         Console.WriteLine("Enter the year:");
                         int year = ReadYear();
-                       
-                        //Console.WriteLine("Enter the month:");
-                        //string month = Console.ReadLine();
-                        //Console.WriteLine("Enter the day:");
-                        //string day = Console.ReadLine();
-                        //DateTime startDate = new DateTime(int.Parse(year), month, day);
 
+                        Console.WriteLine("Enter the month:");
+                        int month = ReadMonth();
+                      
+                        Console.WriteLine("Enter the day:");
+                        int day = ReadDay();
+                        DateTime startDate = new DateTime(year, month, day);
+                        busses.Add(new Buss(bussNum, startDate));
                         break;
                     case "b":
                         break;
@@ -81,40 +82,56 @@ namespace dotNet5781_01_6594_6401
             } while (s != "e");
         }
 
-
-        static public int ReadYear()
+        static public int ReadSomething(int min, int max, string minMessage, string maxMessage)
         {
-            string yearString;          
-            int yearInt = 0;
+            string dateString;
+            int dateInt= 0;
             bool flag = false;
             do
             {
-                yearString = Console.ReadLine();
+                dateString = Console.ReadLine();
                 try
                 {
-                    yearInt = int.Parse(yearString);
-                    if (yearInt < 1895)
+                    dateInt = int.Parse(dateString);
+
+                    if (dateInt > max)
                     {
-                        Console.WriteLine("The first bus was developed in 1895.");
-                        Console.WriteLine("Enter a proper year:");
+                        Console.WriteLine(maxMessage);
                     }
                     else
                     {
-                        if (yearInt > DateTime.Now.Year)
+                        if (dateInt < min)
                         {
-                            Console.WriteLine("The current year is {0}", DateTime.Now.Year + ".");
-                            Console.WriteLine("Enter a proper year:");
+                            Console.WriteLine(minMessage);
                         }
                         else
                             flag = true;
                     }
                 }
-                catch 
+                catch
                 {
-                    Console.WriteLine("Enter a number:");
+                    Console.WriteLine("Enter only a number:");
                 }
-            } while (!flag) ;
-            return yearInt;
+            } while (!flag);
+            return dateInt;
+        }
+        static public int ReadYear()
+        {
+            string minM = "The first bus was developed in 1895. Please enter a proper year:";
+            string maxM = "The current year is " + DateTime.Now.Year + ". Please enter a proper year:";
+            return ReadSomething(1895, DateTime.Now.Year, minM, maxM);
+        }
+        static public int ReadMonth()
+        {
+            string minM = "The month number can not be less than 1. Please enter a proper month:";
+            string maxM = "The month number can not be more than 12. Please enter a proper month:";
+            return ReadSomething(1, 12, minM, maxM);
+        }
+        static public int ReadDay()
+        {
+            string minM = "The day number can not be less than 1. Please enter a proper day:";
+            string maxM = "The day number can not be more than 31. Please enter a proper day:";
+            return ReadSomething(1, 31, minM, maxM);
         }
 
     }
