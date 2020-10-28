@@ -69,10 +69,12 @@ namespace dotNet5781_01_6594_6401
                     case "b":
                         Console.WriteLine("Enter the buss number you wish to ride in: ");
                         s=Console.ReadLine();
-//                        foreach (Buss b in List<Buss> busses)
-     
+                        for (int i = 0; i < busses.Count; i++)
+                        {
+                            Buss b = busses[i];
+                            break;
+                        }
 
-                        break;
                     case "c":
                         break;
                     case "d":
