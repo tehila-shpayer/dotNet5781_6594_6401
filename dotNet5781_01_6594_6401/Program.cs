@@ -17,6 +17,7 @@ namespace dotNet5781_01_6594_6401
 
             //Buss b = new Buss("12345678", d);
             //Buss b2 = new Buss("12345678",d2 );
+            //why won't you work?????????????????
             List<Buss> busses;
             // char c = 'e';
             string s;
