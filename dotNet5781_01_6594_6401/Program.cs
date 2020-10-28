@@ -82,7 +82,7 @@ namespace dotNet5781_01_6594_6401
         }
 
 
-        static int ReadYear()
+        static public int ReadYear()
         {
             string yearString;          
             int yearInt = 0;
