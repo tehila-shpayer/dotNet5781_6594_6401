@@ -37,20 +37,23 @@ namespace dotNet5781_01_6594_6401
         {
             get { return _runningDate; }
         }
-        
-        public Buss(string num, DateTime d)
+        public string getCarNumberFormat()
         {
-            string s = num;
-            if (d.Year >= 2018)
+            string s = _carNumber;
+            if (_runningDate.Year >= 2018)
             {
-                num = $"{s[0]}{s[1]}{s[2]}-{s[3]}{s[4]}-{s[5]}{s[6]}{s[7]}";
+                 s = $"{s[0]}{s[1]}{s[2]}-{s[3]}{s[4]}-{s[5]}{s[6]}{s[7]}";
                 //Console.WriteLine("{0} its after 2018", num);
             }
             else
             {
-                num = $"{s[0]}{s[1]}-{s[2]}{s[3]}{s[4]}-{s[5]}{s[6]}";
+                s = $"{s[0]}{s[1]}-{s[2]}{s[3]}{s[4]}-{s[5]}{s[6]}";
                 //Console.WriteLine("{0} its before 2018", num);
             }
+            return s;
+        }
+        public Buss(string num, DateTime d)
+        {
             _carNumber = num;
             _runningDate = d;
             _fuel = 0;

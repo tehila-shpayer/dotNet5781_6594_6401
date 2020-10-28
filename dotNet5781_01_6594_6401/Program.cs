@@ -67,6 +67,10 @@ namespace dotNet5781_01_6594_6401
                         busses.Add(new Buss(bussNum, startDate));
                         break;
                     case "b":
+                        Console.WriteLine("Enter the buss number you wish to ride in: ");
+                        s=Console.ReadLine();
+                      //  foreach (Buss b in busses)
+
                         break;
                     case "c":
                         break;
