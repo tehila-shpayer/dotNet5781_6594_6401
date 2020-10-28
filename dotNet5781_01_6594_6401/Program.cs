@@ -20,7 +20,7 @@ namespace dotNet5781_01_6594_6401
      a: Add a new buss
      b: Chose a buss for a ride
      c: Fuel a buss
-     d: Print the data            
+     d: Print the data of a buss     
      e: exit:");
                 s = Console.ReadLine();
                 
