@@ -10,6 +10,27 @@ namespace dotNet5781_01_6594_6401
     {
         static void Main(string[] args)
         {
+            List<Buss> busses;
+           // char c = 'e';
+            string s;
+            Console.WriteLine("Welcome!");
+            do
+            {
+                Console.WriteLine(@"    Choose one of the following:
+     a: Add a new buss
+     b: Chose a buss for a ride
+     c: Fuel a buss
+     d: Print the data            
+     e: exit:");
+                s = Console.ReadLine();
+                
+                switch(s)
+                {
+                    case "a":
+                        break;
+                }
+
+            } while (s != "e");
         }
     }
 }
