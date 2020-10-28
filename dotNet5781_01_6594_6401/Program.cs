@@ -25,14 +25,6 @@ namespace dotNet5781_01_6594_6401
             do
             {
 
-                Console.WriteLine(@"
-   Choose one of the following:
-     a: Add a new buss
-     b: Chose a buss for a ride
-     c: Fuel a buss
-     d: Print the data            
-     e: exit:");
-
                 Console.WriteLine(@"    Choose one of the following:
             a: Add a new buss
             b: Chose a buss for a ride
