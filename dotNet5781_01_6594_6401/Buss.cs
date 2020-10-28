@@ -40,26 +40,14 @@ namespace dotNet5781_01_6594_6401
         
         public Buss(string num, DateTime d)
         {
-            string s=num;
-            string t = s;
-            string g = t;
-            if (d.Year < 2018)
+            string s = num;
+            if (d.Year >= 2018)
             {
-                s.Remove(2);
-                g.Remove(0, 2);
-                t = g;
-                t.Remove(3);
-                g.Remove(0,3);
-                num = s + '-' + t + '-' + g;
+                num = s[0] + s[1] + s[2] + "-" + s[3] + s[4] + "-" + s[5] + s[6] + s[7];
             }
             else
             {
-                s.Remove(3);
-                g.Remove(0, 3);
-                t = g;
-                t.Remove(2);
-                g.Remove(0,2);
-                num = s + '-' + t + '-' + g;
+                num = s[0] + s[1] + "-" + s[2] + s[3] + s[4] + "-" + s[5] + s[6];
             }
             _carNumber = num;
             _runningDate = d;
