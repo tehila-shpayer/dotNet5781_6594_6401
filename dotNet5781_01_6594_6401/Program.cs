@@ -12,6 +12,12 @@ namespace dotNet5781_01_6594_6401
         
         static void Main(string[] args)
         {
+            //DateTime d = new DateTime(2013, 5, 29);
+            //DateTime d2 = new DateTime(2019, 12, 5);
+
+            //Buss b = new Buss("12345678", d);
+            //Buss b2 = new Buss("12345678",d2 );
+            //why won't you work?????????????????
             List<Buss> busses;
             // char c = 'e';
             string s;
