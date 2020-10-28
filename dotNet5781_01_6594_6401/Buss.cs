@@ -4,6 +4,7 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -66,7 +67,7 @@ namespace dotNet5781_01_6594_6401
             _KM = 0;
             _beforeTreatKM = 0;
         }
-        public void RefillFuel() { _fuel += 1200; }
+        public void RefillFuel() { _fuel = 1200; }
         public void DoTreatment()
         {
             _KM += beforeTreatKM;
@@ -74,8 +75,12 @@ namespace dotNet5781_01_6594_6401
         }
         public bool Ride(int rideKM)
         {
-            //if(_fuel<rideKM || 
-            return false;
+            if(_fuel<rideKM || _beforeTreatKM >20000)
+                  return false;
+            _fuel -= rideKM;
+            _KM += rideKM;
+            _beforeTreatKM += rideKM;
+            return true;
         }
     }
 }
