@@ -18,7 +18,7 @@ namespace dotNet5781_01_6594_6401
             Console.WriteLine("Welcome!");
             do
             {
-<<<<<<< HEAD
+
                 Console.WriteLine(@"
    Choose one of the following:
      a: Add a new buss
@@ -26,14 +26,14 @@ namespace dotNet5781_01_6594_6401
      c: Fuel a buss
      d: Print the data            
      e: exit:");
-=======
+
                 Console.WriteLine(@"    Choose one of the following:
             a: Add a new buss
             b: Chose a buss for a ride
             c: Fuel a buss
             d: Print the data of a buss     
             e: exit:");
->>>>>>> a1e8c86125054730589bc9c88dc18d981437eaac
+
                 s = Console.ReadLine();
 
                 switch (s)
@@ -83,7 +83,7 @@ namespace dotNet5781_01_6594_6401
             } while (s != "e");
         }
 
-<<<<<<< HEAD
+
         static int ReadYear()
         {
             string yearString;          
@@ -118,7 +118,6 @@ namespace dotNet5781_01_6594_6401
             } while (!flag) ;
             return yearInt;
         }
-=======
->>>>>>> a1e8c86125054730589bc9c88dc18d981437eaac
+
     }
 }
