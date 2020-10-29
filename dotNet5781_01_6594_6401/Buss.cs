@@ -57,7 +57,7 @@ namespace dotNet5781_01_6594_6401
             }
             return s;
         }
-        public Bus(DateTime d,string num="")
+        public Bus(DateTime d, string num="")
         {
             _lastTreatment = d;
             _licenseNumber = num;
@@ -73,14 +73,22 @@ namespace dotNet5781_01_6594_6401
             _beforeTreatKM = 0;
             _lastTreatment = DateTime.Now;
         }
-        public bool Ride(int rideKM)
+        public String Ride(int rideKM)
         {
-            if (_fuel < rideKM || _beforeTreatKM > 20000)
-                return false;
+            if ((_fuel < rideKM) && (needTreatment()))
+                return "The system couldn't take this bus for the ride.\nThe bus doesn't have enough fuel and has to get a treatment.\n";
+            if (_fuel < rideKM)
+                return "The system couldn't take this bus for the ride.\nThe bus doesn't have enough fuel\n";
+            if (needTreatment())
+                return "The system couldn't take this bus for the ride.\nThe bus has to get a treatment.\n";
             _fuel -= rideKM;
             _KM += rideKM;
             _beforeTreatKM += rideKM;
-            return true;
+            return "Have a nice ride!\n";
+        }
+        bool needTreatment()
+        {
+            return (((DateTime.Now - lastTreatment).TotalDays > 365) || (_beforeTreatKM > 20000));
         }
         public override String ToString()
         {
@@ -90,10 +98,11 @@ namespace dotNet5781_01_6594_6401
                                 $" Fuel state (KM to go): {fuel}\n" +
                                 $" KM: {beforeTreatKM}\n";
         }
-        public String dateWithoutHour(DateTime date)
+        static public String dateWithoutHour(DateTime date)
         {
             String dateString = date.Day + "/" + date.Month + "/" + date.Year;
             return dateString;
         }
     }
+
 }
