@@ -89,7 +89,10 @@ namespace dotNet5781_01_6594_6401
                             Console.WriteLine("Sorry, The bus doesn't exist in the system.\n");
                             break;
                         }
-                        Console.WriteLine("For refueling press f and for treatment press t please.\nIf you want both press ft.");
+                        Console.WriteLine(@"choose one of the following:
+  f: For refueling 
+  t: For treatment
+  ft:For both refueling an treatment:");
                         string c = Console.ReadLine();
                         do
                         {
@@ -193,11 +196,9 @@ namespace dotNet5781_01_6594_6401
                 try
                 {
                     int bN = int.Parse(busNum);
-                    int sevd = 10000000;
-                    int sixd = sevd / 10;
-                    int eighd = sevd * 10;
-                    int yr = startDate.Year;
-                    if (((bN / sevd != 0) && (bN / eighd == 0) && (yr >= 2018)) || ((bN / sixd != 0) && (bN / sevd == 0) && (yr < 2018)))
+                    int busNumLength = busNum.Length;
+                    int yr = startDate.Year;              
+                    if (((busNumLength==8) && (yr >= 2018)) || ((busNumLength==7)&& (yr < 2018)))
                         flag = true;
                     else
                         Console.WriteLine("Enter only a 7 or 8 digit number:\nIf start year is after (including) 2018 - 8 digits.\nIf start year is before 2018 - 7 digit.");
