@@ -12,25 +12,25 @@ namespace dotNet5781_01_6594_6401
         
         static void Main(string[] args)
         {
-            //DateTime d = new DateTime(2013, 5, 29);
-            //DateTime d2 = new DateTime(2019, 12, 5);
-
-            //Buss b = new Buss("12345678", d);
-            //Buss b2 = new Buss("12345678",d2 );
-            //why won't you work?????????????????
+//סיימתי הרוב, חסר:
+//להוסיף לפונקציה רייד שהיא לא יכולה לעבוד גם כשעברה שנה מהטיפול האחרון
+//לשנות כול פעם שכתוב Buss ל bus
+//car number -> license number
+//לסדר בפונקציות את התוכנית הראשית
+//להוריד מהצגה של תאריכים את השעה
             List<Buss> busses = new List<Buss>();
-            // char c = 'e';
+            Random r = new Random(DateTime.Now.Millisecond);
             string s;
             Console.WriteLine("Welcome!");
             do
             {
 
-                Console.WriteLine(@"    Choose one of the following:
-            a: Add a new buss
-            b: Chose a buss for a ride
-            c: Fuel a buss
-            d: Print the data of a buss     
-            e: exit:");
+                Console.WriteLine(@"Choose one of the following:
+  a: Add a new buss
+  b: Choose a buss for a ride
+  c: Refuel a buss or send to treatment
+  d: Print the data of the busses
+  e: exit:");
 
                 s = Console.ReadLine();
 
@@ -38,22 +38,6 @@ namespace dotNet5781_01_6594_6401
                 {
                     case "a":
                         string bussNum;
-                        bool flag = false;
-                        Console.WriteLine("Enter the buss number:");
-                        do
-                        {
-                            bussNum = Console.ReadLine();
-                            try
-                            {
-                                int bN = int.Parse(bussNum);
-                                flag = true;
-                            }
-                            catch
-                            {
-                                Console.WriteLine("Enter only a number:");
-                            }
-                        } while (!flag);
-
                         Console.WriteLine("Enter the start date of the buss activity:");
                         Console.WriteLine("Enter the year:");
                         int year = ReadYear();
@@ -64,20 +48,78 @@ namespace dotNet5781_01_6594_6401
                         Console.WriteLine("Enter the day:");
                         int day = ReadDay();
                         DateTime startDate = new DateTime(year, month, day);
-                        busses.Add(new Buss(bussNum, startDate));
+                        Console.WriteLine("Enter the buss number:");
+                        bussNum=readBusNum(startDate);
+                        busses.Add(new Buss(startDate, bussNum));
                         break;
                     case "b":
+                        string t;
+                        bool f = false;
                         Console.WriteLine("Enter the buss number you wish to ride in: ");
-                        s=Console.ReadLine();
-                        for (int i = 0; i < busses.Count; i++)
+                        t=Console.ReadLine();
+                        foreach (Buss b in busses)
+                        { 
+                            if (b.carNumber == t)
+                            {
+                                if (!b.Ride((int)r.Next(1200)))
+                                    Console.WriteLine("The system coudn't take this bus for the ride.\nplease make sure you have enough fuel and the bus is after treatment.\n");
+                                else
+                                    Console.WriteLine("Have a nice ride!\n");
+                                f = true;
+                                break;
+                            }
+                        }
+                        if(!f)
+                            Console.WriteLine("Sorry, The bus doesn't exist in the system.\n");
+                        break;
+                    case "c":
+                        bool fl = true;
+                        Buss bb=new Buss(new DateTime());
+                        Console.WriteLine("Enter the bus number you wish to refuel or treat: ");
+                        s = Console.ReadLine();
+                        foreach (Buss b in busses)
                         {
-                            Buss b = busses[i];
+                            if (b.carNumber == s)
+                            {
+                                bb = b;
+                                break;
+                            }
+
+                        }
+                        if (bb.carNumber=="")
+                        {
+                            Console.WriteLine("Sorry, The bus doesn't exist in the system.\n");
                             break;
                         }
-
-                    case "c":
-                        break;
+                        Console.WriteLine("For refueling press f and for tratment press t please.");
+                        string c = Console.ReadLine();
+                        do
+                        {
+                            switch (c)
+                            {
+                                case "f":
+                                    bb.RefillFuel();
+                                    Console.WriteLine("The fuel tank was successfully refueled!\n");
+                                    break;
+                                case "t":
+                                    bb.DoTreatment();
+                                    Console.WriteLine("The bus was successfully treated!\n");
+                                    break;
+                                default:
+                                    fl = false;
+                                    break;
+                            }
+                        } while (!fl);
+                            break;
                     case "d":
+                        foreach (Buss b in busses)
+                        {
+                            Console.WriteLine($"Bus license number: {b.getCarNumberFormat()}\n" +
+                                $"Bus start date: {b.runningDate}\n" +
+                                $"Bus state since last tratment on {b.lastTreatment}:\n" +
+                                $" Fuel state (KM to go): {b.fuel}\n" +
+                                $" KM: {b.beforeTreatKM}\n");
+                        }
                         break;
                     case "e":
                         break;
@@ -139,6 +181,32 @@ namespace dotNet5781_01_6594_6401
             string minM = "The day number can not be less than 1. Please enter a proper day:";
             string maxM = "The day number can not be more than 31. Please enter a proper day:";
             return ReadSomething(1, 31, minM, maxM);
+        }
+        static public string readBusNum(DateTime startDate)
+        {
+            string bussNum;
+            bool flag = false;
+            do
+            {
+                bussNum = Console.ReadLine();
+                try
+                {
+                    int bN = int.Parse(bussNum);
+                    int sevd = 10000000;
+                    int sixd = sevd / 10;
+                    int eighd = sevd * 10;
+                    int yr = startDate.Year;
+                    if (((bN / sevd != 0) && (bN / eighd == 0) && (yr >= 2018)) || ((bN / sixd != 0) && (bN / sevd == 0) && (yr < 2018)))
+                        flag = true;
+                    else
+                        Console.WriteLine("Enter only a 7 or 8 digit number:\nIf start year is after 2018 - 8 digits.\nIf start year is before 2018 - 8 digit.\n");
+                }
+                catch
+                {
+                    Console.WriteLine("Enter only a 7 or 8 digit number:\nIf sart year is after 2018 - 8 digits.\nIf start year is before 2018 - 8 digit.\n");
+                }
+            } while (!flag);
+            return bussNum;
         }
 
     }

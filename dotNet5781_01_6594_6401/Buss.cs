@@ -17,9 +17,14 @@ namespace dotNet5781_01_6594_6401
         int _fuel;
         int _beforeTreatKM;
         DateTime _runningDate;
+        DateTime _lastTreatment;
         public int KM
         { 
             get { return _KM; }
+        }
+        public DateTime lastTreatment
+        {
+            get { return _lastTreatment; }
         }
         public string carNumber
         {
@@ -52,8 +57,9 @@ namespace dotNet5781_01_6594_6401
             }
             return s;
         }
-        public Buss(string num, DateTime d)
+        public Buss(DateTime d,string num="")
         {
+            _lastTreatment = d;
             _carNumber = num;
             _runningDate = d;
             _fuel = 0;
@@ -64,7 +70,8 @@ namespace dotNet5781_01_6594_6401
         public void DoTreatment()
         {
             _KM += beforeTreatKM;
-            _beforeTreatKM = 0;        
+            _beforeTreatKM = 0;
+            _lastTreatment = DateTime.Now;
         }
         public bool Ride(int rideKM)
         {
