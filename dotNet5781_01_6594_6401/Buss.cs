@@ -85,10 +85,15 @@ namespace dotNet5781_01_6594_6401
         public override String ToString()
         {
             return $"Bus license number: {getLicenseNumberFormat()}\n" +
-                                $"Bus start date: {runningDate}\n" +
-                                $"Bus state since last tratment on {lastTreatment}:\n" +
+                                $"Bus start date: {dateWithoutHour(runningDate)}\n" +
+                                $"Bus state since last tratment on {dateWithoutHour(lastTreatment)}:\n" +
                                 $" Fuel state (KM to go): {fuel}\n" +
                                 $" KM: {beforeTreatKM}\n";
+        }
+        public String dateWithoutHour(DateTime date)
+        {
+            String dateString = date.Day + "/" + date.Month + "/" + date.Year;
+            return dateString;
         }
     }
 }

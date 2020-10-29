@@ -17,7 +17,7 @@ namespace dotNet5781_01_6594_6401
 //לשנות כול פעם שכתוב Buss ל bus - בוצע!
 //car number -> license number - בוצע!
 //לסדר בפונקציות את התוכנית הראשית
-//להוריד מהצגה של תאריכים את השעה
+//להוריד מהצגה של תאריכים את השעה - בוצע!
             List<Bus> buses = new List<Bus>();
             Random r = new Random(DateTime.Now.Millisecond);
             string s;
