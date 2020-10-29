@@ -22,27 +22,27 @@ namespace dotNet5781_01_6594_6401
         { 
             get { return _KM; }
         }
-        public DateTime lastTreatment
+        public DateTime LastTreatment
         {
             get { return _lastTreatment; }
         }
-        public string licenseNumber
+        public string LicenseNumber
         {
             get { return _licenseNumber; }
         }
-        public int fuel
+        public int Fuel
         {
             get { return _fuel; }
         }
-        public int beforeTreatKM
+        public int BeforeTreatKM
         {
             get { return _beforeTreatKM; }
         }
-        public DateTime runningDate
+        public DateTime RunningDate
         {
             get { return _runningDate; }
         }
-        public string getLicenseNumberFormat()
+        public string GetLicenseNumberFormat()
         {
             string s = _licenseNumber;
             if (_runningDate.Year >= 2018)
@@ -70,7 +70,7 @@ namespace dotNet5781_01_6594_6401
         }
         public void DoTreatment()
         {
-            _KM += beforeTreatKM;
+            _KM += _beforeTreatKM;
             _beforeTreatKM = 0;
             _lastTreatment = DateTime.Now;
             Console.WriteLine("The bus was successfully treated!\n");
@@ -95,15 +95,15 @@ namespace dotNet5781_01_6594_6401
         }
         public bool NeedTreatment()
         {
-            return (((DateTime.Now - lastTreatment).TotalDays > 365) || (_beforeTreatKM > 20000));
+            return (((DateTime.Now - _lastTreatment).TotalDays > 365) || (_beforeTreatKM > 20000));
         }
         public override String ToString()
         {
-            return $"Bus license number: {getLicenseNumberFormat()}\n" +
-                                $"Bus start date: {DateWithoutHour(runningDate)}\n" +
-                                $"Bus state since last tratment on {DateWithoutHour(lastTreatment)}:\n" +
-                                $" Fuel state (KM to go): {fuel}\n" +
-                                $" KM: {beforeTreatKM}\n";
+            return $"Bus license number: {GetLicenseNumberFormat()}\n" +
+                                $"Bus start date: {DateWithoutHour(_runningDate)}\n" +
+                                $"Bus state since last tratment on {DateWithoutHour(_lastTreatment)}:\n" +
+                                $" Fuel state (KM to go): {_fuel}\n" +
+                                $" KM: {_beforeTreatKM}\n";
         }
         static public String DateWithoutHour(DateTime date)
         {
