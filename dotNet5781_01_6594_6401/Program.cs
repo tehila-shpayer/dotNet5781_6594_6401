@@ -33,11 +33,11 @@ namespace dotNet5781_01_6594_6401
   e: exit:");
 
                 s = Console.ReadLine();
-
+                string bussNum;
                 switch (s)
                 {
                     case "a":
-                        string bussNum;
+                        
                         Console.WriteLine("Enter the start date of the buss activity:");
                         Console.WriteLine("Enter the year:");
                         int year = ReadYear();
@@ -53,23 +53,23 @@ namespace dotNet5781_01_6594_6401
                         busses.Add(new Buss(startDate, bussNum));
                         break;
                     case "b":
-                        string t;
-                        bool f = false;
+                        
+                        bool flag = false;
                         Console.WriteLine("Enter the buss number you wish to ride in: ");
-                        t=Console.ReadLine();
+                        bussNum = Console.ReadLine();
                         foreach (Buss b in busses)
                         { 
-                            if (b.carNumber == t)
+                            if (b.carNumber == bussNum)
                             {
                                 if (!b.Ride((int)r.Next(1200)))
-                                    Console.WriteLine("The system coudn't take this bus for the ride.\nplease make sure you have enough fuel and the bus is after treatment.\n");
+                                    Console.WriteLine("The system couldn't take this bus for the ride.\nplease make sure you have enough fuel and the bus is after treatment.\n");
                                 else
                                     Console.WriteLine("Have a nice ride!\n");
-                                f = true;
+                                flag = true;
                                 break;
                             }
                         }
-                        if(!f)
+                        if(!flag)
                             Console.WriteLine("Sorry, The bus doesn't exist in the system.\n");
                         break;
                     case "c":
@@ -114,11 +114,7 @@ namespace dotNet5781_01_6594_6401
                     case "d":
                         foreach (Buss b in busses)
                         {
-                            Console.WriteLine($"Bus license number: {b.getCarNumberFormat()}\n" +
-                                $"Bus start date: {b.runningDate}\n" +
-                                $"Bus state since last tratment on {b.lastTreatment}:\n" +
-                                $" Fuel state (KM to go): {b.fuel}\n" +
-                                $" KM: {b.beforeTreatKM}\n");
+                            Console.WriteLine(b);
                         }
                         break;
                     case "e":
@@ -166,8 +162,8 @@ namespace dotNet5781_01_6594_6401
         }
         static public int ReadYear()
         {
-            string minM = "The first bus was developed in 1895. Please enter a proper year:";
-            string maxM = "The current year is " + DateTime.Now.Year + ". Please enter a proper year:";
+            string minM = "The first bus was developed in 1895! Please enter a proper year:";
+            string maxM = "The current year is " + DateTime.Now.Year + "! Please enter a proper year:";
             return ReadSomething(1895, DateTime.Now.Year, minM, maxM);
         }
         static public int ReadMonth()
@@ -199,11 +195,11 @@ namespace dotNet5781_01_6594_6401
                     if (((bN / sevd != 0) && (bN / eighd == 0) && (yr >= 2018)) || ((bN / sixd != 0) && (bN / sevd == 0) && (yr < 2018)))
                         flag = true;
                     else
-                        Console.WriteLine("Enter only a 7 or 8 digit number:\nIf start year is after 2018 - 8 digits.\nIf start year is before 2018 - 8 digit.\n");
+                        Console.WriteLine("Enter only a 7 or 8 digit number:\nIf start year is after 2018 - 8 digits.\nIf start year is before 2018 - 7 digit.");
                 }
                 catch
                 {
-                    Console.WriteLine("Enter only a 7 or 8 digit number:\nIf sart year is after 2018 - 8 digits.\nIf start year is before 2018 - 8 digit.\n");
+                    Console.WriteLine("Enter only a 7 or 8 digit number:\nIf sart year is after 2018 - 8 digits.\nIf start year is before 2018 - 7 digit.");
                 }
             } while (!flag);
             return bussNum;

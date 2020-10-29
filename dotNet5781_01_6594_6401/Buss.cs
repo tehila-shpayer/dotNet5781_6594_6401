@@ -75,12 +75,20 @@ namespace dotNet5781_01_6594_6401
         }
         public bool Ride(int rideKM)
         {
-            if(_fuel<rideKM || _beforeTreatKM >20000)
-                  return false;
+            if (_fuel < rideKM || _beforeTreatKM > 20000)
+                return false;
             _fuel -= rideKM;
             _KM += rideKM;
             _beforeTreatKM += rideKM;
             return true;
+        }
+        public override String ToString()
+        {
+            return $"Bus license number: {getCarNumberFormat()}\n" +
+                                $"Bus start date: {runningDate}\n" +
+                                $"Bus state since last tratment on {lastTreatment}:\n" +
+                                $" Fuel state (KM to go): {fuel}\n" +
+                                $" KM: {beforeTreatKM}\n";
         }
     }
 }
