@@ -13,11 +13,10 @@ namespace dotNet5781_01_6594_6401
         static void Main(string[] args)
         {
 //סיימתי הרוב, חסר:
-//להוסיף לפונקציה רייד שהיא לא יכולה לעבוד גם כשעברה שנה מהטיפול האחרון
-//לשנות כול פעם שכתוב Buss ל bus - בוצע!
-//car number -> license number - בוצע!
+//אפשרות גם לתדלק וגם לתת טיפול
+//הצעה לעשות זאת לאחר הוספת אוטובוס
 //לסדר בפונקציות את התוכנית הראשית
-//להוריד מהצגה של תאריכים את השעה - בוצע!
+
             List<Bus> buses = new List<Bus>();
             Random rand = new Random(DateTime.Now.Millisecond);
             string s;
@@ -49,16 +48,8 @@ namespace dotNet5781_01_6594_6401
                         int day = ReadDay();
                         DateTime startDate = new DateTime(year, month, day);
                         Console.WriteLine("Enter the bus number:");
-                        busNum=readBusNum(startDate);
-                        Bus ba = new Bus(startDate, busNum);
-                        buses.Add(ba);
-                        Console.WriteLine("You successfully added a bus to the system!\n Do you want it to sart running?\n press 1 to refuel it and treat it.");
-                        string ft=Console.ReadLine();
-                        if(ft=="1")
-                        {
-                            ba.DoTreatment();
-                            ba.RefillFuel();
-                        }
+                        busNum = ReadBusNum(startDate);
+                        buses.Add(new Bus(startDate, busNum));
                         break;
                     case "b":
                         bool flag = false;
@@ -69,10 +60,6 @@ namespace dotNet5781_01_6594_6401
                             if (b.licenseNumber == busNum)
                             {
                                 Console.WriteLine(b.Ride((int)(rand.Next(1200))));
-                                //if (!b.Ride((int)rand.Next(1200)))
-                                //    Console.WriteLine("The system couldn't take this bus for the ride.\nplease make sure you have enough fuel and the bus is after treatment.\n");
-                                //else
-                                //    Console.WriteLine("Have a nice ride!\n");
                                 flag = true;
                                 break;
                             }
@@ -186,7 +173,7 @@ namespace dotNet5781_01_6594_6401
             string maxM = "The day number can not be more than 31. Please enter a proper day:";
             return ReadSomething(1, 31, minM, maxM);
         }
-        static public string readBusNum(DateTime startDate)
+        static public string ReadBusNum(DateTime startDate)
         {
             string busNum;
             bool flag = false;
@@ -212,5 +199,7 @@ namespace dotNet5781_01_6594_6401
             } while (!flag);
             return busNum;
         }
+
+
     }
 }
