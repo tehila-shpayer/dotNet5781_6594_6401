@@ -66,7 +66,7 @@ namespace dotNet5781_01_6594_6401
             _KM = 0;
             _beforeTreatKM = 0;
         }
-        public void RefillFuel() { _fuel = 1200; }
+        public void Refuel() { _fuel = 1200; }
         public void DoTreatment()
         {
             _KM += beforeTreatKM;
@@ -75,18 +75,23 @@ namespace dotNet5781_01_6594_6401
         }
         public String Ride(int rideKM)
         {
-            if ((_fuel < rideKM) && (needTreatment()))
+            if ((_fuel < rideKM) && (NeedTreatment()))
                 return "The system couldn't take this bus for the ride.\nThe bus doesn't have enough fuel and has to get a treatment.\n";
             if (_fuel < rideKM)
                 return "The system couldn't take this bus for the ride.\nThe bus doesn't have enough fuel\n";
-            if (needTreatment())
+            if (NeedTreatment())
                 return "The system couldn't take this bus for the ride.\nThe bus has to get a treatment.\n";
             _fuel -= rideKM;
             _KM += rideKM;
             _beforeTreatKM += rideKM;
             return "Have a nice ride!\n";
         }
-        bool needTreatment()
+        public void RefuelAndTreat()
+        {
+            Refuel();
+            DoTreatment();
+        }
+        public bool NeedTreatment()
         {
             return (((DateTime.Now - lastTreatment).TotalDays > 365) || (_beforeTreatKM > 20000));
         }

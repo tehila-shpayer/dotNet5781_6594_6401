@@ -55,7 +55,7 @@ namespace dotNet5781_01_6594_6401
                         string one = Console.ReadLine();
                         if (one=="1")
                         {
-                            ba.RefillFuel();
+                            ba.Refuel();
                             ba.DoTreatment();
                         }
                         break;
