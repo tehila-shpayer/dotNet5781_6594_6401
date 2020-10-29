@@ -50,7 +50,15 @@ namespace dotNet5781_01_6594_6401
                         DateTime startDate = new DateTime(year, month, day);
                         Console.WriteLine("Enter the bus number:");
                         busNum=readBusNum(startDate);
-                        buses.Add(new Bus(startDate, busNum));
+                        Bus ba = new Bus(startDate, busNum);
+                        buses.Add(ba);
+                        Console.WriteLine("You successfully added a bus to the system!\n Do you want it to sart running?\n press 1 to refuel it and treat it.");
+                        string ft=Console.ReadLine();
+                        if(ft=="1")
+                        {
+                            ba.DoTreatment();
+                            ba.RefillFuel();
+                        }
                         break;
                     case "b":
                         bool flag = false;
@@ -204,7 +212,5 @@ namespace dotNet5781_01_6594_6401
             } while (!flag);
             return busNum;
         }
-
-
     }
 }
