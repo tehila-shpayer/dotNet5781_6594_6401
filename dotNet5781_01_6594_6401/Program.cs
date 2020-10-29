@@ -49,7 +49,15 @@ namespace dotNet5781_01_6594_6401
                         DateTime startDate = new DateTime(year, month, day);
                         Console.WriteLine("Enter the bus number:");
                         busNum = ReadBusNum(startDate);
-                        buses.Add(new Bus(startDate, busNum));
+                        Bus ba = new Bus(startDate, busNum);
+                        buses.Add(ba);
+                        Console.WriteLine("You successfully added the bus to the system!\ndo you want it to start runnig? press 1 to refuel and treatment.\n");
+                        string one = Console.ReadLine();
+                        if (one=="1")
+                        {
+                            ba.RefillFuel();
+                            ba.DoTreatment();
+                        }
                         break;
                     case "b":
                         bool flag = false;
