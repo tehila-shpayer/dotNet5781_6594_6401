@@ -48,12 +48,10 @@ namespace dotNet5781_01_6594_6401
             if (_runningDate.Year >= 2018)
             {
                  s = $"{s[0]}{s[1]}{s[2]}-{s[3]}{s[4]}-{s[5]}{s[6]}{s[7]}";
-                //Console.WriteLine("{0} its after 2018", num);
             }
             else
             {
                 s = $"{s[0]}{s[1]}-{s[2]}{s[3]}{s[4]}-{s[5]}{s[6]}";
-                //Console.WriteLine("{0} its before 2018", num);
             }
             return s;
         }
@@ -66,12 +64,16 @@ namespace dotNet5781_01_6594_6401
             _KM = 0;
             _beforeTreatKM = 0;
         }
-        public void Refuel() { _fuel = 1200; }
+        public void Refuel() { 
+            _fuel = 1200;
+            Console.WriteLine("The fuel tank was successfully refueled!\n");
+        }
         public void DoTreatment()
         {
             _KM += beforeTreatKM;
             _beforeTreatKM = 0;
             _lastTreatment = DateTime.Now;
+            Console.WriteLine("The bus was successfully treated!\n");
         }
         public String Ride(int rideKM)
         {

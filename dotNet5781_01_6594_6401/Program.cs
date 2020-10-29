@@ -51,13 +51,10 @@ namespace dotNet5781_01_6594_6401
                         busNum = ReadBusNum(startDate);
                         Bus newBus = new Bus(startDate, busNum);
                         buses.Add(newBus);
-                        Console.WriteLine("You successfully added the bus to the system!\ndo you want it to start runnig? press 1 to refuel and treatment.");
+                        Console.WriteLine("You successfully added the bus to the system!\ndo you want it to start runnig? press 1 to refuel and treatment else press any key");
                         string one = Console.ReadLine();
-                        if (one=="1")
-                        {
-                            newBus.RefillFuel();
-                            newBus.DoTreatment();
-                        }
+                        if (one == "1")
+                            newBus.RefuelAndTreat();
                         break;
                     case "b":
                         bool flag = false;
@@ -93,25 +90,24 @@ namespace dotNet5781_01_6594_6401
                             Console.WriteLine("Sorry, The bus doesn't exist in the system.\n");
                             break;
                         }
-                        Console.WriteLine("For refueling press f and for tratment press t please.");
+                        Console.WriteLine("For refueling press f and for treatment press t please.\nIf you want both press ft.");
                         string c = Console.ReadLine();
                         do
                         {
                             switch (c)
                             {
                                 case "f":
-                                    helpBus.RefillFuel();
-                                    Console.WriteLine("The fuel tank was successfully refueled!\n");
+                                    helpBus.Refuel();
                                     break;
                                 case "t":
                                     helpBus.DoTreatment();
-                                    Console.WriteLine("The bus was successfully treated!\n");
                                     break;
                                 case "ft":
                                     helpBus.RefuelAndTreat();
                                     break;
                                 default:
                                     fl = false;
+                                    Console.WriteLine("You can only press f, t or ft!");
                                     break;
                             }
                         } while (!fl);
