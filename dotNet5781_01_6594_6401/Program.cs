@@ -61,7 +61,7 @@ namespace dotNet5781_01_6594_6401
                         busNum = Console.ReadLine();
                         foreach (Bus b in buses)
                         { 
-                            if (b.licenseNumber == busNum)
+                            if (b.LicenseNumber == busNum)
                             {
                                 Console.WriteLine(b.Ride((int)(rand.Next(1200))));
                                 flag = true;
@@ -78,13 +78,13 @@ namespace dotNet5781_01_6594_6401
                         s = Console.ReadLine();
                         foreach (Bus b in buses)
                         {
-                            if (b.licenseNumber == s)
+                            if (b.LicenseNumber == s)
                             {
                                 helpBus = b;
                                 break;
                             }
                         }
-                        if (helpBus.licenseNumber == "")
+                        if (helpBus.LicenseNumber == "")
                         {
                             Console.WriteLine("Sorry, The bus doesn't exist in the system.\n");
                             break;
