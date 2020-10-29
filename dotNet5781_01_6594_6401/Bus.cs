@@ -78,11 +78,11 @@ namespace dotNet5781_01_6594_6401
         public String Ride(int rideKM)
         {
             if ((_fuel < rideKM) && (NeedTreatment()))
-                return "The system couldn't take this bus for the ride.\nThe bus doesn't have enough fuel and has to get a treatment.\n";
+                return "The system couldn't take this bus for the ride.\nThe bus doesn't have enough fuel and must to be treated first.\n";
             if (_fuel < rideKM)
                 return "The system couldn't take this bus for the ride.\nThe bus doesn't have enough fuel\n";
             if (NeedTreatment())
-                return "The system couldn't take this bus for the ride.\nThe bus has to get a treatment.\n";
+                return "The system couldn't take this bus for the ride.\nThe bus must to be treated first.\n";
             _fuel -= rideKM;
             _KM += rideKM;
             _beforeTreatKM += rideKM;
