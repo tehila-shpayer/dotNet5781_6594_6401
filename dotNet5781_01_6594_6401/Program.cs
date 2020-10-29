@@ -55,8 +55,7 @@ namespace dotNet5781_01_6594_6401
                         string one = Console.ReadLine();
                         if (one=="1")
                         {
-                            newBus.RefillFuel();
-                            newBus.DoTreatment();
+                            newBus.RefuelAndTreat();
                         }
                         break;
                     case "b":
@@ -100,7 +99,7 @@ namespace dotNet5781_01_6594_6401
                             switch (c)
                             {
                                 case "f":
-                                    helpBus.RefillFuel();
+                                    helpBus.Refuel();
                                     Console.WriteLine("The fuel tank was successfully refueled!\n");
                                     break;
                                 case "t":
