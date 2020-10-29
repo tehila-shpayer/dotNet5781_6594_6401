@@ -196,11 +196,11 @@ namespace dotNet5781_01_6594_6401
                     if (((bN / sevd != 0) && (bN / eighd == 0) && (yr >= 2018)) || ((bN / sixd != 0) && (bN / sevd == 0) && (yr < 2018)))
                         flag = true;
                     else
-                        Console.WriteLine("Enter only a 7 or 8 digit number:\nIf start year is after 2018 - 8 digits.\nIf start year is before 2018 - 7 digit.");
+                        Console.WriteLine("Enter only a 7 or 8 digit number:\nIf start year is after (including) 2018 - 8 digits.\nIf start year is before 2018 - 7 digit.");
                 }
                 catch
                 {
-                    Console.WriteLine("Enter only a 7 or 8 digit number:\nIf sart year is after 2018 - 8 digits.\nIf start year is before 2018 - 7 digit.");
+                    Console.WriteLine("Enter only a 7 or 8 digit number:\nIf start year is after (including) 2018 - 8 digits.\nIf start year is before 2018 - 7 digit.");
                 }
             } while (!flag);
             return busNum;
