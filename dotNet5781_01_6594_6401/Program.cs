@@ -13,8 +13,6 @@ namespace dotNet5781_01_6594_6401
         static void Main(string[] args)
         {
 //סיימתי הרוב, חסר:
-//אפשרות גם לתדלק וגם לתת טיפול
-//הצעה לעשות זאת לאחר הוספת אוטובוס
 //לסדר בפונקציות את התוכנית הראשית
 
             List<Bus> buses = new List<Bus>();
@@ -50,7 +48,7 @@ namespace dotNet5781_01_6594_6401
                         busNum = ReadBusNum(startDate);
                         Bus newBus = new Bus(startDate, busNum);
                         buses.Add(newBus);
-                        Console.WriteLine("You successfully added the bus to the system!\ndo you want it to start runnig? press 1 to refuel and treatment else press any key");
+                        Console.WriteLine("You successfully added the bus to the system!\nDo you want it to start runnig?\nPress 1 to refuel and treatment else press any key");
                         string one = Console.ReadLine();
                         if (one == "1")
                             newBus.RefuelAndTreat();
@@ -74,7 +72,7 @@ namespace dotNet5781_01_6594_6401
                     case "c":
                         bool fl = true;
                         Bus helpBus=new Bus(new DateTime());
-                        Console.WriteLine("Enter the bus license you wish to refuel or treat: ");
+                        Console.WriteLine("Enter the bus license you wish to refuel or treat:");
                         s = Console.ReadLine();
                         foreach (Bus b in buses)
                         {
