@@ -116,6 +116,7 @@ namespace dotNet5781_01_6594_6401
                         if (buses==null)
                         {
                             Console.WriteLine("Sorry, there are no buses in the system.");
+                            break;
                         }
                         Console.WriteLine("The data of all buses in the system:");
                         foreach (Bus b in buses)
