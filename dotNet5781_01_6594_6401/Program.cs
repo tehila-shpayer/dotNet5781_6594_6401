@@ -49,14 +49,14 @@ namespace dotNet5781_01_6594_6401
                         DateTime startDate = new DateTime(year, month, day);
                         Console.WriteLine("Enter the bus number:");
                         busNum = ReadBusNum(startDate);
-                        Bus ba = new Bus(startDate, busNum);
-                        buses.Add(ba);
-                        Console.WriteLine("You successfully added the bus to the system!\ndo you want it to start runnig? press 1 to refuel and treatment.\n");
+                        Bus newBus = new Bus(startDate, busNum);
+                        buses.Add(newBus);
+                        Console.WriteLine("You successfully added the bus to the system!\ndo you want it to start runnig? press 1 to refuel and treatment.");
                         string one = Console.ReadLine();
                         if (one=="1")
                         {
-                            ba.RefillFuel();
-                            ba.DoTreatment();
+                            newBus.RefillFuel();
+                            newBus.DoTreatment();
                         }
                         break;
                     case "b":
@@ -77,19 +77,18 @@ namespace dotNet5781_01_6594_6401
                         break;
                     case "c":
                         bool fl = true;
-                        Bus bb=new Bus(new DateTime());
+                        Bus helpBus=new Bus(new DateTime());
                         Console.WriteLine("Enter the bus license you wish to refuel or treat: ");
                         s = Console.ReadLine();
                         foreach (Bus b in buses)
                         {
                             if (b.licenseNumber == s)
                             {
-                                bb = b;
+                                helpBus = b;
                                 break;
                             }
-
                         }
-                        if (bb.licenseNumber == "")
+                        if (helpBus.licenseNumber == "")
                         {
                             Console.WriteLine("Sorry, The bus doesn't exist in the system.\n");
                             break;
@@ -101,12 +100,15 @@ namespace dotNet5781_01_6594_6401
                             switch (c)
                             {
                                 case "f":
-                                    bb.RefillFuel();
+                                    helpBus.RefillFuel();
                                     Console.WriteLine("The fuel tank was successfully refueled!\n");
                                     break;
                                 case "t":
-                                    bb.DoTreatment();
+                                    helpBus.DoTreatment();
                                     Console.WriteLine("The bus was successfully treated!\n");
+                                    break;
+                                case "ft":
+                                    helpBus.RefuelAndTreat();
                                     break;
                                 default:
                                     fl = false;
