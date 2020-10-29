@@ -55,7 +55,7 @@ namespace dotNet5781_01_6594_6401
                     case "b":
                         
                         bool flag = false;
-                        Console.WriteLine("Enter the buss number you wish to ride in: ");
+                        Console.WriteLine("Enter the bus license you wish to ride in: ");
                         bussNum = Console.ReadLine();
                         foreach (Buss b in busses)
                         { 
@@ -75,7 +75,7 @@ namespace dotNet5781_01_6594_6401
                     case "c":
                         bool fl = true;
                         Buss bb=new Buss(new DateTime());
-                        Console.WriteLine("Enter the bus number you wish to refuel or treat: ");
+                        Console.WriteLine("Enter the bus license you wish to refuel or treat: ");
                         s = Console.ReadLine();
                         foreach (Buss b in busses)
                         {
