@@ -36,7 +36,6 @@ namespace dotNet5781_01_6594_6401
                 switch (s)
                 {
                     case "a":
-                        
                         Console.WriteLine("Enter the start date of the bus activity:");
                         Console.WriteLine("Enter the year:");
                         int year = ReadYear();
@@ -113,6 +112,11 @@ namespace dotNet5781_01_6594_6401
                         } while (!fl);
                             break;
                     case "d":
+                        if (buses==null)
+                        {
+                            Console.WriteLine("Sorry, there are no buses in the system.");
+                        }
+                        Console.WriteLine("The data of all buses in the system:");
                         foreach (Bus b in buses)
                         {
                             Console.WriteLine(b);
@@ -169,14 +173,14 @@ namespace dotNet5781_01_6594_6401
         }
         static public int ReadMonth()
         {
-            string minM = "The month number can not be less than 1. Please enter a proper month:";
-            string maxM = "The month number can not be more than 12. Please enter a proper month:";
+            string minM = "The month number can not be under 1. Please enter a proper month:";
+            string maxM = "The month number can not be over 12. Please enter a proper month:";
             return ReadSomething(1, 12, minM, maxM);
         }
         static public int ReadDay()
         {
-            string minM = "The day number can not be less than 1. Please enter a proper day:";
-            string maxM = "The day number can not be more than 31. Please enter a proper day:";
+            string minM = "The day number can not be under 1. Please enter a proper day:";
+            string maxM = "The day number can not be over 31. Please enter a proper day:";
             return ReadSomething(1, 31, minM, maxM);
         }
         static public string ReadBusNum(DateTime startDate)
