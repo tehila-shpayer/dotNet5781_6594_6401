@@ -19,7 +19,7 @@ namespace dotNet5781_01_6594_6401
 //לסדר בפונקציות את התוכנית הראשית
 //להוריד מהצגה של תאריכים את השעה - בוצע!
             List<Bus> buses = new List<Bus>();
-            Random r = new Random(DateTime.Now.Millisecond);
+            Random rand = new Random(DateTime.Now.Millisecond);
             string s;
             Console.WriteLine("Welcome!");
             do
@@ -50,18 +50,9 @@ namespace dotNet5781_01_6594_6401
                         DateTime startDate = new DateTime(year, month, day);
                         Console.WriteLine("Enter the bus number:");
                         busNum=readBusNum(startDate);
-                        Bus ba = new Bus(startDate, busNum);
-                        buses.Add(ba);
-                        Console.WriteLine("You successfully added a bus to the system!\n Do you want it to sart running in the system?\n press 1 to refuel it and treat it.");
-                        string ft=Console.ReadLine();
-                        if(ft=="1")
-                        {
-                            ba.DoTreatment();
-                            ba.RefillFuel();
-                        }
+                        buses.Add(new Bus(startDate, busNum));
                         break;
                     case "b":
-                        
                         bool flag = false;
                         Console.WriteLine("Enter the bus license you wish to ride in: ");
                         busNum = Console.ReadLine();
@@ -69,10 +60,11 @@ namespace dotNet5781_01_6594_6401
                         { 
                             if (b.licenseNumber == busNum)
                             {
-                                if (!b.Ride((int)r.Next(1200)))
-                                    Console.WriteLine("The system couldn't take this bus for the ride.\nplease make sure you have enough fuel and the bus is after treatment.\n");
-                                else
-                                    Console.WriteLine("Have a nice ride!\n");
+                                Console.WriteLine(b.Ride((int)(rand.Next(1200))));
+                                //if (!b.Ride((int)rand.Next(1200)))
+                                //    Console.WriteLine("The system couldn't take this bus for the ride.\nplease make sure you have enough fuel and the bus is after treatment.\n");
+                                //else
+                                //    Console.WriteLine("Have a nice ride!\n");
                                 flag = true;
                                 break;
                             }
@@ -212,5 +204,7 @@ namespace dotNet5781_01_6594_6401
             } while (!flag);
             return busNum;
         }
+
+
     }
 }
