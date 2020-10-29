@@ -55,7 +55,7 @@ namespace dotNet5781_01_6594_6401
                     case "b":
                         string t;
                         bool f = false;
-                        Console.WriteLine("Enter the buss number you wish to ride in: ");
+                        Console.WriteLine("Enter the buss license you wish to ride in: ");
                         t=Console.ReadLine();
                         foreach (Buss b in busses)
                         { 
@@ -75,7 +75,7 @@ namespace dotNet5781_01_6594_6401
                     case "c":
                         bool fl = true;
                         Buss bb=new Buss(new DateTime());
-                        Console.WriteLine("Enter the bus number you wish to refuel or treat: ");
+                        Console.WriteLine("Enter the bus license you wish to refuel or treat: ");
                         s = Console.ReadLine();
                         foreach (Buss b in busses)
                         {
@@ -115,7 +115,7 @@ namespace dotNet5781_01_6594_6401
                         foreach (Buss b in busses)
                         {
                             Console.WriteLine($"Bus license number: {b.getCarNumberFormat()}\n" +
-                                $"Bus start date: {b.runningDate}\n" +
+                                $"Bus start date: {b.runningDate.Date}\n" +
                                 $"Bus state since last tratment on {b.lastTreatment}:\n" +
                                 $" Fuel state (KM to go): {b.fuel}\n" +
                                 $" KM: {b.beforeTreatKM}\n");
