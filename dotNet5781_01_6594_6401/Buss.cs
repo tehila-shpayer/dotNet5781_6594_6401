@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_01_6594_6401
 {
-    class Buss
+    class Bus
     {
         int _KM;
-        string _carNumber;
+        string _licenseNumber;
         int _fuel;
         int _beforeTreatKM;
         DateTime _runningDate;
@@ -26,9 +26,9 @@ namespace dotNet5781_01_6594_6401
         {
             get { return _lastTreatment; }
         }
-        public string carNumber
+        public string licenseNumber
         {
-            get { return _carNumber; }
+            get { return _licenseNumber; }
         }
         public int fuel
         {
@@ -42,9 +42,9 @@ namespace dotNet5781_01_6594_6401
         {
             get { return _runningDate; }
         }
-        public string getCarNumberFormat()
+        public string getLicenseNumberFormat()
         {
-            string s = _carNumber;
+            string s = _licenseNumber;
             if (_runningDate.Year >= 2018)
             {
                  s = $"{s[0]}{s[1]}{s[2]}-{s[3]}{s[4]}-{s[5]}{s[6]}{s[7]}";
@@ -57,10 +57,10 @@ namespace dotNet5781_01_6594_6401
             }
             return s;
         }
-        public Buss(DateTime d,string num="")
+        public Bus(DateTime d,string num="")
         {
             _lastTreatment = d;
-            _carNumber = num;
+            _licenseNumber = num;
             _runningDate = d;
             _fuel = 0;
             _KM = 0;
@@ -84,7 +84,7 @@ namespace dotNet5781_01_6594_6401
         }
         public override String ToString()
         {
-            return $"Bus license number: {getCarNumberFormat()}\n" +
+            return $"Bus license number: {getLicenseNumberFormat()}\n" +
                                 $"Bus start date: {runningDate}\n" +
                                 $"Bus state since last tratment on {lastTreatment}:\n" +
                                 $" Fuel state (KM to go): {fuel}\n" +
