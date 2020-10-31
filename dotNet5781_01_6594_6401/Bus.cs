@@ -42,6 +42,11 @@ namespace dotNet5781_01_6594_6401
         {
             get { return _runningDate; }
         }
+        /// <summary>
+        /// returns the license number in the format
+        /// xxx-xx-xx or xx-xxx-xx (depends on start date)
+        /// </summary>
+        /// <returns></returns>
         public string GetLicenseNumberFormat()
         {
             string s = _licenseNumber;
@@ -55,7 +60,8 @@ namespace dotNet5781_01_6594_6401
             }
             return s;
         }
-        public Bus(DateTime d, string num="")
+        //conctractor
+        public Bus(DateTime d=new DateTime(), string num="")
         {
             _lastTreatment = d;
             _licenseNumber = num;
@@ -64,39 +70,61 @@ namespace dotNet5781_01_6594_6401
             _KM = 0;
             _beforeTreatKM = 0;
         }
+        //refuel to the maximum possible - 1200
         public void Refuel() { 
             _fuel = 1200;
             Console.WriteLine("The fuel tank was successfully refueled!\n");
         }
+        ///treatment function
+        ///does:
+        ///-adding to general killometrag
+        ///-reseting temprery killometrag
+        ///-updating last treatment date
         public void DoTreatment()
         {
-            _KM += _beforeTreatKM;
-            _beforeTreatKM = 0;
-            _lastTreatment = DateTime.Now;
+            _KM += _beforeTreatKM; 
+            _beforeTreatKM = 0;    
+            _lastTreatment = DateTime.Now;  
             Console.WriteLine("The bus was successfully treated!\n");
         }
+        /// <summary>
+        /// Performs a bus ride by updating the 
+        /// appropriate bus fields in the system.
+        /// </summary>
+        /// <param name="rideKM"></param>
+        /// <returns>The appropriate message for wether the ride happened or not and why</returns>
         public String Ride(int rideKM)
-        {
+        {//Check if the ride is allowed and sending messages accordingly
             if ((_fuel < rideKM) && (NeedTreatment()))
                 return "The system couldn't take this bus for the ride.\nThe bus doesn't have enough fuel and must to be treated first.\n";
             if (_fuel < rideKM)
                 return "The system couldn't take this bus for the ride.\nThe bus doesn't have enough fuel\n";
             if (NeedTreatment())
                 return "The system couldn't take this bus for the ride.\nThe bus must to be treated first.\n";
-            _fuel -= rideKM;
+            _fuel -= rideKM; //update of fields if the ride happened
             _KM += rideKM;
             _beforeTreatKM += rideKM;
             return "Have a nice ride!\n";
         }
+        //Refuel and teatment for the bus
         public void RefuelAndTreat()
         {
             Refuel();
             DoTreatment();
         }
+        ///cheks if the bus needs treatment:
+        ///(maximum temprery kilometrag crossed (over 20000)
+        ///or a year past since last treatment)
         public bool NeedTreatment()
         {
             return (((DateTime.Now - _lastTreatment).TotalDays > 365) || (_beforeTreatKM > 20000));
         }
+        /// <summary>
+        /// Override of ToString: 
+        /// printing all data of the bus concerning traveling since last treatment,
+        /// license number and start date.
+        /// </summary>
+        /// <returns></returns>
         public override String ToString()
         {
             return $"Bus license number: {GetLicenseNumberFormat()}\n" +
@@ -105,6 +133,7 @@ namespace dotNet5781_01_6594_6401
                                 $" Fuel state (KM to go): {_fuel}\n" +
                                 $" KM: {_beforeTreatKM}\n";
         }
+        // A string of a DateTime varible that doesnt include the time
         static public String DateWithoutHour(DateTime date)
         {
             String dateString = date.Day + "/" + date.Month + "/" + date.Year;
