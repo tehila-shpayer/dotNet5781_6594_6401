@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace dotNet5781_01_6594_6401
 {
     class Program
+    //The program is a system for representing buses. It allows the user to add a bus, make a ride, refuel and treat a bus, or print the data on all the buses.
     {
         static void Main(string[] args)
         {
@@ -44,25 +45,26 @@ namespace dotNet5781_01_6594_6401
 
                         Bus newBus = new Bus(startDate, busNum);
                         buses.Add(newBus);
-                        Console.WriteLine("You successfully added the bus to the system!\nDo you want it to start runnig?\nPress 1 to refuel and treatment else press any key");
+                        Console.WriteLine("You successfully added the bus to the system!\nDo you want it to start runnig?\nPress 1 to refuel and treatment, else press any key");
                         string one = Console.ReadLine();
-                        if (one == "1")
+                        if (one == "1")//if the user wants to refuel and treat the new bus 
                             newBus.RefuelAndTreat();
                         break;
-                    case "b":
+                    case "b"://Make a ride
                         bool flag = false;
                         Console.WriteLine("Enter the bus license you wish to ride in: ");
                         busNum = Console.ReadLine();
-                        foreach (Bus b in buses)
+                        foreach (Bus b in buses)//finds the requested bus in the system
                         { 
                             if (b.LicenseNumber == busNum)
                             {
-                                Console.WriteLine(b.Ride((int)(rand.Next(1200))));
+                                Console.WriteLine(b.Ride((int)(rand.Next(1,1201))));
+                                //commit a ride of a rundom number of KM (between 1 and 1200) if possible
                                 flag = true;
                                 break;
                             }
                         }
-                        if(!flag)
+                        if(!flag)//if the bus is not in the system
                             Console.WriteLine("Sorry, The bus doesn't exist in the system.\n");
                         break;
                     case "c"://Refuels a bus or sends to treatment
@@ -70,7 +72,7 @@ namespace dotNet5781_01_6594_6401
                         Bus helpBus=new Bus(new DateTime());
                         Console.WriteLine("Enter the bus license you wish to refuel or treat:");
                         s = Console.ReadLine();
-                        foreach (Bus b in buses)//finds the asked bus in the system
+                        foreach (Bus b in buses)//finds the requested bus in the system
                         {
                             if (b.LicenseNumber == s)
                             {
@@ -130,12 +132,12 @@ namespace dotNet5781_01_6594_6401
             } while (s != "e");
         }
         static public int ReadSomething(int min, int max, string minMessage, string maxMessage)
-        //get a proper input - according to the minimum and maximum values allowed, and prints a __ message 
+        //gets a proper input - according to the minimum and maximum allowed values received, and prints an appropriate message 
         {
             string dateString;
             int dateInt= 0;
             bool flag = false;
-            do
+            do //try to get the date while it doesn't match the allowed values
             {
                 dateString = Console.ReadLine();
                 try
@@ -160,7 +162,8 @@ namespace dotNet5781_01_6594_6401
                 {
                     Console.WriteLine("Enter only a number:");
                 }
-            } while (!flag);//while the input doesn't fit the othorizes values
+            } while (!flag);
+
             return dateInt;//return the date as a number
         }
         static public int ReadYear()//Gets a proper year - between 1895 and the current year
@@ -186,7 +189,7 @@ namespace dotNet5781_01_6594_6401
         {
             string busNumString;
             bool flag = false;
-            do
+            do //try to get the license number while it doesn't match the allowed values
             {
                 busNumString = Console.ReadLine();
                 try
@@ -204,7 +207,8 @@ namespace dotNet5781_01_6594_6401
                     Console.WriteLine("Enter only a 7 or 8 digit number:\nIf start year is after (including) 2018 - 8 digits.\nIf start year is before 2018 - 7 digit.");
                 }
             } while (!flag);
-            return busNumString;
+
+            return busNumString;//return the license number as a string
         }
     }
 }
