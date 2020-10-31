@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 namespace dotNet5781_01_6594_6401
 {
     class Program
-    //The program is a system for representing buses. It allows the user to add a bus, make a ride, refuel and treat a bus, or print the data on all the buses.
+    //Tehila Shpayer 325236594. Sara-Malka Hamo 325266401.
+    //The program is a system for representing buses.
+    //It allows the user to add a bus, make a ride, refuel and treat a bus, or print the data on all the buses.
     {
         static void Main(string[] args)
         {
