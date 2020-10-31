@@ -9,43 +9,39 @@ namespace dotNet5781_01_6594_6401
 {
     class Program
     {
-        
         static void Main(string[] args)
         {
-//סיימתי הרוב, חסר:
-//לסדר בפונקציות את התוכנית הראשית
-
             List<Bus> buses = new List<Bus>();
             Random rand = new Random(DateTime.Now.Millisecond);
             string s;
-            Console.WriteLine("Welcome!");
+            Console.WriteLine("Welcome!\n");
             do
             {
-
                 Console.WriteLine(@"Choose one of the following:
   a: Add a new bus
   b: Choose a bus for a ride
   c: Refuel a bus or send to treatment
   d: Print the data of the buses
   e: exit:");
-
                 s = Console.ReadLine();
                 string busNum;
                 switch (s)
                 {
-                    case "a":
+                    case "a"://Add a new bus to the system
                         Console.WriteLine("Enter the start date of the bus activity:");
                         Console.WriteLine("Enter the year:");
-                        int year = ReadYear();
+                        int year = ReadYear();//get a proper year
 
                         Console.WriteLine("Enter the month:");
-                        int month = ReadMonth();
-                      
+                        int month = ReadMonth();//get a proper month
+
                         Console.WriteLine("Enter the day:");
-                        int day = ReadDay();
+                        int day = ReadDay();//get a proper day
+
                         DateTime startDate = new DateTime(year, month, day);
                         Console.WriteLine("Enter the bus number:");
-                        busNum = ReadBusNum(startDate);
+                        busNum = ReadBusNum(startDate);//get a proper license number
+
                         Bus newBus = new Bus(startDate, busNum);
                         buses.Add(newBus);
                         Console.WriteLine("You successfully added the bus to the system!\nDo you want it to start runnig?\nPress 1 to refuel and treatment else press any key");
@@ -69,12 +65,12 @@ namespace dotNet5781_01_6594_6401
                         if(!flag)
                             Console.WriteLine("Sorry, The bus doesn't exist in the system.\n");
                         break;
-                    case "c":
+                    case "c"://Refuels a bus or sends to treatment
                         bool fl = true;
                         Bus helpBus=new Bus(new DateTime());
                         Console.WriteLine("Enter the bus license you wish to refuel or treat:");
                         s = Console.ReadLine();
-                        foreach (Bus b in buses)
+                        foreach (Bus b in buses)//finds the asked bus in the system
                         {
                             if (b.LicenseNumber == s)
                             {
@@ -82,7 +78,7 @@ namespace dotNet5781_01_6594_6401
                                 break;
                             }
                         }
-                        if (helpBus.LicenseNumber == "")
+                        if (helpBus.LicenseNumber == "")//if the bus is not in the system
                         {
                             Console.WriteLine("Sorry, The bus doesn't exist in the system.\n");
                             break;
@@ -96,13 +92,13 @@ namespace dotNet5781_01_6594_6401
                         {
                             switch (c)
                             {
-                                case "f":
+                                case "f"://Refuels the bus
                                     helpBus.Refuel();
                                     break;
-                                case "t":
+                                case "t"://Sends the bus to treatment
                                     helpBus.DoTreatment();
                                     break;
-                                case "ft":
+                                case "ft"://Refuels and sends the bus to treatment
                                     helpBus.RefuelAndTreat();
                                     break;
                                 default:
@@ -112,8 +108,8 @@ namespace dotNet5781_01_6594_6401
                             }
                         } while (!fl);
                             break;
-                    case "d":
-                        if (buses==null)
+                    case "d"://Prints the data of the buses in the system
+                        if (buses==null)//if there are no buses in the system
                         {
                             Console.WriteLine("Sorry, there are no buses in the system.");
                             break;
@@ -121,10 +117,10 @@ namespace dotNet5781_01_6594_6401
                         Console.WriteLine("The data of all buses in the system:");
                         foreach (Bus b in buses)
                         {
-                            Console.WriteLine(b);
+                            Console.WriteLine(b);//Prints the data of the bus
                         }
                         break;
-                    case "e":
+                    case "e"://exit
                         break;
                     default:
                         Console.WriteLine("ERROR");
@@ -133,8 +129,8 @@ namespace dotNet5781_01_6594_6401
 
             } while (s != "e");
         }
-
         static public int ReadSomething(int min, int max, string minMessage, string maxMessage)
+        //get a proper input - according to the minimum and maximum values allowed, and prints a __ message 
         {
             string dateString;
             int dateInt= 0;
@@ -160,56 +156,55 @@ namespace dotNet5781_01_6594_6401
                             flag = true;
                     }
                 }
-                catch
+                catch//if the input is not a number
                 {
                     Console.WriteLine("Enter only a number:");
                 }
-            } while (!flag);
-            return dateInt;
+            } while (!flag);//while the input doesn't fit the othorizes values
+            return dateInt;//return the date as a number
         }
-        static public int ReadYear()
+        static public int ReadYear()//Gets a proper year - between 1895 and the current year
         {
             string minM = "The first bus was developed in 1895! Please enter a proper year:";
             string maxM = "The current year is " + DateTime.Now.Year + "! Please enter a proper year:";
             return ReadSomething(1895, DateTime.Now.Year, minM, maxM);
         }
-        static public int ReadMonth()
+        static public int ReadMonth()//Gets a proper month - a number between 1 and 12
         {
             string minM = "The month number can not be under 1. Please enter a proper month:";
             string maxM = "The month number can not be over 12. Please enter a proper month:";
             return ReadSomething(1, 12, minM, maxM);
         }
-        static public int ReadDay()
+        static public int ReadDay()//Gets a proper day - a number between 1 and 31
         {
             string minM = "The day number can not be under 1. Please enter a proper day:";
             string maxM = "The day number can not be over 31. Please enter a proper day:";
             return ReadSomething(1, 31, minM, maxM);
         }
         static public string ReadBusNum(DateTime startDate)
+        //Gets a proper input for the license number - a 7 or 8 digit number (according to the start year of the bus)
         {
-            string busNum;
+            string busNumString;
             bool flag = false;
             do
             {
-                busNum = Console.ReadLine();
+                busNumString = Console.ReadLine();
                 try
                 {
-                    int bN = int.Parse(busNum);
-                    int busNumLength = busNum.Length;
-                    int yr = startDate.Year;              
-                    if (((busNumLength==8) && (yr >= 2018)) || ((busNumLength==7)&& (yr < 2018)))
+                    int busNumInt = int.Parse(busNumString);
+                    int busNumLength = busNumString.Length;
+                    int startYear = startDate.Year;              
+                    if (((busNumLength==8) && (startYear >= 2018)) || ((busNumLength==7)&& (startYear < 2018)))
                         flag = true;
                     else
                         Console.WriteLine("Enter only a 7 or 8 digit number:\nIf start year is after (including) 2018 - 8 digits.\nIf start year is before 2018 - 7 digit.");
                 }
-                catch
+                catch//if the input is not a number
                 {
                     Console.WriteLine("Enter only a 7 or 8 digit number:\nIf start year is after (including) 2018 - 8 digits.\nIf start year is before 2018 - 7 digit.");
                 }
             } while (!flag);
-            return busNum;
+            return busNumString;
         }
-
-
     }
 }
