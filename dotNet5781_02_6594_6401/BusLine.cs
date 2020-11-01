@@ -15,5 +15,11 @@ namespace dotNet5781_02_6594_6401
         public BusStation LastStation { get; private set; }
 
         public Areas area { get; private set; }
+
+       public override String ToString()
+        {
+            String s = "Bus Line: "+LineNumber+"\nArea: "+area +""
+            return s;
+        }
     }
 }
