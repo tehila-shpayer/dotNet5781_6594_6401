@@ -18,10 +18,19 @@ namespace dotNet5781_02_6594_6401
 
         public BusLine(List<BusLineStation> bls, int ln, BusStation first, BusStation last)
         {
-            bls = new List<BusLineStation>();
-            LineNumber = ln;
-            FirstStation = first;
-            LastStation = last;
+            try
+            {
+                if (ln <=0)
+                    throw new ArgumentOutOfRangeException("Line number must be positive!");
+                bls = new List<BusLineStation>();
+                LineNumber = ln;
+                FirstStation = first;
+                LastStation = last;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

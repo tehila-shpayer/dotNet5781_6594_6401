@@ -16,9 +16,9 @@ namespace dotNet5781_02_6594_6401
             try
             {
                 Station = new BusStation(bsk, la, lo, ad);
-                if (d < 0)
+                if (d <= 0)
                     throw new ArgumentOutOfRangeException("Distance from last station must be positive!");
-                if (t < 0) 
+                if (t <= 0) 
                     throw new ArgumentOutOfRangeException("Travel time from last station must be positive!");
                 DistanceFromLastStationMeters = d;
                 TravelTimeFromLastStationMinutes = t;
