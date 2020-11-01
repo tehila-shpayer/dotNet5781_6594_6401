@@ -41,5 +41,11 @@ namespace dotNet5781_02_6594_6401
         {
 
         }
+
+       public override String ToString()
+        {
+            String s = "Bus Line: "+LineNumber+"\nArea: "+area +""
+            return s;
+        }
     }
 }
