@@ -8,5 +8,6 @@ namespace dotNet5781_02_6594_6401
 {
     class BusLineCollection
     {
+        
     }
 }

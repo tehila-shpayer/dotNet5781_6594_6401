@@ -10,6 +10,9 @@ namespace dotNet5781_02_6594_6401
     {
         static void Main(string[] args)
         {
+            BusStation bs = new BusStation(158745, 31.234567, 34.56789, "רח' פלוני אלמוני 12, תל חורף");
+            Console.WriteLine(bs);
+
         }
     }
 }
