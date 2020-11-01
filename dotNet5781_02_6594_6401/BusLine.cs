@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 namespace dotNet5781_02_6594_6401
 {
     enum Areas { Jerusalem, Center, North, South, Hifa, TelAviv, YehudaAndShomron }
-    class BusLine
+    class BusLine : IComparable
     {
         public List<BusLineStation> BusLineStations { get; private set; }
         public int LineNumber { get; private set; }
@@ -31,6 +32,14 @@ namespace dotNet5781_02_6594_6401
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+        public int CompareTo(object obj)
+        {
+            return 1;
+        }
+        public void AddStation(BusLineStation bls)
+        {
+
         }
     }
 }
