@@ -11,11 +11,11 @@ namespace dotNet5781_02_6594_6401
         public BusStation Station { get; private set; }
         public float DistanceFromLastStationMeters { get; private set; }
         public int TravelTimeFromLastStationMinutes { get; private set; }
-        public BusLineStation(int bsk, double la, double lo, float d, int t, string ad = "")
+        public BusLineStation(BusStation bs, float d, int t)
         {
             try
             {
-                Station = new BusStation(bsk, la, lo, ad);
+                Station = new BusStation(bs.BusStationKey, bs.Latitude, bs.Longitude, bs.address);
                 if (d <= 0)
                     throw new ArgumentOutOfRangeException("Distance from last station must be positive!");
                 if (t <= 0) 
@@ -29,5 +29,6 @@ namespace dotNet5781_02_6594_6401
             }
 
         }
+        public int GetBusStationKey() { return Station.BusStationKey; }
     }
 }
