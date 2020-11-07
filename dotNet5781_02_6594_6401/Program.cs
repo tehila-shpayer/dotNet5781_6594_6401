@@ -8,6 +8,7 @@ namespace dotNet5781_02_6594_6401
 {
     class Program
     {
+       
         static void Main(string[] args)
         {
             //חסר:
@@ -30,6 +31,10 @@ namespace dotNet5781_02_6594_6401
             Console.WriteLine(busLine);
             Console.WriteLine(busLine.FindDistance(bss2, bss));
 
+
+            StationList.Add(bs);
+            
+            
 
 
 

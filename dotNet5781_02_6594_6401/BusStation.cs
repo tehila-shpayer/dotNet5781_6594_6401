@@ -20,8 +20,8 @@ namespace dotNet5781_02_6594_6401
             try
             {            
                 string key = bsk.ToString();
-                if (key.Length != 6)
-                    throw new ArgumentException("Bus station key number must be of 6 digit!");
+                if (key.Length > 6)
+                    throw new ArgumentException("Bus station key number must be of maximum 6 digit!");
                 if((la > 90) || (la<-90))
                     throw new ArgumentOutOfRangeException("Bus station Latitude number must be in the range [-90,90]!");
                 if ((lo > 180) || (lo < -180))
@@ -38,7 +38,7 @@ namespace dotNet5781_02_6594_6401
         }
         public override string ToString()
         {
-            return $"Bus Station Code: {BusStationKey}, {Latitude}°N {Longitude}°E";    
+            return $"Bus Station Code: {BusStationKey}, Location: {Latitude}°N {Longitude}°E";    
         }
 
     }

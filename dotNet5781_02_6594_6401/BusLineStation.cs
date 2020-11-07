@@ -8,6 +8,42 @@ namespace dotNet5781_02_6594_6401
 {
     class BusLineStation
     {
+        public int StationKey { get; private set; }
+        public float DistanceFromLastStationMeters { get; private set; }
+        public int TravelTimeFromLastStationMinutes { get; private set; }
+        public BusLineStation()
+        {
+            //default ctor
+        }
+        public BusLineStation(int key, float d, int t)
+        {
+            try
+            {
+                StationKey = key;
+                
+                if (d <= 0)
+                    throw new ArgumentOutOfRangeException("Distance from last station must be positive!");
+                if (t <= 0)
+                    throw new ArgumentOutOfRangeException("Travel time from last station must be positive!");
+                DistanceFromLastStationMeters = d;
+                TravelTimeFromLastStationMinutes = t;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+
+        public override String ToString()
+        {
+
+            return StationList.FindStation(StationKey).ToString();
+        }
+    }
+}
+/*
+  מה שהיה קודם:
         public BusStation Station { get; private set; }
         public float DistanceFromLastStationMeters { get; private set; }
         public int TravelTimeFromLastStationMinutes { get; private set; }
@@ -18,7 +54,7 @@ namespace dotNet5781_02_6594_6401
                 Station = new BusStation(bs.BusStationKey, bs.Latitude, bs.Longitude, bs.address);
                 if (d <= 0)
                     throw new ArgumentOutOfRangeException("Distance from last station must be positive!");
-                if (t <= 0) 
+                if (t <= 0)
                     throw new ArgumentOutOfRangeException("Travel time from last station must be positive!");
                 DistanceFromLastStationMeters = d;
                 TravelTimeFromLastStationMinutes = t;
@@ -31,4 +67,4 @@ namespace dotNet5781_02_6594_6401
         }
         public int GetBusStationKey() { return Station.BusStationKey; }
     }
-}
+ */
