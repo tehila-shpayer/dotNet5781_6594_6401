@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Dynamic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,10 +41,35 @@ namespace dotNet5781_02_6594_6401
         }
         public override string ToString()
         {
-            if (address == "")
-                return $"Bus Station Code: {BusStationKey}, Location: {Latitude}°N {Longitude}°E";
-            return $"Bus Station Code: {BusStationKey}, Location: {Latitude}°N {Longitude}°E, Address: {address}";
+            string s = $"Bus Station Code: {BusStationKey}, Location: {FiveDigitsAfterPoint(Latitude)}°N {FiveDigitsAfterPoint(Longitude)}°E";
+            if (address != "")
+                s+= " Address: " +address;
+            //return $"Bus Station Code: {BusStationKey}, Location: {Latitude}°N {Longitude}°E, Address: {address}";
+            return s;
+        }
+        public string FiveDigitsAfterPoint(double d)
+        {
+            string s = ConvertToString(d);
+            s = s.Substring(0, 8);
+            return s;
+        }
+        public string ConvertToString(double thisDouble)
+        {
+            double d = thisDouble;
+            string s = "";
 
+            s += (int)d;
+            s += ".";
+            d = d - (int)d;
+            int i = 0;
+            while ((d != 0) && (i<15))
+            {
+                d *= 10;
+                s += (int)d;
+                d = d - (int)d;
+                ++i;
+            }
+            return s;
         }
 
     }

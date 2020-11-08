@@ -47,6 +47,16 @@ namespace dotNet5781_02_6594_6401
         static public bool StationExists(int stationKey)
         {
             return (FindStation(stationKey) != null);
-        } 
+        }
+        static public new String ToString()
+        {
+            string s = "The Stations in the system:\n\n";
+            foreach (var station in StationList.Stations)
+            {
+                s += station.ToString();
+                s += "\n\n";
+            }
+            return s;
+        }
     }
 }
