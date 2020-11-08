@@ -16,8 +16,8 @@ namespace dotNet5781_02_6594_6401
             //שיניתי את תחנה ראשונה ואחרונה להיות תחנת אוטובוס כי הייתי חייבת וזה לא משנה ככ
             //זהו נראה לי:)
             BusStation bs = new BusStation(31.234567, 34.56789, "");
-            BusStation bs1 = new BusStation(31.234567, 34.56789, "רח' פלוני אלמוני 12, תל חורף");
-            BusStation bs2 = new BusStation(31.234567, 34.56789, "רח' פלוני אלמוני 12, תל חורף");
+            BusStation bs1 = new BusStation(31.234567, 34.56874, "רח' פלוני אלמוני 12, תל חורף");
+            BusStation bs2 = new BusStation(31.234567, 35.41587, "רח' פלוני אלמוני 12, תל חורף");
             StationList.Add(bs);
             StationList.Add(bs1);
             StationList.Add(bs2);

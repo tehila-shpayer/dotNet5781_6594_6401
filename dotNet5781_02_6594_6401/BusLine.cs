@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 using System.Diagnostics.Eventing.Reader;
+using System.Device.Location;
 
 namespace dotNet5781_02_6594_6401
 {
@@ -56,10 +57,10 @@ namespace dotNet5781_02_6594_6401
                 return 1;
             return 0;
         }
-        public void AddStation(int position, BusLineStation bls)
+        public void AddStation(int position, BusLineStation busLineStation)
         {
-            if(StationList.StationExists(bls.StationKey))
-                this[position] = bls;
+            if (StationList.StationExists(busLineStation.StationKey))
+                this[position] = busLineStation;
         }
         public BusLineStation this[int index]
         {
@@ -115,11 +116,11 @@ namespace dotNet5781_02_6594_6401
             }
         }
 
-        public float FindDistance(BusLineStation s1, BusLineStation s2)
+        public double FindDistance(BusLineStation s1, BusLineStation s2)
         {
             try
             {
-                float totalDistance = 0;
+                double totalDistance = 0;
                 BusLine bs = GetSubBusLine(s1, s2);
                 foreach (BusLineStation station in bs.BusLineStations)
                     totalDistance += station.DistanceFromLastStationMeters;

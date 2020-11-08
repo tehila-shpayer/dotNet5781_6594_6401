@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Device.Location;
 
 namespace dotNet5781_02_6594_6401
 {
     class BusLineStation
     {
         public int StationKey { get; private set; }
-        public float DistanceFromLastStationMeters { get; private set; }
-        public int TravelTimeFromLastStationMinutes { get; private set; }
+        public double DistanceFromLastStationMeters { get; set; }
+        public int TravelTimeFromLastStationMinutes { get; set; }
         public BusLineStation()
         {
             //default ctor
@@ -21,11 +22,10 @@ namespace dotNet5781_02_6594_6401
         //    DistanceFromLastStationMeters = s.DistanceFromLastStationMeters;
         //    TravelTimeFromLastStationMinutes = s.TravelTimeFromLastStationMinutes;
         //}
-        public BusLineStation(int key, float d, int t)
+        public BusLineStation(int key, double d, int t)
         {
             try
             {
-                StationKey = key;
                 if(!StationList.StationExists(key))
                     throw new ArgumentOutOfRangeException("A station with this key number does not exist!");
                 if (d <= 0)
@@ -34,6 +34,8 @@ namespace dotNet5781_02_6594_6401
                     throw new ArgumentOutOfRangeException("Travel time from last station must be positive!");
                 DistanceFromLastStationMeters = d;
                 TravelTimeFromLastStationMinutes = t;
+                StationKey = key;
+
             }
             catch (Exception ex)
             {
