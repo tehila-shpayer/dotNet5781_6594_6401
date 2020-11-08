@@ -42,7 +42,6 @@ namespace dotNet5781_02_6594_6401
         public List<BusLine> BusLineInStationList(int StationKey)
         {
             List<BusLine> busLinesList = new List<BusLine>();
-
             try
             {
                 foreach (BusLine Item in BusLines)
@@ -50,7 +49,7 @@ namespace dotNet5781_02_6594_6401
                     if (Item.DidFindStation(Item[StationKey]))
                         busLinesList.Add(Item);
                 }
-                if (busLinesList == null)
+                if (busLinesList.Count==0)
                 {
                     throw new NullReferenceException("No buses stop in this station!");
                 }                

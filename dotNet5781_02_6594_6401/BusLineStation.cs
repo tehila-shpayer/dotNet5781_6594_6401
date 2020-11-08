@@ -15,18 +15,19 @@ namespace dotNet5781_02_6594_6401
         {
             //default ctor
         }
-        public BusLineStation(BusLineStation s)
-        {
-            StationKey = s.StationKey;
-            DistanceFromLastStationMeters = s.DistanceFromLastStationMeters;
-            TravelTimeFromLastStationMinutes = s.TravelTimeFromLastStationMinutes;
-        }
+        //public BusLineStation(BusLineStation s)
+        //{
+        //    StationKey = s.StationKey;
+        //    DistanceFromLastStationMeters = s.DistanceFromLastStationMeters;
+        //    TravelTimeFromLastStationMinutes = s.TravelTimeFromLastStationMinutes;
+        //}
         public BusLineStation(int key, float d, int t)
         {
             try
             {
                 StationKey = key;
-                
+                if(!StationList.StationExists(key))
+                    throw new ArgumentOutOfRangeException("A station with this key number does not exist!");
                 if (d <= 0)
                     throw new ArgumentOutOfRangeException("Distance from last station must be positive!");
                 if (t <= 0)
