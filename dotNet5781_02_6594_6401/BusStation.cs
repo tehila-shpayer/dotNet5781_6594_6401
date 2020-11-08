@@ -38,7 +38,10 @@ namespace dotNet5781_02_6594_6401
         }
         public override string ToString()
         {
-            return $"Bus Station Code: {BusStationKey}, Location: {Latitude}°N {Longitude}°E";    
+            if (address == "")
+                return $"Bus Station Code: {BusStationKey}, Location: {Latitude}°N {Longitude}°E";
+            return $"Bus Station Code: {BusStationKey}, Location: {Latitude}°N {Longitude}°E, Address: {address}";
+
         }
 
     }

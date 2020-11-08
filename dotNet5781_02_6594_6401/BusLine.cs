@@ -12,24 +12,22 @@ namespace dotNet5781_02_6594_6401
     public enum Areas { General, Jerusalem, Center, North, South, Hifa, TelAviv, YehudaAndShomron }
     class BusLine : IComparable
     {
-
-        private LinkedList<BusLineStation> _busLineStation;
-        public LinkedList<BusLineStation> BusLineStations { get; private set; }
+        public List<BusLineStation> BusLineStations { get; private set; }
 
         public int LineNumber { get; private set; }
         public BusLineStation FirstStation
         { 
-            get { return BusLineStations.First.Value; }
+            get { return BusLineStations.ElementAt(0); }
         }
         public BusLineStation LastStation 
         {
-            get { return BusLineStations.Last.Value; }
+            get { return BusLineStations.ElementAt(BusLineStations.Count-1); }
         }
 
         public Areas area { get; private set; }
 
-        public BusLine(int  line, Areas a, LinkedList<BusLineStation> bls = null)
-        {
+        public BusLine(int  line, Areas a, List<BusLineStation> bls = null)
+        { 
             try
             {
                 if (line <= 0)
@@ -37,7 +35,7 @@ namespace dotNet5781_02_6594_6401
                 if (bls != null)
                     BusLineStations = bls;
                 else
-                    BusLineStations = new LinkedList<BusLineStation>();
+                    BusLineStations = new List<BusLineStation>();
                 LineNumber = line;
                 area = a;
             }
@@ -60,19 +58,14 @@ namespace dotNet5781_02_6594_6401
         }
         public void AddStation(int position, BusLineStation bls)
         {
-            this[position] = bls;
+            if(StationList.StationExists(bls.StationKey))
+                this[position] = bls;
         }
         public BusLineStation this[int index]
         {
             get
-            {  
-                foreach (BusLineStation s in BusLineStations)//לפי קוד תחנה
-                {
-                    if (s.StationKey == index)
-                    {
-                        return s;
-                    }
-                }
+            {
+                BusLineStation station = BusLineStations.ElementAt(index);
 
                 //    int i = 0;
                 //    foreach (BusLineStation s in BusLineStations)//לפי מספר ברשימה
@@ -83,28 +76,29 @@ namespace dotNet5781_02_6594_6401
                 //        }
                 //        i++;
                 //    }
-
-                Console.WriteLine("There is no station " +index+ " in the list of stations");
-                return null;
+                if (station == null)
+                    Console.WriteLine("There is no station " + index + " in the list of stations");
+                return station;
             }
             set
             {
-                if (index == 0)
-                {
-                    BusLineStations.AddFirst(value);
-                    return;
-                }
+                BusLineStations.Insert(index, value);
+                //if (index == 0)
+                //{
+                //    BusLineStations.Insert(0,value);
+                //    return;
+                //}
 
-                BusLineStation beforeNew = new BusLineStation();
+                //BusLineStation beforeNew = new BusLineStation();
                 
-                foreach (BusLineStation s in BusLineStations)//לפי קוד תחנה
-                {
-                    if (s.StationKey == index)
-                    {
-                        BusLineStations.AddAfter(BusLineStations.Find(s), value);
-                        return;
-                    }                 
-                }
+                //foreach (BusLineStation s in BusLineStations)//לפי קוד תחנה
+                //{
+                //    if (s.StationKey == index)
+                //    {
+                //        BusLineStations.Insert(;
+                //        return;
+                //    }                 
+                //}
 
                 //int i = 0;
                 //foreach (BusLineStation s in BusLineStations) // לפי מספר ברשימה
@@ -117,17 +111,24 @@ namespace dotNet5781_02_6594_6401
                 //    i++;
                 //}
 
-                Console.WriteLine("There is no index " + index + " in the list of stations"); 
+               // Console.WriteLine("There is no index " + index + " in the list of stations"); 
             }
         }
-        
+
         public float FindDistance(BusLineStation s1, BusLineStation s2)
         {
-            float totalDistance = 0;
-            BusLine bs = GetSubBusLine(s1, s2);
-            foreach (BusLineStation station in bs.BusLineStations)
-                totalDistance += station.DistanceFromLastStationMeters;
-            return (totalDistance-s1.DistanceFromLastStationMeters);
+            try
+            {
+                float totalDistance = 0;
+                BusLine bs = GetSubBusLine(s1, s2);
+                foreach (BusLineStation station in bs.BusLineStations)
+                    totalDistance += station.DistanceFromLastStationMeters;
+                return (totalDistance - s1.DistanceFromLastStationMeters);
+            }
+            catch (NullReferenceException)
+            {
+                return 0;
+            }
         }
         public float FindTime(BusLineStation s1, BusLineStation s2)
         {
@@ -137,21 +138,27 @@ namespace dotNet5781_02_6594_6401
                 totalTime += station.TravelTimeFromLastStationMinutes;
             return (totalTime - s1.TravelTimeFromLastStationMinutes);
         }
-        //public List<BusLineStation> GetSubBusLineStationsList(BusLineStation s1, BusLineStation s2)
-        //{
-        //    int s1Index = BusLineStations.IndexOf(s1);
-        //    int s2Index = BusLineStations.IndexOf(s2);
-        //    List<BusLineStation> newList = (BusLineStations.GetRange(s1Index, s2Index - s1Index+1));
-        //    return newList;
-        //}
         public BusLine GetSubBusLine(BusLineStation s1, BusLineStation s2)
         {
-            LinkedList<BusLineStation> newList = new LinkedList<BusLineStation>(BusLineStations);
-            this[s1.StationKey]
-            //int s1Index = BusLineStations.IndexOf(s1);
-            //int s2Index = BusLineStations.IndexOf(s2);
-            //List<BusLineStation> newList = (BusLineStations.GetRange(s1Index, s2Index - s1Index+1));
-            return new BusLine(LineNumber, area, newList);
+            try
+            {
+                int s1Index = BusLineStations.IndexOf(s1);
+                int s2Index = BusLineStations.IndexOf(s2);
+                if (s1Index == -1 || s2Index == -1)
+                    throw new NullReferenceException("Invalid input. One of the stations does not exist in the bus line!");
+                List<BusLineStation> newList = (BusLineStations.GetRange(s1Index, s2Index - s1Index + 1));
+                return new BusLine(LineNumber, area, newList);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                Console.WriteLine("Invalid input. First sation must be prior to second station!");
+                return null;
+            }
+            catch (NullReferenceException)
+            {
+                Console.WriteLine("Invalid input. One of the stations does not exist in the bus line!");
+                return null;
+            }
         }
         public void DeleteStation(BusLineStation bls)
         {

@@ -14,7 +14,6 @@ namespace dotNet5781_02_6594_6401
         {
             Stations = new List<BusStation>();
         }
-
         static public void Add(BusStation s)
         {
             Stations.Add(s);
@@ -45,7 +44,9 @@ namespace dotNet5781_02_6594_6401
                 return null;
             }
         }
-
-
+        static public bool StationExists(int stationKey)
+        {
+            return (FindStation(stationKey) != null);
+        } 
     }
 }

@@ -15,6 +15,12 @@ namespace dotNet5781_02_6594_6401
         {
             //default ctor
         }
+        public BusLineStation(BusLineStation s)
+        {
+            StationKey = s.StationKey;
+            DistanceFromLastStationMeters = s.DistanceFromLastStationMeters;
+            TravelTimeFromLastStationMinutes = s.TravelTimeFromLastStationMinutes;
+        }
         public BusLineStation(int key, float d, int t)
         {
             try
@@ -37,7 +43,6 @@ namespace dotNet5781_02_6594_6401
 
         public override String ToString()
         {
-
             return StationList.FindStation(StationKey).ToString();
         }
     }
