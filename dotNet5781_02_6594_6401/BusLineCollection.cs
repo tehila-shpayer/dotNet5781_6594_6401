@@ -73,6 +73,16 @@ namespace dotNet5781_02_6594_6401
             }
 
         }
+        public override String ToString()
+        {
+            string s = "";
+            foreach (var line in BusLines)
+            {
+                s += line.ToString();
+                s += "\n";
+            }
+            return s;
+        }
 
     }
     }

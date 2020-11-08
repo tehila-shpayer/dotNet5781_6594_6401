@@ -13,6 +13,7 @@ namespace dotNet5781_02_6594_6401
     public enum Areas { General, Jerusalem, Center, North, South, Hifa, TelAviv, YehudaAndShomron }
     class BusLine : IComparable
     {
+        public static int BUS_LINE_NUMBER = 0;
         public List<BusLineStation> BusLineStations { get; private set; }
 
         public int LineNumber { get; private set; }
@@ -27,17 +28,18 @@ namespace dotNet5781_02_6594_6401
 
         public Areas area { get; private set; }
 
-        public BusLine(int  line, Areas a, List<BusLineStation> bls = null)
+        public BusLine(Areas a, List<BusLineStation> bls = null)
         { 
             try
             {
-                if (line <= 0)
-                    throw new ArgumentOutOfRangeException("Line number must be positive!");
+                BUS_LINE_NUMBER++;
+                //if (line <= 0)
+                //    throw new ArgumentOutOfRangeException("Line number must be positive!");
                 if (bls != null)
                     BusLineStations = bls;
                 else
                     BusLineStations = new List<BusLineStation>();
-                LineNumber = line;
+                LineNumber = BUS_LINE_NUMBER;
                 area = a;
             }
             catch (Exception ex)
@@ -148,7 +150,7 @@ namespace dotNet5781_02_6594_6401
                 if (s1Index == -1 || s2Index == -1)
                     throw new NullReferenceException("Invalid input. One of the stations does not exist in the bus line!");
                 List<BusLineStation> newList = (BusLineStations.GetRange(s1Index, s2Index - s1Index + 1));
-                return new BusLine(LineNumber, area, newList);
+                return new BusLine(area, newList);
             }
             catch (ArgumentOutOfRangeException)
             {

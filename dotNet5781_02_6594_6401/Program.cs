@@ -39,9 +39,21 @@ namespace dotNet5781_02_6594_6401
             }
             bs = new BusStation(31.234567, 34.56874, "Kohav HaShahar");
             StationList.Add(bs);
-            Console.WriteLine(StationList.ToString());
+           // Console.WriteLine(StationList.ToString());
 
-            //BusLineStation bss = new BusLineStation(1, 10,5);
+            
+            BusLine bl;
+            BusLineCollection lineCollection = new BusLineCollection();
+            for (int i = 0; i < 10; i++)
+            {
+                int Intarea = (rand.Next(0, 7));
+
+                bl = new BusLine((Areas)Intarea);
+                lineCollection.Add(bl);
+            }
+            Console.WriteLine(lineCollection);
+            
+
             //BusLineStation bss1 = new BusLineStation(2, 20,10);
             //BusLineStation bss2 = new BusLineStation(3, 30,15);
             ////BusLineStation bss3 = new BusLineStation(123456, 40, 20);
