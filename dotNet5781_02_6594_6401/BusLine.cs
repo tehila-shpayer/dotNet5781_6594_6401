@@ -17,13 +17,13 @@ namespace dotNet5781_02_6594_6401
         public List<BusLineStation> BusLineStations { get; private set; }
 
         public int LineNumber { get; private set; }
-        public BusLineStation FirstStation
+        public int FirstStation
         { 
-            get { return BusLineStations.ElementAt(0); }
+            get { return BusLineStations.ElementAt(0).StationKey; }
         }
-        public BusLineStation LastStation 
+        public int LastStation 
         {
-            get { return BusLineStations.ElementAt(BusLineStations.Count-1); }
+            get { return BusLineStations.ElementAt(BusLineStations.Count-1).StationKey; }
         }
 
         public Areas area { get; private set; }
@@ -51,22 +51,55 @@ namespace dotNet5781_02_6594_6401
         public int CompareTo(object obj)
         {
             BusLine otherBS = (BusLine)obj;
-            float otherTime = otherBS.FindTime(otherBS.FirstStation, otherBS.LastStation);
-            float thisTime = FindTime(FirstStation, LastStation);
+            float otherTime = otherBS.FindTime(new BusLineStation(otherBS.FirstStation, 1, 1), new BusLineStation(otherBS.LastStation, 1, 1));
+            float thisTime = FindTime(new BusLineStation (FirstStation,1,1),new BusLineStation (LastStation,1,1));
             if (otherTime > thisTime)
                 return -1;
             if (thisTime > otherTime)
                 return 1;
             return 0;
         }
-        public void AddStation(BusLineStation busLineStation)
+        //public void AddStation(int sKey)
+        //{
+        //    try
+        //    {
+        //        if (!StationList.StationExists(sKey))
+        //            throw new KeyNotFoundException("A station with this number does not exist!");
+        //        BusStation NewStation = StationList.FindStation(sKey);
+        //        BusStation PreviousStation = StationList.FindStation(this[BusLineStations.Count - 1].StationKey);
+        //        GeoCoordinate locationOfNew = new GeoCoordinate(NewStation.Latitude, NewStation.Longitude);
+        //        GeoCoordinate locationOfPre = new GeoCoordinate(PreviousStation.Latitude, PreviousStation.Longitude);
+        //        double distance = locationOfNew.GetDistanceTo(locationOfPre);
+        //        int time = Convert.ToInt32(distance / (80000 / 60));
+        //        BusLineStation busLineStation = new BusLineStation(sKey, distance, time);
+        //        BusLineStations.Add(busLineStation);
+        //    }
+        //    catch (Exception ex) { Console.WriteLine(ex.Message); }
+        //}
+        public void AddStation(int sKey,int position=0)
         {
-            AddStation(BusLineStations.Count, busLineStation);
+            try
+            {
+                BusLineStation busLineStation = GetBusLineStation(sKey, position);
+                BusLineStations.Insert(position,busLineStation);
+                if (position != BusLineStations.Count)
+                {
+                    this[position-1] = GetBusLineStation(this[position - 1].StationKey, position - 1);
+                }
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
-        public void AddStation(int position, BusLineStation busLineStation)
+        public BusLineStation GetBusLineStation(int sKey, int position = 0)
         {
-            if (StationList.StationExists(busLineStation.StationKey))
-                this[position] = busLineStation;
+            if (!StationList.StationExists(sKey))
+                throw new KeyNotFoundException("A station with this number does not exist!");
+            BusStation NewStation = StationList.FindStation(sKey);
+            BusStation PreviousStation = StationList.FindStation(this[position - 1].StationKey);
+            GeoCoordinate locationOfNew = new GeoCoordinate(NewStation.Latitude, NewStation.Longitude);
+            GeoCoordinate locationOfPre = new GeoCoordinate(PreviousStation.Latitude, PreviousStation.Longitude);
+            double distance = locationOfNew.GetDistanceTo(locationOfPre);
+            int time = Convert.ToInt32(distance / (80000 / 60));
+            return new BusLineStation(sKey, distance, time);
         }
         public BusLineStation this[int index]
         {
@@ -89,7 +122,7 @@ namespace dotNet5781_02_6594_6401
             }
             set
             {
-                BusLineStations.Insert(index, value);
+                BusLineStations[index] = value;
                 //if (index == 0)
                 //{
                 //    BusLineStations.Insert(0,value);
@@ -137,9 +170,9 @@ namespace dotNet5781_02_6594_6401
                 return 0;
             }
         }
-        public float FindTime(BusLineStation s1, BusLineStation s2)
+        public int FindTime(BusLineStation s1, BusLineStation s2)
         {
-            float totalTime = 0;
+            int totalTime = 0;
             BusLine bs = GetSubBusLine(s1, s2);
             foreach (BusLineStation station in bs.BusLineStations)
                 totalTime += station.TravelTimeFromLastStationMinutes;

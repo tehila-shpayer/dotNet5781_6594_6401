@@ -47,7 +47,7 @@ namespace dotNet5781_02_6594_6401
                 for (int j = i * 4 - 3 ; j <= i * 4 ; j++)
                 {
                     bls = new BusLineStation(j, 1, 1);
-                    bl.AddStation(bls);
+                    bl.AddStation(bls.StationKey);
                 }
 
                 for (int k = 0; k < rand.Next(1, 4); k++)
@@ -59,7 +59,7 @@ namespace dotNet5781_02_6594_6401
                     }
                     bls = new BusLineStation(anotherStationKey, 1, 1);
 
-                    bl.AddStation(rand.Next(0, 5+k), bls);
+                    bl.AddStation(bls.StationKey,rand.Next(0, 5+k));
                 }
                 lineCollection.Add(bl);
             }
