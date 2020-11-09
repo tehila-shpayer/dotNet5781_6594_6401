@@ -20,9 +20,11 @@ namespace dotNet5781_02_6594_6401
 
             Random rand = new Random(DateTime.Now.Millisecond);
 
+            //creates 40 stations
             BusStation bs;
-
-            for (int i = 0; i < 40; i++)//creates 40 stations
+            bs = new BusStation(31.234567, 34.56874, "Talya");
+            StationList.Add(bs);
+            for (int i = 0; i < 39; i++)
             {
                 double la, lo;
 
@@ -33,8 +35,6 @@ namespace dotNet5781_02_6594_6401
                 bs = new BusStation(la, lo, "");
                 StationList.Add(bs);
             }
-            bs = new BusStation(31.234567, 34.56874, "Talya");
-            StationList.Add(bs);
             //Console.WriteLine(StationList.ToString());
 
             BusLine bl;
@@ -95,17 +95,20 @@ namespace dotNet5781_02_6594_6401
                                 foreach (BusStation station in StationList.Stations)
                                 {
                                     Console.WriteLine(station);
+                                    
                                     Console.Write("   The bus lines in this station: ");
                                     string lineInStation = "";
+                                    
                                     foreach (BusLine line in lineCollection)
                                     {
-                                        
                                         if (line.DidFindStation(station.BusStationKey))
                                         {
                                             lineInStation += (line.LineNumber + ", ");
                                         } 
                                     }
-                                    Console.WriteLine(lineInStation.Substring(0, lineInStation.Length-2)+"\n");
+                                    if (lineInStation!="")
+                                        Console.WriteLine(lineInStation.Substring(0, lineInStation.Length-2));
+                                    Console.WriteLine();
                                 }
                                 break;
                             default: Console.WriteLine("ERROR\n"); break;
