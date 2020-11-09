@@ -10,7 +10,7 @@ namespace dotNet5781_02_6594_6401
 {
     class Program
     {
-       
+
         static void Main(string[] args)
         {
             //חסר:
@@ -20,31 +20,31 @@ namespace dotNet5781_02_6594_6401
 
             Random rand = new Random(DateTime.Now.Millisecond);
 
+            //creates 40 stations
             BusStation bs;
-
-            for (int i = 0; i < 40; i++)
+            bs = new BusStation(31.234567, 34.56874, "Talya");
+            StationList.Add(bs);
+            for (int i = 0; i < 39; i++)
             {
                 double la, lo;
 
                 la = rand.NextDouble() * (33.3 - 31) + 31;
-               
-                lo = rand.NextDouble() * (35.5-34.3) + 34.3;
-                
+
+                lo = rand.NextDouble() * (35.5 - 34.3) + 34.3;
+
                 bs = new BusStation(la, lo, "");
                 StationList.Add(bs);
             }
-            bs = new BusStation(31.234567, 34.56874, "Kohav HaShahar");
-            StationList.Add(bs);
-          //  Console.WriteLine(StationList.ToString());
+            //Console.WriteLine(StationList.ToString());
 
             BusLine bl;
             BusLineCollection lineCollection = new BusLineCollection();
-            for (int i = 1; i <= 10; i++)
+            for (int i = 1; i <= 10; i++) // craetes 10 bus lines
             {
                 int Intarea = (rand.Next(0, 8));
                 bl = new BusLine((Areas)Intarea);
                 BusLineStation bls;
-                for (int j = i * 4 - 3 ; j <= i * 4 ; j++)
+                for (int j = i * 4 - 3; j <= i * 4; j++)
                 {
                     bls = new BusLineStation(j, 1, 1);
                     bl.AddStation(bls.StationKey);
@@ -52,10 +52,10 @@ namespace dotNet5781_02_6594_6401
 
                 for (int k = 0; k < rand.Next(1, 4); k++)
                 {
-                    int anotherStationKey = rand.Next(1, 41);
+                    int anotherStationKey = rand.Next(1, 42);
                     while (bl.DidFindStation(anotherStationKey))
                     {
-                        anotherStationKey = (anotherStationKey + 4) % 40 + 1;
+                        anotherStationKey = (anotherStationKey + 4) % 41 + 1;
                     }
                     bls = new BusLineStation(anotherStationKey, 1, 1);
 
@@ -63,33 +63,64 @@ namespace dotNet5781_02_6594_6401
                 }
                 lineCollection.Add(bl);
             }
-            Console.WriteLine(lineCollection);
-            
+            //Console.WriteLine(lineCollection);
 
-            //BusLineStation bss1 = new BusLineStation(2, 20,10);
-            //BusLineStation bss2 = new BusLineStation(3, 30,15);
-            ////BusLineStation bss3 = new BusLineStation(123456, 40, 20);
-            ////BusLineStation bss4 = new BusLineStation(728, 50, 25);
+            string s;
+            Console.WriteLine("Welcome!\n");
+            do
+            {
+                Console.WriteLine(@"Choose one of the following:
+  a: Add a new bus
+  b: Choose a bus for a ride
+  c: Refuel a bus or send to treatment
+  p: Print the data of the buses
+  e: exit:");
+                s = Console.ReadLine().Trim();
 
-            //Console.WriteLine(bss);
-            //Console.WriteLine(bss1);
-            //Console.WriteLine(bss2);
-            //BusLine busLine = new BusLine(143, Areas.Center);
-            //busLine.AddStation(0,bss);
-            //busLine.AddStation(1,bss1);
-            //busLine.AddStation(2,bss2);
-            //Console.WriteLine(busLine);
-            //Console.WriteLine(busLine.FindDistance(bss, bss2));
-            //Console.WriteLine(busLine.FirstStation);
-            //Console.WriteLine(busLine.LastStation);
-            //Console.WriteLine(busLine.FindTime(bss1,bss2));
-            //BusLineCollection BLC = new BusLineCollection();
-            //BLC.Add(busLine);
-            //Console.WriteLine(BLC[143]);
-            //List<BusLine> bl=BLC.BusLineInStationList(bs.BusStationKey);
-            //Console.WriteLine(bl[0]);
-            //BLC.Delete(busLine);
-            //Console.WriteLine(BLC.BusLineInStationList(bs.BusStationKey));
+                switch (s)
+                {
+                    case "a":
+                        break;
+                    case "b":
+                        break;
+                    case "p":
+                        Console.WriteLine("  a: print all bus line\n  b: print data of all stations");
+                        string p = Console.ReadLine();
+                        switch (p)
+                        {
+                            case "a":
+                                Console.WriteLine(lineCollection);
+                                break;
+                            case "b":
+                                foreach (BusStation station in StationList.Stations)
+                                {
+                                    Console.WriteLine(station);
+                                    
+                                    Console.Write("   The bus lines in this station: ");
+                                    string lineInStation = "";
+                                    
+                                    foreach (BusLine line in lineCollection)
+                                    {
+                                        if (line.DidFindStation(station.BusStationKey))
+                                        {
+                                            lineInStation += (line.LineNumber + ", ");
+                                        } 
+                                    }
+                                    if (lineInStation!="")
+                                        Console.WriteLine(lineInStation.Substring(0, lineInStation.Length-2));
+                                    Console.WriteLine();
+                                }
+                                break;
+                            default: Console.WriteLine("ERROR\n"); break;
+                        }
+                        break;
+                    case "e":
+                        break;
+                    default:
+                        Console.WriteLine("ERROR\n");
+                        break;
+                }
+            } while (s != "e");
         }
     }
 }

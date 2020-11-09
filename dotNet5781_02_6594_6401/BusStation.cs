@@ -41,7 +41,7 @@ namespace dotNet5781_02_6594_6401
         }
         public override string ToString()
         {
-            string s = $"Bus Station Code: {BusStationKey}, Location: {XDigitsAfterPoint(Latitude, 5)}°N {XDigitsAfterPoint(Longitude, 5)}°E";
+            string s = $"Station Code: {BusStationKey}. Location: {XDigitsAfterPoint(Latitude, 5)}°N {XDigitsAfterPoint(Longitude, 5)}°E";
             if (address != "")
                 s+= " Address: " +address;
             //return $"Bus Station Code: {BusStationKey}, Location: {Latitude}°N {Longitude}°E, Address: {address}";
