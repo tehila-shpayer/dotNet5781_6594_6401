@@ -59,6 +59,10 @@ namespace dotNet5781_02_6594_6401
                 return 1;
             return 0;
         }
+        public void AddStation(BusLineStation busLineStation)
+        {
+            AddStation(BusLineStations.Count, busLineStation);
+        }
         public void AddStation(int position, BusLineStation busLineStation)
         {
             if (StationList.StationExists(busLineStation.StationKey))
@@ -170,6 +174,15 @@ namespace dotNet5781_02_6594_6401
         public bool DidFindStation(BusLineStation s)
         {
            return BusLineStations.Contains(s);
+        }
+        public bool DidFindStation(int key)
+        {
+            foreach (var bls in BusLineStations)
+            {
+                if (bls.StationKey == key)
+                    return true;
+            }
+            return false;
         }
         //public BusLineStation FindStation(BusLineStation s)
         //{

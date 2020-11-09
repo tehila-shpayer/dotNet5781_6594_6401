@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
+using System.Globalization;
 
 namespace dotNet5781_02_6594_6401
 {
@@ -24,31 +25,42 @@ namespace dotNet5781_02_6594_6401
             for (int i = 0; i < 40; i++)
             {
                 double la, lo;
-             
-                la = (rand.Next(31, 34)) + (rand.NextDouble());
-                if (la > 33.3)
-                    la--;
-                lo = (rand.Next(34, 36)) + (rand.NextDouble());
-                if (lo < 34.3)
-                    lo++;
-                if (lo > 35.5)
-                    lo--;
+
+                la = rand.NextDouble() * (33.3 - 31) + 31;
+               
+                lo = rand.NextDouble() * (35.5-34.3) + 34.3;
                 
                 bs = new BusStation(la, lo, "");
                 StationList.Add(bs);
             }
             bs = new BusStation(31.234567, 34.56874, "Kohav HaShahar");
             StationList.Add(bs);
-           // Console.WriteLine(StationList.ToString());
+          //  Console.WriteLine(StationList.ToString());
 
-            
             BusLine bl;
             BusLineCollection lineCollection = new BusLineCollection();
-            for (int i = 0; i < 10; i++)
+            for (int i = 1; i <= 10; i++)
             {
-                int Intarea = (rand.Next(0, 7));
-
+                int Intarea = (rand.Next(0, 8));
                 bl = new BusLine((Areas)Intarea);
+                BusLineStation bls;
+                for (int j = i * 4 - 3 ; j <= i * 4 ; j++)
+                {
+                    bls = new BusLineStation(j, 1, 1);
+                    bl.AddStation(bls);
+                }
+
+                for (int k = 0; k < rand.Next(1, 4); k++)
+                {
+                    int anotherStationKey = rand.Next(1, 41);
+                    while (bl.DidFindStation(anotherStationKey))
+                    {
+                        anotherStationKey = (anotherStationKey + 4) % 40 + 1;
+                    }
+                    bls = new BusLineStation(anotherStationKey, 1, 1);
+
+                    bl.AddStation(rand.Next(0, 5+k), bls);
+                }
                 lineCollection.Add(bl);
             }
             Console.WriteLine(lineCollection);

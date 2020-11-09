@@ -41,19 +41,25 @@ namespace dotNet5781_02_6594_6401
         }
         public override string ToString()
         {
-            string s = $"Bus Station Code: {BusStationKey}, Location: {FiveDigitsAfterPoint(Latitude)}°N {FiveDigitsAfterPoint(Longitude)}°E";
+            string s = $"Bus Station Code: {BusStationKey}, Location: {XDigitsAfterPoint(Latitude, 5)}°N {XDigitsAfterPoint(Longitude, 5)}°E";
             if (address != "")
                 s+= " Address: " +address;
             //return $"Bus Station Code: {BusStationKey}, Location: {Latitude}°N {Longitude}°E, Address: {address}";
             return s;
         }
-        public string FiveDigitsAfterPoint(double d)
+        public string XDigitsAfterPoint(double d, int digitsAfterPoint)
         {
-            string s = ConvertToString(d);
-            s = s.Substring(0, 8);
+            string s = d.ConvertToString();
+            s = s.Substring(0, 3+digitsAfterPoint);
             return s;
         }
-        public string ConvertToString(double thisDouble)
+       
+
+    }
+
+    static class ExtensionDouble
+    {
+        public static string ConvertToString(this double thisDouble)
         {
             double d = thisDouble;
             string s = "";
@@ -62,7 +68,7 @@ namespace dotNet5781_02_6594_6401
             s += ".";
             d = d - (int)d;
             int i = 0;
-            while ((d != 0) && (i<15))
+            while ((d != 0) && (i < 15))
             {
                 d *= 10;
                 s += (int)d;
@@ -71,6 +77,5 @@ namespace dotNet5781_02_6594_6401
             }
             return s;
         }
-
     }
 }
