@@ -22,15 +22,15 @@ namespace dotNet5781_02_6594_6401
         //    DistanceFromLastStationMeters = s.DistanceFromLastStationMeters;
         //    TravelTimeFromLastStationMinutes = s.TravelTimeFromLastStationMinutes;
         //}
-        public BusLineStation(int key, double d, int t)
+        public BusLineStation(int key, double d=0, int t=0)
         {
             try
             {
                 if(!StationList.StationExists(key))
                     throw new ArgumentOutOfRangeException("A station with this key number does not exist!");
-                if (d <= 0)
+                if (d < 0)
                     throw new ArgumentOutOfRangeException("Distance from last station must be positive!");
-                if (t <= 0)
+                if (t < 0)
                     throw new ArgumentOutOfRangeException("Travel time from last station must be positive!");
                 DistanceFromLastStationMeters = d;
                 TravelTimeFromLastStationMinutes = t;

@@ -59,29 +59,32 @@ namespace dotNet5781_02_6594_6401
                     }
                     bls = new BusLineStation(anotherStationKey, 1, 1);
 
-                    bl.AddStation(bls.StationKey,rand.Next(0, 5+k));
+                    bl.AddStation(bls.StationKey, rand.Next(0, 5 + k));
                 }
                 lineCollection.Add(bl);
-            }
-            //Console.WriteLine(lineCollection);
-
+            }            
             string s;
             Console.WriteLine("Welcome!\n");
             do
             {
-                Console.WriteLine(@"Choose one of the following:
-  a: Add a new bus
-  b: Choose a bus for a ride
-  c: Refuel a bus or send to treatment
-  p: Print the data of the buses
-  e: exit:");
+                Console.WriteLine(@"Choose one of the following actions to do on the collection:
+  a: Add 
+  d: Delete 
+  s: Search
+  p: Print
+  e: Exit:");
                 s = Console.ReadLine().Trim();
 
                 switch (s)
                 {
                     case "a":
+                        AddToCollection(lineCollection);
                         break;
-                    case "b":
+                    case "d":
+                        DeleteFromCollection(lineCollection);
+                        break;
+                    case "s":
+                        SearchInCollection(lineCollection);
                         break;
                     case "p":
                         Console.WriteLine("  a: print all bus line\n  b: print data of all stations");
@@ -97,18 +100,7 @@ namespace dotNet5781_02_6594_6401
                                     Console.WriteLine(station);
                                     
                                     Console.Write("   The bus lines in this station: ");
-                                    string lineInStation = "";
-                                    
-                                    foreach (BusLine line in lineCollection)
-                                    {
-                                        if (line.DidFindStation(station.BusStationKey))
-                                        {
-                                            lineInStation += (line.LineNumber + ", ");
-                                        } 
-                                    }
-                                    if (lineInStation!="")
-                                        Console.WriteLine(lineInStation.Substring(0, lineInStation.Length-2));
-                                    Console.WriteLine();
+                                    PrintBusesInStation(lineCollection, station.BusStationKey);
                                 }
                                 break;
                             default: Console.WriteLine("ERROR\n"); break;
@@ -121,6 +113,162 @@ namespace dotNet5781_02_6594_6401
                         break;
                 }
             } while (s != "e");
+        }
+        public static void AddToCollection(BusLineCollection lineCollection)
+        {
+        Console.WriteLine("  a: Add new bus line\n  b: Add new station to a bus line");
+        string a = Console.ReadLine().Trim();
+        switch (a)
+        {
+            case "a":
+
+                Console.WriteLine(@"Choose one of the following areas for the bus:
+  0: General
+  1: Jerusalem
+  2: Center
+  3: North
+  4: South
+  5: Hifa
+  6: TelAviv
+  7: YehudaAndShomron");
+                string area = Console.ReadLine().Trim();
+                int intArea = int.Parse(area);
+                lineCollection.Add(new BusLine((Areas)intArea));
+                Console.WriteLine($"New bus line {BusLine.BUS_LINE_NUMBER} was added to collection!");
+                break;
+            case "b":
+                Console.WriteLine("Please enter the bus number for the station:");
+                string stringNum = Console.ReadLine();
+                int num = int.Parse(stringNum);
+                int key;
+                Console.WriteLine("Do you to create a new station?\n press YES.");
+                string answer = Console.ReadLine();
+                    if (answer == "YES")
+                    {
+                        Console.WriteLine("Please enter station's location:\n Latitude:");
+                        string stringLa = Console.ReadLine();
+                        int la = int.Parse(stringLa);
+                        double latitude = Convert.ToDouble(la);
+                        Console.WriteLine("Longitude:");
+                        string stringLo = Console.ReadLine();
+                        int lo = int.Parse(stringLo);
+                        double longitude = Convert.ToDouble(lo);
+                        Console.WriteLine("Do you want to set station's address?\n Press YES or NO.");
+                        answer = Console.ReadLine();
+                        string address = "";
+                        if (answer == "YES")
+                        {
+                            Console.WriteLine("Please enter station's address:");
+                            address = Console.ReadLine();
+                        }
+                        StationList.Add(new BusStation(latitude, longitude, address));
+                        key = BusStation.BUS_STATION_NUMBER;
+                    }
+                    Console.WriteLine("Please enter station's key:");
+                    string stringKey = Console.ReadLine();
+                    key = int.Parse(stringKey);
+                    if(lineCollection[num].DidFindStation(key))
+                    {
+                        Console.WriteLine($"This station is already in bus line {num}");
+                    }
+                    Console.WriteLine("Do you want to set station's location in the bus list of station?\n Press YES or NO.");
+                    answer = Console.ReadLine();
+                    if (answer == "YES")
+                    {
+                        Console.WriteLine("Please enter location of station in the line (index):");
+                        string location = Console.ReadLine();
+                        int loc = int.Parse(location);
+                        lineCollection[num].AddStation(key, loc);
+                    }
+                    else
+                    { lineCollection[num].AddStation(key); }
+                    Console.WriteLine($"Station {key} was added to bus {num}!");
+                    break;
+                default: Console.WriteLine("ERROR\n"); break;
+            }
+        }
+        public static void DeleteFromCollection(BusLineCollection lineCollection)
+        {
+            Console.WriteLine("  a: Delete a bus line\n  b: Delete a station from a bus line");
+            string a = Console.ReadLine().Trim();
+            Console.WriteLine("Please enter the bus number to delete/delete from:");
+            string stringBus = Console.ReadLine();
+            int busNum = int.Parse(stringBus);
+            switch (a)
+            {
+                case "a":
+                    lineCollection.Delete(lineCollection[busNum]);
+                    Console.WriteLine($"Bus line {busNum} was removed from collection!");
+                    break;
+                case "b":
+                    Console.WriteLine("Please enter station key to delete:");
+                    string stringStation = Console.ReadLine();
+                    int stationNum = int.Parse(stringStation);
+                    BusLine bus = lineCollection[busNum];
+                    bus.DeleteStation(bus.getStationFromKey(stationNum));
+                    Console.WriteLine($"Station {stationNum} was removed from bus {busNum}!");
+                    break;
+                default: Console.WriteLine("ERROR\n"); break;
+            }
+        }
+        public static void SearchInCollection(BusLineCollection lineCollection)
+        {
+            Console.WriteLine("  a: Print all buses that pass a station\n  b: Print optinal routes to destination");
+            string s = Console.ReadLine().Trim();
+            switch (s)
+            {
+                case "a":                    
+                    Console.WriteLine("Enter station key to search:");
+                    string stringKey = Console.ReadLine();
+                    int key = int.Parse(stringKey);
+                    Console.Write("   The bus lines in this station: ");
+                    PrintBusesInStation(lineCollection,key);
+                    break;
+                case "b":
+                    bool flag = false;
+                    Console.WriteLine("Please enter starting station key:");
+                    string stringStation = Console.ReadLine();
+                    int startStationNum = int.Parse(stringStation);
+                    Console.WriteLine("Please enter destination station key:");
+                    stringStation = Console.ReadLine();
+                    int destStationNum = int.Parse(stringStation);
+                    BusLineCollection BusesToDstination = new BusLineCollection();
+                    foreach (BusLine bus in lineCollection)
+                    {
+                        if (bus.DidFindStation(startStationNum) && bus.DidFindStation(destStationNum))
+                        {
+                            BusLineStation start = bus.getStationFromKey(startStationNum);
+                            BusLineStation destination = bus.getStationFromKey(destStationNum);
+                            BusLine busLine;
+                            if (bus.IstationPrior(start, destination))
+                            {
+                                flag = true;
+                                busLine = bus.GetSubBusLine(start, destination);
+                                BusesToDstination.Add(busLine);
+                            }
+                        }
+                    }
+                    if (flag)
+                    {
+                        Console.WriteLine("The possible routes to take from start station to destination:");
+                        foreach (BusLine bus in BusesToDstination.BusLinesSortedByGeneralTravelTime())
+                        {
+                            Console.WriteLine(bus);
+                            BusLineStation first = bus.getStationFromKey(bus.FirstStation);
+                            BusLineStation last = bus.getStationFromKey(bus.LastStation);
+                            Console.WriteLine($"Time: {bus.FindTime(first,last)}\n");
+                        }
+                    }
+                    break;
+                default: Console.WriteLine("ERROR\n"); break;
+            }
+        }
+        public static void PrintBusesInStation(BusLineCollection lineCollection, int key)
+        {
+            string s = "";
+            foreach (BusLine bus in lineCollection.BusLineInStationList(key))
+                s += bus.LineNumber + ", ";
+            Console.WriteLine(s);
         }
     }
 }

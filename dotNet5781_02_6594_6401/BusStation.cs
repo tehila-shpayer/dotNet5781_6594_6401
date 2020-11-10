@@ -50,6 +50,9 @@ namespace dotNet5781_02_6594_6401
         public string XDigitsAfterPoint(double d, int digitsAfterPoint)
         {
             string s = d.ConvertToString();
+            for (int i = 0; i < 3 + digitsAfterPoint; i++)
+                if (s.Length < 3 + digitsAfterPoint)
+                    s += "0";
             s = s.Substring(0, 3+digitsAfterPoint);
             return s;
         }
