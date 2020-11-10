@@ -36,7 +36,7 @@ namespace dotNet5781_02_6594_6401
                 StationList.Add(bs);
             }
             //Console.WriteLine(StationList.ToString());
-
+           
             BusLine bl;
             BusLineCollection lineCollection = new BusLineCollection();
             for (int i = 1; i <= 10; i++) // craetes 10 bus lines

@@ -82,9 +82,9 @@ namespace dotNet5781_02_6594_6401
             {
                 BusLineStation busLineStation = GetBusLineStation(sKey, position);
                 BusLineStations.Insert(position,busLineStation);
-                if (position != BusLineStations.Count)
+                if ((position+1) != BusLineStations.Count)
                 {
-                    this[position-1] = GetBusLineStation(this[position - 1].StationKey, position - 1);
+                    this[position] = GetBusLineStation(this[position].StationKey, position);
                 }
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
@@ -93,6 +93,10 @@ namespace dotNet5781_02_6594_6401
         {
             if (!StationList.StationExists(sKey))
                 throw new KeyNotFoundException("A station with this number does not exist!");
+
+            if (position == 0)
+                return new BusLineStation(sKey, 0, 0);
+
             BusStation NewStation = StationList.FindStation(sKey);
             BusStation PreviousStation = StationList.FindStation(this[position - 1].StationKey);
             GeoCoordinate locationOfNew = new GeoCoordinate(NewStation.Latitude, NewStation.Longitude);
