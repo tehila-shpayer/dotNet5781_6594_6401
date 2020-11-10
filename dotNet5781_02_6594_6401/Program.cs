@@ -46,16 +46,16 @@ namespace dotNet5781_02_6594_6401
                 BusLineStation bls;
                 for (int j = i * 4 - 3; j <= i * 4; j++)
                 {
-                    bls = new BusLineStation(j, 1, 1);
+                    bls = new BusLineStation(j);
                     bl.AddStation(bls.StationKey);
                 }
 
                 for (int k = 0; k < rand.Next(1, 4); k++)
                 {
-                    int anotherStationKey = rand.Next(1, 42);
+                    int anotherStationKey = rand.Next(1, 41);
                     while (bl.DidFindStation(anotherStationKey))
                     {
-                        anotherStationKey = (anotherStationKey + 4) % 41 + 1;
+                        anotherStationKey = (anotherStationKey + 4) % 40 + 1;
                     }
                     bls = new BusLineStation(anotherStationKey, 1, 1);
 
