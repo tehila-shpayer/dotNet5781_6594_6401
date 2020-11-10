@@ -46,7 +46,7 @@ namespace dotNet5781_02_6594_6401
             {
                 foreach (BusLine Item in BusLines)
                 {
-                    if (Item.DidFindStation(Item[StationKey]))
+                    if (Item.DidFindStation(Item.getStationFromKey(StationKey)))
                         busLinesList.Add(Item);
                 }
                 if (busLinesList.Count==0)
@@ -57,7 +57,7 @@ namespace dotNet5781_02_6594_6401
             catch (NullReferenceException ex) { Console.WriteLine(ex.Message); }
             return busLinesList;
         }
-        public List<BusLine> BusLinesSortedByGeneralTravelTime(int StationKey)
+        public List<BusLine> BusLinesSortedByGeneralTravelTime()
         {
            BusLines.Sort();
            return new List<BusLine>(BusLines);
