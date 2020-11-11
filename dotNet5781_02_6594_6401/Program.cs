@@ -268,7 +268,9 @@ namespace dotNet5781_02_6594_6401
             string s = "";
             foreach (BusLine bus in lineCollection.BusLineInStationList(key))
                 s += bus.LineNumber + ", ";
-            Console.WriteLine(s);
+            if (s != "")
+                s = s.Substring(0, s.Length - 2);
+            Console.WriteLine(s + "\n");
         }
     }
 }
