@@ -35,8 +35,6 @@ namespace dotNet5781_02_6594_6401
             try
             {
                 BUS_LINE_NUMBER++;
-                //if (line <= 0)
-                //    throw new ArgumentOutOfRangeException("Line number must be positive!");
                 if (bls != null)
                     BusLineStations = bls;
                 else
@@ -157,12 +155,8 @@ namespace dotNet5781_02_6594_6401
             int totalTime = 0;
             int s1Index = BusLineStations.IndexOf(s1);
             int s2Index = BusLineStations.IndexOf(s2);
-            //BusLine bs = GetSubBusLine(s1, s2);
             for(int i=s1Index+1;i<=s2Index;i++)
                 totalTime += BusLineStations[i].TravelTimeFromLastStationMinutes;
-            //foreach (BusLineStation station in bs.BusLineStations)
-            //   totalTime += station.TravelTimeFromLastStationMinutes;
-            //return (totalTime - s1.TravelTimeFromLastStationMinutes);
             return totalTime;
         }
         public BusLine GetSubBusLine(BusLineStation s1, BusLineStation s2)
@@ -210,14 +204,6 @@ namespace dotNet5781_02_6594_6401
             }
             return false;
         }
-        //public BusLineStation FindStation(BusLineStation s)
-        //{
-        //    BusLineStations.Find(s);
-        //    //foreach (BusLineStation station in BusLineStations)
-        //    //    if (station.GetBusStationKey() == s.GetBusStationKey())
-        //    //        return station;
-        //    //return null;
-        //}
         public override String ToString()
         {
             String s = "Bus Line: " + LineNumber + "\nArea: " + area + "\nBus stations:\n";
