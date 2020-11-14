@@ -15,7 +15,7 @@ namespace dotNet5781_02_6594_6401
     class BusLine : IComparable
     {
         public static int BUS_LINE_NUMBER = 0;
-        private bool subLineOf;
+        public bool SubLineOf { get; private set; }
         public List<BusLineStation> BusLineStations { get; private set; }
 
         public int LineNumber { get; private set; }
@@ -31,11 +31,11 @@ namespace dotNet5781_02_6594_6401
         public Areas area { get; private set; }
 
         public BusLine(Areas a, List<BusLineStation> bls = null, int subBusOf=0)
-        { 
-            try
-            {
-                BUS_LINE_NUMBER++;
-                if (bls != null)
+        {
+            if (((int)a > 7) || ((int)a < 0))
+                throw new BusException("Area number must be between 0 and 7");
+            BUS_LINE_NUMBER++;
+            if (bls != null)
                     BusLineStations = bls;
                 else
                     BusLineStations = new List<BusLineStation>();
@@ -44,14 +44,9 @@ namespace dotNet5781_02_6594_6401
                 else
                 {
                     LineNumber = subBusOf;
-                    subLineOf = true;
+                    SubLineOf = true;
                 }
                 area = a;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
         }
         
         public int CompareTo(object obj)
@@ -74,12 +69,13 @@ namespace dotNet5781_02_6594_6401
         {
             try
             {
+                if (!StationList.StationExists(sKey))
+                    throw new KeyNotFoundException("A station with this number does not exist!");
                 BusLineStation busLineStation = GetBusLineStationToAdd(sKey, position);
                 BusLineStations.Insert(position,busLineStation);
-                if (position != BusLineStations.Count)
+                if (position != BusLineStations.Count-1)
                 {
-                    if(BusLineStations.Count!=1)
-                        this[position+1] = GetBusLineStationToAdd(this[position + 1].StationKey, position + 1);
+                    this[position+1] = GetBusLineStationToAdd(this[position + 1].StationKey, position + 1);
                 }
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
@@ -87,8 +83,7 @@ namespace dotNet5781_02_6594_6401
         public BusLineStation GetBusLineStationToAdd(int sKey, int position)
         {
            
-                if (!StationList.StationExists(sKey))
-                    throw new KeyNotFoundException("A station with this number does not exist!");
+                
                 if (position == 0)
                     return new BusLineStation(sKey, 0, 0);
             if (position - 1 >= 0)
@@ -108,6 +103,7 @@ namespace dotNet5781_02_6594_6401
             foreach (BusLineStation station in BusLineStations)
                 if (station.StationKey == sKey)
                     return station;
+            
             return null;
         }
 

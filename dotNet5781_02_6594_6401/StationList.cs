@@ -46,7 +46,12 @@ namespace dotNet5781_02_6594_6401
         }
         static public bool StationExists(int stationKey)
         {
-            return (FindStation(stationKey) != null);
+            foreach (var station in Stations)
+            {
+                if (station.BusStationKey == stationKey)
+                    return true;
+            }
+            return false;
         }
         static public new String ToString()
         {

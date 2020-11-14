@@ -36,8 +36,7 @@ namespace dotNet5781_02_6594_6401
         }
         public void Delete(BusLine b)
         {
-            try { BusLines.Remove(b); }
-            catch (Exception) { Console.WriteLine("Bus line does not Exist!"); }
+            BusLines.Remove(b);
         }
         public List<BusLine> BusLineInStationList(int StationKey)
         {
@@ -51,7 +50,7 @@ namespace dotNet5781_02_6594_6401
                 }
                 if (busLinesList.Count==0)
                 {
-                    throw new NullReferenceException("No buses stop in this station!");
+                    throw new NullReferenceException("No buses stop in this station!\n");
                 }                
             }
             catch (NullReferenceException ex) { Console.WriteLine(ex.Message); }
@@ -68,11 +67,11 @@ namespace dotNet5781_02_6594_6401
             {
                 BusLine busLine = BusLines.Find(x => x.LineNumber == index);
                 if (busLine==null)
-                   throw new ArgumentException ("There is no bus line " + busLine.LineNumber + " in the bus line collection!");
+                   throw new BusException("There is no bus line " + index + " in the system!");
                 return busLine;
             }
-
         }
+        
         public override String ToString()
         {
             string s = "";
@@ -83,6 +82,5 @@ namespace dotNet5781_02_6594_6401
             }
             return s;
         }
-
     }
-    }
+}
