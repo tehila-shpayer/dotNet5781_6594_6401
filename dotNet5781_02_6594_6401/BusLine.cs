@@ -53,7 +53,7 @@ namespace dotNet5781_02_6594_6401
                 Console.WriteLine(ex.Message);
             }
         }
-        
+
         public int CompareTo(object obj)
         {
             BusLine otherBS = (BusLine)obj;

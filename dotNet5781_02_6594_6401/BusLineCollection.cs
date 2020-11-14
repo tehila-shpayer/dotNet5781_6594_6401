@@ -73,6 +73,10 @@ namespace dotNet5781_02_6594_6401
             }
 
         }
+        public bool IsBus(int key)
+        {
+            return BusLines.Find(x => x.LineNumber == key)!=null;
+        }
         public override String ToString()
         {
             string s = "";
