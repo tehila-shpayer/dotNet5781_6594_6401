@@ -67,8 +67,8 @@ namespace dotNet5781_02_6594_6401
         }
         public void AddStation(int sKey,int position)
         {
-            try
-            {
+            if (position > BusLineStations.Count)
+                throw new BusException($"The Bus line has only {BusLineStations.Count} stations");
                 if (!StationList.StationExists(sKey))
                     throw new KeyNotFoundException("A station with this number does not exist!");
                 BusLineStation busLineStation = GetBusLineStationToAdd(sKey, position);
@@ -77,8 +77,7 @@ namespace dotNet5781_02_6594_6401
                 {
                     this[position+1] = GetBusLineStationToAdd(this[position + 1].StationKey, position + 1);
                 }
-            }
-            catch (Exception ex) { Console.WriteLine(ex.Message); }
+           
         }
         public BusLineStation GetBusLineStationToAdd(int sKey, int position)
         {
