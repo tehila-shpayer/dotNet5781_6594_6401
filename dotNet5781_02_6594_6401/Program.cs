@@ -204,11 +204,6 @@ Choose one of the following actions to do on the collection:
 
                 String stringBus = "";
                 int busNum;
-                switch (a)
-             Console.WriteLine("  a: Delete a bus line\n  b: Delete a station from a bus line");
-             string a = Console.ReadLine().Trim();
-             String stringBus = "";
-             int busNum;
             BusesInSystem(lineCollection);
             switch (a)
                 {
