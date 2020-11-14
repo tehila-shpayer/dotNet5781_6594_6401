@@ -41,7 +41,7 @@ namespace dotNet5781_02_6594_6401
         public List<BusLine> BusLineInStationList(int StationKey)
         {
             List<BusLine> busLinesList = new List<BusLine>();
-            try
+            //try
             {
                 foreach (BusLine Item in BusLines)
                 {
@@ -50,10 +50,10 @@ namespace dotNet5781_02_6594_6401
                 }
                 if (busLinesList.Count==0)
                 {
-                    throw new NullReferenceException("No buses stop in this station!\n");
+                    throw new BusException("No buses stop in this station!");
                 }                
             }
-            catch (NullReferenceException ex) { Console.WriteLine(ex.Message); }
+            //catch (NullReferenceException ex) { Console.WriteLine(ex.Message); }
             return busLinesList;
         }
         public List<BusLine> BusLinesSortedByGeneralTravelTime()

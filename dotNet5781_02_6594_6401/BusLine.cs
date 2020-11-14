@@ -183,8 +183,12 @@ namespace dotNet5781_02_6594_6401
             return (BusLineStations.IndexOf(s1) < BusLineStations.IndexOf(s2));
         }
         public void DeleteStation(BusLineStation bls)
-        { 
+        {
             BusLineStations.Remove(bls);
+        }
+        public void DeleteStation(int key)
+        {
+            DeleteStation(getStationFromKey(key));
         }
         public bool DidFindStation(BusLineStation s)
         {
@@ -199,6 +203,7 @@ namespace dotNet5781_02_6594_6401
             }
             return false;
         }
+        
         public override String ToString()
         {
             String s = "Bus Line: " + LineNumber + "\nArea: " + area + "\nBus stations:\n";
