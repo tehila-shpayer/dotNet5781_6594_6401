@@ -274,7 +274,7 @@ Choose one of the following actions to do on the collection:
                         }
                     }
                     else
-                        Console.WriteLine($"Sorry, there is no routes from station {startStationNum} to station {destStationNum}");
+                        Console.WriteLine($"Sorry, there are no routes from station {startStationNum} to station {destStationNum}");
                     break;
                 default: Console.WriteLine("ERROR"); break;
             }
