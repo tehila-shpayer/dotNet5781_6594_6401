@@ -152,6 +152,7 @@ Choose one of the following actions to do on the collection:
                         Console.WriteLine($"New bus line {BusLine.BUS_LINE_NUMBER} was added to collection!");
                         break;
                     case "b":
+                        BusesInSystem(lineCollection);
                         Console.WriteLine("Please enter the bus number for adding a station:");
                         string stringNum = Console.ReadLine();
                         int num = int.Parse(stringNum);
@@ -166,7 +167,7 @@ Choose one of the following actions to do on the collection:
                         String answer = Console.ReadLine();
                         if (answer == "y")
                         {
-                            Console.WriteLine("Please enter location of station in the line (index):\nEnter 0 to set the station as a first station\nEnter 1 to set the station as a second station\netc...");
+                            Console.WriteLine($"Please enter location of station in the line (index):\nEnter 0 to set the station as a first station\nEnter 1 to set the station as a second station\netc...\n(Bus line has {lineCollection[num].BusLineStations.Count} stations)");
                             string location = Console.ReadLine();
                             int loc = int.Parse(location);
                             bus.AddStation(key, loc);
@@ -204,6 +205,12 @@ Choose one of the following actions to do on the collection:
                 String stringBus = "";
                 int busNum;
                 switch (a)
+             Console.WriteLine("  a: Delete a bus line\n  b: Delete a station from a bus line");
+             string a = Console.ReadLine().Trim();
+             String stringBus = "";
+             int busNum;
+            BusesInSystem(lineCollection);
+            switch (a)
                 {
                     case "a":
                         Console.WriteLine("Please enter the bus number to delete:");
@@ -217,6 +224,12 @@ Choose one of the following actions to do on the collection:
                         stringBus = Console.ReadLine();
                         busNum = int.Parse(stringBus);
                         BusLine bus = lineCollection[busNum];
+                        if(lineCollection[busNum].BusLineStations.Count==0)
+                        { Console.WriteLine($"Bus line {busNum} has no stations."); break; }
+                        string stations = "Stations in the bus: ";
+                        foreach (BusLineStation station in lineCollection[busNum].BusLineStations)
+                        stations += station.StationKey + " ";
+                        Console.WriteLine(stations + "\n");
                         Console.WriteLine("Please enter station key to delete:");
                         int stationNum = ReadStationKey();
                         if (!bus.DidFindStation(stationNum))
@@ -329,6 +342,13 @@ Choose one of the following actions to do on the collection:
             if (!StationList.StationExists(key))
                 throw new BusException($"Station {key} doesn't exist in the system");
             return key;
+        }
+        public static void BusesInSystem(BusLineCollection lineCollection)
+        {
+            string buses = "The bus lines in the system: ";
+            foreach (BusLine b in lineCollection)
+                buses += b.LineNumber + " ";
+            Console.WriteLine(buses + "\n");
         }
     }
 
