@@ -166,7 +166,7 @@ Choose one of the following actions to do on the collection:
                         String answer = Console.ReadLine();
                         if (answer == "y")
                         {
-                            Console.WriteLine("Please enter location of station in the line (index):\nEnter 0 for set the station as a first station\nEnter 1 for set the station as a first station\netc...");
+                            Console.WriteLine("Please enter location of station in the line (index):\nEnter 0 to set the station as a first station\nEnter 1 to set the station as a second station\netc...");
                             string location = Console.ReadLine();
                             int loc = int.Parse(location);
                             bus.AddStation(key, loc);
