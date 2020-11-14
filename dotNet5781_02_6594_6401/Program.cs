@@ -204,18 +204,20 @@ Choose one of the following actions to do on the collection:
 
                 String stringBus = "";
                 int busNum;
-            BusesInSystem(lineCollection);
+            
             switch (a)
                 {
                     case "a":
-                        Console.WriteLine("Please enter the bus number to delete:");
+                    BusesInSystem(lineCollection);
+                    Console.WriteLine("Please enter the bus number to delete:");
                         stringBus = Console.ReadLine();
                         busNum = int.Parse(stringBus);
                         lineCollection.Delete(lineCollection[busNum]);
                         Console.WriteLine($"Bus line {busNum} was removed from collection!");
                         break;
                     case "b":
-                        Console.WriteLine("Please enter the bus number to delete from:");
+                    BusesInSystem(lineCollection);
+                    Console.WriteLine("Please enter the bus number to delete from:");
                         stringBus = Console.ReadLine();
                         busNum = int.Parse(stringBus);
                         BusLine bus = lineCollection[busNum];
