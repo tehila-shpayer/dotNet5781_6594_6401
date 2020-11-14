@@ -48,7 +48,7 @@ namespace dotNet5781_02_6594_6401
                 }
                 area = a;
         }
-        
+
         public int CompareTo(object obj)
         {
             BusLine otherBS = (BusLine)obj;

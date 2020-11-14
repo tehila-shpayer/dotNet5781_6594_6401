@@ -270,7 +270,7 @@ Choose one of the following actions to do on the collection:
                             Console.WriteLine(bus);
                             BusLineStation first = bus.getStationFromKey(bus.FirstStation);
                             BusLineStation last = bus.getStationFromKey(bus.LastStation);
-                            Console.WriteLine($"Time: {bus.FindTime(first, last)}\n");
+                            Console.WriteLine($"Time: {bus.FindTime(first,last)} minutes.\n");
                         }
                     }
                     else
