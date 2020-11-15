@@ -199,22 +199,25 @@ Choose one of the following actions to do on the collection:
         }
         public static void DeleteFromCollection(BusLineCollection lineCollection)
         {
-             Console.WriteLine("  a: Delete a bus line\n  b: Delete a station from a bus line");
-             string a = Console.ReadLine().Trim();
-             String stringBus = "";
-             int busNum;
-            BusesInSystem(lineCollection);
+                Console.WriteLine("  a: Delete a bus line\n  b: Delete a station from a bus line\n  c: Delete a station from the system");
+                string a = Console.ReadLine().Trim();
+
+                String stringBus = "";
+                int busNum;
+            
             switch (a)
                 {
                     case "a":
-                        Console.WriteLine("Please enter the bus number to delete:");
+                    BusesInSystem(lineCollection);
+                    Console.WriteLine("Please enter the bus number to delete:");
                         stringBus = Console.ReadLine();
                         busNum = int.Parse(stringBus);
                         lineCollection.Delete(lineCollection[busNum]);
                         Console.WriteLine($"Bus line {busNum} was removed from collection!");
                         break;
                     case "b":
-                        Console.WriteLine("Please enter the bus number to delete from:");
+                    BusesInSystem(lineCollection);
+                    Console.WriteLine("Please enter the bus number to delete from:");
                         stringBus = Console.ReadLine();
                         busNum = int.Parse(stringBus);
                         BusLine bus = lineCollection[busNum];
@@ -228,10 +231,32 @@ Choose one of the following actions to do on the collection:
                         int stationNum = ReadStationKey();
                         if (!bus.DidFindStation(stationNum))
                             throw new BusException($"Bus line {busNum} has no station {stationNum}");
-                        bus.DeleteStation(bus.getStationFromKey(stationNum));
+                        bus.DeleteStation(stationNum);
                         Console.WriteLine($"Station {stationNum} was removed from bus {busNum}!");
                         break;
-                    default: Console.WriteLine("ERROR\n"); break;
+                case "c":
+                    Console.WriteLine("Please enter the station number to delete:");
+                    stationNum = ReadStationKey();
+                    if (BusesInStation(lineCollection, stationNum) != "\n")
+                    {
+                        Console.WriteLine("There are buses that pass in this station!\nAre you shure you want to delete it?\nThis action will remove this station from all buses");
+                        Console.WriteLine(" Press 'y' to continue\n Else press any key");
+                        String answer = Console.ReadLine();
+                        if (answer != "y")
+                        {
+                            Console.WriteLine("The delete operation was canceled");
+                            break;
+                        }
+                        foreach (BusLine busLine in lineCollection)
+                        {
+                            if (busLine.DidFindStation(stationNum))
+                                busLine.DeleteStation(stationNum);
+                        }
+                    }
+                    StationList.Remove(stationNum);
+                    Console.WriteLine($"Station {stationNum} was removed from the system!");
+                    break;
+                    default: Console.WriteLine("ERROR"); break;
                 }
  
         }
@@ -288,14 +313,24 @@ Choose one of the following actions to do on the collection:
         }
         public static void PrintBusesInStation(BusLineCollection lineCollection, int key)
         {
-            string s = "";
-            foreach (BusLine bus in lineCollection.BusLineInStationList(key))
-                s += bus.LineNumber + ", ";
-            if (s != "")
+            Console.WriteLine(BusesInStation(lineCollection, key));
+        }
+        public static String BusesInStation(BusLineCollection lineCollection,int key)
+        {
+            String s = "";
+            try
             {
-                s = s.Substring(0, s.Length - 2);
-                Console.WriteLine(s + "\n");
+                foreach (BusLine bus in lineCollection.BusLineInStationList(key))
+                    s += bus.LineNumber + ", ";
+                if (s != "")
+                {
+                    s = s.Substring(0, s.Length - 2);
+                }
             }
+            catch (BusException)
+            {
+            }
+            return s + "\n";
         }
         public static int ReadStationKey()
         {
