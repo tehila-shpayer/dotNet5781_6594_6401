@@ -12,19 +12,20 @@ namespace dotNet5781_02_6594_6401
 {
     class BusStation
     {
-        public static int BUS_STATION_NUMBER=0;
+        public static int BUS_STATION_NUMBER=0; //משתנה רץ למספרי רישוי של אוטובוסים
         public int BusStationKey  { get; private set;}
         public double Latitude { get; private set; }
         public double Longitude { get; private set; }
         public string address { get; private set; }
+        //בנאי
         public BusStation(double la, double lo, string ad="")
         {
             //try
             {
                 BUS_STATION_NUMBER++;
-                string key = BUS_STATION_NUMBER.ToString();
-                if (key.Length > 6)
-                    throw new BusException("Bus station key number must be of maximum 6 digit!");
+                //string key = BUS_STATION_NUMBER.ToString(); 
+                //if (key.Length > 6)
+                //    throw new BusException("Bus station key number must be of maximum 6 digit!");
                 if((la > 90) || (la<-90))
                     throw new BusException("Bus station Latitude number must be in the range [-90,90]!");
                 if ((lo > 180) || (lo < -180))
