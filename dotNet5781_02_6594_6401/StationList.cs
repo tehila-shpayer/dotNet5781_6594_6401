@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_6594_6401
 {
-    static class StationList
+    static class StationList //מחלקה של כול התחנות שיש במערכת
     {
         static public List<BusStation> Stations = new List<BusStation>();
         static StationList()
