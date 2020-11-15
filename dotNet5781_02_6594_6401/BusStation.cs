@@ -10,36 +10,31 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_6594_6401
 {
-    class BusStation
+    class BusStation//מחלקה המייצגת תחנת אוטובוס
     {
-        public static int BUS_STATION_NUMBER=0;
+        public static int BUS_STATION_NUMBER=0;//מספר תחנה - משתנה רץ
         public int BusStationKey  { get; private set;}
         public double Latitude { get; private set; }
         public double Longitude { get; private set; }
         public string address { get; private set; }
-        public BusStation(double la, double lo, string ad="")
+        public BusStation(double la, double lo, string ad="")//יצירת תחנה חדשה
         {
-            //try
-            {
-                BUS_STATION_NUMBER++;
-                string key = BUS_STATION_NUMBER.ToString();
-                if (key.Length > 6)
-                    throw new BusException("Bus station key number must be of maximum 6 digit!");
-                if((la > 90) || (la<-90))
-                    throw new BusException("Bus station Latitude number must be in the range [-90,90]!");
-                if ((lo > 180) || (lo < -180))
-                    throw new BusException("Bus station Longitude number must be in the range [-180,180]!");
-                BusStationKey = BUS_STATION_NUMBER;
-                Latitude = la;
-                Longitude = lo;
-                address = ad;
-            }
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //}
+            //אם מיקום התחנה לא תקין - נזרקת חריגה
+           if((la > 90) || (la<-90))
+              throw new BusException("Bus station Latitude number must be in the range [-90,90]!");
+           if ((lo > 180) || (lo < -180))
+              throw new BusException("Bus station Longitude number must be in the range [-180,180]!");
+
+            BUS_STATION_NUMBER++;
+            string key = BUS_STATION_NUMBER.ToString();
+            if (key.Length > 6)
+                throw new BusException("Bus station key number must be of maximum 6 digit!");
+            BusStationKey = BUS_STATION_NUMBER;
+            Latitude = la;
+            Longitude = lo;
+            address = ad;
         }
-        public override string ToString()
+        public override string ToString()//הדפסת נתוני התחנה
         {
             string num = BusStationKey.ToString();
             num += ".";
@@ -47,10 +42,10 @@ namespace dotNet5781_02_6594_6401
             string s = $"Station Code: {num} Location: {XDigitsAfterPoint(Latitude, 5)}°N {XDigitsAfterPoint(Longitude, 5)}°E";
             if (address != "")
                 s+= " Address: " +address;
-            //return $"Bus Station Code: {BusStationKey}, Location: {Latitude}°N {Longitude}°E, Address: {address}";
             return s;
         }
         public string XDigitsAfterPoint(double d, int digitsAfterPoint)
+        //מקבל מספר ממשי ומחזיר מחרוזת המייצגת אותו עד ספרה מסויימת אחרי הנקודה
         {
             string s = d.ConvertToString();
             for (int i = 0; i < 3 + digitsAfterPoint; i++)
@@ -65,6 +60,7 @@ namespace dotNet5781_02_6594_6401
 
     static class ExtensionDouble
     {
+        //פונקציית הרחבה: המרה ממספר ממשי למחרוזת
         public static string ConvertToString(this double thisDouble)
         {
             double d = thisDouble;
