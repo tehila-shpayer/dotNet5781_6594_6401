@@ -16,12 +16,12 @@ namespace dotNet5781_02_6594_6401
         {
             //default ctor
         }
-        //public BusLineStation(BusLineStation s)
-        //{
-        //    StationKey = s.StationKey;
-        //    DistanceFromLastStationMeters = s.DistanceFromLastStationMeters;
-        //    TravelTimeFromLastStationMinutes = s.TravelTimeFromLastStationMinutes;
-        //}
+        /// <summary>
+        /// בנאי עם פרמטרים
+        /// </summary>
+        /// <param name="key">קוד התחנה</param>
+        /// <param name="d">מרחק מתחנה קודמת</param>
+        /// <param name="t">זמן נסיעה מתחנה קודמת</param>
         public BusLineStation(int key, double d=0, int t=0)
         {
             try
@@ -42,37 +42,12 @@ namespace dotNet5781_02_6594_6401
                 Console.WriteLine(ex.Message);
             }
 
-        }
-
+         }
+        //ToString דריסה של 
         public override String ToString()
         {
             return StationList.FindStation(StationKey).ToString();
         }
     }
 }
-/*
-  מה שהיה קודם:
-        public BusStation Station { get; private set; }
-        public float DistanceFromLastStationMeters { get; private set; }
-        public int TravelTimeFromLastStationMinutes { get; private set; }
-        public BusLineStation(BusStation bs, float d, int t)
-        {
-            try
-            {
-                Station = new BusStation(bs.BusStationKey, bs.Latitude, bs.Longitude, bs.address);
-                if (d <= 0)
-                    throw new ArgumentOutOfRangeException("Distance from last station must be positive!");
-                if (t <= 0)
-                    throw new ArgumentOutOfRangeException("Travel time from last station must be positive!");
-                DistanceFromLastStationMeters = d;
-                TravelTimeFromLastStationMinutes = t;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
 
-        }
-        public int GetBusStationKey() { return Station.BusStationKey; }
-    }
- */
