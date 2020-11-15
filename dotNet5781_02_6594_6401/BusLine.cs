@@ -79,12 +79,22 @@ namespace dotNet5781_02_6594_6401
                 }
            
         }
+        public void DeleteStation(BusLineStation bls)
+        {
+            int index = BusLineStations.IndexOf(bls);
+            BusLineStations.Remove(bls);
+            if (index < BusLineStations.Count)
+                this[index] = GetBusLineStationToAdd(this[index].StationKey, index);
+        }
+        public void DeleteStation(int key)
+        {
+            DeleteStation(getStationFromKey(key));
+
+        }
         public BusLineStation GetBusLineStationToAdd(int sKey, int position)
         {
-           
-                
-                if (position == 0)
-                    return new BusLineStation(sKey, 0, 0);
+            if (position == 0)
+               return new BusLineStation(sKey, 0, 0);
             if (position - 1 >= 0)
             {
                 BusStation NewStation = StationList.FindStation(sKey);
@@ -181,14 +191,6 @@ namespace dotNet5781_02_6594_6401
         public bool IstationPrior(BusLineStation s1, BusLineStation s2)
         {
             return (BusLineStations.IndexOf(s1) < BusLineStations.IndexOf(s2));
-        }
-        public void DeleteStation(BusLineStation bls)
-        {
-            BusLineStations.Remove(bls);
-        }
-        public void DeleteStation(int key)
-        {
-            DeleteStation(getStationFromKey(key));
         }
         public bool DidFindStation(BusLineStation s)
         {
