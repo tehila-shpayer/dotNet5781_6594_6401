@@ -86,24 +86,7 @@ Choose one of the following actions to do on the collection:
                             SearchInCollection(lineCollection);//חיפוש במערכת
                             break;
                         case "p"://הדפסת נתונים
-                            Console.WriteLine("  a: print all bus line\n  b: print data of all stations");
-                            string p = Console.ReadLine().Trim();
-                            switch (p)
-                            {
-                                case "a"://הדפסת הנתונים על כל קווי האוטובוס
-                                    Console.WriteLine(lineCollection);
-                                    break;
-                                case "b"://הדפסת הנתונים על כל התחנות
-                                    foreach (BusStation station in StationList.Stations)
-                                    {
-                                        Console.WriteLine(station);
-
-                                        Console.Write("   The bus lines in this station: ");
-                                        PrintBusesInStation(lineCollection, station.BusStationKey);
-                                    }
-                                    break;
-                                default: Console.WriteLine("ERROR"); break;
-                            }
+                            PrintDataOfCollection(lineCollection);
                             break;
                         case "e"://יציאה
                             break;
@@ -161,7 +144,7 @@ Choose one of the following actions to do on the collection:
                         {
                             throw new BusException($"Station {key} is already in bus line {num}");
                         }
-                        Console.WriteLine("Do you want to set station's location in the bus list of station?\n Press y if you want to\n Else press any key:");
+                        Console.WriteLine("Do you want to set station's location in the bus list of station?\n Press 'y' if you want to\n Else press any key:");
                         String answer = Console.ReadLine();
                         if (answer == "y")//אם המשתמש רוצה להכניס את התחנה במקום מסויים במסלול
                         {
@@ -181,7 +164,7 @@ Choose one of the following actions to do on the collection:
                         Console.WriteLine("Longitude:");
                         stringLocation = Console.ReadLine();
                         double longitude = double.Parse(stringLocation);
-                        Console.WriteLine("Do you want to set station's address?\n Press y if you want to\n Else press any key:");
+                        Console.WriteLine("Do you want to set station's address?\n Press 'y' if you want to\n Else press any key:");
                         answer = Console.ReadLine();
                         string address = "";
                         if (answer == "y")
@@ -206,7 +189,7 @@ Choose one of the following actions to do on the collection:
             switch (a)
                 {
                     case "a"://מחיקת קו אוטובוס
-                    BusesInSystem(lineCollection);//הדפסת כל הקווים במערכת
+                    BusesInSystem(lineCollection);
                     Console.WriteLine("Please enter the bus number to delete:");
                         stringBus = Console.ReadLine();
                         busNum = int.Parse(stringBus);
@@ -214,7 +197,7 @@ Choose one of the following actions to do on the collection:
                         Console.WriteLine($"Bus line {busNum} was removed from collection!");
                         break;
                     case "b"://מחיקת תחנה ממסלול של קו אוטובוס
-                    BusesInSystem(lineCollection);//הדפסת כל הקווים במערכת
+                    BusesInSystem(lineCollection);
                     Console.WriteLine("Please enter the bus number to delete from:");
                         stringBus = Console.ReadLine();
                         busNum = int.Parse(stringBus);
@@ -240,7 +223,7 @@ Choose one of the following actions to do on the collection:
                     if (BusesInStation(lineCollection, stationNum) != "\n")//אם יש קווי אוטובוס העוברים בתחנה זו
                     {
                         //אזהרה למשתמש: מחיקת התחנה תמחק אותה ממסלולי האוטובוסים
-                        Console.WriteLine("There are buses that pass in this station!\nAre you shure you want to delete it?\nThis action will remove this station from all buses");
+                        Console.WriteLine("There are buses that pass in this station!\nAre you sure you want to delete it?\nThis action will remove this station from all buses");
                         Console.WriteLine(" Press 'y' to continue\n Else press any key");
                         String answer = Console.ReadLine();
                         if (answer != "y")//אם המשתמש לא רוצה למחוק את התחנה
@@ -264,7 +247,7 @@ Choose one of the following actions to do on the collection:
         }
         public static void SearchInCollection(BusLineCollection lineCollection)
         {
-            Console.WriteLine("  a: Print all buses that pass a station\n  b: Print optinal routes to destination");
+            Console.WriteLine("  a: Print all buses that pass a station\n  b: Print optional routes to destination");
             string s = Console.ReadLine().Trim();
             switch (s)
             {
@@ -310,6 +293,35 @@ Choose one of the following actions to do on the collection:
                     }
                     else//אם אין אף אוטובוס שמגיע מתחנת המוצא ליעד  
                         Console.WriteLine($"Sorry, there are no routes from station {startStationNum} to station {destStationNum}");
+                    break;
+                default: Console.WriteLine("ERROR"); break;
+            }
+        }
+
+        public static void PrintDataOfCollection(BusLineCollection lineCollection)
+        {
+            Console.WriteLine("  a: print all bus lines\n  b: print all stations\n  c: print data of one bus line");
+            string p = Console.ReadLine().Trim();
+            switch (p)
+            {
+                case "a"://הדפסת הנתונים על כל קווי האוטובוס
+                    Console.WriteLine(lineCollection);
+                    break;
+                case "b"://הדפסת הנתונים על כל התחנות
+                    foreach (BusStation station in StationList.Stations)
+                    {
+                        Console.WriteLine(station);
+
+                        Console.Write("   The bus lines in this station: ");
+                        PrintBusesInStation(lineCollection, station.BusStationKey);
+                    }
+                    break;
+                case "c"://הדפסת נתונים על קו אוטובוס מסויים
+                    BusesInSystem(lineCollection);
+                    Console.WriteLine("Please enter the bus number to print: ");
+                    string stringNum = Console.ReadLine();
+                    int busNum = int.Parse(stringNum);
+                    Console.WriteLine(lineCollection[busNum]);
                     break;
                 default: Console.WriteLine("ERROR"); break;
             }
