@@ -70,7 +70,7 @@ namespace dotNet5781_02_6594_6401
             }
         }
         
-        public override String ToString()//הדפסת הנתונים על כל קווי האוטובוס במערכת
+        public override String ToString()///הדפסת הנתונים על כל קווי האוטובוס במערכת
         {
             string s = "";
             foreach (var line in BusLines)
