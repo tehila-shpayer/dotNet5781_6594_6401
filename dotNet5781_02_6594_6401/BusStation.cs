@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_6594_6401
 {
-    class BusStation//מחלקה המייצגת תחנת אוטובוס
+    public class BusStation//מחלקה המייצגת תחנת אוטובוס
     {
         public static int BUS_STATION_NUMBER=0; //משתנה רץ למספרי רישוי של אוטובוסים
         public int BusStationKey  { get; private set;}

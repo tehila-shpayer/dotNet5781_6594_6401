@@ -7,7 +7,7 @@ using System.Device.Location;
 
 namespace dotNet5781_02_6594_6401
 {
-    class BusLineStation
+    public class BusLineStation
     {
         public int StationKey { get; private set; }
         public double DistanceFromLastStationMeters { get; set; }

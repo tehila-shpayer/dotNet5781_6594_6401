@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_6594_6401
 {
-    class BusLineCollection : IEnumerable //מחלקה המייצגת אוסף של קווי אוטובוס
+    public class BusLineCollection : IEnumerable //מחלקה המייצגת אוסף של קווי אוטובוס
     {
         public List<BusLine> BusLines { get; private set; }
         public BusLineCollection()

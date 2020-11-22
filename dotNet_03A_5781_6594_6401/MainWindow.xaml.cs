@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Globalization;
-using dotNet5781_02_6594_6401;
+//using dotNet5781_02_6594_6401;
 
 namespace dotNet_03A_5781_6594_6401
 {
@@ -23,48 +23,34 @@ namespace dotNet_03A_5781_6594_6401
     public partial class MainWindow : Window
     {
         public MainWindow()
-        {            
+        {
             Random rand = new Random(DateTime.Now.Millisecond);
-            // private BusLine currentDisplayBusLine;; 
-            /*private void ShowBusLine(int index)
+            dotNet5781_02_6594_6401.BusLine currentDisplayBusLine; ;
+            //creates 40 stations:
+            dotNet5781_02_6594_6401.BusStation bs;
+
+            bs = new dotNet5781_02_6594_6401.BusStation(31.234567, 34.56874, "Talya");
+            dotNet5781_02_6594_6401.StationList.Add(bs);
+            for (int i = 0; i < 39; i++)
             {
-                currentDisplayBusLine = busLines[index];
-                UpGrid.DataContext = currentDisplayBusLine;
-                lbBusLineStations.DataContext = currentDisplayBusLine.Stations;
+                double la, lo;
+
+                la = rand.NextDouble() * (33.3 - 31) + 31;
+
+                lo = rand.NextDouble() * (35.5 - 34.3) + 34.3;
+
+                bs = new dotNet5781_02_6594_6401.BusStation(la, lo, "");
+
+                dotNet5781_02_6594_6401.StationList.Add(bs);
             }
 
-            private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
-            {
-                //ShowBusLine((cbBusLines.SelectedValue as BusLine).BusLineNum);
-            }*/
-
-
-            //creates 40 stations:
-            //BusStation bs;
-            
-            /*
-                bs = new BusStation(31.234567, 34.56874, "Talya");
-                StationList.Add(bs);
-                for (int i = 0; i < 39; i++)
-                {
-                    double la, lo;
-
-                    la = rand.NextDouble() * (33.3 - 31) + 31;
-
-                    lo = rand.NextDouble() * (35.5 - 34.3) + 34.3;
-
-                    bs = new BusStation(la, lo, "");
-
-            (bs);
-                }
-
-                BusLine bl;*/
-            //BusLineCollection lineCollection = new BusLineCollection();
+            dotNet5781_02_6594_6401.BusLine bl;
+            dotNet5781_02_6594_6401.BusLineCollection lineCollection = new dotNet5781_02_6594_6401.BusLineCollection();
             // craetes 10 bus lines:
-            /*for (int i = 1; i <= 10; i++)
+            for (int i = 1; i <= 10; i++)
             {
                 int Intarea = rand.Next(0, 8);
-                bl = new BusLine((Areas)Intarea);
+                bl = new dotNet5781_02_6594_6401.BusLine((dotNet5781_02_6594_6401.Areas)Intarea);
                 for (int j = i * 4 - 3; j <= i * 4; j++)
                 {
                     bl.AddStation(j);
@@ -81,18 +67,26 @@ namespace dotNet_03A_5781_6594_6401
                     bl.AddStation(anotherStationKey, rand.Next(0, 5 + k));
                 }
                 lineCollection.Add(bl);
-            }*/
+            }
 
             InitializeComponent();
-            //cbBusLines.ItemsSource = lineCollection;
-            //cbBusLines.DisplayMemberPath = " BusLineNum ";
-            //cbBusLines.SelectedIndex = 0;
-            //ShowBusLine(cbBusLines.SelectedIndex);
+            cbBusLines.ItemsSource = lineCollection;
+            cbBusLines.DisplayMemberPath = " BusLineNum ";
+            cbBusLines.SelectedIndex = 0;
+            ShowBusLine(/*currentDisplayBusLine,lineCollection,*/ cbBusLines.SelectedIndex);
         }
 
         private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ShowBusLine(/*currentDisplayBusLine, lineCollection,*/(cbBusLines.SelectedValue as dotNet5781_02_6594_6401.BusLine).LineNumber);
+        }
 
+        private void ShowBusLine(/*dotNet5781_02_6594_6401.BusLine currentDisplayBusLine, dotNet5781_02_6594_6401.BusLineCollection lineCollection,*/ int index)
+        {
+            //dotNet5781_02_6594_6401.BusLine currentDisplayBusLine;
+            //currentDisplayBusLine =lineCollection[index];
+            //UpGrid.DataContext = currentDisplayBusLine;
+            //lbBusLineStations.DataContext = currentDisplayBusLine.Stations;
         }
     }
 }

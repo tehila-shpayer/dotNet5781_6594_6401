@@ -8,7 +8,7 @@ using System.Globalization;
 
 namespace dotNet5781_02_6594_6401
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {

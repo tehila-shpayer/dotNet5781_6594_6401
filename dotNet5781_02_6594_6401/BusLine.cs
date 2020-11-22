@@ -12,7 +12,7 @@ using System.Linq.Expressions;
 namespace dotNet5781_02_6594_6401
 {
     public enum Areas { General, Jerusalem, Center, North, South, Hifa, TelAviv, YehudaAndShomron }
-    class BusLine : IComparable //מחלקה ברת השוואה של קו אוטובוס
+    public class BusLine : IComparable //מחלקה ברת השוואה של קו אוטובוס
     {
         public static int BUS_LINE_NUMBER = 0; //משתה רץ של מספרים של האוטובוסים
         //משתנה שמציין האם הקו אוטובוס הוא תת קו של קו אחר
