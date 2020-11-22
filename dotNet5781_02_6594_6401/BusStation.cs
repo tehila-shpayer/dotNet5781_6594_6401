@@ -38,7 +38,13 @@ namespace dotNet5781_02_6594_6401
         {
             string num = BusStationKey.ToString();
             num += ".";
-            while (num.Length < 3) { num += " "; }
+            if (num.Length < 3)
+            {
+                num = num.Insert(0, " ");
+                num += " ";
+            }
+
+            //while (num.Length < 3) { num += " "; }
             string s = $"Station Code: {num} Location: {XDigitsAfterPoint(Latitude, 5)}°N {XDigitsAfterPoint(Longitude, 5)}°E";
             if (address != "")
                 s+= " Address: " +address;
