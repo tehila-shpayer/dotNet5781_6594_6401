@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet_03A_5781_6594_6401"
         mc:Ignorable="d"
-        Title="MainWindow" Height="640" Width="1200">
+        Title="BusLinesDisplay" Height="640" Width="1200" Margin="10,0,0,0" FontSize="20" Icon="wireshark 5.jpg">
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
@@ -19,11 +19,11 @@ VerticalAlignment="Stretch" Width="auto">
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox x:Name="cbBusLines"  SelectionChanged = "cbBusLines_SelectionChanged" Grid.Column="1" HorizontalAlignment="Stretch" Margin="20,0,0.667,0" VerticalAlignment="Stretch" FontFamily="Segoe UI Black"/>
+            <ComboBox x:Name="cbBusLines"  SelectionChanged = "cbBusLines_SelectionChanged" Grid.Column="1" HorizontalAlignment="Stretch" Margin="20.333,0,298.333,0" VerticalAlignment="Stretch" FontFamily="Segoe UI Black" FontSize="36" Grid.ColumnSpan="2"/>
             <TextBox x:Name ="tbArea" Grid.Column="3" HorizontalAlignment="Stretch" Margin="0.667,0,9.333,0" TextWrapping="Wrap" Text="area" VerticalAlignment="Stretch" FontSize="36" Height="68"/>
             <Label Content="Bus Line Number:" HorizontalAlignment="Stretch" Margin="10,0,283.667,0" VerticalAlignment="Center" Height="68" FontSize="36" Grid.ColumnSpan="2"/>
-            <Label Content="Area:" Grid.Column="2" HorizontalAlignment="Center" Margin="78.667,0,0.333,0" VerticalAlignment="Center" Height="68" Width="169" FontSize="36"/>
+            <Label Content="Area:" Grid.Column="2" HorizontalAlignment="Center" Margin="119.333,0,10.333,0" VerticalAlignment="Center" Height="68" Width="169" FontSize="36"/>
         </Grid>
-        <ListBox x:Name="lbBusLineStations" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="360" Grid.Row="1" VerticalAlignment="Top" Width="567"/>
+        <ListBox x:Name="lbBusLineStations" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="313" Grid.Row="1" VerticalAlignment="Top" Width="588" IsSynchronizedWithCurrentItem="False" BorderBrush="#FF2BB6CF" Margin="10,10,0,0"/>
     </Grid>
 </Window>

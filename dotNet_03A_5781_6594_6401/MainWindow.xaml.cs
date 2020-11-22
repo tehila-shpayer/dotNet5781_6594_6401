@@ -73,7 +73,6 @@ namespace dotNet_03A_5781_6594_6401
             cbBusLines.ItemsSource = lineCollection;
             cbBusLines.DisplayMemberPath = " LineNumber ";
             cbBusLines.SelectedIndex = 0;
-            //ShowBusLine(0);
         }
 
         private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
