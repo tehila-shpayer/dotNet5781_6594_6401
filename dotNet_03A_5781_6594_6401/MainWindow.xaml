@@ -25,8 +25,8 @@ VerticalAlignment="Stretch" Width="auto" Grid.ColumnSpan="2" Margin="0,0,-0.4,0"
                 <ColumnDefinition Width="114*"/>
                 <ColumnDefinition Width="249*"/>
             </Grid.ColumnDefinitions>
-            <ComboBox x:Name="cbBusLines"  SelectionChanged = "cbBusLines_SelectionChanged" Grid.Column="1" HorizontalAlignment="Stretch" Margin="22,0,0,0" VerticalAlignment="Stretch" FontFamily="Segoe UI Black" FontSize="36" Background="{x:Null}"/>
-            <TextBox x:Name ="tbArea" Grid.Column="3" HorizontalAlignment="Stretch" Margin="10,0,9.6,0" TextWrapping="Wrap" Text="area" VerticalAlignment="Stretch" FontSize="36" Background="#FFFCFCFC" FontFamily="Impact"/>
+            <ComboBox x:Name="cbBusLines"  SelectionChanged = "cbBusLines_SelectionChanged" Grid.Column="1" HorizontalAlignment="Stretch" Margin="22,10,0,0" VerticalAlignment="Stretch" FontFamily="Segoe UI Black" FontSize="36" Background="{x:Null}"/>
+            <TextBox x:Name ="tbArea" Grid.Column="3" HorizontalAlignment="Stretch" Margin="10,10,9.6,10" TextWrapping="Wrap" Text="area" VerticalAlignment="Stretch" FontSize="36" Background="#FFFCFCFC" FontFamily="Impact"/>
             <Label Content="Bus Line Number:" HorizontalAlignment="Stretch" Margin="10,0,0,0" VerticalAlignment="Center" Height="68" FontSize="36" FontFamily="Segoe UI Black"/>
             <Label Content="Area:" Grid.Column="2" HorizontalAlignment="Center" Margin="81,0,28,0" VerticalAlignment="Center" Height="68" Width="119" FontSize="36" FontFamily="Segoe UI Black"/>
         </Grid>
