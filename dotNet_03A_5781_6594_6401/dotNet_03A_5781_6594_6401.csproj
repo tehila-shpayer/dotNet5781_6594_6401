@@ -110,5 +110,17 @@
   <ItemGroup>
     <Resource Include="Fasticon-Happy-Bus-Bus-orange.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="station.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="s2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="a.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
