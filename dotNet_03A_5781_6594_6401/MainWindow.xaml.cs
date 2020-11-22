@@ -22,11 +22,11 @@ namespace dotNet_03A_5781_6594_6401
     /// </summary>
     public partial class MainWindow : Window
     {
-        public dotNet5781_02_6594_6401.BusLineCollection lineCollection = new dotNet5781_02_6594_6401.BusLineCollection();
+        private dotNet5781_02_6594_6401.BusLine currentDisplayBusLine;
+        dotNet5781_02_6594_6401.BusLineCollection lineCollection = new dotNet5781_02_6594_6401.BusLineCollection();
         public MainWindow()
         {
             Random rand = new Random(DateTime.Now.Millisecond);
-            
             //creates 40 stations:
             dotNet5781_02_6594_6401.BusStation bs;
 
@@ -46,7 +46,6 @@ namespace dotNet_03A_5781_6594_6401
             }
 
             dotNet5781_02_6594_6401.BusLine bl;
-            
             // craetes 10 bus lines:
             for (int i = 1; i <= 10; i++)
             {
@@ -74,7 +73,7 @@ namespace dotNet_03A_5781_6594_6401
             cbBusLines.ItemsSource = lineCollection;
             cbBusLines.DisplayMemberPath = " LineNumber ";
             cbBusLines.SelectedIndex = 0;
-            //ShowBusLine(cbBusLines.SelectedIndex);
+            //ShowBusLine(0);
         }
         private dotNet5781_02_6594_6401.BusLine currentDisplayBusLine;
         private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -84,32 +83,10 @@ namespace dotNet_03A_5781_6594_6401
 
         private void ShowBusLine(int index)
         {
-            currentDisplayBusLine = lineCollection[index];
+            currentDisplayBusLine =lineCollection[index];
             UpGrid.DataContext = currentDisplayBusLine;
+            tbArea.Text = currentDisplayBusLine.area.ToString();
             lbBusLineStations.DataContext = currentDisplayBusLine.BusLineStations;
-            tbArea.Text = areaToString(currentDisplayBusLine.area);
-        }
-        private String areaToString(dotNet5781_02_6594_6401.Areas area)
-        {
-            String s = "";
-            switch (area)
-            {
-                case dotNet5781_02_6594_6401.Areas.Center:
-                    return "Center";
-                case dotNet5781_02_6594_6401.Areas.General:
-                    return "General";
-                case dotNet5781_02_6594_6401.Areas.Hifa:
-                    return "Hifa";
-                case dotNet5781_02_6594_6401.Areas.Jerusalem:
-                    return "Jerusalem";
-                case dotNet5781_02_6594_6401.Areas.North:
-                    return "North";
-                case dotNet5781_02_6594_6401.Areas.South:
-                    return "South";
-                default: break;
-
-            }
-            return s;
         }
 
     }

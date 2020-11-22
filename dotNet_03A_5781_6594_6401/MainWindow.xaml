@@ -20,7 +20,7 @@ VerticalAlignment="Stretch" Width="auto">
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
             <ComboBox x:Name="cbBusLines"  SelectionChanged = "cbBusLines_SelectionChanged" Grid.Column="1" HorizontalAlignment="Stretch" Margin="20,0,0.667,0" VerticalAlignment="Stretch" FontFamily="Segoe UI Black"/>
-            <TextBox x:Name ="tbArea" Grid.Column="3" HorizontalAlignment="Stretch" Margin="0.667,0,9.333,0" TextWrapping="Wrap" Text="{Binding Path=Area}" VerticalAlignment="Stretch" FontSize="36" Height="68"/>
+            <TextBox x:Name ="tbArea" Grid.Column="3" HorizontalAlignment="Stretch" Margin="0.667,0,9.333,0" TextWrapping="Wrap" Text="area" VerticalAlignment="Stretch" FontSize="36" Height="68"/>
             <Label Content="Bus Line Number:" HorizontalAlignment="Stretch" Margin="10,0,283.667,0" VerticalAlignment="Center" Height="68" FontSize="36" Grid.ColumnSpan="2"/>
             <Label Content="Area:" Grid.Column="2" HorizontalAlignment="Center" Margin="78.667,0,0.333,0" VerticalAlignment="Center" Height="68" Width="169" FontSize="36"/>
         </Grid>
