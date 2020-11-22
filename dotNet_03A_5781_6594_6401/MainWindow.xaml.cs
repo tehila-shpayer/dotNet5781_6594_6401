@@ -74,7 +74,6 @@ namespace dotNet_03A_5781_6594_6401
             cbBusLines.DisplayMemberPath = " LineNumber ";
             cbBusLines.SelectedIndex = 0;
         }
-
         private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ShowBusLine((cbBusLines.SelectedValue as dotNet5781_02_6594_6401.BusLine).LineNumber);
@@ -87,5 +86,6 @@ namespace dotNet_03A_5781_6594_6401
             tbArea.Text = currentDisplayBusLine.area.ToString();
             lbBusLineStations.DataContext = currentDisplayBusLine.BusLineStations;
         }
+
     }
 }
