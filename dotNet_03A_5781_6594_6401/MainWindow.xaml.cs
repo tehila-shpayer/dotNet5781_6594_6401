@@ -75,7 +75,6 @@ namespace dotNet_03A_5781_6594_6401
             cbBusLines.SelectedIndex = 0;
             //ShowBusLine(0);
         }
-        private dotNet5781_02_6594_6401.BusLine currentDisplayBusLine;
         private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ShowBusLine((cbBusLines.SelectedValue as dotNet5781_02_6594_6401.BusLine).LineNumber);
