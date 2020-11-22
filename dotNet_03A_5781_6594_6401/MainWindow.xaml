@@ -7,23 +7,30 @@
         mc:Ignorable="d"
         Title="BusLinesDisplay" Height="640" Width="1200" Margin="10,0,0,0" FontSize="20" Icon="wireshark 5.jpg">
     <Grid Name="MainGrid">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF60A5EE" Offset="1"/>
+                <GradientStop Color="#FFFFD696"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="400*"/>
         </Grid.RowDefinitions>
         <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
-VerticalAlignment="Stretch" Width="auto">
+VerticalAlignment="Stretch" Width="auto" Grid.ColumnSpan="2" Margin="0,0,-0.4,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions >
-            <ComboBox x:Name="cbBusLines"  SelectionChanged = "cbBusLines_SelectionChanged" Grid.Column="1" HorizontalAlignment="Stretch" Margin="20.333,0,298.333,0" VerticalAlignment="Stretch" FontFamily="Segoe UI Black" FontSize="36" Grid.ColumnSpan="2"/>
-            <TextBox x:Name ="tbArea" Grid.Column="3" HorizontalAlignment="Stretch" Margin="0.667,0,9.333,0" TextWrapping="Wrap" Text="area" VerticalAlignment="Stretch" FontSize="36" Height="68"/>
-            <Label Content="Bus Line Number:" HorizontalAlignment="Stretch" Margin="10,0,283.667,0" VerticalAlignment="Center" Height="68" FontSize="36" Grid.ColumnSpan="2"/>
-            <Label Content="Area:" Grid.Column="2" HorizontalAlignment="Center" Margin="119.333,0,10.333,0" VerticalAlignment="Center" Height="68" Width="169" FontSize="36"/>
+                <ColumnDefinition Width="170*"/>
+                <ColumnDefinition Width="64*"/>
+                <ColumnDefinition Width="114*"/>
+                <ColumnDefinition Width="249*"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox x:Name="cbBusLines"  SelectionChanged = "cbBusLines_SelectionChanged" Grid.Column="1" HorizontalAlignment="Stretch" Margin="12,0,10,0" VerticalAlignment="Stretch" FontFamily="Segoe UI Black" FontSize="36" Background="{x:Null}"/>
+            <TextBox x:Name ="tbArea" Grid.Column="3" HorizontalAlignment="Stretch" Margin="10,0,9.6,0" TextWrapping="Wrap" Text="area" VerticalAlignment="Stretch" FontSize="36" Background="{x:Null}"/>
+            <Label Content="Bus Line Number:" HorizontalAlignment="Stretch" Margin="10,0,27,0" VerticalAlignment="Center" Height="68" FontSize="36"/>
+            <Label Content="Area:" Grid.Column="2" HorizontalAlignment="Center" Margin="81,0,28,0" VerticalAlignment="Center" Height="68" Width="119" FontSize="36"/>
         </Grid>
-        <ListBox x:Name="lbBusLineStations" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="313" Grid.Row="1" VerticalAlignment="Top" Width="588" IsSynchronizedWithCurrentItem="False" BorderBrush="#FF2BB6CF" Margin="10,10,0,0"/>
+        <ListBox x:Name="lbBusLineStations" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="335" Grid.Row="1" VerticalAlignment="Top" Width="588" IsSynchronizedWithCurrentItem="False" BorderBrush="#FF2BB6CF" Margin="7,10,0,0" Background="{x:Null}"/>
+        <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="735,119,102.6,111.4" Grid.Row="1" RenderTransformOrigin="0.5,0.5" Source="wireshark 5.jpg"/>
     </Grid>
 </Window>
