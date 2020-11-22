@@ -22,10 +22,11 @@ namespace dotNet_03A_5781_6594_6401
     /// </summary>
     public partial class MainWindow : Window
     {
+        private dotNet5781_02_6594_6401.BusLine currentDisplayBusLine;
+        dotNet5781_02_6594_6401.BusLineCollection lineCollection = new dotNet5781_02_6594_6401.BusLineCollection();
         public MainWindow()
         {
             Random rand = new Random(DateTime.Now.Millisecond);
-            dotNet5781_02_6594_6401.BusLine currentDisplayBusLine; ;
             //creates 40 stations:
             dotNet5781_02_6594_6401.BusStation bs;
 
@@ -45,7 +46,6 @@ namespace dotNet_03A_5781_6594_6401
             }
 
             dotNet5781_02_6594_6401.BusLine bl;
-            dotNet5781_02_6594_6401.BusLineCollection lineCollection = new dotNet5781_02_6594_6401.BusLineCollection();
             // craetes 10 bus lines:
             for (int i = 1; i <= 10; i++)
             {
@@ -71,22 +71,22 @@ namespace dotNet_03A_5781_6594_6401
 
             InitializeComponent();
             cbBusLines.ItemsSource = lineCollection;
-            cbBusLines.DisplayMemberPath = " BusLineNum ";
+            cbBusLines.DisplayMemberPath = " LineNumber ";
             cbBusLines.SelectedIndex = 0;
-            ShowBusLine(/*currentDisplayBusLine,lineCollection,*/ cbBusLines.SelectedIndex);
+            //ShowBusLine(0);
         }
 
         private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ShowBusLine(/*currentDisplayBusLine, lineCollection,*/(cbBusLines.SelectedValue as dotNet5781_02_6594_6401.BusLine).LineNumber);
+            ShowBusLine((cbBusLines.SelectedValue as dotNet5781_02_6594_6401.BusLine).LineNumber);
         }
 
-        private void ShowBusLine(/*dotNet5781_02_6594_6401.BusLine currentDisplayBusLine, dotNet5781_02_6594_6401.BusLineCollection lineCollection,*/ int index)
+        private void ShowBusLine(int index)
         {
-            //dotNet5781_02_6594_6401.BusLine currentDisplayBusLine;
-            //currentDisplayBusLine =lineCollection[index];
-            //UpGrid.DataContext = currentDisplayBusLine;
-            //lbBusLineStations.DataContext = currentDisplayBusLine.Stations;
+            currentDisplayBusLine =lineCollection[index];
+            UpGrid.DataContext = currentDisplayBusLine;
+            tbArea.Text = currentDisplayBusLine.area.ToString();
+            lbBusLineStations.DataContext = currentDisplayBusLine.BusLineStations;
         }
     }
 }
