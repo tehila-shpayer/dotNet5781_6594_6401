@@ -31,6 +31,6 @@ VerticalAlignment="Stretch" Width="auto" Grid.ColumnSpan="2" Margin="0,0,-0.4,0"
             <Label Content="Area:" Grid.Column="2" HorizontalAlignment="Center" Margin="81,3,28,-3" VerticalAlignment="Center" Height="68" Width="119" FontSize="36" FontFamily="Segoe UI Black" RenderTransformOrigin="0.465,0.588"/>
         </Grid>
         <ListBox x:Name="lbBusLineStations" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="335" Grid.Row="1" VerticalAlignment="Top" Width="588" IsSynchronizedWithCurrentItem="False" BorderBrush="#FF2BB6CF" Margin="7,10,0,0" Background="{x:Null}"/>
-        <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="735,119,102.6,111.4" Grid.Row="1" RenderTransformOrigin="0.5,0.5" Source="Fasticon-Happy-Bus-Bus-orange.ico"/>
+        <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="714,96,124.333,133.667" Grid.Row="1" RenderTransformOrigin="0.5,0.5" Source="Fasticon-Happy-Bus-Bus-orange.ico"/>
     </Grid>
 </Window>
