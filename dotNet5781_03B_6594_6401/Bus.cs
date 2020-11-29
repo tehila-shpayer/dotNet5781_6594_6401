@@ -50,7 +50,8 @@ namespace dotNet5781_03B_6594_6401
         public string GetLicenseNumberFormat()
         {
             string s = _licenseNumber;
-            if (_runningDate.Year >= 2018)
+            //if (_runningDate.Year >= 2018)
+            if (s.Length == 8)
             {
                 s = $"{s[0]}{s[1]}{s[2]}-{s[3]}{s[4]}-{s[5]}{s[6]}{s[7]}";
             }

@@ -29,7 +29,7 @@ namespace dotNet5781_03B_6594_6401
             Bus bus=new Bus();
             for (int i = 0; i < 10; i++)
             {
-                string s = rand.Next(10000000, 99999999).ToString();
+                string s = rand.Next(1000000, 99999999).ToString();
                 if (i % 4 == 0)
                     bus = new Bus(new DateTime(i + 2000, i+1, (i * i + 1) % 29 + 1), s, i * 100, 19000, 19000);
                 else if (i % 5 == 0)
