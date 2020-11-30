@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_01_6594_6401
 {
-    class Bus
+    public class Bus
     {
         int _KM;
         string _licenseNumber;
@@ -61,14 +61,26 @@ namespace dotNet5781_01_6594_6401
             return s;
         }
         //conctractor
-        public Bus(DateTime d=new DateTime(), string num="")
+        public Bus()//default ctor
         {
+            DateTime d = DateTime.Now;
+            _runningDate = d;
             _lastTreatment = d;
-            _licenseNumber = num;
+            _licenseNumber = "";
             _runningDate = d;
             _fuel = 0;
             _KM = 0;
             _beforeTreatKM = 0;
+        }
+        public Bus(DateTime d = new DateTime(), string num = "", int f = 0, int km = 0, int bt = 0)
+        {
+            _runningDate = d;
+            _lastTreatment = d;
+            _licenseNumber = num;
+            _runningDate = d;
+            _fuel = f;
+            _KM = km;
+            _beforeTreatKM = bt;
         }
         //refuel to the maximum possible - 1200
         public void Refuel() { 

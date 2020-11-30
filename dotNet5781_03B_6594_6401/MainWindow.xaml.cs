@@ -44,6 +44,7 @@ namespace dotNet5781_03B_6594_6401
                 int bt = rand.Next(0, Max(rand.Next(0, 20000), KM));
 
                 bus = new Bus(new DateTime(year, rand.Next(1, 13), rand.Next(1, 32)), s, rand.Next(0, 1201), KM, bt);
+                bus.DoTreatment();
                 BusCollection.Add(bus);
             }
 
