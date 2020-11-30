@@ -64,7 +64,8 @@ namespace dotNet5781_03B_6594_6401
         //conctractor
         public Bus(DateTime d = new DateTime(), string num = "",int f=0,int km=0,int bt=0)
         {
-            _lastTreatment =d;
+            _runningDate = d;
+            _lastTreatment = d;
             _licenseNumber = num;
             _runningDate = d;
             _fuel = f;

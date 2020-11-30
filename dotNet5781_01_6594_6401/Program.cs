@@ -7,14 +7,55 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_01_6594_6401
 {
+    static public class BusCollection
+    {
+        static public int BUS_COUNTER = 0;
+        static public List<Bus> buses = new List<Bus>();
+        static BusCollection() { buses = new List<Bus>(); }
+        static public void Add(Bus bus) { buses.Add(bus); BUS_COUNTER++; }
+    }
     class Program
     //Tehila Shpayer 325236594. Sarah Malka Hamou 325266401.
     //The program is a system for representing buses.
     //It allows the user to add a bus, make a ride, refuel and treat a bus, or print the data on all the buses.
     {
+
+        public static void RandomInitializationBus()
+        {
+            Random rnd = new Random(DateTime.Now.Millisecond);
+            Bus bus = new Bus();
+            for (int i = 0; i < 10; i++)
+            {
+                String s;
+                int year;
+                if (i % 2 == 0)
+                {
+                    s = rnd.Next(1000000, 9999999).ToString();
+                    year = rnd.Next(1895, 2018);
+                }
+                else
+                {
+                    s = rnd.Next(10000000, 99999999).ToString();
+                    year = rnd.Next(2018, DateTime.Now.Year + 1);
+                }
+                int KM = rnd.Next(0, 10000);
+                int bt = rnd.Next(0, Max(rnd.Next(0, 20000), KM));
+
+                bus = new Bus(new DateTime(year, rnd.Next(1, 13), rnd.Next(1, 32)), s, rnd.Next(0, 1201), KM, bt);
+                //bus.DoTreatment();
+                BusCollection.Add(bus);
+            }
+        }
+        public static int Max(int a, int b)
+        {
+            if (a < b)
+                return a;
+            return b;
+        }
         static void Main(string[] args)
         {
             List<Bus> buses = new List<Bus>();
+            RandomInitializationBus();
             Random rand = new Random(DateTime.Now.Millisecond);
             string s;
             Console.WriteLine("Welcome!\n");

@@ -52,6 +52,7 @@ namespace dotNet5781_03B_6594_6401
                 //    bus = new Bus(new DateTime(i + 2000, (i * i + 1) % 12, (i * i) % 29 + 1), s);
 
                 bus = new Bus(new DateTime(year, rand.Next(1, 13), rand.Next(1, 32)), s, rand.Next(0, 1201), KM, bt);
+                bus.DoTreatment();
                 BusCollection.Add(bus);
             }
 
