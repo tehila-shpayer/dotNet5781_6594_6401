@@ -42,9 +42,16 @@ namespace dotNet5781_03B_6594_6401
                 }
                 int KM = rand.Next(0, 10000);
                 int bt = rand.Next(0, Max(rand.Next(0, 20000), KM));
-
-                bus = new Bus(new DateTime(year, rand.Next(1, 13), rand.Next(1, 32)), s, rand.Next(0, 1201), KM, bt);
-                bus.DoTreatment();
+                int fuel = rand.Next(0, 1201);
+                if (i% 4 == 1)
+                {
+                    fuel = 0;
+                }
+                bus = new Bus(new DateTime(year, rand.Next(1, 13), rand.Next(1, 32)), s, fuel, KM, bt);
+                if (i%3==0)
+                {
+                    bus.DoTreatment();
+                }
                 BusCollection.Add(bus);
             }
 
