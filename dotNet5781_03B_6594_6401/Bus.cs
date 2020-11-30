@@ -127,13 +127,17 @@ namespace dotNet5781_03B_6594_6401
         /// license number and start date.
         /// </summary>
         /// <returns></returns>
-        public override String ToString()
+        public String LongToString()
         {
             return $"Bus license number: {GetLicenseNumberFormat()}\n" +
                                 $"Bus start date: {DateWithoutHour(_runningDate)}\n" +
                                 $"Bus state since last tratment on {DateWithoutHour(_lastTreatment)}:\n" +
                                 $" Fuel state (KM to go): {_fuel}\n" +
                                 $" KM: {_beforeTreatKM}\n";
+        }
+        public override String ToString()
+        {
+            return "Bus  " + GetLicenseNumberFormat();
         }
         // A string of a DateTime varible that doesnt include the time
         static public String DateWithoutHour(DateTime date)

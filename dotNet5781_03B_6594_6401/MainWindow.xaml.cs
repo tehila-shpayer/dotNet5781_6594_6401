@@ -43,14 +43,6 @@ namespace dotNet5781_03B_6594_6401
                 int KM = rand.Next(0, 10000);
                 int bt = rand.Next(0, Max(rand.Next(0, 20000), KM));
 
-
-                //if (i % 4 == 0)
-                //    bus = new Bus(new DateTime(i + 2000, i + 1, (i * i + 1) % 29 + 1), s, i * 100, 19000, 19000);
-                //else if (i % 5 == 0)
-                //    bus = new Bus(new DateTime(i + 2000, (i * i + 1) % 12, (i * i + 1) % 29 + 1), s, i * 10);
-                //else
-                //    bus = new Bus(new DateTime(i + 2000, (i * i + 1) % 12, (i * i) % 29 + 1), s);
-
                 bus = new Bus(new DateTime(year, rand.Next(1, 13), rand.Next(1, 32)), s, rand.Next(0, 1201), KM, bt);
                 BusCollection.Add(bus);
             }
@@ -65,14 +57,27 @@ namespace dotNet5781_03B_6594_6401
         public MainWindow()
         {
             RandomInitializationBus();
-            
+
             InitializeComponent();
+            busesList.ItemsSource = BusCollection.buses;
+
+
         }
         int i = 0;
         private void output_KeyDown(object sender, KeyEventArgs e)
         {
-            output.Text = BusCollection.buses.ElementAt(i).ToString();
+            busInformation.Text = BusCollection.buses.ElementAt(i).ToString();
             i++;
         }
+
+        private void busesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            busInformation.Text = BusCollection.buses.ElementAt(busesList.SelectedIndex).LongToString();
+            i++;
+            if (i == BusCollection.buses.Count - 1)
+                i = 0;
+        }
     }
+
+
 }

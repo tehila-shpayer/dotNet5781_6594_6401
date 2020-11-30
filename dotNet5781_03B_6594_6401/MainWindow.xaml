@@ -7,6 +7,20 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="output" Margin="200,89,210.333,153.667" KeyDown="output_KeyDown"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="319*"/>
+            <ColumnDefinition Width="474*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="56*"/>
+            <RowDefinition Height="159*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="166*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="addButton" Content="add bus" Grid.Column="1" Grid.Row="0" FontSize="30" FontFamily="Showcard Gothic" Margin="0"/>
+        <ListBox x:Name="busesList" Grid.Column="0" Grid.Row="1" Margin="0,0,0.333,39.667" SelectionChanged="busesList_SelectionChanged" Grid.RowSpan="2"/>
+        <Label Content="Buses in the system: " RenderTransformOrigin="0.5,0.5" Margin="0,0,0.333,0" Style="{StaticResource myLableStyle}"/>
+        <Label Content="Selected bus info: " Grid.Row="2" RenderTransformOrigin="0.5,0.5" Margin="0,0.333,0.333,155.667" Style="{StaticResource myLableStyle}" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <TextBox x:Name="busInformation" Margin="0,0.333,0.333,-0.333"  Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
     </Grid>
 </Window>

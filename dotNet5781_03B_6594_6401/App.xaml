@@ -4,6 +4,15 @@
              xmlns:local="clr-namespace:dotNet5781_03B_6594_6401"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <LinearGradientBrush x:Key="myLinearGradientBrush">
+            <GradientStop Color="#FFE5D6D6"></GradientStop>
+        </LinearGradientBrush>
+        <Style x:Key="myLableStyle" TargetType="Label">
+            <Setter Property="Background" Value="#FFE5D6D6"></Setter>
+            <Setter Property="BorderBrush" Value="#FFC76868"></Setter>
+            <Setter Property="FontSize" Value="24"></Setter>
+            <Setter Property="Foreground" Value="#FF000000"></Setter>
+            <Setter Property="FontFamily" Value="Showcard Gothic"></Setter>
+        </Style>
     </Application.Resources>
 </Application>
