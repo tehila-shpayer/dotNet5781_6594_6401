@@ -78,6 +78,12 @@ namespace dotNet5781_03B_6594_6401
             if (i == BusCollection.buses.Count - 1)
                 i = 0;
         }
+
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            Window1 window1 = new Window1();
+            window1.Show();
+        }
     }
 
 
