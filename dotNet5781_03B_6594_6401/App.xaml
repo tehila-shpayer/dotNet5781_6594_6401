@@ -13,6 +13,22 @@
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
+        <Style x:Key="grayLable" TargetType="Label">
+            <Setter Property="Background" Value="#FFDDDDDD"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Foreground" Value="#FF000000"/>
+            <Setter Property="FontFamily" Value="Showcard Gothic"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10,10,10,10"/>
+        </Style>
+        <Style x:Key="infoLabel" TargetType="Label">
+            <Setter Property="Background" Value="#FFF0F3FC"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontFamily" Value="Arial Rounded MT Bold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
         <Style x:Key="myAddWindowLableStyle" TargetType="Label">
             <Setter Property="Background" Value="#FFFFFF"/>
             <Setter Property="BorderBrush" Value="#FFFFFF"/>
@@ -22,8 +38,5 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Margin" Value="10,10,10,10"/>
         </Style>
-        <LinearGradientBrush x:Key="black">
-            <GradientStop Color="Black"/>
-        </LinearGradientBrush>
     </Application.Resources>
 </Application>

@@ -25,7 +25,7 @@ namespace dotNet5781_03B_6594_6401
     {
         static public ObservableCollection<Bus> windowBuses = new ObservableCollection<Bus>();
         public void RandomInitializationBus()
-        {           
+        {
             Random rand = new Random(DateTime.Now.Millisecond);
             Bus bus = new Bus();
             for (int i = 0; i < 10; i++)
@@ -45,12 +45,12 @@ namespace dotNet5781_03B_6594_6401
                 int KM = rand.Next(0, 10000);
                 int bt = rand.Next(0, Max(rand.Next(0, 20000), KM));
                 int fuel = rand.Next(0, 1201);
-                if (i% 4 == 1)
+                if (i % 4 == 1)
                 {
                     fuel = 0;
                 }
                 bus = new Bus(new DateTime(year, rand.Next(1, 13), rand.Next(1, 32)), s, fuel, KM, bt);
-                if (i%3==0)
+                if (i % 3 == 0)
                 {
                     bus.DoTreatment();
                 }
@@ -77,26 +77,32 @@ namespace dotNet5781_03B_6594_6401
 
         private void busesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            busInformation.Text = BusCollection.buses.ElementAt(busesList.SelectedIndex).LongToString();
+            //BusInfo busInfo = new BusInfo();
+            //busInfo.Show();
+            //busInformation.Text = BusCollection.buses.ElementAt(busesList.SelectedIndex).LongToString();
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             Window1 window1 = new Window1();
             window1.ShowDialog();
-            //busesList.ItemsSource = BusCollection.buses;
         }
         private void rideButton_Click(object sender, RoutedEventArgs e)
         {
-        //    Window1 window1 = new Window1();
-        //    window1.ShowDialog();
+            //    Window1 window1 = new Window1();
+            //    window1.ShowDialog();
         }
         private void refuelButton_Click(object sender, RoutedEventArgs e)
         {
-            
-        }
-    }
 
+        }
+
+        private void busesList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            BusInfo busInfo = new BusInfo(busesList.SelectedIndex);
+            busInfo.Show();
+            //busInformation.Text = BusCollection.buses.ElementAt(busesList.SelectedIndex).LongToString();
+        }
     }
 
 }

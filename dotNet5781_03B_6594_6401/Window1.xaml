@@ -30,8 +30,8 @@
         <TextBox x:Name="LTD" LostFocus="LTD_LostFocus" Grid.Row="0" Grid.Column="3" Text="" Margin="30,40"/>
         <TextBox x:Name="LTKM" LostFocus="LTKM_LostFocus" Grid.Row="1" Grid.Column="3" Text="" Margin="30,40"/>
         <TextBox x:Name="F" LostFocus="F_LostFocus" Grid.Row="2" Grid.Column="3" Text="" Margin="30,40"/>
-        <TextBox x:Name="LN" Foreground="{Binding ElementName=LN, Path=IsFocused}" Initialized="LN_Initialized" LostFocus="LN_LostFocus" Grid.Row="0" Grid.Column="1" Text="" Margin="30,40" />
-        <TextBox x:Name="SD" Initialized="SD_Initialized" LostFocus="SD_LostFocus" Grid.Row="1" Grid.Column="1" Text="" Margin="30,40" Foreground="#FFC6BFBF"/>
+        <TextBox x:Name="LN" Foreground="{Binding ElementName=LN, Path=IsFocused}" LostFocus="LN_LostFocus" Grid.Row="0" Grid.Column="1" Text="" Margin="30,40" />
+        <TextBox x:Name="SD" LostFocus="SD_LostFocus" Grid.Row="1" Grid.Column="1" Text="" Margin="30,40" />
     </Grid>
 </Window>
    
