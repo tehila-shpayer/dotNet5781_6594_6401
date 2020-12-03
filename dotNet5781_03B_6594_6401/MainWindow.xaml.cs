@@ -89,12 +89,12 @@ namespace dotNet5781_03B_6594_6401
         }
         private void rideButton_Click(object sender, RoutedEventArgs e)
         {
-            //    Window1 window1 = new Window1();
-            //    window1.ShowDialog();
+            RideWindow rideWindow = new RideWindow();
+            rideWindow.Show();
         }
         private void refuelButton_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
     }
