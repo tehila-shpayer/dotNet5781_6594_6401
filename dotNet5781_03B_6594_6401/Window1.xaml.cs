@@ -103,5 +103,15 @@ namespace dotNet5781_03B_6594_6401
                 MainWindow.windowBuses.Add(bus);
             Close();
         }
+
+        private void TreatmentButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RefuelButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

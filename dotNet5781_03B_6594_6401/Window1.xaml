@@ -8,30 +8,36 @@
         Name="Window" Title="adding bus" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="199*"/>
+            <ColumnDefinition Width="53*"/>
+            <ColumnDefinition Width="147*"/>
             <ColumnDefinition Width="172*"/>
             <ColumnDefinition Width="290*"/>
             <ColumnDefinition Width="132*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="addButtonInWindow" Content="Click here to add bus to collection!" Click="addButtonInWindow_Click" Grid.Row="2" FontSize="30" FontFamily="Showcard Gothic" Margin="0,104.333,0.333,-0.333" Grid.ColumnSpan="4" Grid.RowSpan="2"/>
-        <Label Content="Bus license number: " HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" Margin="0,0,0.333,0.333" Style="{StaticResource myAddWindowLableStyle}"/>
-        <Label Content="Bus Starting date: " HorizontalAlignment="Left" Grid.Column="0" Style="{StaticResource myAddWindowLableStyle}" Margin="0,105,0.333,104.333" Grid.RowSpan="3"/>
-        <Label Content="Bus KILOMETERS: " HorizontalAlignment="Left" Grid.Row="2" Grid.Column="0" Style="{StaticResource myAddWindowLableStyle}" Margin="0,0.333,0.333,0.333"/>
-        <Label Content="Bus fuel(in km): " HorizontalAlignment="Right" Grid.Row="2" Grid.Column="1" Style="{StaticResource myAddWindowLableStyle}" Margin="171.667,0.333,2.333,0.333" RenderTransformOrigin="2.388,-0.595" Grid.ColumnSpan="2"/>
-        <Label Content="Bus last treatment date: " HorizontalAlignment="Right" Grid.Row="0" Grid.Column="2" Style="{StaticResource myAddWindowLableStyle}" Margin="9.667,0,2.333,0.333"/>
-        <Label Content="Bus km since last treatment: " HorizontalAlignment="Right" Grid.Column="2" Style="{StaticResource myAddWindowLableStyle}" Margin="9.667,105,2.333,104.333" Grid.RowSpan="3"/>
-        <TextBox x:Name="KM" LostFocus="KM_LostFocus" Grid.Row="2" Grid.Column="1" Text="" Margin="30,40"/>
-        <TextBox x:Name="LTD" LostFocus="LTD_LostFocus" Grid.Row="0" Grid.Column="3" Text="" Margin="30,40"/>
-        <TextBox x:Name="LTKM" LostFocus="LTKM_LostFocus" Grid.Row="1" Grid.Column="3" Text="" Margin="30,40"/>
-        <TextBox x:Name="F" LostFocus="F_LostFocus" Grid.Row="2" Grid.Column="3" Text="" Margin="30,40"/>
-        <TextBox x:Name="LN" Foreground="{Binding ElementName=LN, Path=IsFocused}" LostFocus="LN_LostFocus" Grid.Row="0" Grid.Column="1" Text="" Margin="30,40" />
-        <TextBox x:Name="SD" LostFocus="SD_LostFocus" Grid.Row="1" Grid.Column="1" Text="" Margin="30,40" />
+        <Label Content="Adding Bus" Margin="0,0,0.334,59.333" Style="{StaticResource myMainLableStyle}" Grid.RowSpan="2" Width="793" Grid.ColumnSpan="5"/>
+        <Button  Grid.Column="2" Grid.Row="3" x:Name="TreatmentButton" Content="Treat" Click="TreatmentButton_Click"  Grid.ColumnSpan="3" Margin="171.667,74,0.333,95.667" Grid.RowSpan="3" FontSize="30" FontFamily="Showcard Gothic" RenderTransformOrigin="0.326,0.42" />
+        <Button  Grid.Column="0" Grid.Row="3" x:Name="RefuelButton" Content="Refuel" Click="RefuelButton_Click"  Grid.ColumnSpan="3" Margin="0,74,0.333,95.667" Grid.RowSpan="3" FontSize="30" FontFamily="Showcard Gothic" RenderTransformOrigin="0.326,0.42" />
+        <Button x:Name="addButtonInWindow" Content="Click here to add bus to collection!" Click="addButtonInWindow_Click" Grid.Row="5" FontSize="30" FontFamily="Showcard Gothic" Margin="0,9.667,0.334,-0.333" Grid.ColumnSpan="5"/>
+        <Label Content="Bus license number: " HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0" Margin="0,0.667,0,1.333" Style="{StaticResource myAddWindowLableStyle}" Width="199" Grid.ColumnSpan="2"/>
+        <Label Content="Bus Starting date: " HorizontalAlignment="Left" Grid.Column="0" Style="{StaticResource myAddWindowLableStyle}" Margin="0,27.667,0,19" Grid.Row="2" Width="185" Grid.ColumnSpan="2"/>
+        <Label Content="Bus KILOMETERS: " HorizontalAlignment="Left" Grid.Row="3" Grid.Column="0" Style="{StaticResource myAddWindowLableStyle}" Margin="10,0,0,15.333" Width="189" Grid.ColumnSpan="2"/>
+        <Label Content="Bus fuel(in km): " HorizontalAlignment="Right" Grid.Row="3" Grid.Column="3" Style="{StaticResource myAddWindowLableStyle}" Margin="0,0,2.334,0.333" RenderTransformOrigin="2.388,-0.595" Width="169"/>
+        <Label Content="Bus last treatment date: " HorizontalAlignment="Right" Grid.Row="1" Grid.Column="3" Style="{StaticResource myAddWindowLableStyle}" Margin="0,10.667,2.334,1.333" Width="241"/>
+        <Label Content="Bus km since last treatment: " HorizontalAlignment="Right" Grid.Column="3" Style="{StaticResource myAddWindowLableStyle}" Margin="0,6.667,2.334,74.333" Grid.RowSpan="2" Grid.Row="2" Width="284"/>
+        <TextBox x:Name="KM" LostFocus="KM_LostFocus" Grid.Row="3" Grid.Column="2" Text="" Margin="29.666,20,30.334,29.333"/>
+        <TextBox x:Name="LTD" LostFocus="LTD_LostFocus" Grid.Row="1" Grid.Column="4" Text="" Margin="29.666,23.667,30.334,12.333"/>
+        <TextBox x:Name="LTKM" LostFocus="LTKM_LostFocus" Grid.Row="2" Grid.Column="4" Text="" Margin="29.666,39.667,30.334,39"/>
+        <TextBox x:Name="F" LostFocus="F_LostFocus" Grid.Row="3" Grid.Column="4" Text="" Margin="29.666,20,30.334,28.333"/>
+        <TextBox x:Name="LN" Foreground="{Binding ElementName=LN, Path=IsFocused}" LostFocus="LN_LostFocus" Grid.Row="1" Grid.Column="2" Text="" Margin="29.666,23.667,30.334,12.333" />
+        <TextBox x:Name="SD" LostFocus="SD_LostFocus" Grid.Row="2" Grid.Column="2" Text="" Margin="29.666,39.667,30.334,39" RenderTransformOrigin="0.487,-0.438" />
     </Grid>
 </Window>
    
