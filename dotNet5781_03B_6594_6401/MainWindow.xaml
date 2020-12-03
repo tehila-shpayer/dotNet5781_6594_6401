@@ -4,7 +4,7 @@
        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
        xmlns:local="clr-namespace:dotNet5781_03B_6594_6401">
-       <!--xmlns:local="clr-namespace:DataTemplates">-->
+    <!--xmlns:local="clr-namespace:DataTemplates">-->
     <Window.Resources>
         <DataTemplate x:Key="BusTemplate"
                   DataType="local:Bus">
@@ -40,10 +40,8 @@
             <RowDefinition Height="166*"/>
         </Grid.RowDefinitions>
         <Button x:Name="addButton" Click="addButton_Click" Content="add bus" Grid.Column="1" Grid.Row="0" FontSize="30" FontFamily="Showcard Gothic" Margin="0"/>
-        <ListBox x:Name="busesList" ItemsSource="{Binding}"  Grid.Column="0" Grid.Row="1" Margin="0,0,0.333,39.667" SelectionChanged="busesList_SelectionChanged" Grid.RowSpan="2"/>
+        <ListBox x:Name="busesList" Grid.Column="0" Margin="0,59,0,0.333" MouseDoubleClick="busesList_MouseDoubleClick" SelectionChanged="busesList_SelectionChanged" Grid.RowSpan="4"/>
         <Label Content="Buses in the system: " RenderTransformOrigin="0.5,0.5" Margin="0,0,0.333,0" Style="{StaticResource myMainLableStyle}"/>
-        <Label Content="Selected bus info: " Grid.Row="2" RenderTransformOrigin="0.5,0.5" Margin="0,0.333,0.333,155.667" Style="{StaticResource myMainLableStyle}" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <TextBox x:Name="busInformation" Margin="0,0.333,0.333,-0.333"  Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
     </Grid>
 </Window>
     

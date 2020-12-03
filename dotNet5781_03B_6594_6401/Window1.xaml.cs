@@ -54,15 +54,6 @@ namespace dotNet5781_03B_6594_6401
             }
             SD.Text = "day/month/year";
         }
-        private void SD_Initialized(object sender, EventArgs e)
-        {
-            // SD.Text = "day/month/year";           
-        }
-
-        private void LN_Initialized(object sender, EventArgs e)
-        {
-            // LN.Text = "8 or 6 digits";
-        }
 
         private void F_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -88,7 +79,7 @@ namespace dotNet5781_03B_6594_6401
         {
             string s = LTD.Text;
             DateTime d = new DateTime();
-            if (DateTime.TryParse(s, out d) && d.Year > 1896 && d.Year < DateTime.Now.Year)
+            if (DateTime.TryParse(s, out d) && d.Year > 1896 && d.Year <= DateTime.Now.Year)
                 bus.LastTreatment = d;
             else
                 LTD.Text = "";
@@ -106,7 +97,10 @@ namespace dotNet5781_03B_6594_6401
         private void addButtonInWindow_Click(object sender, RoutedEventArgs e)
         {
             BusCollection.Add(bus);
-            MainWindow.windowBuses.Add(bus);
+            if(bus.RunningDate<=bus.LastTreatment
+              &&((bus.LicenseNumber.Length==7)&&(bus.RunningDate.Year< 2018))||
+              ((bus.LicenseNumber.Length == 8) && (bus.RunningDate.Year >= 2018)))
+                MainWindow.windowBuses.Add(bus);
             Close();
         }
     }
