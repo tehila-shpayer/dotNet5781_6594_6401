@@ -14,7 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Globalization;
 
-
 namespace dotNet5781_03B_6594_6401
 {
     /// <summary>
@@ -68,7 +67,7 @@ namespace dotNet5781_03B_6594_6401
 
             InitializeComponent();
             busesList.ItemsSource = BusCollection.buses;
-
+            //lvBus.ItemsSource = BusCollection.buses;
 
         }
         int i = 0;
