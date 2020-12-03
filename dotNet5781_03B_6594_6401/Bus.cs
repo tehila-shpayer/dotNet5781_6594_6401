@@ -21,26 +21,32 @@ namespace dotNet5781_03B_6594_6401
         public int KM
         {
             get { return _KM; }
+            set { _KM = value; }
         }
         public DateTime LastTreatment
         {
             get { return _lastTreatment; }
+            set { _lastTreatment = value; }
         }
         public string LicenseNumber
         {
             get { return _licenseNumber; }
+            set { _licenseNumber = value; }
         }
         public int Fuel
         {
             get { return _fuel; }
+            set { _fuel = value; }
         }
         public int BeforeTreatKM
         {
             get { return _beforeTreatKM; }
+            set { _beforeTreatKM = value; }
         }
         public DateTime RunningDate
         {
             get { return _runningDate; }
+            set { _runningDate = value; }
         }
         /// <summary>
         /// returns the license number in the format
