@@ -13,16 +13,19 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Globalization;
+using System.Collections.ObjectModel;
 
 namespace dotNet5781_03B_6594_6401
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+
     public partial class MainWindow : Window
     {
+        static public ObservableCollection<Bus> windowBuses = new ObservableCollection<Bus>();
         public void RandomInitializationBus()
-        {
+        {           
             Random rand = new Random(DateTime.Now.Millisecond);
             Bus bus = new Bus();
             for (int i = 0; i < 10; i++)
@@ -64,17 +67,12 @@ namespace dotNet5781_03B_6594_6401
         public MainWindow()
         {
             RandomInitializationBus();
-
+            foreach (Bus item in BusCollection.buses)
+                windowBuses.Add(item);
             InitializeComponent();
-            busesList.ItemsSource = BusCollection.buses;
-            //lvBus.ItemsSource = BusCollection.buses;
-
-        }
-        int i = 0;
-        private void output_KeyDown(object sender, KeyEventArgs e)
-        {
-            busInformation.Text = BusCollection.buses.ElementAt(i).ToString();
-            i++;
+            busesList.ItemsSource = windowBuses;
+            busesList.DisplayMemberPath = " LicenseNumberFormat ";
+            busesList.SelectedIndex = 0;
         }
 
         private void busesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -85,10 +83,9 @@ namespace dotNet5781_03B_6594_6401
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             Window1 window1 = new Window1();
-            window1.ShowDialog();
-            //busesList.ItemsSource = BusCollection.buses;
+            window1.Show();
         }
-    }
 
+    }
 
 }

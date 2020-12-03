@@ -22,5 +22,8 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Margin" Value="10,10,10,10"/>
         </Style>
+        <LinearGradientBrush x:Key="black">
+            <GradientStop Color="Black"/>
+        </LinearGradientBrush>
     </Application.Resources>
 </Application>

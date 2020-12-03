@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace dotNet5781_03B_6594_6401
 {
     /// <summary>
@@ -23,7 +24,6 @@ namespace dotNet5781_03B_6594_6401
         public Window1()
         {
             InitializeComponent();
-           // F.Text = bus.LicenseNumber;
         }
 
         private void LN_LostFocus(object sender, RoutedEventArgs e)
@@ -32,7 +32,7 @@ namespace dotNet5781_03B_6594_6401
             {
                 string s = LN.Text;
                 int number;
-                if ((int.TryParse(s, out number) == true) && (s.Length == 8 || s.Length == 6))
+                if ((int.TryParse(s, out number) == true) && (s.Length == 8 || s.Length == 7))
                     bus.LicenseNumber = s;
                 else
                     LN.Text = "";
@@ -46,7 +46,7 @@ namespace dotNet5781_03B_6594_6401
             {
                 string s = SD.Text;
                 DateTime d = new DateTime();
-                if (DateTime.TryParse(s, out d))
+                if (DateTime.TryParse(s, out d)&&d.Year>1896&&d.Year<DateTime.Now.Year)
                     bus.RunningDate = d;
                 else
                     SD.Text = "";
@@ -56,19 +56,19 @@ namespace dotNet5781_03B_6594_6401
         }
         private void SD_Initialized(object sender, EventArgs e)
         {
-            SD.Text = "day/month/year";
+            // SD.Text = "day/month/year";           
         }
 
         private void LN_Initialized(object sender, EventArgs e)
         {
-            LN.Text = "8 or 6 digits";
+            // LN.Text = "8 or 6 digits";
         }
 
         private void F_LostFocus(object sender, RoutedEventArgs e)
         {
             string s = F.Text;
             int number;
-            if ((int.TryParse(s, out number) == true) && number>=0)
+            if ((int.TryParse(s, out number) == true) && number >= 0)
                 bus.Fuel = number;
             else
                 F.Text = "";
@@ -78,7 +78,7 @@ namespace dotNet5781_03B_6594_6401
         {
             string s = LTKM.Text;
             int number;
-            if ((int.TryParse(s, out number) == true) && number>=0)
+            if ((int.TryParse(s, out number) == true) && number >= 0)
                 bus.BeforeTreatKM = number;
             else
                 LTKM.Text = "";
@@ -88,7 +88,7 @@ namespace dotNet5781_03B_6594_6401
         {
             string s = LTD.Text;
             DateTime d = new DateTime();
-            if (DateTime.TryParse(s, out d))
+            if (DateTime.TryParse(s, out d) && d.Year > 1896 && d.Year < DateTime.Now.Year)
                 bus.LastTreatment = d;
             else
                 LTD.Text = "";
@@ -103,10 +103,11 @@ namespace dotNet5781_03B_6594_6401
             else
                 KM.Text = "";
         }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void addButtonInWindow_Click(object sender, RoutedEventArgs e)
         {
             BusCollection.Add(bus);
+            MainWindow.windowBuses.Add(bus);
+            Close();
         }
     }
 }

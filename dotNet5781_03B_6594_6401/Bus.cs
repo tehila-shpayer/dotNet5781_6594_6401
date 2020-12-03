@@ -18,6 +18,7 @@ namespace dotNet5781_03B_6594_6401
         int _beforeTreatKM;
         DateTime _runningDate;
         DateTime _lastTreatment;
+        public string LicenseNumberFormat { get { return GetLicenseNumberFormat(); } }
         public int KM
         {
             get { return _KM; }
@@ -68,7 +69,7 @@ namespace dotNet5781_03B_6594_6401
             return s;
         }
         //conctractor
-        public Bus(DateTime d = new DateTime(), string num = "",int f=0,int km=0,int bt=0)
+        public Bus(DateTime d = new DateTime(), string num = "00000000",int f=0,int km=0,int bt=0)
         {
             _runningDate = d;
             _lastTreatment = d;

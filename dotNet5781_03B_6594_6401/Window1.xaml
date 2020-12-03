@@ -19,6 +19,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Button x:Name="addButtonInWindow" Content="Click here to add bus to collection!" Click="addButtonInWindow_Click" Grid.Row="2" FontSize="30" FontFamily="Showcard Gothic" Margin="0,104.333,0.333,-0.333" Grid.ColumnSpan="4" Grid.RowSpan="2"/>
         <Label Content="Bus license number: " HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" Margin="0,0,0.333,0.333" Style="{StaticResource myAddWindowLableStyle}"/>
         <Label Content="Bus Starting date: " HorizontalAlignment="Left" Grid.Column="0" Style="{StaticResource myAddWindowLableStyle}" Margin="0,105,0.333,104.333" Grid.RowSpan="3"/>
         <Label Content="Bus KILOMETERS: " HorizontalAlignment="Left" Grid.Row="2" Grid.Column="0" Style="{StaticResource myAddWindowLableStyle}" Margin="0,0.333,0.333,0.333"/>
@@ -29,7 +30,7 @@
         <TextBox x:Name="LTD" LostFocus="LTD_LostFocus" Grid.Row="0" Grid.Column="3" Text="" Margin="30,40"/>
         <TextBox x:Name="LTKM" LostFocus="LTKM_LostFocus" Grid.Row="1" Grid.Column="3" Text="" Margin="30,40"/>
         <TextBox x:Name="F" LostFocus="F_LostFocus" Grid.Row="2" Grid.Column="3" Text="" Margin="30,40"/>
-        <TextBox x:Name="LN" Initialized="LN_Initialized" LostFocus="LN_LostFocus" Grid.Row="0" Grid.Column="1" Text="" Margin="30,40" Foreground="#FFC6BFBF"/>
+        <TextBox x:Name="LN" Foreground="{Binding ElementName=LN, Path=IsFocused}" Initialized="LN_Initialized" LostFocus="LN_LostFocus" Grid.Row="0" Grid.Column="1" Text="" Margin="30,40" />
         <TextBox x:Name="SD" Initialized="SD_Initialized" LostFocus="SD_LostFocus" Grid.Row="1" Grid.Column="1" Text="" Margin="30,40" Foreground="#FFC6BFBF"/>
     </Grid>
 </Window>
