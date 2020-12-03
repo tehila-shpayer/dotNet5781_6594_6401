@@ -83,8 +83,19 @@ namespace dotNet5781_03B_6594_6401
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             Window1 window1 = new Window1();
-            window1.Show();
+            window1.ShowDialog();
+            //busesList.ItemsSource = BusCollection.buses;
         }
+        private void rideButton_Click(object sender, RoutedEventArgs e)
+        {
+        //    Window1 window1 = new Window1();
+        //    window1.ShowDialog();
+        }
+        private void refuelButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+    }
 
     }
 
