@@ -21,7 +21,7 @@
 
                 <TextBlock Grid.Column="0"
                    Text="Bus license number: " />
-                <TextBlock Grid.Column="1"
+                <TextBlock Grid.Column="1" x:Name="licenseNumber"
                    Text="{Binding Path=LicenseNumber}" />
                 <Button Grid.Column="2" x:Name="RideButton" Content="go to ride!" Click="rideButton_Click"/>
                 <Button Grid.Column="3" x:Name="RefuelButton" Content="refuel" Click="refuelButton_Click"/>
@@ -40,7 +40,7 @@
             <RowDefinition Height="166*"/>
         </Grid.RowDefinitions>
         <Button x:Name="addButton" Click="addButton_Click" Content="add bus" Grid.Column="1" Grid.Row="0" FontSize="30" FontFamily="Showcard Gothic" Margin="0"/>
-        <ListBox IsSynchronizedWithCurrentItem="True" x:Name="busesList"  Grid.Column="0" Margin="0,59,0,0.333" MouseDoubleClick="busesList_MouseDoubleClick" Grid.RowSpan="4"/>
+        <ListBox IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" x:Name="busesList"  Grid.Column="0" Margin="0,59,0,0.333" MouseDoubleClick="busesList_MouseDoubleClick" Grid.RowSpan="4"/>
         <Label Content="Buses in the system: " RenderTransformOrigin="0.5,0.5" Margin="0,0,0.333,0" Style="{StaticResource myMainLableStyle}"/>
     </Grid>
 </Window>

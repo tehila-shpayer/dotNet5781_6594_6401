@@ -70,8 +70,9 @@ namespace dotNet5781_03B_6594_6401
             foreach (Bus item in BusCollection.buses)
                 windowBuses.Add(item);
             InitializeComponent();
-            busesList.ItemsSource = windowBuses;
-            busesList.DisplayMemberPath = " LicenseNumberFormat ";
+            //busesList.ItemsSource = windowBuses;
+            busesList.DataContext = windowBuses;
+           // busesList.DisplayMemberPath = " LicenseNumberFormat ";
             busesList.SelectedIndex = 0;
         }
         private void addButton_Click(object sender, RoutedEventArgs e)
