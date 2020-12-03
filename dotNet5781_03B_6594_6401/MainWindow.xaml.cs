@@ -74,18 +74,16 @@ namespace dotNet5781_03B_6594_6401
             busesList.DisplayMemberPath = " LicenseNumberFormat ";
             busesList.SelectedIndex = 0;
         }
-
-        private void busesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //BusInfo busInfo = new BusInfo();
-            //busInfo.Show();
-            //busInformation.Text = BusCollection.buses.ElementAt(busesList.SelectedIndex).LongToString();
-        }
-
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             Window1 window1 = new Window1();
             window1.ShowDialog();
+        }
+        private void busesList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            BusInfo busInfo = new BusInfo(busesList.SelectedIndex);
+            busInfo.Show();
+            //busInformation.Text = BusCollection.buses.ElementAt(busesList.SelectedIndex).LongToString();
         }
         private void rideButton_Click(object sender, RoutedEventArgs e)
         {
@@ -97,12 +95,6 @@ namespace dotNet5781_03B_6594_6401
 
         }
 
-        private void busesList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            BusInfo busInfo = new BusInfo(busesList.SelectedIndex);
-            busInfo.Show();
-            //busInformation.Text = BusCollection.buses.ElementAt(busesList.SelectedIndex).LongToString();
-        }
     }
 
 }
