@@ -88,6 +88,15 @@ namespace dotNet5781_03B_6594_6401
             window1.ShowDialog();
             //busesList.ItemsSource = BusCollection.buses;
         }
+        private void rideButton_Click(object sender, RoutedEventArgs e)
+        {
+        //    Window1 window1 = new Window1();
+        //    window1.ShowDialog();
+        }
+        private void refuelButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 
 
