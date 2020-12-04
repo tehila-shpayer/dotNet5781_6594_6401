@@ -11,7 +11,9 @@
             <RowDefinition Height="60*"/>
             <RowDefinition Height="361*"/>
         </Grid.RowDefinitions>
-        <Label Content="Selected bus info: " Grid.Row="0" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,0" Style="{StaticResource myMainLableStyle}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Label Content="Selected bus info: " Grid.Row="0" RenderTransformOrigin="0.5,0.5" Margin="0,0,395.333,0" Style="{StaticResource myMainLableStyle}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button  Grid.Column="0" Grid.Row="0" x:Name="TreatmentButton" Content="Treat" Click="TreatmentButton_Click" Margin="598,0,0.333,0"  FontSize="30" FontFamily="Showcard Gothic"  />
+        <Button  Grid.Column="0" Grid.Row="0" x:Name="RefuelButton" Content="Refuel" Click="RefuelButton_Click"  Margin="398,0,200.333,0" FontSize="30" FontFamily="Showcard Gothic"  />
         <Grid x:Name="DownGrid" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

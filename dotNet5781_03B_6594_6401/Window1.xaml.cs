@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 
+
 namespace dotNet5781_03B_6594_6401
 {
     /// <summary>
@@ -23,9 +24,10 @@ namespace dotNet5781_03B_6594_6401
         public Bus bus = new Bus();
         public Window1()
         {
-            InitializeComponent();
+            InitializeComponent();                      
         }
 
+        
         private void LN_LostFocus(object sender, RoutedEventArgs e)
         {
             if (LN.Text != "")
@@ -104,14 +106,6 @@ namespace dotNet5781_03B_6594_6401
             Close();
         }
 
-        private void TreatmentButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void RefuelButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
     }
 }

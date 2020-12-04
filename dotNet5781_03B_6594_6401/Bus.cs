@@ -83,7 +83,6 @@ namespace dotNet5781_03B_6594_6401
         public void Refuel()
         {
             _fuel = 1200;
-            Console.WriteLine("The fuel tank was successfully refueled!\n");
         }
         ///treatment function
         ///does:
