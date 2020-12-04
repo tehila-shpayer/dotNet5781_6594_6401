@@ -69,18 +69,23 @@ namespace dotNet5781_03B_6594_6401
 
         private void TreatmentButton_Click(object sender, RoutedEventArgs e)
         {
-            TreatmentButton.IsEnabled = false;
             if (treater.IsBusy != true)
+            {
                 treater.RunWorkerAsync(TreatmentButton.DataContext);
+                TreatmentButton.IsEnabled = false;
+            }
         }
 
         private void RefuelButton_Click(object sender, RoutedEventArgs e)
         {
+            if (fueler.IsBusy != true)
+            {
+                fueler.RunWorkerAsync(RefuelButton.DataContext);
                 RefuelButton.IsEnabled = false;
-                if (fueler.IsBusy != true)
-                    fueler.RunWorkerAsync(RefuelButton.DataContext);
+
+            }
         }
-        private void Fueler_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+            private void Fueler_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show("Refuel proccess has successfully ended!", "Fuel Massage", MessageBoxButton.OK, MessageBoxImage.Information);
             f.Content = b.Fuel;

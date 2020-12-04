@@ -89,9 +89,11 @@ namespace dotNet5781_03B_6594_6401
         public void RefuelButton_Click(object sender, RoutedEventArgs e)
         {
             Button RefuelButton = (Button)sender;
-            RefuelButton.IsEnabled = false;
             if (fueler.IsBusy != true)
+            {
+                RefuelButton.IsEnabled = false;
                 fueler.RunWorkerAsync(RefuelButton);
+            }
         }
         private void Fueler_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
