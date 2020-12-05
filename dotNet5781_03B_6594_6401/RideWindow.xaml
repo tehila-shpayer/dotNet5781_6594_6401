@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
         <Label Content="Go To Ride!" Margin="0,0,-0.4,0" Style="{StaticResource myMainLableStyle}" Grid.Row="0" Grid.ColumnSpan="2"/>
         <Label Content="Enter KM to ride:" Grid.Row="1" Grid.Column="0" Margin="110,86.4,0,102" FontSize="36"/>
-        <TextBox x:Name="KMtextBox" Grid.Row="1" Grid.Column="1" PreviewKeyDown="KM_Enter_PreviewKeyDown" Text="" FontSize="34" Margin="25.2,94.4,69.6,139"/>
+        <TextBox x:Name="KMtextBox" Grid.Row="1" Grid.Column="1" PreviewKeyDown="KM_PreviewKeyDown" KeyDown="KM_KeyDown" Text="" FontSize="34" Margin="25.2,94.4,69.6,139"/>
         
     </Grid>
 </Window>

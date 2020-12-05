@@ -128,12 +128,11 @@ namespace dotNet5781_03B_6594_6401
         }
         private void rideButton_Click(object sender, RoutedEventArgs e)
         {
-            RideWindow rideWindow = new RideWindow();
+            Button rideButton = (Button)sender;
+            rideButton.IsEnabled = false;
+            RideWindow rideWindow = new RideWindow(busesList.SelectedIndex);
             rideWindow.Show();
-        }
-        private void refuelButton_Click(object sender, RoutedEventArgs e)
-        {
-            
+            rideButton.IsEnabled = true;
         }
 
     }
