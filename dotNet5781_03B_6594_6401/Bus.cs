@@ -79,6 +79,7 @@ namespace dotNet5781_03B_6594_6401
             _fuel = f;
             _KM = km;
             _beforeTreatKM = bt;
+            IsAvailibleForRide = true;            
         }
         //refuel to the maximum possible - 1200
         public void Refuel()
@@ -106,11 +107,14 @@ namespace dotNet5781_03B_6594_6401
         public String Ride(int rideKM)
         {//Check if the ride is allowed and sending messages accordingly
             if ((_fuel < rideKM) && (NeedTreatment()))
-                return "The system couldn't take this bus for the ride.\nThe bus doesn't have enough fuel and must to be treated first.\n";
+                IsAvailibleForRide = false;
+                //return "The system couldn't take this bus for the ride.\nThe bus doesn't have enough fuel and must to be treated first.\n";
             if (_fuel < rideKM)
-                return "The system couldn't take this bus for the ride.\nThe bus doesn't have enough fuel\n";
+                IsAvailibleForRide = false;
+           // return "The system couldn't take this bus for the ride.\nThe bus doesn't have enough fuel\n";
             if (NeedTreatment())
-                return "The system couldn't take this bus for the ride.\nThe bus must to be treated first.\n";
+                IsAvailibleForRide = false;
+            //return "The system couldn't take this bus for the ride.\nThe bus must to be treated first.\n";
             _fuel -= rideKM; //update of fields if the ride happened
             _KM += rideKM;
             _beforeTreatKM += rideKM;
