@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 
+
 namespace dotNet5781_03B_6594_6401
 {
     /// <summary>
@@ -23,9 +24,10 @@ namespace dotNet5781_03B_6594_6401
         public Bus bus = new Bus();
         public Window1()
         {
-            InitializeComponent();
+            InitializeComponent();                      
         }
 
+        
         private void LN_LostFocus(object sender, RoutedEventArgs e)
         {
             if (LN.Text != "")
@@ -90,28 +92,40 @@ namespace dotNet5781_03B_6594_6401
             string s = KM.Text;
             int number;
             if ((int.TryParse(s, out number) == true) && number >= 0)
-                bus.BeforeTreatKM = number;
+                bus.KM = number;
             else
                 KM.Text = "";
         }
         private void addButtonInWindow_Click(object sender, RoutedEventArgs e)
         {
-            BusCollection.Add(bus);
-            if(bus.RunningDate<=bus.LastTreatment
-              &&((bus.LicenseNumber.Length==7)&&(bus.RunningDate.Year< 2018))||
-              ((bus.LicenseNumber.Length == 8) && (bus.RunningDate.Year >= 2018)))
+            if (bus.RunningDate > bus.LastTreatment)
+            {
+                MessageBox.Show("Couldn't add bus. invalid information!\n -Error: Starting date can't be later then last treatment date!", "", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                SD.Text = ""; LTD.Text = "";
+            }
+            else if ((bus.LicenseNumber.Length == 7) && (bus.RunningDate.Year >= 2018))
+            {
+                MessageBox.Show("Couldn't add bus. invalid information!\n -Error: A 7 digit license number bus can't be from later than 2017!", "", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                LN.Text = ""; SD.Text = "";
+            }
+            else if ((bus.LicenseNumber.Length == 8) && (bus.RunningDate.Year < 2018))
+            {
+                MessageBox.Show("Couldn't add bus. invalid information!\n -Error: A 8 digit license number bus can't be from earlier than 2018!", "", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                LN.Text = ""; SD.Text = "";
+            }
+            else if (bus.KM < bus.BeforeTreatKM)
+            {
+                MessageBox.Show("Couldn't add bus. invalid information!\n -Error: Can't have more KM before treatment than general KM!", "", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                KM.Text = ""; LTKM.Text = "";
+            }
+            else
+            {
+                BusCollection.Add(bus);
                 MainWindow.windowBuses.Add(bus);
-            Close();
+                Close();
+            }
         }
 
-        private void TreatmentButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void RefuelButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
     }
 }
