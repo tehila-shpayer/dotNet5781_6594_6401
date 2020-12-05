@@ -18,6 +18,7 @@ namespace dotNet5781_03B_6594_6401
         int _beforeTreatKM;
         DateTime _runningDate;
         DateTime _lastTreatment;
+        public bool IsAvailibleForRide { get; set; }
         public string LicenseNumberFormat { get { return GetLicenseNumberFormat(); } }
         public int KM
         {

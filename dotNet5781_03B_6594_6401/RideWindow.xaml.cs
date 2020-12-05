@@ -32,13 +32,17 @@ namespace dotNet5781_03B_6594_6401
             char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
             if (char.IsControl(c)) return;
             if (char.IsDigit(c)) return;
+            if (e.Key == Key.Tab)
+                this.Close();
             if (e.Key == Key.Enter)
             {
-                DoRide();
+                Close();
             }
             e.Handled = true;
             return;
         }
+        
+
         private void DoRide()
         {
             String s = KMtextBox.Text;
@@ -46,6 +50,14 @@ namespace dotNet5781_03B_6594_6401
             if ((int.TryParse(s, out intKM) == true) && intKM >= 0)
                 
             Close();
+        }
+
+        private void KMtextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                DoRide();
+            }
         }
     }
 }
