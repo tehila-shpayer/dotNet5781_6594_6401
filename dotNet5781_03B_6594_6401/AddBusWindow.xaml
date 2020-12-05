@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Name="Window" Title="adding bus" Height="450" Width="800">
     <Grid>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200*"/>
             <ColumnDefinition Width="172*"/>
@@ -34,6 +35,17 @@
         <TextBox x:Name="F" LostFocus="F_LostFocus" Grid.Row="3" Grid.Column="4" Text="" Margin="25"/>
         <TextBox x:Name="LN" LostFocus="LN_LostFocus" Grid.Row="1" Grid.Column="1" Margin="25" />
         <TextBox x:Name="SD" LostFocus="SD_LostFocus" Grid.Row="2" Grid.Column="1" Text="" Margin="25" RenderTransformOrigin="0.487,-0.438" />
+        <Button x:Name="RD" Click="RD_Click" Content="Choose date" Grid.Row="2" Grid.Column="1" Margin="25" RenderTransformOrigin="0.487,-0.438" />
+        <Calendar x:Name="calander" LostFocus="calander_LostFocus" SelectedDatesChanged="calander_SelectedDatesChanged" Visibility="Hidden" HorizontalAlignment="Left" Margin="-43,16,0,0" VerticalAlignment="Top" Height="155" Width="306" FontSize="30" FontWeight="Bold" Grid.ColumnSpan="2" Grid.RowSpan="3">
+            <Calendar.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE4EAF0" Offset="0"/>
+                    <GradientStop Color="#FFECF0F4" Offset="0.16"/>
+                    <GradientStop Color="#FFFCFCFD"/>
+                    <GradientStop Color="#FFEACCCC" Offset="1"/>
+                </LinearGradientBrush>
+            </Calendar.Background>
+        </Calendar>
     </Grid>
 </Window>
    
