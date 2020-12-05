@@ -81,7 +81,7 @@ namespace dotNet5781_03B_6594_6401
         {
             string s = LTD.Text;
             DateTime d = new DateTime();
-            if (DateTime.TryParse(s, out d) && d.Year > 1896 && d.Year <= DateTime.Now.Year)
+            if (DateTime.TryParse(s, out d) && (d.Year > 1896) && (d.Year <= DateTime.Now.Year))
                 bus.LastTreatment = d;
             else
                 LTD.Text = "";
