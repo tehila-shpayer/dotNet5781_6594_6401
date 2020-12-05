@@ -105,7 +105,7 @@ namespace dotNet5781_03B_6594_6401
         /// </summary>
         /// <param name="rideKM"></param>
         /// <returns>The appropriate message for wether the ride happened or not and why</returns>
-        public String Ride(int rideKM)
+        public void Ride(int rideKM)
         {//Check if the ride is allowed and sending messages accordingly
             if ((_fuel < rideKM) && (NeedTreatment()))
                 IsAvailibleForRide = false;
@@ -119,7 +119,7 @@ namespace dotNet5781_03B_6594_6401
             _fuel -= rideKM; //update of fields if the ride happened
             _KM += rideKM;
             _beforeTreatKM += rideKM;
-            return "Have a nice ride!\n";
+            //return "Have a nice ride!\n";
         }
         //Refuel and teatment for the bus
         public void RefuelAndTreat()

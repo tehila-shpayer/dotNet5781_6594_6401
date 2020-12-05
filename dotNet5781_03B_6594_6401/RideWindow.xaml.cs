@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.ComponentModel;
+using System.Threading;
 
 namespace dotNet5781_03B_6594_6401
 {
@@ -19,44 +21,65 @@ namespace dotNet5781_03B_6594_6401
     /// </summary>
     public partial class RideWindow : Window
     {
-        public RideWindow()
+        BackgroundWorker rider;
+        public RideWindow(int index)
         {
             InitializeComponent();
+            rider = new BackgroundWorker();
+            rider.DoWork += Rider_DoWork;
+            rider.ProgressChanged += Rider_ProgressChanged;
+            rider.RunWorkerCompleted += Rider_RunWorkerCompleted;
+            rider.WorkerReportsProgress = true;
+            KMtextBox.DataContext = index;
         }
-        private void KM_Enter_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void Rider_DoWork(object sender, DoWorkEventArgs e)
+        {
+            rider.ReportProgress(0);
+        }
+        private void Rider_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            int index = (int)KMtextBox.DataContext;
+            int KM = (int)e.ProgressPercentage;
+            Random rnd = new Random();
+            Thread.Sleep(KM / rnd.Next(30, 60) * 6000);
+            MainWindow.windowBuses[index].Ride(KM); 
+        }
+        private void Rider_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            MessageBox.Show("The ride has successfully ended!", "Ride Massage", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void KM_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             TextBox t = sender as TextBox;
             if (t == null) return;
             if (e == null) return;
-            if (e.Key == Key.Space || e.Key == Key.Tab) return;
+            //if (e.Key == Key.Space || e.Key == Key.Tab) return;
             char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
             if (char.IsControl(c)) return;
-            if (char.IsDigit(c)) return;
-            if (e.Key == Key.Tab)
-                this.Close();
-            if (e.Key == Key.Enter)
-            {
-                Close();
+            if (char.IsDigit(c))
+            { 
+                if (!Keyboard.IsKeyDown(Key.LeftShift) && !Keyboard.IsKeyDown(Key.RightShift))
+                    return; 
             }
             e.Handled = true;
             return;
         }
-        
-
-        private void DoRide()
+        private void KM_KeyDown(object sender, KeyEventArgs e)
         {
-            String s = KMtextBox.Text;
-            int intKM;
-            if ((int.TryParse(s, out intKM) == true) && intKM >= 0)
-                
-            Close();
-        }
-
-        private void KMtextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
+            TextBox t = sender as TextBox;
+            if (t == null) return;
+            if (e.Key == Key.Enter && t.Text != "")
             {
-                DoRide();
+                String s = KMtextBox.Text;
+                int KM = int.Parse(s);
+                if (KM <= 0)
+                {
+                    MessageBox.Show("The KM to ride must be positive!", "Ride Message", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return;
+                }
+                Close();
+                rider.RunWorkerAsync(0);
             }
         }
     }
