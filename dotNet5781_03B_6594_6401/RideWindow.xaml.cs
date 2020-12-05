@@ -23,5 +23,29 @@ namespace dotNet5781_03B_6594_6401
         {
             InitializeComponent();
         }
+        private void KM_Enter_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            TextBox t = sender as TextBox;
+            if (t == null) return;
+            if (e == null) return;
+            if (e.Key == Key.Space || e.Key == Key.Tab) return;
+            char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
+            if (char.IsControl(c)) return;
+            if (char.IsDigit(c)) return;
+            if (e.Key == Key.Enter)
+            {
+                DoRide();
+            }
+            e.Handled = true;
+            return;
+        }
+        private void DoRide()
+        {
+            String s = KMtextBox.Text;
+            int intKM;
+            if ((int.TryParse(s, out intKM) == true) && intKM >= 0)
+                
+            Close();
+        }
     }
 }
