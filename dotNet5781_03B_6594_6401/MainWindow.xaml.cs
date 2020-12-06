@@ -28,7 +28,6 @@ namespace dotNet5781_03B_6594_6401
     {
         static public ObservableCollection<Bus> windowBuses = new ObservableCollection<Bus>();
         BackgroundWorker fueler;
-
         public void RandomInitializationBus()
         {
             Random rand = new Random(DateTime.Now.Millisecond);

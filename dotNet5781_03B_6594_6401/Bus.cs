@@ -7,6 +7,7 @@ using System.Runtime.Remoting;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace dotNet5781_03B_6594_6401
 {
@@ -163,6 +164,8 @@ namespace dotNet5781_03B_6594_6401
             String dateString = date.Day + "/" + date.Month + "/" + date.Year;
             return dateString;
         }
+
     }
+
 
 }
