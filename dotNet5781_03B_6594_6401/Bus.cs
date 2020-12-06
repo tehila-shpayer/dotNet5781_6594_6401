@@ -126,7 +126,7 @@ namespace dotNet5781_03B_6594_6401
         }
         public bool CanDoRide(int KMtoRide)
         {
-            if (_fuel - KMtoRide < 0 || _beforeTreatKM+KMtoRide > 20000)
+            if (_fuel - KMtoRide < 0 || _beforeTreatKM+KMtoRide > 20000 || NeedTreatment())
                 return false;
             return true;
         }
