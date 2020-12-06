@@ -97,10 +97,12 @@ namespace dotNet5781_03B_6594_6401
         }
         private void addButtonInWindow_Click(object sender, RoutedEventArgs e)
         {
-           
-            if (!(bus.RunningDate.Year > 1896 &&  bus.RunningDate.Year < DateTime.Now.Year))
+
+            if (!(bus.RunningDate.Year > 1896 && bus.RunningDate.Year < DateTime.Now.Year))
+            {
                 MessageBox.Show("Couldn't add bus. invalid information!\n Error: Starting date must be after 1896 and befor now!", "", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            if (bus.RunningDate > bus.LastTreatment)
+            }
+            else if (bus.RunningDate > bus.LastTreatment)
             {
                 MessageBox.Show("Couldn't add bus. invalid information!\n -Error: Starting date can't be later then last treatment date!", "", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 SD.Text = ""; LTD.Text = "";
@@ -141,8 +143,5 @@ namespace dotNet5781_03B_6594_6401
             calander.IsEnabled = false;
         }
 
-        private void calander_LostFocus(object sender, RoutedEventArgs e)
-        {
-        }
     }
 }
