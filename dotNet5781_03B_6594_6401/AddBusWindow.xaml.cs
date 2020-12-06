@@ -29,38 +29,28 @@ namespace dotNet5781_03B_6594_6401
                
         private void LN_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (LN.Text != "")
-            {
                 string s = LN.Text;
                 int number;
                 if ((int.TryParse(s, out number) == true) && (s.Length == 8 || s.Length == 7))
                     bus.LicenseNumber = s;
                 else
                     LN.Text = "";
-                return;
-            }
-            SD.Text = "day/month/year";
         }
         private void SD_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (SD.Text != "")
-            {
                 string s = SD.Text;
                 DateTime d = new DateTime();
                 if (DateTime.TryParse(s, out d)&&d.Year>1896&&d.Year<DateTime.Now.Year)
                     bus.RunningDate = d;
                 else
                     SD.Text = "";
-                return;
-            }
-            SD.Text = "day/month/year";
         }
 
         private void F_LostFocus(object sender, RoutedEventArgs e)
         {
             string s = F.Text;
             int number;
-            if ((int.TryParse(s, out number) == true) && number >= 0)
+            if ((int.TryParse(s, out number) == true) && number >= 0 && number <=1200)
                 bus.Fuel = number;
             else
                 F.Text = "";
@@ -98,9 +88,9 @@ namespace dotNet5781_03B_6594_6401
         private void addButtonInWindow_Click(object sender, RoutedEventArgs e)
         {
 
-            if (!(bus.RunningDate.Year > 1896 && bus.RunningDate.Year < DateTime.Now.Year))
+            if (!(bus.RunningDate.Year >= 1896 && bus.RunningDate.Year <= DateTime.Now.Year))
             {
-                MessageBox.Show("Couldn't add bus. invalid information!\n Error: Starting date must be after 1896 and befor now!", "", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Couldn't add bus. invalid information!\n Error: Starting date must be after 1896 and before" + DateTime.Now.Year + "!", "", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             else if (bus.RunningDate > bus.LastTreatment)
             {
