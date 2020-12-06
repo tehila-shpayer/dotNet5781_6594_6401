@@ -46,11 +46,27 @@ namespace dotNet5781_03B_6594_6401
         }
         private void Rider_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            //Button b = (Button)sender;
             MessageBox.Show("The ride has successfully ended!", "Ride Massage", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void KM_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            GeneralPerviewKeyDown(sender, e);
+            //TextBox t = sender as TextBox;
+            //if (t == null) return;
+            //if (e == null) return;
+            ////if (e.Key == Key.Space || e.Key == Key.Tab) return;
+            //char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
+            //if (char.IsControl(c)) return;
+            //if (char.IsDigit(c))
+            //{ 
+            //    if (!Keyboard.IsKeyDown(Key.LeftShift) && !Keyboard.IsKeyDown(Key.RightShift))
+            //        return; 
+            //}
+            //e.Handled = true;
+            //return;
+        }
+        static void GeneralPerviewKeyDown(object sender, KeyEventArgs e)
         {
             TextBox t = sender as TextBox;
             if (t == null) return;
@@ -58,9 +74,9 @@ namespace dotNet5781_03B_6594_6401
             char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
             if (char.IsControl(c)) return;
             if (char.IsDigit(c))
-            { 
+            {
                 if (!Keyboard.IsKeyDown(Key.LeftShift) && !Keyboard.IsKeyDown(Key.RightShift))
-                    return; 
+                    return;
             }
             e.Handled = true;
             return;
