@@ -79,7 +79,10 @@ namespace dotNet5781_03B_6594_6401
             _fuel = f;
             _KM = km;
             _beforeTreatKM = bt;
-            IsAvailibleForRide = true;            
+            //if (_fuel == 0 || NeedTreatment())
+            //    IsAvailibleForRide = false;
+            //else
+                IsAvailibleForRide = true;
         }
         //refuel to the maximum possible - 1200
         public void Refuel()
@@ -120,6 +123,13 @@ namespace dotNet5781_03B_6594_6401
             _beforeTreatKM += rideKM;
             //return "Have a nice ride!\n";
         }
+        public bool CanDoRide(int KMtoRide)
+        {
+            if (_fuel - KMtoRide < 0 || _beforeTreatKM+KMtoRide > 20000)
+                return false;
+            return true;
+        }
+
         //Refuel and teatment for the bus
         public void RefuelAndTreat()
         {
@@ -131,7 +141,7 @@ namespace dotNet5781_03B_6594_6401
         ///or a year past since last treatment)
         public bool NeedTreatment()
         {
-            return (((DateTime.Now - _lastTreatment).TotalDays > 365) || (_beforeTreatKM > 20000));
+            return (((DateTime.Now - _lastTreatment).TotalDays > 365) || (_beforeTreatKM >= 20000));
         }
         /// <summary>
         /// Override of ToString: 

@@ -30,22 +30,23 @@ namespace dotNet5781_03B_6594_6401
             rider.ProgressChanged += Rider_ProgressChanged;
             rider.RunWorkerCompleted += Rider_RunWorkerCompleted;
             rider.WorkerReportsProgress = true;
-            KMtextBox.DataContext = index;
+            DataContext = index;
         }
         private void Rider_DoWork(object sender, DoWorkEventArgs e)
         {
-            rider.ReportProgress(0);
+            rider.ReportProgress((int)e.Argument);
         }
         private void Rider_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             int index = (int)KMtextBox.DataContext;
-            int KM = (int)e.ProgressPercentage;
+            int KM = e.ProgressPercentage;
             Random rnd = new Random();
             Thread.Sleep(KM / rnd.Next(30, 60) * 6000);
             MainWindow.windowBuses[index].Ride(KM); 
         }
         private void Rider_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            Button b = (Button)sender;
             MessageBox.Show("The ride has successfully ended!", "Ride Massage", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
@@ -78,8 +79,14 @@ namespace dotNet5781_03B_6594_6401
                     MessageBox.Show("The KM to ride must be positive!", "Ride Message", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     return;
                 }
+                Bus currentBus = MainWindow.windowBuses[(int)DataContext];
+                if (!currentBus.CanDoRide(KM))
+                {
+                    MessageBox.Show("The bus must be treated or refueled!", "Ride Message", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 Close();
-                rider.RunWorkerAsync(0);
+                rider.RunWorkerAsync(KM);
             }
         }
     }
