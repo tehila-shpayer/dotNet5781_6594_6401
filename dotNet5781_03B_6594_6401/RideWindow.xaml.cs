@@ -46,7 +46,7 @@ namespace dotNet5781_03B_6594_6401
         }
         private void Rider_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            Button b = (Button)sender;
+            //Button b = (Button)sender;
             MessageBox.Show("The ride has successfully ended!", "Ride Massage", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
@@ -85,8 +85,9 @@ namespace dotNet5781_03B_6594_6401
                     MessageBox.Show("The bus must be treated or refueled!", "Ride Message", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-                Close();
+                
                 rider.RunWorkerAsync(KM);
+                Close();
             }
         }
     }
