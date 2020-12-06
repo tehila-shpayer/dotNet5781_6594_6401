@@ -6,15 +6,17 @@
        xmlns:local="clr-namespace:dotNet5781_03B_6594_6401">
     <!--xmlns:local="clr-namespace:DataTemplates">-->
     <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToColorConverter"/>
         <DataTemplate x:Key="BusTemplate"
                   DataType="local:Bus">
 
             <StackPanel Orientation="Horizontal" >
+
                 <TextBlock 
-                   Text="Bus license number: " />
+                   Text="Bus license number: "/>
                 <TextBlock Grid.Column="1" Width="120" x:Name="licenseNumber"
-                   Text="{Binding Path=LicenseNumberFormat}" />
-                <Button Width ="70" x:Name="RideButton" IsEnabled="{Binding Path=IsAvailibleForRide}" Content="go to ride!" Click="rideButton_Click"/>
+                   Text="{Binding LicenseNumberFormat}" />
+                <Button Width ="70" x:Name="RideButton" Background="#FFE5D6D6"  IsEnabled="{Binding IsAvailibleForRide}" Content="go to ride" Click="rideButton_Click"/>
                 <Label Width="20"/>
                 <Button Width ="50" x:Name="RefuelButton" Content="refuel" Click="RefuelButton_Click"/>
             </StackPanel>

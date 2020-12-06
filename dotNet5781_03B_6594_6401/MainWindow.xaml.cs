@@ -49,11 +49,11 @@ namespace dotNet5781_03B_6594_6401
                 int KM = rand.Next(0, 10000);
                 int bt = rand.Next(0, Max(rand.Next(0, 20000), KM));
                 int fuel = rand.Next(0, 1201);
-                if (i % 5 == 1)
+                if (i % 3 == 1)
                 {
                     fuel = 0;
                 }
-                if (i % 3 == 0)
+                if (i % 2 == 0)
                 {
                     bus.DoTreatment();
                 }
@@ -131,7 +131,7 @@ namespace dotNet5781_03B_6594_6401
             rideButton.IsEnabled = false;
             RideWindow rideWindow = new RideWindow(busesList.SelectedIndex);
             rideWindow.Show();
-            
+            rideButton.IsEnabled = true;
         }
 
     }
