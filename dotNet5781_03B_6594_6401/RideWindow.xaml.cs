@@ -71,7 +71,6 @@ namespace dotNet5781_03B_6594_6401
             TextBox t = sender as TextBox;
             if (t == null) return;
             if (e == null) return;
-            //if (e.Key == Key.Space || e.Key == Key.Tab) return;
             char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
             if (char.IsControl(c)) return;
             if (char.IsDigit(c))
