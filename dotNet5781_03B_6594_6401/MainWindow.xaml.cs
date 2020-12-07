@@ -134,6 +134,21 @@ namespace dotNet5781_03B_6594_6401
             rideButton.IsEnabled = true;
         }
 
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+                foreach (var item in windowBuses)
+                {
+                    ListBoxItem bus = (ListBoxItem)busesList.ItemContainerGenerator.ContainerFromItem(item);
+                    String searchS = searchBox.Text;
+                    int num = searchS.Length;
+                    if ((num <= item.LicenseNumber.Length && searchS == (item as Bus).LicenseNumber.Substring(0, num)) || ((num <= item.LicenseNumberFormat.Length && searchS == (item as Bus).LicenseNumberFormat.Substring(0, num))))
+                    {
+                        bus.Visibility = Visibility.Visible;
+                    }
+                    else
+                        bus.Visibility = Visibility.Collapsed;    
+                }
+        }
     }
 
 }
