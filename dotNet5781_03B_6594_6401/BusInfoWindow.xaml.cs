@@ -58,13 +58,15 @@ namespace dotNet5781_03B_6594_6401
 
         private void Treater_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            MainWindow.windowBuses[e.ProgressPercentage].DoTreatment();
+            
         }
 
         private void Treater_DoWork(object sender, DoWorkEventArgs e)
         {
-            MainWindow.windowBuses[(int)e.Argument].DoTreatment();
             Thread.Sleep(144000);
+            treater.ReportProgress((int)e.Argument);
         }
 
         private void TreatmentButton_Click(object sender, RoutedEventArgs e)
@@ -94,14 +96,15 @@ namespace dotNet5781_03B_6594_6401
 
         private void Fueler_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            MainWindow.windowBuses[e.ProgressPercentage].Refuel();
+            
         }
 
         private void Fueler_DoWork(object sender, DoWorkEventArgs e)
         {
-            MainWindow.windowBuses[(int)e.Argument].Refuel();
             Thread.Sleep(12000);
-            
+            fueler.ReportProgress((int)e.Argument);
         }
 
     }

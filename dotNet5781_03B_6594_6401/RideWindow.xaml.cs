@@ -34,37 +34,26 @@ namespace dotNet5781_03B_6594_6401
         }
         private void Rider_DoWork(object sender, DoWorkEventArgs e)
         {
-            rider.ReportProgress((int)e.Argument);
+            int KM = (int)e.Argument;
+            Random rnd = new Random();
+            Thread.Sleep(KM / rnd.Next(30, 60) * 6000);
+            rider.ReportProgress(KM);
         }
         private void Rider_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             int index = (int)KMtextBox.DataContext;
             int KM = e.ProgressPercentage;
-            Random rnd = new Random();
-            Thread.Sleep(KM / rnd.Next(30, 60) * 6000);
-            MainWindow.windowBuses[index].Ride(KM); 
+            MainWindow.windowBuses[index].Ride(KM);
         }
         private void Rider_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show("The ride has successfully ended!", "Ride Massage", MessageBoxButton.OK, MessageBoxImage.Information);
+            
         }
 
         private void KM_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             GeneralPerviewKeyDown(sender, e);
-            //TextBox t = sender as TextBox;
-            //if (t == null) return;
-            //if (e == null) return;
-            ////if (e.Key == Key.Space || e.Key == Key.Tab) return;
-            //char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
-            //if (char.IsControl(c)) return;
-            //if (char.IsDigit(c))
-            //{ 
-            //    if (!Keyboard.IsKeyDown(Key.LeftShift) && !Keyboard.IsKeyDown(Key.RightShift))
-            //        return; 
-            //}
-            //e.Handled = true;
-            //return;
         }
         static void GeneralPerviewKeyDown(object sender, KeyEventArgs e)
         {
