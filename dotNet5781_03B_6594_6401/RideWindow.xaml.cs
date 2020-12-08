@@ -36,7 +36,9 @@ namespace dotNet5781_03B_6594_6401
         {
             int KM = (int)e.Argument;
             Random rnd = new Random();
-            Thread.Sleep(KM / rnd.Next(30, 60) * 6000);
+            double time =(double) KM / rnd.Next(30, 60);
+            int timeToSleep = (int)(time * 6000);
+            Thread.Sleep(timeToSleep);
             rider.ReportProgress(KM);
         }
         private void Rider_ProgressChanged(object sender, ProgressChangedEventArgs e)
