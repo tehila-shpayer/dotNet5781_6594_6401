@@ -32,11 +32,11 @@ namespace dotNet5781_03B_6594_6401
         {
             Random rand = new Random(DateTime.Now.Millisecond);
             Bus bus = new Bus();
-            for (int i = 0; i < 10; i++)
+            for (int i = 1; i <= 10; i++)
             {
                 String s;
                 int year;
-                if (i % 2 == 0)
+                if (i % 1 == 0)
                 {
                     s = rand.Next(1000000, 9999999).ToString();
                     year = rand.Next(1895, 2018);
@@ -46,23 +46,24 @@ namespace dotNet5781_03B_6594_6401
                     s = rand.Next(10000000, 99999999).ToString();
                     year = rand.Next(2018, DateTime.Now.Year + 1);
                 }
-                int KM = rand.Next(0, 10000);
-                int bt = rand.Next(0, Max(rand.Next(0, 20000), KM));
+                int KM = rand.Next(0, 30000);
+                int bt = rand.Next(0, Min(rand.Next(0, 20000), KM));
                 int fuel = rand.Next(0, 1201);
-                if (i % 3 == 1)
+                if (i % 5 == 3)
                 {
                     fuel = 0;
                 }
-                if (i % 2 == 0)
+
+                bus = new Bus(new DateTime(year, rand.Next(1, 13), rand.Next(1, 31)), s, fuel, KM, bt);
+                if (i % 6 != 0)
                 {
                     bus.DoTreatment();
                 }
-                bus = new Bus(new DateTime(year, rand.Next(1, 13), rand.Next(1, 31)), s, fuel, KM, bt);
                 BusCollection.Add(bus);
             }
 
         }
-        public int Max(int a, int b)
+        public int Min(int a, int b)
         {
             if (a < b)
                 return a;
