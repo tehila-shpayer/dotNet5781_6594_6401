@@ -26,7 +26,6 @@ namespace dotNet5781_03B_6594_6401
 
     public partial class MainWindow : Window
     {
-        static public ObservableCollection<Bus> windowBuses = new ObservableCollection<Bus>();
         BackgroundWorker fueler;
         public void RandomInitializationBus()
         {
@@ -72,11 +71,11 @@ namespace dotNet5781_03B_6594_6401
         {
             RandomInitializationBus();
             DataContext = busesList;
-            foreach (Bus item in BusCollection.buses)
-                windowBuses.Add(item);
+            //foreach (Bus item in BusCollection.windowBuses)
+            //    BusCollection.windowBuses.Add(item);
             InitializeComponent();
             //busesList.ItemsSource = windowBuses;
-            busesList.DataContext = windowBuses;
+            busesList.DataContext = BusCollection.windowBuses;
            // busesList.DisplayMemberPath = " LicenseNumberFormat ";
             busesList.SelectedIndex = 0;
             fueler = new BackgroundWorker();
@@ -103,7 +102,7 @@ namespace dotNet5781_03B_6594_6401
 
         private void Fueler_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            windowBuses[busesList.SelectedIndex].Refuel();
+            BusCollection.windowBuses[busesList.SelectedIndex].Refuel();
         }
 
         private void Fueler_DoWork(object sender, DoWorkEventArgs e)
@@ -136,7 +135,7 @@ namespace dotNet5781_03B_6594_6401
 
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-                foreach (var item in windowBuses)
+                foreach (var item in BusCollection.windowBuses)
                 {
                     ListBoxItem bus = (ListBoxItem)busesList.ItemContainerGenerator.ContainerFromItem(item);
                     String searchS = searchBox.Text;

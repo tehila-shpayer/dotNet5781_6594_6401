@@ -43,7 +43,7 @@ namespace dotNet5781_03B_6594_6401
         {
             int index = (int)KMtextBox.DataContext;
             int KM = e.ProgressPercentage;
-            MainWindow.windowBuses[index].Ride(KM);
+            BusCollection.windowBuses[index].Ride(KM);
         }
         private void Rider_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -83,7 +83,7 @@ namespace dotNet5781_03B_6594_6401
                     MessageBox.Show("The KM to ride must be positive!", "Ride Message", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     return;
                 }
-                Bus currentBus = MainWindow.windowBuses[(int)DataContext];
+                Bus currentBus = BusCollection.windowBuses[(int)DataContext];
                 if (!currentBus.CanDoRide(KM))
                 {
                     MessageBox.Show("The bus must be treated or refueled!", "Ride Message", MessageBoxButton.OK, MessageBoxImage.Error);

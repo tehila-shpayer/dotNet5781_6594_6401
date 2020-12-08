@@ -27,7 +27,7 @@ namespace dotNet5781_03B_6594_6401
         public BusInfo(int index)
         {
             InitializeComponent();
-            b = MainWindow.windowBuses[index];
+            b = BusCollection.windowBuses[index];
             ln.Content = b.LicenseNumberFormat;
             sd.Content = b.RunningDate;
             km.Content = b.KM;
@@ -59,7 +59,7 @@ namespace dotNet5781_03B_6594_6401
         private void Treater_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             //throw new NotImplementedException();
-            MainWindow.windowBuses[e.ProgressPercentage].DoTreatment();
+            BusCollection.windowBuses[e.ProgressPercentage].DoTreatment();
             
         }
 
@@ -97,7 +97,7 @@ namespace dotNet5781_03B_6594_6401
         private void Fueler_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             //throw new NotImplementedException();
-            MainWindow.windowBuses[e.ProgressPercentage].Refuel();
+            BusCollection.windowBuses[e.ProgressPercentage].Refuel();
             
         }
 

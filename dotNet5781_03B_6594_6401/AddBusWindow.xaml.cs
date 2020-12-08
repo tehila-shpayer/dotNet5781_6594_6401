@@ -40,7 +40,7 @@ namespace dotNet5781_03B_6594_6401
         {
                 string s = SD.Text;
                 DateTime d = new DateTime();
-                if (DateTime.TryParse(s, out d)&&d.Y  \ear>1896&&d.Year<DateTime.Now.Year)
+                if (DateTime.TryParse(s, out d)&&d.Year>1896&&d.Year<DateTime.Now.Year)
                     bus.RunningDate = d;
                 else
                     SD.Text = "";
@@ -115,7 +115,7 @@ namespace dotNet5781_03B_6594_6401
             else
             {
                 BusCollection.Add(bus);
-                MainWindow.windowBuses.Add(bus);
+                BusCollection.windowBuses.Add(bus);
                 Close();
             }
         }
