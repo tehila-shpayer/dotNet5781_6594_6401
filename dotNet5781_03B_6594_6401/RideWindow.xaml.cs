@@ -34,6 +34,7 @@ namespace dotNet5781_03B_6594_6401
         }
         private void Rider_DoWork(object sender, DoWorkEventArgs e)
         {
+            rider.ReportProgress(0);
             int KM = (int)e.Argument;
             Random rnd = new Random();
             double time =(double) KM / rnd.Next(30, 60);
@@ -43,14 +44,19 @@ namespace dotNet5781_03B_6594_6401
         }
         private void Rider_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            int index = (int)KMtextBox.DataContext;
+            int index = (int)DataContext;
             int KM = e.ProgressPercentage;
-            BusCollection.windowBuses[index].Ride(KM);
+            if (KM == 0)
+            {
+                BusCollection.windowBuses[index].BusStatus = Status.Ride;
+            }
+            else
+                BusCollection.windowBuses[index].Ride(KM);
         }
         private void Rider_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("The ride has successfully ended!", "Ride Massage", MessageBoxButton.OK, MessageBoxImage.Information);
-            
+            String s = "Bus " + BusCollection.windowBuses[(int)DataContext].GetLicenseNumberFormat() + " has successfully finished the ride!";
+            MessageBox.Show(s, "Ride Massage", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void KM_PreviewKeyDown(object sender, KeyEventArgs e)
