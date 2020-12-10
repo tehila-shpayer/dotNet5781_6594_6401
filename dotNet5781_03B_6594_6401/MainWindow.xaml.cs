@@ -74,7 +74,7 @@ namespace dotNet5781_03B_6594_6401
             DataContext = busesList;
             InitializeComponent();
             //Bus bus = new Bus();
-            //Window2 w = new Window2(bus);
+            //BusDisplayWindowxaml w = new BusDisplayWindowxaml(BusCollection.windowBuses[0]);
             //w.ShowDialog();
             busesList.DataContext = BusCollection.windowBuses;
             busesList.SelectedIndex = 0;
@@ -150,11 +150,13 @@ namespace dotNet5781_03B_6594_6401
         }
         private void busesList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            BusInfo busInfo = new BusInfo(busesList.SelectedIndex);
+            BusDisplayWindowxaml busInfo = new BusDisplayWindowxaml(BusCollection.windowBuses[busesList.SelectedIndex]);
             busInfo.Show();
+            busInfo.ShowActivated = false;
         }
         private void rideButton_Click(object sender, RoutedEventArgs e)
         {
+            busesList.SelectedItem = (StackPanel)sender;
             Bus b = BusCollection.windowBuses[busesList.SelectedIndex];
             if (!b.IsBusBusy())
             {

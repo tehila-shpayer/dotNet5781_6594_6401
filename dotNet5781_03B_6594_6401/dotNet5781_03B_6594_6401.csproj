@@ -142,12 +142,6 @@
     <Resource Include="wireshark 5.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\dotNet_03A_5781_6594_6401\dotNet_03A_5781_6594_6401.csproj">
-      <Project>{ae26eec0-64b5-41e4-98d6-a9a2140e070b}</Project>
-      <Name>dotNet_03A_5781_6594_6401</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Fasticon-Happy-Bus-Bus-orange.ico" />
   </ItemGroup>
   <ItemGroup>

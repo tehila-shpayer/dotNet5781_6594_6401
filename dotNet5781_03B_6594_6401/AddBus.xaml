@@ -8,7 +8,7 @@
         Title="Add Bus Window" x:Name="W" Height="360" Width="360" ResizeMode="CanMinimize" Icon="Fasticon-Happy-Bus-Bus-orange.ico" Left="0" Margin="0" >
 
     <Grid>
-        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="42,40,0,0" VerticalAlignment="Top" Height="224" Width="280" Background="White">
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="40,30,0,0" VerticalAlignment="Top" Height="224" Width="280" Background="White">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="140"/>
                 <ColumnDefinition Width="Auto" MinWidth="130"/>
@@ -34,6 +34,6 @@
             <Label Content="Running Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,2.333,0,3" Grid.Row="5" VerticalAlignment="Center" FontFamily="Yu Gothic UI Semibold" FontSize="16" Background="#FFF1DFDF" Height="32" Width="131"/>
             <DatePicker x:Name="runningDateDatePicker" Grid.Column="1" HorizontalAlignment="Center" Margin="4,7.333,0,5" Grid.Row="5" SelectedDate="{Binding RunningDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Height="25" Width="119"/>
         </Grid>
-        <Button x:Name="addButtonInWindow" Content="Click here to add!" Click="addButtonInWindow_Click"  FontSize="22" FontFamily="Sitka Banner" Margin="89,274,89,25" Background="#FFEBE9E9" FontWeight="Bold"/>
+        <Button x:Name="addButtonInWindow" Content="Click here to add!" Click="addButtonInWindow_Click"  FontSize="22" FontFamily="Sitka Banner" Margin="89,270,88.667,24" Background="#FFEBE9E9" FontWeight="Bold"/>
     </Grid>
 </Window>
