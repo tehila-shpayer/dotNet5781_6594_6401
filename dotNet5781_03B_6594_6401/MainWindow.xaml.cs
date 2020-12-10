@@ -66,6 +66,7 @@ namespace dotNet5781_03B_6594_6401
                 return a;
             return b;
         }
+        BackgroundWorker timer;
 
         public MainWindow()
         {
@@ -77,11 +78,11 @@ namespace dotNet5781_03B_6594_6401
             //w.ShowDialog();
             busesList.DataContext = BusCollection.windowBuses;
             busesList.SelectedIndex = 0;
-            fueler = new BackgroundWorker();
-            fueler.DoWork += Fueler_DoWork;
-            fueler.ProgressChanged += Fueler_ProgressChanged;
-            fueler.RunWorkerCompleted += Fueler_RunWorkerCompleted;
-            fueler.WorkerReportsProgress = true;
+            //fueler = new BackgroundWorker();
+            //fueler.DoWork += Fueler_DoWork;
+            //fueler.ProgressChanged += Fueler_ProgressChanged;
+            //fueler.RunWorkerCompleted += Fueler_RunWorkerCompleted;
+            //fueler.WorkerReportsProgress = true;
 
             timer = new BackgroundWorker();
             timer.DoWork += Timer_DoWork;
@@ -144,7 +145,7 @@ namespace dotNet5781_03B_6594_6401
         //}
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            Window1 window1 = new Window1();
+            Window2 window1 = new Window2(new Bus());
             window1.ShowDialog();
         }
         private void busesList_MouseDoubleClick(object sender, MouseButtonEventArgs e)

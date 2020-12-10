@@ -24,6 +24,7 @@ namespace dotNet5781_03B_6594_6401
         //BackgroundWorker fueler;
         //BackgroundWorker treater;
         Bus b;
+        BackgroundWorker timer;
         public BusInfo(int index)
         {
             InitializeComponent();

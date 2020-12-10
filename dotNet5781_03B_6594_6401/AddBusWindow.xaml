@@ -21,8 +21,8 @@
             <RowDefinition Height="4.5*"/>
             <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
-        <Label Content="Adding Bus" Margin="0,0,0.333,0.333" Style="{StaticResource myMainLableStyle}" Grid.ColumnSpan="4"/>
         <Button x:Name="addButtonInWindow" Content="Click here to add bus to collection!" Click="addButtonInWindow_Click" Grid.Row="5" FontSize="30" FontFamily="Showcard Gothic" Margin="0,13.262,0.333,-3.929" Grid.ColumnSpan="5"/>
+        <Label Content="Adding Bus" Margin="0,0,0.333,0.333" Style="{StaticResource myMainLableStyle}" Grid.ColumnSpan="4"/>
         <Label Content="Bus license number: " HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0" Margin="0" Style="{StaticResource myAddWindowLableStyle}" Width="199" Grid.ColumnSpan="2"/>
         <Label Content="Bus Starting date: " HorizontalAlignment="Left" Grid.Column="0" Style="{StaticResource myAddWindowLableStyle}" Margin="0" Grid.Row="2" Width="185" Grid.ColumnSpan="2"/>
         <Label Content="Bus KILOMETERS: " HorizontalAlignment="Left" Grid.Row="3" Grid.Column="0" Style="{StaticResource myAddWindowLableStyle}" Margin="0" Width="189" Grid.ColumnSpan="2"/>
