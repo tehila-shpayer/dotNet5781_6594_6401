@@ -53,7 +53,7 @@ namespace dotNet5781_03B_6594_6401
                     fuel = 0;
                 }
 
-                bus = new Bus(new DateTime(year, rand.Next(1, 12), rand.Next(1, 30)), s, fuel, KM, bt);
+                bus = new Bus(new DateTime(year, rand.Next(1, 13), rand.Next(1, 30)), s, fuel, KM, bt);
                 if (i % 6 != 0)
                 {
                     bus.DoTreatment();
@@ -105,8 +105,7 @@ namespace dotNet5781_03B_6594_6401
 
         private void Fueler_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            BusCollection.windowBuses[busesList.SelectedIndex].Refuel();
-            BusCollection.windowBuses[busesList.SelectedIndex].status = Status.Refueling;
+            BusCollection.windowBuses[e.ProgressPercentage].Refuel();
         }
 
         private void Fueler_DoWork(object sender, DoWorkEventArgs e)
@@ -144,7 +143,7 @@ namespace dotNet5781_03B_6594_6401
                     ListBoxItem bus = (ListBoxItem)busesList.ItemContainerGenerator.ContainerFromItem(item);
                     String searchS = searchBox.Text;
                     int num = searchS.Length;
-                    if ((num <= item.LicenseNumber.Length && searchS == (item as Bus).LicenseNumber.Substring(0, num)) || ((num <= item.LicenseNumberFormat.Length && searchS == (item as Bus).LicenseNumberFormat.Substring(0, num))))
+                    if ((num <= item.LicenseNumber.Length && searchS == (item as Bus).LicenseNumber.Substring(0, num)) || (num <= item.LicenseNumberFormat.Length && searchS == (item as Bus).LicenseNumberFormat.Substring(0, num)))
                     {
                         bus.Visibility = Visibility.Visible;
                     }
