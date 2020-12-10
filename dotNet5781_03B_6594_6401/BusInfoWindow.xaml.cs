@@ -35,16 +35,16 @@ namespace dotNet5781_03B_6594_6401
             ltkm.Content = b.BeforeTreatKM;
             ltd.Content = b.LastTreatment;
             f.Content = b.Fuel;
-            fueler = new BackgroundWorker();
-            fueler.DoWork += Fueler_DoWork;
-            fueler.ProgressChanged += Fueler_ProgressChanged;
-            fueler.RunWorkerCompleted += Fueler_RunWorkerCompleted;
-            fueler.WorkerReportsProgress = true;
-            treater = new BackgroundWorker();
-            treater.DoWork += Treater_DoWork; ;
-            treater.ProgressChanged += Treater_ProgressChanged; ;
-            treater.RunWorkerCompleted += Treater_RunWorkerCompleted; ;
-            treater.WorkerReportsProgress = true;
+            //fueler = new BackgroundWorker();
+            //fueler.DoWork += Fueler_DoWork;
+            //fueler.ProgressChanged += Fueler_ProgressChanged;
+            //fueler.RunWorkerCompleted += Fueler_RunWorkerCompleted;
+            //fueler.WorkerReportsProgress = true;
+            //treater = new BackgroundWorker();
+            //treater.DoWork += Treater_DoWork; ;
+            //treater.ProgressChanged += Treater_ProgressChanged; ;
+            //treater.RunWorkerCompleted += Treater_RunWorkerCompleted; ;
+            //treater.WorkerReportsProgress = true;
             RefuelButton.DataContext = index;
             TreatmentButton.DataContext = index;
 
@@ -74,67 +74,82 @@ namespace dotNet5781_03B_6594_6401
             //Tlable.Content = "now!";
         }
 
-        private void Treater_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            MessageBox.Show("Treating proccess has successfully ended!", "Treatment Massage", MessageBoxButton.OK, MessageBoxImage.Information);
-            ltkm.Content = b.BeforeTreatKM;
-            ltd.Content = b.LastTreatment;
-            TreatmentButton.IsEnabled = true;
-        }
+        //private void Treater_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        //{
+        //    MessageBox.Show("Treating proccess has successfully ended!", "Treatment Massage", MessageBoxButton.OK, MessageBoxImage.Information);
+        //    ltkm.Content = b.BeforeTreatKM;
+        //    ltd.Content = b.LastTreatment;
+        //    TreatmentButton.IsEnabled = true;
+        //}
 
-        private void Treater_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            //throw new NotImplementedException();
-            BusCollection.windowBuses[e.ProgressPercentage].DoTreatment();
-            
-        }
+        //private void Treater_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        //{
+        //    //throw new NotImplementedException();
+        //    BusCollection.windowBuses[e.ProgressPercentage].DoTreatment();
 
-        private void Treater_DoWork(object sender, DoWorkEventArgs e)
-        {
-            Thread.Sleep(144000);
-            treater.ReportProgress((int)e.Argument);
-        }
+        //}
+
+        //private void Treater_DoWork(object sender, DoWorkEventArgs e)
+        //{
+        //    Thread.Sleep(144000);
+        //    treater.ReportProgress((int)e.Argument);
+        //}
 
         private void TreatmentButton_Click(object sender, RoutedEventArgs e)
         {
-            if (treater.IsBusy != true)
+            //if (treater.IsBusy != true)
+            //{
+            //    treater.RunWorkerAsync(TreatmentButton.DataContext);
+            //    TreatmentButton.IsEnabled = false;
+            //}
+            Bus b = BusCollection.windowBuses[(int)TreatmentButton.DataContext];
+            if (!b.IsBusBusy())
             {
-                treater.RunWorkerAsync(TreatmentButton.DataContext);
                 TreatmentButton.IsEnabled = false;
+                b.BusStatus = Status.Treatment;
+                b.pressedButton = TreatmentButton;
+                b.activity.RunWorkerAsync(0);
             }
         }
 
         private void RefuelButton_Click(object sender, RoutedEventArgs e)
         {
-            if (fueler.IsBusy != true)
-            {
-                
-                timer.RunWorkerAsync(12);
-                fueler.RunWorkerAsync(RefuelButton.DataContext);
-                RefuelButton.IsEnabled = false;
+            //if (fueler.IsBusy != true)
+            //{
+            //    fueler.RunWorkerAsync(RefuelButton.DataContext);
+            //    RefuelButton.IsEnabled = false;
 
+            //}
+           // Button RefuelButton = (Button)sender;
+            Bus b = BusCollection.windowBuses[(int)RefuelButton.DataContext];
+            if (!b.IsBusBusy())
+            {
+                RefuelButton.IsEnabled = false;
+                b.BusStatus = Status.Refueling;
+                b.pressedButton = RefuelButton;
+                b.activity.RunWorkerAsync(0);
             }
         }
-            private void Fueler_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            MessageBox.Show("Refuel proccess has successfully ended!", "Fuel Massage", MessageBoxButton.OK, MessageBoxImage.Information);
-            f.Content = b.Fuel;
-            RefuelButton.IsEnabled = true;
-        }
+        //    private void Fueler_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        //{
+        //    MessageBox.Show("Refuel proccess has successfully ended!", "Fuel Massage", MessageBoxButton.OK, MessageBoxImage.Information);
+        //    f.Content = b.Fuel;
+        //    RefuelButton.IsEnabled = true;
+        //}
 
-        private void Fueler_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            //throw new NotImplementedException();
-            BusCollection.windowBuses[e.ProgressPercentage].Refuel();
+        //private void Fueler_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        //{
+        //    //throw new NotImplementedException();
+        //    BusCollection.windowBuses[e.ProgressPercentage].Refuel();
 
 
-        }
+        //}
 
-        private void Fueler_DoWork(object sender, DoWorkEventArgs e)
-        {
-            Thread.Sleep(12000);
-            fueler.ReportProgress((int)e.Argument);
-        }
+        //private void Fueler_DoWork(object sender, DoWorkEventArgs e)
+        //{
+        //    Thread.Sleep(12000);
+        //    fueler.ReportProgress((int)e.Argument);
+        //}
 
     }
 }

@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_6594_6401"
         mc:Ignorable="d"
-        Title="Window2" Height="450" Width="733.846" ResizeMode="CanMinimize" >
+        Title="Window2" Height="367.778" Width="362.735" ResizeMode="CanMinimize" >
 
     <Grid>
-        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="246,118,0,0" VerticalAlignment="Top" Height="201" Width="239">
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="59,51,0,0" VerticalAlignment="Top" Height="201" Width="239">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
