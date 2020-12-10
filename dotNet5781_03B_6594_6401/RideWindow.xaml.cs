@@ -55,7 +55,7 @@ namespace dotNet5781_03B_6594_6401
         }
         private void Rider_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            String s = "Bus " + BusCollection.windowBuses[(int)DataContext].GetLicenseNumberFormat() + " has successfully finished the ride!";
+            String s = "Bus " + BusCollection.windowBuses[(int)DataContext].GetLicenseNumberFormat() + " successfully finished the ride!";
             MessageBox.Show(s, "Ride Massage", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
@@ -84,17 +84,23 @@ namespace dotNet5781_03B_6594_6401
             if (t == null) return;
             if (e.Key == Key.Enter && t.Text != "")
             {
-                String s = KMtextBox.Text;
-                int KM = int.Parse(s);
+                String stringKM = KMtextBox.Text;
+                int KM = int.Parse(stringKM);
                 if (KM <= 0)
                 {
                     MessageBox.Show("The KM to ride must be positive!", "Ride Message", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     return;
                 }
+                if (KM >1200)
+                {
+                    MessageBox.Show("The KM can not be more than 1200!", "Ride Message", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 Bus currentBus = BusCollection.windowBuses[(int)DataContext];
                 if (!currentBus.CanDoRide(KM))
                 {
-                    MessageBox.Show("The bus must be treated or refueled!", "Ride Message", MessageBoxButton.OK, MessageBoxImage.Error);
+                    String message = "The bus has enough fuel only for " +currentBus.Fuel + " KM!";
+                    MessageBox.Show(message, "Ride Message", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 
