@@ -30,11 +30,11 @@ namespace dotNet5781_03B_6594_6401
         {
             Random rand = new Random(DateTime.Now.Millisecond);
             Bus bus = new Bus();
-            for (int i = 1; i <= 10; i++)
+            for (int i = 1; i <= 12; i++)
             {
                 String s;
                 int year;
-                if (i % 1 == 0)
+                if (i % 2 == 0)
                 {
                     s = rand.Next(1000000, 9999999).ToString();
                     year = rand.Next(1895, 2018);
@@ -51,9 +51,8 @@ namespace dotNet5781_03B_6594_6401
                 {
                     fuel = 0;
                 }
-
                 bus = new Bus(new DateTime(year, rand.Next(1, 13), rand.Next(1, 30)), s, fuel, KM, bt);
-                if (i % 6 != 0)
+                if (i % 6 != 0 && i % 7 != 0)
                 {
                     bus.DoTreatment();
                 }
@@ -67,6 +66,7 @@ namespace dotNet5781_03B_6594_6401
                 return a;
             return b;
         }
+
         public MainWindow()
         {
             RandomInitializationBus();
@@ -77,6 +77,35 @@ namespace dotNet5781_03B_6594_6401
             //w.ShowDialog();
             busesList.DataContext = BusCollection.windowBuses;
             busesList.SelectedIndex = 0;
+            fueler = new BackgroundWorker();
+            fueler.DoWork += Fueler_DoWork;
+            fueler.ProgressChanged += Fueler_ProgressChanged;
+            fueler.RunWorkerCompleted += Fueler_RunWorkerCompleted;
+            fueler.WorkerReportsProgress = true;
+
+            timer = new BackgroundWorker();
+            timer.DoWork += Timer_DoWork;
+            timer.ProgressChanged += Timer_ProgressChanged;
+            timer.RunWorkerCompleted += Timer_RunWorkerCompleted;
+            timer.WorkerReportsProgress = true;
+        }
+        public void Timer_DoWork(object sender, DoWorkEventArgs e)
+        {
+            int time = (int)e.Argument;
+            for (int i = time; i > 0; i--)
+            {
+                timer.ReportProgress(i);
+                Thread.Sleep(1000);
+            }
+        }
+        public void Timer_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            int progress = e.ProgressPercentage;
+            Tlable.Content = progress + "second";
+        }
+        public void Timer_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Tlable.Content = "now!";
         }
         public void RefuelButton_Click(object sender, RoutedEventArgs e)
         {
@@ -84,6 +113,7 @@ namespace dotNet5781_03B_6594_6401
             Bus b = BusCollection.windowBuses[busesList.SelectedIndex];
             if (!b.IsBusBusy())
             {
+                timer.RunWorkerAsync(12);
                 RefuelButton.IsEnabled = false;
                 b.BusStatus = Status.Refueling;
                 b.pressedButton = RefuelButton;
@@ -135,21 +165,20 @@ namespace dotNet5781_03B_6594_6401
             }
             //rideButton.IsEnabled = true;
         }
-
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-                foreach (var item in BusCollection.windowBuses)
+            foreach (var item in BusCollection.windowBuses)
+            {
+                ListBoxItem bus = (ListBoxItem)busesList.ItemContainerGenerator.ContainerFromItem(item);
+                String searchS = searchBox.Text;
+                int num = searchS.Length;
+                if ((num <= item.LicenseNumber.Length && searchS == (item as Bus).LicenseNumber.Substring(0, num)) || (num <= item.LicenseNumberFormat.Length && searchS == (item as Bus).LicenseNumberFormat.Substring(0, num)))
                 {
-                    ListBoxItem bus = (ListBoxItem)busesList.ItemContainerGenerator.ContainerFromItem(item);
-                    String searchS = searchBox.Text;
-                    int num = searchS.Length;
-                    if ((num <= item.LicenseNumber.Length && searchS == (item as Bus).LicenseNumber.Substring(0, num)) || (num <= item.LicenseNumberFormat.Length && searchS == (item as Bus).LicenseNumberFormat.Substring(0, num)))
-                    {
-                        bus.Visibility = Visibility.Visible;
-                    }
-                    else
-                        bus.Visibility = Visibility.Collapsed;    
+                    bus.Visibility = Visibility.Visible;
                 }
+                else
+                    bus.Visibility = Visibility.Collapsed;
+            }
         }
     }
 

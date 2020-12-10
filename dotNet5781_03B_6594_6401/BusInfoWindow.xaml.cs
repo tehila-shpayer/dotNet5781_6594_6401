@@ -46,6 +46,31 @@ namespace dotNet5781_03B_6594_6401
             //treater.WorkerReportsProgress = true;
             RefuelButton.DataContext = index;
             TreatmentButton.DataContext = index;
+
+            timer = new BackgroundWorker();
+            timer.DoWork += Timer_DoWork;
+            timer.ProgressChanged += Timer_ProgressChanged;
+            timer.RunWorkerCompleted += Timer_RunWorkerCompleted;
+            timer.WorkerReportsProgress = true;
+        }
+        public void Timer_DoWork(object sender, DoWorkEventArgs e)
+        {
+            int time = (int)e.Argument;
+            for (int i = time; i > 0; i--)
+            {
+                timer.ReportProgress(i);
+                Thread.Sleep(1000);
+            }
+        }
+        public void Timer_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            int progress = e.ProgressPercentage;
+            //Content = progress + "second";
+            
+        }
+        public void Timer_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            //Tlable.Content = "now!";
         }
 
         //private void Treater_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
