@@ -10,7 +10,7 @@
         <DataTemplate x:Key="BusTemplate"
                   DataType="local:Bus">
 
-            <StackPanel Orientation="Horizontal" x:Name="ListBoxLine">
+            <StackPanel Orientation="Horizontal" x:Name="ListBoxLine" MouseEnter="ListBoxLine_MouseEnter">
 
                 <TextBlock Text="Bus license number: "/>
                 <TextBlock Grid.Column="1" Width="120" x:Name="licenseNumber"
@@ -35,7 +35,7 @@
             <RowDefinition Height="57*"/>
         </Grid.RowDefinitions>
         <Button x:Name="addButton" Click="addButton_Click" Content="add bus" Grid.Row="3" FontSize="30" FontFamily="Showcard Gothic" Margin="0"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-        <ListBox IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" x:Name="busesList" Grid.Row="1" Margin="0,56,0.667,56" MouseDoubleClick="busesList_MouseDoubleClick" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.RowSpan="3"/>
+        <ListBox IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" x:Name="busesList" Grid.Row="1" Margin="0,56,0.667,56" MouseDoubleClick="busesList_MouseDoubleClick" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.RowSpan="3" />
         <Label Content="Buses in the system: " Grid.Row="0" RenderTransformOrigin="0.5,0.5" Margin="0,0,0.333,0.333" Style="{StaticResource myMainLableStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
         <Label Content="Search a bus:" FontSize="18" Style="{StaticResource myMainLableStyle}"  Background="White" Margin="36,4,522.667,5.667" Grid.Row="1"/>
 
