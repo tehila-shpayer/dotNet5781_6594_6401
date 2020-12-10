@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace dotNet5781_03B_6594_6401
 {
-    public enum Status { refule, treatment, ride, parked}
+    public enum Status { ready, notReady, Ride, Refueling, Treatment}
     public class Bus
     {
         int _KM;
@@ -22,6 +22,7 @@ namespace dotNet5781_03B_6594_6401
         DateTime _lastTreatment;
         public Status status { get; set; }
         
+        Status _busStatus;
         public bool IsAvailibleForRide 
         {
             get
@@ -31,6 +32,18 @@ namespace dotNet5781_03B_6594_6401
                 else
                     return true;
             }
+        }
+        public Status BusStatus
+        {
+            get { return _busStatus; }
+            set { _busStatus = value; }
+        }
+        public void ApdateStatus()
+        {
+            if (CanDoRide(0))
+                BusStatus = Status.ready;
+            else
+                BusStatus = Status.notReady;
         }
         public string LicenseNumberFormat { get { return GetLicenseNumberFormat(); } }
         public int KM
@@ -82,7 +95,7 @@ namespace dotNet5781_03B_6594_6401
             }
             return s;
         }
-        //conctractor
+        //constructor
         public Bus(DateTime d = new DateTime(), string num = "00000000",int f=0,int km=0,int bt=0)
         {
             _runningDate = d;
@@ -92,13 +105,16 @@ namespace dotNet5781_03B_6594_6401
             _fuel = f;
             _KM = km;
             _beforeTreatKM = bt;
-            status = Status.parked;
-
+            if (NeedTreatment())
+            {
+                _busStatus = Status.notReady;
+            }
         }
         //refuel to the maximum possible - 1200
         public void Refuel()
         {
             _fuel = 1200;
+            ApdateStatus();
         }
         ///treatment function
         ///does:
@@ -110,7 +126,10 @@ namespace dotNet5781_03B_6594_6401
             _KM += _beforeTreatKM;
             _beforeTreatKM = 0;
             _lastTreatment = DateTime.Now;
-            Console.WriteLine("The bus was successfully treated!\n");
+            if (_fuel == 0)
+                Refuel();
+            ApdateStatus();
+            //Console.WriteLine("The bus was successfully treated!\n");
         }
         /// <summary>
         /// Performs a bus ride by updating the 
@@ -133,20 +152,16 @@ namespace dotNet5781_03B_6594_6401
             _KM += rideKM;
             _beforeTreatKM += rideKM;
             //return "Have a nice ride!\n";
+            ApdateStatus();
         }
         public bool CanDoRide(int KMtoRide)
         {
-            if (_fuel - KMtoRide < 0 || _beforeTreatKM+KMtoRide > 20000 || NeedTreatment())
+            if (_fuel - KMtoRide < 0 || _beforeTreatKM+KMtoRide >= 20000 || NeedTreatment())
                 return false;
             return true;
         }
 
-        //Refuel and teatment for the bus
-        public void RefuelAndTreat()
-        {
-            Refuel();
-            DoTreatment();
-        }
+
         ///cheks if the bus needs treatment:
         ///(maximum temprery kilometrag crossed (over 20000)
         ///or a year past since last treatment)
