@@ -97,8 +97,11 @@ namespace dotNet5781_03B_6594_6401
                     MessageBox.Show("The bus must be treated or refueled!", "Ride Message", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-                
-                rider.RunWorkerAsync(KM);
+
+                //rider.RunWorkerAsync(KM);
+                Bus b = BusCollection.windowBuses[(int)DataContext];
+                b.BusStatus = Status.Ride;
+                b.activity.RunWorkerAsync(KM); 
                 Close();
             }
         }

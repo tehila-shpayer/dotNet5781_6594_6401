@@ -26,7 +26,6 @@ namespace dotNet5781_03B_6594_6401
 
     public partial class MainWindow : Window
     {
-        BackgroundWorker fueler;
         public void RandomInitializationBus()
         {
             Random rand = new Random(DateTime.Now.Millisecond);
@@ -72,50 +71,44 @@ namespace dotNet5781_03B_6594_6401
         {
             RandomInitializationBus();
             DataContext = busesList;
-            //foreach (Bus item in BusCollection.windowBuses)
-            //    BusCollection.windowBuses.Add(item);
             InitializeComponent();
-            //busesList.ItemsSource = windowBuses;
             busesList.DataContext = BusCollection.windowBuses;
-           // busesList.DisplayMemberPath = " LicenseNumberFormat ";
             busesList.SelectedIndex = 0;
-            fueler = new BackgroundWorker();
-            fueler.DoWork += Fueler_DoWork;
-            fueler.ProgressChanged += Fueler_ProgressChanged;
-            fueler.RunWorkerCompleted += Fueler_RunWorkerCompleted;
-            fueler.WorkerReportsProgress = true;
         }
         public void RefuelButton_Click(object sender, RoutedEventArgs e)
         {
             Button RefuelButton = (Button)sender;
-            if (fueler.IsBusy != true)
+            Bus b = BusCollection.windowBuses[busesList.SelectedIndex];
+            if (!b.IsBusBusy())
             {
                 RefuelButton.IsEnabled = false;
-                fueler.RunWorkerAsync(RefuelButton);
+                b.BusStatus = Status.Refueling;
+                b.pressedButton = RefuelButton;
+                b.activity.RunWorkerAsync(0);
             }
         }
-        private void Fueler_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            MessageBox.Show("Refuel proccess has successfully ended!", "Fuel Massage", MessageBoxButton.OK, MessageBoxImage.Information);
-            Button refuel = (Button)e.Result;
-            refuel.IsEnabled = true;
-            BusCollection.windowBuses[busesList.SelectedIndex].status = Status.ready;
+        //private void Fueler_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        //{
+        //    MessageBox.Show("Refuel proccess has successfully ended!", "Fuel Massage", MessageBoxButton.OK, MessageBoxImage.Information);
+        //    Button refuel = (Button)e.Result;
+        //    refuel.IsEnabled = true;
+        //    BusCollection.windowBuses[busesList.SelectedIndex].BusStatus = Status.ready;
 
-        }
+        //}
 
-        private void Fueler_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            BusCollection.windowBuses[e.ProgressPercentage].Refuel();
-        }
+        //private void Fueler_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        //{
+        //    BusCollection.windowBuses[e.ProgressPercentage].Refuel();
+        //}
 
-        private void Fueler_DoWork(object sender, DoWorkEventArgs e)
-        {
-            Button refuel = (Button)e.Argument;
-            fueler.ReportProgress(0);
-            Thread.Sleep(12000);
-            e.Result = refuel;
+        //private void Fueler_DoWork(object sender, DoWorkEventArgs e)
+        //{
+        //    Button refuel = (Button)e.Argument;
+        //    fueler.ReportProgress(0);
+        //    Thread.Sleep(12000);
+        //    e.Result = refuel;
 
-        }
+        //}
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             Window1 window1 = new Window1();
@@ -125,15 +118,19 @@ namespace dotNet5781_03B_6594_6401
         {
             BusInfo busInfo = new BusInfo(busesList.SelectedIndex);
             busInfo.Show();
-            //busInformation.Text = BusCollection.buses.ElementAt(busesList.SelectedIndex).LongToString();
         }
         private void rideButton_Click(object sender, RoutedEventArgs e)
         {
-            Button rideButton = (Button)sender;
-            rideButton.IsEnabled = false;
-            RideWindow rideWindow = new RideWindow(busesList.SelectedIndex);
-            rideWindow.Show();
-            rideButton.IsEnabled = true;
+            Bus b = BusCollection.windowBuses[busesList.SelectedIndex];
+            if (!b.IsBusBusy())
+            {
+                Button rideButton = (Button)sender;
+                rideButton.IsEnabled = false;
+                RideWindow rideWindow = new RideWindow(busesList.SelectedIndex);
+                b.pressedButton = rideButton;
+                rideWindow.Show();
+            }
+            //rideButton.IsEnabled = true;
         }
 
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
