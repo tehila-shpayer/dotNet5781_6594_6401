@@ -19,12 +19,12 @@ namespace dotNet5781_03B_6594_6401
     public enum Status { ready, notReady, Ride, Refueling, Treatment}
     public class Bus
     {
-        int _KM;
-        string _licenseNumber;
-        int _fuel;
-        int _beforeTreatKM;
-        DateTime _runningDate;
-        DateTime _lastTreatment;
+        int _KM = 0;
+        string _licenseNumber = "";
+        int _fuel = 0;
+        int _beforeTreatKM = 0;
+        DateTime _runningDate = new DateTime();
+        DateTime _lastTreatment = new DateTime();
         public BackgroundWorker activity;        
         Status _busStatus;
         public Button pressedButton { get; set; }
