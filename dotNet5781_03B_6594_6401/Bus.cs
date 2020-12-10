@@ -20,6 +20,8 @@ namespace dotNet5781_03B_6594_6401
         int _beforeTreatKM;
         DateTime _runningDate;
         DateTime _lastTreatment;
+        public Status status { get; set; }
+        
         Status _busStatus;
         public bool IsAvailibleForRide 
         {

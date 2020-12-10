@@ -98,7 +98,8 @@ namespace dotNet5781_03B_6594_6401
         {
             //throw new NotImplementedException();
             BusCollection.windowBuses[e.ProgressPercentage].Refuel();
-            
+
+
         }
 
         private void Fueler_DoWork(object sender, DoWorkEventArgs e)

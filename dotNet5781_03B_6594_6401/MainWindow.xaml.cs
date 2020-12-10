@@ -99,6 +99,8 @@ namespace dotNet5781_03B_6594_6401
             MessageBox.Show("Refuel proccess has successfully ended!", "Fuel Massage", MessageBoxButton.OK, MessageBoxImage.Information);
             Button refuel = (Button)e.Result;
             refuel.IsEnabled = true;
+            BusCollection.windowBuses[busesList.SelectedIndex].status = Status.parked;
+
         }
 
         private void Fueler_ProgressChanged(object sender, ProgressChangedEventArgs e)
