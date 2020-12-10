@@ -11,6 +11,7 @@ using System.Windows;
 
 namespace dotNet5781_03B_6594_6401
 {
+    public enum Status { refule, treatment, ride, parked}
     public class Bus
     {
         int _KM;
@@ -19,6 +20,7 @@ namespace dotNet5781_03B_6594_6401
         int _beforeTreatKM;
         DateTime _runningDate;
         DateTime _lastTreatment;
+        public Status status { get; set; }
         
         public bool IsAvailibleForRide 
         {
@@ -90,6 +92,7 @@ namespace dotNet5781_03B_6594_6401
             _fuel = f;
             _KM = km;
             _beforeTreatKM = bt;
+            status = Status.parked;
 
         }
         //refuel to the maximum possible - 1200
