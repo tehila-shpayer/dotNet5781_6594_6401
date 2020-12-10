@@ -41,7 +41,7 @@
 
         <TextBox x:Name="searchBox" FontSize="16" TextChanged="SearchBox_TextChanged" Margin="236,10,110.667,9.667" Grid.Row="1" />
         <Label x:Name="Tlable" Content="ready in:" Background="#FF82E0E0" FontSize="20" Margin="36,25,670.333,0.333"/>
-        <Image HorizontalAlignment="Left" Height="26" Margin="645,18,0,0" Grid.Row="1" VerticalAlignment="Top" Width="29" Source="s2.png"/>
+        <Image HorizontalAlignment="Left" Height="26" Margin="657,18,0,0" Grid.Row="1" VerticalAlignment="Top" Width="24" Source="s2a.png"/>
     </Grid>
 </Window>
     
