@@ -74,35 +74,11 @@ namespace dotNet5781_03B_6594_6401
             InitializeComponent();
             busesList.DataContext = BusCollection.windowBuses;
             busesList.SelectedIndex = 0;
-            fueler = new BackgroundWorker();
-            fueler.DoWork += Fueler_DoWork;
-            fueler.ProgressChanged += Fueler_ProgressChanged;
-            fueler.RunWorkerCompleted += Fueler_RunWorkerCompleted;
-            fueler.WorkerReportsProgress = true;
-
-            timer = new BackgroundWorker();
-            timer.DoWork += Timer_DoWork;
-            timer.ProgressChanged += Timer_ProgressChanged;
-            timer.RunWorkerCompleted += Timer_RunWorkerCompleted;
-            timer.WorkerReportsProgress = true;
         }
-        public void Timer_DoWork(object sender, DoWorkEventArgs e)
+        public void TimeButton_Click(object sender, RoutedEventArgs e)
         {
-            int time = (int)e.Argument;
-            for (int i = time; i > 0; i--)
-            {
-                timer.ReportProgress(i);
-                Thread.Sleep(1000);
-            }
-        }
-        public void Timer_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            int progress = e.ProgressPercentage;
-            Tlable.Content = progress + "second";
-        }
-        public void Timer_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            Tlable.Content = "now!";
+            Button timeButton = (Button)sender;
+            BusCollection.windowBuses[busesList.SelectedIndex].timer.RunWorkerAsync(5);
         }
         public void RefuelButton_Click(object sender, RoutedEventArgs e)
         {
@@ -110,7 +86,7 @@ namespace dotNet5781_03B_6594_6401
             Bus b = BusCollection.windowBuses[busesList.SelectedIndex];
             if (!b.IsBusBusy())
             {
-                timer.RunWorkerAsync(12);
+                //b.timer.RunWorkerAsync(12);
                 RefuelButton.IsEnabled = false;
                 b.BusStatus = Status.Refueling;
                 b.pressedButton = RefuelButton;

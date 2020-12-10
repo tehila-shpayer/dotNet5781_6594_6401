@@ -17,7 +17,7 @@ using System.Globalization;
 namespace dotNet5781_03B_6594_6401
 {
     public enum Status { ready, notReady, Ride, Refueling, Treatment}
-    public class Bus
+    public class Bus :INotifyPropertyChanged
     {
         int _KM = 0;
         string _licenseNumber = "";
@@ -25,8 +25,24 @@ namespace dotNet5781_03B_6594_6401
         int _beforeTreatKM = 0;
         DateTime _runningDate = new DateTime();
         DateTime _lastTreatment = new DateTime();
-        public BackgroundWorker activity;        
+        public BackgroundWorker activity;
+        public BackgroundWorker timer;
         Status _busStatus;
+        String _time;
+        bool _isAvailibleForRide;
+        public String Time
+        {
+            get { return _time; }
+            set {
+                _time = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("Time"));
+                }
+            }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        
         public Button pressedButton { get; set; }
         public bool IsAvailibleForRide 
         {
@@ -110,6 +126,7 @@ namespace dotNet5781_03B_6594_6401
             _fuel = f;
             _KM = km;
             _beforeTreatKM = bt;
+            Time = "";
             if (NeedTreatment())
             {
                 _busStatus = Status.notReady;
@@ -119,6 +136,11 @@ namespace dotNet5781_03B_6594_6401
             activity.ProgressChanged += Activity_ProgressChanged;
             activity.RunWorkerCompleted += Activity_RunWorkerCompleted;
             activity.WorkerReportsProgress = true;
+            timer = new BackgroundWorker();
+            timer.DoWork += Timer_DoWork;
+            timer.ProgressChanged += Timer_ProgressChanged;
+            timer.RunWorkerCompleted += Timer_RunWorkerCompleted;
+            timer.WorkerReportsProgress = true;
         }
 
         private void Activity_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -178,31 +200,54 @@ namespace dotNet5781_03B_6594_6401
             {
                 case Status.Refueling:
                     {
+                        timer.RunWorkerAsync(12);
                         Thread.Sleep(12000);
                         break;
                     }
                 case Status.Treatment:
                     {
+                        timer.RunWorkerAsync(144);
                         Thread.Sleep(144000);
                         break;
                     }
                 case Status.Ride:
                     {
+                        int KMride = (int)e.Argument;
                         Random rnd = new Random();
-                        double time = (double)50 / rnd.Next(30, 60);
-                        int timeToSleep = (int)(time * 6000);
-                        Thread.Sleep(timeToSleep);
+                        double Hours = (double) KMride/ rnd.Next(20, 50);
+                        int secondToSleep = (int)(Hours * 6);
+                        timer.RunWorkerAsync(secondToSleep);
+                        Thread.Sleep(secondToSleep*1000);
                         break;
                     }
                 default:
                     { break; }
             }
-            //Thread.Sleep(12000);
+            
             activity.ReportProgress((int)e.Argument);
             Button b = pressedButton;
             e.Result = b;
         }
         public bool IsBusBusy() { return activity.IsBusy; }
+
+        public void Timer_DoWork(object sender, DoWorkEventArgs e)
+        {
+            int time = (int)e.Argument;
+            for (int i = time; i > 0; i--)
+            {
+                timer.ReportProgress(i);
+                Thread.Sleep(1000);
+            }
+        }
+        public void Timer_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            int progress = e.ProgressPercentage;
+            Time = "ready in "+ TimeFormat(progress);
+        }
+        public void Timer_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Time = "";
+        }
 
         //refuel to the maximum possible - 1200
         public void Refuel()
@@ -280,7 +325,22 @@ namespace dotNet5781_03B_6594_6401
             String dateString = date.Day + "/" + date.Month + "/" + date.Year;
             return dateString;
         }
-
+        static public String TimeFormat(int seconds)
+        {
+            int hour = seconds / 3600;
+            int minute = seconds / 60;
+            int sec = seconds % 60;
+            return (f(hour) + ":" + f(minute) + ":" + f(sec));
+        }
+        static public String f(int t)
+        {
+            String s = "";
+            if (t < 10)
+                s = "0" + t;
+            else
+                s = "" + t;
+            return s;
+        }
     }
 
 
