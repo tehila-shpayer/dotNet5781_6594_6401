@@ -21,8 +21,8 @@ namespace dotNet5781_03B_6594_6401
     /// </summary>
     public partial class BusInfo : Window
     {
-        BackgroundWorker fueler;
-        BackgroundWorker treater;
+        //BackgroundWorker fueler;
+        //BackgroundWorker treater;
         Bus b;
         public BusInfo(int index)
         {
