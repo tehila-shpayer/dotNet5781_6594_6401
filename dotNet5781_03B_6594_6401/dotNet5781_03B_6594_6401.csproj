@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BusDisplayWindowxaml.xaml.cs">
+      <DependentUpon>BusDisplayWindowxaml.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BusInfoWindow.xaml.cs">
       <DependentUpon>BusInfoWindow.xaml</DependentUpon>
     </Compile>
@@ -64,9 +67,13 @@
     <Compile Include="AddBusWindow.xaml.cs">
       <DependentUpon>AddBusWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Window2.xaml.cs">
-      <DependentUpon>Window2.xaml</DependentUpon>
+    <Compile Include="AddBus.xaml.cs">
+      <DependentUpon>AddBus.xaml</DependentUpon>
     </Compile>
+    <Page Include="BusDisplayWindowxaml.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BusInfoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -93,7 +100,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Window2.xaml">
+    <Page Include="AddBus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -116,7 +123,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="km" />
     <None Include="Properties\DataSources\Bus.datasource" />
+    <None Include="Properties\DataSources\dotNet5781_03B_6594_6401.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\dotNet5781_03B_6594_6401.Properties.Settings.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -127,6 +137,24 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="2020-11-26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="wireshark 5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Fasticon-Happy-Bus-Bus-orange.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="32443.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="s2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="s2a.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

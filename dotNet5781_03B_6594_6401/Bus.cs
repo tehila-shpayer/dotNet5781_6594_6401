@@ -23,9 +23,9 @@ namespace dotNet5781_03B_6594_6401
         string _licenseNumber = "";
         int _fuel = 0;
         int _beforeTreatKM = 0;
-        DateTime _runningDate = new DateTime();
-        DateTime _lastTreatment = new DateTime();
-        public BackgroundWorker activity;
+        DateTime _runningDate = new DateTime(2000,1,1);
+        DateTime _lastTreatment = new DateTime(2000, 1, 1);
+        public BackgroundWorker activity;      
         public BackgroundWorker timer;
         Status _busStatus;
         String _time;

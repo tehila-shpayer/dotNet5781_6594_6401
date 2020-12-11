@@ -57,7 +57,7 @@ namespace dotNet5781_03B_6594_6401
         {
             GeneralPerviewKeyDown(sender, e);
         }
-        static void GeneralPerviewKeyDown(object sender, KeyEventArgs e)
+        public static void GeneralPerviewKeyDown(object sender, KeyEventArgs e)
         {
             TextBox t = sender as TextBox;
             if (t == null) return;

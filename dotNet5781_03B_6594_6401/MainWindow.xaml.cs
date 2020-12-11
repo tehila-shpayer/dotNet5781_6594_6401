@@ -66,19 +66,36 @@ namespace dotNet5781_03B_6594_6401
                 return a;
             return b;
         }
+        BackgroundWorker timer;
 
         public MainWindow()
         {
             RandomInitializationBus();
             DataContext = busesList;
             InitializeComponent();
+            //Bus bus = new Bus();
+            //BusDisplayWindowxaml w = new BusDisplayWindowxaml(BusCollection.windowBuses[0]);
+            //w.ShowDialog();
             busesList.DataContext = BusCollection.windowBuses;
             busesList.SelectedIndex = 0;
         }
-        public void TimeButton_Click(object sender, RoutedEventArgs e)
+        public void Timer_DoWork(object sender, DoWorkEventArgs e)
         {
-            Button timeButton = (Button)sender;
-            BusCollection.windowBuses[busesList.SelectedIndex].timer.RunWorkerAsync(5);
+            int time = (int)e.Argument;
+            for (int i = time; i > 0; i--)
+            {
+                timer.ReportProgress(i);
+                Thread.Sleep(1000);
+            }
+        }
+        public void Timer_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            int progress = e.ProgressPercentage;
+            Tlable.Content = progress + "second";
+        }
+        public void Timer_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Tlable.Content = "now!";
         }
         public void RefuelButton_Click(object sender, RoutedEventArgs e)
         {
@@ -117,16 +134,18 @@ namespace dotNet5781_03B_6594_6401
         //}
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            Window1 window1 = new Window1();
+            Window2 window1 = new Window2(new Bus());
             window1.ShowDialog();
         }
         private void busesList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            BusInfo busInfo = new BusInfo(busesList.SelectedIndex);
+            BusDisplayWindowxaml busInfo = new BusDisplayWindowxaml(BusCollection.windowBuses[busesList.SelectedIndex]);
             busInfo.Show();
+            busInfo.ShowActivated = false;
         }
         private void rideButton_Click(object sender, RoutedEventArgs e)
         {
+            //busesList.SelectedIndex = 4;//(StackPanel)sender;
             Bus b = BusCollection.windowBuses[busesList.SelectedIndex];
             if (!b.IsBusBusy())
             {
@@ -152,6 +171,11 @@ namespace dotNet5781_03B_6594_6401
                 else
                     bus.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private void ListBoxLine_MouseEnter(object sender, MouseEventArgs e)
+        {
+            StackPanel s = (StackPanel)sender;
         }
     }
 

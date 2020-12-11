@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_6594_6401"
         mc:Ignorable="d"
-        Title="RideWindow" Height="350" Width="622.2" ResizeMode="CanMinimize" >
+        Title="Ride Window" Height="350" Width="622.2" ResizeMode="CanMinimize" Icon="32443.png" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
@@ -15,8 +15,8 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Go To Ride!" Margin="0,0,-0.4,0" Style="{StaticResource myMainLableStyle}" FontSize="40" Grid.Row="0" Grid.ColumnSpan="2"/>
-        <Label Content="Enter KM to ride:" Grid.Row="1" Grid.Column="0" Margin="48,58.6,0,106.8" FontSize="34"/>
+        <Label Content="Drive!" Margin="0,0,-0.4,0" Style="{StaticResource myMainLableStyle}" FontSize="40" Grid.Row="0" Grid.ColumnSpan="2"/>
+        <Label Content="Enter KM for the ride:" Grid.Row="1" Grid.Column="0" Margin="48,58.6,0,106.8" FontSize="34"/>
         <TextBox x:Name="KMtextBox" Grid.Row="1" Grid.Column="1" PreviewKeyDown="KM_PreviewKeyDown" KeyDown="KM_KeyDown" Text="" FontSize="34" Margin="10,64.6,75,97.8"/>
 
     </Grid>

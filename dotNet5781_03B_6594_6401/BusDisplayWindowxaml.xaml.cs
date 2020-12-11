@@ -11,43 +11,23 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.ComponentModel;
 using System.Threading;
+using System.ComponentModel;
 
 namespace dotNet5781_03B_6594_6401
 {
     /// <summary>
-    /// Interaction logic for BusInfo.xaml
+    /// Interaction logic for BusDisplayWindowxaml.xaml
     /// </summary>
-    public partial class BusInfo : Window
+    public partial class BusDisplayWindowxaml : Window
     {
-        //BackgroundWorker fueler;
-        //BackgroundWorker treater;
-        Bus b;
         BackgroundWorker timer;
-        public BusInfo(int index)
+        Bus bus;
+        public BusDisplayWindowxaml(Bus b)
         {
             InitializeComponent();
-            b = BusCollection.windowBuses[index];
-            ln.Content = b.LicenseNumberFormat;
-            sd.Content = b.RunningDate;
-            km.Content = b.KM;
-            ltkm.Content = b.BeforeTreatKM;
-            ltd.Content = b.LastTreatment;
-            f.Content = b.Fuel;
-            //fueler = new BackgroundWorker();
-            //fueler.DoWork += Fueler_DoWork;
-            //fueler.ProgressChanged += Fueler_ProgressChanged;
-            //fueler.RunWorkerCompleted += Fueler_RunWorkerCompleted;
-            //fueler.WorkerReportsProgress = true;
-            //treater = new BackgroundWorker();
-            //treater.DoWork += Treater_DoWork; ;
-            //treater.ProgressChanged += Treater_ProgressChanged; ;
-            //treater.RunWorkerCompleted += Treater_RunWorkerCompleted; ;
-            //treater.WorkerReportsProgress = true;
-            RefuelButton.DataContext = index;
-            TreatmentButton.DataContext = index;
-
+            grid1.DataContext = b;
+            bus = b;
             timer = new BackgroundWorker();
             timer.DoWork += Timer_DoWork;
             timer.ProgressChanged += Timer_ProgressChanged;
@@ -67,7 +47,7 @@ namespace dotNet5781_03B_6594_6401
         {
             int progress = e.ProgressPercentage;
             //Content = progress + "second";
-            
+
         }
         public void Timer_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -102,7 +82,7 @@ namespace dotNet5781_03B_6594_6401
             //    treater.RunWorkerAsync(TreatmentButton.DataContext);
             //    TreatmentButton.IsEnabled = false;
             //}
-            Bus b = BusCollection.windowBuses[(int)TreatmentButton.DataContext];
+            Bus b = bus; ;
             if (!b.IsBusBusy())
             {
                 TreatmentButton.IsEnabled = false;
@@ -120,8 +100,8 @@ namespace dotNet5781_03B_6594_6401
             //    RefuelButton.IsEnabled = false;
 
             //}
-           // Button RefuelButton = (Button)sender;
-            Bus b = BusCollection.windowBuses[(int)RefuelButton.DataContext];
+            // Button RefuelButton = (Button)sender;
+            Bus b = bus;
             if (!b.IsBusBusy())
             {
                 RefuelButton.IsEnabled = false;
@@ -130,26 +110,5 @@ namespace dotNet5781_03B_6594_6401
                 b.activity.RunWorkerAsync(0);
             }
         }
-        //    private void Fueler_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        //{
-        //    MessageBox.Show("Refuel proccess has successfully ended!", "Fuel Massage", MessageBoxButton.OK, MessageBoxImage.Information);
-        //    f.Content = b.Fuel;
-        //    RefuelButton.IsEnabled = true;
-        //}
-
-        //private void Fueler_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        //{
-        //    //throw new NotImplementedException();
-        //    BusCollection.windowBuses[e.ProgressPercentage].Refuel();
-
-
-        //}
-
-        //private void Fueler_DoWork(object sender, DoWorkEventArgs e)
-        //{
-        //    Thread.Sleep(12000);
-        //    fueler.ReportProgress((int)e.Argument);
-        //}
-
     }
 }
