@@ -51,6 +51,9 @@ namespace dotNet5781_03B_6594_6401
             else if(bus.Fuel > 1200)
             {
                 MessageBox.Show("Couldn't add bus. invalid information!\n Error: Fuel can't be over 1200!", "Error massege", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
                 BusCollection.Add(bus);
                 Close();
             }

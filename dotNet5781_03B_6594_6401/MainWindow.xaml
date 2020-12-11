@@ -10,7 +10,7 @@
         <DataTemplate x:Key="BusTemplate"
                   DataType="local:Bus">
 
-            <StackPanel Orientation="Horizontal" x:Name="ListBoxLine" MouseEnter="ListBoxLine_MouseEnter">
+            <StackPanel Orientation="Horizontal" x:Name="ListBoxLine">
 
                 <TextBlock Text="Bus license number: "/>
                 <TextBlock Grid.Column="1" Width="120" x:Name="licenseNumber"

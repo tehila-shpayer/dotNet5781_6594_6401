@@ -139,13 +139,22 @@ namespace dotNet5781_03B_6594_6401
         }
         private void busesList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            //foreach (Window win in Application.Current.Windows)
+            //{
+            //    if (win is BusDisplayWindowxaml && BusDisplayWindowxaml.bus == BusCollection.windowBuses[busesList.SelectedIndex])
+            //    {
+            //        win.WindowState = System.Windows.WindowState.Normal;
+            //        win.Focus();
+            //        //win.Activate();
+            //        return;
+            //    }
+            //} 
+            
             BusDisplayWindowxaml busInfo = new BusDisplayWindowxaml(BusCollection.windowBuses[busesList.SelectedIndex]);
             busInfo.Show();
-            busInfo.ShowActivated = false;
         }
         private void rideButton_Click(object sender, RoutedEventArgs e)
         {
-            //busesList.SelectedIndex = 4;//(StackPanel)sender;
             Bus b = BusCollection.windowBuses[busesList.SelectedIndex];
             if (!b.IsBusBusy())
             {
@@ -155,7 +164,6 @@ namespace dotNet5781_03B_6594_6401
                 b.pressedButton = rideButton;
                 rideWindow.Show();
             }
-            //rideButton.IsEnabled = true;
         }
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -171,11 +179,6 @@ namespace dotNet5781_03B_6594_6401
                 else
                     bus.Visibility = Visibility.Collapsed;
             }
-        }
-
-        private void ListBoxLine_MouseEnter(object sender, MouseEventArgs e)
-        {
-            StackPanel s = (StackPanel)sender;
         }
     }
 

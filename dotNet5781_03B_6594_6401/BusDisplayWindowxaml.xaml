@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_6594_6401"
         mc:Ignorable="d"
-        Title="Bus Display Window" Height="526.667" Width="512.222" Icon="Fasticon-Happy-Bus-Bus-orange.ico">
+        Title="Bus Display Window" Height="526.667" Width="512.222" Icon="Fasticon-Happy-Bus-Bus-orange.ico" Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
