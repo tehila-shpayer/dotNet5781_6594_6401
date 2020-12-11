@@ -66,7 +66,6 @@ namespace dotNet5781_03B_6594_6401
                 return a;
             return b;
         }
-        //BackgroundWorker timer;
 
         public MainWindow()
         {
@@ -80,24 +79,6 @@ namespace dotNet5781_03B_6594_6401
             busesList.SelectedIndex = 0;
             
         }
-        //public void Timer_DoWork(object sender, DoWorkEventArgs e)
-        //{
-        //    int time = (int)e.Argument;
-        //    for (int i = time; i > 0; i--)
-        //    {
-        //        timer.ReportProgress(i);
-        //        Thread.Sleep(1000);
-        //    }
-        //}
-        //public void Timer_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        //{
-        //    int progress = e.ProgressPercentage;
-        //    Tlable.Content = progress + "second";
-        //}
-        //public void Timer_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        //{
-        //    Tlable.Content = "now!";
-        //}
         public void RefuelButton_Click(object sender, RoutedEventArgs e)
         {
             var selectedBus = (sender as Button).DataContext as Bus;
@@ -111,28 +92,6 @@ namespace dotNet5781_03B_6594_6401
                 selectedBus.activity.RunWorkerAsync(0);
             }
         }
-        //private void Fueler_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        //{
-        //    MessageBox.Show("Refuel proccess has successfully ended!", "Fuel Massage", MessageBoxButton.OK, MessageBoxImage.Information);
-        //    Button refuel = (Button)e.Result;
-        //    refuel.IsEnabled = true;
-        //    BusCollection.windowBuses[busesList.SelectedIndex].BusStatus = Status.ready;
-
-        //}
-
-        //private void Fueler_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        //{
-        //    BusCollection.windowBuses[e.ProgressPercentage].Refuel();
-        //}
-
-        //private void Fueler_DoWork(object sender, DoWorkEventArgs e)
-        //{
-        //    Button refuel = (Button)e.Argument;
-        //    fueler.ReportProgress(0);
-        //    Thread.Sleep(12000);
-        //    e.Result = refuel;
-
-        //}
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             Window2 window1 = new Window2(new Bus());

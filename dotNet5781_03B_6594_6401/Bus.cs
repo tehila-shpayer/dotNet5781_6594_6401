@@ -85,7 +85,14 @@ namespace dotNet5781_03B_6594_6401
         public int Fuel
         {
             get { return _fuel; }
-            set { _fuel = value; }
+            set
+            {
+                _fuel = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("Fuel"));
+                }
+            }
         }
         public int BeforeTreatKM
         {
@@ -252,7 +259,7 @@ namespace dotNet5781_03B_6594_6401
         //refuel to the maximum possible - 1200
         public void Refuel()
         {
-            _fuel = 1200;
+            Fuel = 1200;
         }
         ///treatment function
         ///does:
