@@ -100,15 +100,15 @@ namespace dotNet5781_03B_6594_6401
         //}
         public void RefuelButton_Click(object sender, RoutedEventArgs e)
         {
+            var selectedBus = (sender as Button).DataContext as Bus;
             Button RefuelButton = (Button)sender;
-            Bus b = BusCollection.windowBuses[busesList.SelectedIndex];
-            if (!b.IsBusBusy())
+            if (!selectedBus.IsBusBusy())
             {
                 //b.timer.RunWorkerAsync(12);
                 RefuelButton.IsEnabled = false;
-                b.BusStatus = Status.Refueling;
-                b.pressedButton = RefuelButton;
-                b.activity.RunWorkerAsync(0);
+                selectedBus.BusStatus = Status.Refueling;
+                selectedBus.pressedButton = RefuelButton;
+                selectedBus.activity.RunWorkerAsync(0);
             }
         }
         //private void Fueler_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -156,13 +156,13 @@ namespace dotNet5781_03B_6594_6401
         }
         private void rideButton_Click(object sender, RoutedEventArgs e)
         {
-            Bus b = BusCollection.windowBuses[busesList.SelectedIndex];
-            if (!b.IsBusBusy())
+            var selectedBus = (sender as Button).DataContext as Bus;
+            if (!selectedBus.IsBusBusy())
             {
                 Button rideButton = (Button)sender;
                 rideButton.IsEnabled = false;
-                RideWindow rideWindow = new RideWindow(busesList.SelectedIndex);
-                b.pressedButton = rideButton;
+                RideWindow rideWindow = new RideWindow(BusCollection.windowBuses.IndexOf(selectedBus));
+                selectedBus.pressedButton = rideButton;
                 rideWindow.Show();
             }
         }

@@ -5,35 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_6594_6401"
         mc:Ignorable="d"
-        Title="Add Bus Window" x:Name="W" Height="360" Width="360" ResizeMode="CanMinimize" Icon="Fasticon-Happy-Bus-Bus-orange.ico" Left="0" Margin="0" >
+        Title="Add Bus Window" x:Name="W" Height="526" Width="516" ResizeMode="CanMinimize" Icon="Fasticon-Happy-Bus-Bus-orange.ico" Left="0" Margin="0" >
 
-    <Grid>
-        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="40,30,0,0" VerticalAlignment="Top" Height="224" Width="280" Background="White">
+    <Grid Margin="0,0,-0.333,-2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="16*"/>
+            <RowDefinition Height="109*"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="74,11,0,0" VerticalAlignment="Top" Height="345" Width="376" Background="White" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="140"/>
                 <ColumnDefinition Width="Auto" MinWidth="130"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label Content="Before Treat KM:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3.333" Grid.Row="0" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Yu Gothic UI Semibold" FontSize="16" Background="#FFF1DFDF" Height="31" Width="131"/>
-            <TextBox x:Name="beforeTreatKMTextBox" Grid.Column="1" HorizontalAlignment="Center" Height="23" Margin="3,7,0,7.333" Grid.Row="0" Text="{Binding BeforeTreatKM, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="beforeTreatKMTextBox_PreviewKeyDown"/>
-            <Label Content="Fuel:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.667,0,3.333" Grid.Row="1" VerticalAlignment="Center" FontFamily="Yu Gothic UI Semibold" FontSize="16" Background="#FFF1DFDF" Width="131" Height="31"/>
-            <TextBox x:Name="fuelTextBox" Grid.Column="1" HorizontalAlignment="Center" Height="24" Margin="3,7.667,0,6.333" Grid.Row="1" Text="{Binding Fuel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="fuelTextBox_PreviewKeyDown"/>
-            <Label Content="KM:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,2.667,0,3" Grid.Row="2" VerticalAlignment="Center" FontFamily="Yu Gothic UI Semibold" FontSize="16" Background="#FFF1DFDF" Width="131" Height="31"/>
-            <TextBox x:Name="kMTextBox" Grid.Column="1" HorizontalAlignment="Center" Height="23" Margin="3,6.667,0,7" Grid.Row="2" Text="{Binding KM, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="kMTextBox_PreviewKeyDown"/>
-            <Label Content="Last Treatment:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3.333" Grid.Row="3" VerticalAlignment="Center" FontFamily="Yu Gothic UI Semibold" FontSize="16" Background="#FFF1DFDF" Width="131" Height="31"/>
-            <DatePicker x:Name="lastTreatmentDatePicker" Grid.Column="1" HorizontalAlignment="Center"  Margin="3,6,0,5.333" Grid.Row="3" SelectedDate="{Binding LastTreatment, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Height="26" Width="120"/>
-            <Label Content="License Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,2.667,0,2.667" Grid.Row="4" VerticalAlignment="Center" FontFamily="Yu Gothic UI Semibold" FontSize="16" Background="#FFF1DFDF" Height="32" Width="131"/>
-            <TextBox x:Name="licenseNumberTextBox" Grid.Column="1" HorizontalAlignment="Center" Height="24" Margin="3,6.667,0,6.667" Grid.Row="4" Text="{Binding LicenseNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="licenseNumberTextBox_PreviewKeyDown"/>
-            <Label Content="Running Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,2.333,0,3" Grid.Row="5" VerticalAlignment="Center" FontFamily="Yu Gothic UI Semibold" FontSize="16" Background="#FFF1DFDF" Height="32" Width="131"/>
-            <DatePicker x:Name="runningDateDatePicker" Grid.Column="1" HorizontalAlignment="Center" Margin="4,7.333,0,5" Grid.Row="5" SelectedDate="{Binding RunningDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Height="25" Width="119"/>
+            <Label Content="Before Treat KM:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.667,0,3.333" Style="{StaticResource propretyLabel}" Grid.Row="4"/>
+            <TextBox x:Name="beforeTreatKMTextBox" Grid.Column="1" HorizontalAlignment="Center"  Margin="3,3.667,0,3.333" Grid.Row="4" Text="{Binding BeforeTreatKM, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" PreviewKeyDown="beforeTreatKMTextBox_PreviewKeyDown" Style="{StaticResource propretyTextBox}"/>
+            <Label Content="Fuel:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.667,0,3.333" Grid.Row="5" Style="{StaticResource propretyLabel}"/>
+            <TextBox x:Name="fuelTextBox" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="5" Text="{Binding Fuel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Style="{StaticResource propretyTextBox}" Margin="3,3.667,0,3.333" PreviewKeyDown="fuelTextBox_PreviewKeyDown"/>
+            <Label Content="KM:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.667,0,3.333" Grid.Row="2" Style="{StaticResource propretyLabel}"/>
+            <TextBox x:Name="kMTextBox" Grid.Column="1" HorizontalAlignment="Center" Style="{StaticResource propretyTextBox}" Margin="3,3.667,0,3.333" Grid.Row="2" Text="{Binding KM, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" PreviewKeyDown="kMTextBox_PreviewKeyDown"/>
+            <Label Content="Last Treatment:" Grid.Column="0" HorizontalAlignment="Left" Grid.Row="3" Margin="3,3.667,0,3.333" Style="{StaticResource propretyLabel}"/>
+            <DatePicker x:Name="lastTreatmentDatePicker" Grid.Column="1" HorizontalAlignment="Center"  Grid.Row="3" SelectedDate="{Binding LastTreatment, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Style="{StaticResource propretyDatePicker}" Margin="3,3.667,0,3.333" />
+            <Label Content="License Number:" Grid.Column="0" HorizontalAlignment="Left" Grid.Row="0" Margin="3,3.667,0,3.333" Style="{StaticResource propretyLabel}"/>
+            <TextBox x:Name="licenseNumberTextBox" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="0" Text="{Binding LicenseNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" PreviewKeyDown="licenseNumberTextBox_PreviewKeyDown" Style="{StaticResource propretyTextBox}" Margin="10" />
+            <Label Content="Running Date:" Grid.Column="0" HorizontalAlignment="Left" Grid.Row="1" Margin="4" Style="{StaticResource propretyLabel}"/>
+            <DatePicker x:Name="runningDateDatePicker" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" SelectedDate="{Binding RunningDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Style="{StaticResource propretyDatePicker}" Margin="10" />
         </Grid>
-        <Button x:Name="addButtonInWindow" Content="Click here to add!" Click="addButtonInWindow_Click"  FontSize="22" FontFamily="Sitka Banner" Margin="89,270,88.667,24" Background="#FFEBE9E9" FontWeight="Bold"/>
+        <Label Content="Adding Bus" Style="{StaticResource myMainLableStyle}"/>
+        <Button x:Name="addButtonInWindow" Content="Click here to add!" Click="addButtonInWindow_Click"  FontSize="30" FontFamily="Yu Gothic UI Semibold" Margin="89,371,89,18" Background="#FFEBE9E9" FontWeight="ExtraBold" Grid.Row="1"/>
     </Grid>
+    <Window.Resources>
+    </Window.Resources>
 </Window>
