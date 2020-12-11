@@ -66,7 +66,7 @@ namespace dotNet5781_03B_6594_6401
                 return a;
             return b;
         }
-        BackgroundWorker timer;
+        //BackgroundWorker timer;
 
         public MainWindow()
         {
@@ -78,25 +78,26 @@ namespace dotNet5781_03B_6594_6401
             //w.ShowDialog();
             busesList.DataContext = BusCollection.windowBuses;
             busesList.SelectedIndex = 0;
+            
         }
-        public void Timer_DoWork(object sender, DoWorkEventArgs e)
-        {
-            int time = (int)e.Argument;
-            for (int i = time; i > 0; i--)
-            {
-                timer.ReportProgress(i);
-                Thread.Sleep(1000);
-            }
-        }
-        public void Timer_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            int progress = e.ProgressPercentage;
-            Tlable.Content = progress + "second";
-        }
-        public void Timer_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            Tlable.Content = "now!";
-        }
+        //public void Timer_DoWork(object sender, DoWorkEventArgs e)
+        //{
+        //    int time = (int)e.Argument;
+        //    for (int i = time; i > 0; i--)
+        //    {
+        //        timer.ReportProgress(i);
+        //        Thread.Sleep(1000);
+        //    }
+        //}
+        //public void Timer_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        //{
+        //    int progress = e.ProgressPercentage;
+        //    Tlable.Content = progress + "second";
+        //}
+        //public void Timer_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        //{
+        //    Tlable.Content = "now!";
+        //}
         public void RefuelButton_Click(object sender, RoutedEventArgs e)
         {
             Button RefuelButton = (Button)sender;
