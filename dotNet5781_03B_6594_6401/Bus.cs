@@ -151,21 +151,35 @@ namespace dotNet5781_03B_6594_6401
             }
             return s;
         }
-        //constructor
-        public Bus(DateTime d = new DateTime(), string num = "00000000",int f=0,int km=0,int bt=0)
+        //constructors
+        public Bus()
         {
-            _runningDate = d;
-            _lastTreatment = d;
+            activity = new BackgroundWorker();
+            activity.DoWork += Activity_DoWork;
+            activity.ProgressChanged += Activity_ProgressChanged;
+            activity.RunWorkerCompleted += Activity_RunWorkerCompleted;
+            activity.WorkerReportsProgress = true;
+            timer = new BackgroundWorker();
+            timer.DoWork += Timer_DoWork;
+            timer.ProgressChanged += Timer_ProgressChanged;
+            timer.RunWorkerCompleted += Timer_RunWorkerCompleted;
+            timer.WorkerReportsProgress = true;
+        }
+        public Bus(string num, DateTime d = new DateTime(), int f=0,int km=0,int bt=0)
+        {
             _licenseNumber = num;
             _runningDate = d;
+            _lastTreatment = d;
             Fuel = f;
             _KM = km;
             _beforeTreatKM = bt;
             Time = "";
-            if (NeedTreatment())
+            if (CanDoRide(0))
             {
-                BusStatus = Status.notReady;
+                BusStatus = Status.ready;
             }
+            else
+                BusStatus = Status.notReady;
             activity = new BackgroundWorker();
             activity.DoWork += Activity_DoWork;
             activity.ProgressChanged += Activity_ProgressChanged;
