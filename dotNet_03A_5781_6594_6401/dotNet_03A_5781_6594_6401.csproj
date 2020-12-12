@@ -106,9 +106,6 @@
     <Resource Include="wireshark 5.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="stationImage.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Fasticon-Happy-Bus-Bus-orange.ico" />
   </ItemGroup>
   <ItemGroup>
