@@ -19,17 +19,77 @@ namespace dotNet5781_03B_6594_6401
     public enum Status { ready, notReady, Ride, Refueling, Treatment}
     public class Bus :INotifyPropertyChanged
     {
-        int _KM = 0;
+        
         string _licenseNumber = "";
-        int _fuel = 0;
-        int _beforeTreatKM = 0;
-        DateTime _runningDate = new DateTime(2000,1,1);
+        DateTime _runningDate = new DateTime(2000, 1, 1);
         DateTime _lastTreatment = new DateTime(2000, 1, 1);
+        int _fuel = 0;
+        int _KM = 0;
+        int _beforeTreatKM = 0;
+        Status _busStatus;
+
         public BackgroundWorker activity;      
         public BackgroundWorker timer;
-        Status _busStatus;
         String _time;
         bool _isAvailibleForRide;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public string LicenseNumber
+        {
+            get { return _licenseNumber; }
+            set { _licenseNumber = value; }
+        }
+        public string LicenseNumberFormat { get { return GetLicenseNumberFormat(); } }
+        public DateTime RunningDate
+        {
+            get { return _runningDate; }
+            set { _runningDate = value; }
+        }
+        public DateTime LastTreatment
+        {
+            get { return _lastTreatment; }
+            set { _lastTreatment = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("LastTreatment"));
+                }
+            }
+        }
+        public int Fuel
+        {
+            get { return _fuel; }
+            set
+            {
+                _fuel = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("Fuel"));
+                }
+            }
+        }
+        public int KM
+        {
+            get { return _KM; }
+            set 
+            { 
+                _KM = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("KM"));
+                }
+            }
+        }
+        public int BeforeTreatKM
+        {
+            get { return _beforeTreatKM; }
+            set { _beforeTreatKM = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("BeforeTreatKM"));
+                }
+            }
+        }
+        
         public String Time
         {
             get { return _time; }
@@ -41,7 +101,7 @@ namespace dotNet5781_03B_6594_6401
                 }
             }
         }
-        public event PropertyChangedEventHandler PropertyChanged;
+        
         
         public Button pressedButton { get; set; }
         public bool IsAvailibleForRide 
@@ -57,7 +117,12 @@ namespace dotNet5781_03B_6594_6401
         public Status BusStatus
         {
             get { return _busStatus; }
-            set { _busStatus = value; }
+            set { _busStatus = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("BusStatus"));
+                }
+            }
         }
         public void ApdateStatus()
         {
@@ -66,44 +131,7 @@ namespace dotNet5781_03B_6594_6401
             else
                 BusStatus = Status.notReady;
         }
-        public string LicenseNumberFormat { get { return GetLicenseNumberFormat(); } }
-        public int KM
-        {
-            get { return _KM; }
-            set { _KM = value; }
-        }
-        public DateTime LastTreatment
-        {
-            get { return _lastTreatment; }
-            set { _lastTreatment = value; }
-        }
-        public string LicenseNumber
-        {
-            get { return _licenseNumber; }
-            set { _licenseNumber = value; }
-        }
-        public int Fuel
-        {
-            get { return _fuel; }
-            set
-            {
-                _fuel = value;
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("Fuel"));
-                }
-            }
-        }
-        public int BeforeTreatKM
-        {
-            get { return _beforeTreatKM; }
-            set { _beforeTreatKM = value; }
-        }
-        public DateTime RunningDate
-        {
-            get { return _runningDate; }
-            set { _runningDate = value; }
-        }
+        
         /// <summary>
         /// returns the license number in the format
         /// xxx-xx-xx or xx-xxx-xx (depends on start date)
@@ -130,13 +158,13 @@ namespace dotNet5781_03B_6594_6401
             _lastTreatment = d;
             _licenseNumber = num;
             _runningDate = d;
-            _fuel = f;
+            Fuel = f;
             _KM = km;
             _beforeTreatKM = bt;
             Time = "";
             if (NeedTreatment())
             {
-                _busStatus = Status.notReady;
+                BusStatus = Status.notReady;
             }
             activity = new BackgroundWorker();
             activity.DoWork += Activity_DoWork;
@@ -199,6 +227,7 @@ namespace dotNet5781_03B_6594_6401
                 default:
                     { break; }
             }
+            
         }
 
         private void Activity_DoWork(object sender, DoWorkEventArgs e)
@@ -207,14 +236,14 @@ namespace dotNet5781_03B_6594_6401
             {
                 case Status.Refueling:
                     {
-                        timer.RunWorkerAsync(12);
-                        Thread.Sleep(12000);
+                        timer.RunWorkerAsync(6);
+                        Thread.Sleep(6000);
                         break;
                     }
                 case Status.Treatment:
                     {
-                        timer.RunWorkerAsync(144);
-                        Thread.Sleep(144000);
+                        timer.RunWorkerAsync(13);
+                        Thread.Sleep(13000);
                         break;
                     }
                 case Status.Ride:
@@ -268,10 +297,10 @@ namespace dotNet5781_03B_6594_6401
         ///-updating last treatment date
         public void DoTreatment()
         {
-            _KM += _beforeTreatKM;
-            _beforeTreatKM = 0;
-            _lastTreatment = DateTime.Now;
-            if (_fuel == 0)
+            KM += BeforeTreatKM;
+            BeforeTreatKM = 0;
+            LastTreatment = DateTime.Now;
+            if (Fuel == 0)
                 Refuel();
             //Console.WriteLine("The bus was successfully treated!\n");
         }
@@ -292,9 +321,9 @@ namespace dotNet5781_03B_6594_6401
            // if (NeedTreatment())
            //     IsAvailibleForRide = false;
             //return "The system couldn't take this bus for the ride.\nThe bus must to be treated first.\n";
-            _fuel -= RideKM; //update of fields if the ride happened
-            _KM += RideKM;
-            _beforeTreatKM += RideKM;
+            Fuel -= RideKM; //update of fields if the ride happened
+            KM += RideKM;
+            BeforeTreatKM += RideKM;
             //return "Have a nice ride!\n";
         }
         public bool CanDoRide(int KMtoRide)

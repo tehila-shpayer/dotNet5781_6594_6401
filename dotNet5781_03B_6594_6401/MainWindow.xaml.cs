@@ -56,6 +56,7 @@ namespace dotNet5781_03B_6594_6401
                 {
                     bus.DoTreatment();
                 }
+                bus.ApdateStatus();
                 BusCollection.Add(bus);
             }
 
