@@ -9,14 +9,17 @@
         <BooleanToVisibilityConverter x:Key="BooleanToColorConverter"/>
         <local:StatusToBoolRideConverter x:Key="statusToBoolConverter"/>
         <local:StatusToBoolTreatConverter x:Key="statusToBoolTreatConverter"/>
+        <local:StatusToIconConverter x:Key="StatusToIconConverter"/>
         <DataTemplate x:Key="BusTemplate"
                   DataType="local:Bus">
 
             <StackPanel Orientation="Horizontal" x:Name="ListBoxLine">
-
-                <TextBlock Text="Bus license number: "/>
+                <Image VerticalAlignment="Center" Width="20" Height="20" Source="{Binding BusStatus, Converter={StaticResource StatusToIconConverter}}" />
+                <!--Source="{Binding BusStatus, Converter={StaticResource StatusToIconConverter}}"-->
+                <Label Width="20"/>
+                <TextBlock Text="Bus license number: " VerticalAlignment="Center"/>
                 <TextBlock Grid.Column="1" Width="120" x:Name="licenseNumber"
-                   Text="{Binding LicenseNumberFormat}" />
+                   Text="{Binding LicenseNumberFormat}" VerticalAlignment="Center" />
                 <Label Width="200"/>
                 <Button Width ="50" x:Name="RideButton" Background="#FFE5D6D6"  IsEnabled="{Binding BusStatus, Converter={StaticResource statusToBoolConverter}}" Content="Drive" Click="rideButton_Click"/>
                 <Label Width="40"/>

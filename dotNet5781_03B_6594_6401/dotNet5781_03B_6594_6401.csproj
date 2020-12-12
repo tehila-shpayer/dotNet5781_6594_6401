@@ -124,7 +124,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="km" />
     <None Include="Properties\DataSources\Bus.datasource" />
     <None Include="Properties\DataSources\dotNet5781_03B_6594_6401.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\dotNet5781_03B_6594_6401.Properties.Settings.datasource" />
@@ -156,6 +155,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="s2a.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ready status.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="not ready status.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="refuel status.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ride status.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="treat status.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
