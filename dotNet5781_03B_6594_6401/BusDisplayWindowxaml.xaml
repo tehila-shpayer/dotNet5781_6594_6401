@@ -40,7 +40,7 @@
             <Label Content="Before Treat KM:" Grid.Column="0" HorizontalAlignment="Left"  Margin="4,4.667,0,4" Grid.Row="5"  Style="{StaticResource propretyLabel}"/>
             <TextBlock x:Name="beforeTreatKMTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,4.667,0,4" Grid.Row="5" Text="{Binding BeforeTreatKM}" VerticalAlignment="Center" Height="32" Width="148" Background="#FFE4E1E1" FontSize="16" FontFamily="Yu Gothic UI Semibold"/>
             <Label Content="Bus Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="4,4.667,0,4" Grid.Row="6"  Style="{StaticResource propretyLabel}"/>
-            <TextBlock x:Name="busStatusTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,4.667,0,4" Grid.Row="6" Text="{Binding BusStatus}" VerticalAlignment="Center" Height="32" Width="148" Background="#FFE4E1E1" FontFamily="Yu Gothic UI Semibold" FontSize="16"/>
+            <TextBlock x:Name="busStatusTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,4.667,0,4" Grid.Row="6" Text="{Binding BusStatus}" Style="{StaticResource infoTextBlock}"/>
             <Label Content="Fuel:" Grid.Column="0" HorizontalAlignment="Left" Margin="4,4,0,3.667" Grid.Row="2"  Style="{StaticResource propretyLabel}"/>
             <TextBlock x:Name="fuelTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,4.667,0,4" Grid.Row="2" Text="{Binding Fuel}" VerticalAlignment="Center" Height="32" Width="148" RenderTransformOrigin="0.5,0.5" Background="#FFE4E1E1" FontSize="16" FontFamily="Yu Gothic UI Semibold"/>
             <Label Content="KM:" Grid.Column="0" HorizontalAlignment="Left" Margin="4,3.333,0,3.333" Grid.Row="3"  Style="{StaticResource propretyLabel}"/>
@@ -55,6 +55,6 @@
         <Label Content="Bus info: " Grid.Row="0" RenderTransformOrigin="0.5,0.5" Margin="0,0,0.333,363" Style="{StaticResource myMainLableStyle}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
         <Button  Grid.Column="1" Grid.Row="2" x:Name="TreatmentButton" Content="Treat" Click="TreatmentButton_Click" IsEnabled="{Binding BusStatus, Converter={StaticResource statusToBoolTreatConverter}}" Margin="21.333,20,100.333,10.333"  FontSize="28" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" RenderTransformOrigin="0.5,0.5"  />
         <Button  Grid.Column="0" Grid.Row="2" x:Name="RefuelButton" Content="Refuel" Click="RefuelButton_Click" IsEnabled="{Binding BusStatus, Converter={StaticResource statusToBoolTreatConverter}}" Margin="98,20,21.667,10.333" FontSize="26" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold"  />
-        <Image Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Height="52" Source="{Binding BusStatus, Converter={StaticResource statusToIconConverter}}" Margin="102,0,82.8,363.6" Grid.RowSpan="2" />
+        <Image Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Height="52" Source="{Binding BusStatus, Converter={StaticResource statusToIconConverter}}" Margin="100,0,84.8,363.6" Grid.RowSpan="2" />
     </Grid>
 </Window>

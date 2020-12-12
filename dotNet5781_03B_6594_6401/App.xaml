@@ -57,9 +57,9 @@
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="FontFamily" Value="Yu Gothic UI Semibold"/>
             <Setter Property="Height" Value="32"/>
-            <Setter Property="Width" Value="148"/>
+            <Setter Property="Width" Value="150"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="FontWeight" Value="Bold"/>
+            
         </Style>
         <Style x:Key="myAddWindowLableStyle" TargetType="Label">
             <Setter Property="Background" Value="#FFFFFF"/>
