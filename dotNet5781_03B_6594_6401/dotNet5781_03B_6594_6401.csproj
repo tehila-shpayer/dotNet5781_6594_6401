@@ -58,9 +58,6 @@
     <Compile Include="BusDisplayWindowxaml.xaml.cs">
       <DependentUpon>BusDisplayWindowxaml.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BusInfoWindow.xaml.cs">
-      <DependentUpon>BusInfoWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="StatusToBoolConverter.cs" />
     <Compile Include="RideWindow.xaml.cs">
       <DependentUpon>RideWindow.xaml</DependentUpon>
@@ -72,10 +69,6 @@
       <DependentUpon>AddBus.xaml</DependentUpon>
     </Compile>
     <Page Include="BusDisplayWindowxaml.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="BusInfoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

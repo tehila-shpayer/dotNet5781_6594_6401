@@ -169,10 +169,10 @@ namespace dotNet5781_03B_6594_6401
         {
             _licenseNumber = num;
             _runningDate = d;
-            _lastTreatment = d;
+            LastTreatment = d;
             Fuel = f;
-            _KM = km;
-            _beforeTreatKM = bt;
+            KM = km;
+            BeforeTreatKM = bt;
             Time = "";
             if (CanDoRide(0))
             {
