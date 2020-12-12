@@ -28,7 +28,11 @@ namespace dotNet5781_03B_6594_6401
         }
         private void addButtonInWindow_Click(object sender, RoutedEventArgs e)
         {
-            if (!(bus.RunningDate.Year >= 1896 && bus.RunningDate.Year <= DateTime.Now.Year))
+            if (bus.LicenseNumber.Length < 7)
+            {
+                MessageBox.Show("Couldn't add bus. invalid information!\n Error: the license number has to be a 7 or 8 digit number!", "Error massege", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else if (!(bus.RunningDate.Year >= 1896 && bus.RunningDate.Year <= DateTime.Now.Year))
             {
                 MessageBox.Show("Couldn't add bus. invalid information!\n Error: Starting date must be after 1896 and before " + DateTime.Now.Year + "!", "Error massege", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }

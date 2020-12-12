@@ -51,7 +51,7 @@ namespace dotNet5781_03B_6594_6401
                 {
                     fuel = 0;
                 }
-                bus = new Bus(new DateTime(year, rand.Next(1, 13), rand.Next(1, 30)), s, fuel, KM, bt);
+                bus = new Bus(s, new DateTime(year, rand.Next(1, 13), rand.Next(1, 30)), fuel, KM, bt);
                 if (i % 6 != 0 && i % 7 != 0)
                 {
                     bus.DoTreatment();
