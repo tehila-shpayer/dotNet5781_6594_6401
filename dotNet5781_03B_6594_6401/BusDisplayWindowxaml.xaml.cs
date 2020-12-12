@@ -25,8 +25,9 @@ namespace dotNet5781_03B_6594_6401
         public BusDisplayWindowxaml(Bus b)
         {
             InitializeComponent();
-            grid1.DataContext = b;
             bus = b;
+            grid1.DataContext = b;
+            DataContext = b;
         }
 
         private void TreatmentButton_Click(object sender, RoutedEventArgs e)
