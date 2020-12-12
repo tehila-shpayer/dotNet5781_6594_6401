@@ -8,9 +8,11 @@
         Title="Bus Display Window" Height="526.667" Width="512.222">
     <!--Icon="{Binding BusStatus, Converter={DynamicResource StatusToIconConverter}}"-->
     <Window.Resources>
-        <local:StatusToIconConverter x:Key="StatusToIconConverter"/>
+        <local:StatusToIconConverter x:Key="statusToIconConverter"/>
         <local:StatusToBoolTreatConverter x:Key="statusToBoolTreatConverter"/>
     </Window.Resources>
+    <!--<Window Icon="{Binding BusStatus, Converter={StaticResource statusToIconConverter}}">-->
+    <!--Icon="{Binding BusStatus, Converter={StaticResource statusToIconConverter}}"-->
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
