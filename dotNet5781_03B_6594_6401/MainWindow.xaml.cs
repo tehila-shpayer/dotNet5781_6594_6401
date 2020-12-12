@@ -83,13 +83,12 @@ namespace dotNet5781_03B_6594_6401
         public void RefuelButton_Click(object sender, RoutedEventArgs e)
         {
             var selectedBus = (sender as Button).DataContext as Bus;
-            Button RefuelButton = (Button)sender;
+            //Button RefuelButton = (Button)sender;
             if (!selectedBus.IsBusBusy())
             {
-                //b.timer.RunWorkerAsync(12);
-                RefuelButton.IsEnabled = false;
+                //RefuelButton.IsEnabled = false;
                 selectedBus.BusStatus = Status.Refueling;
-                selectedBus.pressedButton = RefuelButton;
+                //selectedBus.pressedButton = RefuelButton;
                 selectedBus.activity.RunWorkerAsync(0);
             }
         }
@@ -119,10 +118,10 @@ namespace dotNet5781_03B_6594_6401
             var selectedBus = (sender as Button).DataContext as Bus;
             if (!selectedBus.IsBusBusy())
             {
-                Button rideButton = (Button)sender;
-                rideButton.IsEnabled = false;
+                //Button rideButton = (Button)sender;
+                //rideButton.IsEnabled = false;
                 RideWindow rideWindow = new RideWindow(BusCollection.windowBuses.IndexOf(selectedBus));
-                selectedBus.pressedButton = rideButton;
+                //selectedBus.pressedButton = rideButton;
                 rideWindow.Show();
             }
         }

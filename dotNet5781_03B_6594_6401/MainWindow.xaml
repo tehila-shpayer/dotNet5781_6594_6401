@@ -7,6 +7,8 @@
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToColorConverter"/>
+        <local:StatusToBoolRideConverter x:Key="statusToBoolConverter"/>
+        <local:StatusToBoolTreatConverter x:Key="statusToBoolTreatConverter"/>
         <DataTemplate x:Key="BusTemplate"
                   DataType="local:Bus">
 
@@ -16,9 +18,9 @@
                 <TextBlock Grid.Column="1" Width="120" x:Name="licenseNumber"
                    Text="{Binding LicenseNumberFormat}" />
                 <Label Width="200"/>
-                <Button Width ="50" x:Name="RideButton" Background="#FFE5D6D6"  IsEnabled="{Binding IsAvailibleForRide}" Content="Drive" Click="rideButton_Click"/>
+                <Button Width ="50" x:Name="RideButton" Background="#FFE5D6D6"  IsEnabled="{Binding BusStatus, Converter={StaticResource statusToBoolConverter}}" Content="Drive" Click="rideButton_Click"/>
                 <Label Width="40"/>
-                <Button Width ="50" x:Name="RefuelButton" Content="refuel" Click="RefuelButton_Click"/>
+                <Button Width ="50" x:Name="RefuelButton" Content="refuel" Click="RefuelButton_Click" IsEnabled="{Binding BusStatus, Converter={StaticResource statusToBoolTreatConverter}}"/>
                 <Label Width="40"/>
                 <Label Width="100" x:Name="timeLabel" Content="{Binding Time}"/>
             </StackPanel>

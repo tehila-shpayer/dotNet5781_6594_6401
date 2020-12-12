@@ -126,7 +126,7 @@ namespace dotNet5781_03B_6594_6401
         }
         public void ApdateStatus()
         {
-            if (CanDoRide(0))
+            if (CanDoRide(1))
                 BusStatus = Status.ready;
             else
                 BusStatus = Status.notReady;
@@ -201,7 +201,7 @@ namespace dotNet5781_03B_6594_6401
                 default:
                     { break; }
             }
-            ((Button)e.Result).IsEnabled = true;
+            //((Button)e.Result).IsEnabled = true;
             ApdateStatus();
         }
 
@@ -261,8 +261,8 @@ namespace dotNet5781_03B_6594_6401
             }
             
             activity.ReportProgress((int)e.Argument);
-            Button b = pressedButton;
-            e.Result = b;
+            //Button b = pressedButton;
+            //e.Result = b;
         }
         public bool IsBusBusy() { return activity.IsBusy; }
 
