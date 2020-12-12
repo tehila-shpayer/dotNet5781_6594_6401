@@ -77,7 +77,7 @@ namespace dotNet5781_03B_6594_6401
             switch(statusValue)
             {
                 case Status.notReady:
-                    return "not ready status.jpg";
+                    return "warning-emoji.png";
                 case Status.ready:
                     return "ready status.png";
                 case Status.Refueling:

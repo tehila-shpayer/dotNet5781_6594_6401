@@ -150,16 +150,16 @@
     <Resource Include="s2a.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="ready status.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="not ready status.jpg" />
+    <Resource Include="ride status.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="refuel status.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="ride status.png" />
+    <Resource Include="warning-emoji.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ready status.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="treat status.png" />
