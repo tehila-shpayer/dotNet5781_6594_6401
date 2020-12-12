@@ -13,6 +13,29 @@
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
+        <Style x:Key="propretyLabel" TargetType="Label">
+            <Setter Property="FontFamily" Value="Yu Gothic UI Semibold"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Background" Value="#FFE5D6D6"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Width" Value="175"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style x:Key="propretyTextBox" TargetType="TextBox">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Width" Value="175"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style x:Key="propretyDatePicker" TargetType="DatePicker">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Width" Value="175"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
         <Style x:Key="grayLable" TargetType="Label">
             <Setter Property="Background" Value="#FFDDDDDD"/>
             <Setter Property="FontSize" Value="24"/>

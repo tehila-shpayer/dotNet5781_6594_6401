@@ -16,7 +16,7 @@
             <RowDefinition Height="385*"/>
             <RowDefinition Height="71*"/>
         </Grid.RowDefinitions>
-        <Grid x:Name="grid1"  HorizontalAlignment="Left" Margin="72,27.333,0,0" VerticalAlignment="Top" Height="335" Width="362" Grid.ColumnSpan="2" Grid.Row="1">
+        <Grid x:Name="grid1"  HorizontalAlignment="Left" Margin="72,47.667,0,0" VerticalAlignment="Top" Height="335" Width="362" Grid.ColumnSpan="2" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="188"/>
                 <ColumnDefinition Width="212"/>
@@ -30,23 +30,23 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label Content="Before Treat KM:" Grid.Column="0" HorizontalAlignment="Left"  Margin="4,4.667,0,4" Grid.Row="0" VerticalAlignment="Center" Height="35" Width="175" FontFamily="Yu Gothic UI Semibold" FontSize="16" Background="#FFF1DFDF"/>
-            <TextBlock x:Name="beforeTreatKMTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,4.667,0,4" Grid.Row="0" Text="{Binding BeforeTreatKM}" VerticalAlignment="Center" Height="32" Width="148" Background="#FFE4E1E1" FontSize="16" FontFamily="Yu Gothic UI Semibold"/>
-            <Label Content="Bus Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="4,4.667,0,4" Grid.Row="1" VerticalAlignment="Center" Height="32" Width="175" FontFamily="Yu Gothic UI Semibold" FontSize="16" Background="#FFF1DFDF"/>
-            <TextBlock x:Name="busStatusTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,4.667,0,4" Grid.Row="1" Text="{Binding BusStatus}" VerticalAlignment="Center" Height="32" Width="148" Background="#FFE4E1E1" FontFamily="Yu Gothic UI Semibold" FontSize="16"/>
-            <Label Content="Fuel:" Grid.Column="0" HorizontalAlignment="Left" Margin="4,4,0,3.667" Grid.Row="2" VerticalAlignment="Center" Height="33" Width="175" FontFamily="Yu Gothic UI Semibold" FontSize="16" Background="#FFF1DFDF"/>
+            <Label Content="Before Treat KM:" Grid.Column="0" HorizontalAlignment="Left"  Margin="4,4.667,0,4" Grid.Row="5"  Style="{StaticResource propretyLabel}"/>
+            <TextBlock x:Name="beforeTreatKMTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,4.667,0,4" Grid.Row="5" Text="{Binding BeforeTreatKM}" VerticalAlignment="Center" Height="32" Width="148" Background="#FFE4E1E1" FontSize="16" FontFamily="Yu Gothic UI Semibold"/>
+            <Label Content="Bus Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="4,4.667,0,4" Grid.Row="6"  Style="{StaticResource propretyLabel}"/>
+            <TextBlock x:Name="busStatusTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,4.667,0,4" Grid.Row="6" Text="{Binding BusStatus}" VerticalAlignment="Center" Height="32" Width="148" Background="#FFE4E1E1" FontFamily="Yu Gothic UI Semibold" FontSize="16"/>
+            <Label Content="Fuel:" Grid.Column="0" HorizontalAlignment="Left" Margin="4,4,0,3.667" Grid.Row="2"  Style="{StaticResource propretyLabel}"/>
             <TextBlock x:Name="fuelTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,4.667,0,4" Grid.Row="2" Text="{Binding Fuel}" VerticalAlignment="Center" Height="32" Width="148" RenderTransformOrigin="0.5,0.5" Background="#FFE4E1E1" FontSize="16" FontFamily="Yu Gothic UI Semibold"/>
-            <Label Content="KM:" Grid.Column="0" HorizontalAlignment="Left" Margin="4,3.333,0,3.333" Grid.Row="3" VerticalAlignment="Center" Height="34" Width="175" FontFamily="Yu Gothic UI Semibold" FontSize="16" Background="#FFF1DFDF"/>
+            <Label Content="KM:" Grid.Column="0" HorizontalAlignment="Left" Margin="4,3.333,0,3.333" Grid.Row="3"  Style="{StaticResource propretyLabel}"/>
             <TextBlock x:Name="kMTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,8.667,0,0" Grid.Row="3" Text="{Binding KM}" VerticalAlignment="Top" Height="32" Width="148" Background="#FFE4E1E1" FontFamily="Yu Gothic UI Semibold" FontSize="16"/>
-            <Label Content="Last Treatment:" Grid.Column="0" HorizontalAlignment="Left" Margin="4,3.667,0,4" Grid.Row="4" VerticalAlignment="Center" Height="33" Width="175" FontFamily="Yu Gothic UI Semibold" FontSize="16" Background="#FFF1DFDF"/>
+            <Label Content="Last Treatment:" Grid.Column="0" HorizontalAlignment="Left" Margin="4,3.667,0,4" Grid.Row="4"  Style="{StaticResource propretyLabel}"/>
             <TextBlock x:Name="lastTreatmentTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,4.667,0,4" Grid.Row="4" Text="{Binding LastTreatment}" VerticalAlignment="Center" Height="32" Width="148" Background="#FFE4E1E1" FontSize="16" FontFamily="Yu Gothic UI Semibold"/>
-            <Label Content="License Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="4,0,0,3.667" Grid.Row="5" VerticalAlignment="Bottom" Height="34" Width="175" FontFamily="Yu Gothic UI Semibold" FontSize="16" Background="#FFF1DFDF"/>
-            <TextBlock x:Name="licenseNumberFormatTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,4.667,0,4" Grid.Row="5" Text="{Binding LicenseNumberFormat}" VerticalAlignment="Center" Height="32" Width="148" Background="#FFE4E1E1" FontFamily="Yu Gothic UI Semibold" FontSize="16"/>
-            <Label Content="Running Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="4,3.333,0,4.333" Grid.Row="6" VerticalAlignment="Center" Height="33" Width="175" FontFamily="Yu Gothic UI Semibold" FontSize="16" Background="#FFF1DFDF"/>
-            <TextBlock x:Name="runningDateTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,7.667,0,7.667" Grid.Row="6" Text="{Binding RunningDate}" VerticalAlignment="Center" Height="32" Width="148" Background="#FFE4E1E1" FontFamily="Yu Gothic UI Semibold" FontSize="16"/>
+            <Label Content="License Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="4,0,0,3.667" Grid.Row="0"  Style="{StaticResource propretyLabel}"/>
+            <TextBlock x:Name="licenseNumberFormatTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,4.667,0,4" Grid.Row="0" Text="{Binding LicenseNumberFormat}" VerticalAlignment="Center" Height="32" Width="148" Background="#FFE4E1E1" FontFamily="Yu Gothic UI Semibold" FontSize="16"/>
+            <Label Content="Running Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="4,3.333,0,4.333" Grid.Row="1"  Style="{StaticResource propretyLabel}"/>
+            <TextBlock x:Name="runningDateTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,7.667,0,7.667" Grid.Row="1" Text="{Binding RunningDate}" VerticalAlignment="Center" Height="32" Width="148" Background="#FFE4E1E1" FontFamily="Yu Gothic UI Semibold" FontSize="16"/>
         </Grid>
         <Label Content="Bus info: " Grid.Row="0" RenderTransformOrigin="0.5,0.5" Margin="0,0,0.333,363" Style="{StaticResource myMainLableStyle}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
-        <Button  Grid.Column="1" Grid.Row="2" x:Name="TreatmentButton" Content="Treat" Click="TreatmentButton_Click" Margin="21.333,20,100.333,15.333"  FontSize="30" FontFamily="Sitka Banner" FontWeight="Bold" RenderTransformOrigin="0.5,0.5"  />
-        <Button  Grid.Column="0" Grid.Row="2" x:Name="RefuelButton" Content="Refuel" Click="RefuelButton_Click"  Margin="98,20,21.667,15.333" FontSize="30" FontFamily="Sitka Banner" FontWeight="Bold"  />
+        <Button  Grid.Column="1" Grid.Row="2" x:Name="TreatmentButton" Content="Treat" Click="TreatmentButton_Click" Margin="21.333,20,100.333,10.333"  FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" RenderTransformOrigin="0.5,0.5"  />
+        <Button  Grid.Column="0" Grid.Row="2" x:Name="RefuelButton" Content="Refuel" Click="RefuelButton_Click"  Margin="98,20,21.667,10.333" FontSize="30" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold"  />
     </Grid>
 </Window>
