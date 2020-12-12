@@ -81,7 +81,7 @@ namespace dotNet5781_03B_6594_6401
                 case Status.ready:
                     return "ready status.png";
                 case Status.Refueling:
-                    return "refuel status.jpg";
+                    return "refuel status.png";
                 case Status.Ride:
                     return "ride status.png";
                 case Status.Treatment:
