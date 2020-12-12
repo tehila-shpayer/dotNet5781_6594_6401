@@ -15,7 +15,6 @@
 
             <StackPanel Orientation="Horizontal" x:Name="ListBoxLine">
                 <Image VerticalAlignment="Center" Width="20" Height="20" Source="{Binding BusStatus, Converter={StaticResource StatusToIconConverter}}" />
-                <!--Source="{Binding BusStatus, Converter={StaticResource StatusToIconConverter}}"-->
                 <Label Width="20"/>
                 <TextBlock Text="Bus license number: " VerticalAlignment="Center"/>
                 <TextBlock Grid.Column="1" Width="120" x:Name="licenseNumber"
@@ -30,22 +29,46 @@
         </DataTemplate>
     </Window.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="75*"/>
             <RowDefinition Height="60*"/>
             <RowDefinition Height="313*"/>
             <RowDefinition Height="57*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="addButton" Click="addButton_Click" Content="add bus" Grid.Row="3" FontSize="30" FontFamily="Showcard Gothic" Margin="0"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+        <Button  x:Name="addButton" Click="addButton_Click" Content="add bus" Grid.Row="3" Style="{StaticResource Buttons}" HorizontalAlignment="Stretch" Height="58" Margin="0,0,-0.333,0" FontSize="30"/>
         <ListBox x:Name="busesList" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" Grid.Row="1" Margin="0,56,0.667,56" MouseDoubleClick="busesList_MouseDoubleClick" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.RowSpan="3" />
         <Label Content="Buses in the system: " Grid.Row="0" RenderTransformOrigin="0.5,0.5" Margin="0,0,0.333,0.333" Style="{StaticResource myMainLableStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-        <Label Content="Search a bus:" FontSize="18" Style="{StaticResource myMainLableStyle}"  Background="White" Margin="36,4,522.667,5.667" Grid.Row="1"/>
+        <Label Content="Search a bus:" FontSize="18" Style="{StaticResource myMainLableStyle}"  Background="White" Margin="2,4,556.667,5.667" Grid.Row="1"/>
 
-        <TextBox x:Name="searchBox" FontSize="16" TextChanged="SearchBox_TextChanged" Margin="236,10,110.667,9.667" Grid.Row="1" />
-        
-        <Image HorizontalAlignment="Left" Height="34" Margin="639,13,0,0" Grid.Row="1" VerticalAlignment="Top" Width="29" Source="s2a.png"/>
+        <TextBox x:Name="searchBox" FontSize="16" TextChanged="SearchBox_TextChanged" Margin="196,10,150.667,9.667" Grid.Row="1" />
+        <CheckBox x:Name="IconKeyCheckBox" Content="view Icon Key" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="654,20,9.667,15.667" Grid.Row="1" Height="25" />
+        <Image HorizontalAlignment="Left" Height="34" Margin="597,13,0,0" Grid.Row="1" VerticalAlignment="Top" Width="29" Source="s2a.png"/>
+        <Popup Margin="654,72,0,0" Name="Popup1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="96" Height="102" IsOpen="{Binding ElementName=IconKeyCheckBox, Path=IsChecked}" AllowsTransparency = "True" PlacementTarget="{Binding ElementName=IconKeyCheckBox}" Grid.RowSpan="3">
+            <StackPanel Margin="0,3,0,-28" Background="#FFDDDDDD">
+                <TextBlock Name="ready" >
+                    <StackPanel Orientation="Horizontal">
+                    <Image  Width="20" Source="ready status.png" />
+                    <TextBlock Text="   Ready" Height="16"/>
+                        </StackPanel>
+                </TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <Image  Width="20" Source="warning-emoji.png" />
+                    <TextBlock Text="   Not Ready" Height="16"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Image  Width="20" Source="refuel status.png" />
+                    <TextBlock Text="   Refueling" Height="16"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Image  Width="20" Source="treat status.png" />
+                    <TextBlock Text="   Treated" Height="16"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Image  Width="20" Source="ride status.png" />
+                    <TextBlock Text="   Driving" Height="16"/>
+                </StackPanel>
+            </StackPanel>
+        </Popup>
     </Grid>
 </Window>
     

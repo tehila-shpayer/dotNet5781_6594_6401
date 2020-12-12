@@ -44,5 +44,11 @@
             <Setter Property="Width" Value="150"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
+        <Style x:Key="Buttons" TargetType="Button">
+            <Setter Property="Background" Value="#FFDDDDDD"/>
+            <Setter Property="FontFamily" Value="Tahoma"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
     </Application.Resources>
 </Application>

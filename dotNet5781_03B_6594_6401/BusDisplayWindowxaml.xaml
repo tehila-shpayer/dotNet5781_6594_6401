@@ -53,8 +53,8 @@
             <TextBlock x:Name="runningDateTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,7.667,0,7.667" Grid.Row="1" Text="{Binding RunningDate}" VerticalAlignment="Center" Height="32" Width="148" Background="#FFE4E1E1" FontFamily="Yu Gothic UI Semibold" FontSize="16"/>
         </Grid>
         <Label Content="Bus info: " Grid.Row="0" RenderTransformOrigin="0.5,0.5" Margin="0,0,0.333,363" Style="{StaticResource myMainLableStyle}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
-        <Button  Grid.Column="1" Grid.Row="2" x:Name="TreatmentButton" Content="Treat" Click="TreatmentButton_Click" IsEnabled="{Binding BusStatus, Converter={StaticResource statusToBoolTreatConverter}}" Margin="21.333,20,100.333,10.333"  FontSize="28" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold" RenderTransformOrigin="0.5,0.5"  />
-        <Button  Grid.Column="0" Grid.Row="2" x:Name="RefuelButton" Content="Refuel" Click="RefuelButton_Click" IsEnabled="{Binding BusStatus, Converter={StaticResource statusToBoolTreatConverter}}" Margin="98,20,21.667,10.333" FontSize="26" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold"  />
+        <Button  Grid.Column="1" Grid.Row="2" x:Name="TreatmentButton" Content="Treat" Click="TreatmentButton_Click" IsEnabled="{Binding BusStatus, Converter={StaticResource statusToBoolTreatConverter}}" Margin="21.333,20.639,110.333,10.694"  FontSize="28"  Style="{StaticResource Buttons}" RenderTransformOrigin="0.5,0.5" Height="38"  />
+        <Button  Grid.Column="0" Grid.Row="2" x:Name="RefuelButton" Content="Refuel" Click="RefuelButton_Click" IsEnabled="{Binding BusStatus, Converter={StaticResource statusToBoolTreatConverter}}" Margin="103,21,24.667,10.333" FontSize="28" Style="{StaticResource Buttons}" Height="38"/>
         <Image Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Height="52" Source="{Binding BusStatus, Converter={StaticResource statusToIconConverter}}" Margin="100,0,84.8,363.6" Grid.RowSpan="2" />
     </Grid>
 </Window>
