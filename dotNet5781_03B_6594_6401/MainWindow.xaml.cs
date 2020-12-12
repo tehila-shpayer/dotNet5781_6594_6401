@@ -73,12 +73,8 @@ namespace dotNet5781_03B_6594_6401
             RandomInitializationBus();
             DataContext = busesList;
             InitializeComponent();
-            //Bus bus = new Bus();
-            //BusDisplayWindowxaml w = new BusDisplayWindowxaml(BusCollection.windowBuses[0]);
-            //w.ShowDialog();
             busesList.DataContext = BusCollection.windowBuses;
             busesList.SelectedIndex = 0;
-            
         }
         public void RefuelButton_Click(object sender, RoutedEventArgs e)
         {

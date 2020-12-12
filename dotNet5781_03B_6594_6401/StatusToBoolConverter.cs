@@ -65,6 +65,39 @@ namespace dotNet5781_03B_6594_6401
             throw new NotImplementedException();
         }
     }
+    public class StatusToIconConverter : IValueConverter
+    {
+        public object Convert(
+      object value,
+      Type targetType,
+      object parameter,
+      CultureInfo culture)
+        {
+            Status statusValue = (Status)value;
+            switch(statusValue)
+            {
+                case Status.notReady:
+                    return "not ready status.jpg";
+                case Status.ready:
+                    return "ready status.png";
+                case Status.Refueling:
+                    return "refuel status.jpg";
+                case Status.Ride:
+                    return "ride status.png";
+                case Status.Treatment:
+                    return "treat status.png";
+                default: return "Fasticon-Happy-Bus-Bus-orange.ico";
+            }
+        }
+        public object ConvertBack(
+        object value,
+        Type targetType,
+        object parameter,
+        CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 
 
 }

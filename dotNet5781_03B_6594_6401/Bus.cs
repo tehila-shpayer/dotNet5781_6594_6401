@@ -311,20 +311,10 @@ namespace dotNet5781_03B_6594_6401
         /// <param name="rideKM"></param>
         /// <returns>The appropriate message for wether the ride happened or not and why</returns>
         public void Ride(int RideKM)
-        {//Check if the ride is allowed and sending messages accordingly
-           // if ((_fuel < rideKM) && (NeedTreatment()))
-           //     IsAvailibleForRide = false;
-           //     //return "The system couldn't take this bus for the ride.\nThe bus doesn't have enough fuel and must to be treated first.\n";
-           // if (_fuel < rideKM)
-           //     IsAvailibleForRide = false;
-           //// return "The system couldn't take this bus for the ride.\nThe bus doesn't have enough fuel\n";
-           // if (NeedTreatment())
-           //     IsAvailibleForRide = false;
-            //return "The system couldn't take this bus for the ride.\nThe bus must to be treated first.\n";
+        {
             Fuel -= RideKM; //update of fields if the ride happened
             KM += RideKM;
             BeforeTreatKM += RideKM;
-            //return "Have a nice ride!\n";
         }
         public bool CanDoRide(int KMtoRide)
         {
