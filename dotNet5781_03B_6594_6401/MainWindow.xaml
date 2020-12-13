@@ -41,9 +41,9 @@
         <Label Content="Buses in the system: " Grid.Row="0" RenderTransformOrigin="0.5,0.5" Margin="0,0,0.333,0.333" Style="{StaticResource myMainLableStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
         <Label Content="Search a bus:" FontSize="18" Style="{StaticResource myMainLableStyle}"  Background="White" Margin="2,4,556.667,5.667" Grid.Row="1"/>
 
-        <TextBox x:Name="searchBox" FontSize="16" TextChanged="SearchBox_TextChanged" Margin="196,10,150.667,9.667" Grid.Row="1" />
-        <CheckBox x:Name="IconKeyCheckBox" Content="view Icon Key" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="654,20,9.667,15.667" Grid.Row="1" Height="25" />
-        <Image HorizontalAlignment="Left" Height="34" Margin="597,13,0,0" Grid.Row="1" VerticalAlignment="Top" Width="29" Source="s2a.png"/>
+        <TextBox x:Name="searchBox" FontSize="16" TextChanged="SearchBox_TextChanged" Margin="196,10,203.6,9.8" Grid.Row="1" />
+        <CheckBox x:Name="IconKeyCheckBox" Content="view Icon Key" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="622,13,41.6,12.8" Grid.Row="1" Height="35" FontSize="16" />
+        <Image HorizontalAlignment="Left" Height="34" Margin="551,13,0,0" Grid.Row="1" VerticalAlignment="Top" Width="29" Source="s2a.png"/>
         <Popup Margin="654,72,0,0" Name="Popup1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="96" Height="102" IsOpen="{Binding ElementName=IconKeyCheckBox, Path=IsChecked}" AllowsTransparency = "True" PlacementTarget="{Binding ElementName=IconKeyCheckBox}" Grid.RowSpan="3">
             <StackPanel Margin="0,3,0,-28" Background="#FFDDDDDD">
                 <TextBlock Name="ready" >
