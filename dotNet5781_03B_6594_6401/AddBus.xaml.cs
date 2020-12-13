@@ -28,7 +28,7 @@ namespace dotNet5781_03B_6594_6401
         }
         private void addButtonInWindow_Click(object sender, RoutedEventArgs e)
         {
-            if (bus.LicenseNumber.Length < 7)
+            if (bus.LicenseNumber.Length < 7 || bus.LicenseNumber.Length>8)
             {
                 MessageBox.Show("Couldn't add bus. invalid information!\n Error: the license number has to be a 7 or 8 digit number!", "Error massege", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
