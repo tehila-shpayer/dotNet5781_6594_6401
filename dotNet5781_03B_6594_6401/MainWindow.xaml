@@ -3,7 +3,7 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-       xmlns:local="clr-namespace:dotNet5781_03B_6594_6401" Width="800" Height="540" ResizeMode="CanMinimize" Icon="Fasticon-Happy-Bus-Bus-orange.ico">
+       xmlns:local="clr-namespace:dotNet5781_03B_6594_6401" Width="800" Height="540" Icon="Fasticon-Happy-Bus-Bus-orange.ico">
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToColorConverter"/>
@@ -14,18 +14,18 @@
                   DataType="local:Bus">
 
             <StackPanel Orientation="Horizontal" x:Name="ListBoxLine">
+                <Label Width="20"/>
                 <Image VerticalAlignment="Center" Width="20" Height="20" Source="{Binding BusStatus, Converter={StaticResource StatusToIconConverter}}"  />
                 <!--Source="{Binding BusStatus, Converter={StaticResource StatusToIconConverter}}"-->
                 <Label Width="20"/>
-                <TextBlock Text="Bus license number: " VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="1" Width="120" x:Name="licenseNumber"
-                   Text="{Binding LicenseNumberFormat}" VerticalAlignment="Center" />
-                <Label Width="200"/>
+                <TextBlock Text="Bus license number:  " VerticalAlignment="Center" FontSize="14"/>
+                <TextBlock x:Name="licenseNumber" Grid.Column="1" Width="120" Text="{Binding LicenseNumberFormat}" FontSize="14" VerticalAlignment="Center" />
+                <Label Width="20"/>
                 <Button Width ="50" x:Name="RideButton" Background="#FFE5D6D6"  IsEnabled="{Binding BusStatus, Converter={StaticResource statusToBoolConverter}}" Content="Drive" Click="rideButton_Click"/>
-                <Label Width="40"/>
+                <Label Width="30"/>
                 <Button Width ="50" x:Name="RefuelButton" Content="refuel" Click="RefuelButton_Click" IsEnabled="{Binding BusStatus, Converter={StaticResource statusToBoolTreatConverter}}"/>
-                <Label Width="40"/>
-                <Label Width="100" x:Name="timeLabel" Content="{Binding Time}"/>
+                <Label Width="30"/>
+                <Label Width="140" x:Name="timeLabel" Content="{Binding Time}" FontSize="14"/>
             </StackPanel>
         </DataTemplate>
     </Window.Resources>
@@ -42,10 +42,8 @@
         <ListBox x:Name="busesList" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" Grid.Row="1" Margin="0,56,0.667,56" MouseDoubleClick="busesList_MouseDoubleClick" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.RowSpan="3" />
         <Label Content="Buses in the system: " Grid.Row="0" RenderTransformOrigin="0.5,0.5" Margin="0,0,0.333,0.333" Style="{StaticResource myMainLableStyle}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
         <Label Content="Search a bus:" FontSize="18" Style="{StaticResource myMainLableStyle}"  Background="White" Margin="36,4,522.667,5.667" Grid.Row="1"/>
-
-        <TextBox x:Name="searchBox" FontSize="16" TextChanged="SearchBox_TextChanged" Margin="236,10,110.667,9.667" Grid.Row="1" />
-        
-        <Image HorizontalAlignment="Left" Height="34" Margin="639,13,0,0" Grid.Row="1" VerticalAlignment="Top" Width="29" Source="s2a.png"/>
+        <TextBox x:Name="searchBox" FontSize="16" TextChanged="SearchBox_TextChanged" Margin="236,10,235.6,9.8" Grid.Row="1" />
+        <Image HorizontalAlignment="Left" Height="34" Margin="519,13,0,0" Grid.Row="1" VerticalAlignment="Top" Width="29" Source="s2a.png"/>
     </Grid>
 </Window>
     

@@ -30,7 +30,7 @@ namespace dotNet5781_03B_6594_6401
         {
             Random rand = new Random(DateTime.Now.Millisecond);
             Bus bus = new Bus();
-            for (int i = 1; i <= 12; i++)
+            for (int i = 1; i <= 10; i++)
             {
                 String s;
                 int year;
@@ -114,8 +114,6 @@ namespace dotNet5781_03B_6594_6401
             var selectedBus = (sender as Button).DataContext as Bus;
             if (!selectedBus.IsBusBusy())
             {
-                //Button rideButton = (Button)sender;
-                //rideButton.IsEnabled = false;
                 RideWindow rideWindow = new RideWindow(BusCollection.windowBuses.IndexOf(selectedBus));
                 //selectedBus.pressedButton = rideButton;
                 rideWindow.Show();
