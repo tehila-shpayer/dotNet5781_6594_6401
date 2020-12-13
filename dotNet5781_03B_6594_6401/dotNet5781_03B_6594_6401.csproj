@@ -62,9 +62,6 @@
     <Compile Include="RideWindow.xaml.cs">
       <DependentUpon>RideWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddBusWindow.xaml.cs">
-      <DependentUpon>AddBusWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="AddBus.xaml.cs">
       <DependentUpon>AddBus.xaml</DependentUpon>
     </Compile>
@@ -87,10 +84,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="RideWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AddBusWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -153,9 +146,6 @@
     <Resource Include="ride status.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="refuel status.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="warning-emoji.png" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +153,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="treat status.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="refuel status.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

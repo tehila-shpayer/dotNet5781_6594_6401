@@ -39,7 +39,7 @@
             <DatePicker x:Name="runningDateDatePicker" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" SelectedDate="{Binding RunningDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Style="{StaticResource propretyDatePicker}" Margin="10" />
         </Grid>
         <Label Content="Adding Bus" Style="{StaticResource myMainLableStyle}"/>
-        <Button x:Name="addButtonInWindow" Content="Click here to add!" Click="addButtonInWindow_Click"  FontSize="26" FontFamily="Yu Gothic UI Semibold" Margin="108,368,99.933,13.4" Background="#FFEBE9E9" FontWeight="ExtraBold" Grid.Row="1"/>
+        <Button x:Name="addButtonInWindow" Content="Click here to add!" Click="addButtonInWindow_Click"  FontSize="26" Margin="108,368,99.933,13.4" Grid.Row="1" Style="{StaticResource Buttons}"/>
     </Grid>
     <Window.Resources>
     </Window.Resources>
