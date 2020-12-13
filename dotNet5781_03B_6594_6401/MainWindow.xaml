@@ -3,7 +3,7 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-       xmlns:local="clr-namespace:dotNet5781_03B_6594_6401" Width="800" Height="540" Icon="Fasticon-Happy-Bus-Bus-orange.ico">
+       xmlns:local="clr-namespace:dotNet5781_03B_6594_6401" Width="800" Height="540" ResizeMode="CanMinimize" Icon="Fasticon-Happy-Bus-Bus-orange.ico">
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToColorConverter"/>
@@ -14,7 +14,7 @@
                   DataType="local:Bus">
 
             <StackPanel Orientation="Horizontal" x:Name="ListBoxLine">
-                <Label Width="20"/>
+                <Label Width="10"/>
                 <Image VerticalAlignment="Center" Width="20" Height="20" Source="{Binding BusStatus, Converter={StaticResource StatusToIconConverter}}"  />
                 <!--Source="{Binding BusStatus, Converter={StaticResource StatusToIconConverter}}"-->
                 <Label Width="20"/>

@@ -25,7 +25,6 @@ namespace dotNet5781_03B_6594_6401
             else
             {
                 return false;
-                //return Visibility.Visible;
             }
         }
         public object ConvertBack(
@@ -53,7 +52,6 @@ namespace dotNet5781_03B_6594_6401
             else
             {
                 return false;
-                //return Visibility.Visible;
             }
         }
         public object ConvertBack(
