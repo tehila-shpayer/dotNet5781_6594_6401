@@ -58,7 +58,7 @@
     <Compile Include="BusDisplayWindowxaml.xaml.cs">
       <DependentUpon>BusDisplayWindowxaml.xaml</DependentUpon>
     </Compile>
-    <Compile Include="StatusToBoolConverter.cs" />
+    <Compile Include="OurConverter.cs" />
     <Compile Include="RideWindow.xaml.cs">
       <DependentUpon>RideWindow.xaml</DependentUpon>
     </Compile>
