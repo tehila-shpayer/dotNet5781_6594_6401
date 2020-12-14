@@ -151,7 +151,7 @@ namespace dotNet5781_03B_6594_6401
                 {
                     bus.Visibility = Visibility.Visible;
                 }
-                else
+                else 
                     bus.Visibility = Visibility.Collapsed;
             }
         }
