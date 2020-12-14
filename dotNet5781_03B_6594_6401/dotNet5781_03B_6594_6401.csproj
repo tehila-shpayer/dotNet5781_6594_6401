@@ -123,22 +123,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="2020-11-26.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="wireshark 5.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Fasticon-Happy-Bus-Bus-orange.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="32443.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="search.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="s2.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="s2a.png" />

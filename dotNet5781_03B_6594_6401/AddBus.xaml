@@ -41,6 +41,4 @@
         <Label Content="Adding Bus" Style="{StaticResource myMainLableStyle}"/>
         <Button x:Name="addButtonInWindow" Width="280" Height="40" Content="Click here to add!" Click="addButtonInWindow_Click"  FontSize="22" Margin="108,368,99.933,13.4" Grid.Row="1" Style="{StaticResource Buttons}"/>
     </Grid>
-    <Window.Resources>
-    </Window.Resources>
 </Window>
