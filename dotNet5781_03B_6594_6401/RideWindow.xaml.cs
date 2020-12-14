@@ -24,40 +24,13 @@ namespace dotNet5781_03B_6594_6401
         public RideWindow(int index)
         {
             InitializeComponent();
-            DataContext = index;
+            DataContext = index;//The index of the bus that going to ride
         }
-        //private void Rider_DoWork(object sender, DoWorkEventArgs e)
-        //{
-        //    rider.ReportProgress(0);
-        //    int KM = (int)e.Argument;
-        //    Random rnd = new Random();
-        //    double time =(double) KM / rnd.Next(30, 60);
-        //    int timeToSleep = (int)(time * 6000);
-        //    Thread.Sleep(timeToSleep);
-        //    rider.ReportProgress(KM);
-        //}
-        //private void Rider_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        //{
-        //    int index = (int)DataContext;
-        //    int KM = e.ProgressPercentage;
-        //    if (KM == 0)
-        //    {
-        //        BusCollection.windowBuses[index].BusStatus = Status.Ride;
-        //    }
-        //    else
-        //        BusCollection.windowBuses[index].Ride(KM);
-        //}
-        //private void Rider_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        //{
-        //    String s = "Bus " + BusCollection.windowBuses[(int)DataContext].GetLicenseNumberFormat() + " has successfully finished the ride!";
-        //    MessageBox.Show(s, "Ride Massage", MessageBoxButton.OK, MessageBoxImage.Information);
-        //}
-
         private void KM_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             GeneralPerviewKeyDown(sender, e);
         }
-        public static void GeneralPerviewKeyDown(object sender, KeyEventArgs e)
+        public static void GeneralPerviewKeyDown(object sender, KeyEventArgs e)//allow to enter only digits to the textBox
         {
             TextBox t = sender as TextBox;
             if (t == null) return;
@@ -69,10 +42,10 @@ namespace dotNet5781_03B_6594_6401
                 if (!Keyboard.IsKeyDown(Key.LeftShift) && !Keyboard.IsKeyDown(Key.RightShift))
                     return;
             }
-            e.Handled = true;
+            e.Handled = true;//if it is not a digit or a control key, the letter would not be writen
             return;
         }
-        private void KM_KeyDown(object sender, KeyEventArgs e)
+        private void KM_KeyDown(object sender, KeyEventArgs e)//make the ride when 
         {
             TextBox t = sender as TextBox;
             if (t == null) return;
@@ -97,8 +70,7 @@ namespace dotNet5781_03B_6594_6401
                     MessageBox.Show(message, "Ride Message", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-
-                //rider.RunWorkerAsync(KM);
+                //if the ride can be done:
                 Bus b = BusCollection.windowBuses[(int)DataContext];
                 b.BusStatus = Status.Ride;
                 b.activity.RunWorkerAsync(KM); 

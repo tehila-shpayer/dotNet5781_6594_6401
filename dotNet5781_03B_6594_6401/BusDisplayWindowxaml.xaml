@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_6594_6401"
         mc:Ignorable="d"
-        Title="Bus Display Window" Height="526.667" Width="512.222" Icon="Fasticon-Happy-Bus-Bus-orange.ico" >
+        Title="Bus Display Window" Height="550.667" Width="512.222" Icon="Fasticon-Happy-Bus-Bus-orange.ico" ResizeMode="CanMinimize" >
     <!--Icon="{Binding BusStatus, Converter={DynamicResource StatusToIconConverter}}"-->
     <Window.Resources>
         <local:StatusToIconConverter x:Key="statusToIconConverter"/>
@@ -19,11 +19,12 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="41*"/>
-            <RowDefinition Height="385*"/>
-            <RowDefinition Height="71*"/>
+            <RowDefinition Height="63*"/>
+            <RowDefinition Height="42*"/>
+            <RowDefinition Height="344*"/>
+            <RowDefinition Height="72*"/>
         </Grid.RowDefinitions>
-        <Grid x:Name="grid1"  HorizontalAlignment="Left" Margin="72,47.667,0,0" VerticalAlignment="Top" Height="335" Width="362" Grid.ColumnSpan="2" Grid.Row="1">
+        <Grid x:Name="grid1"  HorizontalAlignment="Left" Margin="72,4.8,0,0" VerticalAlignment="Top" Height="335" Width="362" Grid.ColumnSpan="2" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="188"/>
                 <ColumnDefinition Width="212"/>
@@ -52,9 +53,10 @@
             <Label Content="Running Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="4,3.333,0,4.333" Grid.Row="1"  Style="{StaticResource propretyLabel}"/>
             <TextBlock x:Name="runningDateTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,7.667,0,7.667" Grid.Row="1" Text="{Binding RunningDate}" VerticalAlignment="Center" Height="32" Width="148" Background="#FFE4E1E1" FontFamily="Yu Gothic UI Semibold" FontSize="16"/>
         </Grid>
-        <Label Content="Bus info: " Grid.Row="0" RenderTransformOrigin="0.5,0.5" Margin="0,0,0.333,363" Style="{StaticResource myMainLableStyle}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
-        <Button  Grid.Column="1" Grid.Row="2" x:Name="TreatmentButton" Content="Treat" Click="TreatmentButton_Click" IsEnabled="{Binding BusStatus, Converter={StaticResource statusToBoolTreatConverter}}" Margin="21.333,20.639,110.333,10.694"  FontSize="28"  Style="{StaticResource Buttons}" RenderTransformOrigin="0.5,0.5" Height="38"  />
-        <Button  Grid.Column="0" Grid.Row="2" x:Name="RefuelButton" Content="Refuel" Click="RefuelButton_Click" IsEnabled="{Binding BusStatus, Converter={StaticResource statusToBoolTreatConverter}}" Margin="103,21,24.667,10.333" FontSize="28" Style="{StaticResource Buttons}" Height="38"/>
-        <Image Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Height="52" Source="{Binding BusStatus, Converter={StaticResource statusToIconConverter}}" Margin="100,0,84.8,363.6" Grid.RowSpan="2" />
+        <Label Content="Bus info: " Grid.Row="0" RenderTransformOrigin="0.5,0.5" Margin="0,0,0.6,37.8" Style="{StaticResource myMainLableStyle}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+        <Button  Grid.Column="1" Grid.Row="3" x:Name="TreatmentButton" Content="Treat" Click="TreatmentButton_Click" IsEnabled="{Binding BusStatus, Converter={StaticResource statusToBoolTreatConverter}}" FontSize="22" Style="{StaticResource Buttons}" Height="34" Margin="23.2,19.2,103.6,18.8"/>
+        <Button  Grid.Column="0" Grid.Row="3" x:Name="RefuelButton" Content="Refuel" Click="RefuelButton_Click" IsEnabled="{Binding BusStatus, Converter={StaticResource statusToBoolTreatConverter}}" FontSize="22" Style="{StaticResource Buttons}" Height="34" Margin="110,19.2,21.8,18.8"/>
+        <Image Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Height="52" Source="{Binding BusStatus, Converter={StaticResource statusToIconConverter}}" Margin="102,8,86.8,3.2"  />
+        <Label Width="220" x:Name="timeLabel" Grid.Row="1" VerticalContentAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding Time}" FontSize="20" FontWeight="Bold" Margin="157,3.8,128.6,2.8"/>
     </Grid>
 </Window>

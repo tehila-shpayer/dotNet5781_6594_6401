@@ -19,7 +19,7 @@ namespace dotNet5781_03B_6594_6401
     public enum Status { ready, notReady, Ride, Refueling, Treatment}
     public class Bus :INotifyPropertyChanged
     {
-        
+        //Bus fields:
         string _licenseNumber = "";
         DateTime _runningDate = new DateTime(2000, 1, 1);
         DateTime _lastTreatment = new DateTime(2000, 1, 1);
@@ -28,12 +28,13 @@ namespace dotNet5781_03B_6594_6401
         int _beforeTreatKM = 0;
         Status _busStatus;
 
-        public BackgroundWorker activity;      
+        public BackgroundWorker activity;    
         public BackgroundWorker timer;
         String _time;
-        bool _isAvailibleForRide;
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
+        //Bus properties:
         public string LicenseNumber
         {
             get { return _licenseNumber; }
@@ -45,6 +46,8 @@ namespace dotNet5781_03B_6594_6401
             get { return _runningDate; }
             set { _runningDate = value; }
         }
+
+        //Bus dependency properties:
         public DateTime LastTreatment
         {
             get { return _lastTreatment; }
@@ -90,7 +93,7 @@ namespace dotNet5781_03B_6594_6401
             }
         }
         
-        public String Time
+        public String Time//Shows the time left until the bus is ready
         {
             get { return _time; }
             set {
@@ -101,19 +104,7 @@ namespace dotNet5781_03B_6594_6401
                 }
             }
         }
-        
-        
-        public Button pressedButton { get; set; }
-        public bool IsAvailibleForRide 
-        {
-            get
-            {
-                if (_fuel == 0 || NeedTreatment())
-                    return false;
-                else
-                    return true;
-            }
-        }
+       
         public Status BusStatus
         {
             get { return _busStatus; }
@@ -124,35 +115,8 @@ namespace dotNet5781_03B_6594_6401
                 }
             }
         }
-        public void ApdateStatus()
-        {
-            if (CanDoRide(1))
-                BusStatus = Status.ready;
-            else
-                BusStatus = Status.notReady;
-        }
-        
-        /// <summary>
-        /// returns the license number in the format
-        /// xxx-xx-xx or xx-xxx-xx (depends on start date)
-        /// </summary>
-        /// <returns></returns>
-        public string GetLicenseNumberFormat()
-        {
-            string s = _licenseNumber;
-            //if (_runningDate.Year >= 2018)
-            if (s.Length == 8)
-            {
-                s = $"{s[0]}{s[1]}{s[2]}-{s[3]}{s[4]}-{s[5]}{s[6]}{s[7]}";
-            }
-            else
-            {
-                s = $"{s[0]}{s[1]}-{s[2]}{s[3]}{s[4]}-{s[5]}{s[6]}";
-            }
-            return s;
-        }
         //constructors
-        public Bus()
+        public Bus()//default ctor
         {
             activity = new BackgroundWorker();
             activity.DoWork += Activity_DoWork;
@@ -165,7 +129,7 @@ namespace dotNet5781_03B_6594_6401
             timer.RunWorkerCompleted += Timer_RunWorkerCompleted;
             timer.WorkerReportsProgress = true;
         }
-        public Bus(string num, DateTime d = new DateTime(), int f=0,int km=0,int bt=0)
+        public Bus(string num, DateTime d = new DateTime(), int f = 0, int km = 0, int bt = 0)//parameters ctor
         {
             _licenseNumber = num;
             _runningDate = d;
@@ -192,34 +156,66 @@ namespace dotNet5781_03B_6594_6401
             timer.WorkerReportsProgress = true;
         }
 
-        private void Activity_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        //Bus Methodes:
+        public void ApdateStatus()//update the status of the bus
+        {
+            if (CanDoRide(1))
+                BusStatus = Status.ready;
+            else
+                BusStatus = Status.notReady;
+        }
+        
+        /// <summary>
+        /// returns the license number in the format
+        /// xxx-xx-xx or xx-xxx-xx (depends on start date)
+        /// </summary>
+        /// <returns></returns>
+        public string GetLicenseNumberFormat()
+        {
+            string s = _licenseNumber;
+            //if (_runningDate.Year >= 2018)
+            if (s.Length == 8)
+            {
+                s = $"{s[0]}{s[1]}{s[2]}-{s[3]}{s[4]}-{s[5]}{s[6]}{s[7]}";
+            }
+            else
+            {
+                s = $"{s[0]}{s[1]}-{s[2]}{s[3]}{s[4]}-{s[5]}{s[6]}";
+            }
+            return s;
+        }
+        private void Activity_DoWork(object sender, DoWorkEventArgs e)//do the ride, treatment or refueling and sleep for the required time
         {
             switch (BusStatus)
             {
                 case Status.Refueling:
                     {
-                        MessageBox.Show("Refuel proccess has successfully ended!", "Fuel Massage", MessageBoxButton.OK, MessageBoxImage.Information);
+                        timer.RunWorkerAsync(12);
+                        Thread.Sleep(12000);
                         break;
                     }
                 case Status.Treatment:
                     {
-                        MessageBox.Show("Treating proccess has successfully ended!", "Treatment Massage", MessageBoxButton.OK, MessageBoxImage.Information);
+                        timer.RunWorkerAsync(144);
+                        Thread.Sleep(144000);
                         break;
                     }
                 case Status.Ride:
                     {
-                        String s = "Bus " + GetLicenseNumberFormat() + " has successfully finished the ride!";
-                        MessageBox.Show(s, "Ride Massage", MessageBoxButton.OK, MessageBoxImage.Information);
+                        int KMride = (int)e.Argument;
+                        Random rnd = new Random();
+                        double Hours = (double)KMride / rnd.Next(20, 50);
+                        int secondToSleep = (int)(Hours * 6);//the ride time
+                        timer.RunWorkerAsync(secondToSleep);
+                        Thread.Sleep(secondToSleep * 1000);
                         break;
                     }
                 default:
                     { break; }
             }
-            //((Button)e.Result).IsEnabled = true;
-            ApdateStatus();
+            activity.ReportProgress((int)e.Argument);
         }
-
-        private void Activity_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void Activity_ProgressChanged(object sender, ProgressChangedEventArgs e)//do the ride, treatment or refueling
         {
             switch (BusStatus)
             {
@@ -243,49 +239,38 @@ namespace dotNet5781_03B_6594_6401
             }
             
         }
-
-        private void Activity_DoWork(object sender, DoWorkEventArgs e)
+        private void Activity_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             switch (BusStatus)
             {
                 case Status.Refueling:
                     {
-                        timer.RunWorkerAsync(6);
-                        Thread.Sleep(6000);
+                        MessageBox.Show("Refuel proccess has successfully ended!", "Fuel Massage", MessageBoxButton.OK, MessageBoxImage.Information);
                         break;
                     }
                 case Status.Treatment:
                     {
-                        timer.RunWorkerAsync(13);
-                        Thread.Sleep(13000);
+                        MessageBox.Show("Treating proccess has successfully ended!", "Treatment Massage", MessageBoxButton.OK, MessageBoxImage.Information);
                         break;
                     }
                 case Status.Ride:
                     {
-                        int KMride = (int)e.Argument;
-                        Random rnd = new Random();
-                        double Hours = (double) KMride/ rnd.Next(20, 50);
-                        int secondToSleep = (int)(Hours * 6);
-                        timer.RunWorkerAsync(secondToSleep);
-                        Thread.Sleep(secondToSleep*1000);
+                        String s = "Bus " + GetLicenseNumberFormat() + " has successfully finished the ride!";
+                        MessageBox.Show(s, "Ride Massage", MessageBoxButton.OK, MessageBoxImage.Information);
                         break;
                     }
                 default:
                     { break; }
             }
-            
-            activity.ReportProgress((int)e.Argument);
-            //Button b = pressedButton;
-            //e.Result = b;
+            ApdateStatus();//after any ride, refueling or treatment the status is updated
         }
-        public bool IsBusBusy() { return activity.IsBusy; }
-
-        public void Timer_DoWork(object sender, DoWorkEventArgs e)
+        public bool IsBusBusy() { return activity.IsBusy; }//If the bus is in the middle of a ride, treatment or refueling return true
+        public void Timer_DoWork(object sender, DoWorkEventArgs e)//Shows the time left until the bus is ready
         {
             int time = (int)e.Argument;
             for (int i = time; i > 0; i--)
             {
-                timer.ReportProgress(i);
+                timer.ReportProgress(i);//update the time each second
                 Thread.Sleep(1000);
             }
         }
@@ -330,15 +315,14 @@ namespace dotNet5781_03B_6594_6401
             KM += RideKM;
             BeforeTreatKM += RideKM;
         }
-        public bool CanDoRide(int KMtoRide)
+        public bool CanDoRide(int KMtoRide)//Check if the bus can do a ride of a given number of KM
         {
             if (_fuel - KMtoRide < 0 || _beforeTreatKM+KMtoRide >= 20000 || NeedTreatment())
                 return false;
             return true;
         }
 
-
-        ///cheks if the bus needs treatment:
+         ///cheks if the bus needs treatment:
         ///(maximum temprery kilometrag crossed (over 20000)
         ///or a year past since last treatment)
         public bool NeedTreatment()
@@ -365,14 +349,14 @@ namespace dotNet5781_03B_6594_6401
             String dateString = date.Day + "/" + date.Month + "/" + date.Year;
             return dateString;
         }
-        static public String TimeFormat(int seconds)
+        static public String TimeFormat(int seconds)//return a string of hours, minutes and seconds in the format 00:00:00
         {
             int hour = seconds / 3600;
-            int minute = seconds / 60;
+            int minute = (seconds / 60)%60;
             int sec = seconds % 60;
-            return (f(hour) + ":" + f(minute) + ":" + f(sec));
+            return AddZeroIfNeed(hour) + ":" + AddZeroIfNeed(minute) + ":" + AddZeroIfNeed(sec);
         }
-        static public String f(int t)
+        static public String AddZeroIfNeed(int t)//if the number given is only one digit, return a string with a zero before it
         {
             String s = "";
             if (t < 10)

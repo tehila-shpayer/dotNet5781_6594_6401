@@ -34,7 +34,7 @@ namespace dotNet5781_03B_6594_6401
         {
             Random rand = new Random(DateTime.Now.Millisecond);
             Bus bus = new Bus();
-            for (int i = 1; i <= 12; i++)
+            for (int i = 1; i <= 10; i++)
             {
                 String s;
                 int year;
