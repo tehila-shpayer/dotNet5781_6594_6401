@@ -26,6 +26,10 @@ namespace dotNet5781_03B_6594_6401
 
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Random selection of 10 buses
+        /// Add bubses to static bus collection class
+        /// </summary>
         public void RandomInitializationBus()
         {
             Random rand = new Random(DateTime.Now.Millisecond);
@@ -34,24 +38,28 @@ namespace dotNet5781_03B_6594_6401
             {
                 String s;
                 int year;
+                //5 buses from before 2018 - 7 digit license number
                 if (i % 2 == 0)
                 {
                     s = rand.Next(1000000, 9999999).ToString();
                     year = rand.Next(1895, 2018);
                 }
+                //5 buses from 2018 and on - 8 digit license number
                 else
                 {
                     s = rand.Next(10000000, 99999999).ToString();
                     year = rand.Next(2018, DateTime.Now.Year + 1);
                 }
                 int KM = rand.Next(0, 30000);
-                int bt = rand.Next(0, Min(rand.Next(0, 20000), KM));
+                int bt = rand.Next(0, Min(rand.Next(0, 20000), KM));//KM can't be smaller than bt
                 int fuel = rand.Next(0, 1201);
+                //some buses have low fuel
                 if (i % 5 == 3)
                 {
                     fuel = 0;
                 }
                 bus = new Bus(s, new DateTime(year, rand.Next(1, 13), rand.Next(1, 30)), fuel, KM, bt);
+                //some buses are after treatment
                 if (i % 6 != 0 && i % 7 != 0)
                 {
                     bus.DoTreatment();
@@ -61,6 +69,12 @@ namespace dotNet5781_03B_6594_6401
             }
 
         }
+        /// <summary>
+        /// Choosin the minimum out of 2 numbers
+        /// </summary>
+        /// <param name="a">first number</param>
+        /// <param name="b">ssecond number</param>
+        /// <returns>minimum</returns>
         public int Min(int a, int b)
         {
             if (a < b)
@@ -70,8 +84,9 @@ namespace dotNet5781_03B_6594_6401
 
         public MainWindow()
         {
+            //Set buses information
             RandomInitializationBus();
-            DataContext = busesList;
+           // DataContext = busesList;
             InitializeComponent();
             busesList.DataContext = BusCollection.windowBuses;
             busesList.SelectedIndex = 0;
@@ -94,18 +109,7 @@ namespace dotNet5781_03B_6594_6401
             window1.ShowDialog();
         }
         private void busesList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            //foreach (Window win in Application.Current.Windows)
-            //{
-            //    if (win is BusDisplayWindowxaml && BusDisplayWindowxaml.bus == BusCollection.windowBuses[busesList.SelectedIndex])
-            //    {
-            //        win.WindowState = System.Windows.WindowState.Normal;
-            //        win.Focus();
-            //        //win.Activate();
-            //        return;
-            //    }
-            //} 
-            
+        {            
             BusDisplayWindowxaml busInfo = new BusDisplayWindowxaml(BusCollection.windowBuses[busesList.SelectedIndex]);
             busInfo.Show();
         }
@@ -114,10 +118,7 @@ namespace dotNet5781_03B_6594_6401
             var selectedBus = (sender as Button).DataContext as Bus;
             if (!selectedBus.IsBusBusy())
             {
-                //Button rideButton = (Button)sender;
-                //rideButton.IsEnabled = false;
                 RideWindow rideWindow = new RideWindow(BusCollection.windowBuses.IndexOf(selectedBus));
-                //selectedBus.pressedButton = rideButton;
                 rideWindow.Show();
             }
         }
