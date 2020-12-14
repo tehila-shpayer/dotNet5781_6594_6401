@@ -22,6 +22,7 @@ namespace dotNet5781_03B_6594_6401
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
+    /// The main window of the app
     /// </summary>
 
     public partial class MainWindow : Window
@@ -86,42 +87,58 @@ namespace dotNet5781_03B_6594_6401
         {
             //Set buses information
             RandomInitializationBus();
-           // DataContext = busesList;
             InitializeComponent();
+            //Bind buses listBox to buses in the system
             busesList.DataContext = BusCollection.windowBuses;
             busesList.SelectedIndex = 0;
         }
+        /// <summary>
+        /// Refuling the specific bus
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void RefuelButton_Click(object sender, RoutedEventArgs e)
         {
+            //The bus that the button is in his line (his dataTemplate)
             var selectedBus = (sender as Button).DataContext as Bus;
-            //Button RefuelButton = (Button)sender;
+            //If the bus isn't already refueling
             if (!selectedBus.IsBusBusy())
             {
-                //RefuelButton.IsEnabled = false;
+                //Apdate status
                 selectedBus.BusStatus = Status.Refueling;
-                //selectedBus.pressedButton = RefuelButton;
+                //Send to bus's process
                 selectedBus.activity.RunWorkerAsync(0);
             }
         }
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
+            //Open adding bus window
             Window2 window1 = new Window2(new Bus());
             window1.ShowDialog();
         }
         private void busesList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {            
+        {          
+            //open showing bus details window
             BusDisplayWindowxaml busInfo = new BusDisplayWindowxaml(BusCollection.windowBuses[busesList.SelectedIndex]);
             busInfo.Show();
         }
         private void rideButton_Click(object sender, RoutedEventArgs e)
         {
+            //The bus that the button is in his line (his dataTemplate)
             var selectedBus = (sender as Button).DataContext as Bus;
+            //If the bus isn't already driving
             if (!selectedBus.IsBusBusy())
             {
+                //Open riding window
                 RideWindow rideWindow = new RideWindow(BusCollection.windowBuses.IndexOf(selectedBus));
                 rideWindow.Show();
             }
         }
+        /// <summary>
+        /// Search text box - text changed event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             foreach (var item in BusCollection.windowBuses)
@@ -129,6 +146,7 @@ namespace dotNet5781_03B_6594_6401
                 ListBoxItem bus = (ListBoxItem)busesList.ItemContainerGenerator.ContainerFromItem(item);
                 String searchS = searchBox.Text;
                 int num = searchS.Length;
+                //Show only buses which there license number have the typed perfix
                 if ((num <= item.LicenseNumber.Length && searchS == (item as Bus).LicenseNumber.Substring(0, num)) || (num <= item.LicenseNumberFormat.Length && searchS == (item as Bus).LicenseNumberFormat.Substring(0, num)))
                 {
                     bus.Visibility = Visibility.Visible;

@@ -6,13 +6,10 @@
         xmlns:local="clr-namespace:dotNet5781_03B_6594_6401"
         mc:Ignorable="d"
         Title="Bus Display Window" Height="550.667" Width="512.222" Icon="Fasticon-Happy-Bus-Bus-orange.ico" ResizeMode="CanMinimize" >
-    <!--Icon="{Binding BusStatus, Converter={DynamicResource StatusToIconConverter}}"-->
     <Window.Resources>
         <local:StatusToIconConverter x:Key="statusToIconConverter"/>
         <local:StatusToBoolTreatConverter x:Key="statusToBoolTreatConverter"/>
     </Window.Resources>
-    <!--<Window Icon="{Binding BusStatus, Converter={StaticResource statusToIconConverter}}">-->
-    <!--Icon="{Binding BusStatus, Converter={StaticResource statusToIconConverter}}"-->
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -47,11 +44,11 @@
             <Label Content="KM:" Grid.Column="0" HorizontalAlignment="Left" Margin="4,3.333,0,3.333" Grid.Row="3"  Style="{StaticResource propretyLabel}"/>
             <TextBlock x:Name="kMTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,8.667,0,0" Grid.Row="3" Text="{Binding KM}" VerticalAlignment="Top" Height="32" Width="148" Background="#FFE4E1E1" FontFamily="Yu Gothic UI Semibold" FontSize="16"/>
             <Label Content="Last Treatment:" Grid.Column="0" HorizontalAlignment="Left" Margin="4,3.667,0,4" Grid.Row="4"  Style="{StaticResource propretyLabel}"/>
-            <TextBlock x:Name="lastTreatmentTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,4.667,0,4" Grid.Row="4" Text="{Binding LastTreatment}" VerticalAlignment="Center" Height="32" Width="148" Background="#FFE4E1E1" FontSize="16" FontFamily="Yu Gothic UI Semibold"/>
+            <TextBlock x:Name="lastTreatmentTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,4.667,0,4" Grid.Row="4" Text="{Binding TreatmentDateWithoutHour}" VerticalAlignment="Center" Height="32" Width="148" Background="#FFE4E1E1" FontSize="16" FontFamily="Yu Gothic UI Semibold"/>
             <Label Content="License Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="4,0,0,3.667" Grid.Row="0"  Style="{StaticResource propretyLabel}"/>
             <TextBlock x:Name="licenseNumberFormatTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,4.667,0,4" Grid.Row="0" Text="{Binding LicenseNumberFormat}" VerticalAlignment="Center" Height="32" Width="148" Background="#FFE4E1E1" FontFamily="Yu Gothic UI Semibold" FontSize="16"/>
             <Label Content="Running Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="4,3.333,0,4.333" Grid.Row="1"  Style="{StaticResource propretyLabel}"/>
-            <TextBlock x:Name="runningDateTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,7.667,0,7.667" Grid.Row="1" Text="{Binding RunningDate}" VerticalAlignment="Center" Height="32" Width="148" Background="#FFE4E1E1" FontFamily="Yu Gothic UI Semibold" FontSize="16"/>
+            <TextBlock x:Name="runningDateTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="10,7.667,0,7.667" Grid.Row="1" Text="{Binding RunningDateWithoutHour}" VerticalAlignment="Center" Height="32" Width="148" Background="#FFE4E1E1" FontFamily="Yu Gothic UI Semibold" FontSize="16"/>
         </Grid>
         <Label Content="Bus info: " Grid.Row="0" RenderTransformOrigin="0.5,0.5" Margin="0,0,0.6,37.8" Style="{StaticResource myMainLableStyle}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
         <Button  Grid.Column="1" Grid.Row="3" x:Name="TreatmentButton" Content="Treat" Click="TreatmentButton_Click" IsEnabled="{Binding BusStatus, Converter={StaticResource statusToBoolTreatConverter}}" FontSize="22" Style="{StaticResource Buttons}" Height="34" Margin="23.2,19.2,103.6,18.8"/>

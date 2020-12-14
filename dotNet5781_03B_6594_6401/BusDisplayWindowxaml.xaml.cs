@@ -26,16 +26,20 @@ namespace dotNet5781_03B_6594_6401
         {
             InitializeComponent();
             bus = b;
+            //Bind displayed information with recieved bus
             grid1.DataContext = b;
             DataContext = b;
         }
 
         private void TreatmentButton_Click(object sender, RoutedEventArgs e)
         {
-            Bus b = bus; ;
+            Bus b = bus;
+            //If bus isn't occupied
             if (!b.IsBusBusy())
             {
+                //Apdate status
                 b.BusStatus = Status.Treatment;
+                //Send bus to the process
                 b.activity.RunWorkerAsync(0);
             }
         }
@@ -43,9 +47,12 @@ namespace dotNet5781_03B_6594_6401
         private void RefuelButton_Click(object sender, RoutedEventArgs e)
         {
             Bus b = bus;
+            //If bus isn't occupied
             if (!b.IsBusBusy())
             {
+                //Apdate status
                 b.BusStatus = Status.Refueling;
+                //Send bus to the process
                 b.activity.RunWorkerAsync(0);
             }
         }

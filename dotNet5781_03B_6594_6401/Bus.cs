@@ -41,6 +41,9 @@ namespace dotNet5781_03B_6594_6401
             set { _licenseNumber = value; }
         }
         public string LicenseNumberFormat { get { return GetLicenseNumberFormat(); } }
+        public string RunningDateWithoutHour { get { return DateWithoutHour(_runningDate); } }
+        public string TreatmentDateWithoutHour { get { return DateWithoutHour(_lastTreatment); } }
+
         public DateTime RunningDate
         {
             get { return _runningDate; }
@@ -307,7 +310,7 @@ namespace dotNet5781_03B_6594_6401
         /// Performs a bus ride by updating the 
         /// appropriate bus fields in the system.
         /// </summary>
-        /// <param name="rideKM"></param>
+        /// <param name="RideKM"></param>
         /// <returns>The appropriate message for wether the ride happened or not and why</returns>
         public void Ride(int RideKM)
         {
