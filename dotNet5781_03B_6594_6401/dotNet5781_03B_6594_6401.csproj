@@ -146,5 +146,6 @@
   <ItemGroup>
     <Resource Include="refuel status.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
