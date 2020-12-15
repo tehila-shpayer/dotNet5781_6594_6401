@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DLAPI
+namespace DL
 {
-    public class Class1
+    public class DL
     {
+
     }
 }
