@@ -16,7 +16,7 @@ namespace DO
         public int KM { get; set; }
         public int BeforeTreatKM { get; set; }
         public Status Status { get; set; }
-        public bool Exist { get; set; }
+        public bool IsActive { get; set; }
 
         //constructors
         //public Bus()//default ctor
