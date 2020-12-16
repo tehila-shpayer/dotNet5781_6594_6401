@@ -8,5 +8,15 @@ namespace DO
 {
     public class Station
     {
+        public static int STATION_KEY = 0;
+        public int Key { get; private set; }
+        public double Latitude { get; private set; }
+        public double Longitude { get; private set; }
+        public string Name { get; private set; }
+        public bool Exist { get; set; }
+        public override string ToString()
+        {
+            return this.ToStringProperty();
+        }
     }
 }
