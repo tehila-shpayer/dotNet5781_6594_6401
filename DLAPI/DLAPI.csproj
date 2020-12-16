@@ -52,6 +52,8 @@
     <Compile Include="Station.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Tools.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="UserTravel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
