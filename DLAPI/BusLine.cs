@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public class BusInTravel
+    public class BusLine
     {
-
     }
 }
