@@ -3,15 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DO;
 
-
-namespace DS
+namespace DLAPI
 {
-    public static class DS
+    class Station
     {
-        static DS()
-        {
-        }
     }
 }

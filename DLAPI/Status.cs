@@ -3,15 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DO;
 
-
-namespace DS
+namespace DO
 {
-    public static class DS
+    public enum Status
     {
-        static DS()
-        {
-        }
+        Ready, NotReady, Driving, Refueling, Treatment
     }
 }
