@@ -45,6 +45,7 @@
     <Compile Include="BusInTravel.cs" />
     <Compile Include="BusLine.cs" />
     <Compile Include="BusLineStation.cs" />
+    <Compile Include="ConsecutiveStations.cs" />
     <Compile Include="DLAPI.cs" />
     <Compile Include="DLFactory.cs" />
     <Compile Include="DO.cs" />

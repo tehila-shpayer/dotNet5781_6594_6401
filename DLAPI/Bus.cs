@@ -29,7 +29,7 @@ namespace DO
         //    Fuel = f;
         //    KM = km;
         //    BeforeTreatKM = bt;
-        //    Exist = true;
+        //    IsActive = true;
         //}
         public override string ToString()
         {
