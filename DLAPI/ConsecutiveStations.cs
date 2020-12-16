@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public class BusLineStation
+    public class ConsecutiveStations
     {
-        public int BusLineNumber { get; set; }
-        public int StationKey { get; set; }
-        public int Index { get; set; }
-        public bool IsActive { get; set; }
+        public int StationKey1 { get; private set; }
+        public int StationKey2 { get; private set; }
+        public double Distance { get; private set; }
+        public double AverageTime { get; private set; }
         public override string ToString()
         {
             return this.ToStringProperty();
