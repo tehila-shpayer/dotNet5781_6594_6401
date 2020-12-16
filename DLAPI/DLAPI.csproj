@@ -49,6 +49,7 @@
     <Compile Include="DLAPI.cs" />
     <Compile Include="DLFactory.cs" />
     <Compile Include="DO.cs" />
+    <Compile Include="LineSchedule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Station.cs" />
     <Compile Include="Enums.cs" />
