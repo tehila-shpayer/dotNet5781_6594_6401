@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DL
 {
-    public class DL
+    public interface IDL
     {
 
     }
