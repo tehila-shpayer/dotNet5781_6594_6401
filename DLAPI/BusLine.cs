@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DL
+namespace DO
 {
-    public interface IDL
+    public class BusLine
     {
 
     }
