@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLAPI
+namespace PLConsole
 {
-    public interface IBL
+    class Program
     {
-        
+        static void Main(string[] args)
+        {
+        }
     }
 }
