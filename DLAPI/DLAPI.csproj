@@ -47,6 +47,7 @@
     <Compile Include="DO\BusLineStation.cs" />
     <Compile Include="DO\ConsecutiveStations.cs" />
     <Compile Include="DLConfig.cs" />
+    <Compile Include="DO\Exceptions.cs" />
     <Compile Include="DO\LineSchedule.cs" />
     <Compile Include="IDL.cs" />
     <Compile Include="DLFactory.cs" />

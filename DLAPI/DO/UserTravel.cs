@@ -8,6 +8,7 @@ namespace DO
 {
     public class UserTravel
     {
+        public static int TRAVEL_ID = 0;
         public string UserName { get; set; }
         public int BusLineKey { get; set; }
         public int UpStationKey { get; set; } 
