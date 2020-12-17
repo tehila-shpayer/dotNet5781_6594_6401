@@ -8,9 +8,10 @@ using DO;
 
 namespace DS
 {
-    public static class DS
+    public static class DataSource
     {
-        static DS()
+
+        static DataSource()
         {
         }
     }

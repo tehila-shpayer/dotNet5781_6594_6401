@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLAPI
+namespace BO
 {
-    public interface IBL
+    public class Weather
     {
-        
+        public int Feeling { get; set; }
     }
 }

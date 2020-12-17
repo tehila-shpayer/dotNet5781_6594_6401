@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BO;
 
-namespace BO
+namespace BlAPI
 {
-    class BO
+    public interface IBL
     {
+        Weather GetWeather(int day);
+        void Shutdown();
     }
 }
