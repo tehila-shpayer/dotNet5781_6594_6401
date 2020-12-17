@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BlAPI;
-using BO;
+using BLAPI;
+
 
 namespace PLConsole
 {
     class Program
     {
-        static IBL bl;
+        public IBL bl;
         static void Main(string[] args)
         {
-            bl = BlFactory.GetBl(1);
-            bl.Shutdown();
+            Console.WriteLine("work!");
+ 
         }
     }
 }

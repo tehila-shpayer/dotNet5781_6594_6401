@@ -14,5 +14,10 @@ namespace DS
         static DataSource()
         {
         }
+        static void InitAllLists()
+        {
+
+        }
     }
+
 }

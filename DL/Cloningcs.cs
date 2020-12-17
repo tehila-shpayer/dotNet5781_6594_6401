@@ -3,30 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace DL
 {
     static class Cloning
     {
-        internal static IClonable Clone(this IClonable original)
-        {
-            IClonable target = (IClonable)Activator.CreateInstance(original.GetType());
-            //...
-            return target;
-        }
-
         internal static T Clone<T>(this T original)
         {
-            T target = (T)Activator.CreateInstance(original.GetType());
+            T copyToObject = (T)Activator.CreateInstance(original.GetType());
             //...
-            return target;
+
+            foreach (PropertyInfo sourcePropertyInfo in original.GetType().GetProperties())
+            {
+                PropertyInfo destPropertyInfo = original.GetType().GetProperty(sourcePropertyInfo.Name);
+
+                destPropertyInfo.SetValue(copyToObject, sourcePropertyInfo.GetValue(original, null), null);
+            }
+
+            return copyToObject;
         }
 
-        internal static WindDirection Clone(this WindDirection original)
-        {
-            WindDirection target = new WindDirection();
-            target.direction = original.direction;
-            return target;
-        }
+
     }
 }
