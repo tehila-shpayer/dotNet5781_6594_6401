@@ -22,11 +22,11 @@ namespace DLAPI
         #endregion
 
         #region BusInTravel
-        BusInTravel GetBusInTravel(string licenseNumber, int lineKey, int formalTime);
+        BusInTravel GetBusInTravel(int key);
         IEnumerable<BusInTravel> GetAllBusInTravelsBy(Predicate<BusInTravel> predicate);
         IEnumerable<BusInTravel> GetAllBusInTravels();
         void AddBusInTravel(BusInTravel busInTravel);
-        void DeleteBusInTravel(string licenseNumber, int lineKey, int formalTime);
+        void DeleteBusInTravel(int key);
 
         #endregion
 

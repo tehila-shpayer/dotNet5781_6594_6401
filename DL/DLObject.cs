@@ -71,9 +71,9 @@ namespace DL
         }
         #endregion
         #region BusInTravel
-        BusInTravel GetBusInTravel(string licenseNumber, int lineKey, int formalTime) 
+        BusInTravel GetBusInTravel(int key) 
         {
-            BusInTravel per = DataSource.ListBusInTravel.Find(p => p.ID == id);
+            BusInTravel busInTravel = DataSource.ListBusesInTravel.Find(b => (b.BusLicenseNumber == licenseNumber && b.BusLineNumber == lineKey);
 
             if (per != null)
                 return per.Clone();
