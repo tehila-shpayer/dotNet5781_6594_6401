@@ -11,5 +11,6 @@ namespace DLAPI
     //CRUD Logic
     public interface IDL
     {
+
     }
 }
