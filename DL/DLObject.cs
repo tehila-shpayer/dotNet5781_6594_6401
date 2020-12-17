@@ -73,7 +73,7 @@ namespace DL
         #region BusInTravel
         BusInTravel GetBusInTravel(int key) 
         {
-            BusInTravel busInTravel = DataSource.ListBusesInTravel.Find(b => (b.BusLicenseNumber == licenseNumber && b.BusLineNumber == lineKey);
+            BusInTravel busInTravel = DataSource.ListBusesInTravel.Find(b => (b.);
 
             if (per != null)
                 return per.Clone();
