@@ -11,6 +11,85 @@ namespace DLAPI
     //CRUD Logic
     public interface IDL
     {
+        #region Bus
+        IEnumerable<Bus> GetAllBuses();
+        IEnumerable<Bus> GetAllBusesBy(Predicate<Bus> predicate);
+        Bus GetBus(int LicenseNumber);
+        void AddBus(Bus bus);
+        void UpdateBus(Bus bus);
+        void UpdateBus(int LicenseNumber, Action<Bus> update); //method that knows to updt specific fields in Person
+        void DeleteBus(int LicenseNumber);
+        #endregion
 
+        #region BusInTravel
+        BusInTravel GetBusInTravel(string licenseNumber, int lineKey, int formalTime);
+        IEnumerable<BusInTravel> GetAllBusInTravelsBy(Predicate<BusInTravel> predicate);
+        IEnumerable<BusInTravel> GetAllBusInTravels();
+        void AddBusInTravel(BusInTravel busInTravel);
+        void DeleteBusInTravel(string licenseNumber, int lineKey, int formalTime);
+
+        #endregion
+
+        #region BusLine
+        IEnumerable<BusLine> GetBusLinesBy(Predicate<BusLine> predicate);
+        BusLine GetBusLine(int busLineKey );
+        IEnumerable<BusLine> GetAllBusLines();
+        void AddBusLine(BusLine bus);
+        void UpdateBusLine(BusLine bus);
+        void UpdateBusLine(int busLineKey, Action<BusLine> update); //method that knows to updt specific fields in BusLine
+        void DeleteBusLine(int busLineKey);
+
+        #endregion
+
+        #region BusLineStation
+        BusLineStation GetBusLineStationByKey( int line, int stationKey);
+        IEnumerable<BusLineStation> GetAllStationsOfLine(int busLine);
+        void AddBusLineStation(BusLineStation bus);
+        void UpdateBusLineStation(BusLineStation bus);
+        void UpdateBusLineStation(int line, int stationKey, Action<BusLineStation> update); //method that knows to updt specific fields in Person
+        void DeleteBusLineStation(int line, int stationKey);
+        #endregion
+
+        #region ConsecutiveStations
+        ConsecutiveStations GetConsecutiveStations(int stationKey1, int stationKey2);
+        void AddConsecutiveStations(ConsecutiveStations bus);
+        void UpdateConsecutiveStations(ConsecutiveStations bus);
+        void UpdateConsecutiveStations(int stationKey1, int stationKey2, Action<BusLineStation> update); //method that knows to updt specific fields in Person
+        void DeleteConsecutiveStations(int stationKey1, int stationKey2);
+        #endregion
+
+        #region LineSchedule
+        LineSchedule GetLineSchedule(int line, int startTime);
+        IEnumerable<LineSchedule> GetAllLineScheduleOfLine(int Line);
+        void AddLineSchedule(LineSchedule lineSchedule);
+        void UpdateLineSchedule(LineSchedule lineSchedule);
+        void UpdateLineSchedule(int line, int startTime, Action<LineSchedule> update); //method that knows to updt specific fields in Person
+        void DeleteLineSchedule(int line, int startTime);
+        #endregion
+
+        #region Station
+        ConsecutiveStations GetStation(int stationKey);
+        IEnumerable<Station> GetAllStations();
+        void AddStation(Station station);
+        void UpdateStation(Station station);
+        void UpdateStation(int stationKey, Action<BusLineStation> update); //method that knows to updt specific fields in Person
+        void DeleteStation(int stationKey);
+        #endregion
+
+        #region User
+        User GetUser(string userName);
+        IEnumerable<User> GetAllUsers();
+        void AddUser(User user);
+        void UpdateUser(User user);
+        void UpdateUser(string userName, Action<User> update); //method that knows to updt specific fields in Person
+        void DeleteUser(string userName);
+        #endregion
+
+        #region UserTravel
+        UserTravel GetUserTravel(int id);
+        IEnumerable<UserTravel> GetAllUserTravels();
+        void AddUserTravel(UserTravel user);
+        void DeleteUserTravel(int id);
+        #endregion
     }
 }
