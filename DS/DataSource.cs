@@ -74,7 +74,9 @@ namespace DS
                 new Station { Key = 40924, Name = "שקדים/הסיגליות", Latitude = 32.725614, Longitude =35.135896},
                 new Station { Key = 40925, Name = "בי''ס מיתרים", Latitude = 32.725906, Longitude =35.13691},
 
-                //
+                //, 
+                new Station { Key = 40912, Name = "כצנלסון/אלכסנדר זייד", Latitude = 31.883013, Longitude =35.247681},
+                new Station { Key = 40913, Name = "כיכר הציונות", Latitude = 32.711688, Longitude =35.125015},
             };
         }
     }
