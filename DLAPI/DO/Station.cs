@@ -8,10 +8,11 @@ namespace DO
 {
     public class Station
     {
-        public int Key { get; private set; }
-        public double Latitude { get; private set; }
-        public double Longitude { get; private set; }
-        public string Name { get; private set; }
+        static public int STATION_KEY = 2100;
+        public int Key { get;set; }
+        public double Latitude { get;set; }
+        public double Longitude { get; set; }
+        public string Name { get; set; }
         public bool IsActive { get; set; }
         public override string ToString()
         {
