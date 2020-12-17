@@ -27,6 +27,9 @@ namespace DLAPI
         IEnumerable<BusInTravel> GetAllBusInTravels();
         void AddBusInTravel(BusInTravel busInTravel);
         void DeleteBusInTravel(int key);
+        void UpdateBusInTravel(BusInTravel bus);
+        void UpdateBusInTravel(int key, Action<BusInTravel> update); //method that knows to updt specific fields in BusInTravel
+
 
         #endregion
 

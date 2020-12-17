@@ -9,6 +9,7 @@ namespace DO
     public class BusLine
     {
         public static int BUS_LINE_KEY = 0;
+        public int key { get; set; }
         public int LineNumber { get; private set; }
         public Areas Area { get; private set; }
         public int FirstStationKey { get; private set; }
