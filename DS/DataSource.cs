@@ -11,10 +11,14 @@ namespace DS
     public static class DataSource
     {
         public static List<Bus> ListBuses;
+        public static List<BusInTravel> ListBusesInTravel;
         public static List<Station> ListStations;
         public static List<BusLine> ListBusLines;
+        public static List<BusLineStation> ListBusLineStations;
+        public static List<ConsecutiveStations> ListConsecutiveStations;
+        public static List<LineSchedule> ListLineSchedules;
         public static List<User> ListUsers;
-
+        public static List<User> ListUserTravel;
 
         static DataSource()
         {
