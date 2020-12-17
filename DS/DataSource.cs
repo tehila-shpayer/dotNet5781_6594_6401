@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+using System.Diagnostics.Eventing.Reader;
+using System.Device.Location;
+using System.Linq.Expressions;
 using DO;
 
 
@@ -23,6 +27,12 @@ namespace DS
         static DataSource()
         {
             InitAllLists();
+        }
+        static double GetDistant()
+        {
+            GeoCoordinate s1 = new GeoCoordinate();//מיקום תחנה 1
+            GeoCoordinate s2 = new GeoCoordinate();//מיקום תחנה 2
+            return s1.GetDistanceTo(s2);//חישוב מרחק
         }
         static void InitAllLists()
         {
@@ -90,11 +100,11 @@ namespace DS
                 new Station { Key = 60216, Name = "משכנות הרועים/נהר שלום", Latitude = 31.873910, Longitude =35.243681},
                 new Station { Key = 60217, Name = "משכנות הרועים/אבני חפץ", Latitude = 31.889875, Longitude =35.249011},
                 new Station { Key = 60218, Name = "דרך כוכב יעקב", Latitude = 31.883867, Longitude =35.247120},
-                
+
                 new Station { Key = 63691, Name = "כוכב השחר/יציאה", Latitude = 31.956391, Longitude = 35.341945},
                 new Station { Key = 60642, Name = "כוכב השחר ב", Latitude = 31.960264, Longitude = 35.348199},
 
-                //14
+                //12
                 new Station { Key = 57096, Name = "מוזיאון", Latitude = 32.721517, Longitude = 35.567316},
                 new Station { Key = 57097, Name = "מסעף מושבת כנרת", Latitude = 32.718670, Longitude = 35.560517},
                 new Station { Key = 57098, Name = "מסעף אלומות", Latitude = 32.713917, Longitude = 35.545848},
@@ -107,29 +117,58 @@ namespace DS
                 new Station { Key = 57117, Name = "בית חולים פוריה", Latitude = 32.751998, Longitude = 35.537857},
                 new Station { Key = 57118, Name = "בית עלמין הזורעים", Latitude = 32.766760, Longitude = 35.524681},
                 new Station { Key = 57119, Name = "אלחדיף/הופיין", Latitude = 31.960264, Longitude = 35.538987},
-                new Station { Key = 57120, Name = "אלחדיף/טבור הארץ", Latitude = 32.790757, Longitude = 35.534888}
-                
+
             };
             ListBusLines = new List<BusLine>
             {
                 new BusLine{LineNumber=949, Area = Areas.YehudaAndShomron, FirstStationKey = 45385, LastStationKey = 60642},
-                new BusLine{LineNumber=488, Area = Areas.North, FirstStationKey = 57096, LastStationKey = 57120},
+                new BusLine{LineNumber=488, Area = Areas.North, FirstStationKey = 57096, LastStationKey = 57119},
                 new BusLine{LineNumber=236, Area = Areas.Hifa, FirstStationKey = 40247, LastStationKey = 40269},
-                new BusLine{LineNumber=666, Area = Areas.General, FirstStationKey = 21007, LastStationKey = 22222},
+                new BusLine{LineNumber=934, Area = Areas.General, FirstStationKey = 21007, LastStationKey = 22222},
                 new BusLine{LineNumber=86, Area = Areas.Center, FirstStationKey = 40912, LastStationKey = 40925},
 
-                new BusLine{LineNumber=40, Area = Areas.YehudaAndShomron, FirstStationKey = 60642, LastStationKey = 22222},
-                new BusLine{LineNumber=, Area = Areas, FirstStationKey = , LastStationKey = },
-                new BusLine{LineNumber=, Area = Areas, FirstStationKey = , LastStationKey = },
-                new BusLine{LineNumber=, Area = Areas, FirstStationKey = , LastStationKey = },
-                new BusLine{LineNumber=, Area = Areas, FirstStationKey = , LastStationKey = },
+                new BusLine{LineNumber=40, Area = Areas.General, FirstStationKey = 60642, LastStationKey = 22222},
+                //new BusLine{LineNumber=6, Area = Areas.Jerusalem, FirstStationKey = , LastStationKey = },
+                //new BusLine{LineNumber=142, Area = Areas.YehudaAndShomron, FirstStationKey = , LastStationKey = },
+                //new BusLine{LineNumber=1, Area = Areas.General, FirstStationKey = , LastStationKey = },
+                //new BusLine{LineNumber=67, Area = Areas.Jerusalem, FirstStationKey = , LastStationKey = },
 
             };
             ListBusLineStations = new List<BusLineStation>
             {
-                new BusLineStation{}
+                //949
+                new BusLineStation{BusLineNumber = 949, StationKey = 45385, Position = 1 },
+                new BusLineStation{BusLineNumber = 949, StationKey = 61017, Position = 2 },
+                new BusLineStation{BusLineNumber = 949, StationKey = 61002, Position = 3 },
+                new BusLineStation{BusLineNumber = 949, StationKey = 60211, Position = 4 },
+                new BusLineStation{BusLineNumber = 949, StationKey = 60215, Position = 5 },
+                new BusLineStation{BusLineNumber = 949, StationKey = 60216, Position = 6 },
+                new BusLineStation{BusLineNumber = 949, StationKey = 60217, Position = 7 },
+                new BusLineStation{BusLineNumber = 949, StationKey = 60218, Position = 8 },
+                new BusLineStation{BusLineNumber = 949, StationKey = 63691, Position = 9 },
+                new BusLineStation{BusLineNumber = 949, StationKey = 60642, Position = 10 },
+
+                //488
+                new BusLineStation{ BusLineNumber = 488, StationKey = 57096, Position = 1 },
+                new BusLineStation{ BusLineNumber = 488, StationKey = 57097, Position = 2 },
+                new BusLineStation{ BusLineNumber = 488, StationKey = 57098, Position = 3 },
+                new BusLineStation{ BusLineNumber = 488, StationKey = 57102, Position = 4 },
+                new BusLineStation{ BusLineNumber = 488, StationKey = 57105, Position = 5 },
+                new BusLineStation{ BusLineNumber = 488, StationKey = 57108, Position = 6 },
+                new BusLineStation{ BusLineNumber = 488, StationKey = 57114, Position = 7 },
+                new BusLineStation{ BusLineNumber = 488, StationKey = 57115, Position = 8 },
+                new BusLineStation{ BusLineNumber = 488, StationKey = 57116, Position = 9 },
+                new BusLineStation{ BusLineNumber = 488, StationKey = 57117, Position = 10 },
+                new BusLineStation{ BusLineNumber = 488, StationKey = 57118, Position = 11 },
+                new BusLineStation{ BusLineNumber = 488, StationKey = 57119, Position = 12 },
+                /*
+                */
+            };
+            ListConsecutiveStations = new List<ConsecutiveStations>
+            {
+                //949
+                new ConsecutiveStations{StationKey1 = 45385, StationKey2 = 61017, Distance = 0, AverageTime = 0 }
             };
         }
     }
-
 }
