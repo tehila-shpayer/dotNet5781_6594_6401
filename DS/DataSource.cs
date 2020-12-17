@@ -107,12 +107,27 @@ namespace DS
                 new Station { Key = 57117, Name = "בית חולים פוריה", Latitude = 32.751998, Longitude = 35.537857},
                 new Station { Key = 57118, Name = "בית עלמין הזורעים", Latitude = 32.766760, Longitude = 35.524681},
                 new Station { Key = 57119, Name = "אלחדיף/הופיין", Latitude = 31.960264, Longitude = 35.538987},
-                new Station { Key = 57120, Name = "אלחדיף/טבור הארץ", Latitude = 32.790757, Longitude = 35.534888},
+                new Station { Key = 57120, Name = "אלחדיף/טבור הארץ", Latitude = 32.790757, Longitude = 35.534888}
                 
             };
             ListBusLines = new List<BusLine>
             {
-                new BusLine{}
+                new BusLine{LineNumber=949, Area = Areas.YehudaAndShomron, FirstStationKey = 45385, LastStationKey = 60642},
+                new BusLine{LineNumber=488, Area = Areas.North, FirstStationKey = 57096, LastStationKey = 57120},
+                new BusLine{LineNumber=236, Area = Areas.Hifa, FirstStationKey = 40247, LastStationKey = 40269},
+                new BusLine{LineNumber=666, Area = Areas.General, FirstStationKey = 21007, LastStationKey = 22222},
+                new BusLine{LineNumber=86, Area = Areas.Center, FirstStationKey = 40912, LastStationKey = 40925},
+
+                new BusLine{LineNumber=40, Area = Areas.YehudaAndShomron, FirstStationKey = 60642, LastStationKey = 22222},
+                new BusLine{LineNumber=, Area = Areas, FirstStationKey = , LastStationKey = },
+                new BusLine{LineNumber=, Area = Areas, FirstStationKey = , LastStationKey = },
+                new BusLine{LineNumber=, Area = Areas, FirstStationKey = , LastStationKey = },
+                new BusLine{LineNumber=, Area = Areas, FirstStationKey = , LastStationKey = },
+
+            };
+            ListBusLineStations = new List<BusLineStation>
+            {
+                new BusLineStation{}
             };
         }
     }

@@ -9,10 +9,12 @@ namespace DO
     public class BusLine
     {
         public static int BUS_LINE_KEY = 0;
-        public int LineNumber { get; private set; }
-        public Areas Area { get; private set; }
-        public int FirstStationKey { get; private set; }
-        public int LastStationKey { get; private set; }
+        public int Key { get; set; }
+        public int LineNumber { get;set; }
+        public Areas Area { get; set; }
+        public int FirstStationKey { get; set; }
+        public int LastStationKey { get; set; }
+        public bool _isActive = true;
         public bool IsActive { get; set; }
         public override string ToString()
         {
