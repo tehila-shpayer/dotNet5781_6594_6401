@@ -14,11 +14,11 @@ namespace DLAPI
         #region Bus
         IEnumerable<Bus> GetAllBuses();
         IEnumerable<Bus> GetAllBusesBy(Predicate<Bus> predicate);
-        Bus GetBus(int LicenseNumber);
+        Bus GetBus(string LicenseNumber);
         void AddBus(Bus bus);
         void UpdateBus(Bus bus);
-        void UpdateBus(int LicenseNumber, Action<Bus> update); //method that knows to updt specific fields in Person
-        void DeleteBus(int LicenseNumber);
+        void UpdateBus(string LicenseNumber, Action<Bus> update); //method that knows to updt specific fields in Person
+        void DeleteBus(string LicenseNumber);
         #endregion
 
         #region BusInTravel
