@@ -10,7 +10,7 @@ namespace DO
     {
         public static int BUS_TRAVEL_KEY = 0;
         public int Key;
-        public int BusLicenseNumber { get; set; }
+        public string BusLicenseNumber { get; set; }
         public int BusLineNumber { get; set; }
         public String LineStartingTime { get; set; }
         public String BusStartingTime { get; set; }
