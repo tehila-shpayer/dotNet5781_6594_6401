@@ -8,12 +8,8 @@ using DO;
 
 namespace DLAPI
 {
+    //CRUD Logic
     public interface IDL
     {
-        double GetTemparture(int day);
-        WindDirection GetWindDirection(int day);
-
-        object GetLock();
-        void Shutdown();
     }
 }

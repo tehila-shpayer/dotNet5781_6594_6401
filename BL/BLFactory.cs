@@ -1,26 +1,21 @@
 ﻿using System;
+using BL;
 
-namespace BlAPI
+namespace BLAPI
 {
-    public static class BlFactory
+    public static class BLFactory
     {
-        public static IBL GetBl()
+        public static IBL GetBL(string type)
         {
-            return new BL.BlImp1();
-        }
-
-        public static IBL GetBl(int blType)
-        {
-            switch (blType)
+            switch (type)
             {
-                case 1:
-                    return new BL.BlImp1();
-                case 2:
-                    return new BL.BlImp1(); // new BL.BlImp2()
+                case "1":
+                    return new BLImp();
+                case "2":
+                //return new BLImp2();
                 default:
-                    throw new ArgumentException("Bad BL number");
+                    return new BLImp();
             }
         }
-
     }
 }
