@@ -10,6 +10,10 @@ namespace DO
     {
         public int BusLineNumer { get; set; }
         public int Frequency { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+
+        public bool IsActive { get; set; }
         public override string ToString()
         {
             return this.ToStringProperty();
