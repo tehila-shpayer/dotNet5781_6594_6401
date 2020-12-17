@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public class Station
+    public class LineSchedule
     {
-        public int Key { get; private set; }
-        public double Latitude { get; private set; }
-        public double Longitude { get; private set; }
-        public string Name { get; private set; }
+        public int BusLineNumer { get; set; }
+        public int Frequency { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+
         public bool IsActive { get; set; }
         public override string ToString()
         {
