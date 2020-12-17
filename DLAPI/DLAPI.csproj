@@ -49,8 +49,6 @@
     <Compile Include="DLConfig.cs" />
     <Compile Include="IDL.cs" />
     <Compile Include="DLFactory.cs" />
-    <Compile Include="DO.cs" />
-    <Compile Include="LineSchedule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DO\Station.cs" />
     <Compile Include="DO\Enums.cs" />
