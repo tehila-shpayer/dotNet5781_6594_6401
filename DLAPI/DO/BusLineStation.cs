@@ -10,7 +10,8 @@ namespace DO
     {
         public int BusLineNumber { get; set; }
         public int StationKey { get; set; }
-        public int Index { get; set; }
+        public int Position { get; set; }
+        public bool _isActive = true;
         public bool IsActive { get; set; }
         public override string ToString()
         {
