@@ -156,7 +156,7 @@ namespace DL
         #region BusLineStation
         BusLineStation GetBusLineStationByKey(int line, int stationKey)
         {
-            BusLineStation busLineStation = DataSource.ListBusLineStations.Find(b => b.BusLineNumber == line && b.StationKey == stationKey);
+            BusLineStation busLineStation = DataSource.ListBusLineStations.Find(b => b.BusLineKey == line && b.StationKey == stationKey);
             if (busLineStation != null)
                 return busLineStation.Clone();
             else
@@ -165,27 +165,27 @@ namespace DL
         IEnumerable<BusLineStation> GetAllStationsOfLine(int busLine)
         {
             var AllStationsOfLine = from station in DataSource.ListBusLineStations
-                                    where station.BusLineNumber == busLine
+                                    where station.BusLineKey == busLine
                                     select station.Clone();
             return AllStationsOfLine;
         }
         void AddBusLineStation(BusLineStation station)
         {
-            if (DataSource.ListBusLineStations.FirstOrDefault(s => s.BusLineNumber == station.BusLineNumber && s.StationKey == station.StationKey) != null)
-                throw new InvalidInformationException<int>(station.BusLineNumber, "Duplicate station bus line number and station key");
+            if (DataSource.ListBusLineStations.FirstOrDefault(s => s.BusLineKey == station.BusLineKey && s.StationKey == station.StationKey) != null)
+                throw new InvalidInformationException<int>(station.BusLineKey, "Duplicate station bus line number and station key");
             DataSource.ListBusLineStations.Add(station.Clone());
         }
         void UpdateBusLineStation(BusLineStation station)
         {
-            BusLineStation busLineStation = DataSource.ListBusLineStations.Find(s => s.BusLineNumber == station.BusLineNumber && s.StationKey == station.StationKey);
+            BusLineStation busLineStation = DataSource.ListBusLineStations.Find(s => s.BusLineKey == station.BusLineKey && s.StationKey == station.StationKey);
             if (busLineStation != null)
                 busLineStation = station;
             else
-                throw new ArgumentNotFoundException<int>(station.BusLineNumber, $"Bus station of line {station.BusLineNumber} and station {station.StationKey} was not found.");
+                throw new ArgumentNotFoundException<int>(station.BusLineKey, $"Bus station of line {station.BusLineKey} and station {station.StationKey} was not found.");
         }
         void UpdateBusLineStation(int line, int stationKey, Action<BusLineStation> update) //method that knows to updt specific fields in Person
         {
-            BusLineStation busLineStation = DataSource.ListBusLineStations.Find(s => s.BusLineNumber == line && s.StationKey == stationKey);
+            BusLineStation busLineStation = DataSource.ListBusLineStations.Find(s => s.BusLineKey == line && s.StationKey == stationKey);
             if (busLineStation != null)
                 update(busLineStation);
             else
@@ -193,7 +193,7 @@ namespace DL
         }
         void DeleteBusLineStation(int line, int stationKey)
         {
-            BusLineStation busLineStation = DataSource.ListBusLineStations.Find(b => b.BusLineNumber == line && b.StationKey == stationKey);
+            BusLineStation busLineStation = DataSource.ListBusLineStations.Find(b => b.BusLineKey == line && b.StationKey == stationKey);
             if (busLineStation == null)
                 throw new ArgumentNotFoundException<int>(line, $"Bus station of line {line} and station {stationKey} was not found.");
             DataSource.ListBusLineStations.Remove(busLineStation);
