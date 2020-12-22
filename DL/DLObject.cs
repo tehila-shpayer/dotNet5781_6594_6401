@@ -102,7 +102,7 @@ namespace DL
         #region BusLine
         BusLine GetBusLine(int busLineKey)
         {
-            BusLine line = DataSource.ListBusLines.Find(b => b.key == busLineKey);
+            BusLine line = DataSource.ListBusLines.Find(b => b.Key == busLineKey);
             if (line != null)
                 return line.Clone();
             else
@@ -123,21 +123,21 @@ namespace DL
         }
         void AddBusLine(BusLine bus)
         {
-            if (DataSource.ListBusLines.FirstOrDefault(l => l.key == bus.key) != null)
-                throw new InvalidInformationException<int>(bus.key, "Duplicate bus line key");
+            if (DataSource.ListBusLines.FirstOrDefault(l => l.Key == bus.Key) != null)
+                throw new InvalidInformationException<int>(bus.Key, "Duplicate bus line key");
             DataSource.ListBusLines.Add(bus.Clone());
         }
         void UpdateBusLine(BusLine line)
         {
-            BusLine bus = DataSource.ListBusLines.Find(b => b.key == line.key);
+            BusLine bus = DataSource.ListBusLines.Find(b => b.Key == line.Key);
             if (bus != null)
                 bus = line;
             else
-                throw new ArgumentNotFoundException<int>(line.key, $"Bus not found with license number: {line.key}");
+                throw new ArgumentNotFoundException<int>(line.Key, $"Bus not found with license number: {line.Key}");
         }
         void UpdateBusLine(int busLineKey, Action<BusLine> update)//method that knows to updt specific fields in BusLine
         {
-            BusLine bus = DataSource.ListBusLines.Find(b => b.key == busLineKey);
+            BusLine bus = DataSource.ListBusLines.Find(b => b.Key == busLineKey);
             if (bus != null)
                 update(bus);
             else
@@ -145,7 +145,7 @@ namespace DL
         } 
         void DeleteBusLine(int busLineKey)
         {
-            BusLine bus = DataSource.ListBusLines.Find(b => b.key == busLineKey);
+            BusLine bus = DataSource.ListBusLines.Find(b => b.Key == busLineKey);
             if (bus == null)
                 throw new ArgumentNotFoundException<int>(busLineKey, $"Bus not found with license number: {busLineKey}");
             DataSource.ListBusLines.Remove(bus);
