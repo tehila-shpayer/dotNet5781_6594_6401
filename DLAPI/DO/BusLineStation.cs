@@ -8,7 +8,7 @@ namespace DO
 {
     public class BusLineStation
     {
-        public int BusLineNumber { get; set; }
+        public int BusLineKey { get; set; }
         public int StationKey { get; set; }
         public int Position { get; set; }
         public bool _isActive = true;
