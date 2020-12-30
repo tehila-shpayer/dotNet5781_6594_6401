@@ -11,6 +11,39 @@ namespace BL
         IDL dl = DLFactory.GetDL();
         #region Station
 
+        BO.Station StationDoBoAdapter(DO.Station StationDO)
+        {
+            BO.Station StationBO = new BO.Station();
+            int key = StationDO.Key;
+
+            //StationBO.ID = personDO.ID;
+            //StationBO.BirthDate = personDO.BirthDate;
+            //StationBO.City = personDO.City;
+            //StationBO.Name = personDO.Name;
+            //StationBO.HouseNumber = personDO.HouseNumber;
+            //StationBO.Street = personDO.Street;
+            //StationBO.PersonalStatus = (BO.PersonalStatus)(int)personDO.PersonalStatus;
+
+            StationDO.Clone(StationBO);
+            //StationBO.StartYear = StationDO.StartYear;
+            //StationBO.Status = (BO.StationStatus)(int)StationDO.Status;
+            //StationBO.Graduation = (BO.StationGraduate)(int)StationDO.Graduation;
+
+            StationBO.BusLines = from bl in dl.( => bl.)
+                                      let course = dl.GetCourse(sic.CourseId)
+                                      select course.CopyToStationCourse(sic);
+            //new BO.StationCourse()
+            //{
+            //    ID = course.ID,
+            //    Number = course.Number,
+            //    Name = course.Name,
+            //    Year = course.Year,
+            //    Semester = (BO.Semester)(int)course.Semester,
+            //    Grade = sic.Grade
+            //};
+
+            return StationBO;
+        }
         Station GetStation(int stationKey)
         {
             dl.AddStation(stationKey);
