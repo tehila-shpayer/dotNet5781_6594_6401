@@ -270,7 +270,10 @@ namespace DL
                 throw new InvalidInformationException<int>(station.Key, "Duplicate station key");
             DataSource.ListStations.Add(station.Clone());
         }
-        void UpdateStation(Station station){}
+        void UpdateStation(Station station)
+        {
+
+        }
         void UpdateStation(int stationKey, Action<Station> update){ } //method that knows to updt specific fields in Station
         void DeleteStation(int stationKey){}
         #endregion

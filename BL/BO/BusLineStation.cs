@@ -4,16 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DO
+namespace BO
 {
-    public class BusLine
+    public class BusLineStation
     {
-        public static int BUS_LINE_KEY = 0;
-        public int Key { get; set; }
-        public int LineNumber { get;set; }
-        public Areas Area { get; set; }
-        public int FirstStationKey { get; set; }
-        public int LastStationKey { get; set; }
+        public int BusLineKey { get; set; }
+        public int StationKey { get; set; }
+        public int Position { get; set; }
         public bool _isActive = true;
         public bool IsActive { get; set; }
         public override string ToString()
