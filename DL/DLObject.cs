@@ -277,10 +277,10 @@ namespace DL
         }
         void UpdateStation(int stationKey, Action<Station> update){ } //method that knows to updt specific fields in Station
         void DeleteStation(int stationKey){}
-        IEnumerable<int> GetAllLinesInStation(int busLineKey)
+        IEnumerable<int> GetAllLinesInStation(int stationKey)
         {
             var allLines = from station in DataSource.ListBusLineStations
-                           where station.BusLineKey == busLineKey
+                           where station.StationKey == stationKey && station.Position == 1
                            select station.BusLineKey;
             return allLines;
         }
