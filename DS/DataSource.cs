@@ -28,11 +28,11 @@ namespace DS
         {
             InitAllLists();
         }
-        static double GetDistant()
+        static double GetDistant(double x1, double y1, double x2, double y2)
         {
-            GeoCoordinate s1 = new GeoCoordinate();//מיקום תחנה 1
-            GeoCoordinate s2 = new GeoCoordinate();//מיקום תחנה 2
-            return s1.GetDistanceTo(s2);//חישוב מרחק
+            GeoCoordinate s1 = new GeoCoordinate(x1, y1);//מיקום תחנה 1
+            GeoCoordinate s2 = new GeoCoordinate(x2, y2);//מיקום תחנה 2
+            return s1.GetDistanceTo(s2)*(1.3);//חישוב מרחק
         }
         static void InitAllLists()
         {
@@ -164,10 +164,23 @@ namespace DS
                 /*
                 */
             };
+            foreach (BusLineStation bls1 in ListBusLineStations)
+            {
+                foreach (BusLineStation bls2 in ListBusLineStations)
+                {
+                    if (bls1.BusLineKey == bls2.BusLineKey)
+                    {
+                        if (!(bls1.StationKey == bls2.StationKey))
+                        {
+                            ListConsecutiveStations.Add(new ConsecutiveStations { StationKey1 = bls1.StationKey, StationKey2 = bls2.StationKey, Distance = 0 });
+                        }
+                    }
+                }
+            }
             ListConsecutiveStations = new List<ConsecutiveStations>
             {
                 //949
-                new ConsecutiveStations{StationKey1 = 45385, StationKey2 = 61017, Distance = 0, AverageTime = 0 }
+                new ConsecutiveStations{StationKey1 = 45385, StationKey2 = 61017, Distance = GetDistant(31.828149, 35.252449, 31.864862, 35.261681), AverageTime = 0}
             };
         }
     }
