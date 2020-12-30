@@ -44,6 +44,7 @@
     <Compile Include="BO\BusLine.cs" />
     <Compile Include="BO\BusLineStation.cs" />
     <Compile Include="BO\Enum.cs" />
+    <Compile Include="BO\Station.cs" />
     <Compile Include="BO\Tools.cs" />
     <Compile Include="Cloning.cs" />
     <Compile Include="IBL.cs" />

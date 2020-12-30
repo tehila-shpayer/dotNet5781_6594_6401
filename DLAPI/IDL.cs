@@ -71,7 +71,7 @@ namespace DLAPI
         #endregion
 
         #region Station
-        ConsecutiveStations GetStation(int stationKey);
+        Station GetStation(int stationKey);
         IEnumerable<Station> GetAllStations();
         void AddStation(Station station);
         void UpdateStation(Station station);

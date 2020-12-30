@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//https://us04web.zoom.us/j/72899986381?pwd=NzlRcFFQWXBoU2JSazQwNTVQcVJNdz09
+//
 namespace DO
 {
     public class BusLineStation

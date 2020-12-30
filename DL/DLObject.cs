@@ -70,6 +70,7 @@ namespace DL
             DataSource.ListBuses.Remove(bus);
         }
         #endregion
+
         #region BusInTravel
         BusInTravel GetBusInTravel(int key) 
         {
