@@ -14,15 +14,15 @@ namespace DS
 {
     public static class DataSource
     {
-        public static List<Bus> ListBuses;
-        public static List<BusInTravel> ListBusesInTravel;
+        //public static List<Bus> ListBuses;
+        //public static List<BusInTravel> ListBusesInTravel;
         public static List<Station> ListStations;
         public static List<BusLine> ListBusLines;
         public static List<BusLineStation> ListBusLineStations;
         public static List<ConsecutiveStations> ListConsecutiveStations;
-        public static List<LineSchedule> ListLineSchedules;
-        public static List<User> ListUsers;
-        public static List<User> ListUserTravel;
+        //public static List<LineSchedule> ListLineSchedules;
+        //public static List<User> ListUsers;
+        //public static List<User> ListUserTravel;
 
         static DataSource()
         {
@@ -36,19 +36,19 @@ namespace DS
         }
         static void InitAllLists()
         {
-            ListBuses = new List<Bus>
-            {
-                new Bus
-                {
-                    LicenseNumber = "7106301", RunningDate = new DateTime(2003, 1, 15), LastTreatment = new DateTime(2020, 12, 15),
-                    Fuel = 790, KM = 18085, BeforeTreatKM = 300, Status = Status.Ready, IsActive = true
-                },
-                new Bus
-                {
-                    LicenseNumber = "86613936", RunningDate = new DateTime(2019, 8, 22), LastTreatment = new DateTime(2020, 12, 17),
-                    Fuel = 951, KM = 9104, BeforeTreatKM = 45, Status = Status.Ready, IsActive = true
-                }
-            };
+            //ListBuses = new List<Bus>
+            //{
+            //    new Bus
+            //    {
+            //        LicenseNumber = "7106301", RunningDate = new DateTime(2003, 1, 15), LastTreatment = new DateTime(2020, 12, 15),
+            //        Fuel = 790, KM = 18085, BeforeTreatKM = 300, Status = Status.Ready, IsActive = true
+            //    },
+            //    new Bus
+            //    {
+            //        LicenseNumber = "86613936", RunningDate = new DateTime(2019, 8, 22), LastTreatment = new DateTime(2020, 12, 17),
+            //        Fuel = 951, KM = 9104, BeforeTreatKM = 45, Status = Status.Ready, IsActive = true
+            //    }
+            //};
 
             ListStations = new List<Station>
             { 
@@ -121,13 +121,13 @@ namespace DS
             };
             ListBusLines = new List<BusLine>
             {
-                new BusLine{LineNumber=949, Area = Areas.YehudaAndShomron, FirstStationKey = 45385, LastStationKey = 60642},
-                new BusLine{LineNumber=488, Area = Areas.North, FirstStationKey = 57096, LastStationKey = 57119},
-                new BusLine{LineNumber=236, Area = Areas.Hifa, FirstStationKey = 40247, LastStationKey = 40269},
-                new BusLine{LineNumber=934, Area = Areas.General, FirstStationKey = 21007, LastStationKey = 22222},
-                new BusLine{LineNumber=86, Area = Areas.Center, FirstStationKey = 40912, LastStationKey = 40925},
+                new BusLine{Key = 1, LineNumber=949, Area = Areas.YehudaAndShomron, FirstStationKey = 45385, LastStationKey = 60642},
+                new BusLine{Key = 2, LineNumber=488, Area = Areas.North, FirstStationKey = 57096, LastStationKey = 57119},
+                //new BusLine{LineNumber=236, Area = Areas.Hifa, FirstStationKey = 40247, LastStationKey = 40269},
+                //new BusLine{LineNumber=934, Area = Areas.General, FirstStationKey = 21007, LastStationKey = 22222},
+                //new BusLine{LineNumber=86, Area = Areas.Center, FirstStationKey = 40912, LastStationKey = 40925},
 
-                new BusLine{LineNumber=40, Area = Areas.General, FirstStationKey = 60642, LastStationKey = 22222},
+                //new BusLine{LineNumber=40, Area = Areas.General, FirstStationKey = 60642, LastStationKey = 22222},
                 //new BusLine{LineNumber=6, Area = Areas.Jerusalem, FirstStationKey = , LastStationKey = },
                 //new BusLine{LineNumber=142, Area = Areas.YehudaAndShomron, FirstStationKey = , LastStationKey = },
                 //new BusLine{LineNumber=1, Area = Areas.General, FirstStationKey = , LastStationKey = },
