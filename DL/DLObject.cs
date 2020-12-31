@@ -290,7 +290,14 @@ namespace DL
             int indexOfStationToUpdate = DataSource.ListStations.FindIndex(s => s.Key == station.Key);
             DataSource.ListStations[indexOfStationToUpdate] = station;
         }
-        public void UpdateStation(int stationKey, Action<Station> update){ } //method that knows to updt specific fields in Station
+        public void UpdateStation(int stationKey, Action<Station> update)//method that knows to updt specific fields in Station
+        {
+            Station station = DataSource.ListStations.Find(s => s.Key == stationKey);
+            if (station == null)
+                throw new ArgumentNotFoundException<int>(station.Key, $"Station not found with key: {stationKey}");
+            update(station);
+        }
+        
         public void DeleteStation(int stationKey)
         {
             Station station = DataSource.ListStations.Find(s => s.Key == stationKey);
