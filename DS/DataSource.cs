@@ -14,7 +14,7 @@ namespace DS
 {
     public static class DataSource
     {
-        //public static List<Bus> ListBuses;
+        public static List<Bus> ListBuses;
         //public static List<BusInTravel> ListBusesInTravel;
         public static List<Station> ListStations;
         public static List<BusLine> ListBusLines;
@@ -36,19 +36,19 @@ namespace DS
         }
         static void InitAllLists()
         {
-            //ListBuses = new List<Bus>
-            //{
-            //    new Bus
-            //    {
-            //        LicenseNumber = "7106301", RunningDate = new DateTime(2003, 1, 15), LastTreatment = new DateTime(2020, 12, 15),
-            //        Fuel = 790, KM = 18085, BeforeTreatKM = 300, Status = Status.Ready, IsActive = true
-            //    },
-            //    new Bus
-            //    {
-            //        LicenseNumber = "86613936", RunningDate = new DateTime(2019, 8, 22), LastTreatment = new DateTime(2020, 12, 17),
-            //        Fuel = 951, KM = 9104, BeforeTreatKM = 45, Status = Status.Ready, IsActive = true
-            //    }
-            //};
+            ListBuses = new List<Bus>
+            {
+                new Bus
+                {
+                    LicenseNumber = "7106301", RunningDate = new DateTime(2003, 1, 15), LastTreatment = new DateTime(2020, 12, 15),
+                    Fuel = 790, KM = 18085, BeforeTreatKM = 300, Status = Status.Ready, IsActive = true
+                },
+                new Bus
+                {
+                    LicenseNumber = "86613936", RunningDate = new DateTime(2019, 8, 22), LastTreatment = new DateTime(2020, 12, 17),
+                    Fuel = 951, KM = 9104, BeforeTreatKM = 45, Status = Status.Ready, IsActive = true
+                }
+            };
 
             ListStations = new List<Station>
             { 

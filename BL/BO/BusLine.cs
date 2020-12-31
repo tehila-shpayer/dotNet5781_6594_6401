@@ -26,7 +26,8 @@ namespace BO
         // ToString דריסה של 
         public override String ToString()
         {
-            return this.ToStringProperty();
+            return $"Line Key: {Key}. Bus line number: {LineNumber}. Area: {Area}\n";
+            //return this.ToStringProperty();
         }
         /// <summary>
         /// אינדקסר 
