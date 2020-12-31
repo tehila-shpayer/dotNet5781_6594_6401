@@ -9,13 +9,13 @@ using DS;
 
 namespace DL
 {
-    sealed class DLObject : IDL    //internal
+    sealed class DL : IDL    //internal
     {
         #region singelton
-        static readonly DLObject instance = new DLObject();
-        static DLObject() { }// static ctor to ensure instance init is done just before first usage
-        DLObject() { } // default => private
-       public static DLObject Instance { get => instance; }// The public Instance property to use
+        static readonly DL instance = new DL();
+        static DL() { }// static ctor to ensure instance init is done just before first usage
+        DL() { } // default => private
+       public static DL Instance { get => instance; }// The public Instance property to use
         #endregion
 
         #region Bus

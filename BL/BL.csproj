@@ -55,6 +55,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\DLAPI\DLAPI.csproj">
       <Project>{0ae5e0ac-5fa4-4bed-b222-314d1da6c8ce}</Project>
       <Name>DLAPI</Name>
