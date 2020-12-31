@@ -254,21 +254,19 @@ namespace BL
             }
             catch (DO.ArgumentNotFoundException<BusLine> ex) { }
         }
-        void DeleteStationFromLine(int busKey, int stationKey)        {
+        void DeleteStationFromLine(int busKey, int stationKey)  
+        {
             BusLine busLine = GetBusLine(busKey);
-            DO.BusLineStation busLineStationDO = new DO.BusLineStation();
-            busLineStationDO.BusLineKey = busLineKey;
-            busLineStationDO.StationKey = station.Key;
-            busLineStationDO.Position = position;
-            dl.AddBusLineStation(busLineStationDO);
-            BO.BusLineStation busLineStationBO = new BO.BusLineStation();
-            busLineStationBO = BusLineStationDoBoAdapter(busLineStationDO);
-            busLine.BusLineStations.Append(busLineStationBO);
-            if (position != busLine.BusLineStations.Count())
+            dl.DeleteBusLineStation(busKey, stationKey);
+            DO.BusLineStation busLineStationDO = dl.GetBusLineStationByKey(busKey, stationKey);
+            //foreach (BusLineStation bls in busLine.BusLineStations)
+            //    if (bls.StationKey == stationKey && bls.BusLineKey == busKey)
+            //        bls.IsActive = false;
+            if (busLineStationDO.Position != busLine.BusLineStations.Count())
             {//אם זו לא התחנה האחרונה יש לעדכן את פרטי הזמן והמרחק של התחנה הבאה 
                 foreach (BusLineStation s in busLine.BusLineStations)
                 {
-                    if (s.Position == position + 1)
+                    if (s.Position == busLineStationDO.Position + 1)
                     {
                         UpdateBusLineStation(s.BusLineKey, s.StationKey, bls => bls = BusLineStationDoBoAdapter(busLineStationDO));
                     }
