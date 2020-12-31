@@ -3,6 +3,8 @@ using BLAPI;
 using DLAPI;
 using BO;
 using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace BL
@@ -117,14 +119,25 @@ namespace BL
         }
         BusLine GetBusLine(int busLineKey)
         {
-            return BusLineDoBoAdapter(dl.GetBusLine(busLineKey))
+            try
+            {
+                return BusLineDoBoAdapter(dl.GetBusLine(busLineKey));
+            }
+            catch(DO.ArgumentNotFoundException<BusLine> ex)
+            {
+
+            }
         }
         IEnumerable<BusLine> GetBusLinesBy(Predicate<BusLine> predicate)
         {
-            var AllBuseLinesBy = from line in DataSource.ListBusLines
-                                 where predicate(line)
-                                 select line.Clone();
-            return AllBuseLinesBy;
+            try
+            {
+                return from bl in dl.GetAllBusLines()
+                       let BusLineBO = BusLineDoBoAdapter(bl)
+                       where predicate(BusLineBO)
+                       select BusLineBO;
+            }
+            catch (DO.ArgumentNotFoundException<BusLine> ex) { }
         }
         IEnumerable<BusLine> GetAllBusLines()
         {
@@ -132,11 +145,31 @@ namespace BL
                                select line.Clone();
             return AllBuseLines;
         }
+        /* if (((int)a > 7) || ((int)a < 0))//אימות שהאיזור בטווח הנכון
+                throw new BusException("Area number must be between 0 and 7");
+            BUS_LINE_NUMBER++;
+            if (bls != null) //אם יש תחנות כלשהם
+                    BusLineStations = bls;
+                else
+                    BusLineStations = new List<BusLineStation>();
+                if (subBusOf == 0) //אם הקו לא תת קו
+                    LineNumber = BUS_LINE_NUMBER;
+                else //אם הקו הוא תת קו
+                {
+                    LineNumber = subBusOf; //הקו מקבל את אותו מספר  
+                    SubLineOf = true;      //מהקו ממנו הוא לקוח
+            }
+                area = a;
+        */
         void AddBusLine(BusLine bus)
         {
-            if (DataSource.ListBusLines.FirstOrDefault(l => l.Key == bus.Key) != null)
-                throw new InvalidInformationException<int>(bus.Key, "Duplicate bus line key");
-            DataSource.ListBusLines.Add(bus.Clone());
+            try
+            {
+                DO.BusLine BusLineDO = new DO.BusLine();
+                bus.Clone(BusLineDO);
+                dl.AddBusLine(BusLineDO);
+            }
+            catch (DO.InvalidInformationException<BusLine> ex) { }
         }
         void UpdateBusLine(BusLine line)
         {
