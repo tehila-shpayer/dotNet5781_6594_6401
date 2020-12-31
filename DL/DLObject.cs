@@ -254,14 +254,14 @@ namespace DL
         }
         #endregion
 
-        #region LineSchedule
-        LineSchedule GetLineSchedule(int line, int startTime){}
-        IEnumerable<LineSchedule> GetAllLineScheduleOfLine(int Line){}
-        void AddLineSchedule(LineSchedule lineSchedule){}
-        void UpdateLineSchedule(LineSchedule lineSchedule){}
-        void UpdateLineSchedule(int line, int startTime, Action<LineSchedule> update){} //method that knows to updt specific fields in Person
-        void DeleteLineSchedule(int line, int startTime){}
-        #endregion
+        //#region LineSchedule
+        //LineSchedule GetLineSchedule(int line, int startTime){}
+        //IEnumerable<LineSchedule> GetAllLineScheduleOfLine(int Line){}
+        //void AddLineSchedule(LineSchedule lineSchedule){}
+        //void UpdateLineSchedule(LineSchedule lineSchedule){}
+        //void UpdateLineSchedule(int line, int startTime, Action<LineSchedule> update){} //method that knows to updt specific fields in Person
+        //void DeleteLineSchedule(int line, int startTime){}
+        //#endregion
 
         #region Station
         Station GetStation(int stationKey)
