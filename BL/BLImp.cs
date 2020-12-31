@@ -98,11 +98,7 @@ namespace BL
         #region BusLine
         BusLine GetBusLine(int busLineKey)
         {
-            BusLine line = DataSource.ListBusLines.Find(b => b.Key == busLineKey);
-            if (line != null)
-                return line.Clone();
-            else
-                throw new ArgumentNotFoundException<int>(busLineKey, $"Bus not found with license number: {busLineKey}");
+            return BusLineDoBoAdapter(dl.GetBusLine(busLineKey))
         }
         IEnumerable<BusLine> GetBusLinesBy(Predicate<BusLine> predicate)
         {
