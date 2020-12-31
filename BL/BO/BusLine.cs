@@ -8,7 +8,7 @@ namespace BO
 {
     public class BusLine //: IComparable //מחלקה ברת השוואה של קו אוטובוס
     {
-        public static int BUS_LINE_NUMBER = 0; //משתה רץ של מספרים של האוטובוסים
+        public static int BUS_LINE_NUMBER = 1; //משתה רץ של מספרים של האוטובוסים
         //משתנה שמציין האם הקו אוטובוס הוא תת קו של קו אחר
         public IEnumerable<BusLineStation> BusLineStations { get; set; }
         public int LineKey { get; set; }
