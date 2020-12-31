@@ -13,6 +13,7 @@ namespace PLConsole
         static void Main(string[] args)
         {
             IBL bl = BLFactory.GetBL("1");
+            Console.WriteLine("yay!");
         }
     
     }
