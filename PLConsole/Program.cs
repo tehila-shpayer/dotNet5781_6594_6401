@@ -40,7 +40,7 @@ namespace PLConsole
                             //SearchInCollection();//חיפוש במערכת
                             break;
                         case "p"://הדפסת נתונים
-                                 //PrintDataOfCollection();
+                            PrintDataOfCollection();
                             break;
                         case "e"://יציאה
                             break;
@@ -125,6 +125,38 @@ namespace PLConsole
                     Console.WriteLine($"New bus station was added to the system!");
                     break;
                 default: Console.WriteLine("ERROR\n"); break;
+            }
+        }
+        public static void PrintDataOfCollection()
+        {
+            Console.WriteLine("  a: print all bus lines\n  b: print all stations\n  c: print data of one bus line");
+            string p = Console.ReadLine().Trim();
+            switch (p)
+            {
+                case "a"://הדפסת הנתונים על כל קווי האוטובוס
+                    Console.WriteLine("bus lines:");
+                    var aaa = from busLine in bl.GetAllBusLines()
+                            select busLine.ToString();
+                    foreach (String a in aaa)
+                        Console.WriteLine(a);
+                    break;
+                case "b"://הדפסת הנתונים על כל התחנות
+                    //foreach (BO.Station station in StationList.Stations)
+                    //{
+                    //    Console.WriteLine(station);
+
+                    //    Console.Write("   The bus lines in this station: ");
+                    //    PrintBusesInStation(lineCollection, station.BusStationKey);
+                    //}
+                    break;
+                case "c"://הדפסת נתונים על קו אוטובוס מסויים
+                    //BusesInSystem(lineCollection);
+                    //Console.WriteLine("Please enter the bus number to print: ");
+                    //string stringNum = Console.ReadLine();
+                    //int busNum = int.Parse(stringNum);
+                    //Console.WriteLine(lineCollection[busNum]);
+                    break;
+                default: Console.WriteLine("ERROR"); break;
             }
         }
     }
@@ -250,34 +282,7 @@ namespace PLConsole
         //        }
         //    }
 
-        //    public static void PrintDataOfCollection(BusLineCollection lineCollection)
-        //    {
-        //        Console.WriteLine("  a: print all bus lines\n  b: print all stations\n  c: print data of one bus line");
-        //        string p = Console.ReadLine().Trim();
-        //        switch (p)
-        //        {
-        //            case "a"://הדפסת הנתונים על כל קווי האוטובוס
-        //                Console.WriteLine(lineCollection);
-        //                break;
-        //            case "b"://הדפסת הנתונים על כל התחנות
-        //                foreach (BusStation station in StationList.Stations)
-        //                {
-        //                    Console.WriteLine(station);
-
-        //                    Console.Write("   The bus lines in this station: ");
-        //                    PrintBusesInStation(lineCollection, station.BusStationKey);
-        //                }
-        //                break;
-        //            case "c"://הדפסת נתונים על קו אוטובוס מסויים
-        //                BusesInSystem(lineCollection);
-        //                Console.WriteLine("Please enter the bus number to print: ");
-        //                string stringNum = Console.ReadLine();
-        //                int busNum = int.Parse(stringNum);
-        //                Console.WriteLine(lineCollection[busNum]);
-        //                break;
-        //            default: Console.WriteLine("ERROR"); break;
-        //        }
-        //    }
+  
         //    public static void PrintBusesInStation(BusLineCollection lineCollection, int key)//מדפיס את כל האוטובוסים העוברים בתחנה מסויימת
         //    {
         //        Console.WriteLine(BusesInStation(lineCollection, key));
