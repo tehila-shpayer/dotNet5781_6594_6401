@@ -31,7 +31,7 @@ namespace BL
                 DO.Station StationDO = dl.GetStation(stationKey);
                 return StationDoBoAdapter(StationDO);
             }
-            catch
+            catch 
             {
                 throw;
             }
