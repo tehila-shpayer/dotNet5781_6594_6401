@@ -79,7 +79,7 @@ namespace BL
                 StationBO.Clone(StationDO);
                 dl.UpdateStation(StationDO);
             }
-            catch (DO.ArgumentNotFoundException<BusLine> ex) { throw ex; }
+            catch (DO.ArgumentNotFoundException ex) { throw ex; }
         }
         public void DeleteStation(int stationKey)
         {
@@ -124,7 +124,7 @@ namespace BL
             {
                 return BusLineStationDoBoAdapter(dl.GetBusLineStationByKey(line, stationKey));
             }
-            catch (DO.ArgumentNotFoundException<DO.BusLineStation> ex) { throw; }
+            catch (DO.ArgumentNotFoundException ex) { throw; }
         }
         public IEnumerable<BusLineStation> GetAllStationsOfLine(int busLine)
         {
@@ -135,34 +135,47 @@ namespace BL
                                         select BusLineStationDoBoAdapter(station);
                 return AllStationsOfLine;
             }
-            catch (DO.ArgumentNotFoundException<DO.BusLineStation> ex) { throw; }          
+            catch (DO.ArgumentNotFoundException ex) { throw; }          
         }
         public void AddBusLineStation(BusLineStation station)
         {
-
+            try
+            {
+                DO.BusLineStation busLineStationDO = new DO.BusLineStation();
+                station.Clone(busLineStationDO);
+                dl.AddBusLineStation(busLineStationDO);
+            }
+            catch (DO.InvalidInformationException ex) { throw; }
         }
         public void UpdateBusLineStation(BusLineStation station)
         {
-            BusLineStation busLineStation = DataSource.ListBusLineStations.Find(s => s.BusLineKey == station.BusLineKey && s.StationKey == station.StationKey);
-            if (busLineStation != null)
-                busLineStation = station;
-            else
-                throw new ArgumentNotFoundException<int>(station.BusLineKey, $"Bus station of line {station.BusLineKey} and station {station.StationKey} was not found.");
+            try
+            {
+                DO.BusLineStation busLineStationDO = new DO.BusLineStation();
+                station.Clone(busLineStationDO);
+                dl.UpdateBusLineStation(busLineStationDO);
+            }
+            catch (DO.InvalidInformationException ex) { throw; }
         }
         public void UpdateBusLineStation(int line, int stationKey, Action<BusLineStation> update) //method that knows to updt specific fields in Person
         {
-            BusLineStation busLineStation = DataSource.ListBusLineStations.Find(s => s.BusLineKey == line && s.StationKey == stationKey);
-            if (busLineStation != null)
-                update(busLineStation);
-            else
-                throw new ArgumentNotFoundException<int>(line, $"Bus station of line {line} and station {stationKey} was not found.");
+            try
+            {
+                DO.BusLineStation BusLineStationDO = new DO.BusLineStation();
+                BusLineStation BusLineStationBO = GetBusLineStationByKey(line, stationKey);
+                update(BusLineStationBO);
+                BusLineStationBO.Clone(BusLineStationDO);
+                dl.UpdateBusLineStation(BusLineStationDO);
+            }
+            catch (DO.ArgumentNotFoundException ex) { }
         }
         public void DeleteBusLineStation(int line, int stationKey)
         {
-            BusLineStation busLineStation = DataSource.ListBusLineStations.Find(b => b.BusLineKey == line && b.StationKey == stationKey);
-            if (busLineStation == null)
-                throw new ArgumentNotFoundException<int>(line, $"Bus station of line {line} and station {stationKey} was not found.");
-            DataSource.ListBusLineStations.Remove(busLineStation);
+            try
+            {
+                dl.DeleteBusLineStation(line, stationKey);
+            }
+            catch (DO.ArgumentNotFoundException ex) { }
         }
         #endregion
 
@@ -183,7 +196,7 @@ namespace BL
             {
                 return BusLineDoBoAdapter(dl.GetBusLine(busLineKey));
             }
-            catch (DO.ArgumentNotFoundException<BusLine> ex)
+            catch (DO.ArgumentNotFoundException ex)
             {
                 throw;
             }
@@ -197,7 +210,7 @@ namespace BL
                        where predicate(BusLineBO)
                        select BusLineBO;
             }
-            catch (DO.ArgumentNotFoundException<BusLine> ex) { throw; }
+            catch (DO.ArgumentNotFoundException ex) { throw; }
         }
         public IEnumerable<BusLine> GetAllBusLines()
         {
@@ -213,7 +226,7 @@ namespace BL
                 bus.Clone(BusLineDO);
                 dl.AddBusLine(BusLineDO);
             }
-            catch (DO.InvalidInformationException<BusLine> ex) { }
+            catch (DO.InvalidInformationException ex) { }
         }
         DO.ConsecutiveStations CalculateConsecutiveStations(DO.Station station1, DO.Station station2)
         {
@@ -286,7 +299,7 @@ namespace BL
                 bus.Clone(BusLineDO);
                 dl.UpdateBusLine(BusLineDO);
             }
-            catch (DO.ArgumentNotFoundException<BusLine> ex) { }
+            catch (DO.ArgumentNotFoundException ex) { }
         }
         public void UpdateBusLine(int busLineKey, Action<BusLine> update)
         {
@@ -298,7 +311,7 @@ namespace BL
                 BusLineBO.Clone(BusLineDO);
                 dl.UpdateBusLine(BusLineDO);
             }
-            catch (DO.ArgumentNotFoundException<BusLine> ex) { }
+            catch (DO.ArgumentNotFoundException ex) { }
         }
         public void DeleteBusLine(int busLineKey)
         {
@@ -306,7 +319,7 @@ namespace BL
             {
                 dl.DeleteBusLine(busLineKey);
             }
-            catch (DO.ArgumentNotFoundException<BusLine> ex) { }
+            catch (DO.ArgumentNotFoundException ex) { }
         }
         public void DeleteStationFromLine(int busKey, int stationKey)
         {
