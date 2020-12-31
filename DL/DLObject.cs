@@ -168,7 +168,7 @@ namespace DL
             var AllStationsOfLine = from station in DataSource.ListBusLineStations
                                     where station.BusLineKey == busLine
                                     select station.Clone();
-            return AllStationsOfLine;
+            return AllStationsOfLine.OrderBy(bls => bls.Position);
         }
         void AddBusLineStation(BusLineStation station)
         {

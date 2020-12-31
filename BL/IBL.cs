@@ -10,6 +10,7 @@ namespace BLAPI
     public interface IBL
     {
         #region BusLine
+        BO.BusLine BusLineDoBoAdapter(DO.BusLine BusLineDO);
         BusLine GetBusLine(int busLineKey);
         IEnumerable<BusLine> GetBusLinesBy(Predicate<BusLine> predicate);
         IEnumerable<BusLine> GetAllBusLines();
@@ -21,10 +22,11 @@ namespace BLAPI
         void DeleteStationFromLine(BusLineStation bls);
         void DeleteStationFromLine(int key);
         void UpdateBusLine(BusLine busline);
-        void UpdateStation(int LineKey, Action<BusLine> update); 
+        void UpdateStation(int LineKey, Action<BusLine> update);
         #endregion
 
         #region BusLineStation
+        BO.BusLineStation BusLineStationDoBoAdapter(DO.BusLineStation BusLineStationDO);
         BusLineStation GetBusLineStationByKey(int line, int stationKey);
         IEnumerable<BusLineStation> GetAllStationsOfLine(int busLine);
         void AddBusLineStation(BusLineStation bus);
@@ -34,6 +36,7 @@ namespace BLAPI
         #endregion
 
         #region Station
+        BO.Station StationDoBoAdapter(DO.Station StationDO);
         Station GetStation(int stationKey);
         IEnumerable<Station> GetAllStations();
         void AddStation(Station station);

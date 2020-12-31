@@ -2,6 +2,7 @@
 using BLAPI;
 using DLAPI;
 using BO;
+using System.Linq;
 using System.Threading;
 
 namespace BL
@@ -49,6 +50,14 @@ namespace BL
         #endregion
 
         #region BusLineStation
+        BO.BusLineStation BusLineStationDoBoAdapter(DO.BusLineStation BusLineStationDO)
+        {
+            BO.BusLineStation BusLineStationBO = new BO.BusLineStation();
+
+            BusLineStationDO.Clone(BusLineStationBO);
+
+            return BusLineStationBO;
+        }
         BusLineStation GetBusLineStationByKey(int line, int stationKey)
         {
             BusLineStation busLineStation = DataSource.ListBusLineStations.Find(b => b.BusLineKey == line && b.StationKey == stationKey);
@@ -96,6 +105,16 @@ namespace BL
         #endregion
 
         #region BusLine
+        BO.BusLine BusLineDoBoAdapter(DO.BusLine BusLineDO)
+        {
+            BO.BusLine BusLineBO = new BO.BusLine();
+
+            BusLineDO.Clone(BusLineBO);
+
+            BusLineBO.BusLineStations = from blsDO in dl.GetAllStationsOfLine(BusLineBO.LineKey)
+                                        select BusLineStationDoBoAdapter(blsDO);
+            return BusLineBO;
+        }
         BusLine GetBusLine(int busLineKey)
         {
             return BusLineDoBoAdapter(dl.GetBusLine(busLineKey))
