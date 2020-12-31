@@ -53,7 +53,9 @@ namespace BL
             }
             try
             {
-                dl.AddStation(new DO.Station { Latitude = station.Latitude, Longitude = station.Longitude, Name = station.Name });
+                DO.Station StationDO = new DO.Station();
+                station.Clone(StationDO);
+                dl.AddStation(StationDO);
             }
             catch
             {
@@ -62,7 +64,9 @@ namespace BL
         }
         void UpdateStation(Station station)
         {
-            //dl.UpdateStation(station.Clone(DO.Station));
+            DO.Station StationDO = new DO.Station();
+            station.Clone(StationDO);
+            dl.UpdateStation(StationDO);
         }
         void UpdateStation(int stationKey, Action<Station> update) { } //method that knows to updt specific fields in Station
         void DeleteStation(int stationKey)
