@@ -134,7 +134,8 @@ namespace BL
             {
                 return BusLineStationDoBoAdapter(dl.GetBusLineStationByKey(line, stationKey));
             }
-            catch (DO.ArgumentNotFoundException ex) { throw; }
+            catch (DO.ArgumentNotFoundException ex)
+            { throw new BOArgumentNotFoundException($"Can't get bus line station {stationKey}", ex); }
         }
         public IEnumerable<BusLineStation> GetAllStationsOfLine(int busLine)
         {
@@ -208,7 +209,7 @@ namespace BL
             }
             catch (DO.ArgumentNotFoundException ex)
             {
-                throw;
+                throw new BOArgumentNotFoundException($"Can't get bus line {busLineKey}", ex);
             }
         }
         public IEnumerable<BusLine> GetBusLinesBy(Predicate<BusLine> predicate)
@@ -236,7 +237,10 @@ namespace BL
                 bus.Clone(BusLineDO);
                 dl.AddBusLine(BusLineDO);
             }
-            catch (DO.InvalidInformationException ex) { }
+            catch (DO.InvalidInformationException ex)
+            {
+                throw new BOInvalidInformationException($"Can't add bus line {bus.LineKey}.", ex);
+            }
         }
         DO.ConsecutiveStations CalculateConsecutiveStations(DO.Station station1, DO.Station station2)
         {
@@ -309,7 +313,10 @@ namespace BL
                 bus.Clone(BusLineDO);
                 dl.UpdateBusLine(BusLineDO);
             }
-            catch (DO.ArgumentNotFoundException ex) { }
+            catch (DO.ArgumentNotFoundException ex)
+            {
+                throw new BOArgumentNotFoundException($"Can't update bus line {bus.LineKey}.", ex);
+            }
         }
         public void UpdateBusLine(int busLineKey, Action<BusLine> update)
         {
@@ -321,7 +328,10 @@ namespace BL
                 BusLineBO.Clone(BusLineDO);
                 dl.UpdateBusLine(BusLineDO);
             }
-            catch (DO.ArgumentNotFoundException ex) { }
+            catch (DO.ArgumentNotFoundException ex)
+            {
+                throw new BOArgumentNotFoundException($"Can't update bus line {busLineKey}.", ex);
+            }
         }
         public void DeleteBusLine(int busLineKey)
         {
@@ -329,7 +339,10 @@ namespace BL
             {
                 dl.DeleteBusLine(busLineKey);
             }
-            catch (DO.ArgumentNotFoundException ex) { }
+            catch (DO.ArgumentNotFoundException ex)
+            {
+                throw new BOArgumentNotFoundException($"Can't delete bus line {busLineKey}.", ex);
+            }
         }
         public void DeleteStationFromLine(int busKey, int stationKey)
         {
