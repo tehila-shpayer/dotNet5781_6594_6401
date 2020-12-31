@@ -137,16 +137,16 @@ namespace DS
             ListBusLineStations = new List<BusLineStation>
             {
                 //949
-                new BusLineStation{BusLineKey = 949, StationKey = 45385, Position = 1 },
-                new BusLineStation{BusLineKey = 949, StationKey = 61017, Position = 2 },
-                new BusLineStation{BusLineKey = 949, StationKey = 61002, Position = 3 },
-                new BusLineStation{BusLineKey = 949, StationKey = 60211, Position = 4 },
-                new BusLineStation{BusLineKey = 949, StationKey = 60215, Position = 5 },
-                new BusLineStation{BusLineKey = 949, StationKey = 60216, Position = 6 },
-                new BusLineStation{BusLineKey = 949, StationKey = 60217, Position = 7 },
-                new BusLineStation{BusLineKey = 949, StationKey = 60218, Position = 8 },
-                new BusLineStation{BusLineKey = 949, StationKey = 63691, Position = 9 },
-                new BusLineStation{BusLineKey = 949, StationKey = 60642, Position = 10 },
+                new BusLineStation{BusLineKey = 1, StationKey = 45385, Position = 1 },
+                new BusLineStation{BusLineKey = 1, StationKey = 61017, Position = 2 },
+                new BusLineStation{BusLineKey = 1, StationKey = 61002, Position = 3 },
+                new BusLineStation{BusLineKey = 1, StationKey = 60211, Position = 4 },
+                new BusLineStation{BusLineKey = 1, StationKey = 60215, Position = 5 },
+                new BusLineStation{BusLineKey = 1, StationKey = 60216, Position = 6 },
+                new BusLineStation{BusLineKey = 1, StationKey = 60217, Position = 7 },
+                new BusLineStation{BusLineKey = 1, StationKey = 60218, Position = 8 },
+                new BusLineStation{BusLineKey = 1, StationKey = 63691, Position = 9 },
+                new BusLineStation{BusLineKey = 1, StationKey = 60642, Position = 10 },
 
                 //488
                 new BusLineStation{ BusLineKey = 488, StationKey = 57096, Position = 1 },
