@@ -38,12 +38,12 @@ namespace DL
             if (bus != null)
                 return bus.Clone();
             else
-                throw new ArgumentNotFoundException<string>(bus.LicenseNumber, $"Bus not found with license number: {bus.LicenseNumber}");
+                throw new ArgumentNotFoundException($"Bus not found with license number: {bus.LicenseNumber}");
         }
         public void AddBus(Bus bus)
         {
             if (DataSource.ListBuses.FirstOrDefault(p => p.LicenseNumber == bus.LicenseNumber) != null)
-                throw new InvalidInformationException<string>(bus.LicenseNumber, "Duplicate bus license number");
+                throw new InvalidInformationException("Duplicate bus license number");
             DataSource.ListBuses.Add(bus.Clone());
         }
         public void UpdateBus(Bus bus)
@@ -52,7 +52,7 @@ namespace DL
             if (bus1 != null)
                 bus1 = bus;
             else
-                throw new ArgumentNotFoundException<string>(bus1.LicenseNumber, $"Bus not found with license number: {bus.LicenseNumber}");
+                throw new ArgumentNotFoundException($"Bus not found with license number: {bus.LicenseNumber}");
         }
         public void UpdateBus(string LicenseNumber, Action<Bus> update) //method that knows to updt specific fields in Bus
         {
@@ -60,13 +60,13 @@ namespace DL
             if (bus != null)
                 update(bus);
             else
-                throw new ArgumentNotFoundException<string>(LicenseNumber, $"Bus not found with license number: {LicenseNumber}");
+                throw new ArgumentNotFoundException($"Bus not found with license number: {LicenseNumber}");
         }
        public void DeleteBus(string LicenseNumber)
         {
             Bus bus = DataSource.ListBuses.Find(b => b.LicenseNumber == LicenseNumber);
             if (bus == null)
-                throw new ArgumentNotFoundException<string>(LicenseNumber, $"Bus not found with license number: {LicenseNumber}");
+                throw new ArgumentNotFoundException($"Bus not found with license number: {LicenseNumber}");
             DataSource.ListBuses.Remove(bus);
         }
         #endregion
@@ -78,7 +78,7 @@ namespace DL
        //     if (busInTravel != null)
        //         return busInTravel.Clone();
        //     else
-       //         throw new ArgumentNotFoundException<int>(key, $"Bus in travel with key {key} not found.");
+       //         throw new ArgumentNotFoundException(key, $"Bus in travel with key {key} not found.");
        // }
        //public IEnumerable<BusInTravel> GetAllBusInTravelsBy(Predicate<BusInTravel> predicate) 
        // {
@@ -107,7 +107,7 @@ namespace DL
             if (line != null)
                 return line.Clone();
             else
-                throw new ArgumentNotFoundException<int>(busLineKey, $"Bus not found with license number: {busLineKey}");
+                throw new ArgumentNotFoundException($"Bus not found with license number: {busLineKey}");
         }
         public IEnumerable<BusLine> GetBusLinesBy(Predicate<BusLine> predicate)
         {
@@ -125,7 +125,7 @@ namespace DL
         public void AddBusLine(BusLine bus)
         {
             if (DataSource.ListBusLines.FirstOrDefault(l => l.Key == bus.Key) != null)
-                throw new InvalidInformationException<int>(bus.Key, "Duplicate bus line key");
+                throw new InvalidInformationException("Duplicate bus line key");
             DataSource.ListBusLines.Add(bus.Clone());
         }
         public void UpdateBusLine(BusLine line)
@@ -134,7 +134,7 @@ namespace DL
             if (bus != null)
                 bus = line;
             else
-                throw new ArgumentNotFoundException<int>(line.Key, $"Bus not found with license number: {line.Key}");
+                throw new ArgumentNotFoundException($"Bus not found with license number: {line.Key}");
         }
         public void UpdateBusLine(int busLineKey, Action<BusLine> update)//method that knows to updt specific fields in BusLine
         {
@@ -142,13 +142,13 @@ namespace DL
             if (bus != null)
                 update(bus);
             else
-                throw new ArgumentNotFoundException<int>(busLineKey, $"Bus not found with license number: {busLineKey}");
+                throw new ArgumentNotFoundException($"Bus not found with license number: {busLineKey}");
         } 
         public void DeleteBusLine(int busLineKey)
         {
             BusLine bus = DataSource.ListBusLines.Find(b => b.Key == busLineKey);
             if (bus == null)
-                throw new ArgumentNotFoundException<int>(busLineKey, $"Bus not found with license number: {busLineKey}");
+                throw new ArgumentNotFoundException($"Bus not found with license number: {busLineKey}");
             DataSource.ListBusLines.Remove(bus);
         }
 
@@ -161,7 +161,7 @@ namespace DL
             if (busLineStation != null)
                 return busLineStation.Clone();
             else
-                throw new ArgumentNotFoundException<int>(0, $"Bus station required was not found.");
+                throw new ArgumentNotFoundException($"Bus station required was not found.");
         }
         public BusLineStation GetBusLineStationByKey(int line, int stationKey)
         {
@@ -169,7 +169,7 @@ namespace DL
             if (busLineStation != null)
                 return busLineStation.Clone();
             else
-                throw new ArgumentNotFoundException<int>(line, $"Bus station of line {line} and station {stationKey} was not found.");
+                throw new ArgumentNotFoundException($"Bus station of line {line} and station {stationKey} was not found.");
         }
         public IEnumerable<BusLineStation> GetAllStationsOfLine(int busLine)
         {
@@ -181,7 +181,7 @@ namespace DL
         public void AddBusLineStation(BusLineStation station)
         {
             if (DataSource.ListBusLineStations.FirstOrDefault(s => s.BusLineKey == station.BusLineKey && s.StationKey == station.StationKey) != null)
-                throw new InvalidInformationException<int>(station.BusLineKey, "Duplicate station bus line number and station key");
+                throw new InvalidInformationException("Duplicate station bus line number and station key");
             DataSource.ListBusLineStations.Add(station.Clone());
         }
         public void UpdateBusLineStation(BusLineStation station)
@@ -190,7 +190,7 @@ namespace DL
             if (busLineStation != null)
                 busLineStation = station;
             else
-                throw new ArgumentNotFoundException<int>(station.BusLineKey, $"Bus station of line {station.BusLineKey} and station {station.StationKey} was not found.");
+                throw new ArgumentNotFoundException($"Bus station of line {station.BusLineKey} and station {station.StationKey} was not found.");
         }
         public void UpdateBusLineStation(int line, int stationKey, Action<BusLineStation> update) //method that knows to updt specific fields in Person
         {
@@ -198,13 +198,13 @@ namespace DL
             if (busLineStation != null)
                 update(busLineStation);
             else
-                throw new ArgumentNotFoundException<int>(line, $"Bus station of line {line} and station {stationKey} was not found.");
+                throw new ArgumentNotFoundException($"Bus station of line {line} and station {stationKey} was not found.");
         }
         public void DeleteBusLineStation(int line, int stationKey)
         {
             BusLineStation busLineStation = DataSource.ListBusLineStations.Find(b => b.BusLineKey == line && b.StationKey == stationKey);
             if (busLineStation == null)
-                throw new ArgumentNotFoundException<int>(line, $"Bus station of line {line} and station {stationKey} was not found.");
+                throw new ArgumentNotFoundException($"Bus station of line {line} and station {stationKey} was not found.");
             DataSource.ListBusLineStations.Remove(busLineStation);
         }
         public void DeleteBusLineStationsByStation(int stationKey)
@@ -221,12 +221,12 @@ namespace DL
             if (consecutiveStations != null)
                 return consecutiveStations.Clone();
             else
-                throw new ArgumentNotFoundException<int>(stationKey1, $"Consecutive stations of first station  {stationKey1} and second station {stationKey2} was not found.");
+                throw new ArgumentNotFoundException($"Consecutive stations of first station  {stationKey1} and second station {stationKey2} was not found.");
         }
         public void AddConsecutiveStations(ConsecutiveStations consecutiveStations)
         {
             if (DataSource.ListConsecutiveStations.FirstOrDefault(s => s.StationKey1 == consecutiveStations.StationKey1 && s.StationKey2 == consecutiveStations.StationKey2) != null)
-                throw new InvalidInformationException<int>(consecutiveStations.StationKey1, "Duplicate pair of stations");
+                throw new InvalidInformationException("Duplicate pair of stations");
             DataSource.ListConsecutiveStations.Add(consecutiveStations.Clone());
         }
         public void UpdateConsecutiveStations(ConsecutiveStations stations)
@@ -235,7 +235,7 @@ namespace DL
             if (consecutiveStations != null)
                 consecutiveStations = stations;
             else
-                throw new ArgumentNotFoundException<int>(stations.StationKey1, $"Consecutive stations of first station  {stations.StationKey1} and second station {stations.StationKey1} were not found.");
+                throw new ArgumentNotFoundException($"Consecutive stations of first station  {stations.StationKey1} and second station {stations.StationKey1} were not found.");
         }
         public void UpdateConsecutiveStations(int stationKey1, int stationKey2, Action<ConsecutiveStations> update) //method that knows to updt specific fields in Person
         {
@@ -243,13 +243,13 @@ namespace DL
             if (consecutiveStations != null)
                 update(consecutiveStations);
             else
-                throw new ArgumentNotFoundException<int>(stationKey1, $"Consecutive stations of first station  {stationKey1} and second station {stationKey2} were not found.");
+                throw new ArgumentNotFoundException($"Consecutive stations of first station  {stationKey1} and second station {stationKey2} were not found.");
         }
         public void DeleteConsecutiveStations(int stationKey1, int stationKey2)
         {
             ConsecutiveStations consecutiveStations = DataSource.ListConsecutiveStations.Find(s => s.StationKey1 == stationKey1 && s.StationKey2 == stationKey2);
             if (consecutiveStations == null)
-                throw new ArgumentNotFoundException<int>(stationKey1, $"Consecutive stations of first station  {stationKey1} and second station {stationKey2} was not found.");
+                throw new ArgumentNotFoundException($"Consecutive stations of first station  {stationKey1} and second station {stationKey2} was not found.");
             DataSource.ListConsecutiveStations.Remove(consecutiveStations);
         }
         public void DeleteConsecutiveStations(int stationKey)
@@ -283,7 +283,7 @@ namespace DL
             if (station != null)
                 return station.Clone();
             else
-                throw new ArgumentNotFoundException<int>(station.Key, $"Station not found with key: {stationKey}");
+                throw new ArgumentNotFoundException($"Station not found with key: {stationKey}");
         }
         public IEnumerable<Station> GetAllStations()
         {
@@ -294,7 +294,7 @@ namespace DL
         public void AddStation(Station station)
         {
             if (DataSource.ListStations.FirstOrDefault(s => s.Key == station.Key) != null)
-                throw new InvalidInformationException<int>(station.Key, "Duplicate station key");
+                throw new InvalidInformationException("Duplicate station key");
             station.Key = Station.STATION_KEY++;
             DataSource.ListStations.Add(station.Clone());
         }
@@ -307,7 +307,7 @@ namespace DL
         {
             Station station = DataSource.ListStations.Find(s => s.Key == stationKey);
             if (station == null)
-                throw new ArgumentNotFoundException<int>(station.Key, $"Station not found with key: {stationKey}");
+                throw new ArgumentNotFoundException($"Station not found with key: {stationKey}");
             update(station);
         }
         
@@ -315,7 +315,7 @@ namespace DL
         {
             Station station = DataSource.ListStations.Find(s => s.Key == stationKey);
             if (station == null)
-                throw new ArgumentNotFoundException<int>(stationKey, $"Station: {stationKey} not found!");
+                throw new ArgumentNotFoundException($"Station: {stationKey} not found!");
             DataSource.ListStations.Remove(station);
         }
         public IEnumerable<int> GetAllLinesInStation(int stationKey)

@@ -6,20 +6,26 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public class InvalidInformationException<T> : Exception
+    [Serializable]
+    public class InvalidInformationException : Exception
     {
-        public T Argument;
-        public InvalidInformationException(T arg) : base() => Argument = arg;
-        public InvalidInformationException(T arg, string message) : base(message) => Argument = arg;
-        public InvalidInformationException(T arg, string message, Exception innerException) : base(message, innerException) => Argument = arg;
-        public override string ToString() => base.ToString() + $", bad argument content: {Argument}";
+        public InvalidInformationException() : base() { }
+        public InvalidInformationException(string message) : base(message) { }
+        public InvalidInformationException(string message, Exception innerException) : base(message, innerException) { }
+        public override string ToString()
+        {
+            return base.ToString() + "\nInvalid Information Exception!\n" + Message;
+        }
     }
-    public class ArgumentNotFoundException<T> : Exception
+    [Serializable]
+    public class ArgumentNotFoundException : Exception
     {
-        public T Argument;
-        public ArgumentNotFoundException(T arg) : base() => Argument = arg;
-        public ArgumentNotFoundException(T arg, string message) : base(message) => Argument = arg;
-        public ArgumentNotFoundException(T arg, string message, Exception innerException) : base(message, innerException) => Argument = arg;
-        public override string ToString() => base.ToString() + $", argument not found: {Argument}";
+        public ArgumentNotFoundException() : base() { }
+        public ArgumentNotFoundException(string message) : base(message) { }
+        public ArgumentNotFoundException(string message, Exception innerException) : base(message, innerException) { }
+        public override string ToString()
+        {
+            return base.ToString() + "\nArgument Not Found Exception!\n" + Message;
+        }
     }
 }
