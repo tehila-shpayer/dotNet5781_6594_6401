@@ -33,8 +33,8 @@ namespace BL
         }
         IEnumerable<Station> GetAllStations()
         {
-            var AllStations = from station in DataSource.ListStations
-                              select station.Clone();
+            var AllStations = from station in dl.GetAllStations()
+                              select StationDoBoAdapter(station);
             return AllStations;
         }
         void AddStation(Station station)
@@ -48,7 +48,18 @@ namespace BL
 
         }
         void UpdateStation(int stationKey, Action<Station> update) { } //method that knows to updt specific fields in Station
-        void DeleteStation(int stationKey) { }
+        void DeleteStation(int stationKey)
+        {
+            try
+            {
+                dl.DeleteStation(stationKey);
+                dl.DeleteBusLineStationsByStation(stationKey);
+            }
+            catch
+            {
+                throw;
+            }
+        }
         #endregion
 
         #region BusLineStation

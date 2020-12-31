@@ -199,6 +199,11 @@ namespace DL
                 throw new ArgumentNotFoundException<int>(line, $"Bus station of line {line} and station {stationKey} was not found.");
             DataSource.ListBusLineStations.Remove(busLineStation);
         }
+        void DeleteBusLineStationsByStation(int stationKey)
+        {
+            //int numOfDeletedBusLineStations = DataSource.ListBusLineStations.RemoveAll(bls => bls.StationKey == stationKey);
+            DataSource.ListBusLineStations.RemoveAll(bls => bls.StationKey == stationKey);
+        }
         #endregion
 
         #region ConsecutiveStations
