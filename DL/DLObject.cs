@@ -71,34 +71,34 @@ namespace DL
         }
         #endregion
 
-        #region BusInTravel
-       public BusInTravel GetBusInTravel(int key) 
-        {
-            BusInTravel busInTravel = DataSource.ListBusesInTravel.Find(b => b.Key== key);
-            if (busInTravel != null)
-                return busInTravel.Clone();
-            else
-                throw new ArgumentNotFoundException<int>(key, $"Bus in travel with key {key} not found.");
-        }
-       public IEnumerable<BusInTravel> GetAllBusInTravelsBy(Predicate<BusInTravel> predicate) 
-        {
-            var AllBusesInTravelsBy = from bus in DataSource.ListBusesInTravel
-                                      where predicate(bus)
-                                      select bus.Clone();
-            return AllBusesInTravelsBy;
-        }
-       public IEnumerable<BusInTravel> GetAllBusInTravels()
-        {
-            var AllBusesInTravels = from bus in DataSource.ListBusesInTravel
-                           select bus.Clone();
-            return AllBusesInTravels;
-        }
-        public void AddBusInTravel(BusInTravel busInTravel) { }
-        public void DeleteBusInTravel(string licenseNumber, int lineKey, int formalTime) { }
-        public void UpdateBusInTravel(BusInTravel bus) { }
-        public void UpdateBusInTravel(int key, Action<BusInTravel> update) { } //method that knows to updt specific fields in BusInTravel
+       // #region BusInTravel
+       //public BusInTravel GetBusInTravel(int key) 
+       // {
+       //     BusInTravel busInTravel = DataSource.ListBusesInTravel.Find(b => b.Key== key);
+       //     if (busInTravel != null)
+       //         return busInTravel.Clone();
+       //     else
+       //         throw new ArgumentNotFoundException<int>(key, $"Bus in travel with key {key} not found.");
+       // }
+       //public IEnumerable<BusInTravel> GetAllBusInTravelsBy(Predicate<BusInTravel> predicate) 
+       // {
+       //     var AllBusesInTravelsBy = from bus in DataSource.ListBusesInTravel
+       //                               where predicate(bus)
+       //                               select bus.Clone();
+       //     return AllBusesInTravelsBy;
+       // }
+       //public IEnumerable<BusInTravel> GetAllBusInTravels()
+       // {
+       //     var AllBusesInTravels = from bus in DataSource.ListBusesInTravel
+       //                    select bus.Clone();
+       //     return AllBusesInTravels;
+       // }
+       // public void AddBusInTravel(BusInTravel busInTravel) { }
+       // public void DeleteBusInTravel(string licenseNumber, int lineKey, int formalTime) { }
+       // public void UpdateBusInTravel(BusInTravel bus) { }
+       // public void UpdateBusInTravel(int key, Action<BusInTravel> update) { } //method that knows to updt specific fields in BusInTravel
 
-        #endregion
+       // #endregion
 
         #region BusLine
         public BusLine GetBusLine(int busLineKey)
