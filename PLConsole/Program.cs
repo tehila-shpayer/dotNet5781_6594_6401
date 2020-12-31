@@ -135,26 +135,23 @@ namespace PLConsole
             {
                 case "a"://הדפסת הנתונים על כל קווי האוטובוס
                     Console.WriteLine("bus lines:");
-                    var aaa = from busLine in bl.GetAllBusLines()
+                    var busLines = from busLine in bl.GetAllBusLines()
                             select busLine.ToString();
-                    foreach (String a in aaa)
-                        Console.WriteLine(a);
+                    foreach (String busLine in busLines)
+                        Console.WriteLine(busLine);
                     break;
                 case "b"://הדפסת הנתונים על כל התחנות
-                    //foreach (BO.Station station in StationList.Stations)
-                    //{
-                    //    Console.WriteLine(station);
-
-                    //    Console.Write("   The bus lines in this station: ");
-                    //    PrintBusesInStation(lineCollection, station.BusStationKey);
-                    //}
+                    var stations = from station in bl.GetAllStations()
+                                   select station.ToString();
+                    foreach (String station in stations)
+                        Console.WriteLine(station);
                     break;
                 case "c"://הדפסת נתונים על קו אוטובוס מסויים
-                    //BusesInSystem(lineCollection);
-                    //Console.WriteLine("Please enter the bus number to print: ");
-                    //string stringNum = Console.ReadLine();
-                    //int busNum = int.Parse(stringNum);
-                    //Console.WriteLine(lineCollection[busNum]);
+                    Console.WriteLine("enter bus line key: ");
+                    string lineNumber = Console.ReadLine();
+                    int intLineNumber = int.Parse(lineNumber);
+                    BO.BusLine b = bl.GetBusLine(intLineNumber);
+                    Console.WriteLine(b);
                     break;
                 default: Console.WriteLine("ERROR"); break;
             }
