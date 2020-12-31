@@ -282,37 +282,45 @@ namespace DL
         {
             if (DataSource.ListStations.FirstOrDefault(s => s.Key == station.Key) != null)
                 throw new InvalidInformationException<int>(station.Key, "Duplicate station key");
+            station.Key = Station.STATION_KEY++;
             DataSource.ListStations.Add(station.Clone());
         }
         void UpdateStation(Station station)
         {
-
+            int indexOfStationToUpdate = DataSource.ListStations.FindIndex(s => s.Key == station.Key);
+            DataSource.ListStations[indexOfStationToUpdate] = station;
         }
         void UpdateStation(int stationKey, Action<Station> update){ } //method that knows to updt specific fields in Station
-        void DeleteStation(int stationKey){}
+        void DeleteStation(int stationKey)
+        {
+            Station station = DataSource.ListStations.Find(s => s.Key == stationKey);
+            if (station == null)
+                throw new ArgumentNotFoundException<int>(stationKey, $"Station: {stationKey} not found!");
+            DataSource.ListStations.Remove(station);
+        }
         IEnumerable<int> GetAllLinesInStation(int stationKey)
         {
-            var allLines = from station in DataSource.ListBusLineStations
-                           where station.StationKey == stationKey && station.Position == 1
-                           select station.BusLineKey;
+            var allLines = from bls in DataSource.ListBusLineStations
+                           where bls.StationKey == stationKey && bls.Position == 1
+                           select bls.BusLineKey;
             return allLines;
         }
         #endregion
 
-        #region User
-        User GetUser(string userName){}
-        IEnumerable<User> GetAllUsers(){}
-        void AddUser(User user){}
-        void UpdateUser(User user){}
-        void UpdateUser(string userName, Action<User> update){} //method that knows to updt specific fields in Person
-        void DeleteUser(string userName){}
-        #endregion
+        //#region User
+        //User GetUser(string userName){}
+        //IEnumerable<User> GetAllUsers(){}
+        //void AddUser(User user){}
+        //void UpdateUser(User user){}
+        //void UpdateUser(string userName, Action<User> update){} //method that knows to updt specific fields in Person
+        //void DeleteUser(string userName){}
+        //#endregion
 
-        #region UserTravel
-        UserTravel GetUserTravel(int id){}
-        IEnumerable<UserTravel> GetAllUserTravels(){}
-        void AddUserTravel(UserTravel user){}
-        void DeleteUserTravel(int id){}
-        #endregion
+        //#region UserTravel
+        //UserTravel GetUserTravel(int id){}
+        //IEnumerable<UserTravel> GetAllUserTravels(){}
+        //void AddUserTravel(UserTravel user){}
+        //void DeleteUserTravel(int id){}
+        //#endregion
     }
 }
