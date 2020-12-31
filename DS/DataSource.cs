@@ -161,8 +161,6 @@ namespace DS
                 new BusLineStation{ BusLineKey = 488, StationKey = 57117, Position = 10 },
                 new BusLineStation{ BusLineKey = 488, StationKey = 57118, Position = 11 },
                 new BusLineStation{ BusLineKey = 488, StationKey = 57119, Position = 12 },
-                /*
-                */
             };
             foreach (BusLineStation bls1 in ListBusLineStations)
             {
