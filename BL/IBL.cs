@@ -15,14 +15,11 @@ namespace BLAPI
         IEnumerable<BusLine> GetBusLinesBy(Predicate<BusLine> predicate);
         IEnumerable<BusLine> GetAllBusLines();
         void AddBusLine(BusLine busline);
-        void AddStationToLine(BusLineStation sKey);
-        void AddStationToLine(int sKey, int position);
-        void DeleteBusLine(BusLine busLine);
+        void AddStationToLine(int busLineKey, Station station, int position = 0);
         void DeleteBusLine(int busLineKey);
-        void DeleteStationFromLine(BusLineStation bls);
-        void DeleteStationFromLine(int key);
+        void DeleteStationFromLine(int busKey, int stationKey);
         void UpdateBusLine(BusLine busline);
-        void UpdateStation(int LineKey, Action<BusLine> update);
+        void UpdateBusLine(int busLineKey, Action<BusLine> update);
         #endregion
 
         #region BusLineStation

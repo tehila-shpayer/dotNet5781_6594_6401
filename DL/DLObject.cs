@@ -155,6 +155,14 @@ namespace DL
         #endregion
 
         #region BusLineStation
+        BusLineStation GetBusLineStationBy(Predicate<BusLineStation> predicate)
+        {
+            BusLineStation busLineStation = DataSource.ListBusLineStations.Find(b => predicate(b));
+            if (busLineStation != null)
+                return busLineStation.Clone();
+            else
+                throw new ArgumentNotFoundException<int>(0, $"Bus station required was not found.");
+        }
         BusLineStation GetBusLineStationByKey(int line, int stationKey)
         {
             BusLineStation busLineStation = DataSource.ListBusLineStations.Find(b => b.BusLineKey == line && b.StationKey == stationKey);

@@ -68,7 +68,15 @@ namespace BL
             BO.BusLineStation BusLineStationBO = new BO.BusLineStation();
 
             BusLineStationDO.Clone(BusLineStationBO);
-
+            DO.BusLineStation SecondBusLineStationDO = dl.GetBusLineStationBy(s => s.Position == BusLineStationDO.Position-1 && s.BusLineKey == BusLineStationDO.BusLineKey);
+            if (BusLineStationDO.Position == 1)
+            {
+                BusLineStationBO.DistanceFromLastStationMeters = 0;
+                BusLineStationBO.TravelTimeFromLastStationMinutes = 0;
+                return BusLineStationBO;
+            }
+            BusLineStationBO.DistanceFromLastStationMeters = dl.GetConsecutiveStations(BusLineStationDO.StationKey, SecondBusLineStationDO.StationKey).Distance;
+            BusLineStationBO.TravelTimeFromLastStationMinutes = dl.GetConsecutiveStations(BusLineStationDO.StationKey, SecondBusLineStationDO.StationKey).AverageTime;
             return BusLineStationBO;
         }
         BusLineStation GetBusLineStationByKey(int line, int stationKey)
@@ -156,22 +164,6 @@ namespace BL
                                select line.Clone();
             return AllBuseLines;
         }
-        /* if (((int)a > 7) || ((int)a < 0))//אימות שהאיזור בטווח הנכון
-                throw new BusException("Area number must be between 0 and 7");
-            BUS_LINE_NUMBER++;
-            if (bls != null) //אם יש תחנות כלשהם
-                    BusLineStations = bls;
-                else
-                    BusLineStations = new List<BusLineStation>();
-                if (subBusOf == 0) //אם הקו לא תת קו
-                    LineNumber = BUS_LINE_NUMBER;
-                else //אם הקו הוא תת קו
-                {
-                    LineNumber = subBusOf; //הקו מקבל את אותו מספר  
-                    SubLineOf = true;      //מהקו ממנו הוא לקוח
-            }
-                area = a;
-        */
         void AddBusLine(BusLine bus)
         {
             try
@@ -182,28 +174,84 @@ namespace BL
             }
             catch (DO.InvalidInformationException<BusLine> ex) { }
         }
-        void UpdateBusLine(BusLine line)
+        void AddStationToLine(int busLineKey, Station station, int position = 0)
         {
-            BusLine bus = DataSource.ListBusLines.Find(b => b.Key == line.Key);
-            if (bus != null)
-                bus = line;
-            else
-                throw new ArgumentNotFoundException<int>(line.Key, $"Bus not found with license number: {line.Key}");
+            BusLine busLine = GetBusLine(busLineKey);
+            if (position == 0)
+                position = busLine.BusLineStations.Count();
+            //if(dl.GetStation(station.Key) == null)
+            //    throw
+            //if (position > bus.BusLineStations.Count() || position < 0)//מיקום רלוונטי - כגודל רשימת התחנות
+            //    throw 
+            DO.BusLineStation busLineStationDO = new DO.BusLineStation();
+            busLineStationDO.BusLineKey = busLineKey;
+            busLineStationDO.StationKey = station.Key;
+            busLineStationDO.Position = position;
+            dl.AddBusLineStation(busLineStationDO);
+            BO.BusLineStation busLineStationBO = new BO.BusLineStation();
+            busLineStationBO = BusLineStationDoBoAdapter(busLineStationDO);
+            busLine.BusLineStations.Append(busLineStationBO);
+            if (position != busLine.BusLineStations.Count())
+            {//אם זו לא התחנה האחרונה יש לעדכן את פרטי הזמן והמרחק של התחנה הבאה 
+                foreach (BusLineStation s in busLine.BusLineStations)
+                {
+                    if (s.Position == position + 1)
+                    {
+                        UpdateBusLineStation(s.BusLineKey, s.StationKey, bls => bls = BusLineStationDoBoAdapter(busLineStationDO));
+                    }
+                }
+            }
         }
-        void UpdateBusLine(int busLineKey, Action<BusLine> update)//method that knows to updt specific fields in BusLine
+        void UpdateBusLine(BusLine bus)
         {
-            BusLine bus = DataSource.ListBusLines.Find(b => b.Key == busLineKey);
-            if (bus != null)
-                update(bus);
-            else
-                throw new ArgumentNotFoundException<int>(busLineKey, $"Bus not found with license number: {busLineKey}");
+            try
+            {
+                DO.BusLine BusLineDO = new DO.BusLine();
+                bus.Clone(BusLineDO);
+                dl.UpdateBusLine(BusLineDO);
+            }
+            catch (DO.ArgumentNotFoundException<BusLine> ex) { }
+        }
+        void UpdateBusLine(int busLineKey, Action<BusLine> update)
+        {
+            try
+            {
+                DO.BusLine BusLineDO = new DO.BusLine();
+                BusLine BusLineBO = GetBusLine(busLineKey);
+                update(BusLineBO);
+                BusLineBO.Clone(BusLineDO);
+                dl.UpdateBusLine(BusLineDO);
+            }
+            catch (DO.ArgumentNotFoundException<BusLine> ex) { }
         }
         void DeleteBusLine(int busLineKey)
         {
-            BusLine bus = DataSource.ListBusLines.Find(b => b.Key == busLineKey);
-            if (bus == null)
-                throw new ArgumentNotFoundException<int>(busLineKey, $"Bus not found with license number: {busLineKey}");
-            DataSource.ListBusLines.Remove(bus);
+            try
+            {
+                dl.DeleteBusLine(busLineKey);
+            }
+            catch (DO.ArgumentNotFoundException<BusLine> ex) { }
+        }
+        void DeleteStationFromLine(int busKey, int stationKey)        {
+            BusLine busLine = GetBusLine(busKey);
+            DO.BusLineStation busLineStationDO = new DO.BusLineStation();
+            busLineStationDO.BusLineKey = busLineKey;
+            busLineStationDO.StationKey = station.Key;
+            busLineStationDO.Position = position;
+            dl.AddBusLineStation(busLineStationDO);
+            BO.BusLineStation busLineStationBO = new BO.BusLineStation();
+            busLineStationBO = BusLineStationDoBoAdapter(busLineStationDO);
+            busLine.BusLineStations.Append(busLineStationBO);
+            if (position != busLine.BusLineStations.Count())
+            {//אם זו לא התחנה האחרונה יש לעדכן את פרטי הזמן והמרחק של התחנה הבאה 
+                foreach (BusLineStation s in busLine.BusLineStations)
+                {
+                    if (s.Position == position + 1)
+                    {
+                        UpdateBusLineStation(s.BusLineKey, s.StationKey, bls => bls = BusLineStationDoBoAdapter(busLineStationDO));
+                    }
+                }
+            }
         }
         #endregion
 

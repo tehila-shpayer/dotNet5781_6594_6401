@@ -45,6 +45,7 @@ namespace DLAPI
         #endregion
 
         #region BusLineStation
+        BusLineStation GetBusLineStationBy(Predicate<BusLineStation> predicate);
         BusLineStation GetBusLineStationByKey( int line, int stationKey);
         IEnumerable<BusLineStation> GetAllStationsOfLine(int busLine);
         void AddBusLineStation(BusLineStation bus);
