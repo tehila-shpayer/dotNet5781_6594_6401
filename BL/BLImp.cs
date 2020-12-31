@@ -44,7 +44,7 @@ namespace BL
         }
         public void AddStation(Station station)
         {
-            if (station.Latitude > 90 || station.Latitude <-90)
+            if (station.Latitude > 90 || station.Latitude < -90)
             {
                 throw new Exception();
             }
@@ -75,7 +75,11 @@ namespace BL
             try
             {
                 dl.DeleteStation(stationKey);
-                
+                Station station = GetStation(stationKey);
+                foreach(int bl in station.BusLines)
+                {
+                    DeleteStationFromLine(bl, stationKey);
+                }
                 dl.DeleteBusLineStationsByStation(stationKey);
             }
             catch
@@ -91,7 +95,7 @@ namespace BL
             BO.BusLineStation BusLineStationBO = new BO.BusLineStation();
 
             BusLineStationDO.Clone(BusLineStationBO);
-            DO.BusLineStation SecondBusLineStationDO = dl.GetBusLineStationBy(s => s.Position == BusLineStationDO.Position-1 && s.BusLineKey == BusLineStationDO.BusLineKey);
+            DO.BusLineStation SecondBusLineStationDO = dl.GetBusLineStationBy(s => s.Position == BusLineStationDO.Position - 1 && s.BusLineKey == BusLineStationDO.BusLineKey);
             if (BusLineStationDO.Position == 1)
             {
                 BusLineStationBO.DistanceFromLastStationMeters = 0;
@@ -165,7 +169,7 @@ namespace BL
             {
                 return BusLineDoBoAdapter(dl.GetBusLine(busLineKey));
             }
-            catch(DO.ArgumentNotFoundException<BusLine> ex)
+            catch (DO.ArgumentNotFoundException<BusLine> ex)
             {
 
             }
@@ -207,7 +211,7 @@ namespace BL
             GeoCoordinate locationOfFirst = new GeoCoordinate(station1.Latitude, station1.Longitude);//מיקום התחנה המחושבת
             GeoCoordinate locationOfSecond = new GeoCoordinate(station2.Latitude, station2.Longitude);//מיקום התחנה הקודמת
             double distance = locationOfFirst.GetDistanceTo(locationOfSecond);//חישוב מרחק
-            int time = Convert.ToInt32(distance / (speed*1000 / 60));//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש
+            int time = Convert.ToInt32(distance / (speed * 1000 / 60));//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש
             consecutiveStations.Distance = distance;
             consecutiveStations.AverageTime = time;
             return consecutiveStations;
@@ -291,7 +295,7 @@ namespace BL
             }
             catch (DO.ArgumentNotFoundException<BusLine> ex) { }
         }
-        public void DeleteStationFromLine(int busKey, int stationKey)  
+        public void DeleteStationFromLine(int busKey, int stationKey)
         {
             BusLine busLine = GetBusLine(busKey);
             DO.BusLineStation busLineStationDO = dl.GetBusLineStationByKey(busKey, stationKey);
@@ -320,4 +324,5 @@ namespace BL
         #endregion
 
     }
+}
  
