@@ -69,18 +69,30 @@ namespace BL
             station.Clone(StationDO);
             dl.UpdateStation(StationDO);
         }
-        public void UpdateStation(int stationKey, Action<Station> update) { } //method that knows to updt specific fields in Station
-        public void DeleteStation(int stationKey)
+        public void UpdateStation(int stationKey, Action<Station> update)//method that knows to updt specific fields in Station
         {
             try
             {
-                dl.DeleteStation(stationKey);
+                DO.Station StationDO = new DO.Station();
+                Station StationBO = GetStation(stationKey);
+                update(StationBO);
+                StationBO.Clone(StationDO);
+                dl.UpdateStation(StationDO);
+            }
+            catch (DO.ArgumentNotFoundException<BusLine> ex) { throw ex; }
+        }
+        public void DeleteStation(int stationKey)
+        {
+            try
+            { 
                 Station station = GetStation(stationKey);
                 foreach(int bl in station.BusLines)
                 {
                     DeleteStationFromLine(bl, stationKey);
                 }
                 dl.DeleteBusLineStationsByStation(stationKey);
+                dl.DeleteConsecutiveStations(stationKey);
+                dl.DeleteStation(stationKey);
             }
             catch
             {

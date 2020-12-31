@@ -252,6 +252,19 @@ namespace DL
                 throw new ArgumentNotFoundException<int>(stationKey1, $"Consecutive stations of first station  {stationKey1} and second station {stationKey2} was not found.");
             DataSource.ListConsecutiveStations.Remove(consecutiveStations);
         }
+        public void DeleteConsecutiveStations(int stationKey)
+        {
+            try
+            {
+                GetStation(stationKey);
+                DataSource.ListConsecutiveStations.RemoveAll(cs => stationKey == cs.StationKey1 || stationKey == cs.StationKey2);
+            }
+            catch
+            {
+                throw;
+            }
+            
+        }
         #endregion
 
         //#region LineSchedule
