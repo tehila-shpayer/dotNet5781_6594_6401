@@ -27,6 +27,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLConsole", "PLConsole\PLCo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "~Exercise", "~Exercise", "{9227B7D6-D57A-4649-BCEC-5164B82A419B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{72B553CD-4FF0-477D-831F-196703BB9B40}"
+	ProjectSection(SolutionItems) = preProject
+		config.xml = config.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
