@@ -120,24 +120,26 @@ namespace BL
         }
         public BusLineStation GetBusLineStationByKey(int line, int stationKey)
         {
-            BusLineStation busLineStation = DataSource.ListBusLineStations.Find(b => b.BusLineKey == line && b.StationKey == stationKey);
-            if (busLineStation != null)
-                return busLineStation.Clone();
-            else
-                throw new ArgumentNotFoundException<int>(line, $"Bus station of line {line} and station {stationKey} was not found.");
+            try
+            {
+                return BusLineStationDoBoAdapter(dl.GetBusLineStationByKey(line, stationKey));
+            }
+            catch (DO.ArgumentNotFoundException<DO.BusLineStation> ex) { throw; }
         }
         public IEnumerable<BusLineStation> GetAllStationsOfLine(int busLine)
         {
-            var AllStationsOfLine = from station in DataSource.ListBusLineStations
-                                    where station.BusLineKey == busLine
-                                    select station.Clone();
-            return AllStationsOfLine;
+            try
+            {
+                var AllStationsOfLine = from station in dl.GetAllBusLineStations()
+                                        where station.BusLineKey == busLine
+                                        select BusLineStationDoBoAdapter(station);
+                return AllStationsOfLine;
+            }
+            catch (DO.ArgumentNotFoundException<DO.BusLineStation> ex) { throw; }          
         }
         public void AddBusLineStation(BusLineStation station)
         {
-            if (DataSource.ListBusLineStations.FirstOrDefault(s => s.BusLineKey == station.BusLineKey && s.StationKey == station.StationKey) != null)
-                throw new InvalidInformationException<int>(station.BusLineKey, "Duplicate station bus line number and station key");
-            DataSource.ListBusLineStations.Add(station.Clone());
+
         }
         public void UpdateBusLineStation(BusLineStation station)
         {
@@ -183,7 +185,7 @@ namespace BL
             }
             catch (DO.ArgumentNotFoundException<BusLine> ex)
             {
-
+                throw;
             }
         }
         public IEnumerable<BusLine> GetBusLinesBy(Predicate<BusLine> predicate)
@@ -195,12 +197,12 @@ namespace BL
                        where predicate(BusLineBO)
                        select BusLineBO;
             }
-            catch (DO.ArgumentNotFoundException<BusLine> ex) { }
+            catch (DO.ArgumentNotFoundException<BusLine> ex) { throw; }
         }
         public IEnumerable<BusLine> GetAllBusLines()
         {
-            var AllBuseLines = from line in DataSource.ListBusLines
-                               select line.Clone();
+            var AllBuseLines = from line in dl.GetAllBusLines()
+                               select BusLineDoBoAdapter(line);
             return AllBuseLines;
         }
         public void AddBusLine(BusLine bus)
@@ -228,7 +230,6 @@ namespace BL
             consecutiveStations.AverageTime = time;
             return consecutiveStations;
         }
-
         public void AddStationToLine(int busLineKey, int stationKey, int position = 0)
         {
             BusLine busLine = GetBusLine(busLineKey);

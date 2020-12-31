@@ -48,6 +48,7 @@ namespace DLAPI
         BusLineStation GetBusLineStationBy(Predicate<BusLineStation> predicate);
         BusLineStation GetBusLineStationByKey( int line, int stationKey);
         IEnumerable<BusLineStation> GetAllStationsOfLine(int busLine);
+        IEnumerable<BusLineStation> GetAllBusLineStations();
         void AddBusLineStation(BusLineStation bus);
         void UpdateBusLineStation(BusLineStation bus);
         void UpdateBusLineStation(int line, int stationKey, Action<BusLineStation> update); //method that knows to updt specific fields in Person

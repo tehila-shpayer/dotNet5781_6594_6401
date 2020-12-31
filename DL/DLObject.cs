@@ -155,6 +155,12 @@ namespace DL
         #endregion
 
         #region BusLineStation
+        public IEnumerable<BusLineStation> GetAllBusLineStations()
+        {
+            var AllBusLineStations = from bls in DataSource.ListBusLineStations
+                           select bls.Clone();
+            return AllBusLineStations;
+        }
         public BusLineStation GetBusLineStationBy(Predicate<BusLineStation> predicate)
         {
             BusLineStation busLineStation = DataSource.ListBusLineStations.Find(b => predicate(b));
@@ -182,6 +188,10 @@ namespace DL
         {
             if (DataSource.ListBusLineStations.FirstOrDefault(s => s.BusLineKey == station.BusLineKey && s.StationKey == station.StationKey) != null)
                 throw new InvalidInformationException<int>(station.BusLineKey, "Duplicate station bus line number and station key");
+            if (DataSource.ListStations.FirstOrDefault(s => s.Key == station.StationKey) == null)
+                throw new InvalidInformationException<int>(station.BusLineKey, $"No station with key {station.StationKey} exists.");
+            if (DataSource.ListBusLines.FirstOrDefault(b => b.Key == station.BusLineKey) == null)
+                throw new InvalidInformationException<int>(station.BusLineKey, $"No Bus Line with key {station.BusLineKey} exists.");
             DataSource.ListBusLineStations.Add(station.Clone());
         }
         public void UpdateBusLineStation(BusLineStation station)
