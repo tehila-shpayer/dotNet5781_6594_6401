@@ -283,12 +283,18 @@ namespace DL
             DataSource.ListStations[indexOfStationToUpdate] = station;
         }
         void UpdateStation(int stationKey, Action<Station> update){ } //method that knows to updt specific fields in Station
-        void DeleteStation(int stationKey){}
+        void DeleteStation(int stationKey)
+        {
+            Station station = DataSource.ListStations.Find(s => s.Key == stationKey);
+            if (station == null)
+                throw new ArgumentNotFoundException<int>(stationKey, $"Station: {stationKey} not found!");
+            DataSource.ListStations.Remove(station);
+        }
         IEnumerable<int> GetAllLinesInStation(int stationKey)
         {
-            var allLines = from station in DataSource.ListBusLineStations
-                           where station.StationKey == stationKey && station.Position == 1
-                           select station.BusLineKey;
+            var allLines = from bls in DataSource.ListBusLineStations
+                           where bls.StationKey == stationKey && bls.Position == 1
+                           select bls.BusLineKey;
             return allLines;
         }
         #endregion
