@@ -9,7 +9,7 @@ namespace DO
 {
     public class Station
     {
-        static public int STATION_KEY = 2100;
+        static public int STATION_KEY = 71000;
         public int Key { get;set; }
         //public GeoCoordinate Location { get; set; }
         public double Latitude { get; set; }

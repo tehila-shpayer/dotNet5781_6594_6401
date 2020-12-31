@@ -25,11 +25,15 @@ namespace BL
         }
         Station GetStation(int stationKey)
         {
-            dl.AddStation(stationKey);
-            if (station != null)
-                return station.Clone();
-            else
-                throw new ArgumentNotFoundException<int>(station.Key, $"Station not found with key: {stationKey}");
+            try
+            {
+                DO.Station StationDO = dl.GetStation(stationKey);
+                return StationDoBoAdapter(StationDO);
+            }
+            catch
+            {
+                throw;
+            }
         }
         IEnumerable<Station> GetAllStations()
         {
@@ -39,13 +43,26 @@ namespace BL
         }
         void AddStation(Station station)
         {
-            if (DataSource.ListStations.FirstOrDefault(s => s.Key == station.Key) != null)
-                throw new InvalidInformationException<int>(station.Key, "Duplicate station key");
-            DataSource.ListStations.Add(station.Clone());
+            if (station.Latitude > 90 || station.Latitude <-90)
+            {
+                throw new Exception();
+            }
+            if (station.Longitude > 180 || station.Longitude < -180)
+            {
+                throw new Exception();
+            }
+            try
+            {
+                dl.AddStation(new DO.Station { Latitude = station.Latitude, Longitude = station.Longitude, Name = station.Name });
+            }
+            catch
+            {
+                throw;
+            }
         }
         void UpdateStation(Station station)
         {
-
+            //dl.UpdateStation(station.Clone(DO.Station));
         }
         void UpdateStation(int stationKey, Action<Station> update) { } //method that knows to updt specific fields in Station
         void DeleteStation(int stationKey)
@@ -53,6 +70,7 @@ namespace BL
             try
             {
                 dl.DeleteStation(stationKey);
+                
                 dl.DeleteBusLineStationsByStation(stationKey);
             }
             catch

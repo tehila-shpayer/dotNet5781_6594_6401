@@ -11,7 +11,6 @@ namespace BO
         static public int STATION_KEY = 2100;
         public IEnumerable<int> BusLines { get; set; }
         public int Key { get; set; }
-        //public GeoCoordinate Location { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public String Name { get; set; }
