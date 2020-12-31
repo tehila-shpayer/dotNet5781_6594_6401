@@ -162,19 +162,19 @@ namespace DS
                 new BusLineStation{ BusLineKey = 488, StationKey = 57118, Position = 11 },
                 new BusLineStation{ BusLineKey = 488, StationKey = 57119, Position = 12 },
             };
-            foreach (BusLineStation bls1 in ListBusLineStations)
-            {
-                foreach (BusLineStation bls2 in ListBusLineStations)
-                {
-                    if (bls1.BusLineKey == bls2.BusLineKey)
-                    {
-                        if (!(bls1.StationKey == bls2.StationKey))
-                        {
-                            ListConsecutiveStations.Add(new ConsecutiveStations { StationKey1 = bls1.StationKey, StationKey2 = bls2.StationKey, Distance = 0 });
-                        }
-                    }
-                }
-            }
+            //foreach (BusLineStation bls1 in ListBusLineStations)
+            //{
+            //    foreach (BusLineStation bls2 in ListBusLineStations)
+            //    {
+            //        if (bls1.BusLineKey == bls2.BusLineKey)
+            //        {
+            //            if (!(bls1.StationKey == bls2.StationKey))
+            //            {
+            //                ListConsecutiveStations.Add(new ConsecutiveStations { StationKey1 = bls1.StationKey, StationKey2 = bls2.StationKey, Distance = 0 });
+            //            }
+            //        }
+            //    }
+            //}
             ListConsecutiveStations = new List<ConsecutiveStations>
             {
                 //949

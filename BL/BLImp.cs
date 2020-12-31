@@ -197,7 +197,7 @@ namespace BL
 
             BusLineDO.Clone(BusLineBO);
 
-            BusLineBO.BusLineStations = from blsDO in dl.GetAllStationsOfLine(BusLineBO.LineKey)
+            BusLineBO.BusLineStations = from blsDO in dl.GetAllStationsOfLine(BusLineBO.Key)
                                         select BusLineStationDoBoAdapter(blsDO);
             return BusLineBO;
         }
@@ -239,7 +239,7 @@ namespace BL
             }
             catch (DO.InvalidInformationException ex)
             {
-                throw new BOInvalidInformationException($"Can't add bus line {bus.LineKey}.", ex);
+                throw new BOInvalidInformationException($"Can't add bus line {bus.Key}.", ex);
             }
         }
         DO.ConsecutiveStations CalculateConsecutiveStations(DO.Station station1, DO.Station station2)
@@ -315,7 +315,7 @@ namespace BL
             }
             catch (DO.ArgumentNotFoundException ex)
             {
-                throw new BOArgumentNotFoundException($"Can't update bus line {bus.LineKey}.", ex);
+                throw new BOArgumentNotFoundException($"Can't update bus line {bus.Key}.", ex);
             }
         }
         public void UpdateBusLine(int busLineKey, Action<BusLine> update)

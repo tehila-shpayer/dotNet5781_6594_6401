@@ -10,9 +10,9 @@ namespace BO
     {
         public static int BUS_LINE_NUMBER = 1; //משתה רץ של מספרים של האוטובוסים
         //משתנה שמציין האם הקו אוטובוס הוא תת קו של קו אחר
-        public IEnumerable<BusLineStation> BusLineStations { get; set; }
-        public int LineKey { get; set; }
+        public int Key { get; set; }
         public int LineNumber { get; set; }
+        public Areas Area { get; set; }
         public int FirstStation //הפנייה ךתחנה ראשונה
         {
             get { return BusLineStations.ElementAt(0).StationKey; }
@@ -21,8 +21,8 @@ namespace BO
         {
             get { return BusLineStations.ElementAt(BusLineStations.Count() - 1).StationKey; }
         }
+        public IEnumerable<BusLineStation> BusLineStations { get; set; }
 
-        public Areas area { get; set; }
         // ToString דריסה של 
         public override String ToString()
         {

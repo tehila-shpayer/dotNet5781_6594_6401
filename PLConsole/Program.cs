@@ -10,127 +10,127 @@ namespace PLConsole
 {
     public class Program
     {
+        static IBL bl = BLFactory.GetBL("1");
         static void Main(string[] args)
         {
-            IBL bl = BLFactory.GetBL("1");
-            Console.WriteLine("yay!");
+            string s;
+            Console.WriteLine("Welcome!");
+            do
+            {
+
+                Console.WriteLine(@"
+  Choose one of the following actions to do on the collection:
+  a: Add 
+  d: Delete 
+  s: Search
+  p: Print
+  e: Exit:");
+                s = Console.ReadLine().Trim();
+                try
+                {
+                    switch (s)
+                    {
+                        case "a":
+                            AddToCollection();//הוספה למערכת
+                            break;
+                        case "d":
+                            //DeleteFromCollection();//מחיקה מהמערכת
+                            break;
+                        case "s":
+                            //SearchInCollection();//חיפוש במערכת
+                            break;
+                        case "p"://הדפסת נתונים
+                                 //PrintDataOfCollection();
+                            break;
+                        case "e"://יציאה
+                            break;
+                        default:
+                            Console.WriteLine("ERROR");
+                            break;
+                    }
+                }
+                catch (Exception ex)// תופס חריגות הקשורות לקלטים לא מתאימים הקשורים לאוטובוסים/תחנות 
+                {
+                    Console.WriteLine(ex);
+                }
+            } while (s != "e");
+
+
         }
-    
+        public static void AddToCollection()
+        {
+            Console.WriteLine("  a: Add a new bus line\n  b: Add a station to a bus line\n  c: Create a new station");
+            string a = Console.ReadLine().Trim();
+            switch (a)
+            {
+                case "a"://הוספת קו אוטובוס חדש
+                    Console.WriteLine(@"Choose one of the following areas for the bus:
+              0: General
+              1: Jerusalem
+              2: Center
+              3: North
+              4: South
+              5: Hifa
+              6: TelAviv
+              7: YehudaAndShomron");
+                    string area = Console.ReadLine().Trim();
+                    int intArea = int.Parse(area);
+                    BO.BusLine busLine = new BO.BusLine();
+                    busLine.Area = (BO.Areas)intArea;
+                    Console.WriteLine("enter bus line number: ");
+                    string lineNumber = Console.ReadLine();
+                    int intLineNumber = int.Parse(lineNumber);
+                    busLine.LineNumber = intLineNumber;
+                    bl.AddBusLine(busLine);
+                    Console.WriteLine($"New bus line was added to collection!");
+                    break;
+                case "b"://הוספת תחנה קיימת למסלול של קו אוטובוס
+                    Console.WriteLine("Please enter the bus number for adding a station:");
+                    string stringNum = Console.ReadLine();
+                    int num = int.Parse(stringNum);
+                    Console.WriteLine("Please enter station's key to add:");
+                    string key = Console.ReadLine();
+                    int intKey = int.Parse(key);
+                    //if (lineCollection[num].DidFindStation(key))//אם התחנה כבר נמצאת במסלול הקו - זורק חריגה
+                    //{
+                    //    throw new BusException($"Station {key} is already in bus line {num}");
+                    //}
+                    Console.WriteLine("Do you want to set station's location in the bus list of station?\n Press 'y' if you want to\n Else press any key:");
+                    String answer = Console.ReadLine();
+                    if (answer == "y")//אם המשתמש רוצה להכניס את התחנה במקום מסויים במסלול
+                    {
+                        Console.WriteLine($"Please enter location of station in the line (index):\nEnter 0 to set the station as a first station\nEnter 1 to set the station as a second station\netc...\n(Bus line has x stations)");
+                        string location = Console.ReadLine();
+                        int loc = int.Parse(location);
+                        bl.AddStationToLine(num, intKey, loc);//הוספת התחנה למקום המבוקש
+                    }
+                    else//אם המשתמש לא בחר מיקום מסויים, התחנה מתווספת לסוף המסלול
+                    { bl.AddStationToLine(num, intKey); }
+                    Console.WriteLine($"Station {key} was added to bus {num}!");
+                    break;
+                case "c"://הוספת תחנה חדשה למערכת
+                    Console.WriteLine("Please enter station's location:\n Latitude:");
+                    string stringLocation = Console.ReadLine();
+                    double latitude = double.Parse(stringLocation);
+                    Console.WriteLine("Longitude:");
+                    stringLocation = Console.ReadLine();
+                    double longitude = double.Parse(stringLocation);
+                    Console.WriteLine("Please enter station's address:");
+                    string address = Console.ReadLine();
+                    BO.Station station = new BO.Station();
+                    station.Latitude = latitude;
+                    station.Longitude = longitude;
+                    station.Name = address;
+                    bl.AddStation(station);
+                    Console.WriteLine($"New bus station was added to the system!");
+                    break;
+                default: Console.WriteLine("ERROR\n"); break;
+            }
+        }
     }
 }
-        //            string s;
-        //            Console.WriteLine("Welcome!");
-        //            do
-        //            {
-
-        //                Console.WriteLine(@"
-        //Choose one of the following actions to do on the collection:
-        //  a: Add 
-        //  d: Delete 
-        //  s: Search
-        //  p: Print
-        //  e: Exit:");
-        //                s = Console.ReadLine().Trim();
-        //                try
-        //                {
-        //                    switch (s)
-        //                    {
-        //                        case "a":
-        //                            AddToCollection();//הוספה למערכת
-        //                            break;
-        //                        case "d":
-        //                            //DeleteFromCollection();//מחיקה מהמערכת
-        //                            break;
-        //                        case "s":
-        //                            //SearchInCollection();//חיפוש במערכת
-        //                            break;
-        //                        case "p"://הדפסת נתונים
-        //                            //PrintDataOfCollection();
-        //                            break;
-        //                        case "e"://יציאה
-        //                            break;
-        //                        default:
-        //                            Console.WriteLine("ERROR");
-        //                            break;
-        //                    }
-        //                }
-        //                catch (Exception ex)// תופס חריגות הקשורות לקלטים לא מתאימים הקשורים לאוטובוסים/תחנות 
-        //                {
-        //                    Console.WriteLine(ex);
-        //                }
-        //            } while (s != "e");
-
-
-        //        }
-        //        public static void AddToCollection()
-        //        {
-        //            Console.WriteLine("  a: Add a new bus line\n  b: Add a station to a bus line\n  c: Create a new station");
-        //            string a = Console.ReadLine().Trim();
-        //            switch (a)
-        //            {
-        //                case "a"://הוספת קו אוטובוס חדש
-        //                    Console.WriteLine(@"Choose one of the following areas for the bus:
-        //  0: General
-        //  1: Jerusalem
-        //  2: Center
-        //  3: North
-        //  4: South
-        //  5: Hifa
-        //  6: TelAviv
-        //  7: YehudaAndShomron");
-        //                    string area = Console.ReadLine().Trim();
-        //                    int intArea = int.Parse(area);
-        //                    BO.BusLine busLine = new BO.BusLine();
-        //                    busLine.area = (BO.Areas)intArea;
-        //                    Console.WriteLine("enter bus line number: ");
-        //                    string lineNumber = Console.ReadLine();
-        //                    int intLineNumber = int.Parse(lineNumber);
-        //                    bl.AddBusLine(busLine);
-        //                    Console.WriteLine($"New bus line was added to collection!");
-        //                    break;
-        //                case "b"://הוספת תחנה קיימת למסלול של קו אוטובוס
-        //                    Console.WriteLine("Please enter the bus number for adding a station:");
-        //                    string stringNum = Console.ReadLine();
-        //                    int num = int.Parse(stringNum);
-        //                    Console.WriteLine("Please enter station's key to add:");
-        //                    string key = Console.ReadLine();
-        //                    int intKey = int.Parse(key);
-        //                    //if (lineCollection[num].DidFindStation(key))//אם התחנה כבר נמצאת במסלול הקו - זורק חריגה
-        //                    //{
-        //                    //    throw new BusException($"Station {key} is already in bus line {num}");
-        //                    //}
-        //                    Console.WriteLine("Do you want to set station's location in the bus list of station?\n Press 'y' if you want to\n Else press any key:");
-        //                    String answer = Console.ReadLine();
-        //                    if (answer == "y")//אם המשתמש רוצה להכניס את התחנה במקום מסויים במסלול
-        //                    {
-        //                        Console.WriteLine($"Please enter location of station in the line (index):\nEnter 0 to set the station as a first station\nEnter 1 to set the station as a second station\netc...\n(Bus line has x stations)");
-        //                        string location = Console.ReadLine();
-        //                        int loc = int.Parse(location);
-        //                        bl.AddStationToLine(num, intKey, loc);//הוספת התחנה למקום המבוקש
-        //                    }
-        //                    else//אם המשתמש לא בחר מיקום מסויים, התחנה מתווספת לסוף המסלול
-        //                    { bl.AddStationToLine(num, intKey); }
-        //                    Console.WriteLine($"Station {key} was added to bus {num}!");
-        //                    break;
-        //                case "c"://הוספת תחנה חדשה למערכת
-        //                    Console.WriteLine("Please enter station's location:\n Latitude:");
-        //                    string stringLocation = Console.ReadLine();
-        //                    double latitude = double.Parse(stringLocation);
-        //                    Console.WriteLine("Longitude:");
-        //                    stringLocation = Console.ReadLine();
-        //                    double longitude = double.Parse(stringLocation);
-        //                    Console.WriteLine("Please enter station's address:");
-        //                    string address = Console.ReadLine();
-        //                    BO.Station station = new BO.Station();
-        //                    station.Latitude = latitude;
-        //                    station.Longitude = longitude;
-        //                    station.Name = address;
-        //                    bl.AddStation(station);
-        //                    Console.WriteLine($"New bus station was added to the system!");
-        //                    break;
-        //                default: Console.WriteLine("ERROR\n"); break;
-        //            }
-        //        }
+    
+       
         //    public static void DeleteFromCollection(BusLineCollection lineCollection)
         //    {
         //        Console.WriteLine("  a: Delete a bus line\n  b: Delete a station from a bus line\n  c: Delete a station from the system");
