@@ -31,9 +31,9 @@ namespace BL
                 DO.Station StationDO = dl.GetStation(stationKey);
                 return StationDoBoAdapter(StationDO);
             }
-            catch 
+            catch (DO.ArgumentNotFoundException ex)
             {
-                throw;
+                throw new BOArgumentNotFoundException($"Can't get station {stationKey}", ex);
             }
         }
         public IEnumerable<Station> GetAllStations()
@@ -42,32 +42,45 @@ namespace BL
                               select StationDoBoAdapter(station);
             return AllStations;
         }
-        public void AddStation(Station station)
+        void CheckStationParameters(Station station)
         {
             if (station.Latitude > 90 || station.Latitude < -90)
             {
-                throw new Exception();
+                throw new BOInvalidInformationException($"Can't add station {station.Key}. Invalid latitude");
             }
             if (station.Longitude > 180 || station.Longitude < -180)
             {
-                throw new Exception();
+                throw new BOInvalidInformationException($"Can't add station {station.Key}. Invalid longitude");
             }
+        }
+        public void AddStation(Station station)
+        {
+
+            CheckStationParameters(station);
             try
             {
                 DO.Station StationDO = new DO.Station();
                 station.Clone(StationDO);
                 dl.AddStation(StationDO);
             }
-            catch
+            catch (DO.InvalidInformationException ex)
             {
-                throw;
+                throw new BOInvalidInformationException($"Can't add station {station.Key}.", ex);
             }
         }
         public void UpdateStation(Station station)
         {
-            DO.Station StationDO = new DO.Station();
-            station.Clone(StationDO);
-            dl.UpdateStation(StationDO);
+            CheckStationParameters(station);
+            try
+            {
+                DO.Station StationDO = new DO.Station();
+                station.Clone(StationDO);
+                dl.UpdateStation(StationDO);
+            }
+            catch (DO.ArgumentNotFoundException ex)
+            {
+                throw new BOArgumentNotFoundException($"Can't update station {station.Key}.", ex);
+            }
         }
         public void UpdateStation(int stationKey, Action<Station> update)//method that knows to updt specific fields in Station
         {
@@ -79,7 +92,7 @@ namespace BL
                 StationBO.Clone(StationDO);
                 dl.UpdateStation(StationDO);
             }
-            catch (DO.ArgumentNotFoundException ex) { throw ex; }
+            catch (DO.ArgumentNotFoundException ex) { throw new BOArgumentNotFoundException($"Can't update station {stationKey}.", ex); }
         }
         public void DeleteStation(int stationKey)
         {
@@ -94,10 +107,7 @@ namespace BL
                 dl.DeleteConsecutiveStations(stationKey);
                 dl.DeleteStation(stationKey);
             }
-            catch
-            {
-                throw;
-            }
+            catch (DO.ArgumentNotFoundException ex) { throw new BOArgumentNotFoundException($"Can't delete station {stationKey}.", ex); }
         }
         #endregion
 
@@ -124,7 +134,8 @@ namespace BL
             {
                 return BusLineStationDoBoAdapter(dl.GetBusLineStationByKey(line, stationKey));
             }
-            catch (DO.ArgumentNotFoundException ex) { throw; }
+            catch (DO.ArgumentNotFoundException ex)
+            { throw new BOArgumentNotFoundException($"Can't get bus line station {stationKey}", ex); }
         }
         public IEnumerable<BusLineStation> GetAllStationsOfLine(int busLine)
         {
@@ -198,7 +209,7 @@ namespace BL
             }
             catch (DO.ArgumentNotFoundException ex)
             {
-                throw;
+                throw new BOArgumentNotFoundException($"Can't get bus line {busLineKey}", ex);
             }
         }
         public IEnumerable<BusLine> GetBusLinesBy(Predicate<BusLine> predicate)
@@ -226,7 +237,10 @@ namespace BL
                 bus.Clone(BusLineDO);
                 dl.AddBusLine(BusLineDO);
             }
-            catch (DO.InvalidInformationException ex) { }
+            catch (DO.InvalidInformationException ex)
+            {
+                throw new BOInvalidInformationException($"Can't add bus line {bus.LineKey}.", ex);
+            }
         }
         DO.ConsecutiveStations CalculateConsecutiveStations(DO.Station station1, DO.Station station2)
         {
@@ -299,7 +313,10 @@ namespace BL
                 bus.Clone(BusLineDO);
                 dl.UpdateBusLine(BusLineDO);
             }
-            catch (DO.ArgumentNotFoundException ex) { }
+            catch (DO.ArgumentNotFoundException ex)
+            {
+                throw new BOArgumentNotFoundException($"Can't update bus line {bus.LineKey}.", ex);
+            }
         }
         public void UpdateBusLine(int busLineKey, Action<BusLine> update)
         {
@@ -311,7 +328,10 @@ namespace BL
                 BusLineBO.Clone(BusLineDO);
                 dl.UpdateBusLine(BusLineDO);
             }
-            catch (DO.ArgumentNotFoundException ex) { }
+            catch (DO.ArgumentNotFoundException ex)
+            {
+                throw new BOArgumentNotFoundException($"Can't update bus line {busLineKey}.", ex);
+            }
         }
         public void DeleteBusLine(int busLineKey)
         {
@@ -319,7 +339,10 @@ namespace BL
             {
                 dl.DeleteBusLine(busLineKey);
             }
-            catch (DO.ArgumentNotFoundException ex) { }
+            catch (DO.ArgumentNotFoundException ex)
+            {
+                throw new BOArgumentNotFoundException($"Can't delete bus line {busLineKey}.", ex);
+            }
         }
         public void DeleteStationFromLine(int busKey, int stationKey)
         {
