@@ -124,8 +124,9 @@ namespace DL
         }
         public void AddBusLine(BusLine bus)
         {
-            if (DataSource.ListBusLines.FirstOrDefault(l => l.Key == bus.Key) != null)
-                throw new InvalidInformationException("Duplicate bus line key");
+            bus.Key = BusLine.BUS_LINE_KEY++;
+            //if (DataSource.ListBusLines.FirstOrDefault(l => l.Key == bus.Key) != null)
+            //    throw new InvalidInformationException("Duplicate bus line key");
             DataSource.ListBusLines.Add(bus.Clone());
         }
         public void UpdateBusLine(BusLine line)
