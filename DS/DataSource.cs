@@ -28,11 +28,19 @@ namespace DS
         {
             InitAllLists();
         }
-        static double GetDistant(double x1, double y1, double x2, double y2)
+        static double GetDistance(double x1, double y1, double x2, double y2)
         {
             GeoCoordinate s1 = new GeoCoordinate(x1, y1);//מיקום תחנה 1
             GeoCoordinate s2 = new GeoCoordinate(x2, y2);//מיקום תחנה 2
             return s1.GetDistanceTo(s2)*(1.3);//חישוב מרחק
+        }
+        static double GetDistance(int stationKey1, int stationKey2)
+        {
+            Station station1 = ListStations.Find(s => s.Key == stationKey1);
+            Station station2 = ListStations.Find(s => s.Key == stationKey2);
+            GeoCoordinate s1 = new GeoCoordinate(station1.Latitude, station1.Longitude);//מיקום תחנה 1
+            GeoCoordinate s2 = new GeoCoordinate(station2.Latitude, station2.Longitude);//מיקום תחנה 2
+            return s1.GetDistanceTo(s2) * (1.3);//חישוב מרחק
         }
         static int GetTime(double distance)
         {
@@ -40,6 +48,10 @@ namespace DS
             int speed = rand.Next(30, 60);
             int time = Convert.ToInt32(distance / (speed * 1000 / 60));//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש
             return time;
+        }
+        static int GetTime(int stationKey1, int stationKey2)
+        {
+            return GetTime(GetDistance(stationKey1, stationKey2));
         }
         static void InitAllLists()
         {
@@ -169,42 +181,68 @@ namespace DS
                 new BusLineStation{ BusLineKey = 2, StationKey = 57118, Position = 11 },
                 new BusLineStation{ BusLineKey = 2, StationKey = 57119, Position = 12 },
             };
-            //foreach (BusLineStation bls1 in ListBusLineStations)
-            //{
-            //    foreach (BusLineStation bls2 in ListBusLineStations)
-            //    {
-            //        if (bls1.BusLineKey == bls2.BusLineKey)
-            //        {
-            //            if (!(bls1.StationKey == bls2.StationKey))
-            //            {
-            //                ListConsecutiveStations.Add(new ConsecutiveStations { StationKey1 = bls1.StationKey, StationKey2 = bls2.StationKey, Distance = 0 });
-            //            }
-            //        }
-            //    }
-            //}
-            double distance1 = GetDistant(31.828335, 35.250612, 31.865017, 35.261373);
-            double distance2 = GetDistant(31.865017, 35.261373, 31.873011, 35.260429);
-            double distance3 = GetDistant(31.873011, 35.260429, 31.883013, 35.247681);
-            double distance4 = GetDistant(31.883013, 35.247681, 31.878496, 35.243613);
-            double distance5 = GetDistant(31.878496, 35.243613, 31.873910, 35.243681);
-            double distance6 = GetDistant(31.873910, 35.243681, 31.889875, 35.249011);
-            double distance7 = GetDistant(31.889875, 35.249011, 31.883867, 35.247120);
-            double distance8 = GetDistant(31.883867, 35.247120, 31.956391, 35.341945);
-            double distance9 = GetDistant(31.956391, 35.341945, 31.960264, 35.348199);
+            #region Distance
+            ////949
+            //double distance1 = GetDistance(31.828335, 35.250612, 31.865017, 35.261373);
+            //double distance2 = GetDistance(31.865017, 35.261373, 31.873011, 35.260429);
+            //double distance3 = GetDistance(31.873011, 35.260429, 31.883013, 35.247681);
+            //double distance4 = GetDistance(31.883013, 35.247681, 31.878496, 35.243613);
+            //double distance5 = GetDistance(31.878496, 35.243613, 31.873910, 35.243681);
+            //double distance6 = GetDistance(31.873910, 35.243681, 31.889875, 35.249011);
+            //double distance7 = GetDistance(31.889875, 35.249011, 31.883867, 35.247120);
+            //double distance8 = GetDistance(31.883867, 35.247120, 31.956391, 35.341945);
+            //double distance9 = GetDistance(31.956391, 35.341945, 31.960264, 35.348199);
 
-            ListConsecutiveStations = new List<ConsecutiveStations>
+            ////488
+            ////double distance10 = GetDistance(ListStations.Find(s=>);
+            ////double distance11 = GetDistance();
+            ////double distance12 = GetDistance();
+            ////double distance13 = GetDistance();
+            ////double distance14 = GetDistance();
+            ////double distance15 = GetDistance();
+            #endregion
+
+            ListConsecutiveStations = new List<ConsecutiveStations>();
+            //{
+            //    //949
+            //    new ConsecutiveStations{StationKey1 = 45385, StationKey2 = 61017, Distance = distance1, AverageTime = GetTime(distance1) },
+            //    new ConsecutiveStations{StationKey1 = 61017, StationKey2 = 61002, Distance = distance2, AverageTime = GetTime(distance2) },
+            //    new ConsecutiveStations{StationKey1 = 61002, StationKey2 = 60211, Distance = distance3, AverageTime = GetTime(distance3) },
+            //    new ConsecutiveStations{StationKey1 = 60211, StationKey2 = 60215, Distance = distance4, AverageTime = GetTime(distance4) },
+            //    new ConsecutiveStations{StationKey1 = 60215, StationKey2 = 60216, Distance = distance5, AverageTime = GetTime(distance5) },
+            //    new ConsecutiveStations{StationKey1 = 60216, StationKey2 = 60217, Distance = distance6, AverageTime = GetTime(distance6) },
+            //    new ConsecutiveStations{StationKey1 = 60217, StationKey2 = 60218, Distance = distance7, AverageTime = GetTime(distance7) },
+            //    new ConsecutiveStations{StationKey1 = 60218, StationKey2 = 63691, Distance = distance8, AverageTime = GetTime(distance8) },
+            //    new ConsecutiveStations{StationKey1 = 63691, StationKey2 = 60642, Distance = distance9, AverageTime = GetTime(distance9) },
+
+            //    //488
+            //    new ConsecutiveStations{StationKey1 = 57096, StationKey2 = 57097, Distance = , AverageTime = GetTime()},
+            //    new ConsecutiveStations{StationKey1 = 57097, StationKey2 = 57098, Distance = , AverageTime = GetTime()},
+            //    new ConsecutiveStations{StationKey1 = 57098, StationKey2 = 57102, Distance = , AverageTime = GetTime()},
+            //    new ConsecutiveStations{StationKey1 = 57102, StationKey2 = 57105, Distance = , AverageTime = GetTime()},
+            //    new ConsecutiveStations{StationKey1 = 57105, StationKey2 = 57108, Distance = , AverageTime = GetTime()},
+
+            //    new ConsecutiveStations{StationKey1 = 57108, StationKey2 = , Distance = , AverageTime = GetTime()},
+
+            //    new ConsecutiveStations{StationKey1 = , StationKey2 = , Distance = , AverageTime = GetTime()},
+            //    new ConsecutiveStations{StationKey1 = , StationKey2 = , Distance = , AverageTime = GetTime()},
+            //    new ConsecutiveStations{StationKey1 = , StationKey2 = , Distance = , AverageTime = GetTime()},
+            //    new ConsecutiveStations{StationKey1 = , StationKey2 = , Distance = , AverageTime = GetTime()},
+            //    new ConsecutiveStations{StationKey1 = , StationKey2 = , Distance = , AverageTime = GetTime()},
+            //};
+            foreach (BusLineStation bls1 in ListBusLineStations)
             {
-                //949
-                new ConsecutiveStations{StationKey1 = 45385, StationKey2 = 61017, Distance = distance1, AverageTime = GetTime(distance1) },
-                new ConsecutiveStations{StationKey1 = 61017, StationKey2 = 61002, Distance = distance2, AverageTime = GetTime(distance2) },
-                new ConsecutiveStations{StationKey1 = 61002, StationKey2 = 60211, Distance = distance3, AverageTime = GetTime(distance3) },
-                new ConsecutiveStations{StationKey1 = 60211, StationKey2 = 60215, Distance = distance4, AverageTime = GetTime(distance4) },
-                new ConsecutiveStations{StationKey1 = 60215, StationKey2 = 60216, Distance = distance5, AverageTime = GetTime(distance5) },
-                new ConsecutiveStations{StationKey1 = 60216, StationKey2 = 60217, Distance = distance6, AverageTime = GetTime(distance6) },
-                new ConsecutiveStations{StationKey1 = 60217, StationKey2 = 60218, Distance = distance7, AverageTime = GetTime(distance7) },
-                new ConsecutiveStations{StationKey1 = 60218, StationKey2 = 63691, Distance = distance8, AverageTime = GetTime(distance8) },
-                new ConsecutiveStations{StationKey1 = 63691, StationKey2 = 60642, Distance = distance9, AverageTime = GetTime(distance9) },
-            };
+                foreach (BusLineStation bls2 in ListBusLineStations)
+                {
+                    if (bls1.BusLineKey == bls2.BusLineKey)
+                    {
+                        if (!(bls1.StationKey == bls2.StationKey))
+                        {
+                            ListConsecutiveStations.Add(new ConsecutiveStations { StationKey1 = bls1.StationKey, StationKey2 = bls2.StationKey, Distance = GetDistance(bls1.StationKey, bls2.StationKey), AverageTime = GetTime(bls1.StationKey, bls2.StationKey) });
+                        }
+                    }
+                }
+            }
         }
     }
 }
