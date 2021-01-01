@@ -151,12 +151,12 @@ namespace BL
             }
             catch (DO.ArgumentNotFoundException ex) { throw; }          
         }
-        public void AddBusLineStation(BusLineStation station)
+        public void AddBusLineStation(BusLineStation bls)
         {
             try
             {
                 DO.BusLineStation busLineStationDO = new DO.BusLineStation();
-                station.Clone(busLineStationDO);
+                bls.Clone(busLineStationDO);
                 dl.AddBusLineStation(busLineStationDO);
             }
             catch (DO.InvalidInformationException ex) { throw; }
@@ -194,7 +194,7 @@ namespace BL
         public string ToStringForBusLine(BusLineStation bls)
         {
             DO.Station station = (dl.GetStation(bls.StationKey));
-            return $"{bls.Position}. Station key: {bls.StationKey}, Name: {station.Name}\n      Distanse from previous station: {bls.DistanceFromLastStationMeters} meters, time of travel from previous station: {bls.TravelTimeFromLastStationMinutes} minutes.\n";
+            return $"{bls.Position}. Station key: {bls.StationKey}, Name: {station.Name}\n      Distanse from previous station: {(int)(bls.DistanceFromLastStationMeters)} meters, time of travel from previous station: {bls.TravelTimeFromLastStationMinutes} minutes.\n";
         }
         #endregion
 
