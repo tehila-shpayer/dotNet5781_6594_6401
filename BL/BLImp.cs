@@ -191,6 +191,11 @@ namespace BL
             }
             catch (DO.ArgumentNotFoundException ex) { }
         }
+        public string ToStringForBusLine(BusLineStation bls)
+        {
+            DO.Station station = (dl.GetStation(bls.StationKey));
+            return $"{bls.Position}. Station key: {bls.StationKey}, Name: {station.Name}\n      Distanse from previous station: {bls.DistanceFromLastStationMeters} meters, time of travel from previous station: {bls.TravelTimeFromLastStationMinutes} minutes.\n";
+        }
         #endregion
 
         #region BusLine
@@ -372,6 +377,16 @@ namespace BL
             foreach (DO.BusLineStation bls in dl.GetAllStationsOfLine(busKey))
                 if (bls.Position > position)
                     bls.Position -= 1;
+        }
+        public String ToStringBusLine(BusLine b)
+        {
+            String s = $"Line Key: {b.Key}. Bus line number: {b.LineNumber}. Area: {b.Area}\nFirst station: {b.FirstStation}, Last Station: {b.LastStation}\n";
+            s += "Stations in line:\n";
+            foreach (BusLineStation bls in b.BusLineStations)
+            {
+                s += "  " + ToStringForBusLine(bls);
+            }
+            return s;
         }
         #endregion
 

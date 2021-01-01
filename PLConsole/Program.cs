@@ -136,7 +136,7 @@ namespace PLConsole
                 case "a"://הדפסת הנתונים על כל קווי האוטובוס
                     Console.WriteLine("bus lines:");
                     var busLines = from busLine in bl.GetAllBusLines()
-                            select busLine.ToString();
+                                   select bl.ToStringBusLine(busLine);
                     foreach (String busLine in busLines)
                         Console.WriteLine(busLine);
                     break;
@@ -151,7 +151,7 @@ namespace PLConsole
                     string lineNumber = Console.ReadLine();
                     int intLineNumber = int.Parse(lineNumber);
                     BO.BusLine b = bl.GetBusLine(intLineNumber);
-                    Console.WriteLine(b);
+                    Console.WriteLine(bl.ToStringBusLine(b));
                     break;
                 default: Console.WriteLine("ERROR"); break;
             }
