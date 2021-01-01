@@ -12,8 +12,6 @@ namespace DO
         public int Key { get; set; }
         public int LineNumber { get;set; }
         public Areas Area { get; set; }
-        public int FirstStationKey { get; set; }
-        public int LastStationKey { get; set; }
         public bool _isActive = true;
         public bool IsActive { get; set; }
         public override string ToString()
