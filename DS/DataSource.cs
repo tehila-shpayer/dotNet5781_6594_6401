@@ -216,19 +216,6 @@ namespace DS
             //    new ConsecutiveStations{StationKey1 = 63691, StationKey2 = 60642, Distance = distance9, AverageTime = GetTime(distance9) },
 
             //};
-            //foreach (BusLineStation s1 in ListBusLineStations)
-            //{
-            //    foreach (BusLineStation s2 in ListBusLineStations)
-            //    {
-            //        if (s1.BusLineKey == s2.BusLineKey)
-            //        {
-            //            if (!(s1.StationKey == s2.StationKey))
-            //            {
-            //                ListConsecutiveStations.Add(new ConsecutiveStations { StationKey1 = s1.StationKey, StationKey2 = s2.StationKey, Distance = GetDistance(s1.StationKey, s2.StationKey), AverageTime = GetTime(s1.StationKey, s2.StationKey) });
-            //            }
-            //        }
-            //    }
-            //}
             foreach (Station s1 in ListStations)
             {
                 foreach (Station s2 in ListStations)

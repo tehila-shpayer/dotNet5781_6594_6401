@@ -73,48 +73,37 @@ namespace PLConsole
               5: Hifa
               6: TelAviv
               7: YehudaAndShomron");
-                    string area = Console.ReadLine().Trim();
-                    int intArea = int.Parse(area);
+                    int intArea = int.Parse(Console.ReadLine().Trim());
                     BO.BusLine busLine = new BO.BusLine();
                     busLine.Area = (BO.Areas)intArea;
                     Console.WriteLine("enter bus line number: ");
-                    string lineNumber = Console.ReadLine();
-                    int intLineNumber = int.Parse(lineNumber);
-                    busLine.LineNumber = intLineNumber;
+                    int lineNumber = int.Parse(Console.ReadLine());
+                    busLine.LineNumber = lineNumber;
                     bl.AddBusLine(busLine);
-                    Console.WriteLine($"New bus line {intLineNumber} was added to collection!");
+                    Console.WriteLine($"New bus line {lineNumber} was added to collection!");
                     break;
                 case "b"://הוספת תחנה קיימת למסלול של קו אוטובוס
-                    Console.WriteLine("Please enter the bus number for adding a station:");
-                    string stringNum = Console.ReadLine();
-                    int lineNum = int.Parse(stringNum);
+                    Console.WriteLine("Please enter the bus line key for adding a station:");
+                    int lineKey = int.Parse(Console.ReadLine());
                     Console.WriteLine("Please enter station's key to add:");
-                    string key = Console.ReadLine();
-                    int intKey = int.Parse(key);
-                    //if (lineCollection[num].DidFindStation(key))//אם התחנה כבר נמצאת במסלול הקו - זורק חריגה
-                    //{
-                    //    throw new BusException($"Station {key} is already in bus line {num}");
-                    //}
+                    int stationKey = int.Parse(Console.ReadLine());
                     Console.WriteLine("Do you want to set station's location in the bus list of station?\n Press 'y' if you want to\n Else press any key:");
                     String answer = Console.ReadLine();
                     if (answer == "y")//אם המשתמש רוצה להכניס את התחנה במקום מסויים במסלול
                     {
                         Console.WriteLine($"Please enter location of station in the line (index):\nEnter 0 to set the station as a first station\nEnter 1 to set the station as a second station\netc...\n(Bus line has x stations)");
-                        string location = Console.ReadLine();
-                        int loc = int.Parse(location);
-                        bl.AddStationToLine(lineNum, intKey, loc);//הוספת התחנה למקום המבוקש
+                        int loc = int.Parse(Console.ReadLine());
+                        bl.AddStationToLine(lineKey, stationKey, loc);//הוספת התחנה למקום המבוקש
                     }
                     else//אם המשתמש לא בחר מיקום מסויים, התחנה מתווספת לסוף המסלול
-                    { bl.AddStationToLine(lineNum, intKey); }
-                    Console.WriteLine($"Station {key} was added to bus {lineNum}!");
+                    { bl.AddStationToLine(lineKey, stationKey); }
+                    Console.WriteLine($"Station {stationKey} was added to bus line {lineKey}!");
                     break;
                 case "c"://הוספת תחנה חדשה למערכת
                     Console.WriteLine("Please enter station's location:\n Latitude:");
-                    string stringLocation = Console.ReadLine();
-                    double latitude = double.Parse(stringLocation);
+                    double latitude = double.Parse(Console.ReadLine());
                     Console.WriteLine("Longitude:");
-                    stringLocation = Console.ReadLine();
-                    double longitude = double.Parse(stringLocation);
+                    double longitude = double.Parse(Console.ReadLine());
                     Console.WriteLine("Please enter station's address:");
                     string address = Console.ReadLine();
                     BO.Station station = new BO.Station();
