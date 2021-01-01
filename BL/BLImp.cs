@@ -198,12 +198,12 @@ namespace BL
             if (bls.Position != 1)
                 s += $@"
 
-  |
-  | {(int)(bls.DistanceFromLastStationMeters)} meters, {bls.TravelTimeFromLastStationMinutes} minutes
-  |
+     |
+     | {(int)(bls.DistanceFromLastStationMeters)} meters, {bls.TravelTimeFromLastStationMinutes} minutes
+     |
 
 ";
-            s += $"  {bls.Position}. Station key: {bls.StationKey}, Name: {station.Name}";
+            s += $"    {bls.Position}. Station key: {bls.StationKey}, Name: {station.Name}";
             return s;
         }
         #endregion
@@ -251,6 +251,7 @@ namespace BL
         {
             try
             {
+                bus.BusLineStations = null;
                 DO.BusLine BusLineDO = new DO.BusLine();
                 bus.Clone(BusLineDO);
                 dl.AddBusLine(BusLineDO);
@@ -390,13 +391,17 @@ namespace BL
         }
         public String ToStringBusLine(BusLine b)
         {
-            String s = $"Line Key: {b.Key}. Bus line number: {b.LineNumber}. Area: {b.Area}\nFirst station: {b.FirstStation}, Last Station: {b.LastStation}\n";
-            s += "Stations in line:\n";
-            foreach (BusLineStation bls in b.BusLineStations)
+            String s = $"Line Key: {b.Key}\nBus line number: {b.LineNumber}\nArea: {b.Area}";
+            if (b.BusLineStations.Count()>0)
             {
-                s += ToStringForBusLine(bls);
+                s += $"\nFirst station: {b.FirstStation}, Last Station: {b.LastStation}\n";
+                s += "  Stations in line:\n";
+                foreach (BusLineStation bls in b.BusLineStations)
+                {
+                    s += ToStringForBusLine(bls);
+                }
             }
-            return s;
+            return s + '\n';
         }
         #endregion
 

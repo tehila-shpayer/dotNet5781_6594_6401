@@ -15,11 +15,13 @@ namespace BO
         public Areas Area { get; set; }
         public int FirstStation //הפנייה ךתחנה ראשונה
         {
-            get { return BusLineStations.ElementAt(0).StationKey; }
+            get { if (BusLineStations == null) return -1;
+                return BusLineStations.ElementAt(0).StationKey; }
         }
         public int LastStation //הפנייה לתחנה אחרונה
         {
-            get { return BusLineStations.ElementAt(BusLineStations.Count() - 1).StationKey; }
+            get {if (BusLineStations == null) return -1;
+                return BusLineStations.ElementAt(BusLineStations.Count() - 1).StationKey; }
         }
         public IEnumerable<BusLineStation> BusLineStations { get; set; }
 
