@@ -117,15 +117,18 @@ namespace BL
             BO.BusLineStation BusLineStationBO = new BO.BusLineStation();
 
             BusLineStationDO.Clone(BusLineStationBO);
-            DO.BusLineStation SecondBusLineStationDO = dl.GetBusLineStationBy(s => s.Position == BusLineStationDO.Position - 1 && s.BusLineKey == BusLineStationDO.BusLineKey);
             if (BusLineStationDO.Position == 1)
             {
                 BusLineStationBO.DistanceFromLastStationMeters = 0;
                 BusLineStationBO.TravelTimeFromLastStationMinutes = 0;
                 return BusLineStationBO;
             }
-            BusLineStationBO.DistanceFromLastStationMeters = dl.GetConsecutiveStations(BusLineStationDO.StationKey, SecondBusLineStationDO.StationKey).Distance;
-            BusLineStationBO.TravelTimeFromLastStationMinutes = dl.GetConsecutiveStations(BusLineStationDO.StationKey, SecondBusLineStationDO.StationKey).AverageTime;
+
+            DO.BusLineStation SecondBusLineStationDO = dl.GetBusLineStationBy(s => s.Position == BusLineStationDO.Position - 1 && s.BusLineKey == BusLineStationDO.BusLineKey);
+            BusLineStationBO.DistanceFromLastStationMeters = dl.GetConsecutiveStations(SecondBusLineStationDO.StationKey, BusLineStationDO.StationKey).Distance;
+            BusLineStationBO.TravelTimeFromLastStationMinutes = dl.GetConsecutiveStations(SecondBusLineStationDO.StationKey, BusLineStationDO.StationKey).AverageTime;
+            //BusLineStationBO.DistanceFromLastStationMeters = dl.GetConsecutiveStations(BusLineStationDO.StationKey, SecondBusLineStationDO.StationKey).Distance;
+            //BusLineStationBO.TravelTimeFromLastStationMinutes = dl.GetConsecutiveStations(BusLineStationDO.StationKey, SecondBusLineStationDO.StationKey).AverageTime;
             return BusLineStationBO;
         }
         public BusLineStation GetBusLineStationByKey(int line, int stationKey)
@@ -148,12 +151,12 @@ namespace BL
             }
             catch (DO.ArgumentNotFoundException ex) { throw; }          
         }
-        public void AddBusLineStation(BusLineStation station)
+        public void AddBusLineStation(BusLineStation bls)
         {
             try
             {
                 DO.BusLineStation busLineStationDO = new DO.BusLineStation();
-                station.Clone(busLineStationDO);
+                bls.Clone(busLineStationDO);
                 dl.AddBusLineStation(busLineStationDO);
             }
             catch (DO.InvalidInformationException ex) { throw; }
@@ -187,6 +190,21 @@ namespace BL
                 dl.DeleteBusLineStation(line, stationKey);
             }
             catch (DO.ArgumentNotFoundException ex) { }
+        }
+        public string ToStringForBusLine(BusLineStation bls)
+        {
+            DO.Station station = dl.GetStation(bls.StationKey);
+            String s = "";
+            if (bls.Position != 1)
+                s += $@"
+
+  |
+  | {(int)(bls.DistanceFromLastStationMeters)} meters, {bls.TravelTimeFromLastStationMinutes} minutes
+  |
+
+";
+            s += $"  {bls.Position}. Station key: {bls.StationKey}, Name: {station.Name}";
+            return s;
         }
         #endregion
 
@@ -369,6 +387,16 @@ namespace BL
             foreach (DO.BusLineStation bls in dl.GetAllStationsOfLine(busKey))
                 if (bls.Position > position)
                     bls.Position -= 1;
+        }
+        public String ToStringBusLine(BusLine b)
+        {
+            String s = $"Line Key: {b.Key}. Bus line number: {b.LineNumber}. Area: {b.Area}\nFirst station: {b.FirstStation}, Last Station: {b.LastStation}\n";
+            s += "Stations in line:\n";
+            foreach (BusLineStation bls in b.BusLineStations)
+            {
+                s += ToStringForBusLine(bls);
+            }
+            return s;
         }
         #endregion
 

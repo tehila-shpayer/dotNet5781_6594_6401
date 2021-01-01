@@ -98,10 +98,10 @@ namespace DS
                 new Station { Key = 40924, Name = "שקדים/הסיגליות", Latitude = 32.725614, Longitude =35.135896},
                 new Station { Key = 40925, Name = "בי''ס מיתרים", Latitude = 32.725906, Longitude =35.13691},
 
-                //10
-                new Station { Key = 45385, Name = "סיירת דוכיפת/מחסום חזמא", Latitude = 31.828149, Longitude = 35.252449},
-                new Station { Key = 61017, Name = "איזור תעשייה/שער בנימין", Latitude = 31.864862, Longitude = 35.261681},
-                new Station { Key = 61002, Name = "תחנת דלק/כוכב יעקב", Latitude = 32.883102, Longitude =35.24615},
+                //10 31.87301167871785, 35.26042916122732
+                new Station { Key = 45385, Name = "סיירת דוכיפת/מחסום חזמא", Latitude = 31.828335, Longitude = 35.250612},
+                new Station { Key = 61017, Name = "איזור תעשייה/שער בנימין", Latitude = 31.865017, Longitude = 35.261373},
+                new Station { Key = 61002, Name = "תחנת דלק/כוכב יעקב", Latitude = 31.873011, Longitude =35.260429},
                 new Station { Key = 60211, Name = "שדרות אביר יעקב/מעייני הישועה", Latitude = 31.883013, Longitude =35.247681},
                 new Station { Key = 60215, Name = "חגווי סלע/מעייני הישועה", Latitude = 31.878496, Longitude = 35.243613},
                 new Station { Key = 60216, Name = "משכנות הרועים/נהר שלום", Latitude = 31.873910, Longitude =35.243681},
@@ -182,9 +182,9 @@ namespace DS
             //        }
             //    }
             //}
-            double distance1 = GetDistant(31.828149, 35.252449, 31.864862, 35.261681);
-            double distance2 = GetDistant(31.864862, 35.261681, 32.883102, 35.24615);
-            double distance3 = GetDistant(32.883102, 35.24615, 31.883013, 35.247681);
+            double distance1 = GetDistant(31.828335, 35.250612, 31.865017, 35.261373);
+            double distance2 = GetDistant(31.865017, 35.261373, 31.873011, 35.260429);
+            double distance3 = GetDistant(31.873011, 35.260429, 31.883013, 35.247681);
             double distance4 = GetDistant(31.883013, 35.247681, 31.878496, 35.243613);
             double distance5 = GetDistant(31.878496, 35.243613, 31.873910, 35.243681);
             double distance6 = GetDistant(31.873910, 35.243681, 31.889875, 35.249011);

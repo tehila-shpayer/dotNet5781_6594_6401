@@ -82,12 +82,12 @@ namespace PLConsole
                     int intLineNumber = int.Parse(lineNumber);
                     busLine.LineNumber = intLineNumber;
                     bl.AddBusLine(busLine);
-                    Console.WriteLine($"New bus line was added to collection!");
+                    Console.WriteLine($"New bus line {intLineNumber} was added to collection!");
                     break;
                 case "b"://הוספת תחנה קיימת למסלול של קו אוטובוס
                     Console.WriteLine("Please enter the bus number for adding a station:");
                     string stringNum = Console.ReadLine();
-                    int num = int.Parse(stringNum);
+                    int lineNum = int.Parse(stringNum);
                     Console.WriteLine("Please enter station's key to add:");
                     string key = Console.ReadLine();
                     int intKey = int.Parse(key);
@@ -102,11 +102,11 @@ namespace PLConsole
                         Console.WriteLine($"Please enter location of station in the line (index):\nEnter 0 to set the station as a first station\nEnter 1 to set the station as a second station\netc...\n(Bus line has x stations)");
                         string location = Console.ReadLine();
                         int loc = int.Parse(location);
-                        bl.AddStationToLine(num, intKey, loc);//הוספת התחנה למקום המבוקש
+                        bl.AddStationToLine(lineNum, intKey, loc);//הוספת התחנה למקום המבוקש
                     }
                     else//אם המשתמש לא בחר מיקום מסויים, התחנה מתווספת לסוף המסלול
-                    { bl.AddStationToLine(num, intKey); }
-                    Console.WriteLine($"Station {key} was added to bus {num}!");
+                    { bl.AddStationToLine(lineNum, intKey); }
+                    Console.WriteLine($"Station {key} was added to bus {lineNum}!");
                     break;
                 case "c"://הוספת תחנה חדשה למערכת
                     Console.WriteLine("Please enter station's location:\n Latitude:");
@@ -135,26 +135,23 @@ namespace PLConsole
             {
                 case "a"://הדפסת הנתונים על כל קווי האוטובוס
                     Console.WriteLine("bus lines:");
-                    var aaa = from busLine in bl.GetAllBusLines()
-                            select busLine.ToString();
-                    foreach (String a in aaa)
-                        Console.WriteLine(a);
+                    var busLines = from busLine in bl.GetAllBusLines()
+                                   select bl.ToStringBusLine(busLine);
+                    foreach (String busLine in busLines)
+                        Console.WriteLine(busLine);
                     break;
                 case "b"://הדפסת הנתונים על כל התחנות
-                    //foreach (BO.Station station in StationList.Stations)
-                    //{
-                    //    Console.WriteLine(station);
-
-                    //    Console.Write("   The bus lines in this station: ");
-                    //    PrintBusesInStation(lineCollection, station.BusStationKey);
-                    //}
+                    var stations = from station in bl.GetAllStations()
+                                   select station.ToString();
+                    foreach (String station in stations)
+                        Console.WriteLine(station);
                     break;
                 case "c"://הדפסת נתונים על קו אוטובוס מסויים
-                    //BusesInSystem(lineCollection);
-                    //Console.WriteLine("Please enter the bus number to print: ");
-                    //string stringNum = Console.ReadLine();
-                    //int busNum = int.Parse(stringNum);
-                    //Console.WriteLine(lineCollection[busNum]);
+                    Console.WriteLine("enter bus line key: ");
+                    string lineNumber = Console.ReadLine();
+                    int intLineNumber = int.Parse(lineNumber);
+                    BO.BusLine b = bl.GetBusLine(intLineNumber);
+                    Console.WriteLine(bl.ToStringBusLine(b));
                     break;
                 default: Console.WriteLine("ERROR"); break;
             }
