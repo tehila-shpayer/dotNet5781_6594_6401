@@ -128,8 +128,8 @@ namespace DS
             };
             ListBusLines = new List<BusLine>
             {
-                new BusLine{Key = 1, LineNumber=949, Area = Areas.YehudaAndShomron, FirstStationKey = 45385, LastStationKey = 60642},
-                new BusLine{Key = 2, LineNumber=488, Area = Areas.North, FirstStationKey = 57096, LastStationKey = 57119},
+                new BusLine{Key = 1, LineNumber=949, Area = Areas.YehudaAndShomron},
+                new BusLine{Key = 2, LineNumber=488, Area = Areas.North},
                 //new BusLine{LineNumber=236, Area = Areas.Hifa, FirstStationKey = 40247, LastStationKey = 40269},
                 //new BusLine{LineNumber=934, Area = Areas.General, FirstStationKey = 21007, LastStationKey = 22222},
                 //new BusLine{LineNumber=86, Area = Areas.Center, FirstStationKey = 40912, LastStationKey = 40925},
