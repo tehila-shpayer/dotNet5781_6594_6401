@@ -193,8 +193,18 @@ namespace BL
         }
         public string ToStringForBusLine(BusLineStation bls)
         {
-            DO.Station station = (dl.GetStation(bls.StationKey));
-            return $"{bls.Position}. Station key: {bls.StationKey}, Name: {station.Name}\n      Distanse from previous station: {(int)(bls.DistanceFromLastStationMeters)} meters, time of travel from previous station: {bls.TravelTimeFromLastStationMinutes} minutes.\n";
+            DO.Station station = dl.GetStation(bls.StationKey);
+            String s = "";
+            if (bls.Position != 1)
+                s += $@"
+
+  |
+  | {(int)(bls.DistanceFromLastStationMeters)} meters, {bls.TravelTimeFromLastStationMinutes} minutes
+  |
+
+";
+            s += $"  {bls.Position}. Station key: {bls.StationKey}, Name: {station.Name}";
+            return s;
         }
         #endregion
 
@@ -384,7 +394,7 @@ namespace BL
             s += "Stations in line:\n";
             foreach (BusLineStation bls in b.BusLineStations)
             {
-                s += "  " + ToStringForBusLine(bls);
+                s += ToStringForBusLine(bls);
             }
             return s;
         }
