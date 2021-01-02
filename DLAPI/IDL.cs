@@ -58,7 +58,8 @@ namespace DLAPI
 
         #region ConsecutiveStations
         ConsecutiveStations GetConsecutiveStations(int stationKey1, int stationKey2);
-        void AddConsecutiveStations(ConsecutiveStations bus);
+        void AddConsecutiveStations(ConsecutiveStations consecutiveStations);
+        void AddConsecutiveStations(int stationKey1, int stationKey2);
         void UpdateConsecutiveStations(ConsecutiveStations bus);
         void UpdateConsecutiveStations(int stationKey1, int stationKey2, Action<ConsecutiveStations> update); //method that knows to updt specific fields in Person
         void DeleteConsecutiveStations(int stationKey1, int stationKey2);

@@ -39,10 +39,12 @@ namespace BO
         {
             get //מחזיר את התחנה במקום האינדקס ברשימת התחנות
             {
-                BusLineStation station = BusLineStations.ElementAt(index);
-                //if (station == null)
-                    //Console.WriteLine("There is no station " + index + " in the list of stations");
-                return station;
+                try
+                {
+                    return BusLineStations.ElementAt(index);
+                }
+                catch
+                { return null; }
             }
         }
     }

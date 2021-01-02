@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Device.Location;
 using DLAPI;
 using DO;
 using DS;
@@ -236,9 +237,30 @@ namespace DL
         }
         public void AddConsecutiveStations(ConsecutiveStations consecutiveStations)
         {
-            if (DataSource.ListConsecutiveStations.FirstOrDefault(s => s.StationKey1 == consecutiveStations.StationKey1 && s.StationKey2 == consecutiveStations.StationKey2) != null)
-                throw new InvalidInformationException("Duplicate pair of stations");
+            //if (DataSource.ListConsecutiveStations.FirstOrDefault(s => s.StationKey1 == consecutiveStations.StationKey1 && s.StationKey2 == consecutiveStations.StationKey2) != null)
+            //    throw new InvalidInformationException("Duplicate pair of stations");
             DataSource.ListConsecutiveStations.Add(consecutiveStations.Clone());
+        }
+        public void AddConsecutiveStations(int stationKey1, int stationKey2)
+        {
+            Station station1 = GetStation(stationKey1);
+            Station station2 = GetStation(stationKey2);
+            AddConsecutiveStations(CalculateConsecutiveStations(station1, station2));
+        }
+        ConsecutiveStations CalculateConsecutiveStations(Station station1, Station station2)
+        {
+            ConsecutiveStations consecutiveStations = new DO.ConsecutiveStations();
+            consecutiveStations.StationKey1 = station1.Key;
+            consecutiveStations.StationKey2 = station2.Key;
+            GeoCoordinate location1 = new GeoCoordinate(station1.Latitude, station1.Longitude);//מיקום התחנה המחושבת
+            GeoCoordinate location2 = new GeoCoordinate(station2.Latitude, station2.Longitude);//מיקום התחנה הקודמת
+            double distance = location1.GetDistanceTo(location2);//חישוב מרחק
+            consecutiveStations.Distance = distance;
+            Random rand = new Random();
+            int speed = rand.Next(30, 60);
+            int time = (int)Math.Ceiling(distance / (speed * 1000 / 60));//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש
+            consecutiveStations.AverageTime = time;
+            return consecutiveStations;
         }
         public void UpdateConsecutiveStations(ConsecutiveStations stations)
         {

@@ -281,6 +281,48 @@ namespace BL
             BusLine busLine = GetBusLine(busLineKey);
             if (position == 0)
                 position = busLine.BusLineStations.Count() + 1;
+            foreach (BusLineStation bls in busLine.BusLineStations)
+                if (bls.Position >= position)
+                {
+                    bls.Position += 1;
+                    UpdateBusLineStation(bls);
+                }
+            BO.BusLineStation busLineStationBO = new BO.BusLineStation();
+            busLineStationBO.BusLineKey = busLineKey;
+            busLineStationBO.StationKey = stationKey;
+            busLineStationBO.Position = position;
+            busLineStationBO.DistanceFromLastStationMeters = 0;
+            busLineStationBO.TravelTimeFromLastStationMinutes = 0;
+
+            BusLineStation prevBusLineStation = busLine[position - 1];
+            BusLineStation nextBusLineStation = busLine[position + 1];
+            //BusLineStation nextBusLineStation = (from bls in busLine.BusLineStations
+            //                                     where bls.Position == position + 1
+            //                                     select bls).FirstOrDefault();
+            if (prevBusLineStation != null)
+            {
+                dl.AddConsecutiveStations(prevBusLineStation.StationKey, stationKey);
+                DO.ConsecutiveStations cs = dl.GetConsecutiveStations(prevBusLineStation.StationKey, stationKey);
+                busLineStationBO.DistanceFromLastStationMeters = cs.Distance;
+                busLineStationBO.TravelTimeFromLastStationMinutes = cs.AverageTime;
+            }
+            AddBusLineStation(busLineStationBO);
+            if (nextBusLineStation != null)
+            {
+                dl.AddConsecutiveStations(stationKey, nextBusLineStation.StationKey);
+                DO.ConsecutiveStations cs = dl.GetConsecutiveStations(stationKey, nextBusLineStation.StationKey);
+                nextBusLineStation.DistanceFromLastStationMeters = cs.Distance;
+                nextBusLineStation.TravelTimeFromLastStationMinutes = cs.AverageTime;
+                UpdateBusLineStation(nextBusLineStation);
+            }
+
+            
+        }
+        public void AddStationToLine2(int busLineKey, int stationKey, int position = 0)
+        {
+            BusLine busLine = GetBusLine(busLineKey);
+            if (position == 0)
+                position = busLine.BusLineStations.Count() + 1;
             foreach (DO.BusLineStation bls in dl.GetAllStationsOfLine(busLineKey))
                 if (bls.Position >= position)
                     bls.Position += 1;
@@ -289,12 +331,15 @@ namespace BL
             //if(dl.GetStation(station.Key) == null)
             //    throw
             //if (position > bus.BusLineStations.Count() + 1 || position < 0)//מיקום רלוונטי - כגודל רשימת התחנות
-            //    throw 
+            //    throw
+            
             DO.BusLineStation busLineStationDO = new DO.BusLineStation();
             busLineStationDO.BusLineKey = busLineKey;
             busLineStationDO.StationKey = stationKey;
             busLineStationDO.Position = position;
+
             dl.AddBusLineStation(busLineStationDO);
+
             BO.BusLineStation busLineStationBO = new BO.BusLineStation();
             //busLineStationBO = BusLineStationDoBoAdapter(busLineStationDO);
             //busLine.BusLineStations.Append(busLineStationBO);
