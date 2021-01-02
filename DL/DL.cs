@@ -198,9 +198,9 @@ namespace DL
         }
         public void UpdateBusLineStation(BusLineStation station)
         {
-            BusLineStation busLineStation = DataSource.ListBusLineStations.Find(s => s.BusLineKey == station.BusLineKey && s.StationKey == station.StationKey);
-            if (busLineStation != null)
-                busLineStation = station;
+            int index = DataSource.ListBusLineStations.FindIndex(s => s.BusLineKey == station.BusLineKey && s.StationKey == station.StationKey);
+            if (index != -1)
+                DataSource.ListBusLineStations[index] = station;
             else
                 throw new ArgumentNotFoundException($"Bus station of line {station.BusLineKey} and station {station.StationKey} was not found.");
         }
