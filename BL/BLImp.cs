@@ -281,13 +281,6 @@ namespace BL
             BusLine busLine = GetBusLine(busLineKey);
             if (position == 0)
                 position = busLine.BusLineStations.Count() + 1;
-            
-            foreach (BusLineStation bls in busLine.BusLineStations)
-                if (bls.Position >= position)
-                {
-                    bls.Position += 1;
-                    UpdateBusLineStation(bls);
-                }
 
             //busLine = GetBusLine(busLineKey);//updates busLine to a bus line with new positions
             BO.BusLineStation busLineStationBO = new BO.BusLineStation();
@@ -303,8 +296,9 @@ namespace BL
                                                  where bls.Position == position - 1
                                                  select bls).FirstOrDefault();
             BusLineStation nextBusLineStation = (from bls in GetAllStationsOfLine(busLineKey)
-                                                 where bls.Position == position + 1
+                                                 where bls.Position == position
                                                  select bls).FirstOrDefault();
+            
             
             if (prevBusLineStation != null)
             {
@@ -314,6 +308,12 @@ namespace BL
                 busLineStationBO.TravelTimeFromLastStationMinutes = cs.AverageTime;
             }
             AddBusLineStation(busLineStationBO);
+            foreach (DO.BusLineStation bls in dl.GetAllStationsOfLine(busLineKey))
+                if (bls.Position >= position && bls.StationKey != stationKey)
+                {
+                    bls.Position += 1;
+                    dl.UpdateBusLineStation(bls);
+                }
             if (nextBusLineStation != null)
             {
                 dl.AddConsecutiveStations(stationKey, nextBusLineStation.StationKey);
