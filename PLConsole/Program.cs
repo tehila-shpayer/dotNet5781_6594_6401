@@ -34,7 +34,7 @@ namespace PLConsole
                             AddToCollection();//הוספה למערכת
                             break;
                         case "d":
-                            //DeleteFromCollection();//מחיקה מהמערכת
+                            DeleteFromCollection();//מחיקה מהמערכת
                             break;
                         case "s":
                             //SearchInCollection();//חיפוש במערכת
@@ -108,7 +108,7 @@ namespace PLConsole
                     double latitude = double.Parse(Console.ReadLine());
                     Console.WriteLine("Longitude:");
                     double longitude = double.Parse(Console.ReadLine());
-                    
+
                     BO.Station station = new BO.Station();
                     station.Key = key;
                     station.Name = name;
@@ -149,74 +149,69 @@ namespace PLConsole
                 default: Console.WriteLine("ERROR"); break;
             }
         }
+        public static void DeleteFromCollection()
+        {
+            Console.WriteLine("  a: Delete a bus line\n  b: Delete a station from a bus line\n  c: Delete a station from the system");
+            string a = Console.ReadLine().Trim();
+            int lineKey;
+            int stationKey;
+
+            switch (a)
+            {
+                case "a"://מחיקת קו אוטובוס
+                    Console.WriteLine("Please enter the bus number to delete:");
+                    lineKey = int.Parse(Console.ReadLine());
+                    bl.DeleteBusLine(lineKey);
+                    Console.WriteLine($"Bus line {lineKey} was removed from collection!");
+                    break;
+                case "b"://מחיקת תחנה ממסלול של קו אוטובוס
+                    
+                    Console.WriteLine("Please enter the line key to delete from:");
+                    lineKey= int.Parse(Console.ReadLine());
+                    //string stations = "Stations in the bus: ";//הדפסת כל מספרי התחנות שקו האוטובוס עובר בהן
+                    //foreach (BusLineStation station in lineCollection[busNum].BusLineStations)
+                    //{
+                    //    stations += station.StationKey + " ";
+                    //}
+                    //Console.WriteLine(stations + "\n");
+                    Console.WriteLine("Please enter station key to delete:");
+                    stationKey = int.Parse(Console.ReadLine());
+                    bl.DeleteStationFromLine(lineKey, stationKey);
+                    Console.WriteLine($"Station {stationKey} was removed from bus line {lineKey}!");
+                    break;
+                case "c"://מחיקת תחנת אוטובוס מהמערכת
+                    Console.WriteLine("Please enter the station key to delete:");
+                    stationKey = int.Parse(Console.ReadLine());
+                    BO.Station station = bl.GetStation(stationKey);
+                    if (station.BusLines.Count() > 0)//אם יש קווי אוטובוס העוברים בתחנה זו
+                    {
+                        //אזהרה למשתמש: מחיקת התחנה תמחק אותה ממסלולי האוטובוסים
+                        Console.WriteLine("There are buses that pass in this station!\nAre you sure you want to delete it?\nThis action will remove this station from all buses");
+                        Console.WriteLine(" Press 'y' to continue\n Else press any key");
+                        String answer = Console.ReadLine();
+                        if (answer != "y")//אם המשתמש לא רוצה למחוק את התחנה
+                        {
+                            Console.WriteLine("The delete operation was canceled");//ביטול פעולת המחיקה
+                            break;
+                        }
+                        //אחרת, אם המשתמש בכל זאת רוצה למחוק את התחנה
+                        //foreach (BusLine busLine in lineCollection)//מחיקת התחנה ממסלולי האוטובוסים שעוברים בה
+                        //{
+                        //    if (busLine.DidFindStation(stationNum))
+                        //        busLine.DeleteStation(stationNum);
+                        //}
+                    }
+                    bl.DeleteStation(stationKey);//מחיקת התחנה מהמערכת
+                    Console.WriteLine($"Station {stationKey} was removed from the system!");
+                    break;
+                default: Console.WriteLine("ERROR"); break;
+            }
+        }
     }
 }
     
        
-        //    public static void DeleteFromCollection(BusLineCollection lineCollection)
-        //    {
-        //        Console.WriteLine("  a: Delete a bus line\n  b: Delete a station from a bus line\n  c: Delete a station from the system");
-        //        string a = Console.ReadLine().Trim();
-
-        //        String stringBus = "";
-        //        int busNum;
-
-        //        switch (a)
-        //        {
-        //            case "a"://מחיקת קו אוטובוס
-        //                Console.WriteLine("Please enter the bus number to delete:");
-        //                stringBus = Console.ReadLine();
-        //                busNum = int.Parse(stringBus);
-        //                lineCollection.Delete(lineCollection[busNum]);
-        //                Console.WriteLine($"Bus line {busNum} was removed from collection!");
-        //                break;
-        //            case "b"://מחיקת תחנה ממסלול של קו אוטובוס
-        //                BusesInSystem(lineCollection);
-        //                Console.WriteLine("Please enter the bus number to delete from:");
-        //                stringBus = Console.ReadLine();
-        //                busNum = int.Parse(stringBus);
-        //                BusLine bus = lineCollection[busNum];
-        //                if (lineCollection[busNum].BusLineStations.Count == 0)//אם אין תחנות בקו זה- נזרקת חריגה
-        //                { Console.WriteLine($"Bus line {busNum} has no stations."); break; }
-        //                string stations = "Stations in the bus: ";//הדפסת כל מספרי התחנות שקו האוטובוס עובר בהן
-        //                foreach (BusLineStation station in lineCollection[busNum].BusLineStations)
-        //                {
-        //                    stations += station.StationKey + " ";
-        //                }
-        //                Console.WriteLine(stations + "\n");
-        //                Console.WriteLine("Please enter station key to delete:");
-        //                int stationNum = ReadStationKey();
-        //                if (!bus.DidFindStation(stationNum))//אם התחנה כלל לא נמצאת במסלול הקו
-        //                    throw new BusException($"Bus line {busNum} has no station {stationNum}");
-        //                bus.DeleteStation(stationNum);
-        //                Console.WriteLine($"Station {stationNum} was removed from bus {busNum}!");
-        //                break;
-        //            case "c"://מחיקת תחנת אוטובוס מהמערכת
-        //                Console.WriteLine("Please enter the station number to delete:");
-        //                stationNum = ReadStationKey();
-        //                if (BusesInStation(lineCollection, stationNum) != "\n")//אם יש קווי אוטובוס העוברים בתחנה זו
-        //                {
-        //                    //אזהרה למשתמש: מחיקת התחנה תמחק אותה ממסלולי האוטובוסים
-        //                    Console.WriteLine("There are buses that pass in this station!\nAre you sure you want to delete it?\nThis action will remove this station from all buses");
-        //                    Console.WriteLine(" Press 'y' to continue\n Else press any key");
-        //                    String answer = Console.ReadLine();
-        //                    if (answer != "y")//אם המשתמש לא רוצה למחוק את התחנה
-        //                    {
-        //                        Console.WriteLine("The delete operation was canceled");//ביטול פעולת המחיקה
-        //                        break;
-        //                    }
-        //                    //אחרת, אם המשתמש בכל זאת רוצה למחוק את התחנה
-        //                    foreach (BusLine busLine in lineCollection)//מחיקת התחנה ממסלולי האוטובוסים שעוברים בה
-        //                    {
-        //                        if (busLine.DidFindStation(stationNum))
-        //                            busLine.DeleteStation(stationNum);
-        //                    }
-        //                }
-        //                StationList.Remove(stationNum);//מחיקת התחנה מהמערכת
-        //                Console.WriteLine($"Station {stationNum} was removed from the system!");
-        //                break;
-        //            default: Console.WriteLine("ERROR"); break;
-        //        }
+        
 
         //    }
         //    public static void SearchInCollection(BusLineCollection lineCollection)
