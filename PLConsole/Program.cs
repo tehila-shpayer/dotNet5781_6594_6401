@@ -100,18 +100,22 @@ namespace PLConsole
                     Console.WriteLine($"Station {stationKey} was added to bus line {lineKey}!");
                     break;
                 case "c"://הוספת תחנה חדשה למערכת
-                    Console.WriteLine("Please enter station's location:\n Latitude:");
+                    Console.WriteLine("Please enter station's key: ");
+                    int key = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Please enter station's name: ");
+                    string name = Console.ReadLine();
+                    Console.WriteLine("Enter station's location:\n Latitude:");
                     double latitude = double.Parse(Console.ReadLine());
                     Console.WriteLine("Longitude:");
                     double longitude = double.Parse(Console.ReadLine());
-                    Console.WriteLine("Please enter station's address:");
-                    string address = Console.ReadLine();
+                    
                     BO.Station station = new BO.Station();
+                    station.Key = key;
+                    station.Name = name;
                     station.Latitude = latitude;
                     station.Longitude = longitude;
-                    station.Name = address;
                     bl.AddStation(station);
-                    Console.WriteLine($"New bus station was added to the system!");
+                    Console.WriteLine($"New station {key} was added to the system!");
                     break;
                 default: Console.WriteLine("ERROR\n"); break;
             }

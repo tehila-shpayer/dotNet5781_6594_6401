@@ -328,7 +328,7 @@ namespace DL
         {
             if (DataSource.ListStations.FirstOrDefault(s => s.Key == station.Key) != null)
                 throw new InvalidInformationException("Duplicate station key");
-            station.Key = Station.STATION_KEY++;
+            //station.Key = Station.STATION_KEY++;
             DataSource.ListStations.Add(station.Clone());
         }
         public void UpdateStation(Station station)
