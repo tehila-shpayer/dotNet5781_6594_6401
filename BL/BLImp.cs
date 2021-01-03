@@ -100,8 +100,10 @@ namespace BL
             { 
                 Station station = GetStation(stationKey);
                 foreach(int bl in station.BusLines)
-                {
+                {              
                     DeleteStationFromLine(bl, stationKey);
+                    if (!station.BusLines.Any())
+                        break;
                 }
                 dl.DeleteBusLineStationsByStation(stationKey);
                 dl.DeleteConsecutiveStations(stationKey);
@@ -335,7 +337,7 @@ namespace BL
                 position = busLine.BusLineStations.Count() + 1;
             foreach (DO.BusLineStation bls in dl.GetAllStationsOfLine(busLineKey))
                 if (bls.Position >= position)
-                    bls.Position += 1;
+                    dl.UpdateBusLineStation(bls.BusLineKey, bls.StationKey, b => b.Position += 1);
             DO.ConsecutiveStations consecutiveStationsFromPrev;
             DO.ConsecutiveStations consecutiveStationsToNext;
             //if(dl.GetStation(station.Key) == null)
@@ -354,11 +356,9 @@ namespace BL
             //busLineStationBO = BusLineStationDoBoAdapter(busLineStationDO);
             //busLine.BusLineStations.Append(busLineStationBO);
             DO.BusLineStation prevBusLineStationDO = dl.GetBusLineStationBy
-                (bls => bls.BusLineKey == busLineKey && bls.StationKey == stationKey
-                && bls.Position == position - 1);
+                (bls => bls.BusLineKey == busLineKey && bls.Position == position - 1);
             DO.BusLineStation nextBusLineStationDO = dl.GetBusLineStationBy
-                (bls => bls.BusLineKey == busLineKey && bls.StationKey == stationKey
-                && bls.Position == position + 1);
+                (bls => bls.BusLineKey == busLineKey && bls.Position == position + 1);
             if (position != 1)
             {
                 if (dl.GetConsecutiveStations(prevBusLineStationDO.StationKey, busLineStationDO.StationKey) != null)
@@ -429,20 +429,18 @@ namespace BL
             if (busLineStationDO.Position != busLine.BusLineStations.Count())
             {//אם זו לא התחנה האחרונה יש לעדכן את פרטי הזמן והמרחק של התחנה הבאה 
                 DO.BusLineStation prevBusLineStationDO = dl.GetBusLineStationBy
-                (bls => bls.BusLineKey == busKey && bls.StationKey == stationKey
-                && bls.Position == position - 1);
+                (bls => bls.BusLineKey == busKey && bls.Position == position - 1);
                 DO.BusLineStation nextBusLineStationDO = dl.GetBusLineStationBy
-                    (bls => bls.BusLineKey == busKey && bls.StationKey == stationKey
-                    && bls.Position == position + 1);
+                    (bls => bls.BusLineKey == busKey && bls.Position == position + 1);
                 DO.ConsecutiveStations consecutiveStations = CalculateConsecutiveStations
 (dl.GetStation(prevBusLineStationDO.StationKey), dl.GetStation(nextBusLineStationDO.StationKey));
-                if (dl.GetConsecutiveStations(prevBusLineStationDO.StationKey, nextBusLineStationDO.StationKey) != null)
+                if (dl.GetConsecutiveStations(prevBusLineStationDO.StationKey, nextBusLineStationDO.StationKey) == null)
                     dl.AddConsecutiveStations(consecutiveStations);
             }
             dl.DeleteBusLineStation(busKey, stationKey);
             foreach (DO.BusLineStation bls in dl.GetAllStationsOfLine(busKey))
                 if (bls.Position > position)
-                    bls.Position -= 1;
+                    dl.UpdateBusLineStation(bls.BusLineKey, bls.StationKey, b => b.Position -= 1);
         }
         public String ToStringBusLine(BusLine b)
         {
