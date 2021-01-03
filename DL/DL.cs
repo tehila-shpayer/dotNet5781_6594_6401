@@ -354,7 +354,7 @@ namespace DL
         public IEnumerable<int> GetAllLinesInStation(int stationKey)
         {
             var allLines = from bls in DataSource.ListBusLineStations
-                           where bls.StationKey == stationKey && bls.Position == 1
+                           where bls.StationKey == stationKey
                            select bls.BusLineKey;
             return allLines;
         }
