@@ -279,55 +279,41 @@ namespace BL
         public void AddStationToLine(int busLineKey, int stationKey, int position = 0)
         {
             BusLine busLine = GetBusLine(busLineKey);
+            if (position > busLine.BusLineStations.Count() + 1 || position < 0)//מיקום רלוונטי - כגודל רשימת התחנות
+                throw new ArgumentOutOfRangeException($"Can't add the line station\n The index is illegal:\n There are only {busLine.BusLineStations.Count()} stations in line {busLineKey}");
             if (position == 0)
                 position = busLine.BusLineStations.Count() + 1;
 
-            //busLine = GetBusLine(busLineKey);//updates busLine to a bus line with new positions
-            BO.BusLineStation busLineStationBO = new BO.BusLineStation();
-            busLineStationBO.BusLineKey = busLineKey;
-            busLineStationBO.StationKey = stationKey;
-            busLineStationBO.Position = position;
-            busLineStationBO.DistanceFromLastStationMeters = 0;
-            busLineStationBO.TravelTimeFromLastStationMinutes = 0;
-
-            //BusLineStation prevBusLineStation = busLine[position - 2];//return the busLine at the 0-based index
-            //BusLineStation nextBusLineStation = busLine[position - 1];//return the busLine at the 0-based index
             BusLineStation prevBusLineStation = (from bls in GetAllStationsOfLine(busLineKey)
                                                  where bls.Position == position - 1
                                                  select bls).FirstOrDefault();
             BusLineStation nextBusLineStation = (from bls in GetAllStationsOfLine(busLineKey)
                                                  where bls.Position == position
                                                  select bls).FirstOrDefault();
-            
-            
             if (prevBusLineStation != null)
             {
                 dl.AddConsecutiveStations(prevBusLineStation.StationKey, stationKey);
-                DO.ConsecutiveStations cs = dl.GetConsecutiveStations(prevBusLineStation.StationKey, stationKey);
-                busLineStationBO.DistanceFromLastStationMeters = cs.Distance;
-                busLineStationBO.TravelTimeFromLastStationMinutes = cs.AverageTime;
             }
-            AddBusLineStation(busLineStationBO);
-
             if (nextBusLineStation != null)
             {
                 dl.AddConsecutiveStations(stationKey, nextBusLineStation.StationKey);
-                DO.ConsecutiveStations cs = dl.GetConsecutiveStations(stationKey, nextBusLineStation.StationKey);
-                nextBusLineStation.DistanceFromLastStationMeters = cs.Distance;
-                nextBusLineStation.TravelTimeFromLastStationMinutes = cs.AverageTime;
-                UpdateBusLineStation(nextBusLineStation);
             }
+
+            BO.BusLineStation busLineStationBO = new BO.BusLineStation();//create the new busLineStation
+            busLineStationBO.BusLineKey = busLineKey;
+            busLineStationBO.StationKey = stationKey;
+            busLineStationBO.Position = position;
+            AddBusLineStation(busLineStationBO);
+
             var tmp = from bls in dl.GetAllStationsOfLine(busLineKey)
                       where bls.Position >= position && bls.StationKey != stationKey
                       select bls;
 
-            foreach (DO.BusLineStation bls in tmp)
-            //if (bls.Position >= position && bls.StationKey != stationKey)
+            foreach (DO.BusLineStation bls in tmp)//update the position of the station in the line
             {
                 bls.Position += 1;
                 dl.UpdateBusLineStation(bls);
             }
-
         }
         public void AddStationToLine2(int busLineKey, int stationKey, int position = 0)
         {
