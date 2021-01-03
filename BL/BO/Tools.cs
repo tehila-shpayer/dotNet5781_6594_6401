@@ -20,7 +20,7 @@ namespace BO
         {
             string str = "";
             foreach (PropertyInfo item in t.GetType().GetProperties())
-                if (item.Name != "IsActive" && !item.Name.Contains("List"))
+                if (item.Name != "IsActive")
                     str += "\n" + item.Name + ": " + item.GetValue(t, null);
             return str;
         }

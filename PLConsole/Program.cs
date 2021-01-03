@@ -131,7 +131,7 @@ namespace PLConsole
                     break;
                 case "b"://הדפסת הנתונים על כל התחנות
                     var stations = from station in bl.GetAllStations()
-                                   select station.ToString();
+                                   select bl.ToStringStation(station);
                     foreach (String station in stations)
                         Console.WriteLine(station);
                     break;

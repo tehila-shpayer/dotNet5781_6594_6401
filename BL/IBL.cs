@@ -31,7 +31,7 @@ namespace BLAPI
         void UpdateBusLineStation(BusLineStation bus);
         void UpdateBusLineStation(int line, int stationKey, Action<BusLineStation> update); //method that knows to updt specific fields in Person
         void DeleteBusLineStation(int line, int stationKey);
-        string ToStringForBusLine(BusLineStation bls);
+        string ToStringBusLineStation(BusLineStation bls);
         #endregion
 
         #region Station
@@ -42,6 +42,7 @@ namespace BLAPI
         void UpdateStation(Station station);
         void UpdateStation(int stationKey, Action<Station> update); //method that knows to updt specific fields in Person
         void DeleteStation(int stationKey);
+        string ToStringStation(Station station);
         #endregion
 
     }

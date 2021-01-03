@@ -109,6 +109,19 @@ namespace BL
             }
             catch (DO.ArgumentNotFoundException ex) { throw new BOArgumentNotFoundException($"Can't delete station {stationKey}.", ex); }
         }
+        public string ToStringStation(Station station)
+        {
+            String s = "";
+            s += $"Station Name: {station.Name}\nStation Key: {station.Key}\nLocation: {station.Latitude}°N, {station.Longitude}°E\n";
+            if (station.BusLines.Count() == 0)
+                return s + "There are no bus lines in this station\n";
+            s += "Bus Line in station: ";
+            foreach (int b in station.BusLines)
+            {
+                s += b + ", ";
+            }
+            return s.Substring(0, s.Length - 2) + "\n";
+        }
         #endregion
 
         #region BusLineStation
@@ -191,7 +204,7 @@ namespace BL
             }
             catch (DO.ArgumentNotFoundException ex) { }
         }
-        public string ToStringForBusLine(BusLineStation bls)
+        public string ToStringBusLineStation(BusLineStation bls)
         {
             DO.Station station = dl.GetStation(bls.StationKey);
             String s = "";
@@ -440,7 +453,7 @@ namespace BL
                 s += "  Stations in line:\n";
                 foreach (BusLineStation bls in b.BusLineStations)
                 {
-                    s += ToStringForBusLine(bls);
+                    s += ToStringBusLineStation(bls);
                 }
             }
             return s + '\n';
