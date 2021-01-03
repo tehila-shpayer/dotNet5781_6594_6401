@@ -308,12 +308,7 @@ namespace BL
                 busLineStationBO.TravelTimeFromLastStationMinutes = cs.AverageTime;
             }
             AddBusLineStation(busLineStationBO);
-            foreach (DO.BusLineStation bls in dl.GetAllStationsOfLine(busLineKey))
-                if (bls.Position >= position && bls.StationKey != stationKey)
-                {
-                    bls.Position += 1;
-                    dl.UpdateBusLineStation(bls);
-                }
+
             if (nextBusLineStation != null)
             {
                 dl.AddConsecutiveStations(stationKey, nextBusLineStation.StationKey);
@@ -322,7 +317,16 @@ namespace BL
                 nextBusLineStation.TravelTimeFromLastStationMinutes = cs.AverageTime;
                 UpdateBusLineStation(nextBusLineStation);
             }
+            var tmp = from bls in dl.GetAllStationsOfLine(busLineKey)
+                      where bls.Position >= position && bls.StationKey != stationKey
+                      select bls;
 
+            foreach (DO.BusLineStation bls in tmp)
+            //if (bls.Position >= position && bls.StationKey != stationKey)
+            {
+                bls.Position += 1;
+                dl.UpdateBusLineStation(bls);
+            }
 
         }
         public void AddStationToLine2(int busLineKey, int stationKey, int position = 0)
