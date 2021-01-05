@@ -85,6 +85,7 @@ namespace DLAPI
 
         #region User
         User GetUser(string userName);
+        User GetUser(string userName, string password);
         IEnumerable<User> GetAllUsers();
         void AddUser(User user);
         void UpdateUser(User user);

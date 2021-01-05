@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:PL"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -23,9 +24,10 @@
             <!--<TextBox x:Name="password" Height="50" Margin="40,0" FontSize="22" Foreground="#FFBABABA" Text="  Password" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" BorderBrush="#FF919398" GotFocus="password_GotFocus" LostFocus="password_LostFocus"/>-->
             <Button x:Name="forgotPassword" Content="Forgot password?" BorderBrush="{x:Null}" Background="{x:Null}" Cursor="Hand" Margin="40,5" FontSize="16" Foreground="Blue" Click="forgotPassword_Click" MouseEnter="forgotPassword_MouseEnter"/>
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="loginButton" Content="Login" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Margin="40,10,20,0" BorderBrush="{x:Null}" Background="#FF56A0B5" Foreground="White" Width="100" Height="50"/>
+                <Button x:Name="loginButton" Content="Login" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Margin="40,10,20,0" BorderBrush="{x:Null}" Background="#FF56A0B5" Foreground="White" Width="100" Height="50" Click="loginButton_Click"/>
                 <Button x:Name="newAccountButton" Content="New user? sign up!" BorderBrush="{x:Null}" Background="{x:Null}" Cursor="Hand" FontSize="16" Foreground="Blue" Margin="80,10,0,0"/>
             </StackPanel>
-   </StackPanel>  
+   </StackPanel>
+        <Frame x:Name="currentPage" Grid.ColumnSpan="3"/>
     </Grid>
 </Page>

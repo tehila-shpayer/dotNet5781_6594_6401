@@ -68,5 +68,14 @@ namespace PL
                 tbPassword.Text = " Password";
             }
         }
+
+        private void loginButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                currentPage.NavigationService.Navigate(new ManagerPage());
+            }
+        }
     }
 }

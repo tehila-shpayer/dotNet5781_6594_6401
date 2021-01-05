@@ -144,6 +144,15 @@ namespace BL
             catch (DO.ArgumentNotFoundException ex)
             { throw new BOArgumentNotFoundException("BO exception: User not found.", ex); }
         }
+        public User GetUser(string userName, string password)
+        {
+            try
+            {
+                return UserDoBoAdapter(dl.GetUser(userName, password));
+            }
+            catch (DO.ArgumentNotFoundException ex)
+            { throw new BOArgumentNotFoundException("BO exception: User not found.", ex); }
+        }
         public IEnumerable<User> GetAllUsers()
         {
             var AllUsers = from User in dl.GetAllUsers()
