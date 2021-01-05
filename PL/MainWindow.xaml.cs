@@ -25,14 +25,19 @@ namespace PL
             InitializeComponent();
         }
 
-        private void Button_MouseDown(object sender, MouseButtonEventArgs e)
+        private void powerButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void upGrid_MouseDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void languageButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+
         }
     }
 }
