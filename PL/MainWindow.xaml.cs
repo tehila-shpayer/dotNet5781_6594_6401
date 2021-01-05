@@ -24,5 +24,15 @@ namespace PL
         {
             InitializeComponent();
         }
+
+        private void Button_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

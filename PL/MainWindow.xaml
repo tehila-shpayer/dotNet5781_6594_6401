@@ -3,24 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="OpeningWindow" Height="450" Width="600">
-    <Grid>
+        Title="OpeningWindow" Height="600" Width="1024" WindowStyle="None">
+    <Grid x:Name="mainGrid" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="12*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="1" Grid.Column="0" Margin="53,10.333,296.333,27.667" Grid.ColumnSpan="2"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Margin="43.333,28.333,42.333,73"/>
-        <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="43,64,295.333,68.667" Grid.RowSpan="2"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Margin="0.333,0,-0.667,-0.333" Grid.RowSpan="2"/>
-
+        <Grid x:Name="upGrid" Grid.ColumnSpan="2" Background="#FF56A0B5">
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right" >
+            <Grid>
+                <Button Cursor="Hand" Margin="7,0" Width="40" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" MouseDown="Button_MouseDown" Click="Button_Click">
+                        <materialDesign:PackIcon Kind="Power" Width="30" Height="30" />
+                    </Button>
+            </Grid>
+        </StackPanel>
+        </Grid>
     </Grid>
 </Window>
