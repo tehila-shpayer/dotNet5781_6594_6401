@@ -73,15 +73,18 @@ namespace PL
 
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-            //    bl.GetUser(userName.Text, Password.Password);
-            //    currentPage.NavigationService.Navigate(new ManagerPage());
-            //}
-            //catch(BO.BOArgumentNotFoundException ex)
-            //{
-
-            //}
+            try
+            {
+                BO.User user =  App.bl.GetUser(userName.Text, Password.Password);
+                if(user.AuthorizationManagement == BO.AuthorizationManagement.Manager)
+                    currentPage.NavigationService.Navigate(new ManagerPage(userName.Text, Password.Password));
+                else
+                    currentPage.NavigationService.Navigate(new TravelerPage(userName.Text, Password.Password));
+            }
+            catch (BO.BOArgumentNotFoundException ex)
+            {
+                wrongPassword.Visibility = Visibility.Visible;
+            }
         }
 
         private void NewAccountButton_Click(object sender, RoutedEventArgs e)

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for ManagerPage.xaml
+    /// Interaction logic for TravelerPage.xaml
     /// </summary>
-    public partial class ManagerPage : Page
+    public partial class TravelerPage : Page
     {
-        public ManagerPage(string userName, string password)
+        public TravelerPage(string userName, string password)
         {
             InitializeComponent();
         }
