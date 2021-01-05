@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 
-namespace BO
+namespace PL
 {
     public class Station : INotifyPropertyChanged
     {
