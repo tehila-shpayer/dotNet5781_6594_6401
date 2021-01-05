@@ -18,7 +18,7 @@
         <StackPanel Grid.Column="1" Margin="20" UseLayoutRounding="True">
             <TextBlock Text="Welcome" TextAlignment="Center" Margin="0,25,0,30" FontSize="37" FontFamily="Segoe UI Light"/>
             <Image Height="150" Margin="40,0,40,10" Source="AccountIcon.png"/>
-            <TextBlock x:Name="wrongPassword" Text="User name or password are incorrect. please try again." FontSize="15" Margin="40,0" Foreground="Red"/>
+            <!--<TextBlock x:Name="wrongPassword" Text="User name or password are incorrect. please try again." FontSize="15"  Foreground="Red" Margin="45,10"/>-->
             <TextBox x:Name="userName" Height="50" Margin="40,20" FontSize="22" Text=" User name" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" BorderBrush="#FF919398" Foreground="#FFBABABA" GotFocus="userName_GotFocus" LostFocus="userName_LostFocus"/>
             <TextBlock x:Name="tbPassword" Text=" Password" FontSize="22" Margin="40,0" Foreground="#FFBABABA" GotFocus="userName_GotFocus" LostFocus="userName_LostFocus"/>
             <PasswordBox x:Name="Password" Height="50" Margin="40,-38, 40,0" FontSize="22" Foreground="black" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" BorderBrush="#FF919398" GotFocus="password_GotFocus" LostFocus="password_LostFocus"/>

@@ -21,7 +21,7 @@ namespace PL
     /// </summary>
     public partial class LoginPage : Page
     {
-        static IBL bl = BLFactory.GetBL("1");
+        //static IBL bl = BLFactory.GetBL("1");
         public LoginPage()
         {
             InitializeComponent();
@@ -73,15 +73,15 @@ namespace PL
 
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                bl.GetUser(userName.Text, Password.Password);
-                currentPage.NavigationService.Navigate(new ManagerPage());
-            }
-            catch(BO.BOArgumentNotFoundException ex)
-            {
+            //try
+            //{
+            //    bl.GetUser(userName.Text, Password.Password);
+            //    currentPage.NavigationService.Navigate(new ManagerPage());
+            //}
+            //catch(BO.BOArgumentNotFoundException ex)
+            //{
 
-            }
+            //}
         }
     }
 }
