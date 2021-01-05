@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BLAPI;
 
 namespace PL
 {
@@ -20,6 +21,7 @@ namespace PL
     /// </summary>
     public partial class LoginPage : Page
     {
+        static IBL bl = BLFactory.GetBL("1");
         public LoginPage()
         {
             InitializeComponent();
@@ -75,8 +77,12 @@ namespace PL
         {
             try
             {
-
+                bl.GetUser(userName.Text, Password.Password);
                 currentPage.NavigationService.Navigate(new ManagerPage());
+            }
+            catch(BO.BOArgumentNotFoundException ex)
+            {
+
             }
         }
     }
