@@ -83,5 +83,10 @@ namespace PL
 
             //}
         }
+
+        private void NewAccountButton_Click(object sender, RoutedEventArgs e)
+        {
+            currentPage.Content = new SignUpPage();
+        }
     }
 }

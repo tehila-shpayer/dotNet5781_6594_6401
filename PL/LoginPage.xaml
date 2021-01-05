@@ -19,14 +19,14 @@
             <TextBlock Text="Welcome" TextAlignment="Center" Margin="0,25,0,30" FontSize="37" FontFamily="Segoe UI Light"/>
             <Image Height="150" Margin="40,0,40,10" Source="AccountIcon.png"/>
             <!--<TextBlock x:Name="wrongPassword" Text="User name or password are incorrect. please try again." FontSize="15"  Foreground="Red" Margin="45,10"/>-->
-            <TextBox x:Name="userName" Height="50" Margin="40,20" FontSize="22" Text=" User name" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" BorderBrush="#FF919398" Foreground="#FFBABABA" GotFocus="userName_GotFocus" LostFocus="userName_LostFocus"/>
-            <TextBlock x:Name="tbPassword" Text=" Password" FontSize="22" Margin="40,0" Foreground="#FFBABABA" GotFocus="userName_GotFocus" LostFocus="userName_LostFocus"/>
-            <PasswordBox x:Name="Password" Height="50" Margin="40,-38, 40,0" FontSize="22" Foreground="black" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" BorderBrush="#FF919398" GotFocus="password_GotFocus" LostFocus="password_LostFocus"/>
+            <TextBox x:Name="userName" Height="50" Margin="40,20" FontSize="22" Text=" User name" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Foreground="Gray" GotFocus="userName_GotFocus" LostFocus="userName_LostFocus"/>
+            <TextBlock x:Name="tbPassword" Text=" Password" FontSize="22" Margin="40,0" Foreground="Gray" GotFocus="userName_GotFocus" LostFocus="userName_LostFocus"/>
+            <PasswordBox x:Name="Password" Height="50" Margin="40,-38, 40,0" FontSize="22" Foreground="black" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" GotFocus="password_GotFocus" LostFocus="password_LostFocus"/>
             <!--<TextBox x:Name="password" Height="50" Margin="40,0" FontSize="22" Foreground="#FFBABABA" Text="  Password" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" BorderBrush="#FF919398" GotFocus="password_GotFocus" LostFocus="password_LostFocus"/>-->
             <Button x:Name="forgotPassword" Content="Forgot password?" BorderBrush="{x:Null}" Background="{x:Null}" Cursor="Hand" Margin="40,5" FontSize="16" Foreground="Blue" Click="forgotPassword_Click" MouseEnter="forgotPassword_MouseEnter"/>
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="loginButton" Content="Login" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Margin="40,10,20,0" BorderBrush="{x:Null}" Background="#FF56A0B5" Foreground="White" Width="100" Height="50" Click="loginButton_Click"/>
-                <Button x:Name="newAccountButton" Content="New user? sign up!" BorderBrush="{x:Null}" Background="{x:Null}" Cursor="Hand" FontSize="16" Foreground="Blue" Margin="80,10,0,0"/>
+                <Button x:Name="newAccountButton" Content="New user? sign up!" BorderBrush="{x:Null}" Background="{x:Null}" Cursor="Hand" FontSize="16" Foreground="Blue" Margin="80,10,0,0" Click="NewAccountButton_Click" />
             </StackPanel>
    </StackPanel>
         <Frame x:Name="currentPage" Grid.ColumnSpan="3"/>
