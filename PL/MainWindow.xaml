@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="OpeningWindow" Height="450" Width="600">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="1" Grid.Column="0" Margin="53,10.333,296.333,27.667" Grid.ColumnSpan="2"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="43.333,28.333,42.333,73"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="43,64,295.333,68.667" Grid.RowSpan="2"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="0.333,0,-0.667,-0.333" Grid.RowSpan="2"/>
+
     </Grid>
 </Window>

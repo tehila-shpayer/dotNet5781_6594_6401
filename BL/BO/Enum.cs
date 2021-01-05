@@ -6,5 +6,8 @@ using System.Threading.Tasks;
 
 namespace BO
 {
+    public enum Status { Ready, NotReady, Driving, Refueling, Treatment }
     public enum Areas { General, Jerusalem, Center, North, South, Hifa, TelAviv, YehudaAndShomron }
+    public enum AuthorizationManagement { Manager, Traveler }
+
 }

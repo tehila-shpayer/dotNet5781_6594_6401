@@ -13,6 +13,213 @@ namespace BL
     class BLImp : IBL //internal
     {
         IDL dl = DLFactory.GetDL();
+        #region Bus
+        public BO.Bus BusDoBoAdapter(DO.Bus BusDO)
+        {
+            BO.Bus BusBO = new BO.Bus();
+            BusDO.Clone(BusBO);
+            return BusBO;
+        }
+        public IEnumerable<Bus> GetAllBuses()
+        {
+            var AllBuses = from bus in dl.GetAllBuses()
+                           select BusDoBoAdapter(bus);
+            return AllBuses;
+        }
+        public IEnumerable<Bus> GetAllBusesBy(Predicate<Bus> predicate)
+        {
+            var AllBusesBy = from bus in dl.GetAllBuses()
+                             let busBO = BusDoBoAdapter(bus)
+                             where predicate(busBO)
+                             select busBO;
+            return AllBusesBy;
+        }
+        public Bus GetBus(string LicenseNumber)
+        {
+            try
+            {
+                return BusDoBoAdapter(dl.GetBus(LicenseNumber));
+            }
+            catch (DO.ArgumentNotFoundException ex)
+            { throw new BOArgumentNotFoundException("BO exception: Bus not found.", ex); }
+        }
+        void CheckBusParameters(Bus bus)
+        {
+            if (bus.LicenseNumber.Length < 7 || bus.LicenseNumber.Length > 8)
+            {
+                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\n Error: the license number has to be a 7 or 8 digit number!");
+            }
+            //Starting date must be in a reasonable spactrum
+            else if (!(bus.RunningDate.Year >= 1896 && bus.RunningDate.Year <= DateTime.Now.Year))
+            {
+                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\n Error: Starting date must be after 1896 and before " + DateTime.Now.Year + "!");
+            }
+            //Running date must be before last treatment date
+            else if (bus.RunningDate > bus.LastTreatment)
+            {
+                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\n Error: Starting date can't be later then last treatment date!");
+            }
+            // length of license number must much running date
+            else if ((bus.LicenseNumber.Length == 7) && (bus.RunningDate.Year >= 2018))
+            {
+                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\n Error: A 7 digit license number bus can't be from later than 2017!");
+            }
+            else if ((bus.LicenseNumber.Length == 8) && (bus.RunningDate.Year < 2018))
+            {
+                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\n Error: A 8 digit license number bus can't be from earlier than 2018!");
+            }
+            //General KM must be atleast as KM since last treatment
+            else if (bus.KM < bus.BeforeTreatKM)
+            {
+                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\n Error: Can't have more KM before treatment than general KM!");
+            }
+            //Fuel can be maximum 1200
+            else if (bus.Fuel > 1200)
+            {
+                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\n Error: Fuel can't be over 1200!");
+            }
+        }
+        public void AddBus(Bus bus)
+        {
+            CheckBusParameters(bus);
+            //If all information is valid - add bus to collection
+            try
+            {
+                DO.Bus busDO = new DO.Bus();
+                bus.Clone(busDO);
+                dl.AddBus(busDO);
+            }
+            catch (DO.InvalidInformationException ex)
+            { throw new BOInvalidInformationException("Couldn't add bus. invalid information!", ex); }
+        }
+        public void UpdateBus(Bus bus)
+        {
+            CheckBusParameters(bus);
+            try
+            {
+                DO.Bus BusDO = new DO.Bus();
+                bus.Clone(BusDO);
+                dl.UpdateBus(BusDO);
+            }
+            catch (DO.ArgumentNotFoundException ex)
+            {
+                throw new BOArgumentNotFoundException($"Can't update bus {bus.LicenseNumber}.", ex);
+            }
+        }
+        public void UpdateBus(string LicenseNumber, Action<Bus> update)
+        {
+            try
+            {
+                DO.Bus busDO = new DO.Bus();
+                Bus busBO = GetBus(LicenseNumber);
+                update(busBO);
+                busBO.Clone(busDO);
+                dl.UpdateBus(busDO);
+            }
+            catch (DO.ArgumentNotFoundException ex) { throw new BOArgumentNotFoundException($"Can't update bus {LicenseNumber}.", ex); }
+        }
+        public void DeleteBus(string LicenseNumber)
+        {
+            try
+            {
+                dl.DeleteBus(LicenseNumber);
+            }
+            catch (DO.ArgumentNotFoundException ex) { throw new BOArgumentNotFoundException($"Can't delete bus {LicenseNumber}.", ex); }
+        }
+        #endregion
+
+        #region User
+        public BO.User UserDoBoAdapter(DO.User UserDO)
+        {
+            BO.User UserBO = new BO.User();
+            UserDO.Clone(UserBO);
+            return UserBO;
+        }
+        public User GetUser(string userName)
+        {
+            try
+            {
+                return UserDoBoAdapter(dl.GetUser(userName));
+            }
+            catch (DO.ArgumentNotFoundException ex)
+            { throw new BOArgumentNotFoundException("BO exception: User not found.", ex); }
+        }
+        public IEnumerable<User> GetAllUsers()
+        {
+            var AllUsers = from User in dl.GetAllUsers()
+                           select UserDoBoAdapter(User);
+            return AllUsers;
+        }
+        public void CheckUserParameters(User user)
+        {
+            string name = user.UserName;
+            string password = user.Password;
+            if (name.Length < 8)
+                throw new BOInvalidInformationException("User name is short.");
+            if (name.Length > 16)
+                throw new BOInvalidInformationException("User name is long.");
+            foreach (char key in name)
+                if(char.IsLetterOrDigit(key))
+                    throw new BOInvalidInformationException("User name contains invalid keybords.");
+            if(password.Length < 8)
+                throw new BOInvalidInformationException("Password is short.");
+            if(password.Length > 16)
+                throw new BOInvalidInformationException("Password is long.");
+            foreach(char key in password)
+                if(char.IsLetterOrDigit(key))
+                    throw new BOInvalidInformationException("Password contains invalid keybords.");
+        }
+        public void AddUser(User user)
+        {
+            CheckUserParameters(user);
+            //If all information is valid - add user to collection
+            try
+            {
+                DO.User userDO = new DO.User();
+                user.Clone(userDO);
+                dl.AddUser(userDO);
+            }
+            catch (DO.InvalidInformationException ex)
+            { throw new BOInvalidInformationException("Couldn't add user. invalid information!", ex); }
+        }
+        public void UpdateUser(User user)
+        {
+            CheckUserParameters(user);
+            try
+            {
+                DO.User UserDO = new DO.User();
+                user.Clone(UserDO);
+                dl.UpdateUser(UserDO);
+            }
+            catch (DO.ArgumentNotFoundException ex)
+            {
+                throw new BOArgumentNotFoundException($"Can't update user {user.UserName}.", ex);
+            }
+        }
+        public void UpdateUser(string userName, Action<User> update)
+        {
+            try
+            {
+                DO.User userDO = new DO.User();
+                User userBO = GetUser(userName);
+                update(userBO);
+                userBO.Clone(userDO);
+                dl.UpdateUser(userDO);
+            }
+            catch (DO.ArgumentNotFoundException ex) { throw new BOArgumentNotFoundException($"Can't update user {userName}.", ex); }
+
+        }
+        public void DeleteUser(string userName)
+        {
+            try
+            {
+                dl.DeleteUser(userName);
+            }
+            catch (DO.ArgumentNotFoundException ex) { throw new BOArgumentNotFoundException($"Can't delete user {userName}.", ex); }
+
+        }
+        #endregion
+
         #region Station
 
         public BO.Station StationDoBoAdapter(DO.Station StationDO)
@@ -157,14 +364,10 @@ namespace BL
         }
         public IEnumerable<BusLineStation> GetAllStationsOfLine(int busLine)
         {
-            try
-            {
                 var AllStationsOfLine = from station in dl.GetAllBusLineStations()
                                         where station.BusLineKey == busLine
                                         select BusLineStationDoBoAdapter(station);
                 return AllStationsOfLine;
-            }
-            catch (DO.ArgumentNotFoundException ex) { throw; }          
         }
         public void AddBusLineStation(BusLineStation bls)
         {
@@ -174,7 +377,8 @@ namespace BL
                 bls.Clone(busLineStationDO);
                 dl.AddBusLineStation(busLineStationDO);
             }
-            catch (DO.InvalidInformationException ex) { throw; }
+            catch (DO.InvalidInformationException ex)
+            { throw new BOInvalidInformationException("Can't add bus line station. Invalid information.", ex); }
         }
         public void UpdateBusLineStation(BusLineStation station)
         {
@@ -184,7 +388,8 @@ namespace BL
                 station.Clone(busLineStationDO);
                 dl.UpdateBusLineStation(busLineStationDO);
             }
-            catch (DO.InvalidInformationException ex) { throw; }
+            catch (DO.InvalidInformationException ex) 
+            { throw new BOInvalidInformationException("Can't update bus line station. Invalid information.", ex); }
         }
         public void UpdateBusLineStation(int line, int stationKey, Action<BusLineStation> update) //method that knows to updt specific fields in Person
         {
@@ -196,7 +401,8 @@ namespace BL
                 BusLineStationBO.Clone(BusLineStationDO);
                 dl.UpdateBusLineStation(BusLineStationDO);
             }
-            catch (DO.ArgumentNotFoundException ex) { }
+            catch (DO.ArgumentNotFoundException ex)
+            { throw new BOInvalidInformationException("Can't add bus line station. Invalid information.", ex); }
         }
         public void DeleteBusLineStation(int line, int stationKey)
         {
@@ -204,7 +410,8 @@ namespace BL
             {
                 dl.DeleteBusLineStation(line, stationKey);
             }
-            catch (DO.ArgumentNotFoundException ex) { }
+            catch (DO.ArgumentNotFoundException ex)
+            { throw new BOArgumentNotFoundException("Can't delete bus line station. Argument was not found.", ex); }
         }
         public string ToStringBusLineStation(BusLineStation bls)
         {
@@ -254,7 +461,8 @@ namespace BL
                        where predicate(BusLineBO)
                        select BusLineBO;
             }
-            catch (DO.ArgumentNotFoundException ex) { throw; }
+            catch (DO.ArgumentNotFoundException ex)
+            { throw new BOArgumentNotFoundException("Can't find bus line.", ex); }
         }
         public IEnumerable<BusLine> GetAllBusLines()
         {

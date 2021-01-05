@@ -49,17 +49,19 @@ namespace DL
         }
         public void UpdateBus(Bus bus)
         {
-            Bus bus1 = DataSource.ListBuses.Find(b => b.LicenseNumber == bus.LicenseNumber);
-            if (bus1 != null)
-                bus1 = bus;
+            int indexOfBusToUpdate = DataSource.ListBuses.FindIndex(s => s.LicenseNumber == bus.LicenseNumber);
+            if (indexOfBusToUpdate >= 0)
+                DataSource.ListBuses[indexOfBusToUpdate] = bus; 
             else
                 throw new ArgumentNotFoundException($"Bus not found with license number: {bus.LicenseNumber}");
         }
         public void UpdateBus(string LicenseNumber, Action<Bus> update) //method that knows to updt specific fields in Bus
         {
-            Bus bus = DataSource.ListBuses.Find(b => b.LicenseNumber == LicenseNumber);
-            if (bus != null)
-                update(bus);
+            int indexOfBusToUpdate = DataSource.ListBuses.FindIndex(s => s.LicenseNumber == LicenseNumber);
+            if (indexOfBusToUpdate >= 0)
+            {
+                update(DataSource.ListBuses[indexOfBusToUpdate]);
+            }
             else
                 throw new ArgumentNotFoundException($"Bus not found with license number: {LicenseNumber}");
         }
@@ -72,7 +74,7 @@ namespace DL
         }
         #endregion
 
-       // #region BusInTravel
+       #region BusInTravel
        //public BusInTravel GetBusInTravel(int key) 
        // {
        //     BusInTravel busInTravel = DataSource.ListBusesInTravel.Find(b => b.Key== key);
@@ -99,7 +101,7 @@ namespace DL
        // public void UpdateBusInTravel(BusInTravel bus) { }
        // public void UpdateBusInTravel(int key, Action<BusInTravel> update) { } //method that knows to updt specific fields in BusInTravel
 
-       // #endregion
+        #endregion
 
         #region BusLine
         public BusLine GetBusLine(int busLineKey)
@@ -300,14 +302,14 @@ namespace DL
         }
         #endregion
 
-        //#region LineSchedule
+        #region LineSchedule
         //LineSchedule GetLineSchedule(int line, int startTime){}
         //IEnumerable<LineSchedule> GetAllLineScheduleOfLine(int Line){}
         //public void AddLineSchedule(LineSchedule lineSchedule){}
         //public void UpdateLineSchedule(LineSchedule lineSchedule){}
         //public void UpdateLineSchedule(int line, int startTime, Action<LineSchedule> update){} //method that knows to updt specific fields in Person
         //public void DeleteLineSchedule(int line, int startTime){}
-        //#endregion
+        #endregion
 
         #region Station
         public Station GetStation(int stationKey)
@@ -360,20 +362,59 @@ namespace DL
         }
         #endregion
 
-        //#region User
-        //User GetUser(string userName){}
-        //IEnumerable<User> GetAllUsers(){}
-        //public void AddUser(User user){}
-        //public void UpdateUser(User user){}
-        //public void UpdateUser(string userName, Action<User> update){} //method that knows to updt specific fields in Person
-        //public void DeleteUser(string userName){}
-        //#endregion
+        #region User
+        User GetUser(string userName) 
+        {
+            User user = DataSource.ListUsers.Find(s => s.UserName == userName);
+            if (user != null)
+                return user.Clone();
+            else
+                throw new ArgumentNotFoundException($"User not found with user name: {userName}");
+        }
+        IEnumerable<User> GetAllUsers()
+        {
+            var AllUsers = from user in DataSource.ListUsers
+                              select user.Clone();
+            return AllUsers;
+        }
+        public void AddUser(User user)
+        {
+            if (DataSource.ListUsers.FirstOrDefault(s => s.UserName == user.UserName) != null)
+                throw new InvalidInformationException("Duplicate user name");
+            DataSource.ListUsers.Add(user.Clone());
+        }
+        public void UpdateUser(User user) 
+        {
+            int indexOfUserToUpdate = DataSource.ListUsers.FindIndex(s => s.UserName == user.UserName);
+            if (indexOfUserToUpdate >= 0)
+                DataSource.ListUsers[indexOfUserToUpdate] = user;
+            else
+                throw new ArgumentNotFoundException($"User not found with license number: {user.UserName}");
+        }
+        public void UpdateUser(string userName, Action<User> update) 
+        {
+            int indexOfUserToUpdate = DataSource.ListUsers.FindIndex(s => s.UserName == userName);
+            if (indexOfUserToUpdate >= 0)
+            {
+                update(DataSource.ListUsers[indexOfUserToUpdate]);
+            }
+            else
+                throw new ArgumentNotFoundException($"User not found with user name: {userName}");
+        }
+        public void DeleteUser(string userName) 
+        {
+            User user = DataSource.ListUsers.Find(b => b.UserName == userName);
+            if (user == null)
+                throw new ArgumentNotFoundException($"User not found with user name: {userName}");
+            DataSource.ListUsers.Remove(user);
+        }
+        #endregion
 
-        //#region UserTravel
+        #region UserTravel
         //UserTravel GetUserTravel(int id){}
         //IEnumerable<UserTravel> GetAllUserTravels(){}
         //public void AddUserTravel(UserTravel user){}
         //public void DeleteUserTravel(int id){}
-        //#endregion
+        #endregion
     }
 }

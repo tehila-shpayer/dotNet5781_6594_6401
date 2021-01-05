@@ -21,7 +21,7 @@ namespace DLAPI
         void DeleteBus(string LicenseNumber);
         #endregion
 
-        //#region BusInTravel
+        #region BusInTravel
         //BusInTravel GetBusInTravel(int key);
         //IEnumerable<BusInTravel> GetAllBusInTravelsBy(Predicate<BusInTravel> predicate);
         //IEnumerable<BusInTravel> GetAllBusInTravels();
@@ -29,9 +29,7 @@ namespace DLAPI
         //void DeleteBusInTravel(string licenseNumber, int lineKey, int formalTime);
         //void UpdateBusInTravel(BusInTravel bus);
         //void UpdateBusInTravel(int key, Action<BusInTravel> update); //method that knows to updt specific fields in BusInTravel
-
-
-        //#endregion
+        #endregion
 
         #region BusLine
         IEnumerable<BusLine> GetBusLinesBy(Predicate<BusLine> predicate);
@@ -75,29 +73,30 @@ namespace DLAPI
         void DeleteStation(int stationKey);
         IEnumerable<int> GetAllLinesInStation(int busLineKey);
         #endregion
-        //#region LineSchedule
+
+        #region LineSchedule
         //LineSchedule GetLineSchedule(int line, int startTime);
         //IEnumerable<LineSchedule> GetAllLineScheduleOfLine(int Line);
         //void AddLineSchedule(LineSchedule lineSchedule);
         //void UpdateLineSchedule(LineSchedule lineSchedule);
         //void UpdateLineSchedule(int line, int startTime, Action<LineSchedule> update); //method that knows to updt specific fields in Person
         //void DeleteLineSchedule(int line, int startTime);
-        //#endregion
+        #endregion
 
-        //#region User
-        //User GetUser(string userName);
-        //IEnumerable<User> GetAllUsers();
-        //void AddUser(User user);
-        //void UpdateUser(User user);
-        //void UpdateUser(string userName, Action<User> update); //method that knows to updt specific fields in Person
-        //void DeleteUser(string userName);
-        //#endregion
+        #region User
+        User GetUser(string userName);
+        IEnumerable<User> GetAllUsers();
+        void AddUser(User user);
+        void UpdateUser(User user);
+        void UpdateUser(string userName, Action<User> update); //method that knows to updt specific fields in Person
+        void DeleteUser(string userName);
+        #endregion
 
-        //#region UserTravel
+        #region UserTravel
         //UserTravel GetUserTravel(int id);
         //IEnumerable<UserTravel> GetAllUserTravels();
         //void AddUserTravel(UserTravel user);
         //void DeleteUserTravel(int id);
-        //#endregion
+        #endregion
     }
 }

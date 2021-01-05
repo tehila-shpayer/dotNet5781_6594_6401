@@ -21,7 +21,7 @@ namespace DS
         public static List<BusLineStation> ListBusLineStations;
         public static List<ConsecutiveStations> ListConsecutiveStations;
         //public static List<LineSchedule> ListLineSchedules;
-        //public static List<User> ListUsers;
+        public static List<User> ListUsers;
         //public static List<User> ListUserTravel;
 
         static DataSource()
@@ -66,6 +66,46 @@ namespace DS
                 {
                     LicenseNumber = "86613936", RunningDate = new DateTime(2019, 8, 22), LastTreatment = new DateTime(2020, 12, 17),
                     Fuel = 951, KM = 9104, BeforeTreatKM = 45, Status = Status.Ready, IsActive = true
+                },
+                new Bus
+                {
+                    LicenseNumber = "77905516", RunningDate = new DateTime(2020, 4, 2), LastTreatment = new DateTime(2021, 1, 4),
+                    Fuel = 497, KM = 31514, BeforeTreatKM = 14732, Status = Status.Ready, IsActive = true
+                },
+                new Bus
+                {
+                    LicenseNumber = "3413956", RunningDate = new DateTime(1989, 7, 18), LastTreatment = new DateTime(2020, 7, 25),
+                    Fuel = 865, KM = 27591, BeforeTreatKM = 2161, Status = Status.Ready, IsActive = true
+                },
+                new Bus
+                {
+                    LicenseNumber = "4158077", RunningDate = new DateTime(2003, 11, 3), LastTreatment = new DateTime(2019, 6, 13),
+                    Fuel = 487, KM = 81937, BeforeTreatKM = 5632, Status = Status.Ready, IsActive = true
+                },
+                new Bus
+                {
+                    LicenseNumber = "3529843", RunningDate = new DateTime(2012, 3, 10), LastTreatment = new DateTime(2020, 8, 21),
+                    Fuel = 1152, KM = 6473, BeforeTreatKM = 3412, Status = Status.Ready, IsActive = true
+                },
+                new Bus
+                {
+                    LicenseNumber = "41962883", RunningDate = new DateTime(2019, 2, 19), LastTreatment = new DateTime(2021, 1, 2),
+                    Fuel = 742, KM = 64390, BeforeTreatKM = 17245, Status = Status.Ready, IsActive = true
+                },
+                new Bus
+                {
+                    LicenseNumber = "6803734", RunningDate = new DateTime(2017, 11, 9), LastTreatment = new DateTime(2019, 12, 28),
+                    Fuel = 100, KM = 22379, BeforeTreatKM = 13728, Status = Status.Ready, IsActive = true
+                },
+                new Bus
+                {
+                    LicenseNumber = "9392463", RunningDate = new DateTime(2007, 8, 16), LastTreatment = new DateTime(2020, 3, 26),
+                    Fuel = 1048, KM = 6473, BeforeTreatKM = 2894, Status = Status.Ready, IsActive = true
+                },
+                new Bus
+                {
+                    LicenseNumber = "18058327", RunningDate = new DateTime(2018, 5, 15), LastTreatment = new DateTime(2020, 7, 1),
+                    Fuel = 654, KM = 46739, BeforeTreatKM = 19367, Status = Status.Ready, IsActive = true
                 }
             };
 

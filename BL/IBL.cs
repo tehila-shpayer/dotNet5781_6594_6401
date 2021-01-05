@@ -9,6 +9,25 @@ namespace BLAPI
 {
     public interface IBL
     {
+        #region Bus
+        IEnumerable<Bus> GetAllBuses();
+        IEnumerable<Bus> GetAllBusesBy(Predicate<Bus> predicate);
+        Bus GetBus(string LicenseNumber);
+        void AddBus(Bus bus);
+        void UpdateBus(Bus bus);
+        void UpdateBus(string LicenseNumber, Action<Bus> update); //method that knows to updt specific fields in Person
+        void DeleteBus(string LicenseNumber);
+        #endregion
+
+        #region User
+        User GetUser(string userName);
+        IEnumerable<User> GetAllUsers();
+        void AddUser(User user);
+        void UpdateUser(User user);
+        void UpdateUser(string userName, Action<User> update); //method that knows to updt specific fields in Person
+        void DeleteUser(string userName);
+        #endregion
+
         #region BusLine
         BO.BusLine BusLineDoBoAdapter(DO.BusLine BusLineDO);
         BusLine GetBusLine(int busLineKey);
