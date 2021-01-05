@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="OpeningWindow" Height="600" Width="1024" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" >
+        Title="OpeningWindow" Height="600" Width="1024" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Initialized="Window_Initialized">
     <Grid x:Name="mainGrid" >
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -25,8 +25,10 @@
                 <Button x:Name="powerButton" Cursor="Hand" Margin="7,0" Width="40" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="powerButton_Click">
                     <materialDesign:PackIcon Kind="Power" Width="30" Height="30" />
                 </Button>
-                
         </StackPanel>
         </Grid>
+        <Frame x:Name="openingPage" Grid.Row="1">
+            
+        </Frame>
     </Grid>
 </Window>

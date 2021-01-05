@@ -24,5 +24,24 @@ namespace PL
         {
             InitializeComponent();
         }
+
+        private void forgotPassword_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void forgotPassword_MouseEnter(object sender, MouseEventArgs e)
+        {
+        }
+
+        private void userName_GotFocus(object sender, RoutedEventArgs e)
+        {
+            userName.Text = "";
+        }
+
+        private void password_GotFocus(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

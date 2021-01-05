@@ -45,5 +45,10 @@ namespace PL
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
             
         }
+
+        private void Window_Initialized(object sender, EventArgs e)
+        {
+            openingPage.Content = new LoginPage();
+        }
     }
 }
