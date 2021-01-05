@@ -363,9 +363,18 @@ namespace DL
         #endregion
 
         #region User
+
         public User GetUser(string userName) 
         {
             User user = DataSource.ListUsers.Find(s => s.UserName == userName);
+            if (user != null)
+                return user.Clone();
+            else
+                throw new ArgumentNotFoundException($"User not found with user name: {userName}");
+        }
+        public User GetUser(string userName, string password)
+        {
+            User user = DataSource.ListUsers.Find(s => s.UserName == userName && s.Password == password);
             if (user != null)
                 return user.Clone();
             else

@@ -70,5 +70,14 @@ namespace PL
             //    password.Foreground = Brushes.Gray;
             //}
         }
+
+        private void loginButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                currentPage.NavigationService.Navigate(new ManagerPage());
+            }
+        }
     }
 }
