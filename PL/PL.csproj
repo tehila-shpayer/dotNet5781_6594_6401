@@ -81,6 +81,9 @@
     <Compile Include="PO\BusLine.cs" />
     <Compile Include="PO\BusLineStation.cs" />
     <Compile Include="PO\Station.cs" />
+    <Compile Include="TravelerPage.xaml.cs">
+      <DependentUpon>TravelerPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="Sign_UpPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -107,6 +110,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ManagerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TravelerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

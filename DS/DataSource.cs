@@ -268,7 +268,15 @@ namespace DS
             }
             ListUsers = new List<User>
             {
-                new User{UserName = "shpayer", Password = "Rif1234", AuthorizationManagement = AuthorizationManagement.Manager}
+                new User{UserName = "shpayer", Password = "Rif1234", AuthorizationManagement = AuthorizationManagement.Manager},
+                new User{UserName = "hodaya", Password = "hodaya1000", AuthorizationManagement = AuthorizationManagement.Manager},
+                new User{UserName = "girl9", Password = "shyomi78", AuthorizationManagement = AuthorizationManagement.Manager},
+                new User{UserName = "oalbo", Password = "theBest111", AuthorizationManagement = AuthorizationManagement.Manager},
+                new User{UserName = "sarahmal", Password = "1blander", AuthorizationManagement = AuthorizationManagement.Traveler},
+                new User{UserName = "iyov", Password = "missreble", AuthorizationManagement = AuthorizationManagement.Traveler},
+                new User{UserName = "mobileFord12", Password = "sportscar13", AuthorizationManagement = AuthorizationManagement.Traveler},
+                new User{UserName = "Lucky13Number", Password = "cazino666", AuthorizationManagement = AuthorizationManagement.Traveler},
+
             };
         }
     }

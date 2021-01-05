@@ -75,8 +75,11 @@ namespace PL
         {
             try
             {
-                App.bl.GetUser(userName.Text, Password.Password);
-                currentPage.NavigationService.Navigate(new ManagerPage(userName.Text, Password.Password));
+                BO.User user =  App.bl.GetUser(userName.Text, Password.Password);
+                if(user.AuthorizationManagement == BO.AuthorizationManagement.Manager)
+                    currentPage.NavigationService.Navigate(new ManagerPage(userName.Text, Password.Password));
+                else
+                    currentPage.NavigationService.Navigate(new TravelerPage(userName.Text, Password.Password));
             }
             catch (BO.BOArgumentNotFoundException ex)
             {
