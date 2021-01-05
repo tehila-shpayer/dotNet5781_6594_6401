@@ -20,7 +20,7 @@ namespace PL
     /// </summary>
     public partial class ManagerPage : Page
     {
-        public ManagerPage()
+        public ManagerPage(string userName, string password)
         {
             InitializeComponent();
         }
