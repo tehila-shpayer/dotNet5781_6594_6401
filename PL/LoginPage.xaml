@@ -17,8 +17,8 @@
         <StackPanel Grid.Column="1" Margin="20" UseLayoutRounding="True">
             <TextBlock Text="Welcome" TextAlignment="Center" Margin="0,25,0,30" FontSize="37" FontFamily="Segoe UI Light"/>
             <Image Height="150" Margin="40,0,40,10" Source="AccountIcon.png"/>
-            <TextBox x:Name="userName" Height="50" Margin="40,20" FontSize="22" Text="  User name" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" BorderBrush="#FF919398" Foreground="#FFBABABA" GotFocus="userName_GotFocus"/>
-            <TextBox x:Name="password" Height="50" Margin="40,0" FontSize="22" Foreground="#FFBABABA" Text="  Password" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" BorderBrush="#FF919398" GotFocus="password_GotFocus"/>
+            <TextBox x:Name="userName" Height="50" Margin="40,20" FontSize="22" Text="  User name" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" BorderBrush="#FF919398" Foreground="#FFBABABA" GotFocus="userName_GotFocus" LostFocus="userName_LostFocus"/>
+            <TextBox x:Name="password" Height="50" Margin="40,0" FontSize="22" Foreground="#FFBABABA" Text="  Password" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" BorderBrush="#FF919398" GotFocus="password_GotFocus" LostFocus="password_LostFocus"/>
             <Button x:Name="forgotPassword" Content="Forgot password?" BorderBrush="{x:Null}" Background="{x:Null}" Cursor="Hand" Margin="40,5" FontSize="16" Foreground="Blue" Click="forgotPassword_Click" MouseEnter="forgotPassword_MouseEnter"/>
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="loginButton" Content="Login" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Margin="40,10,20,0" BorderBrush="{x:Null}" Background="#FF56A0B5" Foreground="White" Width="100" Height="50"/>
