@@ -46,11 +46,11 @@ namespace PL
 
         private void password_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (password.Text == "  Password")
-            {
-                password.Text = "";
-                password.Foreground = Brushes.Black;
-            }
+            //if (password.Text == "  Password")
+            //{
+            //    password.Text = "";
+            //    password.Foreground = Brushes.Black;
+            //}
         }
 
         private void userName_LostFocus(object sender, RoutedEventArgs e)
@@ -64,11 +64,11 @@ namespace PL
 
         private void password_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (password.Text == "")
-            {
-                password.Text = "  Password";
-                password.Foreground = Brushes.Gray;
-            }
+            //if (password.Text == "")
+            //{
+            //    password.Text = "  Password";
+            //    password.Foreground = Brushes.Gray;
+            //}
         }
     }
 }
