@@ -63,6 +63,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Sign_UpPage.xaml.cs">
+      <DependentUpon>Sign_UpPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -76,6 +79,10 @@
     <Compile Include="PO\BusLine.cs" />
     <Compile Include="PO\BusLineStation.cs" />
     <Compile Include="PO\Station.cs" />
+    <Page Include="Sign_UpPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

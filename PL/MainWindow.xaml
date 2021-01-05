@@ -17,17 +17,18 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid x:Name="upGrid" Grid.ColumnSpan="2" VerticalAlignment="Stretch" Background="#FF56A0B5" MouseDown="upGrid_MouseDown" >
-        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right" >
-                <Button x:Name="minimizeButton" Cursor="Hand" Margin="4,0" Width="40" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="minimizeButton_Click">
-                    <materialDesign:PackIcon Kind="WindowMinimize" Width="30" Height="30" />
+            <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right" >
+
+                <Button x:Name="minimizeButton" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Click="minimizeButton_Click">
+                    <materialDesign:PackIcon Kind="WindowMinimize" Height="30" Width="30" />
                 </Button>
-                <Button x:Name="languageButton" Cursor="Hand" Margin="4,0" Width="40" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="languageButton_Click">
-                    <materialDesign:PackIcon Kind="LanguageBox" Width="30" Height="30" />
+                <Button x:Name="languageButton" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Click="languageButton_Click">
+                    <materialDesign:PackIcon Kind="LanguageBox" Height="30" Width="30" />
                 </Button>
-                <Button x:Name="powerButton" Cursor="Hand" Margin="7,0" Width="40" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="powerButton_Click">
-                    <materialDesign:PackIcon Kind="Power" Width="30" Height="30" />
+                <Button x:Name="powerButton" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Click="powerButton_Click">
+                    <materialDesign:PackIcon Kind="Power" Height="30" Width="30"/>
                 </Button>
-        </StackPanel>
+            </StackPanel>
         </Grid>
         <Frame x:Name="openingPage" Grid.Row="1" Grid.Column="0">
             
