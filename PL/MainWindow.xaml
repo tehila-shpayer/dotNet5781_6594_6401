@@ -16,14 +16,16 @@
         </Grid.ColumnDefinitions>
         <Grid x:Name="upGrid" Grid.ColumnSpan="2" VerticalAlignment="Stretch" Background="#FF56A0B5" MouseDown="upGrid_MouseDown" >
         <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right" >
-            <Grid>
+                <Button x:Name="minimizeButton" Cursor="Hand" Margin="4,0" Width="40" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="minimizeButton_Click">
+                    <materialDesign:PackIcon Kind="WindowMinimize" Width="30" Height="30" />
+                </Button>
+                <Button x:Name="languageButton" Cursor="Hand" Margin="4,0" Width="40" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="languageButton_Click">
+                    <materialDesign:PackIcon Kind="LanguageBox" Width="30" Height="30" />
+                </Button>
                 <Button x:Name="powerButton" Cursor="Hand" Margin="7,0" Width="40" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="powerButton_Click">
                     <materialDesign:PackIcon Kind="Power" Width="30" Height="30" />
                 </Button>
-                <Button x:Name="languageButton" Cursor="Hand" Margin="7,0" Width="40" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="languageButton_Click">
-                    <materialDesign:PackIcon Kind="Power" Width="30" Height="30" />
-                </Button>
-            </Grid>
+                
         </StackPanel>
         </Grid>
     </Grid>

@@ -39,5 +39,11 @@ namespace PL
         {
 
         }
+
+        private void minimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.WindowState = WindowState.Minimized;
+            
+        }
     }
 }
