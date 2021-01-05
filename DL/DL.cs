@@ -363,7 +363,7 @@ namespace DL
         #endregion
 
         #region User
-        User GetUser(string userName) 
+        public User GetUser(string userName) 
         {
             User user = DataSource.ListUsers.Find(s => s.UserName == userName);
             if (user != null)
@@ -371,7 +371,7 @@ namespace DL
             else
                 throw new ArgumentNotFoundException($"User not found with user name: {userName}");
         }
-        IEnumerable<User> GetAllUsers()
+        public IEnumerable<User> GetAllUsers()
         {
             var AllUsers = from user in DataSource.ListUsers
                               select user.Clone();
