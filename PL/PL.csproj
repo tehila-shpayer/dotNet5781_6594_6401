@@ -63,6 +63,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="PO\Enum.cs" />
+    <Compile Include="PO\Tools.cs" />
     <Compile Include="Sign_UpPage.xaml.cs">
       <DependentUpon>Sign_UpPage.xaml</DependentUpon>
     </Compile>

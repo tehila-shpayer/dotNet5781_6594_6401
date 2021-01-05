@@ -266,6 +266,10 @@ namespace DS
                     }
                 }
             }
+            ListUsers = new List<User>
+            {
+                new User{UserName = "shpayer", Password = "Rif1234", AuthorizationManagement = AuthorizationManagement.Manager}
+            }
         }
     }
 }
