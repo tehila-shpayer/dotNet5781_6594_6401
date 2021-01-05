@@ -68,6 +68,7 @@
     </Compile>
     <Compile Include="PO\Bus.cs" />
     <Compile Include="PO\BusLine.cs" />
+    <Compile Include="PO\BusLineStation.cs" />
     <Compile Include="PO\Station.cs" />
     <Page Include="LoginPage.xaml">
       <SubType>Designer</SubType>
