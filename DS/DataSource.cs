@@ -20,7 +20,7 @@ namespace DS
         public static List<BusLine> ListBusLines;
         public static List<BusLineStation> ListBusLineStations;
         public static List<ConsecutiveStations> ListConsecutiveStations;
-        //public static List<LineSchedule> ListLineSchedules;
+        public static List<LineSchedule> ListLineSchedules;
         public static List<User> ListUsers;
         //public static List<User> ListUserTravel;
 
@@ -347,6 +347,14 @@ namespace DS
                     }
                 }
             }
+
+            ListLineSchedules = new List<LineSchedule>
+            {
+                new LineSchedule{LineKey = 1, Frequency = 20, StartTime=new DateTime(0,1,1,8,0,0), EndTime=new DateTime(0,1,1,17,20,0)},
+                new LineSchedule{LineKey = 1, Frequency = 30, StartTime=new DateTime(0,1,1,17,20,0), EndTime=new DateTime(0,1,1,22,20,0)},
+                new LineSchedule{LineKey = 2, Frequency = 90, StartTime=new DateTime(0,1,1,7,30,0), EndTime=new DateTime(0,1,1,0,0,0)},
+                //new LineSchedule{LineKey = 1, Frequency = 20, StartTime=new DateTime(0,1,1,8,0,0), EndTime=new DateTime(0,1,1,0,0,0)},
+            };
             ListUsers = new List<User>
             {
                 new User{UserName = "shpayer", Password = "Rif1234", AuthorizationManagement = AuthorizationManagement.Manager},

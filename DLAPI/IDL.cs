@@ -75,12 +75,13 @@ namespace DLAPI
         #endregion
 
         #region LineSchedule
-        //LineSchedule GetLineSchedule(int line, int startTime);
-        //IEnumerable<LineSchedule> GetAllLineScheduleOfLine(int Line);
-        //void AddLineSchedule(LineSchedule lineSchedule);
-        //void UpdateLineSchedule(LineSchedule lineSchedule);
-        //void UpdateLineSchedule(int line, int startTime, Action<LineSchedule> update); //method that knows to updt specific fields in Person
-        //void DeleteLineSchedule(int line, int startTime);
+        LineSchedule GetLineSchedule(int line, DateTime startTime);
+        IEnumerable<LineSchedule> GetAllLineSchedules();
+        IEnumerable<LineSchedule> GetAllLineSchedulesOfLine(int Line);
+        void AddLineSchedule(LineSchedule lineSchedule);
+        void UpdateLineSchedule(LineSchedule lineSchedule);
+        void UpdateLineSchedule(int line, DateTime startTime, Action<LineSchedule> update); //method that knows to updt specific fields in Person
+        void DeleteLineSchedule(int line, DateTime startTime);
         #endregion
 
         #region User

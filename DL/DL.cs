@@ -171,7 +171,7 @@ namespace DL
             if (busLineStation != null)
                 return busLineStation.Clone();
             else
-                throw new ArgumentNotFoundException($"Bus station required was not found.");
+                throw new ArgumentNotFoundException($"Bus line station required was not found.");
         }
         public BusLineStation GetBusLineStationByKey(int line, int stationKey)
         {
@@ -179,7 +179,7 @@ namespace DL
             if (busLineStation != null)
                 return busLineStation.Clone();
             else
-                throw new ArgumentNotFoundException($"Bus station of line {line} and station {stationKey} was not found.");
+                throw new ArgumentNotFoundException($"Bus line station of line {line} and station {stationKey} was not found.");
         }
         public IEnumerable<BusLineStation> GetAllStationsOfLine(int busLine)
         {
@@ -303,12 +303,50 @@ namespace DL
         #endregion
 
         #region LineSchedule
-        //LineSchedule GetLineSchedule(int line, int startTime){}
-        //IEnumerable<LineSchedule> GetAllLineScheduleOfLine(int Line){}
-        //public void AddLineSchedule(LineSchedule lineSchedule){}
-        //public void UpdateLineSchedule(LineSchedule lineSchedule){}
-        //public void UpdateLineSchedule(int line, int startTime, Action<LineSchedule> update){} //method that knows to updt specific fields in Person
-        //public void DeleteLineSchedule(int line, int startTime){}
+        public LineSchedule GetLineSchedule(int line, DateTime startTime)
+        {
+            LineSchedule lineSchedule = DataSource.ListLineSchedules.FirstOrDefault(ls => ls.LineKey == line && ls.StartTime.ToString("HH:mm") == startTime.ToString("HH:mm"));
+            if (lineSchedule == null)
+                throw new DO.ArgumentNotFoundException($"Line schedule of line {line} and starting time {startTime.ToString("HH:mm")} not found.");
+            return lineSchedule.Clone();
+        }
+        public IEnumerable<LineSchedule> GetAllLineSchedules()
+        {
+            var lineSchedules = from ls in DataSource.ListLineSchedules
+                                select ls;
+            return lineSchedules;
+        }
+        public IEnumerable<LineSchedule> GetAllLineSchedulesOfLine(int Line)
+        {
+            var lineSchedules = from ls in DataSource.ListLineSchedules
+                                where ls.LineKey == Line
+                                select ls;
+            return lineSchedules;
+        }
+        public void AddLineSchedule(LineSchedule lineSchedule)
+        {
+            if (DataSource.ListLineSchedules.FirstOrDefault(ls => ls.LineKey == lineSchedule.LineKey && ls.StartTime.ToString("HH:mm") == lineSchedule.StartTime.ToString("HH:mm")) != null)
+                throw new InvalidInformationException($"There is already a line schedule {lineSchedule.LineKey} that start at {lineSchedule.StartTime.ToString("HH:mm")}");
+            DataSource.ListLineSchedules.Add(lineSchedule);
+        }
+        public void UpdateLineSchedule(LineSchedule lineSchedule) 
+        {
+            int indexOfLineScheduleToUpdate = DataSource.ListLineSchedules.FindIndex(ls => ls.LineKey == lineSchedule.LineKey && ls.StartTime.ToString("HH:mm") == lineSchedule.StartTime.ToString("HH:mm"));
+            if (indexOfLineScheduleToUpdate == -1)
+                throw new ArgumentNotFoundException($"Line schedule of line {lineSchedule.LineKey} and starting time {lineSchedule.StartTime.ToString("HH:mm")} not found.");
+            
+            DataSource.ListLineSchedules[indexOfLineScheduleToUpdate] = lineSchedule;
+        }
+        public void UpdateLineSchedule(int line, DateTime startTime, Action<LineSchedule> update)
+        {
+            LineSchedule lineSchedule = GetLineSchedule(line, startTime);
+            update(lineSchedule);
+        }
+        public void DeleteLineSchedule(int line, DateTime startTime)
+        {
+            LineSchedule lineSchedule = GetLineSchedule(line, startTime);
+            DataSource.ListLineSchedules.Remove(lineSchedule);
+        }
         #endregion
 
         #region Station
@@ -330,12 +368,13 @@ namespace DL
         {
             if (DataSource.ListStations.FirstOrDefault(s => s.Key == station.Key) != null)
                 throw new InvalidInformationException("Duplicate station key");
-            //station.Key = Station.STATION_KEY++;
             DataSource.ListStations.Add(station.Clone());
         }
         public void UpdateStation(Station station)
         {
             int indexOfStationToUpdate = DataSource.ListStations.FindIndex(s => s.Key == station.Key);
+            if (indexOfStationToUpdate == -1)
+                throw new ArgumentNotFoundException($"Station not found with key: {station.Key}");
             DataSource.ListStations[indexOfStationToUpdate] = station;
         }
         public void UpdateStation(int stationKey, Action<Station> update)//method that knows to updt specific fields in Station
