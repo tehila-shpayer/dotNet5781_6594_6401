@@ -163,19 +163,19 @@ namespace BL
         {
             string name = user.UserName;
             string password = user.Password;
-            if (name.Length < 8)
+            if (name.Length < 4)
                 throw new BOInvalidInformationException("User name is short.");
             if (name.Length > 16)
                 throw new BOInvalidInformationException("User name is long.");
             foreach (char key in name)
-                if(char.IsLetterOrDigit(key))
+                if(!char.IsLetterOrDigit(key))
                     throw new BOInvalidInformationException("User name contains invalid keybords.");
-            if(password.Length < 8)
+            if(password.Length < 4)
                 throw new BOInvalidInformationException("Password is short.");
             if(password.Length > 16)
                 throw new BOInvalidInformationException("Password is long.");
             foreach(char key in password)
-                if(char.IsLetterOrDigit(key))
+                if(!char.IsLetterOrDigit(key))
                     throw new BOInvalidInformationException("Password contains invalid keybords.");
         }
         public void AddUser(User user)
