@@ -34,6 +34,7 @@ namespace PL
         {
         }
 
+        #region focus
         private void UserName_GotFocus(object sender, RoutedEventArgs e)
         {
             if (UserName.Text == " User name")
@@ -50,7 +51,6 @@ namespace PL
                 Email.Foreground = Brushes.Black;
             }
         }
-
 
         private void Password_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -96,6 +96,39 @@ namespace PL
             if (ConfirmPassword.Password == "")
             {
                 tbConfirmPassword.Text = " Confirm Password";
+            }
+        }
+        #endregion
+        private void SignUpButton_Click(object sender, RoutedEventArgs e)
+        {
+            ProblemMessage.Visibility = Visibility.Hidden;
+            if (UserName.Text == "" || Email.Text == "" || Password.Password == "" || ConfirmPassword.Password=="")
+            {
+                ProblemMessage.Text = "You must fill in all the fields!";
+                ProblemMessage.Visibility = Visibility.Visible;
+                return;
+            }
+            if (Password.Password != ConfirmPassword.Password)
+            {
+                ProblemMessage.Text = "The passwordss don't match!";
+                ProblemMessage.Visibility = Visibility.Visible;
+                return;
+            }
+            try
+            {
+                BO.User user = new BO.User();
+                user.UserName = UserName.Text;
+                user.Email = Email.Text;
+                user.Password = Password.Password;
+                App.bl.AddUser(user);
+            //    if (user.AuthorizationManagement == BO.AuthorizationManagement.Manager)
+            //        currentPage.NavigationService.Navigate(new ManagerPage(UserName.Text, Password.Password));
+            //    else
+            //        currentPage.NavigationService.Navigate(new TravelerPage(UserName.Text, Password.Password));
+            }
+            catch (BO.BOArgumentNotFoundException ex)
+            {
+                ProblemMessage.Visibility = Visibility.Visible;
             }
         }
     }

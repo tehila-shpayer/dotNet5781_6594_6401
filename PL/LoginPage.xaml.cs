@@ -35,7 +35,7 @@ namespace PL
         private void forgotPassword_MouseEnter(object sender, MouseEventArgs e)
         {
         }
-
+        #region focus
         private void userName_GotFocus(object sender, RoutedEventArgs e)
         {
             if (userName.Text == " User name")
@@ -70,7 +70,7 @@ namespace PL
                 tbPassword.Text = " Password";
             }
         }
-
+        #endregion
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
             try
