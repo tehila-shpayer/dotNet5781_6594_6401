@@ -20,15 +20,68 @@ namespace PL
     /// </summary>
     public partial class Profile : Page
     {
-        public Profile()
+        public string userName;
+        public string password;
+        public Profile(string un, string pw)
         {
             InitializeComponent();
+            userName = un;
+            password = pw;
         }
 
         private void testb_Click(object sender, RoutedEventArgs e)
         {
             oneblock.Visibility = Visibility.Hidden;
             onebox.Visibility = Visibility.Visible;
+        }
+
+        private void oldPassword_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (tbOldPassword.Text == " Old password")
+            {
+                tbOldPassword.Text = "";
+            }
+        }
+
+        private void oldPassword_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (oldPassword.Password == "")
+            {
+                tbOldPassword.Text = " Password";
+            }
+        }
+
+        private void newPassword_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (tbNewPassword.Text == " New password")
+            {
+                tbNewPassword.Text = "";
+            }
+        }
+
+        private void newPassword_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (newPassword.Password == "")
+            {
+                tbNewPassword.Text = " Password";
+            }
+        }
+
+        private void changePasswordButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (changePasswordButton.Content == "change password")
+            {
+                changePasswordStack.Visibility = Visibility.Visible;
+                changePasswordButton.Content = "save";
+            }
+            else
+            {
+                try
+                {
+                    //if()
+                    App.bl.UpdateUser(userName, u => u.Password = newPassword.Password);
+                }
+            }
         }
     }
 }
