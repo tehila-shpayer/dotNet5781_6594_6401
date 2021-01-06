@@ -66,7 +66,9 @@
     <Compile Include="pages\BusLinePage.xaml.cs">
       <DependentUpon>BusLinePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PO\Cloning.cs" />
     <Compile Include="PO\Enum.cs" />
+    <Compile Include="PO\PoBoAdapter.cs" />
     <Compile Include="PO\Tools.cs" />
     <Compile Include="pages\Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>
@@ -167,6 +169,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="AccountIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="pages\AccountIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets')" />
