@@ -11,11 +11,18 @@
     <Grid Grid.Row="0" Grid.Column="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="1.8*"/>
+            <ColumnDefinition Width="1.5*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
-            <Image x:Name="profilePicture" Width="150" Height="150" Margin="40"/>
-            <Button x:Name="changePictureButton" Margin="20,5"/>
+            <Image x:Name="profilePicture" Width="200" Height="150" Margin="30"/>
+            <Button x:Name="changePictureButton" Margin="20,1"/>
+            <Button x:Name="changePasswordButton" Content="change password" Margin="20,30" Click="changePasswordButton_Click"/>
+            <StackPanel x:Name="changePasswordStack" Visibility="Collapsed">
+                <TextBlock x:Name="tbOldPassword" Text=" Old password" FontSize="20" Margin="40,0" Foreground="Gray" GotFocus="userName_GotFocus" LostFocus="userName_LostFocus"/>
+                <PasswordBox x:Name="oldPassword" Height="50" Margin="40,-38, 40,0" FontSize="20" Foreground="black" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" BorderBrush="#FF919398" GotFocus="oldPassword_GotFocus" LostFocus="oldPassword_LostFocus"/>
+                <TextBlock x:Name="tbNewPassword" Text=" New password" FontSize="22" Margin="40,18,40,0" Foreground="Gray" GotFocus="userName_GotFocus" LostFocus="userName_LostFocus"/>
+                <PasswordBox x:Name="newPassword" Height="50" Margin="40,-38, 40,0" FontSize="22" Foreground="black" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" BorderBrush="#FF919398" GotFocus="newPassword_GotFocus" LostFocus="newPassword_LostFocus"/>
+            </StackPanel>
         </StackPanel>
         <StackPanel Grid.Column="1" Orientation="Vertical">
             <Grid>

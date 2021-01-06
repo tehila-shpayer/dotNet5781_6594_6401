@@ -20,15 +20,17 @@ namespace PL
     /// </summary>
     public partial class ManagerPage : Page
     {
-        public ManagerPage(string userName, string password)
+        public string userName;
+        public string password;
+        public ManagerPage(string un, string pw)
         {
             InitializeComponent();
-            string[] userAndPassword = { userName, password };
-            mainGrid.DataContext = userAndPassword;
+            userName = un;
+            password = pw;
         }
         private void profileButton_Click(object sender, RoutedEventArgs e)
         {
-            currentPage.Content = new Profile();
+            currentPage.Content = new Profile(userName, password);
         }
     }
 }
