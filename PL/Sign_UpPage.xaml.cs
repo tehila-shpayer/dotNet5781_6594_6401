@@ -120,9 +120,10 @@ namespace PL
                 user.UserName = UserName.Text;
                 user.Email = Email.Text;
                 user.Password = Password.Password;
+                user.AuthorizationManagement = BO.AuthorizationManagement.Traveler;
                 App.bl.AddUser(user);
-            //    if (user.AuthorizationManagement == BO.AuthorizationManagement.Manager)
-            //        currentPage.NavigationService.Navigate(new ManagerPage(UserName.Text, Password.Password));
+                if (user.AuthorizationManagement == BO.AuthorizationManagement.Traveler)
+                    currentPage.NavigationService.Navigate(new ManagerPage(UserName.Text, Password.Password));
             //    else
             //        currentPage.NavigationService.Navigate(new TravelerPage(UserName.Text, Password.Password));
             }
