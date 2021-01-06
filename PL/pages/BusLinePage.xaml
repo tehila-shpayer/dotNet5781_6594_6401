@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:PL"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -10,14 +11,43 @@
     <Page.Resources>
         <DataTemplate x:Key="BusLineTemplate"
                   DataType="local:BusLine">
-            <StackPanel>
-                <Label Content="Key"/>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="110">
+                <TextBlock Text="{Binding LineNumber}" TextAlignment="Right" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI Black"/>
+                <TextBlock Text="{Binding Key}" TextAlignment="Right"/>
+                <TextBlock Text="{Binding Area}" TextAlignment="Right"/>
             </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="BusLineStationTemplate"
+                  DataType="local:BusLineStation">
+            <Grid Width="400">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="{Binding StationKey}" Margin="10" Grid.Row="1" Grid.Column="1" TextAlignment="Right"/>
+                <TextBlock Margin="10" Grid.Row="0" Grid.Column="1" TextAlignment="Right">
+                    <Run Text="{Binding Position}"/>
+                    <Run Text="{Binding Name}" />
+                </TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="0" TextAlignment="Left" Margin="10,0,10,10">
+                    <Run Text="|&#x0a;|"/>
+                    <Run Text="{Binding DistanceFromLastStationMeters}"/>
+                    <Run Text=" meters,"/>
+                    <Run Text="{Binding TravelTimeFromLastStationMinutes}"/>
+                    <Run Text="minutes&#x0a;"/>
+                    <Run Text="|&#x0a;"/>
+                </TextBlock>
+                <!--"&#x0a;-->
+            </Grid>
         </DataTemplate>
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -25,19 +55,30 @@
             <RowDefinition Height="8*"/>
 
         </Grid.RowDefinitions>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="LightGray" Offset="1"/>
+                <GradientStop Color="#FFA6C8D1" Offset="0.25"/>
+                <GradientStop Color="#FFD9DCDD" Offset="0.086"/>
+                <GradientStop Color="#FFBBD0D6" Offset="0.18"/>
+                <GradientStop Color="#FFABC9D1" Offset="0.608"/>
+                <GradientStop Color="#FFC7D0D2" Offset="0.46"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Label Content="Bus Lines:" Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontSize="30"/>
         <StackPanel Grid.Row="1" Grid.Column="1" x:Name="linesStackPanel">
-            <StackPanel.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="LightGray" Offset="1"/>
-                    <GradientStop Color="#FFE6E6E6"/>
-                </LinearGradientBrush>
-            </StackPanel.Background>
+          
             <StackPanel.Effect>
                 <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="1"/>
             </StackPanel.Effect>
-            <ListBox x:Name="busLines" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusLineTemplate}" VerticalAlignment="Stretch" Height="{Binding ElementName=linesStackPanel, Path=ActualHeight}">
-            </ListBox>
+            <StackPanel>
+                <TextBox x:Name="searchBox" FontSize="16" TextChanged="SearchBox_TextChanged" Background="White" OpacityMask="#FFBE1212" BorderBrush="#896B6363"/>
+                <materialDesign:PackIcon Kind="Search"/>
+            </StackPanel>
+            <ListBox x:Name="busLines" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusLineTemplate}" VerticalAlignment="Stretch" Height="{Binding ElementName=linesStackPanel, Path=ActualHeight}" BorderBrush="#FF222222" SelectionChanged="busLines_SelectionChanged"/>
         </StackPanel>
+        <ListBox x:Name="busLineStationdlb" Grid.Row="1" Grid.Column="0" IsSynchronizedWithCurrentItem="{x:Null}" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusLineStationTemplate}" VerticalAlignment="Stretch" Background="White"/>
+
     </Grid>
 </Page>
 

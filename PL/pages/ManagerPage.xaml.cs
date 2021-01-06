@@ -32,5 +32,26 @@ namespace PL
         {
             currentPage.Content = new Profile(userName, password);
         }
+
+        private void busLinesButton_Click(object sender, RoutedEventArgs e)
+        {
+            currentPage.Content = new BusLinePage();
+
+        }
+
+        private void stationsButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void busesButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void configurationButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

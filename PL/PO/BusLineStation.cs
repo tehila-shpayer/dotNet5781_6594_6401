@@ -13,6 +13,7 @@ namespace PL
         public int Position { get; set; }
         public double DistanceFromLastStationMeters { get; set; }
         public int TravelTimeFromLastStationMinutes { get; set; }
+        public String Name { get; set; }
 
         public bool _isActive = true;
         public bool IsActive { get; set; }

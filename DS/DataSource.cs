@@ -28,19 +28,19 @@ namespace DS
         {
             InitAllLists();
         }
-        static double GetDistance(double x1, double y1, double x2, double y2)
+        static int GetDistance(double x1, double y1, double x2, double y2)
         {
             GeoCoordinate s1 = new GeoCoordinate(x1, y1);//מיקום תחנה 1
             GeoCoordinate s2 = new GeoCoordinate(x2, y2);//מיקום תחנה 2
-            return s1.GetDistanceTo(s2)*(1.3);//חישוב מרחק
+            return Convert.ToInt32(s1.GetDistanceTo(s2) * 1.3 + 1);//חישוב מרחק
         }
-        static double GetDistance(int stationKey1, int stationKey2)
+        static int GetDistance(int stationKey1, int stationKey2)
         {
             Station station1 = ListStations.Find(s => s.Key == stationKey1);
             Station station2 = ListStations.Find(s => s.Key == stationKey2);
             GeoCoordinate s1 = new GeoCoordinate(station1.Latitude, station1.Longitude);//מיקום תחנה 1
             GeoCoordinate s2 = new GeoCoordinate(station2.Latitude, station2.Longitude);//מיקום תחנה 2
-            return s1.GetDistanceTo(s2) * (1.3);//חישוב מרחק
+            return Convert.ToInt32( s1.GetDistanceTo(s2) * 1.3 + 1);//חישוב מרחק
         }
         static int GetTime(double distance)
         {
@@ -180,46 +180,160 @@ namespace DS
             };
             ListBusLines = new List<BusLine>
             {
-                new BusLine{Key = 1, LineNumber=949, Area = Areas.YehudaAndShomron},
-                new BusLine{Key = 2, LineNumber=488, Area = Areas.North},
-                //new BusLine{LineNumber=236, Area = Areas.Hifa, FirstStationKey = 40247, LastStationKey = 40269},
-                //new BusLine{LineNumber=934, Area = Areas.General, FirstStationKey = 21007, LastStationKey = 22222},
-                //new BusLine{LineNumber=86, Area = Areas.Center, FirstStationKey = 40912, LastStationKey = 40925},
+                new BusLine{Key = 1784, LineNumber=949, Area = Areas.YehudaAndShomron},
+                new BusLine{Key = 1785, LineNumber=488, Area = Areas.North},
+                new BusLine{Key = 1786, LineNumber=236, Area = Areas.Hifa},
+                new BusLine{Key = 1787, LineNumber=934, Area = Areas.General},
+                new BusLine{Key = 1788, LineNumber=86, Area = Areas.Center},
 
-                //new BusLine{LineNumber=40, Area = Areas.General, FirstStationKey = 60642, LastStationKey = 22222},
-                //new BusLine{LineNumber=6, Area = Areas.Jerusalem, FirstStationKey = , LastStationKey = },
-                //new BusLine{LineNumber=142, Area = Areas.YehudaAndShomron, FirstStationKey = , LastStationKey = },
-                //new BusLine{LineNumber=1, Area = Areas.General, FirstStationKey = , LastStationKey = },
-                //new BusLine{LineNumber=67, Area = Areas.Jerusalem, FirstStationKey = , LastStationKey = },
+                new BusLine{Key = 1789, LineNumber=400, Area = Areas.North},
+                new BusLine{Key = 1790, LineNumber=949, Area = Areas.YehudaAndShomron},
+                new BusLine{Key = 1791, LineNumber=218, Area = Areas.General},
+                new BusLine{Key = 1792, LineNumber=143, Area = Areas.General},
+                new BusLine{Key = 1793, LineNumber=86, Area = Areas.Center},
 
             };
             ListBusLineStations = new List<BusLineStation>
             {
                 //949
-                new BusLineStation{BusLineKey = 1, StationKey = 45385, Position = 1 },
-                new BusLineStation{BusLineKey = 1, StationKey = 61017, Position = 2 },
-                new BusLineStation{BusLineKey = 1, StationKey = 61002, Position = 3 },
-                new BusLineStation{BusLineKey = 1, StationKey = 60211, Position = 4 },
-                new BusLineStation{BusLineKey = 1, StationKey = 60215, Position = 5 },
-                new BusLineStation{BusLineKey = 1, StationKey = 60216, Position = 6 },
-                new BusLineStation{BusLineKey = 1, StationKey = 60217, Position = 7 },
-                new BusLineStation{BusLineKey = 1, StationKey = 60218, Position = 8 },
-                new BusLineStation{BusLineKey = 1, StationKey = 63691, Position = 9 },
-                new BusLineStation{BusLineKey = 1, StationKey = 60642, Position = 10 },
+                new BusLineStation{BusLineKey = 1784, StationKey = 45385, Position = 1 },
+                new BusLineStation{BusLineKey = 1784, StationKey = 61017, Position = 2 },
+                new BusLineStation{BusLineKey = 1784, StationKey = 61002, Position = 3 },
+                new BusLineStation{BusLineKey = 1784, StationKey = 60211, Position = 4 },
+                new BusLineStation{BusLineKey = 1784, StationKey = 60215, Position = 5 },
+                new BusLineStation{BusLineKey = 1784, StationKey = 60216, Position = 6 },
+                new BusLineStation{BusLineKey = 1784, StationKey = 60217, Position = 7 },
+                new BusLineStation{BusLineKey = 1784, StationKey = 60218, Position = 8 },
+                new BusLineStation{BusLineKey = 1784, StationKey = 63691, Position = 9 },
+                new BusLineStation{BusLineKey = 1784, StationKey = 60642, Position = 10 },
 
                 //488
-                new BusLineStation{ BusLineKey = 2, StationKey = 57096, Position = 1 },
-                new BusLineStation{ BusLineKey = 2, StationKey = 57097, Position = 2 },
-                new BusLineStation{ BusLineKey = 2, StationKey = 57098, Position = 3 },
-                new BusLineStation{ BusLineKey = 2, StationKey = 57102, Position = 4 },
-                new BusLineStation{ BusLineKey = 2, StationKey = 57105, Position = 5 },
-                new BusLineStation{ BusLineKey = 2, StationKey = 57108, Position = 6 },
-                new BusLineStation{ BusLineKey = 2, StationKey = 57114, Position = 7 },
-                new BusLineStation{ BusLineKey = 2, StationKey = 57115, Position = 8 },
-                new BusLineStation{ BusLineKey = 2, StationKey = 57116, Position = 9 },
-                new BusLineStation{ BusLineKey = 2, StationKey = 57117, Position = 10 },
-                new BusLineStation{ BusLineKey = 2, StationKey = 57118, Position = 11 },
-                new BusLineStation{ BusLineKey = 2, StationKey = 57119, Position = 12 },
+                new BusLineStation{ BusLineKey = 1785, StationKey = 57096, Position = 1 },
+                new BusLineStation{ BusLineKey = 1785, StationKey = 57097, Position = 2 },
+                new BusLineStation{ BusLineKey = 1785, StationKey = 57098, Position = 3 },
+                new BusLineStation{ BusLineKey = 1785, StationKey = 57102, Position = 4 },
+                new BusLineStation{ BusLineKey = 1785, StationKey = 57105, Position = 5 },
+                new BusLineStation{ BusLineKey = 1785, StationKey = 57108, Position = 6 },
+                new BusLineStation{ BusLineKey = 1785, StationKey = 57114, Position = 7 },
+                new BusLineStation{ BusLineKey = 1785, StationKey = 57115, Position = 8 },
+                new BusLineStation{ BusLineKey = 1785, StationKey = 57116, Position = 9 },
+                new BusLineStation{ BusLineKey = 1785, StationKey = 57117, Position = 10 },
+                new BusLineStation{ BusLineKey = 1785, StationKey = 57118, Position = 11 },
+                new BusLineStation{ BusLineKey = 1785, StationKey = 57119, Position = 12 },
+
+                //236
+                new BusLineStation{BusLineKey = 1786, StationKey = 40247, Position=1 },
+                new BusLineStation{BusLineKey = 1786, StationKey = 40249, Position=2 },
+                new BusLineStation{BusLineKey = 1786, StationKey = 40252, Position=3 },
+                new BusLineStation{BusLineKey = 1786, StationKey = 40253, Position=4 },
+                new BusLineStation{BusLineKey = 1786, StationKey = 40257, Position=5 },
+                new BusLineStation{BusLineKey = 1786, StationKey = 40258, Position=6 },
+                new BusLineStation{BusLineKey = 1786, StationKey = 40260, Position=7 },
+                new BusLineStation{BusLineKey = 1786, StationKey = 40262, Position=8 },
+                new BusLineStation{BusLineKey = 1786, StationKey = 40267, Position=9 },
+                new BusLineStation{BusLineKey = 1786, StationKey = 40269, Position=10 },
+
+                //934
+                new BusLineStation{BusLineKey = 1787, StationKey = 21007, Position=1 },
+                new BusLineStation{BusLineKey = 1787, StationKey = 21008, Position=2 },
+                new BusLineStation{BusLineKey = 1787, StationKey = 24290, Position=3 },
+                new BusLineStation{BusLineKey = 1787, StationKey = 27121, Position=4 },
+                new BusLineStation{BusLineKey = 1787, StationKey = 27126, Position=5 },
+                new BusLineStation{BusLineKey = 1787, StationKey = 28352, Position=6 },
+                new BusLineStation{BusLineKey = 1787, StationKey = 28353, Position=7 },
+                new BusLineStation{BusLineKey = 1787, StationKey = 20996, Position=8 },
+                new BusLineStation{BusLineKey = 1787, StationKey = 20011, Position=9 },
+                new BusLineStation{BusLineKey = 1787, StationKey = 22222, Position=10 },
+
+                //86
+                new BusLineStation{BusLineKey = 1788, StationKey = 40912, Position=1 },
+                new BusLineStation{BusLineKey = 1788, StationKey = 40913, Position=2 },
+                new BusLineStation{BusLineKey = 1788, StationKey = 40914, Position=3 },
+                new BusLineStation{BusLineKey = 1788, StationKey = 40915, Position=4 },
+                new BusLineStation{BusLineKey = 1788, StationKey = 40916, Position=5 },
+                new BusLineStation{BusLineKey = 1788, StationKey = 40917, Position=6 },
+                new BusLineStation{BusLineKey = 1788, StationKey = 40918, Position=7 },
+                new BusLineStation{BusLineKey = 1788, StationKey = 40919, Position=8 },
+                new BusLineStation{BusLineKey = 1788, StationKey = 40920, Position=9 },
+                new BusLineStation{BusLineKey = 1788, StationKey = 40922, Position=10 },
+                new BusLineStation{BusLineKey = 1788, StationKey = 40923, Position=11 },
+                new BusLineStation{BusLineKey = 1788, StationKey = 40924, Position=12 },
+                new BusLineStation{BusLineKey = 1788, StationKey = 40925, Position=13},
+
+                //400
+                new BusLineStation{BusLineKey = 1789, StationKey = 40247, Position=1 },
+                new BusLineStation{BusLineKey = 1789, StationKey = 40249, Position=2 },
+                new BusLineStation{BusLineKey = 1789, StationKey = 40252, Position=3 },
+                new BusLineStation{BusLineKey = 1789, StationKey = 40253, Position=4 },
+                new BusLineStation{BusLineKey = 1789, StationKey = 40257, Position=5 },
+                new BusLineStation{BusLineKey = 1789, StationKey = 57096, Position=6 },
+                new BusLineStation{BusLineKey = 1789, StationKey = 57098, Position=7 },
+                new BusLineStation{BusLineKey = 1789, StationKey = 57105, Position=8 },
+                new BusLineStation{BusLineKey = 1789, StationKey = 57108, Position=9 },
+                new BusLineStation{BusLineKey = 1789, StationKey = 57116, Position=10 },
+                new BusLineStation{BusLineKey = 1789, StationKey = 57117, Position=11 },
+
+                //949 - 2nd direction
+                new BusLineStation{BusLineKey = 1790, StationKey = 60642, Position = 1 },
+                new BusLineStation{BusLineKey = 1790, StationKey = 63691, Position = 2 },
+                new BusLineStation{BusLineKey = 1790, StationKey = 60218, Position = 3 },
+                new BusLineStation{BusLineKey = 1790, StationKey = 60217, Position = 4 },
+                new BusLineStation{BusLineKey = 1790, StationKey = 60216, Position = 5 },
+                new BusLineStation{BusLineKey = 1790, StationKey = 60215, Position = 6 },
+                new BusLineStation{BusLineKey = 1790, StationKey = 60211, Position = 7 },
+                new BusLineStation{BusLineKey = 1790, StationKey = 61002, Position = 8 },
+                new BusLineStation{BusLineKey = 1790, StationKey = 61017, Position = 9 },
+                new BusLineStation{BusLineKey = 1790, StationKey = 45385, Position = 10 },
+
+                //218
+                new BusLineStation{BusLineKey = 1791, StationKey = 40247, Position=1 },
+                new BusLineStation{BusLineKey = 1791, StationKey = 40249, Position=2 },
+                new BusLineStation{BusLineKey = 1791, StationKey = 40257, Position=3 },
+                new BusLineStation{BusLineKey = 1791, StationKey = 40258, Position=4 },
+                new BusLineStation{BusLineKey = 1791, StationKey = 40262, Position=5 },
+                new BusLineStation{BusLineKey = 1791, StationKey = 40267, Position=6 },
+                new BusLineStation{BusLineKey = 1791, StationKey = 40269, Position=7 },
+                new BusLineStation{BusLineKey = 1791, StationKey = 40912, Position=8 },
+                new BusLineStation{BusLineKey = 1791, StationKey = 40913, Position=9 },
+                new BusLineStation{BusLineKey = 1791, StationKey = 40914, Position=10 },
+                new BusLineStation{BusLineKey = 1791, StationKey = 40918, Position=11 },
+                new BusLineStation{BusLineKey = 1791, StationKey = 40919, Position=12 },
+                new BusLineStation{BusLineKey = 1791, StationKey = 40920, Position=13 },
+                new BusLineStation{BusLineKey = 1791, StationKey = 40924, Position=14 },
+                new BusLineStation{BusLineKey = 1791, StationKey = 40925, Position=15 },
+
+                //143
+                new BusLineStation{BusLineKey = 1792, StationKey = 45385, Position = 1 },
+                new BusLineStation{BusLineKey = 1792, StationKey = 61017, Position = 2 },
+                new BusLineStation{BusLineKey = 1792, StationKey = 61002, Position = 3 },
+                new BusLineStation{BusLineKey = 1792, StationKey = 60211, Position = 4 },
+                new BusLineStation{BusLineKey = 1792, StationKey = 60217, Position = 5 },
+                new BusLineStation{BusLineKey = 1792, StationKey = 60218, Position = 6 },
+                new BusLineStation{BusLineKey = 1792, StationKey = 60642, Position = 7 },
+                new BusLineStation{BusLineKey = 1792, StationKey = 40925, Position = 8 },
+                new BusLineStation{BusLineKey = 1792, StationKey = 40923, Position = 9 },
+                new BusLineStation{BusLineKey = 1792, StationKey = 40922, Position = 10 },
+                new BusLineStation{BusLineKey = 1792, StationKey = 40920, Position = 11 },
+                new BusLineStation{BusLineKey = 1792, StationKey = 40918, Position = 12 },
+                new BusLineStation{BusLineKey = 1792, StationKey = 40916, Position = 13 },
+                new BusLineStation{BusLineKey = 1792, StationKey = 40913, Position = 14 },
+                new BusLineStation{BusLineKey = 1792, StationKey = 40912, Position = 15 },
+
+                //86 - 2nd direction
+                new BusLineStation{BusLineKey = 1793, StationKey = 40925, Position=1 },
+                new BusLineStation{BusLineKey = 1793, StationKey = 40924, Position=2 },
+                new BusLineStation{BusLineKey = 1793, StationKey = 40923, Position=3 },
+                new BusLineStation{BusLineKey = 1793, StationKey = 40922, Position=4 },
+                new BusLineStation{BusLineKey = 1793, StationKey = 40920, Position=5 },
+                new BusLineStation{BusLineKey = 1793, StationKey = 40919, Position=6 },
+                new BusLineStation{BusLineKey = 1793, StationKey = 40918, Position=7 },
+                new BusLineStation{BusLineKey = 1793, StationKey = 40917, Position=8 },
+                new BusLineStation{BusLineKey = 1793, StationKey = 40916, Position=9 },
+                new BusLineStation{BusLineKey = 1793, StationKey = 40915, Position=10 },
+                new BusLineStation{BusLineKey = 1793, StationKey = 40914, Position=11 },
+                new BusLineStation{BusLineKey = 1793, StationKey = 40913, Position=12 },
+                new BusLineStation{BusLineKey = 1793, StationKey = 40912, Position=13},
+
             };
 
             ListConsecutiveStations = new List<ConsecutiveStations>();

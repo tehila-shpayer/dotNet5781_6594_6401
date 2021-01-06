@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Net;
 using System.Net.Mail;
 using BLAPI;
+using System.Collections.ObjectModel;
 
 
 namespace PL
@@ -24,9 +25,15 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static ObservableCollection<BusLine> busLinesCollection = new ObservableCollection<BusLine>();
         public MainWindow()
         {
             InitializeComponent();
+            foreach(BO.BusLine bl in App.bl.GetAllBusLines())
+            {
+                PL.BusLine busLinePL = new BusLine();
+                busLinesCollection.Add(PoBoAdapter.BusLineDoBoAdapter(bl));
+            }
         }
 
         private void powerButton_Click(object sender, RoutedEventArgs e)

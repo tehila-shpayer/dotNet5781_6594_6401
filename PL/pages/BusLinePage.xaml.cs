@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 
 namespace PL
 {
@@ -23,8 +24,30 @@ namespace PL
         public BusLinePage()
         {
             InitializeComponent();
-            //busLines.DataContext = MainWindow.busLinesCollection;
+            busLines.DataContext = MainWindow.busLinesCollection;
+        }
 
+        private void busLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (busLines.SelectedIndex >= 0)
+                busLineStationdlb.DataContext = MainWindow.busLinesCollection.ElementAt(busLines.SelectedIndex).BusLineStations;
+        }
+
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            foreach (var item in MainWindow.busLinesCollection)
+            {
+                ListBoxItem bus = (ListBoxItem)busLines.ItemContainerGenerator.ContainerFromItem(item);
+                String searchS = searchBox.Text;
+                int num = searchS.Length;
+                //Show only buses which there license number have the typed perfix
+                if ((num <= item.LineNumber.ToString().Length && searchS == (item as BusLine).LineNumber.ToString().Substring(0, num)))
+                {
+                    bus.Visibility = Visibility.Visible;
+                }
+                else
+                    bus.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }
