@@ -6,9 +6,9 @@
       xmlns:local="clr-namespace:PL"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="TravelerPage">
+      Title="TravelerPage" Background="White">
 
     <Grid>
-        
+        <TextBlock Text="travel" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="100"/>
     </Grid>
 </Page>

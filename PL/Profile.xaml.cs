@@ -16,19 +16,19 @@ using System.Windows.Shapes;
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for ManagerPage.xaml
+    /// Interaction logic for Profile.xaml
     /// </summary>
-    public partial class ManagerPage : Page
+    public partial class Profile : Page
     {
-        public ManagerPage(string userName, string password)
+        public Profile()
         {
             InitializeComponent();
-            string[] userAndPassword = { userName, password };
-            mainGrid.DataContext = userAndPassword;
         }
-        private void profileButton_Click(object sender, RoutedEventArgs e)
+
+        private void testb_Click(object sender, RoutedEventArgs e)
         {
-            currentPage.Content = new Profile();
+            oneblock.Visibility = Visibility.Hidden;
+            onebox.Visibility = Visibility.Visible;
         }
     }
 }

@@ -65,6 +65,9 @@
     </ApplicationDefinition>
     <Compile Include="PO\Enum.cs" />
     <Compile Include="PO\Tools.cs" />
+    <Compile Include="Profile.xaml.cs">
+      <DependentUpon>Profile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Sign_UpPage.xaml.cs">
       <DependentUpon>Sign_UpPage.xaml</DependentUpon>
     </Compile>
@@ -84,6 +87,10 @@
     <Compile Include="TravelerPage.xaml.cs">
       <DependentUpon>TravelerPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="Profile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Sign_UpPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
