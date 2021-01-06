@@ -59,8 +59,9 @@ namespace PL
                 MailMessage mail = new MailMessage();
                 mail.To.Add(user.Email);
                 mail.From = new MailAddress("saramalka2003@gmail.com");
-                mail.Subject = "איפוס סיסמה למערכת האוטובוסים הקולית שלנו";
-                mail.Body = $"המשך יום נעים, מערכת האוטובוסים\n\nתוכל לשנות אותה לאחר הכניסה בפרופיל המשתמש שלך\n.{newPassword} הסיסמה החדשה שלך היא\n\n {userName} שלום";
+                mail.Subject = "Password Reset";
+                mail.Body = $"Hi {user.UserName}"
+                    +"\n\nYour new password is: {newPassword}.\nYou can change it in the user profile after logging in.\n\nHave a nice day,\n   The Bus Company";
                 mail.IsBodyHtml = true;
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = "smtp.gmail.com";
@@ -82,7 +83,7 @@ namespace PL
             }
         }
 
-            private void forgotPassword_MouseEnter(object sender, MouseEventArgs e)
+        private void forgotPassword_MouseEnter(object sender, MouseEventArgs e)
         {
         }
         #region focus
@@ -123,19 +124,19 @@ namespace PL
         #endregion
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
-        //    try
-        //    {
-        //        BO.User user = App.bl.GetUser(userName.Text, Password.Password);
-        //        if (user.AuthorizationManagement == BO.AuthorizationManagement.Manager)
+            try
+            {
+                BO.User user = App.bl.GetUser(userName.Text, Password.Password);
+                if (user.AuthorizationManagement == BO.AuthorizationManagement.Manager)
                     this.NavigationService.Navigate(new ManagerPage(userName.Text, Password.Password));
-            //    else
-            //        this.NavigationService.Navigate(new TravelerPage(userName.Text, Password.Password));
-            ////}
-            //catch (BO.BOArgumentNotFoundException ex)
-            //{
-            //    ProblemMessage.Text = "User name or password are incorrect.\n try again";
-            //    spProblem.Visibility = Visibility.Visible;
-            //}
+                else
+                    this.NavigationService.Navigate(new TravelerPage(userName.Text, Password.Password));
+            }
+            catch (BO.BOArgumentNotFoundException ex)
+            {
+                ProblemMessage.Text = "User name or password are incorrect.\n try again";
+                spProblem.Visibility = Visibility.Visible;
+            }
         }
 
         private void NewAccountButton_Click(object sender, RoutedEventArgs e)

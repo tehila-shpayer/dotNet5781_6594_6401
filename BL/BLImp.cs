@@ -628,6 +628,7 @@ namespace BL
         {
             try
             {
+                dl.DeleteBusLineStationsByLine(busLineKey);
                 dl.DeleteBusLine(busLineKey);
             }
             catch (DO.ArgumentNotFoundException ex)
