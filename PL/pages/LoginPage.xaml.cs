@@ -127,9 +127,9 @@ namespace PL
         //    {
         //        BO.User user = App.bl.GetUser(userName.Text, Password.Password);
         //        if (user.AuthorizationManagement == BO.AuthorizationManagement.Manager)
-                    currentPage.NavigationService.Navigate(new ManagerPage(userName.Text, Password.Password));
+                    this.NavigationService.Navigate(new ManagerPage(userName.Text, Password.Password));
             //    else
-            //        currentPage.NavigationService.Navigate(new TravelerPage(userName.Text, Password.Password));
+            //        this.NavigationService.Navigate(new TravelerPage(userName.Text, Password.Password));
             ////}
             //catch (BO.BOArgumentNotFoundException ex)
             //{
@@ -140,7 +140,7 @@ namespace PL
 
         private void NewAccountButton_Click(object sender, RoutedEventArgs e)
         {
-            currentPage.Content = new SignUpPage();
+           currentPage.Content = new SignUpPage();
         }
     }
 }
