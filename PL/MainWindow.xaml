@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="OpeningWindow" Height="600" Width="1024" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Initialized="Window_Initialized">
+        Title="OpeningWindow"  ResizeMode="NoResize"  WindowStartupLocation="CenterScreen" WindowStyle="None" Initialized="Window_Initialized">
     <Grid x:Name="mainGrid" >
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -18,17 +18,20 @@
         <Grid x:Name="upGrid" Grid.ColumnSpan="2" VerticalAlignment="Stretch" Background="#FF56A0B5" MouseDown="upGrid_MouseDown" >
             <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right" >
                 <Button x:Name="minimizeButton" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Click="minimizeButton_Click">
-                    <materialDesign:PackIcon Kind="WindowMinimize" Height="30" Width="30" />
+                    <materialDesign:PackIcon Kind="HelpRhombus" Height="30" Width="30" />
                 </Button>
                 <Button x:Name="languageButton" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Click="languageButton_Click">
                     <materialDesign:PackIcon Kind="LanguageBox" Height="30" Width="30" />
                 </Button>
-                <Button x:Name="powerButton" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Click="powerButton_Click">
+                <Button x:Name="logoutButton" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Click="logoutButton_Click">
+                    <materialDesign:PackIcon Kind="Logout" Height="30" Width="30" />
+                </Button>
+                <Button x:Name="powerButton" Margin="10,0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Click="powerButton_Click">
                     <materialDesign:PackIcon Kind="Power" Height="30" Width="30"/>
                 </Button>
             </StackPanel>
         </Grid>
-        <Frame x:Name="openingPage" Grid.Row="1" Grid.Column="0">
+        <Frame x:Name="openingPage" Grid.Row="1" Grid.Column="0" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             
         </Frame>
        

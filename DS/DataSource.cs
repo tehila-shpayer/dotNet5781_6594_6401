@@ -221,41 +221,8 @@ namespace DS
                 new BusLineStation{ BusLineKey = 2, StationKey = 57118, Position = 11 },
                 new BusLineStation{ BusLineKey = 2, StationKey = 57119, Position = 12 },
             };
-            #region Distance
-            ////949
-            //double distance1 = GetDistance(31.828335, 35.250612, 31.865017, 35.261373);
-            //double distance2 = GetDistance(31.865017, 35.261373, 31.873011, 35.260429);
-            //double distance3 = GetDistance(31.873011, 35.260429, 31.883013, 35.247681);
-            //double distance4 = GetDistance(31.883013, 35.247681, 31.878496, 35.243613);
-            //double distance5 = GetDistance(31.878496, 35.243613, 31.873910, 35.243681);
-            //double distance6 = GetDistance(31.873910, 35.243681, 31.889875, 35.249011);
-            //double distance7 = GetDistance(31.889875, 35.249011, 31.883867, 35.247120);
-            //double distance8 = GetDistance(31.883867, 35.247120, 31.956391, 35.341945);
-            //double distance9 = GetDistance(31.956391, 35.341945, 31.960264, 35.348199);
-
-            ////488
-            ////double distance10 = GetDistance(ListStations.Find(s=>);
-            ////double distance11 = GetDistance();
-            ////double distance12 = GetDistance();
-            ////double distance13 = GetDistance();
-            ////double distance14 = GetDistance();
-            ////double distance15 = GetDistance();
-            #endregion
 
             ListConsecutiveStations = new List<ConsecutiveStations>();
-            //{
-            //    //949
-            //    new ConsecutiveStations{StationKey1 = 45385, StationKey2 = 61017, Distance = distance1, AverageTime = GetTime(distance1) },
-            //    new ConsecutiveStations{StationKey1 = 61017, StationKey2 = 61002, Distance = distance2, AverageTime = GetTime(distance2) },
-            //    new ConsecutiveStations{StationKey1 = 61002, StationKey2 = 60211, Distance = distance3, AverageTime = GetTime(distance3) },
-            //    new ConsecutiveStations{StationKey1 = 60211, StationKey2 = 60215, Distance = distance4, AverageTime = GetTime(distance4) },
-            //    new ConsecutiveStations{StationKey1 = 60215, StationKey2 = 60216, Distance = distance5, AverageTime = GetTime(distance5) },
-            //    new ConsecutiveStations{StationKey1 = 60216, StationKey2 = 60217, Distance = distance6, AverageTime = GetTime(distance6) },
-            //    new ConsecutiveStations{StationKey1 = 60217, StationKey2 = 60218, Distance = distance7, AverageTime = GetTime(distance7) },
-            //    new ConsecutiveStations{StationKey1 = 60218, StationKey2 = 63691, Distance = distance8, AverageTime = GetTime(distance8) },
-            //    new ConsecutiveStations{StationKey1 = 63691, StationKey2 = 60642, Distance = distance9, AverageTime = GetTime(distance9) },
-
-            //};
             foreach (Station s1 in ListStations)
             {
                 foreach (Station s2 in ListStations)
@@ -270,9 +237,9 @@ namespace DS
             {
                 new User{UserName = "shpayer", Password = "Rif1234", AuthorizationManagement = AuthorizationManagement.Manager},
                 new User{UserName = "hodaya", Password = "hodaya1000", AuthorizationManagement = AuthorizationManagement.Manager},
-                new User{UserName = "girl9", Password = "shyomi78", AuthorizationManagement = AuthorizationManagement.Manager},
+                new User{UserName = "girl9", Password = "shyomi78", AuthorizationManagement = AuthorizationManagement.Traveler},
                 new User{UserName = "oalbo", Password = "theBest111", AuthorizationManagement = AuthorizationManagement.Manager},
-                new User{UserName = "sarahmal", Password = "1blander", AuthorizationManagement = AuthorizationManagement.Traveler},
+                new User{UserName = "sarahmal", Password = "1blunder", AuthorizationManagement = AuthorizationManagement.Manager},
                 new User{UserName = "iyov", Password = "missreble", AuthorizationManagement = AuthorizationManagement.Traveler},
                 new User{UserName = "mobileFord12", Password = "sportscar13", AuthorizationManagement = AuthorizationManagement.Traveler},
                 new User{UserName = "Lucky13Number", Password = "cazino666", AuthorizationManagement = AuthorizationManagement.Traveler},

@@ -14,7 +14,7 @@
             <ColumnDefinition Width="4.2*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Frame x:Name="currentPage" Grid.Column="0"></Frame>
+        <Frame x:Name="currentPage" Grid.Column="0" NavigationUIVisibility="Hidden"></Frame>
         <Grid Grid.Row="0" Grid.Column="1" Margin="0,1,0,0">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

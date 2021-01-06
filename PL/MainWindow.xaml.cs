@@ -30,6 +30,7 @@ namespace PL
         private void powerButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+            //InitializeComponent();
         }
 
         private void upGrid_MouseDown(object sender, MouseButtonEventArgs e)
@@ -49,6 +50,11 @@ namespace PL
         }
 
         private void Window_Initialized(object sender, EventArgs e)
+        {
+            openingPage.Content = new LoginPage();
+        }
+
+        private void logoutButton_Click(object sender, RoutedEventArgs e)
         {
             openingPage.Content = new LoginPage();
         }

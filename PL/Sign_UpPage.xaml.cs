@@ -102,7 +102,8 @@ namespace PL
         private void SignUpButton_Click(object sender, RoutedEventArgs e)
         {
             spProblem.Visibility = Visibility.Hidden;
-            if (UserName.Text == "" || Email.Text == "" || Password.Password == "" || ConfirmPassword.Password=="")
+            ProblemMessage.Text = "";
+            if (UserName.Text == " User name" || Email.Text == " Email" || Password.Password == "" || ConfirmPassword.Password=="")
             {
                 ProblemMessage.Text = "You must fill in all the fields!";
                 spProblem.Visibility = Visibility.Visible;
@@ -129,13 +130,18 @@ namespace PL
             }
             catch (BO.BOInvalidInformationException ex)
             {
-                ProblemMessage.Text = ex.Message;
+                if (ex.InnerException != null)
+                { ProblemMessage.Text = ex.InnerException.Message + "\n" + ex.Message + " try another user-name"; }
+                else
+                    ProblemMessage.Text = ex.Message + "\nPlease try again";
                 spProblem.Visibility = Visibility.Visible;
+                return;
             }
             catch (Exception ex)
             {
                 ProblemMessage.Text = ex.Message;
                 spProblem.Visibility = Visibility.Visible;
+                return;
             }
         }
     }

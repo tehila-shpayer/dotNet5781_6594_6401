@@ -17,9 +17,9 @@
         <StackPanel Grid.Column="1" Margin="20" UseLayoutRounding="True">
             <TextBlock Text="Welcome" TextAlignment="Center" Margin="0,25,0,30" FontSize="37" FontFamily="Segoe UI Light"/>
             <Image Height="150" Margin="40,0,40,10" Source="AccountIcon.png"/>
-            <StackPanel x:Name="spProblem" Orientation="Horizontal" Margin="40,0, 40, -10" Visibility="Hidden">
+            <StackPanel x:Name="spProblem" Orientation="Horizontal" Margin="40,0, 40, -20" Visibility="Hidden">
                 <materialDesign:PackIcon Kind="WarningCircle" Margin="5,0" Height="20" Width="20" Foreground="Red" />
-                <TextBlock x:Name="ProblemMessage" Text="User name or password are incorrect. try again" FontSize="15" Foreground="Red"/>
+                <TextBlock x:Name="ProblemMessage" Text="" FontSize="15" Foreground="Red"/>
             </StackPanel>
             <!--<TextBlock x:Name="wrongPassword" Text="User name or password are incorrect. try again." FontSize="15"  Foreground="Red" Margin="45,5,40,-30" Visibility="Hidden"/>-->
             <TextBox x:Name="userName" Height="50" Margin="40,20" FontSize="22" Text=" User name" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Foreground="Gray" GotFocus="userName_GotFocus" LostFocus="userName_LostFocus"/>
@@ -32,6 +32,6 @@
                 <Button x:Name="newAccountButton" Content="New user? sign up!" BorderBrush="{x:Null}" Background="{x:Null}" Cursor="Hand" FontSize="16" Foreground="Blue" Margin="80,10,0,0" Click="NewAccountButton_Click" />
             </StackPanel>
    </StackPanel>
-        <Frame x:Name="currentPage" Grid.ColumnSpan="3"/>
+        <Frame x:Name="currentPage" Grid.ColumnSpan="3" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Page>
