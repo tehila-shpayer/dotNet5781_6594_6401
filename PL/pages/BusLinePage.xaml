@@ -72,8 +72,8 @@
                 <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="1"/>
             </StackPanel.Effect>
             <StackPanel>
-                <TextBox x:Name="searchBox" FontSize="16" TextChanged="SearchBox_TextChanged" Background="White" OpacityMask="#FFBE1212" BorderBrush="#896B6363"/>
-                <materialDesign:PackIcon Kind="Search"/>
+                <TextBox x:Name="searchBox" FontSize="16" TextChanged="SearchBox_TextChanged" Background="White" OpacityMask="#FFBE1212" BorderBrush="#896B6363" Height="30"/>
+                <materialDesign:PackIcon Kind="Search" Margin="0,-28,10,5" Width="25" Height="25" HorizontalAlignment="Right" Foreground="Gray"/>
             </StackPanel>
             <ListBox x:Name="busLines" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusLineTemplate}" VerticalAlignment="Stretch" Height="{Binding ElementName=linesStackPanel, Path=ActualHeight}" BorderBrush="#FF222222" SelectionChanged="busLines_SelectionChanged"/>
         </StackPanel>
