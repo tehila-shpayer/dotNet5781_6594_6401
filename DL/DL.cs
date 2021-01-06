@@ -74,7 +74,7 @@ namespace DL
         }
         #endregion
 
-       #region BusInTravel
+        #region BusInTravel
        //public BusInTravel GetBusInTravel(int key) 
        // {
        //     BusInTravel busInTravel = DataSource.ListBusesInTravel.Find(b => b.Key== key);
@@ -222,9 +222,12 @@ namespace DL
             DataSource.ListBusLineStations.Remove(busLineStation);
         }
         public void DeleteBusLineStationsByStation(int stationKey)
-        {
-            //int numOfDeletedBusLineStations = DataSource.ListBusLineStations.RemoveAll(bls => bls.StationKey == stationKey);
+        { 
             DataSource.ListBusLineStations.RemoveAll(bls => bls.StationKey == stationKey);
+        }
+        public void DeleteBusLineStationsByLine(int lineKey)
+        {
+            DataSource.ListBusLineStations.RemoveAll(bls => bls.BusLineKey == lineKey);
         }
         #endregion
 

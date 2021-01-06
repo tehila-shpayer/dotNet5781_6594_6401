@@ -628,6 +628,7 @@ namespace BL
         {
             try
             {
+                dl.DeleteBusLineStationsByLine(busLineKey);
                 dl.DeleteBusLine(busLineKey);
             }
             catch (DO.ArgumentNotFoundException ex)
@@ -674,6 +675,7 @@ namespace BL
             return s + '\n';
         }
         #endregion
+
         #region LineSchedule
         public BO.LineSchedule LineScheduleDoBoAdapter(DO.LineSchedule LineScheduleDO)
         {

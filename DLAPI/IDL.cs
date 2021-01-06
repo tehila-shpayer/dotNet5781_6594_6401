@@ -52,6 +52,7 @@ namespace DLAPI
         void UpdateBusLineStation(int line, int stationKey, Action<BusLineStation> update); //method that knows to updt specific fields in Person
         void DeleteBusLineStation(int line, int stationKey);
         void DeleteBusLineStationsByStation(int stationKey);
+        void DeleteBusLineStationsByLine(int lineKey);
         #endregion
 
         #region ConsecutiveStations
