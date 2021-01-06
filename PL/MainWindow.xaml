@@ -13,7 +13,6 @@
             <RowDefinition Height="12*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="4.5*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid x:Name="upGrid" Grid.ColumnSpan="2" VerticalAlignment="Stretch" Background="#FF56A0B5" MouseDown="upGrid_MouseDown" >
