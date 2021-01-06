@@ -20,7 +20,7 @@
         </DataTemplate>
         <DataTemplate x:Key="BusLineStationTemplate"
                   DataType="local:BusLineStation">
-            <Grid Width="400">
+            <Grid Width="500">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -45,13 +45,6 @@
                 <!--"&#x0a;-->
             </Grid>
         </DataTemplate>
-        <ObjectDataProvider x:Key="AreasFromEnum"
-                            MethodName="GetValues" 
-                            ObjectType="{x:Type sys:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="local:Areas"/>
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
     </Page.Resources>
     <Grid ScrollViewer.CanContentScroll="True">
         <Grid.ColumnDefinitions>
@@ -85,13 +78,13 @@
             </StackPanel>
             <ListBox x:Name="busLines" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusLineTemplate}" VerticalAlignment="Stretch" Height="{Binding ElementName=linesStackPanel, Path=ActualHeight}" BorderBrush="#FF222222" SelectionChanged="busLines_SelectionChanged" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
         </StackPanel>
-        <ListBox x:Name="busLineStationdlb" Grid.Row="1" Grid.Column="0" IsSynchronizedWithCurrentItem="{x:Null}" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusLineStationTemplate}" VerticalAlignment="Stretch" Background="White"/>
+        <ListBox x:Name="busLineStationdlb" Grid.Row="1" Grid.Column="0" IsSynchronizedWithCurrentItem="{x:Null}" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusLineStationTemplate}" VerticalAlignment="Stretch" Background="White" FontSize="14" FontFamily="Segoe UI Emoji"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <StackPanel Orientation="Vertical" Margin="20,0">
-                <Label Content="Show By specific area:"/>
-                <ComboBox x:Name="areas" ItemsSource="{Binding Source=AreasFromEnum}"/>
+                <Label Content="Show By specific area:" Foreground="#FF476972" FontWeight="Bold" FontSize="14"/>
+                <ComboBox x:Name="areas" ItemsSource="{Binding}" Background="White" Margin="10,0" />
             </StackPanel>
-            <Button x:Name="updateButton" Width="120" Margin="5,10" Content="UPDATE BUS"/>
+            <Button x:Name="updateButton" Width="120" Margin="0,10,5,10" Content="UPDATE BUS"/>
             <Button x:Name="deleteButton" Width="120" Margin="5,10" Content="DELETE BUS"/>
             <Button x:Name="addButton" Width="120" Margin="5,10,15,10" Content="ADD BUS"/>
 

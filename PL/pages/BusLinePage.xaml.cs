@@ -25,6 +25,8 @@ namespace PL
         {
             InitializeComponent();
             busLines.DataContext = MainWindow.busLinesCollection;
+            List<string> AreasString = new List<string> { "General", "Jerusalem", "Center", "North", "South", "Hifa", "TelAviv", "YehudaAndShomron" };
+            areas.DataContext = AreasString;
         }
 
         private void busLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
