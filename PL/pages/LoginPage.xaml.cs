@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Net.Mail;
+using System.Net;
 using BLAPI;
 
 namespace PL
@@ -26,13 +28,61 @@ namespace PL
         {
             InitializeComponent();
         }
-
+        static Random rand;
         private void forgotPassword_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (userName.Text == " User name")
+            {
+                ProblemMessage.Text = "First enter your user name";
+                spProblem.Visibility = Visibility.Visible;
+                return;
+            }
+            try
+            {
+                BO.User user = App.bl.GetUser(userName.Text);
+
+                String newPassword = "";
+                rand = new Random();
+                for (int i = 0; i < 6; i++)//create a random password
+                {
+                    int n = rand.Next(0, 62);
+                    if (n <= 9)
+                        newPassword += n;
+                    else if (n < 36)
+                        newPassword += (char)(n + 55);
+                    else if (n < 62)
+                        newPassword += (char)(n + 61);
+                }
+                user.Password = newPassword;
+                App.bl.UpdateUser(user);
+
+                MailMessage mail = new MailMessage();
+                mail.To.Add(user.Email);
+                mail.From = new MailAddress("saramalka2003@gmail.com");
+                mail.Subject = "איפוס סיסמה למערכת האוטובוסים הקולית שלנו";
+                mail.Body = $"המשך יום נעים, מערכת האוטובוסים\n\nתוכל לשנות אותה לאחר הכניסה בפרופיל המשתמש שלך\n.{newPassword} הסיסמה החדשה שלך היא\n\n {userName} שלום";
+                mail.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.Credentials = new NetworkCredential("saramalka2003@gmail.com", "hebrewland1");
+                smtp.EnableSsl = true;
+                smtp.Send(mail);
+                MessageBox.Show("A temporary password has been sent to you by email\nYou must use this password to log in.", "Security Message", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (BO.BOArgumentNotFoundException)
+            {
+                ProblemMessage.Text = "User name are incorrect. please try again";
+                spProblem.Visibility = Visibility.Visible;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
-        private void forgotPassword_MouseEnter(object sender, MouseEventArgs e)
+            private void forgotPassword_MouseEnter(object sender, MouseEventArgs e)
         {
         }
         #region focus

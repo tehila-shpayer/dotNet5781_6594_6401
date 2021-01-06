@@ -674,6 +674,7 @@ namespace BL
             return s + '\n';
         }
         #endregion
+
         #region LineSchedule
         public BO.LineSchedule LineScheduleDoBoAdapter(DO.LineSchedule LineScheduleDO)
         {
