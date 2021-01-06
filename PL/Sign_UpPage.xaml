@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:PL"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -17,9 +18,9 @@
         <StackPanel Grid.Column="1" Margin="10" UseLayoutRounding="True">
             <TextBlock Text="Welcome" TextAlignment="Center" Margin="0,25,0,30" FontSize="37" FontFamily="Segoe UI Light"/>
             <Image Height="70" Margin="40,0,40,10" Source="AccountIcon.png"/>
-            <StackPanel Orientation="Horizontal">
-                
-                <TextBlock x:Name="ProblemMessage" Text="" FontSize="15" Margin="45,0, 45, -10" Foreground="Red" Visibility="Hidden"/>
+            <StackPanel x:Name="spProblem" Orientation="Horizontal" Margin="40,0, 40, -10" Visibility="Hidden">
+                <materialDesign:PackIcon Kind="WarningCircle" Margin="5,0" Height="20" Width="20" Foreground="Red" />
+                <TextBlock x:Name="ProblemMessage" Text="" FontSize="15" Foreground="Red"/>
             </StackPanel>
             
             <TextBox x:Name="UserName" Height="50" Margin="40,5" FontSize="22" Text=" User name" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Foreground="Gray" GotFocus="UserName_GotFocus" LostFocus="UserName_LostFocus"/>

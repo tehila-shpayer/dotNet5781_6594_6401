@@ -101,17 +101,17 @@ namespace PL
         #endregion
         private void SignUpButton_Click(object sender, RoutedEventArgs e)
         {
-            ProblemMessage.Visibility = Visibility.Hidden;
+            spProblem.Visibility = Visibility.Hidden;
             if (UserName.Text == "" || Email.Text == "" || Password.Password == "" || ConfirmPassword.Password=="")
             {
                 ProblemMessage.Text = "You must fill in all the fields!";
-                ProblemMessage.Visibility = Visibility.Visible;
+                spProblem.Visibility = Visibility.Visible;
                 return;
             }
             if (Password.Password != ConfirmPassword.Password)
             {
                 ProblemMessage.Text = "The passwordss don't match!";
-                ProblemMessage.Visibility = Visibility.Visible;
+                spProblem.Visibility = Visibility.Visible;
                 return;
             }
             try
@@ -128,7 +128,7 @@ namespace PL
             }
             catch (BO.BOArgumentNotFoundException ex)
             {
-                ProblemMessage.Visibility = Visibility.Visible;
+                spProblem.Visibility = Visibility.Visible;
             }
         }
     }
