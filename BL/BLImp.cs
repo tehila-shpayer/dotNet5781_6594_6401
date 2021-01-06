@@ -168,14 +168,14 @@ namespace BL
             if (name.Length > 16)
                 throw new BOInvalidInformationException("User name is long.");
             foreach (char key in name)
-                if(!char.IsLetterOrDigit(key))
+                if (!char.IsLetterOrDigit(key))
                     throw new BOInvalidInformationException("User name contains invalid keybords.");
-            if(password.Length < 4)
+            if (password.Length < 4)
                 throw new BOInvalidInformationException("Password is short.");
-            if(password.Length > 16)
+            if (password.Length > 16)
                 throw new BOInvalidInformationException("Password is long.");
-            foreach(char key in password)
-                if(!char.IsLetterOrDigit(key))
+            foreach (char key in password)
+                if (!char.IsLetterOrDigit(key))
                     throw new BOInvalidInformationException("Password contains invalid keybords.");
         }
         public void AddUser(User user)
@@ -313,10 +313,10 @@ namespace BL
         public void DeleteStation(int stationKey)
         {
             try
-            { 
+            {
                 Station station = GetStation(stationKey);
-                foreach(int bl in station.BusLines)
-                {              
+                foreach (int bl in station.BusLines)
+                {
                     DeleteStationFromLine(bl, stationKey);
                     if (!station.BusLines.Any())
                         break;
@@ -373,10 +373,10 @@ namespace BL
         }
         public IEnumerable<BusLineStation> GetAllStationsOfLine(int busLine)
         {
-                var AllStationsOfLine = from station in dl.GetAllBusLineStations()
-                                        where station.BusLineKey == busLine
-                                        select BusLineStationDoBoAdapter(station);
-                return AllStationsOfLine;
+            var AllStationsOfLine = from station in dl.GetAllBusLineStations()
+                                    where station.BusLineKey == busLine
+                                    select BusLineStationDoBoAdapter(station);
+            return AllStationsOfLine;
         }
         public void AddBusLineStation(BusLineStation bls)
         {
@@ -397,7 +397,7 @@ namespace BL
                 station.Clone(busLineStationDO);
                 dl.UpdateBusLineStation(busLineStationDO);
             }
-            catch (DO.InvalidInformationException ex) 
+            catch (DO.InvalidInformationException ex)
             { throw new BOInvalidInformationException("Can't update bus line station. Invalid information.", ex); }
         }
         public void UpdateBusLineStation(int line, int stationKey, Action<BusLineStation> update) //method that knows to updt specific fields in Person
@@ -561,7 +561,7 @@ namespace BL
             //    throw
             //if (position > bus.BusLineStations.Count() + 1 || position < 0)//מיקום רלוונטי - כגודל רשימת התחנות
             //    throw
-            
+
             DO.BusLineStation busLineStationDO = new DO.BusLineStation();
             busLineStationDO.BusLineKey = busLineKey;
             busLineStationDO.StationKey = stationKey;
@@ -591,9 +591,9 @@ namespace BL
 (dl.GetStation(busLineStationDO.StationKey), dl.GetStation(nextBusLineStationDO.StationKey));
                 if (dl.GetConsecutiveStations(prevBusLineStationDO.StationKey, busLineStationDO.StationKey) != null)
                     dl.AddConsecutiveStations(consecutiveStationsToNext);
-            //    foreach (BusLineStation s in busLine.BusLineStations)
-            //        if (s.Position == position + 1)
-            //            UpdateBusLineStation(s.BusLineKey, s.StationKey, bls => bls = BusLineStationDoBoAdapter(busLineStationDO));
+                //    foreach (BusLineStation s in busLine.BusLineStations)
+                //        if (s.Position == position + 1)
+                //            UpdateBusLineStation(s.BusLineKey, s.StationKey, bls => bls = BusLineStationDoBoAdapter(busLineStationDO));
             }
         }
         public void UpdateBusLine(BusLine bus)
@@ -662,7 +662,7 @@ namespace BL
         public String ToStringBusLine(BusLine b)
         {
             String s = $"Line Key: {b.Key}\nBus line number: {b.LineNumber}\nArea: {b.Area}";
-            if (b.BusLineStations.Count()>0)
+            if (b.BusLineStations.Count() > 0)
             {
                 s += $"\nFirst station: {b.FirstStation}, Last Station: {b.LastStation}\n";
                 s += "  Stations in line:\n";
@@ -674,7 +674,83 @@ namespace BL
             return s + '\n';
         }
         #endregion
+        #region LineSchedule
+        public BO.LineSchedule LineScheduleDoBoAdapter(DO.LineSchedule LineScheduleDO)
+        {
+            BO.LineSchedule LineScheduleBO = new BO.LineSchedule();
+            LineScheduleDO.Clone(LineScheduleBO);
+            return LineScheduleBO;
+        }
+        public LineSchedule GetLineSchedule(int lineKey, DateTime startTime)
+        {
+            try
+            {
+                DO.LineSchedule LineScheduleDO = dl.GetLineSchedule(lineKey, startTime);
+                return LineScheduleDoBoAdapter(LineScheduleDO);
+            }
+            catch (DO.ArgumentNotFoundException ex)
+            {
+                throw new BOArgumentNotFoundException($"Can't get line schedule {lineKey} that start at {startTime.ToString("HH:mm")}", ex);
+            }
+        }
+        public IEnumerable<LineSchedule> GetAllLineSchedules()
+        {
+            var AllLineSchedules = from ls in dl.GetAllLineSchedules()
+                              select LineScheduleDoBoAdapter(ls);
+            return AllLineSchedules;
+        }
+        public IEnumerable<LineSchedule> GetAllLineSchedulesOfLine(int Line)
+        {
+            var AllLineSchedules = from ls in dl.GetAllLineSchedulesOfLine(Line)
+                                   select LineScheduleDoBoAdapter(ls);
+            return AllLineSchedules;
+        }
+        public void AddLineSchedule(LineSchedule lineSchedule)
+        {
+            try
+            {
+                DO.LineSchedule LineScheduleDO = new DO.LineSchedule();
+                lineSchedule.Clone(LineScheduleDO);
+                dl.AddLineSchedule(LineScheduleDO);
+            }
+            catch (DO.InvalidInformationException ex)
+            {
+                throw new BOInvalidInformationException($"Can't add the line schedule.", ex);
+            }
+        }
+        public void UpdateLineSchedule(LineSchedule lineSchedule)
+        {
+            try
+            {
+                DO.LineSchedule LineScheduleDO = new DO.LineSchedule();
+
+                lineSchedule.Clone(LineScheduleDO);
+                dl.UpdateLineSchedule(LineScheduleDO);
+            }
+            catch (DO.ArgumentNotFoundException ex) { throw new BOArgumentNotFoundException($"Can't update line schedule.", ex); }
+        }
+        public void UpdateLineSchedule(int lineKey, DateTime startTime, Action<LineSchedule> update)
+        {
+            try
+            {
+                DO.LineSchedule LineScheduleDO = new DO.LineSchedule();
+                LineSchedule LineScheduleBO = GetLineSchedule(lineKey, startTime);
+                update(LineScheduleBO);
+                LineScheduleBO.Clone(LineScheduleDO);
+                dl.UpdateLineSchedule(LineScheduleDO);
+            }
+            catch (DO.ArgumentNotFoundException ex) { throw new BOArgumentNotFoundException($"Can't update line schedule.", ex); }
+        }
+        public void DeleteLineSchedule(int lineKey, DateTime startTime)
+        {
+            try
+            {
+                dl.DeleteLineSchedule(lineKey, startTime);
+            }
+            catch (DO.ArgumentNotFoundException ex) { throw new BOArgumentNotFoundException($"Can't delete schedule line {lineKey} that start at {startTime.ToString("HH:mm")}.", ex); }
+        }
+        #endregion
 
     }
 }
- 
+

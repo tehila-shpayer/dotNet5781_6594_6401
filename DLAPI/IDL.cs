@@ -76,8 +76,8 @@ namespace DLAPI
 
         #region LineSchedule
         LineSchedule GetLineSchedule(int line, DateTime startTime);
-        IEnumerable<LineSchedule> GetAllLineSchedule();
-        IEnumerable<LineSchedule> GetAllLineScheduleOfLine(int Line);
+        IEnumerable<LineSchedule> GetAllLineSchedules();
+        IEnumerable<LineSchedule> GetAllLineSchedulesOfLine(int Line);
         void AddLineSchedule(LineSchedule lineSchedule);
         void UpdateLineSchedule(LineSchedule lineSchedule);
         void UpdateLineSchedule(int line, DateTime startTime, Action<LineSchedule> update); //method that knows to updt specific fields in Person

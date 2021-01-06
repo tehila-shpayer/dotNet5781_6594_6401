@@ -310,13 +310,13 @@ namespace DL
                 throw new DO.ArgumentNotFoundException($"Line schedule of line {line} and starting time {startTime.ToString("HH:mm")} not found.");
             return lineSchedule.Clone();
         }
-        public IEnumerable<LineSchedule> GetAllLineSchedule()
+        public IEnumerable<LineSchedule> GetAllLineSchedules()
         {
             var lineSchedules = from ls in DataSource.ListLineSchedules
                                 select ls;
             return lineSchedules;
         }
-        public IEnumerable<LineSchedule> GetAllLineScheduleOfLine(int Line)
+        public IEnumerable<LineSchedule> GetAllLineSchedulesOfLine(int Line)
         {
             var lineSchedules = from ls in DataSource.ListLineSchedules
                                 where ls.LineKey == Line
@@ -326,7 +326,7 @@ namespace DL
         public void AddLineSchedule(LineSchedule lineSchedule)
         {
             if (DataSource.ListLineSchedules.FirstOrDefault(ls => ls.LineKey == lineSchedule.LineKey && ls.StartTime.ToString("HH:mm") == lineSchedule.StartTime.ToString("HH:mm")) != null)
-                throw new InvalidInformationException($"Can't add the line schedule. There is already a line schedule {lineSchedule.LineKey} that start at {lineSchedule.StartTime.ToString("HH:mm")}");
+                throw new InvalidInformationException($"There is already a line schedule {lineSchedule.LineKey} that start at {lineSchedule.StartTime.ToString("HH:mm")}");
             DataSource.ListLineSchedules.Add(lineSchedule);
         }
         public void UpdateLineSchedule(LineSchedule lineSchedule) 
