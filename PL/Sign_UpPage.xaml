@@ -17,15 +17,14 @@
         <StackPanel Grid.Column="1" Margin="20" UseLayoutRounding="True">
             <TextBlock Text="Welcome" TextAlignment="Center" Margin="0,25,0,30" FontSize="37" FontFamily="Segoe UI Light"/>
             <Image Height="60" Margin="40,0,40,10" Source="AccountIcon.png"/>
-            <TextBox x:Name="UserName" Height="50" Margin="40,0" FontSize="22" Text=" User name" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Foreground="Gray" GotFocus="userName_GotFocus" LostFocus="userName_LostFocus"/>
-            <TextBox x:Name="Email" Height="50" Margin="40,10" FontSize="22" Text=" Email" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Foreground="Gray" GotFocus="userName_GotFocus" LostFocus="userName_LostFocus"/>
-            <TextBlock x:Name="tbPassword" Text=" Password" FontSize="22" Margin="40,10,40,0" Foreground="Gray" GotFocus="userName_GotFocus" LostFocus="userName_LostFocus"/>
-            <PasswordBox x:Name="Password" Height="50" Margin="40,-40, 40,0" FontSize="22" Foreground="black" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" GotFocus="password_GotFocus" LostFocus="password_LostFocus"/>
-            <TextBlock x:Name="tbConfirmPassword" Text=" Password" FontSize="22" Margin="40,0" Foreground="Gray" GotFocus="userName_GotFocus" LostFocus="userName_LostFocus"/>
-            <PasswordBox x:Name="ConfirmPassword" Height="50" Margin="40,-38, 40,0" FontSize="22" Foreground="black" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" GotFocus="password_GotFocus" LostFocus="password_LostFocus"/>
+            <TextBox x:Name="UserName" Height="50" Margin="40,5" FontSize="22" Text=" User name" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Foreground="Gray" GotFocus="UserName_GotFocus" LostFocus="UserName_LostFocus"/>
+            <TextBox x:Name="Email" Height="50" Margin="40,5" FontSize="22" Text=" Email" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Foreground="Gray" GotFocus="Email_GotFocus" LostFocus="Email_LostFocus"/>
+            <TextBlock x:Name="tbPassword" Text=" Password" FontSize="22" Margin="40,15,40,-42" Foreground="Gray"/>
+            <PasswordBox x:Name="Password" Height="50" Margin="40,5" FontSize="22" Foreground="black" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" GotFocus="Password_GotFocus" LostFocus="Password_LostFocus"/>
+            <TextBlock x:Name="tbConfirmPassword" Text=" Confirm Password" FontSize="22" Margin="40,15,40,-42" Foreground="Gray"/>
+            <PasswordBox x:Name="ConfirmPassword" Height="50" Margin="40,0" FontSize="22" Foreground="black" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" GotFocus="ConfirmPassword_GotFocus" LostFocus="ConfirmPassword_LostFocus"/>
 
-            <!--<TextBox x:Name="password" Height="50" Margin="40,0" FontSize="22" Foreground="#FFBABABA" Text="  Password" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" BorderBrush="#FF919398" GotFocus="password_GotFocus" LostFocus="password_LostFocus"/>-->
-            <Button x:Name="signUpButton" Content="Sign Up" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" BorderBrush="{x:Null}" Background="#FF56A0B5" Foreground="White" Width="200" Height="45" Margin="15"/>
+            <Button x:Name="signUpButton" Content="Sign Up"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" BorderBrush="{x:Null}" Background="#FF56A0B5" Foreground="White" Width="200" Height="50" Margin="40" Padding="0"/>
 
    </StackPanel>  
     </Grid>
