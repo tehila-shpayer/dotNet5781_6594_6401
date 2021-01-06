@@ -189,7 +189,7 @@ namespace BL
                 dl.AddUser(userDO);
             }
             catch (DO.InvalidInformationException ex)
-            { throw new BOInvalidInformationException("Couldn't add user. invalid information!", ex); }
+            { throw new BOInvalidInformationException("Couldn't add user!", ex); }
         }
         public void UpdateUser(User user)
         {

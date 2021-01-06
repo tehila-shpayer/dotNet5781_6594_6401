@@ -83,7 +83,7 @@ namespace PL
             //}
             //catch (BO.BOArgumentNotFoundException ex)
             //{
-            //    wrongPassword.Visibility = Visibility.Visible;
+            //    spProblem.Visibility = Visibility.Visible;
             //}
         }
 

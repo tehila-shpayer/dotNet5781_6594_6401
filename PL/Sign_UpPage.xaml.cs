@@ -123,12 +123,18 @@ namespace PL
                 user.AuthorizationManagement = BO.AuthorizationManagement.Traveler;
                 App.bl.AddUser(user);
                 if (user.AuthorizationManagement == BO.AuthorizationManagement.Traveler)
-                    currentPage.NavigationService.Navigate(new ManagerPage(UserName.Text, Password.Password));
+                    currentPage.NavigationService.Navigate(new TravelerPage(UserName.Text, Password.Password));
             //    else
-            //        currentPage.NavigationService.Navigate(new TravelerPage(UserName.Text, Password.Password));
+            //        currentPage.NavigationService.Navigate(new ManagerPage(UserName.Text, Password.Password));
             }
-            catch (BO.BOArgumentNotFoundException ex)
+            catch (BO.BOInvalidInformationException ex)
             {
+                ProblemMessage.Text = ex.Message;
+                spProblem.Visibility = Visibility.Visible;
+            }
+            catch (Exception ex)
+            {
+                ProblemMessage.Text = ex.Message;
                 spProblem.Visibility = Visibility.Visible;
             }
         }
