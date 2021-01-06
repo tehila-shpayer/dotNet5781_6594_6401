@@ -34,41 +34,102 @@ namespace PL
         {
         }
 
-        private void userName_GotFocus(object sender, RoutedEventArgs e)
+        #region focus
+        private void UserName_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (userName.Text == "  User name")
+            if (UserName.Text == " User name")
             {
-                userName.Text = "";
-                userName.Foreground = Brushes.Black;
+                UserName.Text = "";
+                UserName.Foreground = Brushes.Black;
+            }
+        }
+        private void Email_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (Email.Text == " Email")
+            {
+                Email.Text = "";
+                Email.Foreground = Brushes.Black;
             }
         }
 
-
-        private void password_GotFocus(object sender, RoutedEventArgs e)
+        private void Password_GotFocus(object sender, RoutedEventArgs e)
         {
-            //if (password.Text == "  Password")
-            //{
-            //    password.Text = "";
-            //    password.Foreground = Brushes.Black;
-            //}
-        }
-
-        private void userName_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if(userName.Text == "")
+            if (tbPassword.Text == " Password")
             {
-                userName.Text = "  User name";
-                userName.Foreground = Brushes.Gray;
+                tbPassword.Text = "";
+            }
+        }
+        private void ConfirmPassword_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (tbConfirmPassword.Text == " Confirm Password")
+            {
+                tbConfirmPassword.Text = "";
             }
         }
 
-        private void password_LostFocus(object sender, RoutedEventArgs e)
+        private void UserName_LostFocus(object sender, RoutedEventArgs e)
         {
-            //if (password.Text == "")
-            //{
-            //    password.Text = "  Password";
-            //    password.Foreground = Brushes.Gray;
-            //}
+            if (UserName.Text == "")
+            {
+                UserName.Text = " User name";
+                UserName.Foreground = Brushes.Gray;
+            }
+        }
+        private void Email_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (Email.Text == "")
+            {
+                Email.Text = " Email";
+                Email.Foreground = Brushes.Gray;
+            }
+        }
+
+        private void Password_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (Password.Password == "")
+            {
+                tbPassword.Text = " Password";
+            }
+        }
+        private void ConfirmPassword_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (ConfirmPassword.Password == "")
+            {
+                tbConfirmPassword.Text = " Confirm Password";
+            }
+        }
+        #endregion
+        private void SignUpButton_Click(object sender, RoutedEventArgs e)
+        {
+            ProblemMessage.Visibility = Visibility.Hidden;
+            if (UserName.Text == "" || Email.Text == "" || Password.Password == "" || ConfirmPassword.Password=="")
+            {
+                ProblemMessage.Text = "You must fill in all the fields!";
+                ProblemMessage.Visibility = Visibility.Visible;
+                return;
+            }
+            if (Password.Password != ConfirmPassword.Password)
+            {
+                ProblemMessage.Text = "The passwordss don't match!";
+                ProblemMessage.Visibility = Visibility.Visible;
+                return;
+            }
+            try
+            {
+                BO.User user = new BO.User();
+                user.UserName = UserName.Text;
+                user.Email = Email.Text;
+                user.Password = Password.Password;
+                App.bl.AddUser(user);
+            //    if (user.AuthorizationManagement == BO.AuthorizationManagement.Manager)
+            //        currentPage.NavigationService.Navigate(new ManagerPage(UserName.Text, Password.Password));
+            //    else
+            //        currentPage.NavigationService.Navigate(new TravelerPage(UserName.Text, Password.Password));
+            }
+            catch (BO.BOArgumentNotFoundException ex)
+            {
+                ProblemMessage.Visibility = Visibility.Visible;
+            }
         }
     }
 }
