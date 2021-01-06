@@ -8,7 +8,7 @@ namespace DO
 {
     public class LineSchedule
     {
-        public int BusLineNumer { get; set; }
+        public int LineKey { get; set; }
         public int Frequency { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
