@@ -47,7 +47,7 @@ namespace PL
         {
             if (oldPassword.Password == "")
             {
-                tbOldPassword.Text = " Password";
+                tbOldPassword.Text = " Old Password";
             }
         }
 
@@ -63,24 +63,22 @@ namespace PL
         {
             if (newPassword.Password == "")
             {
-                tbNewPassword.Text = " Password";
+                tbNewPassword.Text = " New Password";
             }
         }
 
         private void changePasswordButton_Click(object sender, RoutedEventArgs e)
         {
-            if (changePasswordButton.Content == "change password")
+            if ((string)changePasswordButton.Content == "change password")
             {
                 changePasswordStack.Visibility = Visibility.Visible;
                 changePasswordButton.Content = "save";
             }
             else
             {
-                try
-                {
-                    //if()
+                if(oldPassword.Password == password)
                     App.bl.UpdateUser(userName, u => u.Password = newPassword.Password);
-                }
+                   
             }
         }
     }
