@@ -63,39 +63,46 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="pages\BusLinePage.xaml.cs">
+      <DependentUpon>BusLinePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PO\Enum.cs" />
     <Compile Include="PO\Tools.cs" />
-    <Compile Include="Profile.xaml.cs">
+    <Compile Include="pages\Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Sign_UpPage.xaml.cs">
+    <Compile Include="pages\Sign_UpPage.xaml.cs">
       <DependentUpon>Sign_UpPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LoginPage.xaml.cs">
+    <Compile Include="pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ManagerMenue.xaml.cs">
+    <Compile Include="pages\ManagerMenue.xaml.cs">
       <DependentUpon>ManagerMenue.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ManagerPage.xaml.cs">
+    <Compile Include="pages\ManagerPage.xaml.cs">
       <DependentUpon>ManagerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PO\Bus.cs" />
     <Compile Include="PO\BusLine.cs" />
     <Compile Include="PO\BusLineStation.cs" />
     <Compile Include="PO\Station.cs" />
-    <Compile Include="TravelerPage.xaml.cs">
+    <Compile Include="pages\TravelerPage.xaml.cs">
       <DependentUpon>TravelerPage.xaml</DependentUpon>
     </Compile>
-    <Page Include="Profile.xaml">
+    <Page Include="pages\BusLinePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Sign_UpPage.xaml">
+    <Page Include="pages\Profile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\Sign_UpPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="LoginPage.xaml">
+    <Page Include="pages\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -112,15 +119,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ManagerMenue.xaml">
+    <Page Include="pages\ManagerMenue.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ManagerPage.xaml">
+    <Page Include="pages\ManagerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TravelerPage.xaml">
+    <Page Include="pages\TravelerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
