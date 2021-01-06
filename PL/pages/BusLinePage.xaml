@@ -1,14 +1,43 @@
-﻿<Page x:Class="PL.pages.BusLinePage"
+﻿<Page x:Class="PL.BusLinePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:PL.pages"
+      xmlns:local="clr-namespace:PL"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="BusLinePage" Background="White">
-
+     Title="BusLinePage" Background="White">
+    <Page.Resources>
+        <DataTemplate x:Key="BusLineTemplate"
+                  DataType="local:BusLine">
+            <StackPanel>
+                <Label Content="Key"/>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="8*"/>
+
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" Grid.Column="1" x:Name="linesStackPanel">
+            <StackPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="LightGray" Offset="1"/>
+                    <GradientStop Color="#FFE6E6E6"/>
+                </LinearGradientBrush>
+            </StackPanel.Background>
+            <StackPanel.Effect>
+                <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="1"/>
+            </StackPanel.Effect>
+            <ListBox x:Name="busLines" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusLineTemplate}" VerticalAlignment="Stretch" Height="{Binding ElementName=linesStackPanel, Path=ActualHeight}">
+            </ListBox>
+        </StackPanel>
     </Grid>
 </Page>
+

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PL.pages
+namespace PL
 {
     /// <summary>
     /// Interaction logic for BusLinePage.xaml
@@ -23,6 +23,8 @@ namespace PL.pages
         public BusLinePage()
         {
             InitializeComponent();
+            //busLines.DataContext = MainWindow.busLinesCollection;
+
         }
     }
 }
