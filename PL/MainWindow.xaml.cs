@@ -33,12 +33,12 @@ namespace PL
             foreach(BO.BusLine bl in App.bl.GetAllBusLines())
             {
                 PL.BusLine busLinePL = new BusLine();
-                busLinesCollection.Add(PoBoAdapter.BusLineDoBoAdapter(bl));
+                busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(bl));
             }
             foreach (BO.Station s in App.bl.GetAllStations())
             {
                 //PL.Station stationPL = new Station();
-                stationsCollection.Add(PoBoAdapter.StationDoBoAdapter(s));
+                stationsCollection.Add(PoBoAdapter.StationPoBoAdapter(s));
             }
             
         }

@@ -16,6 +16,12 @@
                 <TextBlock Text="{Binding Key}" TextAlignment="Right" FontSize="15"/>
             </StackPanel>
         </DataTemplate>
+        <DataTemplate x:Key="LineTemplate" DataType="local:int">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Width="230">
+                <TextBlock Text="{Binding Name}" TextAlignment="Right" FontWeight="Bold" FontSize="15" FontFamily="Segoe UI Black"/>
+                <TextBlock Text="{Binding Key}" TextAlignment="Right" FontSize="15"/>
+            </StackPanel>
+        </DataTemplate>
     </Page.Resources>
     <Grid ScrollViewer.CanContentScroll="True">
         <Grid.ColumnDefinitions>
@@ -52,13 +58,7 @@
                 <TextBox x:Name="searchBox" FontSize="16" TextChanged="SearchBox_TextChanged" Background="White" BorderBrush="#FF1D2744" Height="30"/>
                 <materialDesign:PackIcon Kind="Search" Margin="0,-28,10,5" Width="25" Height="25" HorizontalAlignment="Right" Foreground="Gray"/>
             </StackPanel>
-            <ListBox x:Name="lbStations" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource StationTemplate}" BorderBrush="#FF222222" SelectionChanged="stations_SelectionChanged" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="523" Margin="0,0,0.4,0">
-                <!--<ListBox.Foreground>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Gray" Offset="0"/>
-                        <GradientStop Color="#FF477AA9" Offset="1"/>
-                    </LinearGradientBrush>
-                </ListBox.Foreground>-->
+            <ListBox x:Name="lbStations" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource StationTemplate}" BorderBrush="#FF222222" SelectionChanged="stations_SelectionChanged" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="439" Margin="0,0,0.4,0">
             </ListBox>
         </StackPanel>
         <!--<ListBox x:Name="busLineStationdlb" Grid.Row="1" Grid.Column="0" IsSynchronizedWithCurrentItem="{x:Null}" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusLineStationTemplate}" VerticalAlignment="Stretch" Background="White" FontSize="14" FontFamily="Segoe UI Emoji"/>-->
@@ -68,16 +68,34 @@
             <Button x:Name="addButton" Width="145" Margin="5,10,15,10" Content="ADD STATION" Background="#FF477AA9"/>
         </StackPanel>
 
-        <Rectangle Grid.Column="0" Grid.Row="1" Fill="White" Margin="60" RadiusX="10" RadiusY="10">
+        <Rectangle Grid.Column="0" Grid.Row="1" Fill="White" Margin="60" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
         </Rectangle>
         <Grid x:Name="StationInfoGrid" Grid.Column="0" Grid.Row="1" Margin="80" DataContext="{Binding}">
-            <Grid.ColumnDefinitions>
+            <!--<Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="1.5*"/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="1">
-                <TextBlock Text="{Binding Name}" TextAlignment="Right" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI Black"/>
-                <TextBlock Text="{Binding Key}" TextAlignment="Right" FontSize="18"/>
+            </Grid.ColumnDefinitions>-->
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="{Binding Name}" Margin="0" TextAlignment="Right" FontWeight="Bold" FontSize="20" FontFamily="Segoe UI Black"/>
+                <TextBlock Text="{Binding Key}" Margin="5" TextAlignment="Right" FontSize="18"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="#FF477AA9">
+                        <materialDesign:PackIcon Kind="MapMarkerOutline" Height="30" Width="30"/>
+                    </Button>
+
+                    <TextBlock FontSize="18" TextAlignment="Right" Margin="15" FontFamily="Segoe UI Emoji">
+                    <Run Text="{Binding Latitude}"/>
+                    <Run Text="N° ,"/>
+                    <Run Text="{Binding Longitude}"/>
+                    <Run Text="E°"/>
+                    </TextBlock>
+
+                </StackPanel>
+                <TextBlock FontSize="18" Text=":קווים העוברים בתחנה" TextAlignment="Right" Margin="15" FontFamily="Segoe UI Emoji"/>
+                <ListBox x:Name="lbLines" FontSize="18" FontFamily="Segoe UI Emoji" IsSynchronizedWithCurrentItem="True" ItemTemplate="{StaticResource StationTemplate}" SelectionChanged="stations_SelectionChanged" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
+
+                    </ListBox>
             </StackPanel>
         </Grid>
 
