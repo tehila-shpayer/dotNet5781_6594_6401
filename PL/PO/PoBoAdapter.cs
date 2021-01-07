@@ -24,6 +24,8 @@ namespace PL
             {
                 BusPO.LicenseNumberFormat = $"{s[0]}{s[1]}-{s[2]}{s[3]}{s[4]}-{s[5]}{s[6]}";
             }
+            BusPO.RunningDateFormat = BusBO.RunningDate.ToString("dd/MM/yyyy");
+            BusPO.LastTreatmentFormat = BusBO.LastTreatment.ToString("dd/MM/yyyy");
             return BusPO;
         }
         static public  PL.BusLine BusLinePoBoAdapter(BO.BusLine BusLineBO)

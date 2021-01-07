@@ -16,6 +16,7 @@
                 <TextBlock Text="{Binding Status}" TextAlignment="Right" FontSize="15"/>
             </StackPanel>
         </DataTemplate>
+        <CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Bus}, CreateList=True}"/>
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -65,10 +66,16 @@
                 <ColumnDefinition Width="1.5*"/>
             </Grid.ColumnDefinitions>-->
             <StackPanel Grid.Column="0">
-                <TextBlock Text="{Binding LicenseNumberFormat}" Margin="10" TextAlignment="Right" FontWeight="Bold" FontSize="22" FontFamily="Segoe UI Black"/>
-                <TextBlock Text="{Binding Status}" Margin="10,0" TextAlignment="Right" FontSize="20"/>
-
+                <TextBlock Text="{Binding LicenseNumberFormat}" Margin="10,0" TextAlignment="Right" FontWeight="Bold" FontSize="25" FontFamily="Segoe UI Black"/>
+                <TextBlock Text="{Binding Status}" Margin="10,0" TextAlignment="Right" FontSize="22"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock FontSize="20" TextAlignment="Right" Margin="15" FontFamily="Segoe UI Emoji">
+                    <Run Text="{Binding RunningDateFormat}"/>
+                    <Run Text=" :תאריך תחילת פעילות"/>
+                    </TextBlock>
+                    <materialDesign:PackIcon Kind="DateRange"/>
+                </StackPanel>
+                    <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="#FF477AA9">
                         <materialDesign:PackIcon Kind="MapMarkerOutline" Height="30" Width="30"/>
                     </Button>
@@ -80,9 +87,8 @@
                     <Run Text="E°"/>
                     </TextBlock>
 
-                </StackPanel>
-                <TextBlock FontSize="20" Text=":קווים העוברים בתחנה" TextAlignment="Right" Margin="15" FontFamily="Segoe UI Semibold"/>
-                
+                </StackPanel>-->
+
             </StackPanel>
         </Grid>
     </Grid>
