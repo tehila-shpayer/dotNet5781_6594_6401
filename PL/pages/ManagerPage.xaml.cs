@@ -46,7 +46,7 @@ namespace PL
 
         private void busesButton_Click(object sender, RoutedEventArgs e)
         {
-
+            currentPage.Content = new BusPage();
         }
 
         private void configurationButton_Click(object sender, RoutedEventArgs e)

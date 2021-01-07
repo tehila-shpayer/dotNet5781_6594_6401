@@ -27,20 +27,24 @@ namespace PL
     {
         public static ObservableCollection<BusLine> busLinesCollection = new ObservableCollection<BusLine>();
         public static ObservableCollection<Station> stationsCollection = new ObservableCollection<Station>();
+        public static ObservableCollection<Bus> busesCollection = new ObservableCollection<Bus>();
+
         public MainWindow()
         {
             InitializeComponent();
             foreach(BO.BusLine bl in App.bl.GetAllBusLines())
             {
-                PL.BusLine busLinePL = new BusLine();
                 busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(bl));
             }
             foreach (BO.Station s in App.bl.GetAllStations())
             {
-                //PL.Station stationPL = new Station();
                 stationsCollection.Add(PoBoAdapter.StationPoBoAdapter(s));
             }
-            
+            foreach (BO.Bus b in App.bl.GetAllBuses())
+            {
+                busesCollection.Add(PoBoAdapter.BusPoBoAdapter(b));
+            }
+
         }
 
         private void powerButton_Click(object sender, RoutedEventArgs e)

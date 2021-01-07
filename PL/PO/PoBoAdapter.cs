@@ -10,6 +10,22 @@ namespace PL
 {
     public static class PoBoAdapter
     {
+        static public PL.Bus BusPoBoAdapter(BO.Bus BusBO)
+        {
+            PL.Bus BusPO = new PL.Bus();
+            BusBO.Clone(BusPO);
+            
+            String s = BusPO.LicenseNumber;
+            if (s.Length == 8)
+            {
+                BusPO.LicenseNumberFormat = $"{s[0]}{s[1]}{s[2]}-{s[3]}{s[4]}-{s[5]}{s[6]}{s[7]}";
+            }
+            else
+            {
+                BusPO.LicenseNumberFormat = $"{s[0]}{s[1]}-{s[2]}{s[3]}{s[4]}-{s[5]}{s[6]}";
+            }
+            return BusPO;
+        }
         static public  PL.BusLine BusLinePoBoAdapter(BO.BusLine BusLineBO)
         {
            PL.BusLine BusLinePO = new PL.BusLine();
@@ -37,14 +53,6 @@ namespace PL
         {
             PL.Station StationPO = new PL.Station();
             StationBO.Clone(StationPO);
-            //int l = 1791;
-            //BO.BusLine BusLineBO = App.bl.GetBusLine(l);
-            //string source = App.bl.GetStation(BusLineBO.FirstStation).Name;
-            //string destination = App.bl.GetStation(BusLineBO.LastStation).Name;
-            //int number = BusLineBO.LineNumber;
-            //string show = $"{number}#{source} -> {destination}";
-            StationPO.BusLines = from line in StationBO.BusLines
-                                 select line;
             StationPO.PresentBusLines = from line in StationBO.BusLines
                                  select PoBoAdapter.PresentBusLineForStationPoBoAdapter(App.bl.GetBusLine(line));
             return StationPO;
