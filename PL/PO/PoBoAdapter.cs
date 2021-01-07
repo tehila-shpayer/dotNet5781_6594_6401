@@ -18,6 +18,14 @@ namespace PL
                                         select PoBoAdapter.BusLineStationPoBoAdapter(bls);
             return BusLinePO;
         }
+        static public PL.PresentBusLineForStation PresentBusLineForStationPoBoAdapter(BO.BusLine BusLineBO)
+        {
+            PL.PresentBusLineForStation PresentBL = new PL.PresentBusLineForStation();
+            BusLineBO.Clone(PresentBL);
+            PresentBL.NameFirstStation = App.bl.GetStation(BusLineBO.FirstStation).Name;
+            PresentBL.NameLastStation = App.bl.GetStation(BusLineBO.LastStation).Name;
+            return PresentBL;
+        }
         static public PL.BusLineStation BusLineStationPoBoAdapter(BO.BusLineStation BusLineStationBO)
         {
             PL.BusLineStation BusLineStationPO = new PL.BusLineStation();
@@ -37,8 +45,8 @@ namespace PL
             //string show = $"{number}#{source} -> {destination}";
             StationPO.BusLines = from line in StationBO.BusLines
                                  select line;
-            StationPO.BusLinesAllData = from line in StationBO.BusLines
-                                 select PoBoAdapter.BusLinePoBoAdapter(App.bl.GetBusLine(line));
+            StationPO.PresentBusLines = from line in StationBO.BusLines
+                                 select PoBoAdapter.PresentBusLineForStationPoBoAdapter(App.bl.GetBusLine(line));
             return StationPO;
         }
     }

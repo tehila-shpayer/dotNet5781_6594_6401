@@ -75,6 +75,7 @@
     <Compile Include="pages\BusLinePage.xaml.cs">
       <DependentUpon>BusLinePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PO\PresentBusLineForStation.cs" />
     <Compile Include="PO\Cloning.cs" />
     <Compile Include="PO\Enum.cs" />
     <Compile Include="PO\PoBoAdapter.cs" />
