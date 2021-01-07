@@ -135,11 +135,10 @@ namespace DL
         }
         public void UpdateBusLine(BusLine line)
         {
-            BusLine bus = DataSource.ListBusLines.Find(b => b.Key == line.Key);
-            if (bus != null)
-                bus = line;
-            else
-                throw new ArgumentNotFoundException($"Bus not found with license number: {line.Key}");
+            int indexOfBusLineToUpdate = DataSource.ListBusLines.FindIndex(s => s.Key == line.Key);
+            if (indexOfBusLineToUpdate == -1)
+                throw new ArgumentNotFoundException($"BusLine not found with key: {line.Key}");
+            DataSource.ListBusLines[indexOfBusLineToUpdate] = line;
         }
         public void UpdateBusLine(int busLineKey, Action<BusLine> update)//method that knows to updt specific fields in BusLine
         {
