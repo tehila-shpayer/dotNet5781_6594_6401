@@ -86,7 +86,8 @@ namespace PL
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-
+            AddStationWindow addStationWindow = new AddStationWindow();
+            addStationWindow.ShowDialog();
         }
     }
 }
