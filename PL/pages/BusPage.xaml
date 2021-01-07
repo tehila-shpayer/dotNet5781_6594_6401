@@ -60,34 +60,71 @@
 
         <Rectangle Grid.Column="0" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
         </Rectangle>
-        <Grid x:Name="BusInfoGrid" Grid.Column="0" Grid.Row="1" Margin="60" DataContext="{Binding}">
+        <Grid x:Name="BusInfoGrid" Grid.Column="0" Grid.Row="1" Margin="60,60,60,45" DataContext="{Binding}">
             <!--<Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="1.5*"/>
             </Grid.ColumnDefinitions>-->
             <StackPanel Grid.Column="0">
                 <TextBlock Text="{Binding LicenseNumberFormat}" Margin="10,0" TextAlignment="Right" FontWeight="Bold" FontSize="25" FontFamily="Segoe UI Black"/>
-                <TextBlock Text="{Binding Status}" Margin="10,0" TextAlignment="Right" FontSize="22"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <TextBlock FontSize="20" TextAlignment="Right" Margin="15" FontFamily="Segoe UI Emoji">
+                <TextBlock Text="{Binding Status}" Margin="15,10,15,20" TextAlignment="Right" FontSize="24"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,6,20,6">
+                    <TextBlock FontSize="20" TextAlignment="Right" FontFamily="Segoe UI Emoji">
                     <Run Text="{Binding RunningDateFormat}"/>
-                    <Run Text=" :תאריך תחילת פעילות"/>
+                    <Run Text=" :תאריך תחילת פעילות "/>
                     </TextBlock>
-                    <materialDesign:PackIcon Kind="DateRange"/>
+                    <materialDesign:PackIcon Kind="DateRange" Foreground="#FF477AA9" Width="30" Height="30"/>
                 </StackPanel>
-                    <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="#FF477AA9">
-                        <materialDesign:PackIcon Kind="MapMarkerOutline" Height="30" Width="30"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,6,20,6">
+                    <TextBlock FontSize="20" TextAlignment="Right" FontFamily="Segoe UI Emoji">
+                    <Run Text="{Binding KM}"/>
+                    <Run Text=" :'קילומטראז "/>
+                    </TextBlock>
+                    <materialDesign:PackIcon Kind="Odometer" Foreground="#FF477AA9" Width="30" Height="30"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,6,20,6">
+                    <TextBlock FontSize="20" TextAlignment="Right" FontFamily="Segoe UI Emoji">
+                    <Run Text="{Binding LastTreatmentFormat}"/>
+                    <Run Text=" :תאריך טיפול אחרון "/>
+                    </TextBlock>
+                    <materialDesign:PackIcon Kind="DateRange" Foreground="#FF477AA9" Width="30" Height="30"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,6,20,6">
+                    <TextBlock FontSize="20" TextAlignment="Right" FontFamily="Segoe UI Emoji">
+                    <Run Text="{Binding BeforeTreatKM}"/>
+                    <Run Text=" :קילומטראז' מאז טיפול אחרון "/>
+                    </TextBlock>
+                    <materialDesign:PackIcon Kind="Odometer" Foreground="#FF477AA9" Width="30" Height="30"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,6,20,6">
+                    <TextBlock FontSize="20" TextAlignment="Right" FontFamily="Segoe UI Emoji">
+                    <Run Text="{Binding Fuel}"/>
+                    <Run Text=" :דלק "/>
+                    </TextBlock>
+                    <materialDesign:PackIcon Kind="Fuel" Foreground="#FF477AA9" Width="30" Height="30"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10" HorizontalAlignment="Center">
+                    <Button Margin="10,5" Width="120" Height="45" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Margin="0,0,5,0" Kind="Travel" Height="30" Width="30"/>
+                            <TextBlock Text="נסיעה" VerticalAlignment="Center" Margin="5,0,0,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Margin="10,5" Width="120" Height="45" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Margin="0,0,5,0" Kind="Screwdriver" Height="30" Width="30"/>
+                            <TextBlock Text="טיפול" VerticalAlignment="Center" Margin="5,0,0,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Margin="10,5" Width="120" Height="45" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Margin="0,0,5,0" Kind="FuelPump" Height="30" Width="30"/>
+                            <TextBlock Text="תדלוק" VerticalAlignment="Center" Margin="5,0,0,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                        </StackPanel>
                     </Button>
 
-                    <TextBlock FontSize="20" TextAlignment="Right" Margin="15" FontFamily="Segoe UI Emoji">
-                    <Run Text="{Binding Latitude}"/>
-                    <Run Text="N° ,"/>
-                    <Run Text="{Binding Longitude}"/>
-                    <Run Text="E°"/>
-                    </TextBlock>
 
-                </StackPanel>-->
+                </StackPanel>
 
             </StackPanel>
         </Grid>
