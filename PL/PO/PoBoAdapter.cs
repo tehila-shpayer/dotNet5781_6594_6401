@@ -37,6 +37,8 @@ namespace PL
             string show = $"{number}#{source} -> {destination}";
             StationPO.BusLines = from line in StationBO.BusLines
                                  select line;
+            StationPO.BusLinesAllData = from line in StationBO.BusLines
+                                 select PoBoAdapter.BusLinePoBoAdapter(App.bl.GetBusLine(line));
             return StationPO;
         }
     }

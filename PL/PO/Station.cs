@@ -15,6 +15,7 @@ namespace PL
         static readonly DependencyProperty LongitudeProperty = DependencyProperty.Register("Longitude", typeof(double), typeof(Station));
         static readonly DependencyProperty NameProperty = DependencyProperty.Register("Name", typeof(String), typeof(Station));
         static readonly DependencyProperty BusLinesProperty = DependencyProperty.Register("BusLines", typeof(IEnumerable<int>), typeof(Station));
+        static readonly DependencyProperty BusLinesAllDataProperty = DependencyProperty.Register("BusLinesAllData", typeof(IEnumerable<BusLine>), typeof(Station));
 
         public int Key { get => (int)GetValue(KeyProperty); set => SetValue(KeyProperty, value); }
         public double Latitude { get => (double)GetValue(LatitudeProperty); set => SetValue(LatitudeProperty, value); }
@@ -22,5 +23,6 @@ namespace PL
 
         public String Name { get => (String)GetValue(NameProperty); set => SetValue(NameProperty, value); }
         public IEnumerable<int> BusLines { get => (IEnumerable<int>)GetValue(BusLinesProperty); set => SetValue(BusLinesProperty, value); }
+        public IEnumerable<BusLine> BusLinesAllData { get => (IEnumerable<BusLine>)GetValue(BusLinesAllDataProperty); set => SetValue(BusLinesAllDataProperty, value); }
     }
 }

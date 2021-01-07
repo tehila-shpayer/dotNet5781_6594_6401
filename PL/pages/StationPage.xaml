@@ -18,8 +18,8 @@
         </DataTemplate>
         <DataTemplate x:Key="LineTemplate" DataType="local:int">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Width="230">
-                <TextBlock Text="{Binding Name}" TextAlignment="Right" FontWeight="Bold" FontSize="15" FontFamily="Segoe UI Black"/>
-                <TextBlock Text="{Binding Key}" TextAlignment="Right" FontSize="15"/>
+                <TextBlock Text="{Binding}" TextAlignment="Right" FontWeight="Bold" FontSize="15" FontFamily="Segoe UI Black"/>
+                <!--<TextBlock Text="{Binding Key}" TextAlignment="Right" FontSize="15"/>-->
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
@@ -93,7 +93,7 @@
 
                 </StackPanel>
                 <TextBlock FontSize="18" Text=":קווים העוברים בתחנה" TextAlignment="Right" Margin="15" FontFamily="Segoe UI Emoji"/>
-                <ListBox x:Name="lbLines" FontSize="18" FontFamily="Segoe UI Emoji" IsSynchronizedWithCurrentItem="True" ItemTemplate="{StaticResource StationTemplate}" SelectionChanged="stations_SelectionChanged" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <ListBox x:Name="lbLines" ItemsSource="{Binding BusLines}" FontSize="18" FontFamily="Segoe UI Emoji" IsSynchronizedWithCurrentItem="True" ItemTemplate="{StaticResource StationTemplate}" SelectionChanged="stations_SelectionChanged" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
 
                     </ListBox>
             </StackPanel>
