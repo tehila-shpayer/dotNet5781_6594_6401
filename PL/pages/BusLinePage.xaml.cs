@@ -51,5 +51,40 @@ namespace PL
                     bus.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            BusLine busLine = MainWindow.busLinesCollection[busLines.SelectedIndex];
+            int key = busLine.Key;
+            try
+            {
+                MessageBoxResult mbResult = MessageBox.Show($"Are you sure you want to delete \nbus line of key {key}?", "DELETE BUS", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+                if (mbResult == MessageBoxResult.Yes)
+                {
+                    App.bl.DeleteBusLine(key);
+                    MainWindow.busLinesCollection.Remove(busLine);
+                    MessageBox.Show($"Bus of key {key} was deleted.", "DELETE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.No);
+
+                }
+                else
+                    MessageBox.Show($"Operation was canceled.", "DELETE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.No);
+
+            }
+            catch (BO.BOArgumentNotFoundException ex)
+            {
+                MessageBox.Show($"Bus of key {key} was not found.", "DELETE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.No);
+            }
+        }
+
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddBus addBus = new AddBus();
+            addBus.ShowDialog();
+        }
+
+        private void updateButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

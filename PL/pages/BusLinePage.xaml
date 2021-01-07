@@ -31,8 +31,8 @@
                 </Grid.RowDefinitions>
                 <TextBlock Text="{Binding StationKey}" Margin="10" Grid.Row="1" Grid.Column="1" TextAlignment="Right"/>
                 <TextBlock Margin="10" Grid.Row="0" Grid.Column="1" TextAlignment="Right">
-                    <Run Text="{Binding Name}" />
                     <Run Text="{Binding Position}"/>
+                    <Run Text="{Binding Name}" />
                 </TextBlock>
                 <TextBlock Grid.Row="1" Grid.Column="0" TextAlignment="Left" Margin="10,0,10,10">
                     <Run Text="|&#x0a;|"/>
@@ -82,11 +82,11 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <StackPanel Orientation="Vertical" Margin="20,0">
                 <Label Content="Show By specific area:" Foreground="#FF476972" FontWeight="Bold" FontSize="14"/>
-                <ComboBox x:Name="areas" ItemsSource="{Binding}" Background="White" Margin="10,0" />
+                <ComboBox x:Name="areas" ItemsSource="{Binding}" Background="White" Margin="10,0" AllowDrop="True"/>
             </StackPanel>
-            <Button x:Name="updateButton" Width="120" Margin="0,10,5,10" Content="UPDATE BUS"/>
-            <Button x:Name="deleteButton" Width="120" Margin="5,10" Content="DELETE BUS"/>
-            <Button x:Name="addButton" Width="120" Margin="5,10,15,10" Content="ADD BUS"/>
+            <Button x:Name="updateButton" Width="120" Margin="0,10,5,10" Content="UPDATE BUS" Click="updateButton_Click" />
+            <Button x:Name="deleteButton" Width="120" Margin="5,10" Content="DELETE BUS" Click="deleteButton_Click"/>
+            <Button x:Name="addButton" Width="120" Margin="5,10,15,10" Content="ADD BUS" Click="addButton_Click"/>
 
         </StackPanel>
 

@@ -35,7 +35,7 @@ namespace DLAPI
         IEnumerable<BusLine> GetBusLinesBy(Predicate<BusLine> predicate);
         BusLine GetBusLine(int busLineKey );
         IEnumerable<BusLine> GetAllBusLines();
-        void AddBusLine(BusLine bus);
+        int AddBusLine(BusLine bus);
         void UpdateBusLine(BusLine bus);
         void UpdateBusLine(int busLineKey, Action<BusLine> update); //method that knows to updt specific fields in BusLine
         void DeleteBusLine(int busLineKey);

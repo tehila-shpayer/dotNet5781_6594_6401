@@ -10,27 +10,33 @@ namespace PL
 {
     public static class PoBoAdapter
     {
-        static public  PL.BusLine BusLineDoBoAdapter(BO.BusLine BusLineBO)
+        static public  PL.BusLine BusLinePoBoAdapter(BO.BusLine BusLineBO)
         {
            PL.BusLine BusLinePO = new PL.BusLine();
            BusLineBO.Clone(BusLinePO);
-           BusLinePO.BusLineStations = from bls in BusLineBO.BusLineStations
-                                       select PoBoAdapter.BusLineStationDoBoAdapter(bls);
+            BusLinePO.BusLineStations = from bls in BusLineBO.BusLineStations
+                                        select PoBoAdapter.BusLineStationPoBoAdapter(bls);
             return BusLinePO;
         }
-        static public PL.BusLineStation BusLineStationDoBoAdapter(BO.BusLineStation BusLineStationBO)
+        static public PL.BusLineStation BusLineStationPoBoAdapter(BO.BusLineStation BusLineStationBO)
         {
             PL.BusLineStation BusLineStationPO = new PL.BusLineStation();
             BusLineStationBO.Clone(BusLineStationPO);
             BusLineStationPO.Name = App.bl.GetStation(BusLineStationBO.StationKey).Name;
             return BusLineStationPO;
         }
-        static public PL.Station StationDoBoAdapter(BO.Station StationBO)
+        static public PL.Station StationPoBoAdapter(BO.Station StationBO)
         {
             PL.Station StationPO = new PL.Station();
             StationBO.Clone(StationPO);
-            //StationPO.BusLines = from line in StationBO.BusLines
-            //                     select line;
+            int l = 1791;
+            BO.BusLine BusLineBO = App.bl.GetBusLine(l);
+            string source = App.bl.GetStation(BusLineBO.FirstStation).Name;
+            string destination = App.bl.GetStation(BusLineBO.LastStation).Name;
+            int number = BusLineBO.LineNumber;
+            string show = $"{number}#{source} -> {destination}";
+            StationPO.BusLines = from line in StationBO.BusLines
+                                 select line;
             return StationPO;
         }
     }

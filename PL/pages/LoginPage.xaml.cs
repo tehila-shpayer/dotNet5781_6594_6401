@@ -124,19 +124,20 @@ namespace PL
         #endregion
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-               // BO.User user = App.bl.GetUser(userName.Text, Password.Password);
-                //if (user.AuthorizationManagement == BO.AuthorizationManagement.Manager)
-                    this.NavigationService.Navigate(new ManagerPage(userName.Text, Password.Password));
-               // else
-                //    this.NavigationService.Navigate(new TravelerPage(userName.Text, Password.Password));
-            }
-            catch (BO.BOArgumentNotFoundException ex)
-            {
-                ProblemMessage.Text = "User name or password are incorrect.\n try again";
-                spProblem.Visibility = Visibility.Visible;
-            }
+            //try
+            //{
+            //    BO.User user = App.bl.GetUser(userName.Text, Password.Password);
+            //    if (user.AuthorizationManagement == BO.AuthorizationManagement.Manager)
+            //        NavigationService.Navigate(new ManagerPage(userName.Text, Password.Password));
+            //    else
+            //        NavigationService.Navigate(new TravelerPage(userName.Text, Password.Password));
+            //}
+            //catch (BO.BOArgumentNotFoundException ex)
+            //{
+            //    ProblemMessage.Text = "User name or password are incorrect.\n try again";
+            //    spProblem.Visibility = Visibility.Visible;
+            //}
+            NavigationService.Navigate(new ManagerPage(userName.Text, Password.Password));
         }
 
         private void NewAccountButton_Click(object sender, RoutedEventArgs e)

@@ -479,14 +479,15 @@ namespace BL
                                select BusLineDoBoAdapter(line);
             return AllBuseLines;
         }
-        public void AddBusLine(BusLine bus)
+        public int AddBusLine(BusLine bus)
         {
             try
             {
                 bus.BusLineStations = null;
                 DO.BusLine BusLineDO = new DO.BusLine();
                 bus.Clone(BusLineDO);
-                dl.AddBusLine(BusLineDO);
+                return dl.AddBusLine(BusLineDO);
+
             }
             catch (DO.InvalidInformationException ex)
             {
