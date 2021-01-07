@@ -126,11 +126,11 @@ namespace PL
         {
             try
             {
-                BO.User user = App.bl.GetUser(userName.Text, Password.Password);
-                if (user.AuthorizationManagement == BO.AuthorizationManagement.Manager)
+               // BO.User user = App.bl.GetUser(userName.Text, Password.Password);
+                //if (user.AuthorizationManagement == BO.AuthorizationManagement.Manager)
                     this.NavigationService.Navigate(new ManagerPage(userName.Text, Password.Password));
-                else
-                    this.NavigationService.Navigate(new TravelerPage(userName.Text, Password.Password));
+               // else
+                //    this.NavigationService.Navigate(new TravelerPage(userName.Text, Password.Password));
             }
             catch (BO.BOArgumentNotFoundException ex)
             {

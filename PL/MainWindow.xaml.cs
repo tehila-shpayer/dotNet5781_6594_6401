@@ -26,6 +26,7 @@ namespace PL
     public partial class MainWindow : Window
     {
         public static ObservableCollection<BusLine> busLinesCollection = new ObservableCollection<BusLine>();
+        public static ObservableCollection<Station> stationsCollection = new ObservableCollection<Station>();
         public MainWindow()
         {
             InitializeComponent();
@@ -34,6 +35,12 @@ namespace PL
                 PL.BusLine busLinePL = new BusLine();
                 busLinesCollection.Add(PoBoAdapter.BusLineDoBoAdapter(bl));
             }
+            foreach (BO.Station s in App.bl.GetAllStations())
+            {
+                //PL.Station stationPL = new Station();
+                stationsCollection.Add(PoBoAdapter.StationDoBoAdapter(s));
+            }
+            
         }
 
         private void powerButton_Click(object sender, RoutedEventArgs e)

@@ -8,12 +8,11 @@ namespace BO
 {
     public class Station
     {
-        static public int STATION_KEY = 2100;
-        public IEnumerable<int> BusLines { get; set; }
         public int Key { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public String Name { get; set; }
+        public IEnumerable<int> BusLines { get; set; }
 
         public bool _isActive = true;
         public bool IsActive { get; set; }

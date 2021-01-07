@@ -27,7 +27,7 @@
                 <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
             <Grid.Effect>
-                <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="1"/>
+                <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="1" Direction="0"/>
             </Grid.Effect>
 
             <Grid Background="#FFDFEAED">

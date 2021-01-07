@@ -69,6 +69,9 @@
     <Compile Include="DeleteBusWindow.xaml.cs">
       <DependentUpon>DeleteBusWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="pages\StationPage.xaml.cs">
+      <DependentUpon>StationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\BusLinePage.xaml.cs">
       <DependentUpon>BusLinePage.xaml</DependentUpon>
     </Compile>
@@ -105,6 +108,10 @@
     <Page Include="DeleteBusWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\StationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="pages\BusLinePage.xaml">
       <SubType>Designer</SubType>
