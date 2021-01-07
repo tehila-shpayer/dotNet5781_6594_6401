@@ -26,7 +26,9 @@ namespace PL
             InitializeComponent();
             busLines.DataContext = MainWindow.busLinesCollection;
             List<string> AreasString = new List<string> { "All", "General", "Jerusalem", "Center", "North", "South", "Hifa", "TelAviv", "YehudaAndShomron" };
+            List<string> OrderByString = new List<string> { "Order by key", "Order by number", "Order by area"};
             areas.DataContext = AreasString;
+            cbBusLines.DataContext = OrderByString;
         }
 
         private void busLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -101,6 +103,65 @@ namespace PL
                     }
                     else
                         bus.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void addStationButton_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedStation = (sender as Button).DataContext as BusLineStation;
+            AddBusLineStation addBusLineStation = new AddBusLineStation(selectedStation);
+            addBusLineStation.ShowDialog();
+        }
+
+        private void deleteStationButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int index = 0;
+                var selectedStation = (sender as Button).DataContext as BusLineStation;
+                BO.BusLine busLineBO = App.bl.GetBusLine(selectedStation.BusLineKey);
+                BusLine busLinePO = PoBoAdapter.BusLinePoBoAdapter(busLineBO);
+                foreach (BusLine bl in MainWindow.busLinesCollection)
+                {
+                    if (bl.Key == busLinePO.Key)
+                    {
+                        index = MainWindow.busLinesCollection.IndexOf(bl);
+                        break;
+                    }
+                }
+                App.bl.DeleteStationFromLine(selectedStation.BusLineKey, selectedStation.StationKey);
+                busLineBO = App.bl.GetBusLine(selectedStation.BusLineKey);
+                busLinePO = PoBoAdapter.BusLinePoBoAdapter(busLineBO);
+                MainWindow.busLinesCollection[index] = busLinePO;
+                MessageBox.Show($"Station {selectedStation.StationKey} was successfully\ndeleted from line {selectedStation.BusLineKey}", "ADD STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
+
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+
+
+
+            }
+
+        private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (cbBusLines.SelectedItem.ToString())
+            {
+                case "Order by key":
+                    MainWindow.busLinesCollection = (ObservableCollection<BusLine>) MainWindow.busLinesCollection.OrderBy(bl => bl.Key);
+                    break;
+                case "Order by number":
+                    MainWindow.busLinesCollection = (ObservableCollection<BusLine>) MainWindow.busLinesCollection.OrderBy(bl => bl.LineNumber);
+                    break;
+                case "Order by area":
+                    MainWindow.busLinesCollection = (ObservableCollection<BusLine>) MainWindow.busLinesCollection.OrderBy(bl => bl.Area.ToString());
+                    break;
+                default: break;
             }
         }
     }

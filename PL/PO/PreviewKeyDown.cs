@@ -5,28 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace PL
 {
-    /// <summary>
-    /// Interaction logic for DeleteBusWindow.xaml
-    /// </summary>
-    public partial class DeleteBusWindow : Window
+    public static class PreviewKeyDown
     {
-        public DeleteBusWindow()
-        {
-            InitializeComponent();
-        }
-        private void KM_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            GeneralPerviewKeyDown(sender, e);
-        }
         public static void GeneralPerviewKeyDown(object sender, KeyEventArgs e)//allow to enter only digits to the textBox
         {
             TextBox t = sender as TextBox;

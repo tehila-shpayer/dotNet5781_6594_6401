@@ -640,26 +640,31 @@ namespace BL
         public void DeleteStationFromLine(int busKey, int stationKey)
         {
             BusLine busLine = GetBusLine(busKey);
-            DO.BusLineStation busLineStationDO = dl.GetBusLineStationByKey(busKey, stationKey);
-            int position = busLineStationDO.Position;
-            //foreach (BusLineStation bls in busLine.BusLineStations)
-            //    if (bls.StationKey == stationKey && bls.BusLineKey == busKey)
-            //        bls.IsActive = false;
-            if (busLineStationDO.Position != busLine.BusLineStations.Count())
-            {//אם זו לא התחנה האחרונה יש לעדכן את פרטי הזמן והמרחק של התחנה הבאה 
-                DO.BusLineStation prevBusLineStationDO = dl.GetBusLineStationBy
-                (bls => bls.BusLineKey == busKey && bls.Position == position - 1);
-                DO.BusLineStation nextBusLineStationDO = dl.GetBusLineStationBy
-                    (bls => bls.BusLineKey == busKey && bls.Position == position + 1);
-                DO.ConsecutiveStations consecutiveStations = CalculateConsecutiveStations
-(dl.GetStation(prevBusLineStationDO.StationKey), dl.GetStation(nextBusLineStationDO.StationKey));
-                if (dl.GetConsecutiveStations(prevBusLineStationDO.StationKey, nextBusLineStationDO.StationKey) == null)
-                    dl.AddConsecutiveStations(consecutiveStations);
+            if (busLine.BusLineStations.Count() > 2)
+            {
+                DO.BusLineStation busLineStationDO = dl.GetBusLineStationByKey(busKey, stationKey);
+                int position = busLineStationDO.Position;
+                //foreach (BusLineStation bls in busLine.BusLineStations)
+                //    if (bls.StationKey == stationKey && bls.BusLineKey == busKey)
+                //        bls.IsActive = false;
+                if (position != busLine.BusLineStations.Count() && position != 1)
+                {//אם זו לא התחנה האחרונה יש לעדכן את פרטי הזמן והמרחק של התחנה הבאה                     
+                    DO.BusLineStation prevBusLineStationDO = dl.GetBusLineStationBy
+                    (bls => bls.BusLineKey == busKey && bls.Position == position - 1);
+                    DO.BusLineStation nextBusLineStationDO = dl.GetBusLineStationBy
+                        (bls => bls.BusLineKey == busKey && bls.Position == position + 1);
+                    DO.ConsecutiveStations consecutiveStations = CalculateConsecutiveStations
+    (dl.GetStation(prevBusLineStationDO.StationKey), dl.GetStation(nextBusLineStationDO.StationKey));
+                    if (dl.GetConsecutiveStations(prevBusLineStationDO.StationKey, nextBusLineStationDO.StationKey) == null)
+                        dl.AddConsecutiveStations(consecutiveStations);
+                }
+                dl.DeleteBusLineStation(busKey, stationKey);
+                foreach (DO.BusLineStation bls in dl.GetAllStationsOfLine(busKey))
+                    if (bls.Position > position)
+                        dl.UpdateBusLineStation(bls.BusLineKey, bls.StationKey, b => b.Position -= 1);
             }
-            dl.DeleteBusLineStation(busKey, stationKey);
-            foreach (DO.BusLineStation bls in dl.GetAllStationsOfLine(busKey))
-                if (bls.Position > position)
-                    dl.UpdateBusLineStation(bls.BusLineKey, bls.StationKey, b => b.Position -= 1);
+            else
+                throw new BOInvalidInformationException("Cant delete station,\n bus must have at least 2 stations!");
         }
         public String ToStringBusLine(BusLine b)
         {

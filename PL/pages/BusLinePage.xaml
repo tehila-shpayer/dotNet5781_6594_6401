@@ -20,31 +20,48 @@
         </DataTemplate>
         <DataTemplate x:Key="BusLineStationTemplate"
                   DataType="local:BusLineStation">
-            <Grid Width="630">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <TextBlock Text="{Binding StationKey}" Margin="10" Grid.Row="1" Grid.Column="1" TextAlignment="Right"/>
-                <TextBlock Margin="10" Grid.Row="0" Grid.Column="1" TextAlignment="Right" FontWeight="Bold" FontFamily="Ariel">
+            <StackPanel Orientation="Vertical">
+                <Grid Width="630">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{Binding StationKey}" Margin="10" Grid.Row="1" Grid.Column="1" TextAlignment="Right"/>
+                    <TextBlock Margin="10" Grid.Row="0" Grid.Column="1" TextAlignment="Right" FontWeight="Bold" FontFamily="Ariel">
                     <Run Text="{Binding Name}" />
                     <Run Text="."/>
                     <Run Text="{Binding Position}"/>
-                </TextBlock>
-                <TextBlock Grid.Row="1" Grid.Column="0" TextAlignment="Left" Margin="10,0,10,10">
+                    </TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="0" TextAlignment="Left" Margin="10,0,10,10">
                     <Run Text=" |&#x0a; |"/>
                     <Run Text="{Binding DistanceFromLastStationMeters}"/>
                     <Run Text="meters,"/>
                     <Run Text="{Binding TravelTimeFromLastStationMinutes}"/>
                     <Run Text="minutes.&#x0a;"/>
                     <Run Text="|&#x0a;"/>
-                </TextBlock>
-                <!--"&#x0a;-->
-            </Grid>
+                    </TextBlock>
+                    <!--"&#x0a;-->
+                </Grid>
+                <StackPanel>
+                    <Button x:Name="deleteStationButton" Margin="450,0,0,0" Click="deleteStationButton_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="DELETE"/>
+                            <materialDesign:PackIcon Kind="Delete"/>
+                        </StackPanel>
+                    </Button>
+                    <Label Height="20"/>
+                    <Button x:Name="addStationButton" Click="addStationButton_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="ADD"/>
+                            <materialDesign:PackIcon Kind="Add"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
         </DataTemplate>
     </Page.Resources>
     <Grid ScrollViewer.CanContentScroll="True">
@@ -77,6 +94,13 @@
                 <TextBox x:Name="searchBox" FontSize="16" TextChanged="SearchBox_TextChanged" Background="White" BorderBrush="#FF1D2744" Height="40"/>
                 <materialDesign:PackIcon Kind="Search" Margin="0,-33,10,5" Width="25" Height="25" HorizontalAlignment="Right" Foreground="Gray"/>
             </StackPanel>
+            <ComboBox x:Name="cbBusLines" ItemsSource="{Binding}" Height="40" Background="White" SelectionChanged="cbBusLines_SelectionChanged">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
             <ListBox x:Name="busLines" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusLineTemplate}" VerticalAlignment="Stretch" BorderBrush="#FF222222" SelectionChanged="busLines_SelectionChanged" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="448"/>
         </StackPanel>
         <Grid Grid.Row="1" Grid.Column="0" Background="White" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">

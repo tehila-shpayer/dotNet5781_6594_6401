@@ -66,8 +66,8 @@
     <Compile Include="AddBus.xaml.cs">
       <DependentUpon>AddBus.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DeleteBusWindow.xaml.cs">
-      <DependentUpon>DeleteBusWindow.xaml</DependentUpon>
+    <Compile Include="AddBusLineStation.xaml.cs">
+      <DependentUpon>AddBusLineStation.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\StationPage.xaml.cs">
       <DependentUpon>StationPage.xaml</DependentUpon>
@@ -78,6 +78,7 @@
     <Compile Include="PO\Cloning.cs" />
     <Compile Include="PO\Enum.cs" />
     <Compile Include="PO\PoBoAdapter.cs" />
+    <Compile Include="PO\PreviewKeyDown.cs" />
     <Compile Include="PO\Tools.cs" />
     <Compile Include="pages\Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>
@@ -108,7 +109,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DeleteBusWindow.xaml">
+    <Page Include="AddBusLineStation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

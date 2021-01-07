@@ -43,7 +43,7 @@ namespace PL
                 busLine = App.bl.GetBusLine(busLine.Key);
                 //BusLine busLinePO = PoBoAdapter.BusLinePoBoAdapter(busLine);
                 MainWindow.busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(busLine));
-                MessageBox.Show($"Bus added successfully. Invalid information", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show($"Bus added successfully!", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }
             catch ( BO.BOInvalidInformationException ex) 
