@@ -41,7 +41,7 @@ namespace PL
 
         private void stationsButton_Click(object sender, RoutedEventArgs e)
         {
-
+            currentPage.Content = new StationPage();
         }
 
         private void busesButton_Click(object sender, RoutedEventArgs e)

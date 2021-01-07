@@ -26,11 +26,21 @@ namespace PL
     public partial class MainWindow : Window
     {
         public static ObservableCollection<BusLine> busLinesCollection = new ObservableCollection<BusLine>();
+        public static ObservableCollection<Station> stationsCollection = new ObservableCollection<Station>();
         public MainWindow()
         {
             InitializeComponent();
             foreach(BO.BusLine bl in App.bl.GetAllBusLines())
+            {
+                PL.BusLine busLinePL = new BusLine();
                 busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(bl));
+            }
+            foreach (BO.Station s in App.bl.GetAllStations())
+            {
+                //PL.Station stationPL = new Station();
+                stationsCollection.Add(PoBoAdapter.StationPoBoAdapter(s));
+            }
+            
         }
 
         private void powerButton_Click(object sender, RoutedEventArgs e)
