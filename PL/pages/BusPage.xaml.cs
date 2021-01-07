@@ -19,38 +19,38 @@ namespace PL
     /// <summary>
     /// Interaction logic for BusLinePage.xaml
     /// </summary>
-    public partial class StationPage : Page
+    public partial class BusPage : Page
     {
-        public StationPage()
+        public BusPage()
         {
             InitializeComponent();
-            lbStations.DataContext = MainWindow.stationsCollection;
+            lbBuses.DataContext = MainWindow.busesCollection;
             
         }
 
         private void stations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (lbStations.SelectedIndex >= 0)
-                StationInfoGrid.DataContext = MainWindow.stationsCollection.ElementAt(lbStations.SelectedIndex);
+            if (lbBuses.SelectedIndex >= 0)
+                BusInfoGrid.DataContext = MainWindow.busesCollection.ElementAt(lbBuses.SelectedIndex);
         }
 
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            foreach (var item in MainWindow.stationsCollection)
+            foreach (var item in MainWindow.busesCollection)
             {
-                ListBoxItem station = (ListBoxItem)lbStations.ItemContainerGenerator.ContainerFromItem(item);
+                ListBoxItem bus = (ListBoxItem)lbBuses.ItemContainerGenerator.ContainerFromItem(item);
                 String searchS = searchBox.Text;
                 int num = searchS.Length;
                 //Show only buses which there license number have the typed perfix
                 //if ((num <= item.LineNumber.ToString().Length && searchS == (item as BusLine).LineNumber.ToString().Substring(0, num)))
-                if (station != null)
+                if (bus != null)
                 {
-                    if (num <= item.Name.Length && searchS == item.Name.Substring(0, num))
+                    if (num <= item.LicenseNumber.Length && searchS == item.LicenseNumber.Substring(0, num))
                     {
-                        station.Visibility = Visibility.Visible;
+                        bus.Visibility = Visibility.Visible;
                     }
                     else
-                        station.Visibility = Visibility.Collapsed;
+                        bus.Visibility = Visibility.Collapsed;
                 }
             }
         }
