@@ -84,7 +84,24 @@ namespace PL
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
+            UpdateBusLineWindow update = new UpdateBusLineWindow(MainWindow.busLinesCollection[busLines.SelectedIndex]);
+            update.ShowDialog();
+        }
 
+        private void areas_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (var item in MainWindow.busLinesCollection)
+            {
+                ListBoxItem bus = (ListBoxItem)busLines.ItemContainerGenerator.ContainerFromItem(item);
+                int selectedArea = areas.SelectedIndex;
+                //Show only buses from the same area
+                if (selectedArea == (int)item.Area)
+                {
+                    bus.Visibility = Visibility.Visible;
+                }
+                else
+                    bus.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }
