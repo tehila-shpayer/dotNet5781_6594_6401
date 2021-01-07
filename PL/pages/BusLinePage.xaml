@@ -68,7 +68,7 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Label Content="Bus Lines:" Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontSize="30"/>
-        <StackPanel Grid.Row="1" Grid.Column="1" x:Name="linesStackPanel">
+        <StackPanel Grid.Row="1" Grid.Column="1" x:Name="linesStackPanel" Margin="0,0.4,0,-0.4">
           
             <StackPanel.Effect>
                 <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="1"/>
@@ -77,7 +77,7 @@
                 <TextBox x:Name="searchBox" FontSize="16" TextChanged="SearchBox_TextChanged" Background="White" BorderBrush="#FF1D2744" Height="40"/>
                 <materialDesign:PackIcon Kind="Search" Margin="0,-33,10,5" Width="25" Height="25" HorizontalAlignment="Right" Foreground="Gray"/>
             </StackPanel>
-            <ListBox x:Name="busLines" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusLineTemplate}" VerticalAlignment="Stretch" BorderBrush="#FF222222" SelectionChanged="busLines_SelectionChanged" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+            <ListBox x:Name="busLines" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusLineTemplate}" VerticalAlignment="Stretch" BorderBrush="#FF222222" SelectionChanged="busLines_SelectionChanged" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="448"/>
         </StackPanel>
         <Grid Grid.Row="1" Grid.Column="0" Background="White" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <Grid.RowDefinitions>
