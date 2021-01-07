@@ -25,7 +25,7 @@ namespace PL
         {
             InitializeComponent();
             busLines.DataContext = MainWindow.busLinesCollection;
-            List<string> AreasString = new List<string> { "General", "Jerusalem", "Center", "North", "South", "Hifa", "TelAviv", "YehudaAndShomron" };
+            List<string> AreasString = new List<string> { "All", "General", "Jerusalem", "Center", "North", "South", "Hifa", "TelAviv", "YehudaAndShomron" };
             areas.DataContext = AreasString;
         }
 
@@ -95,12 +95,12 @@ namespace PL
                 ListBoxItem bus = (ListBoxItem)busLines.ItemContainerGenerator.ContainerFromItem(item);
                 int selectedArea = areas.SelectedIndex;
                 //Show only buses from the same area
-                if (selectedArea == (int)item.Area)
-                {
-                    bus.Visibility = Visibility.Visible;
-                }
-                else
-                    bus.Visibility = Visibility.Collapsed;
+                    if (selectedArea == 0||(selectedArea - 1) == (int)item.Area)
+                    {
+                        bus.Visibility = Visibility.Visible;
+                    }
+                    else
+                        bus.Visibility = Visibility.Collapsed;
             }
         }
     }

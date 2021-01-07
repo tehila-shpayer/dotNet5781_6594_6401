@@ -20,7 +20,7 @@
         </DataTemplate>
         <DataTemplate x:Key="BusLineStationTemplate"
                   DataType="local:BusLineStation">
-            <Grid Width="600">
+            <Grid Width="630">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -30,16 +30,17 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="{Binding StationKey}" Margin="10" Grid.Row="1" Grid.Column="1" TextAlignment="Right"/>
-                <TextBlock Margin="10" Grid.Row="0" Grid.Column="1" TextAlignment="Right">
-                    <Run Text="{Binding Position}"/>
+                <TextBlock Margin="10" Grid.Row="0" Grid.Column="1" TextAlignment="Right" FontWeight="Bold" FontFamily="Ariel">
                     <Run Text="{Binding Name}" />
+                    <Run Text="."/>
+                    <Run Text="{Binding Position}"/>
                 </TextBlock>
                 <TextBlock Grid.Row="1" Grid.Column="0" TextAlignment="Left" Margin="10,0,10,10">
-                    <Run Text="|&#x0a;|"/>
+                    <Run Text=" |&#x0a; |"/>
                     <Run Text="{Binding DistanceFromLastStationMeters}"/>
                     <Run Text="meters,"/>
                     <Run Text="{Binding TravelTimeFromLastStationMinutes}"/>
-                    <Run Text="minutes&#x0a;"/>
+                    <Run Text="minutes.&#x0a;"/>
                     <Run Text="|&#x0a;"/>
                 </TextBlock>
                 <!--"&#x0a;-->
@@ -76,7 +77,7 @@
                 <TextBox x:Name="searchBox" FontSize="16" TextChanged="SearchBox_TextChanged" Background="White" BorderBrush="#FF1D2744" Height="40"/>
                 <materialDesign:PackIcon Kind="Search" Margin="0,-33,10,5" Width="25" Height="25" HorizontalAlignment="Right" Foreground="Gray"/>
             </StackPanel>
-            <ListBox x:Name="busLines" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusLineTemplate}" VerticalAlignment="Stretch" Height="{Binding ElementName=linesStackPanel, Path=ActualHeight}" BorderBrush="#FF222222" SelectionChanged="busLines_SelectionChanged" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+            <ListBox x:Name="busLines" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusLineTemplate}" VerticalAlignment="Stretch" BorderBrush="#FF222222" SelectionChanged="busLines_SelectionChanged" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
         </StackPanel>
         <Grid Grid.Row="1" Grid.Column="0" Background="White" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <Grid.RowDefinitions>
@@ -89,6 +90,12 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
+                <Label/>
+                <TextBlock/>
+                <Label/>
+                <TextBlock/>
+                <Label/>
+                <TextBlock/>
             </Grid>
             <ListBox x:Name="busLineStationdlb" Grid.Row="1" Grid.Column="0" IsSynchronizedWithCurrentItem="{x:Null}" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusLineStationTemplate}" VerticalAlignment="Stretch" Background="White" FontSize="14" FontFamily="Segoe UI Emoji" HorizontalAlignment="Stretch"/>
         </Grid>
