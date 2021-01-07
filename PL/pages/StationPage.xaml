@@ -68,7 +68,7 @@
             <Button x:Name="addButton" Width="145" Margin="5,10,15,10" Content="ADD STATION" Background="#FF477AA9"/>
         </StackPanel>
 
-        <Rectangle Grid.Column="0" Grid.Row="1" Fill="White" Margin="60" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
+        <Rectangle Grid.Column="0" Grid.Row="1" Fill="White" Margin="60,50" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
         </Rectangle>
         <Grid x:Name="StationInfoGrid" Grid.Column="0" Grid.Row="1" Margin="80" DataContext="{Binding}">
             <!--<Grid.ColumnDefinitions>

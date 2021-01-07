@@ -29,12 +29,12 @@ namespace PL
         {
             PL.Station StationPO = new PL.Station();
             StationBO.Clone(StationPO);
-            int l = 1791;
-            BO.BusLine BusLineBO = App.bl.GetBusLine(l);
-            string source = App.bl.GetStation(BusLineBO.FirstStation).Name;
-            string destination = App.bl.GetStation(BusLineBO.LastStation).Name;
-            int number = BusLineBO.LineNumber;
-            string show = $"{number}#{source} -> {destination}";
+            //int l = 1791;
+            //BO.BusLine BusLineBO = App.bl.GetBusLine(l);
+            //string source = App.bl.GetStation(BusLineBO.FirstStation).Name;
+            //string destination = App.bl.GetStation(BusLineBO.LastStation).Name;
+            //int number = BusLineBO.LineNumber;
+            //string show = $"{number}#{source} -> {destination}";
             StationPO.BusLines = from line in StationBO.BusLines
                                  select line;
             StationPO.BusLinesAllData = from line in StationBO.BusLines
