@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="ADD STATION" Height="150" Width="240" ResizeMode="NoResize" FontFamily="Segoe UI Semibold">
+        Title="ADD STATION" Height="150" Width="240" ResizeMode="NoResize" FontFamily="Segoe UI Semibold" WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel Orientation="Vertical">
         <Label Content="Enter key:" FontSize="25" Margin="20,0,20,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="tbStationKey"  Margin="30,0" PreviewKeyDown="tbStationKey_PreviewKeyDown" KeyDown="tbStationKey_KeyDown"/>
+        <TextBox x:Name="tbStationKey"  Margin="30,0" PreviewKeyDown="tbStationKey_PreviewKeyDown" KeyDown="tbStationKey_KeyDown" FontSize="18"/>
         <!--<TextBox x:Name="KMtextBox" Grid.Row="1" Grid.Column="1" PreviewKeyDown="KM_PreviewKeyDown" KeyDown="KM_KeyDown" Text="" FontSize="34" Margin="10,64.6,75,97.8"/>-->
         </StackPanel>
     </Grid>

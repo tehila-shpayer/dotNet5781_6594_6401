@@ -68,7 +68,7 @@ namespace DLAPI
         #region Station
         Station GetStation(int stationKey);
         IEnumerable<Station> GetAllStations();
-        void AddStation(Station station);
+        int AddStation(Station station);
         void UpdateStation(Station station);
         void UpdateStation(int stationKey, Action<Station> update); //method that knows to updt specific fields in Person
         void DeleteStation(int stationKey);

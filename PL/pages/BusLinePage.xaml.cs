@@ -151,19 +151,19 @@ namespace PL
 
         private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            switch (cbBusLines.SelectedItem.ToString())
-            {
-                case "Order by key":
-                    MainWindow.busLinesCollection = new ObservableCollection<BusLine>(MainWindow.busLinesCollection.OrderBy(bl => bl.Key));
-                    break;
-                case "Order by number":
-                    MainWindow.busLinesCollection = new ObservableCollection<BusLine>(MainWindow.busLinesCollection.OrderBy(bl => bl.LineNumber));
-                    break;
-                case "Order by area":
-                    MainWindow.busLinesCollection = new ObservableCollection<BusLine>(MainWindow.busLinesCollection.OrderBy(bl => bl.Area.ToString()));
-                    break;
-                default: break;
-            }
+            //switch (cbBusLines.SelectedItem.ToString())
+            //{
+            //    case "Order by key":
+            //        MainWindow.busLinesCollection = new ObservableCollection<BusLine>(MainWindow.busLinesCollection.OrderBy(bl => bl.Key));
+            //        break;
+            //    case "Order by number":
+            //        MainWindow.busLinesCollection = new ObservableCollection<BusLine>(MainWindow.busLinesCollection.OrderBy(bl => bl.LineNumber));
+            //        break;
+            //    case "Order by area":
+            //        MainWindow.busLinesCollection = new ObservableCollection<BusLine>(MainWindow.busLinesCollection.OrderBy(bl => bl.Area.ToString()));
+            //        break;
+            //    default: break;
+            //}
         }
     }
 }

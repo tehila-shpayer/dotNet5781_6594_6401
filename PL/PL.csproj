@@ -69,6 +69,9 @@
     <Compile Include="AddBusLineStation.xaml.cs">
       <DependentUpon>AddBusLineStation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddStationWindow.xaml.cs">
+      <DependentUpon>AddStationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\BusPage.xaml.cs">
       <DependentUpon>BusPage.xaml</DependentUpon>
     </Compile>
@@ -114,6 +117,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddBusLineStation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddStationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -192,6 +199,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Bus.datasource" />
     <None Include="Properties\DataSources\BusLine.datasource" />
+    <None Include="Properties\DataSources\Station.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

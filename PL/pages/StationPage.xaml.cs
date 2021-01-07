@@ -54,5 +54,39 @@ namespace PL
                 }
             }
         }
+
+        private void updateButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            Station station = MainWindow.stationsCollection[lbStations.SelectedIndex];
+            int key = station.Key;
+            try
+            {
+                MessageBoxResult mbResult = MessageBox.Show($"Are you sure you want to delete \nstation of key {key}?", "DELETE STATION MESSAGE", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+                if (mbResult == MessageBoxResult.Yes)
+                {
+                    App.bl.DeleteStation(key);
+                    MainWindow.stationsCollection.Remove(station);
+                    MessageBox.Show($"Station of key {key} was deleted.", "DELETE STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.No);
+
+                }
+                else
+                    MessageBox.Show($"Delete of station was canceled.", "DELETE STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.No);
+
+            }
+            catch (BO.BOArgumentNotFoundException ex)
+            {
+                MessageBox.Show($"{ex.Message}", "DELETE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.No);
+            }
+        }
+
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
