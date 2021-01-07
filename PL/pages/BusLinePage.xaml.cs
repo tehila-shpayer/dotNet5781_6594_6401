@@ -29,6 +29,7 @@ namespace PL
             List<string> OrderByString = new List<string> { "Order by key", "Order by number", "Order by area"};
             areas.DataContext = AreasString;
             cbBusLines.DataContext = OrderByString;
+            cbBusLines.SelectedIndex = 0;
         }
 
         private void busLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -153,13 +154,13 @@ namespace PL
             switch (cbBusLines.SelectedItem.ToString())
             {
                 case "Order by key":
-                    MainWindow.busLinesCollection = (ObservableCollection<BusLine>) MainWindow.busLinesCollection.OrderBy(bl => bl.Key);
+                    MainWindow.busLinesCollection = new ObservableCollection<BusLine>(MainWindow.busLinesCollection.OrderBy(bl => bl.Key));
                     break;
                 case "Order by number":
-                    MainWindow.busLinesCollection = (ObservableCollection<BusLine>) MainWindow.busLinesCollection.OrderBy(bl => bl.LineNumber);
+                    MainWindow.busLinesCollection = new ObservableCollection<BusLine>(MainWindow.busLinesCollection.OrderBy(bl => bl.LineNumber));
                     break;
                 case "Order by area":
-                    MainWindow.busLinesCollection = (ObservableCollection<BusLine>) MainWindow.busLinesCollection.OrderBy(bl => bl.Area.ToString());
+                    MainWindow.busLinesCollection = new ObservableCollection<BusLine>(MainWindow.busLinesCollection.OrderBy(bl => bl.Area.ToString()));
                     break;
                 default: break;
             }
