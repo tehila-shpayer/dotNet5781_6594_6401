@@ -125,12 +125,13 @@ namespace DL
                                  select line.Clone();
             return AllBuseLines;
         }
-        public void AddBusLine(BusLine bus)
+        public int AddBusLine(BusLine bus)
         {
             bus.Key = BusLine.BUS_LINE_KEY++;
             //if (DataSource.ListBusLines.FirstOrDefault(l => l.Key == bus.Key) != null)
             //    throw new InvalidInformationException("Duplicate bus line key");
             DataSource.ListBusLines.Add(bus.Clone());
+            return bus.Key;
         }
         public void UpdateBusLine(BusLine line)
         {

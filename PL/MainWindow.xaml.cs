@@ -30,10 +30,7 @@ namespace PL
         {
             InitializeComponent();
             foreach(BO.BusLine bl in App.bl.GetAllBusLines())
-            {
-                PL.BusLine busLinePL = new BusLine();
-                busLinesCollection.Add(PoBoAdapter.BusLineDoBoAdapter(bl));
-            }
+                busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(bl));
         }
 
         private void powerButton_Click(object sender, RoutedEventArgs e)

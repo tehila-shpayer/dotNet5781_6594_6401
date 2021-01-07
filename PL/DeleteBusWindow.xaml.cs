@@ -23,5 +23,24 @@ namespace PL
         {
             InitializeComponent();
         }
+        private void KM_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            GeneralPerviewKeyDown(sender, e);
+        }
+        public static void GeneralPerviewKeyDown(object sender, KeyEventArgs e)//allow to enter only digits to the textBox
+        {
+            TextBox t = sender as TextBox;
+            if (t == null) return;
+            if (e == null) return;
+            char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
+            if (char.IsControl(c)) return;
+            if (char.IsDigit(c))
+            {
+                if (!Keyboard.IsKeyDown(Key.LeftShift) && !Keyboard.IsKeyDown(Key.RightShift))
+                    return;
+            }
+            e.Handled = true;//if it is not a digit or a control key, the letter would not be writen
+            return;
+        }
     }
 }

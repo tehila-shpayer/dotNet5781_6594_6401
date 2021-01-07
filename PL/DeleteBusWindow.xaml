@@ -10,7 +10,6 @@
         <StackPanel Orientation="Vertical">
         <Label Content="DELETE BUS" FontSize="40" Margin="0,0,0,30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Label Content="Enter bus number to delete:" FontSize="25" Margin="20,0,20,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="KMtextBox" PreviewKeyDown="KM_PreviewKeyDown" KeyDown="KM_KeyDown" Text="" FontSize="34" Margin="150,0" />
         </StackPanel>
     </Grid>
 </Window>
