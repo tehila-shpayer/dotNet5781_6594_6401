@@ -93,7 +93,7 @@
 
                 </StackPanel>
                 <TextBlock FontSize="18" Text=":קווים העוברים בתחנה" TextAlignment="Right" Margin="15" FontFamily="Segoe UI Emoji"/>
-                <ListBox x:Name="lbLines" ItemsSource="{Binding BusLines}" FontSize="18" FontFamily="Segoe UI Emoji" IsSynchronizedWithCurrentItem="True" ItemTemplate="{StaticResource StationTemplate}" SelectionChanged="stations_SelectionChanged" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <ListBox x:Name="lbLines" ItemsSource="{Binding BusLines}" FontSize="18" FontFamily="Segoe UI Emoji" IsSynchronizedWithCurrentItem="True" ItemTemplate="{StaticResource LineTemplate}" SelectionChanged="stations_SelectionChanged" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible">
 
                     </ListBox>
             </StackPanel>
