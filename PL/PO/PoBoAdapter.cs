@@ -49,6 +49,10 @@ namespace PL
             PL.BusLineStation BusLineStationPO = new PL.BusLineStation();
             BusLineStationBO.Clone(BusLineStationPO);
             BusLineStationPO.Name = App.bl.GetStation(BusLineStationBO.StationKey).Name;
+            if (BusLineStationPO.Position == 1)
+                BusLineStationPO.IsFirstStation = true;
+            else
+                BusLineStationPO.IsFirstStation = false;
             return BusLineStationPO;
         }
         static public PL.Station StationPoBoAdapter(BO.Station StationBO)
