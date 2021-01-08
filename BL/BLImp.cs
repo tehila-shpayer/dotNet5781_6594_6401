@@ -269,15 +269,20 @@ namespace BL
                 throw new BOInvalidInformationException($"Can't add station {station.Key}. Invalid longitude");
             }
         }
-        public void AddStation(Station station)
+        public int AddStation(Station station)
         {
 
             CheckStationParameters(station);
             try
             {
-                DO.Station StationDO = new DO.Station();
-                station.Clone(StationDO);
-                dl.AddStation(StationDO);
+                if (station.Latitude >= 31.234567 && station.Longitude <= 34.56874)
+                {
+                    DO.Station StationDO = new DO.Station();
+                    station.Clone(StationDO);
+                    return dl.AddStation(StationDO);
+                }
+                else
+                    throw new BOInvalidInformationException($"Can't add station {station.Key}. Location invalid!");
             }
             catch (DO.InvalidInformationException ex)
             {
@@ -315,7 +320,10 @@ namespace BL
             try
             {
                 Station station = GetStation(stationKey);
+                List<int> currentBusLines = new List<int>();
                 foreach (int bl in station.BusLines)
+                    currentBusLines.Add(bl);
+                foreach (int bl in currentBusLines)
                 {
                     DeleteStationFromLine(bl, stationKey);
                     if (!station.BusLines.Any())

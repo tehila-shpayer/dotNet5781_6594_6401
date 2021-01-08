@@ -367,11 +367,11 @@ namespace DL
                            select station.Clone();
             return AllStations;
         }
-        public void AddStation(Station station)
+        public int AddStation(Station station)
         {
-            if (DataSource.ListStations.FirstOrDefault(s => s.Key == station.Key) != null)
-                throw new InvalidInformationException("Duplicate station key");
+            station.Key = Station.STATION_KEY++;
             DataSource.ListStations.Add(station.Clone());
+            return station.Key;
         }
         public void UpdateStation(Station station)
         {
