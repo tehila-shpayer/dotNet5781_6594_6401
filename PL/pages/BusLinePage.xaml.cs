@@ -24,7 +24,7 @@ namespace PL
         public BusLinePage()
         {
             InitializeComponent();
-            busLines.DataContext = MainWindow.busLinesCollection;
+            lbBusLines.DataContext = MainWindow.busLinesCollection;
             List<string> AreasString = new List<string> { "All", "General", "Jerusalem", "Center", "North", "South", "Hifa", "TelAviv", "YehudaAndShomron" };
             List<string> OrderByString = new List<string> { "Order by key", "Order by number", "Order by area"};
             areas.DataContext = AreasString;
@@ -32,17 +32,17 @@ namespace PL
             cbBusLines.SelectedIndex = 0;
         }
 
-        private void busLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void lbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (busLines.SelectedIndex >= 0)
-                busLineStationdlb.DataContext = MainWindow.busLinesCollection.ElementAt(busLines.SelectedIndex).BusLineStations;
+            if (lbBusLines.SelectedIndex >= 0)
+                BusLineInfoGrid.DataContext = MainWindow.busLinesCollection.ElementAt(lbBusLines.SelectedIndex);
         }
 
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             foreach (var item in MainWindow.busLinesCollection)
             {
-                ListBoxItem bus = (ListBoxItem)busLines.ItemContainerGenerator.ContainerFromItem(item);
+                ListBoxItem bus = (ListBoxItem)lbBusLines.ItemContainerGenerator.ContainerFromItem(item);
                 String searchS = searchBox.Text;
                 int num = searchS.Length;
                 //Show only buses which there license number have the typed perfix
@@ -57,7 +57,7 @@ namespace PL
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-            BusLine busLine = MainWindow.busLinesCollection[busLines.SelectedIndex];
+            BusLine busLine = MainWindow.busLinesCollection[lbBusLines.SelectedIndex];
             int key = busLine.Key;
             try
             {
@@ -87,7 +87,7 @@ namespace PL
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
-            UpdateBusLineWindow update = new UpdateBusLineWindow(MainWindow.busLinesCollection[busLines.SelectedIndex]);
+            UpdateBusLineWindow update = new UpdateBusLineWindow(MainWindow.busLinesCollection[lbBusLines.SelectedIndex]);
             update.ShowDialog();
         }
 
@@ -95,15 +95,15 @@ namespace PL
         {
             foreach (var item in MainWindow.busLinesCollection)
             {
-                ListBoxItem bus = (ListBoxItem)busLines.ItemContainerGenerator.ContainerFromItem(item);
+                ListBoxItem bus = (ListBoxItem)lbBusLines.ItemContainerGenerator.ContainerFromItem(item);
                 int selectedArea = areas.SelectedIndex;
                 //Show only buses from the same area
-                    if (selectedArea == 0||(selectedArea - 1) == (int)item.Area)
-                    {
-                        bus.Visibility = Visibility.Visible;
-                    }
-                    else
-                        bus.Visibility = Visibility.Collapsed;
+                if (selectedArea == 0 || (selectedArea - 1) == (int)item.Area)
+                {
+                    bus.Visibility = Visibility.Visible;
+                }
+                else
+                    bus.Visibility = Visibility.Collapsed;
             }
         }
 
