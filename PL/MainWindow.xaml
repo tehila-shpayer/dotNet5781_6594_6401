@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="OpeningWindow"  ResizeMode="CanResize"  WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" Initialized="Window_Initialized" Height="700" Width="1024">
+        Title="OpeningWindow"  ResizeMode="NoResize"  WindowStartupLocation="CenterScreen" WindowStyle="None" Initialized="Window_Initialized" Height="700" Width="1024">
     <Grid x:Name="mainGrid" >
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

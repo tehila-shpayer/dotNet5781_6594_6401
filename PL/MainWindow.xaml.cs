@@ -32,8 +32,8 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
-            Height = System.Windows.SystemParameters.WorkArea.Height;
-            Width = SystemParameters.WorkArea.Width;
+            Height = 600;
+            Width = 1024;
 
             foreach (BO.BusLine bl in App.bl.GetAllBusLines())
             {
