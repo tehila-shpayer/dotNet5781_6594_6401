@@ -37,29 +37,7 @@ namespace PL
             //if (t == null) return;
             if (e.Key == Key.Enter && t.Text != "")
             {
-                AddBusLineStationToLine(selectedStation.BusLineKey, int.Parse(t.Text), selectedStation.Position + 1 );
-                //try
-                //{
-                //    int index = 0;
-                //    BO.BusLine busLineBO = App.bl.GetBusLine(selectedStation.BusLineKey);
-                //    BusLine busLinePO = PoBoAdapter.BusLinePoBoAdapter(busLineBO);
-                //    foreach (BusLine bl in MainWindow.busLinesCollection)
-                //    {
-                //        if (bl.Key == busLinePO.Key)
-                //        {
-                //            index = MainWindow.busLinesCollection.IndexOf(bl);
-                //            break;
-                //        }
-                //    }
-                //    App.bl.AddStationToLine(selectedStation.BusLineKey, int.Parse(t.Text), selectedStation.Position + 1);
-                //    busLineBO = App.bl.GetBusLine(selectedStation.BusLineKey);
-                //    busLinePO = PoBoAdapter.BusLinePoBoAdapter(busLineBO);
-                //    MainWindow.busLinesCollection[index] = busLinePO;
-                //}
-                //catch (Exception ex)
-                //{
-                //    MessageBox.Show($"{ex.Message}", "ADD STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                //}
+                AddBusLineStationToLine(selectedStation.BusLineKey, int.Parse(t.Text), selectedStation.Position );
                 Close();
             }
         }

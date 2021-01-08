@@ -46,7 +46,7 @@ namespace PL
                 MessageBox.Show($"Bus added successfully!", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }
-            catch ( BO.BOInvalidInformationException ex) 
+            catch (Exception ex) 
             {
                 MessageBox.Show($"Can't add bus line. Invalid information", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
