@@ -94,13 +94,13 @@
                 <TextBox x:Name="searchBox" FontSize="16" TextChanged="SearchBox_TextChanged" Background="White" BorderBrush="#FF1D2744" Height="40"/>
                 <materialDesign:PackIcon Kind="Search" Margin="0,-33,10,5" Width="25" Height="25" HorizontalAlignment="Right" Foreground="Gray"/>
             </StackPanel>
-            <ComboBox x:Name="cbBusLines" ItemsSource="{Binding}" Height="40" Background="White" SelectionChanged="cbBusLines_SelectionChanged">
+            <!--<ComboBox x:Name="cbBusLines" ItemsSource="{Binding}" Height="40" Background="White" SelectionChanged="cbBusLines_SelectionChanged">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
-            </ComboBox>
+            </ComboBox>-->
             <ListBox x:Name="busLines" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusLineTemplate}" VerticalAlignment="Stretch" BorderBrush="#FF222222" SelectionChanged="busLines_SelectionChanged" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="448"/>
         </StackPanel>
         <Grid Grid.Row="1" Grid.Column="0" Background="White" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">

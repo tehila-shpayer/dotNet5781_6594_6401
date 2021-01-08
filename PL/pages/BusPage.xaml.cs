@@ -54,5 +54,41 @@ namespace PL
                 }
             }
         }
+
+        private void updateButton_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateBusWindow updateBusWindow = new UpdateBusWindow(MainWindow.busesCollection[lbBuses.SelectedIndex]);
+            updateBusWindow.ShowDialog();
+        }
+
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            Bus bus = MainWindow.busesCollection[lbBuses.SelectedIndex];
+            string key = bus.LicenseNumber;
+            try
+            {
+                MessageBoxResult mbResult = MessageBox.Show($"Are you sure you want to delete \nbus of key {key}?", "DELETE BUS MESSAGE", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+                if (mbResult == MessageBoxResult.Yes)
+                {
+                    App.bl.DeleteBus(key);
+                    MainWindow.busesCollection.Remove(bus);
+                    MessageBox.Show($"Bus of key {key} was deleted.", "DELETE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.No);
+
+                }
+                else
+                    MessageBox.Show($"Delete of bus was canceled.", "DELETE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.No);
+
+            }
+            catch (BO.BOArgumentNotFoundException ex)
+            {
+                MessageBox.Show($"{ex.Message}", "DELETE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.No);
+            }
+        }
+
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddBusWindow addBusWindow = new AddBusWindow();
+            addBusWindow.ShowDialog();
+        }
     }
 }

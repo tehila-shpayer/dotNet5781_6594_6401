@@ -32,7 +32,10 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
-            foreach(BO.BusLine bl in App.bl.GetAllBusLines())
+            Height = System.Windows.SystemParameters.WorkArea.Height;
+            Width = SystemParameters.WorkArea.Width;
+
+            foreach (BO.BusLine bl in App.bl.GetAllBusLines())
             {
                 busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(bl));
             }

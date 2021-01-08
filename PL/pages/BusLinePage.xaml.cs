@@ -28,8 +28,8 @@ namespace PL
             List<string> AreasString = new List<string> { "All", "General", "Jerusalem", "Center", "North", "South", "Hifa", "TelAviv", "YehudaAndShomron" };
             List<string> OrderByString = new List<string> { "Order by key", "Order by number", "Order by area"};
             areas.DataContext = AreasString;
-            cbBusLines.DataContext = OrderByString;
-            cbBusLines.SelectedIndex = 0;
+            //cbBusLines.DataContext = OrderByString;
+            //cbBusLines.SelectedIndex = 0;
         }
 
         private void busLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -81,8 +81,8 @@ namespace PL
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            AddBus addBus = new AddBus();
-            addBus.ShowDialog();
+            AddBusLineWindow addBusLineWindow = new AddBusLineWindow();
+            addBusLineWindow.ShowDialog();
         }
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
@@ -141,14 +141,6 @@ namespace PL
                 MessageBox.Show($"{ex.Message}", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
-
-        private void CheckBox_Click(object sender, RoutedEventArgs e)
-        {
-
-
-
-            }
-
         private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //switch (cbBusLines.SelectedItem.ToString())

@@ -17,10 +17,10 @@ namespace PL
     /// <summary>
     /// Interaction logic for AddBus.xaml
     /// </summary>
-    public partial class AddBus : Window
+    public partial class AddBusLineWindow : Window
     {
         public List<string> AreasString = new List<string> { "General", "Jerusalem", "Center", "North", "South", "Hifa", "TelAviv", "YehudaAndShomron" };
-        public AddBus()
+        public AddBusLineWindow()
         {
             InitializeComponent();
             areaComboBox.DataContext = AreasString;

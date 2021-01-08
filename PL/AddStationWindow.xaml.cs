@@ -29,8 +29,8 @@ namespace PL
             try
             {
                 BO.Station station = new BO.Station();
-                station.Latitude = int.Parse(latitudeTextBox.Text);
-                station.Longitude = int.Parse(longitudeTextBox.Text);
+                station.Latitude = double.Parse(latitudeTextBox.Text.ToString());
+                station.Longitude = double.Parse(longitudeTextBox.Text.ToString());
                 station.Name = namerTextBox.Text;
                 station.Key = App.bl.AddStation(station);
                 station = App.bl.GetStation(station.Key);
@@ -38,7 +38,7 @@ namespace PL
                 MessageBox.Show($"Station added successfully!", "ADD STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }
-            catch (BO.BOInvalidInformationException ex)
+            catch (Exception ex)
             {
                 MessageBox.Show($"Can't add station line. Invalid information", "ADD STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }

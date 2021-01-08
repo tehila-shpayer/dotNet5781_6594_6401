@@ -47,38 +47,40 @@ namespace BL
         {
             if (bus.LicenseNumber.Length < 7 || bus.LicenseNumber.Length > 8)
             {
-                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\n Error: the license number has to be a 7 or 8 digit number!");
+                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\nError: The license number has to be a 7 or 8 digit number!");
             }
             //Starting date must be in a reasonable spactrum
             else if (!(bus.RunningDate.Year >= 1896 && bus.RunningDate.Year <= DateTime.Now.Year))
             {
-                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\n Error: Starting date must be after 1896 and before " + DateTime.Now.Year + "!");
+                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\nError: Starting date must be after 1896 and before " + DateTime.Now.Year + "!");
             }
             //Running date must be before last treatment date
             else if (bus.RunningDate > bus.LastTreatment)
             {
-                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\n Error: Starting date can't be later then last treatment date!");
+                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\nERROR: Starting date can't be later then last treatment date!");
             }
             // length of license number must much running date
             else if ((bus.LicenseNumber.Length == 7) && (bus.RunningDate.Year >= 2018))
             {
-                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\n Error: A 7 digit license number bus can't be from later than 2017!");
+                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\nERROR: A 7 digit license number bus can't be from later than 2017!");
             }
             else if ((bus.LicenseNumber.Length == 8) && (bus.RunningDate.Year < 2018))
             {
-                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\n Error: A 8 digit license number bus can't be from earlier than 2018!");
+                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\nERROR: A 8 digit license number bus can't be from earlier than 2018!");
             }
             //General KM must be atleast as KM since last treatment
             else if (bus.KM < bus.BeforeTreatKM)
             {
-                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\n Error: Can't have more KM before treatment than general KM!");
+                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\nERROR: Can't have more KM before treatment than general KM!");
             }
             //Fuel can be maximum 1200
             else if (bus.Fuel > 1200)
             {
-                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\n Error: Fuel can't be over 1200!");
+                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\nERROR: Fuel can't be over 1200!");
             }
         }
+        
+
         public void AddBus(Bus bus)
         {
             CheckBusParameters(bus);
@@ -555,6 +557,7 @@ namespace BL
                 bls.Position += 1;
                 dl.UpdateBusLineStation(bls);
             }
+            UpdateStation(stationKey, s => s.BusLines.Append(busLineKey));
         }
         public void AddStationToLine2(int busLineKey, int stationKey, int position = 0)
         {

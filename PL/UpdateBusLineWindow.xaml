@@ -20,9 +20,11 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="Area:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <ComboBox x:Name="areaComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="2" VerticalAlignment="Center" Width="120">
+            <TextBlock x:Name="areaTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" Text="{Binding Area.ToString()}" Margin="3" Grid.Row="2" VerticalAlignment="Center" Width="120"/>
+            <ComboBox x:Name="areaComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="2" VerticalAlignment="Center" Width="120" >
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
@@ -36,7 +38,7 @@
             <Label Content="Last Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
             <TextBlock x:Name="lastStationTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="4" Text="{Binding LastStation}" VerticalAlignment="Center"/>
             <Label Content="Line Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="lineNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding LineNumber, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <TextBox x:Name="lineNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding LineNumber}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Stations: " Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3"/>
             <ComboBox x:Name="stationsComboBox" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" VerticalAlignment="Center" Width="120">
                 <ComboBox.ItemsPanel>
@@ -45,7 +47,18 @@
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
+            <Button x:Name="addBusLineStationButton" Content="Add" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center" Width="72" Height="24" FontSize="12" FontWeight="Normal" Click="addBusLineStationButton_Click" />
+            <StackPanel Grid.Column="1" Grid.Row="6" Orientation="Horizontal">
+            <ComboBox x:Name="addStationsComboBox" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" VerticalAlignment="Center" Width="80" >
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+                <ComboBox x:Name="positionsComboBox" Width="35" Margin="5,3,3,3" ItemsSource="{Binding}"/>
+            </StackPanel>
         </Grid>
-        <Button x:Name="updateButton" Margin="0,314,0.333,24.667" Content="update" Click="updateButton_Click"/>
+        <Button x:Name="updateButton" Margin="0,300,0.333,38.667" Content="update" Click="updateButton_Click"/>
     </Grid>
 </Window>

@@ -61,7 +61,7 @@ namespace PL
                 mail.From = new MailAddress("saramalka2003@gmail.com");
                 mail.Subject = "Password Reset";
                 mail.Body = $"Hi {user.UserName}"
-                    +"\n\nYour new password is: {newPassword}.\nYou can change it in the user profile after logging in.\n\nHave a nice day,\n   The Bus Company";
+                    +$"\n\nYour new password is: {newPassword}.\nYou can change it in the user profile after logging in.\n\nHave a nice day,\n   The Bus Company";
                 mail.IsBodyHtml = true;
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = "smtp.gmail.com";

@@ -63,8 +63,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddBus.xaml.cs">
-      <DependentUpon>AddBus.xaml</DependentUpon>
+    <Compile Include="AddBusLineWindow.xaml.cs">
+      <DependentUpon>AddBusLineWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddBusLineStation.xaml.cs">
       <DependentUpon>AddBusLineStation.xaml</DependentUpon>
@@ -80,6 +80,9 @@
     </Compile>
     <Compile Include="pages\BusLinePage.xaml.cs">
       <DependentUpon>BusLinePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddBusWindow.xaml.cs">
+      <DependentUpon>AddBusWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="PO\PresentBusLineForStation.cs" />
     <Compile Include="PO\Cloning.cs" />
@@ -112,7 +115,13 @@
     <Compile Include="UpdateBusLineWindow.xaml.cs">
       <DependentUpon>UpdateBusLineWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="AddBus.xaml">
+    <Compile Include="UpdateBusWindow.xaml.cs">
+      <DependentUpon>UpdateBusWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateStationWindow.xaml.cs">
+      <DependentUpon>UpdateStationWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AddBusLineWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -173,7 +182,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddBusWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UpdateBusLineWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateBusWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateStationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

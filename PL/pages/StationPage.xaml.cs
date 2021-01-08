@@ -23,6 +23,9 @@ namespace PL
     {
         public StationPage()
         {
+            //MainWindow.stationsCollection.Clear();
+            //foreach (BO.Station s in App.bl.GetAllStations())
+            //    MainWindow.stationsCollection.Add(PoBoAdapter.StationPoBoAdapter(s));
             InitializeComponent();
             lbStations.DataContext = MainWindow.stationsCollection;
             
@@ -57,7 +60,8 @@ namespace PL
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
-
+            UpdateStationWindow updateStationWindow = new UpdateStationWindow(MainWindow.stationsCollection[lbStations.SelectedIndex]);
+            updateStationWindow.ShowDialog();
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
