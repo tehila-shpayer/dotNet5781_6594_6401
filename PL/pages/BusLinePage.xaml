@@ -10,130 +10,117 @@
       d:DesignHeight="450" d:DesignWidth="800"
      Title="BusLinePage" Background="White">
     <Page.Resources>
-        <DataTemplate x:Key="BusLineTemplate"
-                  DataType="local:BusLine">
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="110">
+        <DataTemplate x:Key="BusLineTemplate" DataType="local:Bus">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Width="230">
                 <TextBlock Text="{Binding LineNumber}" TextAlignment="Right" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI Black"/>
                 <TextBlock Text="{Binding Key}" TextAlignment="Right"/>
                 <TextBlock Text="{Binding Area}" TextAlignment="Right"/>
             </StackPanel>
         </DataTemplate>
-        <DataTemplate x:Key="BusLineStationTemplate"
-                  DataType="local:BusLineStation">
-            <StackPanel Orientation="Vertical">
-                <Grid Width="630">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="{Binding StationKey}" Margin="10" Grid.Row="1" Grid.Column="1" TextAlignment="Right"/>
-                    <TextBlock Margin="10" Grid.Row="0" Grid.Column="1" TextAlignment="Right" FontWeight="Bold" FontFamily="Ariel">
-                    <Run Text="{Binding Name}" />
-                    <Run Text="."/>
-                    <Run Text="{Binding Position}"/>
-                    </TextBlock>
-                    <TextBlock Grid.Row="1" Grid.Column="0" TextAlignment="Left" Margin="10,0,10,10">
-                    <Run Text=" |&#x0a; |"/>
-                    <Run Text="{Binding DistanceFromLastStationMeters}"/>
-                    <Run Text="meters,"/>
-                    <Run Text="{Binding TravelTimeFromLastStationMinutes}"/>
-                    <Run Text="minutes.&#x0a;"/>
-                    <Run Text="|&#x0a;"/>
-                    </TextBlock>
-                    <!--"&#x0a;-->
-                </Grid>
-                <StackPanel>
-                    <Button x:Name="deleteStationButton" Margin="450,0,0,0" Click="deleteStationButton_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="DELETE"/>
-                            <materialDesign:PackIcon Kind="Delete"/>
-                        </StackPanel>
+        <DataTemplate x:Key="BusLineStationTemplate" DataType="local:BusLineStation">
+            <StackPanel Margin="0,30,0,0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,-35,0,0">
+
+                    <TextBlock FontSize="15" Text="דקות " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
+                    <TextBlock FontSize="15" Text="{Binding TravelTimeFromLastStationMinutes}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
+                    <TextBlock FontSize="15" Text=" ,מטר " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
+                    <TextBlock FontSize="15" Text="{Binding DistanceFromLastStationMeters}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
+                    <materialDesign:PackIcon Kind="ArrowBottom" Width="20" Height="20" Margin="12,2" Foreground="#FF0BD380"/>
+                    <Button Margin="25,-12,5,0" Width="26" Padding="2" Height="26" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}" Click="addStationButton_Click">
+                        <materialDesign:PackIcon Kind="AddThick" Height="18" Width="18"/>
                     </Button>
-                    <Label Height="20"/>
-                    <Button x:Name="addStationButton" Click="addStationButton_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="ADD"/>
-                            <materialDesign:PackIcon Kind="Add"/>
-                        </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Margin="0,5,10,10" Width="26" Padding="1" Height="26" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}" Click="deleteStationButton_Click">
+                        <materialDesign:PackIcon Kind="Delete" Height="19" Width="19"/>
                     </Button>
+                    <TextBlock Margin="10" Text="{Binding StationKey}" TextAlignment="Right" FontWeight="Bold" FontSize="14" FontFamily="Ariel"/>
+                    <TextBlock Margin="6,10" Text="{Binding Name}" TextAlignment="Right" FontWeight="Bold" FontSize="14" FontFamily="Ariel"/>
+                    <TextBlock Margin="10" Text="{Binding Position}" TextAlignment="Right" FontWeight="Bold" FontSize="14" FontFamily="Ariel"/>
+
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
+        <CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Bus}, CreateList=True}"/>
     </Page.Resources>
-    <Grid ScrollViewer.CanContentScroll="True">
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="8*"/>
-
         </Grid.RowDefinitions>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                 <GradientStop Color="LightGray" Offset="1"/>
-                <GradientStop Color="#FFA6C8D1" Offset="0.25"/>
-                <GradientStop Color="#FFD9DCDD" Offset="0.086"/>
-                <GradientStop Color="#FFBBD0D6" Offset="0.18"/>
-                <GradientStop Color="#FFABC9D1" Offset="0.608"/>
-                <GradientStop Color="#FFC7D0D2" Offset="0.46"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Label Content="Bus Lines:" Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontSize="30"/>
-        <StackPanel Grid.Row="1" Grid.Column="1" x:Name="linesStackPanel" Margin="0,0.4,0,-0.4" ScrollViewer.VerticalScrollBarVisibility="Auto">
-          
-            <StackPanel.Effect>
-                <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="1"/>
-            </StackPanel.Effect>
-            <StackPanel>
-                <TextBox x:Name="searchBox" FontSize="16" TextChanged="SearchBox_TextChanged" Background="White" BorderBrush="#FF1D2744" Height="40"/>
-                <materialDesign:PackIcon Kind="Search" Margin="0,-33,10,5" Width="25" Height="25" HorizontalAlignment="Right" Foreground="Gray"/>
+        <Label Content="Buse Lines:" Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontSize="30"/>
+        <StackPanel Grid.Row="1" Grid.Column="1" x:Name="spStations">
+            <StackPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="LightGray" Offset="1"/>
+                    <GradientStop Color="#FFA6C8D1" Offset="0.25"/>
+                    <GradientStop Color="#FFD9DCDD" Offset="0.086"/>
+                    <GradientStop Color="#FFBBD0D6" Offset="0.18"/>
+                    <GradientStop Color="#FFABC9D1" Offset="0.608"/>
+                    <GradientStop Color="#FFC7D0D2" Offset="0.46"/>
+                </LinearGradientBrush>
+            </StackPanel.Background>
+            <StackPanel Orientation="Vertical" Margin="30,2">
+                <Label Content="Show By specific area:" Foreground="#FF476972" FontWeight="Bold" FontSize="14"/>
+                <ComboBox x:Name="areas"  ItemsSource="{Binding}" Background="White" Margin="10,0" AllowDrop="True" SelectionChanged="areas_SelectionChanged"/>
             </StackPanel>
-            <!--<ComboBox x:Name="cbBusLines" ItemsSource="{Binding}" Height="40" Background="White" SelectionChanged="cbBusLines_SelectionChanged">
+            <ComboBox x:Name="cbBusLines" ItemsSource="{Binding}" Height="40" Background="#FFBBD0D6" SelectionChanged="cbBusLines_SelectionChanged">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
-            </ComboBox>-->
-            <ListBox x:Name="busLines" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusLineTemplate}" VerticalAlignment="Stretch" BorderBrush="#FF222222" SelectionChanged="busLines_SelectionChanged" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="448"/>
-        </StackPanel>
-        <Grid Grid.Row="1" Grid.Column="0" Background="White" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="9*"/>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Grid.Column="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Label/>
-                <TextBlock/>
-                <Label/>
-                <TextBlock/>
-                <Label/>
-                <TextBlock/>
-            </Grid>
-            <ListBox x:Name="busLineStationdlb" Grid.Row="1" Grid.Column="0" IsSynchronizedWithCurrentItem="{x:Null}" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusLineStationTemplate}" VerticalAlignment="Stretch" Background="White" FontSize="14" FontFamily="Segoe UI Emoji" HorizontalAlignment="Stretch"/>
-        </Grid>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <StackPanel Orientation="Vertical" Margin="30,2">
-                <Label Content="Show By specific area:" Foreground="#FF476972" FontWeight="Bold" FontSize="14"/>
-                <ComboBox x:Name="areas"  ItemsSource="{Binding}" Background="White" Margin="10,0" AllowDrop="True" SelectionChanged="areas_SelectionChanged"/>
+            </ComboBox>
+            
+            <StackPanel>
+
+                <TextBox x:Name="searchBox" FontSize="16" TextChanged="SearchBox_TextChanged" Background="White" BorderBrush="#FF1D2744" Height="30"/>
+                <materialDesign:PackIcon Kind="Search" Margin="0,-28,10,5" Width="25" Height="25" HorizontalAlignment="Right" Foreground="Gray"/>
             </StackPanel>
-            <Button x:Name="updateButton" Width="120" Margin="0,10,5,10" Content="UPDATE BUS" Click="updateButton_Click" />
-            <Button x:Name="deleteButton" Width="120" Margin="5,10" Content="DELETE BUS" Click="deleteButton_Click"/>
-            <Button x:Name="addButton" Width="120" Margin="5,10,15,10" Content="ADD BUS" Click="addButton_Click"/>
-
+            
+            <ListBox x:Name="lbBusLines" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusLineTemplate}" BorderBrush="#FF222222" SelectionChanged="lbBusLines_SelectionChanged" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="439" Margin="0,0,0.4,0">
+            </ListBox>
         </StackPanel>
 
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="updateButton" Width="145" Margin="0,10,5,10" Background="#FF477AA9" Content="UPDATE BUS LINE"/>
+            <Button x:Name="deleteButton" Width="145" Margin="5,10" Content="DELETE BUS LINE" Background="#FF477AA9"/>
+            <Button x:Name="addButton" Width="145" Margin="5,10,15,10" Content="ADD BUS LINE" Background="#FF477AA9"/>
+        </StackPanel>
+
+        <Rectangle Grid.Column="0" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
+        </Rectangle>
+        <Grid x:Name="BusLineInfoGrid" Grid.Column="0" Grid.Row="1" Margin="60,55,60,45" DataContext="{Binding}">
+            <StackPanel Grid.Column="0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Text="{Binding Area}" Margin="10,0" TextAlignment="Right" FontSize="22" FontFamily="Segoe UI Black"/>
+                    <TextBlock Text="{Binding LineNumber}" Margin="10,0" TextAlignment="Right" FontWeight="Bold" FontSize="22" FontFamily="Segoe UI Black"/>
+                </StackPanel>
+                <TextBlock Text="{Binding Key}" Margin="10" TextAlignment="Right" FontSize="16"/>
+                <TextBlock Text=":תחנות" Margin="15,5" TextAlignment="Right" FontSize="20" FontFamily="Segoe UI Semibold"/>
+                <ListBox x:Name="lbBusLineStations" Margin="15,10" HorizontalContentAlignment="Right" HorizontalAlignment="Right" ItemsSource="{Binding BusLineStations}" ItemTemplate="{StaticResource BusLineStationTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="419" Height="305">
+
+                </ListBox>
+                <!--<StackPanel Orientation="Horizontal" Margin="0,10" HorizontalAlignment="Center">
+                    <Button Margin="10,5" Width="120" Height="45" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Margin="0,0,5,0" Kind="FuelPump" Height="30" Width="30"/>
+                            <TextBlock Text="תדלוק" VerticalAlignment="Center" Margin="5,0,0,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>-->
+
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>
 

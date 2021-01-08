@@ -12,7 +12,7 @@
     <Page.Resources>
         <DataTemplate x:Key="BusTemplate" DataType="local:Bus">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Width="230">
-                <TextBlock Text="{Binding LicenseNumberFormat}" TextAlignment="Right" FontWeight="Bold" FontSize="15" FontFamily="Segoe UI Black"/>
+                <TextBlock Text="{Binding LicenseNumberFormat}" TextAlignment="Right" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI Black"/>
                 <TextBlock Text="{Binding Status}" TextAlignment="Right" FontSize="15"/>
             </StackPanel>
         </DataTemplate>
