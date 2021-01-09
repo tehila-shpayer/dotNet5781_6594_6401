@@ -85,7 +85,7 @@
 
         <Rectangle Grid.Column="0" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
         </Rectangle>
-        <Grid x:Name="StationInfoGrid" Grid.Column="0" Grid.Row="1" Margin="60" DataContext="{Binding}">
+        <Grid x:Name="StationInfoGrid" Grid.Column="0" Grid.Row="1" Margin="60,60,60,45" DataContext="{Binding}">
             <!--<Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="1.5*"/>
@@ -108,7 +108,10 @@
 
                 </StackPanel>
                 <TextBlock FontSize="20" Text=":קווים העוברים בתחנה" TextAlignment="Right" Margin="15" FontFamily="Segoe UI Semibold"/>
-                <ListBox x:Name="lbLines" HorizontalContentAlignment="Right" HorizontalAlignment="Right" ItemsSource="{Binding PresentBusLines}" ItemTemplate="{StaticResource BusLineTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="419" Height="400" Margin="0,0,-0.4,0">
+                <!--<ListBox x:Name="lbLines" HorizontalContentAlignment="Right" HorizontalAlignment="Right" ItemsSource="{Binding PresentBusLines}" ItemTemplate="{StaticResource BusLineTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="419" Height="364" Margin="-5,0,-0.4,0">
+
+                </ListBox>-->
+                <ListBox x:Name="lbBusLineStations" Margin="-20,10,14.6,10" Padding="0,0,0,0" HorizontalContentAlignment="Right" HorizontalAlignment="Right" ItemsSource="{Binding PresentBusLines}" ItemTemplate="{StaticResource BusLineTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="419" Height="183">
 
                 </ListBox>
             </StackPanel>

@@ -66,8 +66,13 @@ namespace PL
                 busLineBO = App.bl.GetBusLine(busKey);
                 busLinePO = PoBoAdapter.BusLinePoBoAdapter(busLineBO);
                 MainWindow.busLinesCollection[index] = busLinePO;
+                MainWindow.stationsCollection.Clear();
+                foreach (BO.Station s in App.bl.GetAllStations())
+                {
+                    MainWindow.stationsCollection.Add(PoBoAdapter.StationPoBoAdapter(s));
+                }
                 MessageBox.Show($"Station {stationKey} was successfully\n added to line {busLinePO.LineNumber}", "ADD STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-
+                
             }
             catch (Exception ex)
             {
