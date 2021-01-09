@@ -20,7 +20,7 @@ namespace PL
             }
             else
             {
-                return Visibility.Hidden;//else, the ride button is not enable
+                return Visibility.Visible;//else, the ride button is not enable
             }
         }
         //The opposite converter (not used in our program)
