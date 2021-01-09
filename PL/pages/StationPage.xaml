@@ -21,7 +21,7 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="Auto" >
                 <StackPanel Orientation="Horizontal" Margin="12,5">
                     <TextBlock Text="{Binding NameLastStation}" TextAlignment="Right" FontSize="15" FontFamily="Segoe UI Black"/>
-                    <materialDesign:PackIcon Kind="ArrowLeft" HorizontalAlignment="Right" Width="22" Height="22" Margin="10,0"/>
+                    <materialDesign:PackIcon Kind="ArrowLeft" HorizontalAlignment="Right" Foreground="#FF0BD380" Width="22" Height="22" Margin="10,0"/>
                     <TextBlock Text="{Binding NameFirstStation}" TextAlignment="Right" FontSize="15" FontFamily="Segoe UI Black"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
