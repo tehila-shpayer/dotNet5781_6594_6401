@@ -93,9 +93,9 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="updateButton" Width="145" Margin="0,10,5,10" Background="#FF477AA9" Content="UPDATE BUS LINE" Click="updateButton_Click"/>
+            <Button x:Name="updateButton" Width="145" Margin="5,10" Content="UPDATE BUS LINE" Background="#FF477AA9" Click="updateButton_Click"/>
             <Button x:Name="deleteButton" Width="145" Margin="5,10" Content="DELETE BUS LINE" Background="#FF477AA9" Click="deleteButton_Click"/>
-            <Button x:Name="addButton" Width="145" Margin="5,10,15,10" Content="ADD BUS LINE" Background="#FF477AA9" Click="addButton_Click"/>
+            <Button x:Name="addButton" Width="145" Margin="5,10" Content="ADD BUS LINE" Background="#FF477AA9" Click="addButton_Click"/>
         </StackPanel>
 
         <Rectangle Grid.Column="0" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
@@ -108,7 +108,7 @@
                 </StackPanel>
                 <TextBlock Text="{Binding Key}" Margin="10" TextAlignment="Right" FontSize="16"/>
                 <TextBlock Text=":תחנות" Margin="15,5" TextAlignment="Right" FontSize="20" FontFamily="Segoe UI Semibold"/>
-                <ListBox x:Name="lbBusLineStations" Margin="15,10" HorizontalContentAlignment="Right" HorizontalAlignment="Right" ItemsSource="{Binding BusLineStations}" ItemTemplate="{StaticResource BusLineStationTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="419" Height="305">
+                <ListBox x:Name="lbBusLineStations" Margin="15,10" Padding="0,-25,0,0" HorizontalContentAlignment="Right" HorizontalAlignment="Right" ItemsSource="{Binding BusLineStations}" ItemTemplate="{StaticResource BusLineStationTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="419" Height="305">
 
                 </ListBox>
                 <!--<StackPanel Orientation="Horizontal" Margin="0,10" HorizontalAlignment="Center">
