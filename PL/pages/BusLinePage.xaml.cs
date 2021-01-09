@@ -28,8 +28,9 @@ namespace PL
             List<string> AreasString = new List<string> { "All", "Center", "General", "Hifa", "Jerusalem", "North", "South", "TelAviv", "YehudaAndShomron" };
             List<string> OrderByString = new List<string> { "Order by key", "Order by number", "Order by area" };
             areas.DataContext = AreasString;
+            areas.SelectedIndex = 0;
             cbBusLines.DataContext = OrderByString;
-            cbBusLines.SelectedIndex = 0;
+            //cbBusLines.SelectedIndex = 0;
         }
 
         private void lbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -123,17 +124,22 @@ namespace PL
 
         private void areas_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ShowByArea();
+        }
+        void ShowByArea()
+        {
             foreach (var item in MainWindow.busLinesCollection)
             {
-                ListBoxItem bus = (ListBoxItem)lbBusLines.ItemContainerGenerator.ContainerFromItem(item);
+                ListBoxItem bus = lbBusLines.ItemContainerGenerator.ContainerFromItem(item) as ListBoxItem;
                 int selectedArea = areas.SelectedIndex;
                 //Show only buses from the same area
-                if (selectedArea == 0 || (selectedArea - 1) == (int)item.Area)
+                if (bus != null)
                 {
-                    bus.Visibility = Visibility.Visible;
+                    if (selectedArea == 0 || (selectedArea - 1) == (int)item.Area)
+                        bus.Visibility = Visibility.Visible;
+                    else
+                        bus.Visibility = Visibility.Collapsed;
                 }
-                else
-                    bus.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -199,6 +205,7 @@ namespace PL
             MainWindow.busLinesCollection.Clear();
             foreach (BusLine bus in collection)
                 MainWindow.busLinesCollection.Add(bus);
+            ShowByArea();
         }
     }
 }

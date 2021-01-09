@@ -38,8 +38,8 @@ namespace PL
             try
             {
                 App.bl.UpdateBus(busBO);
-                updatingBus = PoBoAdapter.BusPoBoAdapter(busBO);
-                MainWindow.busesCollection[beforeUpdateindex] = updatingBus;
+                //updatingBus = 
+                MainWindow.busesCollection[beforeUpdateindex] = PoBoAdapter.BusPoBoAdapter(busBO);
                 MessageBox.Show($"Bus updated successfully.", "UPDATE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }

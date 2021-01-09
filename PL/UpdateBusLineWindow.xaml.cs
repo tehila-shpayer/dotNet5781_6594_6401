@@ -37,13 +37,13 @@ namespace PL
             positionsComboBox.DataContext = Positions;
             addStationsComboBox.DataContext = MainWindow.stationsCollection;
             addStationsComboBox.DisplayMemberPath = "  Key  ";
-            //stationsComboBox.DataContext = updatingBusLine.BusLineStations;
+            stationsComboBox.DataContext = busLine.BusLineStations;
             stationsComboBox.DisplayMemberPath = "  StationKey  ";
             stationsComboBox.SelectedIndex = 0;
             addStationsComboBox.SelectedIndex = 0;
             positionsComboBox.SelectedIndex = 0;
             areaComboBox.SelectedIndex = (int)busLine.Area;
-            grid1.DataContext = updatingBusLine;
+            grid1.DataContext = busLine;
         //    firstStationTextBlock.Text = busLine.FirstStation.ToString();
         //    lastStationTextBlock.Text = busLine.LastStation.ToString();
         //    keyTextBlock.Text = busLine.Key.ToString();

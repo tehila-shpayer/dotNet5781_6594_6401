@@ -32,15 +32,15 @@
                 </ComboBox.ItemsPanel>
             </ComboBox>
             <Label Content="First Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <TextBlock x:Name="firstStationTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="3" Text="{Binding FirstStation}" VerticalAlignment="Center"/>
+            <TextBlock x:Name="firstStationTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="3" Text="{Binding FirstStation, Mode=TwoWay}" VerticalAlignment="Center"/>
             <Label Content="Key:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
             <TextBlock x:Name="keyTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="0" Text="{Binding Key}" VerticalAlignment="Center"/>
             <Label Content="Last Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <TextBlock x:Name="lastStationTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="4" Text="{Binding LastStation}" VerticalAlignment="Center"/>
+            <TextBlock x:Name="lastStationTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="4" Text="{Binding LastStation, Mode=TwoWay}" VerticalAlignment="Center"/>
             <Label Content="Line Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
             <TextBox x:Name="lineNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding LineNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Stations: " Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3"/>
-            <ComboBox x:Name="stationsComboBox" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding BusLineStations}" Margin="3" VerticalAlignment="Center" Width="120">
+            <ComboBox x:Name="stationsComboBox" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" VerticalAlignment="Center" Width="120">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
