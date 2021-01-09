@@ -39,6 +39,9 @@ namespace PL
             {
                 busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(bl));
             }
+            //busLinesCollection = (ObservableCollection<BusLine>)(from bl in App.bl.GetAllBusLines()
+            //                     select PoBoAdapter.BusLinePoBoAdapter(bl));
+
             foreach (BO.Station s in App.bl.GetAllStations())
             {
                 stationsCollection.Add(PoBoAdapter.StationPoBoAdapter(s));

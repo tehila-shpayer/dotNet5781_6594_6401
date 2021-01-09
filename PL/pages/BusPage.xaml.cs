@@ -25,7 +25,9 @@ namespace PL
         {
             InitializeComponent();
             lbBuses.DataContext = MainWindow.busesCollection;
-            
+            List<string> OrderByString = new List<string> { "Order by license number", "Order by status" };
+            cbBuses.DataContext = OrderByString;
+            cbBuses.SelectedIndex = 0;
         }
 
         private void stations_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -89,6 +91,30 @@ namespace PL
         {
             AddBusWindow addBusWindow = new AddBusWindow();
             addBusWindow.ShowDialog();
+            Sort();
+        }
+
+        private void cbBuses_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Sort();
+        }
+        void Sort()
+        {
+            var collection = new ObservableCollection<Bus>();
+            switch (cbBuses.SelectedItem.ToString())
+            {
+                case "Order by license number":
+                    foreach (Bus bus in MainWindow.busesCollection.OrderBy(b => int.Parse(b.LicenseNumber)))
+                        collection.Add(bus);
+                    break;
+                case "Order by status":
+                    foreach (Bus bus in MainWindow.busesCollection.OrderBy(b => b.Status.ToString()))
+                        collection.Add(bus); break;
+                default: break;
+            }
+            MainWindow.busesCollection.Clear();
+            foreach (Bus bus in collection)
+                MainWindow.busesCollection.Add(bus);
         }
     }
 }

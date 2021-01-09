@@ -28,7 +28,7 @@ namespace PL
             List<string> AreasString = new List<string> { "All", "General", "Jerusalem", "Center", "North", "South", "Hifa", "TelAviv", "YehudaAndShomron" };
             List<string> OrderByString = new List<string> { "Order by key", "Order by number", "Order by area"};
             areas.DataContext = AreasString;
-            //cbBusLines.DataContext = OrderByString;
+            cbBusLines.DataContext = OrderByString;
             //cbBusLines.SelectedIndex = 0;
         }
 
@@ -83,6 +83,7 @@ namespace PL
         {
             AddBusLineWindow addBusLineWindow = new AddBusLineWindow();
             addBusLineWindow.ShowDialog();
+            Sort();
         }
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
@@ -143,19 +144,28 @@ namespace PL
         }
         private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //switch (cbBusLines.SelectedItem.ToString())
-            //{
-            //    case "Order by key":
-            //        MainWindow.busLinesCollection = new ObservableCollection<BusLine>(MainWindow.busLinesCollection.OrderBy(bl => bl.Key));
-            //        break;
-            //    case "Order by number":
-            //        MainWindow.busLinesCollection = new ObservableCollection<BusLine>(MainWindow.busLinesCollection.OrderBy(bl => bl.LineNumber));
-            //        break;
-            //    case "Order by area":
-            //        MainWindow.busLinesCollection = new ObservableCollection<BusLine>(MainWindow.busLinesCollection.OrderBy(bl => bl.Area.ToString()));
-            //        break;
-            //    default: break;
-            //}
+            Sort();
+        }
+        void Sort()
+        {
+            var collection = new ObservableCollection<BusLine>();
+            switch (cbBusLines.SelectedItem.ToString())
+            {
+                case "Order by key":
+                    foreach (BusLine bus in MainWindow.busLinesCollection.OrderBy(bl => bl.Key))
+                        collection.Add(bus);
+                    break;
+                case "Order by number":
+                    foreach (BusLine bus in MainWindow.busLinesCollection.OrderBy(bl => bl.LineNumber))
+                        collection.Add(bus); break;
+                case "Order by area":
+                    foreach (BusLine bus in MainWindow.busLinesCollection.OrderBy(bl => bl.Area.ToString()))
+                        collection.Add(bus); break;
+                default: break;
+            }
+            MainWindow.busLinesCollection.Clear();
+            foreach (BusLine bus in collection)
+                MainWindow.busLinesCollection.Add(bus);
         }
     }
 }
