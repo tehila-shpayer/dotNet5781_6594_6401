@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace PL
 {
@@ -23,6 +25,10 @@ namespace PL
                 if (item.Name != "IsActive")
                     str += "\n" + item.Name + ": " + item.GetValue(t, null);
             return str;
+        }
+        public static void GeneralSearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

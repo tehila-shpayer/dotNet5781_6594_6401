@@ -46,12 +46,15 @@ namespace PL
                 String searchS = searchBox.Text;
                 int num = searchS.Length;
                 //Show only buses which there license number have the typed perfix
-                if ((num <= item.LineNumber.ToString().Length && searchS == (item as BusLine).LineNumber.ToString().Substring(0, num)))
+                if (bus != null)
                 {
-                    bus.Visibility = Visibility.Visible;
+                    if ((num <= item.LineNumber.ToString().Length && searchS == (item as BusLine).LineNumber.ToString().Substring(0, num)))
+                    {
+                        bus.Visibility = Visibility.Visible;
+                    }
+                    else
+                        bus.Visibility = Visibility.Collapsed;
                 }
-                else
-                    bus.Visibility = Visibility.Collapsed;
             }
         }
 
