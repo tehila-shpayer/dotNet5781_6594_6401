@@ -770,6 +770,13 @@ namespace BL
         }
         #endregion
 
+        #region BusInTravel
+        BusInTravel CreateBusInTravel(string licenseNumber, int line, DateTime startingTime)
+        {
+            return new BusInTravel();
+        }
+        #endregion
+
     }
 }
 

@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BO\Bus.cs" />
+    <Compile Include="BO\BusInTravel.cs" />
     <Compile Include="BO\BusLine.cs" />
     <Compile Include="BO\BusLineStation.cs" />
     <Compile Include="BO\Enum.cs" />
