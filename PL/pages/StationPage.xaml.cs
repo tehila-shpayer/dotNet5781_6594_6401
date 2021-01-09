@@ -23,12 +23,16 @@ namespace PL
     {
         public StationPage()
         {
+
             //MainWindow.stationsCollection.Clear();
             //foreach (BO.Station s in App.bl.GetAllStations())
             //    MainWindow.stationsCollection.Add(PoBoAdapter.StationPoBoAdapter(s));
             InitializeComponent();
             lbStations.DataContext = MainWindow.stationsCollection;
-            
+            List<string> OrderByString = new List<string> { "Order by key", "Order by name" };
+            cbStations.DataContext = OrderByString;
+            cbStations.SelectedIndex = 0;
+
         }
 
         private void stations_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -92,6 +96,30 @@ namespace PL
         {
             AddStationWindow addStationWindow = new AddStationWindow();
             addStationWindow.ShowDialog();
+            Sort();
+        }
+
+        private void cbStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Sort();
+        }
+        void Sort()
+        {
+            var collection = new ObservableCollection<Station>();
+            switch (cbStations.SelectedItem.ToString())
+            {
+                case "Order by key":
+                    foreach (Station station in MainWindow.stationsCollection.OrderBy(s => s.Key))
+                        collection.Add(station);
+                    break;
+                case "Order by name":
+                    foreach (Station station in MainWindow.stationsCollection.OrderBy(s => s.Name))
+                        collection.Add(station); break;
+                default: break;
+            }
+            MainWindow.stationsCollection.Clear();
+            foreach (Station station in collection)
+                MainWindow.stationsCollection.Add(station);
         }
     }
 }
