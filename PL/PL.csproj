@@ -91,8 +91,8 @@
     <Compile Include="PO\PoBoAdapter.cs" />
     <Compile Include="PO\PreviewKeyDown.cs" />
     <Compile Include="PO\Tools.cs" />
-    <Compile Include="pages\Profile.xaml.cs">
-      <DependentUpon>Profile.xaml</DependentUpon>
+    <Compile Include="pages\ProfilePage.xaml.cs">
+      <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\Sign_UpPage.xaml.cs">
       <DependentUpon>Sign_UpPage.xaml</DependentUpon>
@@ -146,7 +146,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="pages\Profile.xaml">
+    <Page Include="pages\ProfilePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
