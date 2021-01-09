@@ -10,6 +10,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
      Title="BusLinePage" Background="White">
     <Page.Resources>
+        <local:BoolToVisibilityConverter x:Key="Converter"/>
         <DataTemplate x:Key="BusLineTemplate" DataType="local:Bus">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Width="230">
                 <TextBlock Text="{Binding LineNumber}" TextAlignment="Right" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI Black"/>
@@ -19,7 +20,7 @@
         </DataTemplate>
         <DataTemplate x:Key="BusLineStationTemplate" DataType="local:BusLineStation">
             <StackPanel Margin="0,30,0,0">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,-35,0,0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,-35,0,0" Visibility="{Binding IsFirstStation,Converter={StaticResource Converter}}">
 
                     <TextBlock FontSize="15" Text="דקות " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
                     <TextBlock FontSize="15" Text="{Binding TravelTimeFromLastStationMinutes}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>

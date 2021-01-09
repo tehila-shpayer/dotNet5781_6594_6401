@@ -72,6 +72,7 @@
     <Compile Include="AddStationWindow.xaml.cs">
       <DependentUpon>AddStationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Convertors.cs" />
     <Compile Include="pages\BusPage.xaml.cs">
       <DependentUpon>BusPage.xaml</DependentUpon>
     </Compile>

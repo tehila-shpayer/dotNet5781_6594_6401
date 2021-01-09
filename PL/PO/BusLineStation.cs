@@ -14,6 +14,7 @@ namespace PL
         public double DistanceFromLastStationMeters { get; set; }
         public int TravelTimeFromLastStationMinutes { get; set; }
         public String Name { get; set; }
+        public bool IsFirstStation;
 
         public bool _isActive = true;
         public bool IsActive { get; set; }
