@@ -18,11 +18,11 @@ namespace PL
     /// <summary>
     /// Interaction logic for Profile.xaml
     /// </summary>
-    public partial class Profile : Page
+    public partial class ProfilePage : Page
     {
         public string userName;
         public string password;
-        public Profile(string un, string pw)
+        public ProfilePage(string un, string pw)
         {
             InitializeComponent();
             userName = un;

@@ -24,7 +24,7 @@ namespace PL
         {
             InitializeComponent();
             bus = new BO.Bus();
-            bus.Status = BO.Status.NotReady;
+            //bus.Status = BO.Status.NotReady;
             bus.RunningDate = DateTime.Now;
             bus.LastTreatment = DateTime.Now;
             grid1.DataContext = bus;
@@ -49,19 +49,19 @@ namespace PL
 
         private void lastTreatmentFormatTextBox_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            UpdateStatus(); 
-        }     
+            //UpdateStatus();
+        }
 
         private void beforeTreatKMTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            UpdateStatus();
+            //UpdateStatus();
         }
         void UpdateStatus()
         {
-            if (bus.BeforeTreatKM > 20000 || (DateTime.Now - bus.LastTreatment).TotalDays > 365)
-                bus.Status = BO.Status.NotReady;
-            else
-                bus.Status = BO.Status.Ready;
+            //if (bus.BeforeTreatKM > 20000 || (DateTime.Now - bus.LastTreatment).TotalDays > 365)
+            //    statusTextBlock.Text = "Not Ready";
+            //else
+            //    statusTextBlock.Text = "Ready";
         }
 
         private void licenseNumberTextBox_TextChanged(object sender, TextChangedEventArgs e)

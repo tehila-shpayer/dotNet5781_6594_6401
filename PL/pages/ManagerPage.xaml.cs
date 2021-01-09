@@ -30,7 +30,7 @@ namespace PL
         }
         private void profileButton_Click(object sender, RoutedEventArgs e)
         {
-            currentPage.Content = new Profile(userName, password);
+            currentPage.Content = new ProfilePage(userName, password);
         }
 
         private void busLinesButton_Click(object sender, RoutedEventArgs e)

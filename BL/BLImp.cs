@@ -78,6 +78,16 @@ namespace BL
             {
                 throw new BOInvalidInformationException("Couldn't add bus. invalid information!\nERROR: Fuel can't be over 1200!");
             }
+            else if (bus.Fuel < 0)
+            {
+                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\nERROR: Fuel can't be negative!");
+            }
+            if ((DateTime.Now - bus.LastTreatment).TotalDays > 365 || bus.BeforeTreatKM >= 20000 || bus.Fuel == 0)
+            {
+                bus.Status = Status.NotReady;
+            }
+            else
+                bus.Status = Status.Ready;
         }
         
 
