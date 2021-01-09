@@ -25,11 +25,11 @@ namespace PL
         {
             InitializeComponent();
             lbBusLines.DataContext = MainWindow.busLinesCollection;
-            List<string> AreasString = new List<string> { "All", "General", "Jerusalem", "Center", "North", "South", "Hifa", "TelAviv", "YehudaAndShomron" };
-            List<string> OrderByString = new List<string> { "Order by key", "Order by number", "Order by area"};
+            List<string> AreasString = new List<string> { "All", "Center", "General", "Hifa", "Jerusalem", "North", "South", "TelAviv", "YehudaAndShomron" };
+            List<string> OrderByString = new List<string> { "Order by key", "Order by number", "Order by area" };
             areas.DataContext = AreasString;
             cbBusLines.DataContext = OrderByString;
-            //cbBusLines.SelectedIndex = 0;
+            cbBusLines.SelectedIndex = 0;
         }
 
         private void lbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -88,8 +88,16 @@ namespace PL
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
-            UpdateBusLineWindow update = new UpdateBusLineWindow(MainWindow.busLinesCollection[lbBusLines.SelectedIndex]);
-            update.ShowDialog();
+            try
+            {
+                UpdateBusLineWindow update = new UpdateBusLineWindow(MainWindow.busLinesCollection[lbBusLines.SelectedIndex]);
+                update.ShowDialog();
+                Sort();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Please choose a bus line!", "UPDATE BUS LINE MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.No);
+            }
         }
 
         private void areas_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -137,9 +145,13 @@ namespace PL
                 MainWindow.busLinesCollection[index] = busLinePO;
                 MessageBox.Show($"Station {selectedStation.StationKey} was successfully\ndeleted from line {selectedStation.BusLineKey}", "ADD STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
+            catch (BO.BOArgumentNotFoundException ex)
+            {
+                MessageBox.Show($"{ex.Message}", "DELETE BUS LINE MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show($"{ex.Message}", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show($"Please choose a bus line!", "DELETE BUS LINE MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.No);
             }
         }
         private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)

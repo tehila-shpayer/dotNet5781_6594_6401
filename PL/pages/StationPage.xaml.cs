@@ -64,8 +64,16 @@ namespace PL
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
-            UpdateStationWindow updateStationWindow = new UpdateStationWindow(MainWindow.stationsCollection[lbStations.SelectedIndex]);
-            updateStationWindow.ShowDialog();
+            try
+            {
+                UpdateStationWindow updateStationWindow = new UpdateStationWindow(MainWindow.stationsCollection[lbStations.SelectedIndex]);
+                updateStationWindow.ShowDialog();
+                Sort();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Please choose a bus line!", "UPDATE STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.No);
+            }
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
@@ -89,6 +97,10 @@ namespace PL
             catch (BO.BOArgumentNotFoundException ex)
             {
                 MessageBox.Show($"{ex.Message}", "DELETE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.No);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Please choose a station!", "DELETE STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.No);
             }
         }
 

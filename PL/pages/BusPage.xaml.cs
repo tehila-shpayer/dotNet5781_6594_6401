@@ -59,8 +59,16 @@ namespace PL
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
-            UpdateBusWindow updateBusWindow = new UpdateBusWindow(MainWindow.busesCollection[lbBuses.SelectedIndex]);
-            updateBusWindow.ShowDialog();
+            try
+            {
+                UpdateBusWindow updateBusWindow = new UpdateBusWindow(MainWindow.busesCollection[lbBuses.SelectedIndex]);
+                updateBusWindow.ShowDialog();
+                Sort();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"Please choose a bus!", "UPDATE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.No);
+            }
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
@@ -84,6 +92,10 @@ namespace PL
             catch (BO.BOArgumentNotFoundException ex)
             {
                 MessageBox.Show($"{ex.Message}", "DELETE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.No);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Please choose a bus!", "DELETE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.No);
             }
         }
 

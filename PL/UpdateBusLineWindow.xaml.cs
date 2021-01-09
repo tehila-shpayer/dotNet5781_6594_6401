@@ -19,28 +19,31 @@ namespace PL
     /// </summary>
     public partial class UpdateBusLineWindow : Window
     {
-        public List<string> AreasString = new List<string> { "General", "Jerusalem", "Center", "North", "South", "Hifa", "TelAviv", "YehudaAndShomron" };
+        public List<string> AreasString = new List<string> { "Center", "General", "Hifa", "Jerusalem", "North", "South", "TelAviv", "YehudaAndShomron" };
         public List<int> Positions = new List<int>();
         public BusLine updatingBusLine;
         public int beforeUpdateindex;
+        //public BO.BusLine busLineBO;
         public UpdateBusLineWindow(BusLine busLine)
         {
             InitializeComponent();
+            //busLineBO = new BO.BusLine();
+            //busLineBO = App.bl.GetBusLine(busLine.Key);
             updatingBusLine = busLine;
-            for (int i = 1; i < updatingBusLine.BusLineStations.Count() + 1; i++)
+            for (int i = 1; i < busLine.BusLineStations.Count() + 1; i++)
                 Positions.Add(i);
-            beforeUpdateindex = MainWindow.busLinesCollection.IndexOf(updatingBusLine);
+            beforeUpdateindex = MainWindow.busLinesCollection.IndexOf(busLine);
             areaComboBox.DataContext = AreasString;
             positionsComboBox.DataContext = Positions;
             addStationsComboBox.DataContext = MainWindow.stationsCollection;
             addStationsComboBox.DisplayMemberPath = "  Key  ";
-            stationsComboBox.DataContext = updatingBusLine.BusLineStations;
+            //stationsComboBox.DataContext = updatingBusLine.BusLineStations;
             stationsComboBox.DisplayMemberPath = "  StationKey  ";
             stationsComboBox.SelectedIndex = 0;
             addStationsComboBox.SelectedIndex = 0;
             positionsComboBox.SelectedIndex = 0;
             areaComboBox.SelectedIndex = (int)busLine.Area;
-            grid1.DataContext = busLine;
+            grid1.DataContext = updatingBusLine;
         //    firstStationTextBlock.Text = busLine.FirstStation.ToString();
         //    lastStationTextBlock.Text = busLine.LastStation.ToString();
         //    keyTextBlock.Text = busLine.Key.ToString();
@@ -51,15 +54,13 @@ namespace PL
         {
             try
             {
-                BO.BusLine busLine = new BO.BusLine();
-                busLine.Key = updatingBusLine.Key;
-                busLine = App.bl.GetBusLine(busLine.Key);
-                busLine.LineNumber = int.Parse(lineNumberTextBox.Text);
-                busLine.Area = (BO.Areas)(Areas)AreasString.IndexOf(areaComboBox.SelectedItem.ToString());
-                App.bl.UpdateBusLine(busLine);
-                updatingBusLine = PoBoAdapter.BusLinePoBoAdapter(App.bl.GetBusLine(busLine.Key));
+                BO.BusLine busLineBO = new BO.BusLine();
+                busLineBO = App.bl.GetBusLine(updatingBusLine.Key);
+                busLineBO.LineNumber = int.Parse(lineNumberTextBox.Text);
+                busLineBO.Area = (BO.Areas)(Areas)AreasString.IndexOf(areaComboBox.SelectedItem.ToString());
+                App.bl.UpdateBusLine(busLineBO);
                 //BusLine busLinePO = PoBoAdapter.BusLinePoBoAdapter(busLine);
-                MainWindow.busLinesCollection[beforeUpdateindex] = updatingBusLine;
+                MainWindow.busLinesCollection[beforeUpdateindex] = PoBoAdapter.BusLinePoBoAdapter(busLineBO);
                 MessageBox.Show($"Bus updated successfully.", "UPDATE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }

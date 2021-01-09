@@ -34,10 +34,8 @@ namespace PL
         {
             try
             {
-                Bus busPO = new Bus();
-                busPO = PoBoAdapter.BusPoBoAdapter(bus);
                 App.bl.AddBus(bus);
-                MainWindow.busesCollection.Add(busPO);
+                MainWindow.busesCollection.Add(PoBoAdapter.BusPoBoAdapter(bus));
                 MessageBox.Show($"Bus added successfully!", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }

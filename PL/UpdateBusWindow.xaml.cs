@@ -26,7 +26,6 @@ namespace PL
         {
             InitializeComponent();
             busBO = new BO.Bus();
-            DateTime l = App.bl.GetBus(bus.LicenseNumber).LastTreatment;
             busBO = App.bl.GetBus(bus.LicenseNumber);
             updatingBus = bus;
             grid1.DataContext = busBO;
