@@ -76,5 +76,15 @@ namespace BLAPI
         void DeleteLineSchedule(int lineKey, DateTime startTime);
         #endregion
 
+        #region BusInTravel
+        //BusInTravel GetBusInTravel(int key);
+        //IEnumerable<BusInTravel> GetAllBusInTravelsBy(Predicate<BusInTravel> predicate);
+        //IEnumerable<BusInTravel> GetAllBusInTravels();
+        BusInTravel CreateBusInTravel(string licenseNumber, int line, DateTime startingTime);
+        //void DeleteBusInTravel(string licenseNumber, int lineKey, int formalTime);
+        //void UpdateBusInTravel(BusInTravel bus);
+        //void UpdateBusInTravel(int key, Action<BusInTravel> update); //method that knows to updt specific fields in BusInTravel
+        #endregion
+
     }
 }
