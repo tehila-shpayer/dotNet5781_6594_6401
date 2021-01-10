@@ -5,12 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="ADD STATION" Height="150" Width="240" ResizeMode="NoResize" FontFamily="Segoe UI Semibold" WindowStartupLocation="CenterScreen">
-    <Grid>
+        Title="ADD STATION" Height="266" Width="382" ResizeMode="NoResize" FontFamily="Segoe UI Semibold" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,0,0">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="LightGray" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Rectangle Grid.Column="0" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
+        </Rectangle>
         <StackPanel Orientation="Vertical">
-        <Label Content="Enter key:" FontSize="25" Margin="20,0,20,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="tbStationKey"  Margin="30,0" PreviewKeyDown="tbStationKey_PreviewKeyDown" KeyDown="tbStationKey_KeyDown" FontSize="18"/>
-        <!--<TextBox x:Name="KMtextBox" Grid.Row="1" Grid.Column="1" PreviewKeyDown="KM_PreviewKeyDown" KeyDown="KM_KeyDown" Text="" FontSize="34" Margin="10,64.6,75,97.8"/>-->
+        <Label Content="Choose station:" FontSize="25" Margin="20,50,20,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <ComboBox x:Name="cbStationKey"  Margin="50,5,50,10" FontSize="18" ItemsSource="{Binding}"/>
+        <Button x:Name="addButton" Margin="140,10,140,25" Background="#FF477AA9" Content="ADD" BorderBrush="{x:Null}" Click="addButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>

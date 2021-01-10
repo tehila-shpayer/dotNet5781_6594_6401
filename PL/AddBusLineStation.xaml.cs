@@ -24,23 +24,25 @@ namespace PL
         {
             InitializeComponent();
             selectedStation = selectedBusLineStation;
+            cbStationKey.DataContext = MainWindow.stationsCollection;
+            cbStationKey.DisplayMemberPath = "  ShowNameKey  ";
         }
 
-        private void tbStationKey_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            PL.PreviewKeyDown.GeneralPerviewKeyDown(sender, e);
-        }
+        //private void tbStationKey_PreviewKeyDown(object sender, KeyEventArgs e)
+        //{
+        //    PL.PreviewKeyDown.GeneralPerviewKeyDown(sender, e);
+        //}
 
-        private void tbStationKey_KeyDown(object sender, KeyEventArgs e)
-        {
-            TextBox t = sender as TextBox;
-            //if (t == null) return;
-            if (e.Key == Key.Enter && t.Text != "")
-            {
-                AddBusLineStationToLine(selectedStation.BusLineKey, int.Parse(t.Text), selectedStation.Position );
-                Close();
-            }
-        }
+        //private void tbStationKey_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    TextBox t = sender as TextBox;
+        //    //if (t == null) return;
+        //    if (e.Key == Key.Enter && t.Text != "")
+        //    {
+        //        AddBusLineStationToLine(selectedStation.BusLineKey, int.Parse(t.Text), selectedStation.Position );
+        //        Close();
+        //    }
+        //}
         public static void AddBusLineStationToLine(int busKey, int stationKey, int position)
         {
             try
@@ -78,6 +80,12 @@ namespace PL
             {
                 MessageBox.Show($"{ex.Message}", "ADD STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
+        }
+
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddBusLineStationToLine(selectedStation.BusLineKey, (cbStationKey.SelectedItem as Station).Key, selectedStation.Position);
+            Close();
         }
     }
 }
