@@ -35,17 +35,29 @@ namespace PL
             beforeUpdateindex = MainWindow.busLinesCollection.IndexOf(busLine);
             areaComboBox.DataContext = AreasString;
             positionsComboBox.DataContext = Positions;
-            addStationsComboBox.DataContext = MainWindow.stationsCollection;
-            addStationsComboBox.DisplayMemberPath = "  ShowNameKey  ";
+            addStationComboBox.DataContext = MainWindow.stationsCollection;
+            addStationComboBox.DisplayMemberPath = "  ShowNameKey  ";
             stationsComboBox.DataContext = updatingBusLine.BusLineStations;
             stationsComboBox.DisplayMemberPath = "  ShowNameKey  ";
             stationsComboBox.SelectedIndex = 0;
-            addStationsComboBox.SelectedIndex = 0;
+            addStationComboBox.SelectedIndex = 0;
             positionsComboBox.SelectedIndex = 0;
             areaComboBox.SelectedIndex = (int)busLine.Area;
             grid1.DataContext = updatingBusLine;
         }
+        private void lineNumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string t = lineNumberTextBox.Text;
+            if (t != "" && int.Parse(t) > 0)
+                addButton.IsEnabled = true;
+            else
+                addButton.IsEnabled = false;
+        }
 
+        private void lineNumberTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            PL.PreviewKeyDown.GeneralPerviewKeyDown(sender, e);
+        }
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -68,7 +80,7 @@ namespace PL
         private void addBusLineStationButton_Click(object sender, RoutedEventArgs e)
         {
             int busKey = updatingBusLine.Key;
-            int stationKey = (addStationsComboBox.SelectedItem as Station).Key;
+            int stationKey = (addStationComboBox.SelectedItem as Station).Key;
             int position = (int)positionsComboBox.SelectedItem;
             try
             {
@@ -79,6 +91,11 @@ namespace PL
             {
                 MessageBox.Show("Can't add bus line station\n" + ex.ToString(), "UPDATE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
+        }
+
+        private void cancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
 
         //private void addStationsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -5,8 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="UpdateStationWindow" Height="300" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-    <StackPanel>
+        Title="UpdateStationWindow" Height="500" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="LightGray" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Rectangle Grid.Column="0" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
+        </Rectangle>
+        <StackPanel Margin="70,50,70.333,47.667">
+            <Label Content="Updatw station" FontSize="25" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
+            <Grid x:Name="grid1" HorizontalAlignment="Center" Margin="20,20,20,30" VerticalAlignment="Center" Height="238" Width="333">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Content=":מפתח" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Right"/>
+                <TextBlock x:Name="keyTextBox" Grid.Column="0" Grid.Row="0" Text="{Binding Key, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="20,10"/>
+                <Label Content=":שם תחנה" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Right"/>
+                <TextBox x:Name="namerTextBox" Grid.Column="0" Grid.Row="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" TextChanged="namerTextBox_TextChanged"/>
+                <Label Content=":קו רוחב" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Right"/>
+                <TextBox x:Name="latitudeTextBox" Grid.Column="0" Grid.Row="2" Text="{Binding Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" TextChanged="latitudeTextBox_TextChanged"/>
+                <Label Content=":קו אורך" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Right"/>
+                <TextBox x:Name="longitudeTextBox" Grid.Column="0" Grid.Row="3" Text="{Binding Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" TextChanged="longitudeTextBox_TextChanged"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="updateButton" Grid.Column="1" Margin="20,0" Background="#FF477AA9" Content="UPDATE" BorderBrush="{x:Null}" Click="updateStationButton_Click"  IsEnabled="False"/>
+                <Button x:Name="cancelButton" Grid.Column="0" Margin="20,0" Background="#FF477AA9" Content="CANCEL" BorderBrush="{x:Null}" Click="cancelButton_Click"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+    <!--<StackPanel>
         <Label Content="Update station"/>
         <Grid x:Name="grid1" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
@@ -30,5 +70,5 @@
         </Grid>
         <Label Height="40" />
         <Button x:Name="updateStationButton" Content="update"  Margin="0,0,0.333,0" Height="31" Click="updateStationButton_Click"/>
-    </StackPanel>
+    </StackPanel>-->
 </Window>

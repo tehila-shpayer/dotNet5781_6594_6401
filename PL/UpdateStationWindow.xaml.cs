@@ -50,5 +50,31 @@ namespace PL
                 MessageBox.Show("Can't update the station!\n" + ex.Message, "UPDATE STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void cancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+        private void namerTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            AllFieldsFull();
+        }
+
+        private void latitudeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            AllFieldsFull();
+        }
+
+        private void longitudeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            AllFieldsFull();
+        }
+        void AllFieldsFull()
+        {
+            if (namerTextBox.Text != "" && latitudeTextBox.Text != "" && longitudeTextBox.Text != "")
+                updateButton.IsEnabled = true;
+            else
+                updateButton.IsEnabled = false;
+        }
     }
 }

@@ -27,7 +27,29 @@ namespace PL
             grid1.DataContext = stationBO;
         }
 
-        private void addStationButton_Click(object sender, RoutedEventArgs e)
+        private void namerTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            AllFieldsFull();
+        }
+
+        private void latitudeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            AllFieldsFull();
+        }
+
+        private void longitudeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            AllFieldsFull();
+        }
+        void AllFieldsFull()
+        {
+            if (namerTextBox.Text != "" && latitudeTextBox.Text != "" && longitudeTextBox.Text != "")
+                addButton.IsEnabled = true;
+            else
+                addButton.IsEnabled = false;
+        }
+
+        private void addButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -41,6 +63,11 @@ namespace PL
             {
                 MessageBox.Show("Can't add the station!\n" + ex.ToString(), "ADD STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void cancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -5,8 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="UpdateBusWindow" Height="350" Width="400">
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+        Title="UpdateBusWindow" Height="600" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="LightGray" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Rectangle Grid.Column="0" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
+        </Rectangle>
+        <StackPanel Margin="70,50,70.333,47.667">
+            <Label Content="add bus" FontSize="25" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
+            <Grid x:Name="grid1" HorizontalAlignment="Center" Margin="10,20,10,10" VerticalAlignment="Center" Height="350" Width="434">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="83*"/>
+                    <ColumnDefinition Width="134*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Content=":מספר רישוי" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Stretch" Height="Auto" Margin="12,10,10,10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Right"/>
+                <TextBlock x:Name="licenseNumberTextBox" Grid.Column="0" Grid.Row="0" Text="{Binding LicenseNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Right" Margin="10,10,8,10" />
+                <Label Content=":סטטוס" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Height="Auto" Margin="12,10,10,10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Right"/>
+                <TextBlock x:Name="statusTextBox" Grid.Column="0"  Text="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"   Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Right" Margin="10,10,8,10"/>
+                <Label Content=":תאריך תחילת פעילות" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Height="Auto" Margin="12,10,10,0" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Right"/>
+                <DatePicker x:Name="runningDateDatePicker" Grid.Column="0" Grid.Row="2" Text="{Binding RunningDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,10,8,10" HorizontalContentAlignment="Right" VerticalContentAlignment="Bottom" />
+                <Label Content=":'קילומטראז" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Margin="12,10,10,0" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Right"/>
+                <TextBox x:Name="kMTextBox" Grid.Column="0" Grid.Row="3" Text="{Binding KM, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,10,8,10" HorizontalContentAlignment="Right" VerticalContentAlignment="Bottom" />
+                <Label Content=":תאריך מאז טיפול אחרון" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Margin="12,10,10,0" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Right"/>
+                <DatePicker x:Name="lastTreatmentDatePicker" Grid.Column="0" Grid.Row="4" Text="{Binding LastTreatment, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,10,8,10" HorizontalContentAlignment="Right" VerticalContentAlignment="Bottom" />
+                <Label Content=":קילומטראז' מטיפול אחרון" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Margin="12,10,10,0" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Right"/>
+                <TextBox x:Name="beforeTreatKMTextBox" Grid.Column="0" Grid.Row="5" Text="{Binding BeforeTreatKM, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,10,8,10" HorizontalContentAlignment="Right" VerticalContentAlignment="Bottom" />
+                <Label Content=":דלק" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Margin="11,10,10,0" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Right"/>
+                <TextBox x:Name="fuelTextBox" Grid.Column="0" Grid.Row="6" Text="{Binding Fuel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,10,8,10" HorizontalContentAlignment="Right" VerticalContentAlignment="Bottom" />
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="updateButton" Grid.Column="1" Margin="20,0" Background="#FF477AA9" Content="UPDATE" BorderBrush="{x:Null}" Click="updateBusButton_Click"/>
+                <Button x:Name="cancelButton" Grid.Column="0" Margin="20,0" Background="#FF477AA9" Content="CANCEL" BorderBrush="{x:Null}" Click="cancelButton_Click"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+    <!--<StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
         <Label Content="update bus"/>
         <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="60,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
@@ -28,17 +77,17 @@
             <Label Content="Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
             <TextBlock x:Name="statusTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="1" Text="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Running Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <DatePicker x:Name="runningDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding RunningDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/> <!--SelectedDateChanged="runningDateDatePicker_SelectedDateChanged"/>-->
+            <DatePicker x:Name="runningDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding RunningDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/> --><!--SelectedDateChanged="runningDateDatePicker_SelectedDateChanged"/>--><!--
             <Label Content="KM:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
             <TextBox x:Name="kMTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding KM, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Last Treatment Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
             <DatePicker x:Name="lastTreatmentDatePicker" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding LastTreatment, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" />
             <Label Content="Before Treat KM:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
-            <TextBox x:Name="beforeTreatKMTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding BeforeTreatKM, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" /> <!--TextChanged="beforeTreatKMTextBox_TextChanged"/>-->
+            <TextBox x:Name="beforeTreatKMTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding BeforeTreatKM, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" /> --><!--TextChanged="beforeTreatKMTextBox_TextChanged"/>--><!--
             <Label Content="Fuel:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
             <TextBox x:Name="fuelTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding Fuel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
         <Label Height="10"/>
         <Button x:Name="updateBusButton" Content="update" Click="updateBusButton_Click"/>
-    </StackPanel>
+    </StackPanel>-->
 </Window>
