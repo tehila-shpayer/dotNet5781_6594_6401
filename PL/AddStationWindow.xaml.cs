@@ -19,22 +19,21 @@ namespace PL
     /// </summary>
     public partial class AddStationWindow : Window
     {
+        public BO.Station stationBO;
         public AddStationWindow()
         {
             InitializeComponent();
+            stationBO = new BO.Station();
+            grid1.DataContext = stationBO;
         }
 
         private void addStationButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                BO.Station station = new BO.Station();
-                station.Latitude = double.Parse(latitudeTextBox.Text.ToString());
-                station.Longitude = double.Parse(longitudeTextBox.Text.ToString());
-                station.Name = namerTextBox.Text;
-                station.Key = App.bl.AddStation(station);
-                station = App.bl.GetStation(station.Key);
-                MainWindow.stationsCollection.Add(PoBoAdapter.StationPoBoAdapter(station));
+                stationBO.Key = App.bl.AddStation(stationBO);
+                stationBO = App.bl.GetStation(stationBO.Key);
+                MainWindow.stationsCollection.Add(PoBoAdapter.StationPoBoAdapter(stationBO));
                 MessageBox.Show($"Station added successfully!", "ADD STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }

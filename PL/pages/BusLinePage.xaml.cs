@@ -25,9 +25,10 @@ namespace PL
         {
             InitializeComponent();
             lbBusLines.DataContext = MainWindow.busLinesCollection;
-            List<string> AreasString = new List<string> { "All", "General", "Jerusalem", "Center", "North", "South", "Hifa", "TelAviv", "YehudaAndShomron" };
-            List<string> OrderByString = new List<string> { "Order by key", "Order by number", "Order by area"};
+            List<string> AreasString = new List<string> { "All", "Center", "General", "Hifa", "Jerusalem", "North", "South", "TelAviv", "YehudaAndShomron" };
+            List<string> OrderByString = new List<string> { "Order by key", "Order by number", "Order by area" };
             areas.DataContext = AreasString;
+            areas.SelectedIndex = 0;
             cbBusLines.DataContext = OrderByString;
             //cbBusLines.SelectedIndex = 0;
         }
@@ -109,23 +110,36 @@ namespace PL
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
-            UpdateBusLineWindow update = new UpdateBusLineWindow(MainWindow.busLinesCollection[lbBusLines.SelectedIndex]);
-            update.ShowDialog();
+            try
+            {
+                UpdateBusLineWindow update = new UpdateBusLineWindow(MainWindow.busLinesCollection[lbBusLines.SelectedIndex]);
+                update.ShowDialog();
+                Sort();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Please choose a bus line!", "UPDATE BUS LINE MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.No);
+            }
         }
 
         private void areas_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ShowByArea();
+        }
+        void ShowByArea()
+        {
             foreach (var item in MainWindow.busLinesCollection)
             {
-                ListBoxItem bus = (ListBoxItem)lbBusLines.ItemContainerGenerator.ContainerFromItem(item);
+                ListBoxItem bus = lbBusLines.ItemContainerGenerator.ContainerFromItem(item) as ListBoxItem;
                 int selectedArea = areas.SelectedIndex;
                 //Show only buses from the same area
-                if (selectedArea == 0 || (selectedArea - 1) == (int)item.Area)
+                if (bus != null)
                 {
-                    bus.Visibility = Visibility.Visible;
+                    if (selectedArea == 0 || (selectedArea - 1) == (int)item.Area)
+                        bus.Visibility = Visibility.Visible;
+                    else
+                        bus.Visibility = Visibility.Collapsed;
                 }
-                else
-                    bus.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -158,9 +172,13 @@ namespace PL
                 MainWindow.busLinesCollection[index] = busLinePO;
                 MessageBox.Show($"Station {selectedStation.StationKey} was successfully\ndeleted from line {selectedStation.BusLineKey}", "ADD STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
+            catch (BO.BOArgumentNotFoundException ex)
+            {
+                MessageBox.Show($"{ex.Message}", "DELETE BUS LINE MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show($"{ex.Message}", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show($"Please choose a bus line!", "DELETE BUS LINE MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.No);
             }
         }
         private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -187,6 +205,7 @@ namespace PL
             MainWindow.busLinesCollection.Clear();
             foreach (BusLine bus in collection)
                 MainWindow.busLinesCollection.Add(bus);
+            ShowByArea();
         }
     }
 }

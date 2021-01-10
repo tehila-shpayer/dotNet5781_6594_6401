@@ -26,7 +26,6 @@ namespace PL
         {
             InitializeComponent();
             busBO = new BO.Bus();
-            DateTime l = App.bl.GetBus(bus.LicenseNumber).LastTreatment;
             busBO = App.bl.GetBus(bus.LicenseNumber);
             updatingBus = bus;
             grid1.DataContext = busBO;
@@ -39,8 +38,8 @@ namespace PL
             try
             {
                 App.bl.UpdateBus(busBO);
-                updatingBus = PoBoAdapter.BusPoBoAdapter(busBO);
-                MainWindow.busesCollection[beforeUpdateindex] = updatingBus;
+                //updatingBus = 
+                MainWindow.busesCollection[beforeUpdateindex] = PoBoAdapter.BusPoBoAdapter(busBO);
                 MessageBox.Show($"Bus updated successfully.", "UPDATE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }

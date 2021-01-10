@@ -21,28 +21,23 @@ namespace PL
     {
         public Station updatingStation;
         public int beforeUpdateindex;
+        public BO.Station Station;
 
         public UpdateStationWindow(Station station)
         {
             InitializeComponent();
+            Station = App.bl.GetStation(station.Key);
             updatingStation = station;
-            grid1.DataContext = station;
+            grid1.DataContext = Station;
             beforeUpdateindex = MainWindow.stationsCollection.IndexOf(updatingStation);
         }
         private void updateStationButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                BO.Station Station = new BO.Station();
                 Station.Key = updatingStation.Key;
-                Station = App.bl.GetStation(Station.Key);
-                Station.Latitude = double.Parse(latitudeTextBox.Text);
-                Station.Longitude = double.Parse(longitudeTextBox.Text);
-                Station.Name = namerTextBox.Text;
                 App.bl.UpdateStation(Station);
-                updatingStation = PoBoAdapter.StationPoBoAdapter(App.bl.GetStation(Station.Key));
-                //Station StationPO = PoBoAdapter.StationPoBoAdapter(Station);
-                MainWindow.stationsCollection[beforeUpdateindex] = updatingStation;
+                MainWindow.stationsCollection[beforeUpdateindex] = PoBoAdapter.StationPoBoAdapter(App.bl.GetStation(Station.Key));
                 MessageBox.Show($"Station updated successfully.", "UPDATE STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }

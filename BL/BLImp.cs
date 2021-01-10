@@ -283,7 +283,6 @@ namespace BL
         }
         public int AddStation(Station station)
         {
-
             CheckStationParameters(station);
             try
             {

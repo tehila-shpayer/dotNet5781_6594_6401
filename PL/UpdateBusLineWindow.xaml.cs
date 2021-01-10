@@ -19,17 +19,20 @@ namespace PL
     /// </summary>
     public partial class UpdateBusLineWindow : Window
     {
-        public List<string> AreasString = new List<string> { "General", "Jerusalem", "Center", "North", "South", "Hifa", "TelAviv", "YehudaAndShomron" };
+        public List<string> AreasString = new List<string> { "Center", "General", "Hifa", "Jerusalem", "North", "South", "TelAviv", "YehudaAndShomron" };
         public List<int> Positions = new List<int>();
         public BusLine updatingBusLine;
         public int beforeUpdateindex;
+        //public BO.BusLine busLineBO;
         public UpdateBusLineWindow(BusLine busLine)
         {
             InitializeComponent();
+            //busLineBO = new BO.BusLine();
+            //busLineBO = App.bl.GetBusLine(busLine.Key);
             updatingBusLine = busLine;
-            for (int i = 1; i < updatingBusLine.BusLineStations.Count() + 1; i++)
+            for (int i = 1; i < busLine.BusLineStations.Count() + 1; i++)
                 Positions.Add(i);
-            beforeUpdateindex = MainWindow.busLinesCollection.IndexOf(updatingBusLine);
+            beforeUpdateindex = MainWindow.busLinesCollection.IndexOf(busLine);
             areaComboBox.DataContext = AreasString;
             positionsComboBox.DataContext = Positions;
             addStationsComboBox.DataContext = MainWindow.stationsCollection;
