@@ -20,6 +20,7 @@ namespace PL
         public int Key { get => (int)GetValue(KeyProperty); set => SetValue(KeyProperty, value); }
         public double Latitude { get => (double)GetValue(LatitudeProperty); set => SetValue(LatitudeProperty, value); }
         public double Longitude { get => (double)GetValue(LongitudeProperty); set => SetValue(LongitudeProperty, value); }
+        public String ShowNameKey { get { return $"{Name} {Key}"; } }
 
         public String Name { get => (String)GetValue(NameProperty); set => SetValue(NameProperty, value); }
         public IEnumerable<int> BusLines { get => (IEnumerable<int>)GetValue(BusLinesProperty); set => SetValue(BusLinesProperty, value); }

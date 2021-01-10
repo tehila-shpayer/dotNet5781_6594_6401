@@ -22,6 +22,7 @@ namespace PL
         public int TravelTimeFromLastStationMinutes { get => (int)GetValue(TravelTimeFromLastStationMinutesProperty); set => SetValue(TravelTimeFromLastStationMinutesProperty, value); }
         public String Name { get => (String)GetValue(NameProperty); set => SetValue(NameProperty, value); }
         public bool IsFirstStation { get; set; }
+        public String ShowNameKey { get { return $"{Name} {StationKey}"; } }
 
         public bool _isActive = true;
         public bool IsActive { get; set; }

@@ -13,16 +13,16 @@
         <local:BoolToVisibilityConverter x:Key="aConverter"/>
         <DataTemplate x:Key="BusLineTemplate" DataType="local:Bus">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Width="230">
-                <TextBlock Text="{Binding LineNumber}" TextAlignment="Right" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI Black"/>
+                <TextBlock Text="{Binding LineNumber}" TextAlignment="Right" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI Black" />
                 <TextBlock Text="{Binding Key}" TextAlignment="Right"/>
-                <TextBlock Text="{Binding Area}" TextAlignment="Right"/>
+                <TextBlock Text="{Binding Area}" TextAlignment="Right" Foreground="#FF5A13CD" FontWeight="Bold" FontSize="15"/>
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="BusLineStationTemplate" DataType="local:BusLineStation">
             <StackPanel Margin="0,30,0,0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,-35,0,0" Visibility="{Binding IsFirstStation,Converter={StaticResource aConverter}}">
                     <TextBlock FontSize="15" Text="דקות " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
-                    <TextBlock FontSize="15" Text="{Binding TravelTimeFromLastStationMinutes}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
+                    <TextBlock FontSize="17" Text="{Binding TravelTimeFromLastStationMinutes}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
                     <TextBlock FontSize="15" Text=" ,מטר " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
                     <TextBlock FontSize="15" Text="{Binding DistanceFromLastStationMeters}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
                     <materialDesign:PackIcon Kind="ArrowBottom" Width="20" Height="20" Margin="12,2" Foreground="#FF0BD380"/>

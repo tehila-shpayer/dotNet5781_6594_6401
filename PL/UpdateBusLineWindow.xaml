@@ -40,7 +40,7 @@
             <Label Content="Line Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
             <TextBox x:Name="lineNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding LineNumber}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Stations: " Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3"/>
-            <ComboBox x:Name="stationsComboBox" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" VerticalAlignment="Center" Width="120">
+            <ComboBox x:Name="stationsComboBox" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Right" Height="Auto" ItemsSource="{Binding}" Margin="3" VerticalAlignment="Center" Width="120">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
@@ -49,7 +49,7 @@
             </ComboBox>
             <Button x:Name="addBusLineStationButton" Content="Add" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center" Width="72" Height="24" FontSize="12" FontWeight="Normal" Click="addBusLineStationButton_Click" />
             <StackPanel Grid.Column="1" Grid.Row="6" Orientation="Horizontal">
-            <ComboBox x:Name="addStationsComboBox" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" VerticalAlignment="Center" Width="80" >
+            <ComboBox x:Name="addStationsComboBox" HorizontalAlignment="Right" Height="Auto" ItemsSource="{Binding}" Margin="3" VerticalAlignment="Center" Width="80" >
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
