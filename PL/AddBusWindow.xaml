@@ -54,7 +54,7 @@
         </Rectangle>
         <StackPanel Margin="70,50,70.333,47.667">
             <Label Content="add bus" FontSize="25" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
-            <Grid x:Name="grid1" HorizontalAlignment="Center" Margin="10,20,10,30" VerticalAlignment="Center" Height="350" Width="434">
+            <Grid x:Name="grid1" HorizontalAlignment="Center" Margin="10,20,10,10" VerticalAlignment="Center" Height="350" Width="434">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="83*"/>
                     <ColumnDefinition Width="134*"/>

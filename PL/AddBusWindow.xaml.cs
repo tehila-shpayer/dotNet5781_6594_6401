@@ -29,22 +29,6 @@ namespace PL
             grid1.DataContext = bus;
         }
 
-        private void addBusButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                App.bl.AddBus(bus);
-                MainWindow.busesCollection.Add(PoBoAdapter.BusPoBoAdapter(bus));
-                MessageBox.Show($"Bus added successfully!", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
-                Close();
-            }
-            catch( BO.BOInvalidInformationException ex)
-            {
-                MessageBox.Show("Couldn't add bus!\n" + ex.ToString(), "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-
-
-        }
-
         private void lastTreatmentFormatTextBox_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             //UpdateStatus();
@@ -81,8 +65,7 @@ namespace PL
             }
             catch (BO.BOInvalidInformationException ex)
             {
-                MessageBox.Show($"{ex.Message}", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-
+                MessageBox.Show("Couldn't add bus!\n" + ex.ToString(), "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
 
