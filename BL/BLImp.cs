@@ -498,6 +498,26 @@ namespace BL
                                select BusLineDoBoAdapter(line);
             return AllBuseLines;
         }
+        public IEnumerable<BusLine> GetAllBusLinesOrderedBy(string orderBy)
+        {
+            switch (orderBy)
+            {
+                case "Order by key":
+                    return from line in dl.GetAllBusLines()
+                           orderby line.Key
+                           select BusLineDoBoAdapter(line);
+                case "Order by number":
+                    return from line in dl.GetAllBusLines()
+                           orderby line.LineNumber
+                           select BusLineDoBoAdapter(line);
+                case "Order by area":
+                    return from line in dl.GetAllBusLines()
+                           orderby line.Area.ToString()
+                           select BusLineDoBoAdapter(line);
+                default: return GetAllBusLines();
+            }
+        }
+
         public int AddBusLine(BusLine bus)
         {
             try
