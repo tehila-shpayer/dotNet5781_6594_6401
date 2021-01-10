@@ -71,7 +71,7 @@ namespace PL
                 {
                     MainWindow.stationsCollection.Add(PoBoAdapter.StationPoBoAdapter(s));
                 }
-                MessageBox.Show($"Station {stationKey} was successfully\n added to line {busLinePO.LineNumber}", "ADD STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show($"Station {stationKey} was successfully\n added to line {busLinePO.LineNumber}", "ADD STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
                 
             }
             catch (Exception ex)
