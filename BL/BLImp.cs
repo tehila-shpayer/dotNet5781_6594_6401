@@ -274,11 +274,11 @@ namespace BL
         {
             if (station.Latitude > 90 || station.Latitude < -90)
             {
-                throw new BOInvalidInformationException($"Can't add station {station.Key}. Invalid latitude");
+                throw new BOInvalidInformationException($"Can't add station. Invalid latitude");
             }
             if (station.Longitude > 180 || station.Longitude < -180)
             {
-                throw new BOInvalidInformationException($"Can't add station {station.Key}. Invalid longitude");
+                throw new BOInvalidInformationException($"Can't add station. Invalid longitude");
             }
         }
         public int AddStation(Station station)
@@ -286,14 +286,14 @@ namespace BL
             CheckStationParameters(station);
             try
             {
-                if (station.Latitude >= 31.234567 && station.Longitude <= 34.56874)
+                if (station.Latitude >= 29.3 && station.Latitude<=33.5 && station.Longitude <= 33.7 && station.Longitude >= 36.3)
                 {
                     DO.Station StationDO = new DO.Station();
                     station.Clone(StationDO);
                     return dl.AddStation(StationDO);
                 }
                 else
-                    throw new BOInvalidInformationException($"Can't add station {station.Key}. Location invalid!");
+                    throw new BOInvalidInformationException($"Can't add station. Location must be in Israel!");
             }
             catch (DO.InvalidInformationException ex)
             {
@@ -552,7 +552,7 @@ namespace BL
         {
             BusLine busLine = GetBusLine(busLineKey);
             if (position > busLine.BusLineStations.Count() + 1 || position < 0)//מיקום רלוונטי - כגודל רשימת התחנות
-                throw new ArgumentOutOfRangeException($"Can't add the line station\n The index is illegal:\n There are only {busLine.BusLineStations.Count()} stations in line {busLineKey}");
+                throw new ArgumentOutOfRangeException($"The index is illegal:\n There are only {busLine.BusLineStations.Count()} stations in line {busLineKey}");
             if (position == 0)
                 position = busLine.BusLineStations.Count() + 1;
 
@@ -588,55 +588,51 @@ namespace BL
             }
             UpdateStation(stationKey, s => s.BusLines.Append(busLineKey));
         }
-        public void AddStationToLine2(int busLineKey, int stationKey, int position = 0)
-        {
-            BusLine busLine = GetBusLine(busLineKey);
-            if (position == 0)
-                position = busLine.BusLineStations.Count() + 1;
-            foreach (DO.BusLineStation bls in dl.GetAllStationsOfLine(busLineKey))
-                if (bls.Position >= position)
-                    dl.UpdateBusLineStation(bls.BusLineKey, bls.StationKey, b => b.Position += 1);
-            DO.ConsecutiveStations consecutiveStationsFromPrev;
-            DO.ConsecutiveStations consecutiveStationsToNext;
-            //if(dl.GetStation(station.Key) == null)
-            //    throw
-            //if (position > bus.BusLineStations.Count() + 1 || position < 0)//מיקום רלוונטי - כגודל רשימת התחנות
-            //    throw
+//        public void AddStationToLine2(int busLineKey, int stationKey, int position = 0)
+//        {
+//            BusLine busLine = GetBusLine(busLineKey);
+//            if (position == 0)
+//                position = busLine.BusLineStations.Count() + 1;
+//            foreach (DO.BusLineStation bls in dl.GetAllStationsOfLine(busLineKey))
+//                if (bls.Position >= position)
+//                    dl.UpdateBusLineStation(bls.BusLineKey, bls.StationKey, b => b.Position += 1);
+//            DO.ConsecutiveStations consecutiveStationsFromPrev;
+//            DO.ConsecutiveStations consecutiveStationsToNext;
 
-            DO.BusLineStation busLineStationDO = new DO.BusLineStation();
-            busLineStationDO.BusLineKey = busLineKey;
-            busLineStationDO.StationKey = stationKey;
-            busLineStationDO.Position = position;
+//            DO.BusLineStation busLineStationDO = new DO.BusLineStation();
+//            busLineStationDO.BusLineKey = busLineKey;
+//            busLineStationDO.StationKey = stationKey;
+//            busLineStationDO.Position = position;
 
-            dl.AddBusLineStation(busLineStationDO);
+//            dl.AddBusLineStation(busLineStationDO);
 
-            BO.BusLineStation busLineStationBO = new BO.BusLineStation();
-            //busLineStationBO = BusLineStationDoBoAdapter(busLineStationDO);
-            //busLine.BusLineStations.Append(busLineStationBO);
-            DO.BusLineStation prevBusLineStationDO = dl.GetBusLineStationBy
-                (bls => bls.BusLineKey == busLineKey && bls.Position == position - 1);
-            DO.BusLineStation nextBusLineStationDO = dl.GetBusLineStationBy
-                (bls => bls.BusLineKey == busLineKey && bls.Position == position + 1);
-            if (position != 1)
-            {
-                if (dl.GetConsecutiveStations(prevBusLineStationDO.StationKey, busLineStationDO.StationKey) != null)
-                {
-                    consecutiveStationsFromPrev = CalculateConsecutiveStations
-                        (dl.GetStation(prevBusLineStationDO.StationKey), dl.GetStation(busLineStationDO.StationKey));
-                    dl.AddConsecutiveStations(consecutiveStationsFromPrev);
-                }
-            }
-            if (position != busLine.BusLineStations.Count())
-            {//אם זו לא התחנה האחרונה יש לעדכן את פרטי הזמן והמרחק של התחנה הבאה 
-                consecutiveStationsToNext = CalculateConsecutiveStations
-(dl.GetStation(busLineStationDO.StationKey), dl.GetStation(nextBusLineStationDO.StationKey));
-                if (dl.GetConsecutiveStations(prevBusLineStationDO.StationKey, busLineStationDO.StationKey) != null)
-                    dl.AddConsecutiveStations(consecutiveStationsToNext);
-                //    foreach (BusLineStation s in busLine.BusLineStations)
-                //        if (s.Position == position + 1)
-                //            UpdateBusLineStation(s.BusLineKey, s.StationKey, bls => bls = BusLineStationDoBoAdapter(busLineStationDO));
-            }
-        }
+//            BO.BusLineStation busLineStationBO = new BO.BusLineStation();
+//            //busLineStationBO = BusLineStationDoBoAdapter(busLineStationDO);
+//            //busLine.BusLineStations.Append(busLineStationBO);
+//            DO.BusLineStation prevBusLineStationDO = dl.GetBusLineStationBy
+//                (bls => bls.BusLineKey == busLineKey && bls.Position == position - 1);
+//            DO.BusLineStation nextBusLineStationDO = dl.GetBusLineStationBy
+//                (bls => bls.BusLineKey == busLineKey && bls.Position == position + 1);
+//            if (position != 1)
+//            {
+//                if (dl.GetConsecutiveStations(prevBusLineStationDO.StationKey, busLineStationDO.StationKey) != null)
+//                {
+//                    consecutiveStationsFromPrev = CalculateConsecutiveStations
+//                        (dl.GetStation(prevBusLineStationDO.StationKey), dl.GetStation(busLineStationDO.StationKey));
+//                    dl.AddConsecutiveStations(consecutiveStationsFromPrev);
+//                }
+//            }
+//            if (position != busLine.BusLineStations.Count())
+//            {//אם זו לא התחנה האחרונה יש לעדכן את פרטי הזמן והמרחק של התחנה הבאה 
+//                consecutiveStationsToNext = CalculateConsecutiveStations
+//(dl.GetStation(busLineStationDO.StationKey), dl.GetStation(nextBusLineStationDO.StationKey));
+//                if (dl.GetConsecutiveStations(prevBusLineStationDO.StationKey, busLineStationDO.StationKey) != null)
+//                    dl.AddConsecutiveStations(consecutiveStationsToNext);
+//                //    foreach (BusLineStation s in busLine.BusLineStations)
+//                //        if (s.Position == position + 1)
+//                //            UpdateBusLineStation(s.BusLineKey, s.StationKey, bls => bls = BusLineStationDoBoAdapter(busLineStationDO));
+//            }
+//        }
         public void UpdateBusLine(BusLine bus)
         {
             try
@@ -684,9 +680,7 @@ namespace BL
             {
                 DO.BusLineStation busLineStationDO = dl.GetBusLineStationByKey(busKey, stationKey);
                 int position = busLineStationDO.Position;
-                //foreach (BusLineStation bls in busLine.BusLineStations)
-                //    if (bls.StationKey == stationKey && bls.BusLineKey == busKey)
-                //        bls.IsActive = false;
+                
                 if (position != busLine.BusLineStations.Count() && position != 1)
                 {//אם זו לא התחנה האחרונה יש לעדכן את פרטי הזמן והמרחק של התחנה הבאה                     
                     DO.BusLineStation prevBusLineStationDO = dl.GetBusLineStationBy

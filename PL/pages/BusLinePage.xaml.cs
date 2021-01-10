@@ -170,7 +170,7 @@ namespace PL
                 busLineBO = App.bl.GetBusLine(selectedStation.BusLineKey);
                 busLinePO = PoBoAdapter.BusLinePoBoAdapter(busLineBO);
                 MainWindow.busLinesCollection[index] = busLinePO;
-                MessageBox.Show($"Station {selectedStation.StationKey} was successfully\ndeleted from line {selectedStation.BusLineKey}", "ADD STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show($"Station {selectedStation.StationKey} was successfully\ndeleted from line {selectedStation.BusLineKey}", "ADD STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (BO.BOArgumentNotFoundException ex)
             {

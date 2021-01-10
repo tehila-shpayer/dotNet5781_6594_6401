@@ -34,13 +34,17 @@ namespace PL
             InitializeComponent();
             Height = 600;
             Width = 1024;
-
+            InitializeCollections();
+        }
+        static public void InitializeCollections()
+        {
+            //busLinesCollection.Clear();
+            //busesCollection.Clear();
+            //stationsCollection.Clear();
             foreach (BO.BusLine bl in App.bl.GetAllBusLines())
             {
                 busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(bl));
             }
-            //busLinesCollection = (ObservableCollection<BusLine>)(from bl in App.bl.GetAllBusLines()
-            //                     select PoBoAdapter.BusLinePoBoAdapter(bl));
 
             foreach (BO.Station s in App.bl.GetAllStations())
             {
@@ -50,13 +54,10 @@ namespace PL
             {
                 busesCollection.Add(PoBoAdapter.BusPoBoAdapter(b));
             }
-
         }
-
         private void powerButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
-            //InitializeComponent();
         }
 
         private void upGrid_MouseDown(object sender, MouseButtonEventArgs e)

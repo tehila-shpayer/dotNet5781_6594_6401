@@ -39,7 +39,7 @@ namespace DL
             if (bus != null)
                 return bus.Clone();
             else
-                throw new ArgumentNotFoundException($"Bus not found with license number: {bus.LicenseNumber}");
+                throw new ArgumentNotFoundException($"Bus {bus.LicenseNumber} not found.");
         }
         public void AddBus(Bus bus)
         {
@@ -53,7 +53,7 @@ namespace DL
             if (indexOfBusToUpdate >= 0)
                 DataSource.ListBuses[indexOfBusToUpdate] = bus; 
             else
-                throw new ArgumentNotFoundException($"Bus not found with license number: {bus.LicenseNumber}");
+                throw new ArgumentNotFoundException($"Bus {bus.LicenseNumber} not found.");
         }
         public void UpdateBus(string LicenseNumber, Action<Bus> update) //method that knows to updt specific fields in Bus
         {
@@ -63,13 +63,13 @@ namespace DL
                 update(DataSource.ListBuses[indexOfBusToUpdate]);
             }
             else
-                throw new ArgumentNotFoundException($"Bus not found with license number: {LicenseNumber}");
+                throw new ArgumentNotFoundException($"Bus {LicenseNumber} not found.");
         }
        public void DeleteBus(string LicenseNumber)
         {
             Bus bus = DataSource.ListBuses.Find(b => b.LicenseNumber == LicenseNumber);
             if (bus == null)
-                throw new ArgumentNotFoundException($"Bus not found with license number: {LicenseNumber}");
+                throw new ArgumentNotFoundException($"Bus {bus.LicenseNumber} not found.");
             DataSource.ListBuses.Remove(bus);
         }
         #endregion
@@ -242,8 +242,6 @@ namespace DL
         }
         public void AddConsecutiveStations(ConsecutiveStations consecutiveStations)
         {
-            //if (DataSource.ListConsecutiveStations.FirstOrDefault(s => s.StationKey1 == consecutiveStations.StationKey1 && s.StationKey2 == consecutiveStations.StationKey2) != null)
-            //    throw new InvalidInformationException("Duplicate pair of stations");
             DataSource.ListConsecutiveStations.Add(consecutiveStations.Clone());
         }
         public void AddConsecutiveStations(int stationKey1, int stationKey2)

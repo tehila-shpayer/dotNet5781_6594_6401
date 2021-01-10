@@ -39,7 +39,7 @@ namespace PL
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Can't add station line. Invalid information", "ADD STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show(ex.ToString(), "ADD STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
