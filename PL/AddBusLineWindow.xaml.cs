@@ -41,16 +41,21 @@ namespace PL
             {
                 busLineBO.Area = (BO.Areas)(Areas)AreasString.IndexOf(areaComboBox.SelectedItem.ToString());
                 busLineBO.Key = App.bl.AddBusLine(busLineBO);
-                App.bl.AddStationToLine(busLineBO.Key, (firstStationComboBox.SelectedItem as Station).Key);
-                App.bl.AddStationToLine(busLineBO.Key, (lastStationComboBox.SelectedItem as Station).Key);
+                App.bl.AddStationToLine(busLineBO.Key, firstKey);
+                App.bl.AddStationToLine(busLineBO.Key, lastKey);
                 busLineBO = App.bl.GetBusLine(busLineBO.Key);
                 MainWindow.busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(busLineBO));
                 MessageBox.Show($"Bus added successfully!", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
+                
+            }
+            catch (BO.BOArgumentNotFoundException ex)
+            {
+                MessageBox.Show($"Can't add bus line\n" + ex.ToString(), "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Can't add bus line. Invalid information", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show($"Can't add bus line\n" +ex.Message, "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
 

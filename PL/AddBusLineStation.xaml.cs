@@ -36,12 +36,6 @@ namespace PL
         {
             try
             {
-                //App.bl.AddStationToLine(busKey, stationKey, position);
-                //MainWindow.busLinesCollection.Clear();
-                //foreach (BO.BusLine bl in App.bl.GetAllBusLines())
-                //{
-                //    MainWindow.busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(bl));
-                //}
                 int index = 0;
                 BO.BusLine busLineBO = App.bl.GetBusLine(busKey);
                 BusLine busLinePO = PoBoAdapter.BusLinePoBoAdapter(busLineBO);
@@ -64,6 +58,10 @@ namespace PL
                 }
                 MessageBox.Show($"Station {stationKey} was successfully\n added to line {busLinePO.LineNumber}", "ADD STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
                 
+            }
+            catch (BO.BOInvalidInformationException ex)
+            {
+                MessageBox.Show("Can't add bus line station\n" + ex.ToString(), "UPDATE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             catch (Exception ex)
             {

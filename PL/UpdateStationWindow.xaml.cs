@@ -38,16 +38,16 @@ namespace PL
                 Station.Key = updatingStation.Key;
                 App.bl.UpdateStation(Station);
                 MainWindow.stationsCollection[beforeUpdateindex] = PoBoAdapter.StationPoBoAdapter(App.bl.GetStation(Station.Key));
-                MessageBox.Show($"Station updated successfully.", "UPDATE STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"Station {Station.Key} updated successfully.", "UPDATE STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }
             catch (BO.BOInvalidInformationException ex)
             {
-                MessageBox.Show($"Can't update station.", "UPDATE STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Can't update the station!\n" + ex.ToString(), "UPDATE STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"{ex.Message}", "UPDATE STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Can't update the station!\n" + ex.Message, "UPDATE STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

@@ -73,20 +73,21 @@ namespace PL
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-            Bus bus = MainWindow.busesCollection[lbBuses.SelectedIndex];
-            string key = bus.LicenseNumber;
+            
             try
             {
-                MessageBoxResult mbResult = MessageBox.Show($"Are you sure you want to delete \nbus of key {key}?", "DELETE BUS MESSAGE", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+                Bus bus = MainWindow.busesCollection[lbBuses.SelectedIndex];
+                string key = bus.LicenseNumber;
+                MessageBoxResult mbResult = MessageBox.Show($"Are you sure you want to delete bus {key}?", "DELETE BUS MESSAGE", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
                 if (mbResult == MessageBoxResult.Yes)
                 {
                     App.bl.DeleteBus(key);
                     MainWindow.busesCollection.Remove(bus);
-                    MessageBox.Show($"Bus of key {key} was deleted.", "DELETE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.No);
+                    MessageBox.Show($"Bus {key} was deleted.", "DELETE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.No);
 
                 }
                 else
-                    MessageBox.Show($"Delete of bus was canceled.", "DELETE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.No);
+                    MessageBox.Show($"Delete operation was canceled.", "DELETE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.No);
 
             }
             catch (BO.BOArgumentNotFoundException ex)

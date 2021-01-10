@@ -45,11 +45,11 @@ namespace PL
             }
             catch (BO.BOInvalidInformationException ex)
             {
-                MessageBox.Show($"Can't update bus.", "UPDATE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Can't update the bus!\n" + ex.ToString(), "UPDATE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"{ex.Message}", "UPDATE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Can't update the bus!\n" +$"{ex.Message}", "UPDATE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
     }

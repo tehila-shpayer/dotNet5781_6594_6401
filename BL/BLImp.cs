@@ -56,40 +56,40 @@ namespace BL
         {
             if (bus.LicenseNumber.Length < 7 || bus.LicenseNumber.Length > 8)
             {
-                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\nError: The license number has to be a 7 or 8 digit number!");
+                throw new BOInvalidInformationException("The license number has to be a 7 or 8 digit number!");
             }
             //Starting date must be in a reasonable spactrum
             else if (!(bus.RunningDate.Year >= 1896 && bus.RunningDate.Year <= DateTime.Now.Year))
             {
-                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\nError: Starting date must be after 1896 and before " + DateTime.Now.Year + "!");
+                throw new BOInvalidInformationException("Starting date must be after 1896 and before " + DateTime.Now.Year + "!");
             }
             //Running date must be before last treatment date
             else if (bus.RunningDate > bus.LastTreatment)
             {
-                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\nERROR: Starting date can't be later then last treatment date!");
+                throw new BOInvalidInformationException("Starting date can't be later then last treatment date!");
             }
             // length of license number must much running date
             else if ((bus.LicenseNumber.Length == 7) && (bus.RunningDate.Year >= 2018))
             {
-                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\nERROR: A 7 digit license number bus can't be from later than 2017!");
+                throw new BOInvalidInformationException("A 7 digit license number bus must be from earlier than 2018!");
             }
             else if ((bus.LicenseNumber.Length == 8) && (bus.RunningDate.Year < 2018))
             {
-                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\nERROR: A 8 digit license number bus can't be from earlier than 2018!");
+                throw new BOInvalidInformationException("A 8 digit license number bus must from later than 2017!");
             }
             //General KM must be atleast as KM since last treatment
             else if (bus.KM < bus.BeforeTreatKM)
             {
-                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\nERROR: Can't have more KM before treatment than general KM!");
+                throw new BOInvalidInformationException("Can't have more KM before treatment than general KM!");
             }
             //Fuel can be maximum 1200
             else if (bus.Fuel > 1200)
             {
-                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\nERROR: Fuel can't be over 1200!");
+                throw new BOInvalidInformationException("Fuel can't be over 1200!");
             }
             else if (bus.Fuel < 0)
             {
-                throw new BOInvalidInformationException("Couldn't add bus. invalid information!\nERROR: Fuel can't be negative!");
+                throw new BOInvalidInformationException("Fuel can't be negative!");
             }
             if ((DateTime.Now - bus.LastTreatment).TotalDays > 365 || bus.BeforeTreatKM >= 20000 || bus.Fuel == 0)
             {
@@ -283,30 +283,28 @@ namespace BL
         {
             if (station.Latitude > 90 || station.Latitude < -90)
             {
-                throw new BOInvalidInformationException($"Can't add station. Invalid latitude");
+                throw new BOInvalidInformationException($"Invalid latitude");
             }
             if (station.Longitude > 180 || station.Longitude < -180)
             {
-                throw new BOInvalidInformationException($"Can't add station. Invalid longitude");
+                throw new BOInvalidInformationException($"Invalid longitude");
             }
+            if (station.Latitude < 29.3 || station.Latitude > 33.5 || station.Longitude > 33.7 || station.Longitude > 36.3)
+                throw new BOInvalidInformationException($"Location must be in Israel!");
         }
         public int AddStation(Station station)
         {
             CheckStationParameters(station);
             try
             {
-                if (station.Latitude >= 29.3 && station.Latitude<=33.5 && station.Longitude <= 33.7 && station.Longitude >= 36.3)
-                {
-                    DO.Station StationDO = new DO.Station();
-                    station.Clone(StationDO);
-                    return dl.AddStation(StationDO);
-                }
-                else
-                    throw new BOInvalidInformationException($"Can't add station. Location must be in Israel!");
+                DO.Station StationDO = new DO.Station();
+                station.Clone(StationDO);
+                return dl.AddStation(StationDO);
+
             }
             catch (DO.InvalidInformationException ex)
             {
-                throw new BOInvalidInformationException($"Can't add station {station.Key}.", ex);
+                throw new BOInvalidInformationException($"Can't add station.", ex);
             }
         }
         public void UpdateStation(Station station)
@@ -415,7 +413,7 @@ namespace BL
                 dl.AddBusLineStation(busLineStationDO);
             }
             catch (DO.InvalidInformationException ex)
-            { throw new BOInvalidInformationException("Can't add bus line station. Invalid information.", ex); }
+            { throw ex; }
         }
         public void UpdateBusLineStation(BusLineStation station)
         {
@@ -559,89 +557,57 @@ namespace BL
         }
         public void AddStationToLine(int busLineKey, int stationKey, int position = 0)
         {
-            BusLine busLine = GetBusLine(busLineKey);
-            if (position > busLine.BusLineStations.Count() + 1 || position < 0)//מיקום רלוונטי - כגודל רשימת התחנות
-                throw new ArgumentOutOfRangeException($"The index is illegal:\n There are only {busLine.BusLineStations.Count()} stations in line {busLineKey}");
-            if (position == 0)
-                position = busLine.BusLineStations.Count() + 1;
-
-            BusLineStation prevBusLineStation = (from bls in GetAllStationsOfLine(busLineKey)
-                                                 where bls.Position == position - 1
-                                                 select bls).FirstOrDefault();
-            BusLineStation nextBusLineStation = (from bls in GetAllStationsOfLine(busLineKey)
-                                                 where bls.Position == position
-                                                 select bls).FirstOrDefault();
-            if (prevBusLineStation != null)
+            try
             {
-                dl.AddConsecutiveStations(prevBusLineStation.StationKey, stationKey);
+                BusLine busLine = GetBusLine(busLineKey);
+                if (position > busLine.BusLineStations.Count() + 1 || position < 0)//מיקום רלוונטי - כגודל רשימת התחנות
+                    throw new ArgumentOutOfRangeException($"The index is illegal:\n There are only {busLine.BusLineStations.Count()} stations in line {busLineKey}");
+                if (position == 0)
+                    position = busLine.BusLineStations.Count() + 1;
+
+                BusLineStation prevBusLineStation = (from bls in GetAllStationsOfLine(busLineKey)
+                                                     where bls.Position == position - 1
+                                                     select bls).FirstOrDefault();
+                BusLineStation nextBusLineStation = (from bls in GetAllStationsOfLine(busLineKey)
+                                                     where bls.Position == position
+                                                     select bls).FirstOrDefault();
+
+                BO.BusLineStation busLineStationBO = new BO.BusLineStation();//create the new busLineStation
+                busLineStationBO.BusLineKey = busLineKey;
+                busLineStationBO.StationKey = stationKey;
+                busLineStationBO.Position = position;
+                AddBusLineStation(busLineStationBO);
+
+                if (prevBusLineStation != null)
+                {
+                    dl.AddConsecutiveStations(prevBusLineStation.StationKey, stationKey);
+                }
+                if (nextBusLineStation != null)
+                {
+                    dl.AddConsecutiveStations(stationKey, nextBusLineStation.StationKey);
+                }
+
+
+                var tmp = from bls in dl.GetAllStationsOfLine(busLineKey)
+                          where bls.Position >= position && bls.StationKey != stationKey
+                          select bls;
+
+                foreach (DO.BusLineStation bls in tmp)//update the position of the station in the line
+                {
+                    bls.Position += 1;
+                    dl.UpdateBusLineStation(bls);
+                }
+                UpdateStation(stationKey, s => s.BusLines.Append(busLineKey));
             }
-            if (nextBusLineStation != null)
+            catch (DO.InvalidInformationException ex)
             {
-                dl.AddConsecutiveStations(stationKey, nextBusLineStation.StationKey);
+                throw new BOInvalidInformationException($"The station { stationKey } already exits in this line!", ex);
             }
-
-            BO.BusLineStation busLineStationBO = new BO.BusLineStation();//create the new busLineStation
-            busLineStationBO.BusLineKey = busLineKey;
-            busLineStationBO.StationKey = stationKey;
-            busLineStationBO.Position = position;
-            AddBusLineStation(busLineStationBO);
-
-            var tmp = from bls in dl.GetAllStationsOfLine(busLineKey)
-                      where bls.Position >= position && bls.StationKey != stationKey
-                      select bls;
-
-            foreach (DO.BusLineStation bls in tmp)//update the position of the station in the line
+            catch (Exception)
             {
-                bls.Position += 1;
-                dl.UpdateBusLineStation(bls);
+                throw;
             }
-            UpdateStation(stationKey, s => s.BusLines.Append(busLineKey));
         }
-//        public void AddStationToLine2(int busLineKey, int stationKey, int position = 0)
-//        {
-//            BusLine busLine = GetBusLine(busLineKey);
-//            if (position == 0)
-//                position = busLine.BusLineStations.Count() + 1;
-//            foreach (DO.BusLineStation bls in dl.GetAllStationsOfLine(busLineKey))
-//                if (bls.Position >= position)
-//                    dl.UpdateBusLineStation(bls.BusLineKey, bls.StationKey, b => b.Position += 1);
-//            DO.ConsecutiveStations consecutiveStationsFromPrev;
-//            DO.ConsecutiveStations consecutiveStationsToNext;
-
-//            DO.BusLineStation busLineStationDO = new DO.BusLineStation();
-//            busLineStationDO.BusLineKey = busLineKey;
-//            busLineStationDO.StationKey = stationKey;
-//            busLineStationDO.Position = position;
-
-//            dl.AddBusLineStation(busLineStationDO);
-
-//            BO.BusLineStation busLineStationBO = new BO.BusLineStation();
-//            //busLineStationBO = BusLineStationDoBoAdapter(busLineStationDO);
-//            //busLine.BusLineStations.Append(busLineStationBO);
-//            DO.BusLineStation prevBusLineStationDO = dl.GetBusLineStationBy
-//                (bls => bls.BusLineKey == busLineKey && bls.Position == position - 1);
-//            DO.BusLineStation nextBusLineStationDO = dl.GetBusLineStationBy
-//                (bls => bls.BusLineKey == busLineKey && bls.Position == position + 1);
-//            if (position != 1)
-//            {
-//                if (dl.GetConsecutiveStations(prevBusLineStationDO.StationKey, busLineStationDO.StationKey) != null)
-//                {
-//                    consecutiveStationsFromPrev = CalculateConsecutiveStations
-//                        (dl.GetStation(prevBusLineStationDO.StationKey), dl.GetStation(busLineStationDO.StationKey));
-//                    dl.AddConsecutiveStations(consecutiveStationsFromPrev);
-//                }
-//            }
-//            if (position != busLine.BusLineStations.Count())
-//            {//אם זו לא התחנה האחרונה יש לעדכן את פרטי הזמן והמרחק של התחנה הבאה 
-//                consecutiveStationsToNext = CalculateConsecutiveStations
-//(dl.GetStation(busLineStationDO.StationKey), dl.GetStation(nextBusLineStationDO.StationKey));
-//                if (dl.GetConsecutiveStations(prevBusLineStationDO.StationKey, busLineStationDO.StationKey) != null)
-//                    dl.AddConsecutiveStations(consecutiveStationsToNext);
-//                //    foreach (BusLineStation s in busLine.BusLineStations)
-//                //        if (s.Position == position + 1)
-//                //            UpdateBusLineStation(s.BusLineKey, s.StationKey, bls => bls = BusLineStationDoBoAdapter(busLineStationDO));
-//            }
-//        }
         public void UpdateBusLine(BusLine bus)
         {
             try
