@@ -27,17 +27,7 @@ namespace PL
             grid1.DataContext = stationBO;
         }
 
-        private void namerTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            AllFieldsFull();
-        }
-
-        private void latitudeTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            AllFieldsFull();
-        }
-
-        private void longitudeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             AllFieldsFull();
         }

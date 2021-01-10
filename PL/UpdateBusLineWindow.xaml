@@ -31,7 +31,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Label Content=":מפתח" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Right"/>
-                <TextBlock x:Name="keyTextBlock" Grid.Column="0" Grid.Row="0" Text="{Binding Key, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Right" Margin="10" />
+                <TextBlock x:Name="keyTextBlock" Grid.Column="0" Grid.Row="0" Text="{Binding Key, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" />
                 <Label Content=":מספר קו" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Height="Auto" Margin="9.667,1,10,9" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Right"/>
                 <TextBox x:Name="lineNumberTextBox" Grid.Column="0" Grid.Row="1" Text="{Binding LineNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10" HorizontalContentAlignment="Right" VerticalContentAlignment="Bottom" TextChanged="lineNumberTextBox_TextChanged" PreviewKeyDown="lineNumberTextBox_PreviewKeyDown"/>
                 <Label Content=":איזור" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Right"/>
@@ -43,9 +43,9 @@
                     </ComboBox.ItemsPanel>
                 </ComboBox>
                 <Label Content=":תחנה ראשונה" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Right"/>
-                <TextBlock x:Name="firstStationTextBlock" Grid.Column="0" Grid.Row="3" Text="{Binding FirstStation, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10" />
+                <TextBlock x:Name="firstStationTextBlock" Grid.Column="0" Grid.Row="3" Text="{Binding FirstStation, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" />
                 <Label Content=":תחנה אחרונה" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Right"/>
-                <TextBlock x:Name="lastStationTextBlock" Grid.Column="0" Grid.Row="4" Text="{Binding LastStation, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10" />
+                <TextBlock x:Name="lastStationTextBlock" Grid.Column="0" Grid.Row="4" Text="{Binding LastStation, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" />
                 <Label Content=":תחנות בקו" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="5" VerticalAlignment="Stretch" Height="Auto" Margin="9.667,5,10,5" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Right"/>
                 <ComboBox x:Name="stationsComboBox" Grid.Column="0"  ItemsSource="{Binding}"  Grid.Row="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10" HorizontalContentAlignment="Right" VerticalContentAlignment="Bottom">
                     <ComboBox.ItemsPanel>

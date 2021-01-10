@@ -57,5 +57,10 @@ namespace PL
         {
             Close();
         }
+
+        private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            PL.PreviewKeyDown.GeneralPerviewKeyDown(sender, e);
+        }
     }
 }
