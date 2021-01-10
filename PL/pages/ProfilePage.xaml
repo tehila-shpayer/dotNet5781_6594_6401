@@ -2,51 +2,138 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:PL"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Profile" Background="White">
+    <Page.Resources>
+        <CollectionViewSource x:Key="userViewSource" d:DesignSource="{d:DesignInstance {x:Type local:User}, CreateList=True}"/>
+    </Page.Resources>
 
-    <Grid Grid.Row="0" Grid.Column="0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="1.5*"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0">
-            <Image x:Name="profilePicture" Width="200" Height="150" Margin="30"/>
-            <Button x:Name="changePictureButton" Margin="20,1"/>
-            <Button x:Name="changePasswordButton" Content="change password" Margin="20,20" Click="changePasswordButton_Click"/>
-            <TextBlock x:Name="wrongPassword" Text="Old password is incorrect. try again." FontSize="15"  Foreground="Red" Margin="45,5,40,-30" Visibility="Hidden"/>
-            <StackPanel x:Name="changePasswordStack" Visibility="Collapsed">
-                <TextBlock x:Name="tbOldPassword" Text=" Old password" FontSize="20" Margin="40,0" Foreground="Gray" GotFocus="oldPassword_GotFocus" LostFocus="oldPassword_LostFocus"/>
-                <PasswordBox x:Name="oldPassword" Height="50" Margin="40,-38, 40,0" FontSize="20" Foreground="black" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" BorderBrush="#FF919398" GotFocus="oldPassword_GotFocus" LostFocus="oldPassword_LostFocus"/>
-                <TextBlock x:Name="tbNewPassword" Text=" New password" FontSize="22" Margin="40,18,40,0" Foreground="Gray" />
-                <PasswordBox x:Name="newPassword" Height="50" Margin="40,-38, 40,0" FontSize="22" Foreground="black" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" BorderBrush="#FF919398" GotFocus="newPassword_GotFocus" LostFocus="newPassword_LostFocus"/>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="LightGray" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Rectangle Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
+        </Rectangle>
+
+        <!--<StackPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="LightGray" Offset="1"/>
+                    <GradientStop Color="#FFA6C8D1" Offset="0.25"/>
+                    <GradientStop Color="#FFD9DCDD" Offset="0.086"/>
+                    <GradientStop Color="#FFBBD0D6" Offset="0.18"/>
+                    <GradientStop Color="#FFABC9D1" Offset="0.608"/>
+                    <GradientStop Color="#FFC7D0D2" Offset="0.46"/>
+                </LinearGradientBrush>
+            </StackPanel.Background>-->
+
+        <Grid x:Name="ProfilGrid" Margin="50" DataContext="{Binding}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1.6*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <Image Height="130"/>
+                    <Button x:Name="uploadImageButton" Content="בחר תמונה" BorderBrush="{x:Null}" Background="{x:Null}" FontSize="16" Foreground="Blue" Click="uploadImageButton_Click"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <Button x:Name="ChangePasswordButton" Content="שנה סיסמה" Click="ChangePasswordButton_Click" Background="#FF477AA9" Width="140" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                    <TextBlock x:Name="tbOldPassword" Text=" Old Password" FontSize="22" Margin="40,15,40,-42" Foreground="Gray" Visibility="Collapsed"/>
+                    <PasswordBox x:Name="OldPassword" Height="50" Margin="40,0" FontSize="22" Foreground="black" Visibility="Collapsed" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" GotFocus="OldPassword_GotFocus" LostFocus="OldPassword_LostFocus"/>
+                    <TextBlock x:Name="tbNewPassword" Text=" New Password" FontSize="22" Margin="40,15,40,-42" Foreground="Gray" Visibility="Collapsed"/>
+                    <PasswordBox x:Name="NewPassword" Height="50" Margin="40,0" FontSize="22" Foreground="black" Visibility="Collapsed" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" GotFocus="NewPassword_GotFocus" LostFocus="NewPassword_LostFocus"/>
+                    <StackPanel x:Name="saveUndoButtons" Margin="20" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Collapsed">
+                        <Button x:Name="undoButton" Margin="10,5" Width="100" Height="40" Padding="0" Click="undoButton_Click" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Margin="0" Kind="UndoVariant" Height="30" Width="30"/>
+                                <TextBlock Text="ביטול" VerticalAlignment="Center" Margin="5,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="saveButton" Margin="10,5" Width="100" Height="40" Padding="0" Click="saveButton_Click" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Margin="0" Kind="ContentSave" Height="30" Width="30"/>
+                                <TextBlock Text="שמור" VerticalAlignment="Center" Margin="5,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="3.2*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="editButton" Margin="20,5" Width="120" Height="50" Padding="0" Click="editButton_Click"  Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Margin="0" Kind="Edit" Height="30" Width="30"/>
+                            <TextBlock Text="ערוך" VerticalAlignment="Center" Margin="5,0" FontFamily="Champagne &amp; Limousines" FontSize="22"/>
+                        </StackPanel>
+                    </Button>
+                    <TextBlock Text="הפרופיל שלי" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+                <Grid x:Name="grid1" DataContext="{StaticResource userViewSource}" HorizontalAlignment="Left" Margin="81,29.8,0,0" Grid.Row="1" VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+                    <TextBox x:Name="addressTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                    <Label Content="Authorization Management:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="authorizationManagementTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="1" Text="{Binding AuthorizationManagement}" VerticalAlignment="Center"/>
+                    <Label Content="Email:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                    <TextBox x:Name="emailTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                    <Label Content="First Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+                    <TextBox x:Name="firstNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding FirstName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                    <Label Content="Last Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+                    <TextBox x:Name="lastNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding LastName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                    <Label Content="Phone Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
+                    <TextBox x:Name="phoneNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding PhoneNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                    <Label Content="User Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="userNameTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="6" Text="{Binding UserName}" VerticalAlignment="Center"/>
+                </Grid>
+            </Grid>
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="{Binding LicenseNumberFormat}" Margin="10,0" TextAlignment="Right" FontWeight="Bold" FontSize="25" FontFamily="Segoe UI Black"/>
+                <TextBlock Text="{Binding Status}" Margin="15,10,15,20" TextAlignment="Right" FontSize="24"/>
+
+
+                <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,6,20,6">
+                    <TextBlock FontSize="20" TextAlignment="Right" FontFamily="Segoe UI Emoji">
+                    <Run Text="{Binding Fuel}"/>
+                    <Run Text=" :דלק "/>
+                    </TextBlock>
+                    <materialDesign:PackIcon Kind="Fuel" Foreground="#FF477AA9" Width="30" Height="30"/>
+                </StackPanel>-->
+                <!--<StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" Margin="0,10" HorizontalAlignment="Center">
+                    <Button Margin="10,5" Width="120" Height="45" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Margin="0,0,5,0" Kind="Travel" Height="30" Width="30"/>
+                            <TextBlock Text="נסיעה" VerticalAlignment="Center" Margin="5,0,0,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                        </StackPanel>
+                </StackPanel>-->
+
             </StackPanel>
-        </StackPanel>
-        <StackPanel Grid.Column="1" Orientation="Vertical">
-            <Grid>
-                <TextBlock x:Name="nameBlock" Text="oneblock" Margin="30,5,250,5" Height="25" Width="200"/>
-                <TextBox x:Name="nameBox" Text="onebox" Visibility="Hidden" Margin="30,20,250,5" Height="25" Width="200"/>
-            </Grid>
-            <Grid>
-                <TextBlock x:Name="lastNameBlock" Text="oneblock" Margin="30,5,250,5" Height="25" Width="200"/>
-                <TextBox x:Name="lastNameBox" Text="onebox" Visibility="Hidden" Margin="30,5,250,5" Height="25" Width="200"/>
-            </Grid>
-            <Grid>
-                <TextBlock x:Name="oneblock" Text="oneblock" Margin="30,5,250,5" Height="25" Width="200"/>
-                <TextBox x:Name="onebox" Text="onebox" Visibility="Hidden" Margin="30,5,250,5" Height="25" Width="200"/>
-            </Grid>
-            <Grid>
-                <TextBlock x:Name="mailBlock" Text="oneblock" Margin="30,5,250,5" Height="25" Width="200"/>
-                <TextBox x:Name="mailBox" Text="onebox" Visibility="Hidden" Margin="30,5,250,5" Height="25" Width="200"/>
-            </Grid>
-            <Grid>
-                <TextBlock x:Name="addressBlock" Text="oneblock" Margin="30,5,250,5" Height="25" Width="200"/>
-                <TextBox x:Name="addressBox" Text="onebox" Visibility="Hidden" Margin="30,5,250,5" Height="25" Width="200"/>
-            </Grid>
-            <Button x:Name="testb" Content="test" Click="testb_Click"/>
-        </StackPanel>
+        </Grid>
     </Grid>
 </Page>
