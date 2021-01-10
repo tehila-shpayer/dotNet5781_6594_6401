@@ -22,36 +22,52 @@ namespace PL
     {
         public string userName;
         public string password;
+        public Button currentButton;
+        Brush mainBlueColor;
         public ManagerPage(string un, string pw)
         {
             InitializeComponent();
             userName = un;
             password = pw;
+            mainBlueColor = profileButton.Background;
+        }
+        void changeColors( Button b)
+        {
+            b.Background = Brushes.White;
+            b.Foreground = mainBlueColor;
+            if (currentButton != null && currentButton != b)
+            {
+                currentButton.Background = mainBlueColor;
+                currentButton.Foreground = Brushes.White;
+            }
+            currentButton = b;
         }
         private void profileButton_Click(object sender, RoutedEventArgs e)
         {
             currentPage.Content = new ProfilePage(userName, password);
+            changeColors(profileButton);
         }
 
         private void busLinesButton_Click(object sender, RoutedEventArgs e)
         {
             currentPage.Content = new BusLinePage();
-
+            changeColors(busLinesButton);
         }
 
         private void stationsButton_Click(object sender, RoutedEventArgs e)
         {
             currentPage.Content = new StationPage();
+            changeColors(stationsButton);
         }
 
         private void busesButton_Click(object sender, RoutedEventArgs e)
         {
             currentPage.Content = new BusPage();
+            changeColors(busesButton);
         }
 
         private void configurationButton_Click(object sender, RoutedEventArgs e)
         {
-
         }
     }
 }
