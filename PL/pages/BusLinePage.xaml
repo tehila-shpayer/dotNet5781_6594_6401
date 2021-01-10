@@ -92,9 +92,9 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="updateButton" Width="145" Margin="5,10" Content="UPDATE BUS LINE" Background="#FF477AA9" Click="updateButton_Click"/>
-            <Button x:Name="deleteButton" Width="145" Margin="5,10" Content="DELETE BUS LINE" Background="#FF477AA9" Click="deleteButton_Click"/>
-            <Button x:Name="addButton" Width="145" Margin="5,10" Content="ADD BUS LINE" Background="#FF477AA9" Click="addButton_Click"/>
+            <Button x:Name="updateButton" Width="145" Margin="5,10" Content="UPDATE BUS LINE" Background="#FF477AA9" Click="updateButton_Click" BorderBrush="{x:Null}"/>
+            <Button x:Name="deleteButton" Width="145" Margin="5,10" Content="DELETE BUS LINE" Background="#FF477AA9" Click="deleteButton_Click" BorderBrush="{x:Null}"/>
+            <Button x:Name="addButton" Width="145" Margin="5,10" Content="ADD BUS LINE" Background="#FF477AA9" Click="addButton_Click" BorderBrush="{x:Null}"/>
         </StackPanel>
 
         <Rectangle Grid.Column="0" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">

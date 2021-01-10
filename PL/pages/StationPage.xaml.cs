@@ -133,5 +133,11 @@ namespace PL
             foreach (Station station in collection)
                 MainWindow.stationsCollection.Add(station);
         }
+
+        private void mapButton_Click(object sender, RoutedEventArgs e)
+        {
+            MapWindow mapWindow = new MapWindow();
+            mapWindow.Show();
+        }
     }
 }

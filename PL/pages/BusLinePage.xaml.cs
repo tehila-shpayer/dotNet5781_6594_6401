@@ -30,7 +30,7 @@ namespace PL
             areas.DataContext = AreasString;
             areas.SelectedIndex = 0;
             cbBusLines.DataContext = OrderByString;
-            //cbBusLines.SelectedIndex = 0;
+            cbBusLines.SelectedIndex = 0;
         }
 
         private void lbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -187,24 +187,9 @@ namespace PL
         }
         void Sort()
         {
-            var collection = new ObservableCollection<BusLine>();
-            switch (cbBusLines.SelectedItem.ToString())
-            {
-                case "Order by key":
-                    foreach (BusLine bus in MainWindow.busLinesCollection.OrderBy(bl => bl.Key))
-                        collection.Add(bus);
-                    break;
-                case "Order by number":
-                    foreach (BusLine bus in MainWindow.busLinesCollection.OrderBy(bl => bl.LineNumber))
-                        collection.Add(bus); break;
-                case "Order by area":
-                    foreach (BusLine bus in MainWindow.busLinesCollection.OrderBy(bl => bl.Area.ToString()))
-                        collection.Add(bus); break;
-                default: break;
-            }
             MainWindow.busLinesCollection.Clear();
-            foreach (BusLine bus in collection)
-                MainWindow.busLinesCollection.Add(bus);
+            foreach (BO.BusLine bus in App.bl.GetAllBusLinesOrderedBy(cbBusLines.SelectedItem.ToString()))
+                MainWindow.busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(bus));
             ShowByArea();
         }
     }

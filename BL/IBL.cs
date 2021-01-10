@@ -34,6 +34,7 @@ namespace BLAPI
         BusLine GetBusLine(int busLineKey);
         IEnumerable<BusLine> GetBusLinesBy(Predicate<BusLine> predicate);
         IEnumerable<BusLine> GetAllBusLines();
+        IEnumerable<BusLine> GetAllBusLinesOrderedBy(string orderBy);
         int AddBusLine(BusLine busline);
         void AddStationToLine(int busLineKey, int stationKey, int position = 0);
         void DeleteBusLine(int busLineKey);
