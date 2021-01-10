@@ -39,6 +39,13 @@ namespace PL
         {
             try
             {
+                //int firstKey = busLineBO.FirstStation;
+                //int lastKey = busLineBO.LastStation;
+                int firstKey = (firstStationComboBox.SelectedItem as Station).Key;
+                int lastKey = (lastStationComboBox.SelectedItem as Station).Key;
+                if (firstKey == lastKey)
+                    throw new InvalidOperationException("ERROR: Invalid Information\nFirst station and last station must be different!");
+
                 busLineBO.Area = (BO.Areas)(Areas)AreasString.IndexOf(areaComboBox.SelectedItem.ToString());
                 busLineBO.Key = App.bl.AddBusLine(busLineBO);
                 App.bl.AddStationToLine(busLineBO.Key, firstKey);
