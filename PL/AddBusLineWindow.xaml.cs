@@ -40,33 +40,27 @@ namespace PL
         {
             try
             {
-                //if (App.bl.GetStation(int.Parse(firstStationTextBox.Text)) == null)
-                //    MessageBox.Show($"Can't add bus line. First station doesnt exist", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                //if (App.bl.GetStation(int.Parse(lastStationTextBox.Text)) == null)
-                //    MessageBox.Show($"Can't add bus line. Last station doesnt exist", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                //busLineBO.LineNumber = int.Parse(lineNumberTextBox.Text);
-                //busLineBO.Area = (BO.Areas)(Areas)AreasString.IndexOf(areaComboBox.SelectedItem.ToString());
-                //busLineBO.Key = App.bl.AddBusLine(busLineBO);
-                //var x = firstStationComboBox.SelectedItem.ToString();
-                //int s1 = (firstStationComboBox.SelectedItem as Station).Key;
-                //App.bl.AddStationToLine(busLineBO.Key, s1);
-                //App.bl.AddStationToLine(busLineBO.Key, int.Parse(lastStationComboBox.SelectedItem.ToString()));
-                //busLineBO = App.bl.GetBusLine(busLineBO.Key);
-                ////BusLine busLinePO = PoBoAdapter.BusLinePoBoAdapter(busLine);
-                //MainWindow.busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(busLineBO));
-                //MessageBox.Show($"Bus added successfully!", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
+                int firstKey = (firstStationComboBox.SelectedItem as Station).Key;
+                int lastKey = (lastStationComboBox.SelectedItem as Station).Key;
+                if (firstKey == lastKey)
+                    throw new InvalidOperationException("ERROR: Invalid Information\nFirst station and last station must be different!");
                 busLineBO.Area = (BO.Areas)(Areas)AreasString.IndexOf(areaComboBox.SelectedItem.ToString());
                 busLineBO.Key = App.bl.AddBusLine(busLineBO);
-                App.bl.AddStationToLine(busLineBO.Key, (firstStationComboBox.SelectedItem as Station).Key);
-                App.bl.AddStationToLine(busLineBO.Key, (lastStationComboBox.SelectedItem as Station).Key);
+                App.bl.AddStationToLine(busLineBO.Key, firstKey);
+                App.bl.AddStationToLine(busLineBO.Key, lastKey);
                 busLineBO = App.bl.GetBusLine(busLineBO.Key);
                 MainWindow.busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(busLineBO));
                 MessageBox.Show($"Bus added successfully!", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
+                
+            }
+            catch (BO.BOArgumentNotFoundException ex)
+            {
+                MessageBox.Show($"Can't add bus line\n" + ex.ToString(), "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             catch (Exception ex) 
             {
-                MessageBox.Show($"Can't add bus line. Invalid information", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show($"Can't add bus line\n" +ex.Message, "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
     }

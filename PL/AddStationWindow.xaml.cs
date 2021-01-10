@@ -34,12 +34,12 @@ namespace PL
                 stationBO.Key = App.bl.AddStation(stationBO);
                 stationBO = App.bl.GetStation(stationBO.Key);
                 MainWindow.stationsCollection.Add(PoBoAdapter.StationPoBoAdapter(stationBO));
-                MessageBox.Show($"Station added successfully!", "ADD STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"Station {stationBO.Key} added successfully!", "ADD STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "ADD STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Can't add the station!\n" + ex.ToString(), "ADD STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

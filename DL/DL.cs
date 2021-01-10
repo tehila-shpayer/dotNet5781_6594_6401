@@ -246,6 +246,8 @@ namespace DL
         }
         public void AddConsecutiveStations(int stationKey1, int stationKey2)
         {
+            if (stationKey1 == stationKey2)
+                throw new InvalidInformationException("Duplicate station!");
             Station station1 = GetStation(stationKey1);
             Station station2 = GetStation(stationKey2);
             AddConsecutiveStations(CalculateConsecutiveStations(station1, station2));

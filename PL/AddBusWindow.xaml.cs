@@ -24,7 +24,6 @@ namespace PL
         {
             InitializeComponent();
             bus = new BO.Bus();
-            //bus.Status = BO.Status.NotReady;
             bus.RunningDate = DateTime.Now;
             bus.LastTreatment = DateTime.Now;
             grid1.DataContext = bus;
@@ -41,7 +40,7 @@ namespace PL
             }
             catch( BO.BOInvalidInformationException ex)
             {
-                MessageBox.Show($"{ex.Message}", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Couldn't add bus!\n" + ex.ToString(), "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 
             }
 
