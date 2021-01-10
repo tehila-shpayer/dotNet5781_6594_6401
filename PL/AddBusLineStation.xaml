@@ -15,9 +15,17 @@
         <Rectangle Grid.Column="0" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
         </Rectangle>
         <StackPanel Orientation="Vertical">
-        <Label Content="Choose station:" FontSize="25" Margin="20,50,20,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="Choose station:" FontSize="25" Margin="20,50,20,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
         <ComboBox x:Name="cbStationKey"  Margin="50,5,50,10" FontSize="18" ItemsSource="{Binding}"/>
-        <Button x:Name="addButton" Margin="140,10,140,25" Background="#FF477AA9" Content="ADD" BorderBrush="{x:Null}" Click="addButton_Click"/>
+            <Grid Margin="50,10,50,25">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="addButton" Grid.Column="1" Margin="20,0" Background="#FF477AA9" Content="ADD" BorderBrush="{x:Null}" Click="addButton_Click"/>
+                <Button x:Name="cancelButton" Grid.Column="0" Margin="20,0" Background="#FF477AA9" Content="CANCEL" BorderBrush="{x:Null}" Click="cancelButton_Click"/>
+            </Grid>
+            <!--<Button x:Name="addButton" Margin="140,10,140,25" Background="#FF477AA9" Content="ADD" BorderBrush="{x:Null}" Click="addButton_Click"/>-->
         </StackPanel>
     </Grid>
 </Window>

@@ -32,18 +32,7 @@ namespace PL
 
         private void addBusButton_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                App.bl.AddBus(bus);
-                MainWindow.busesCollection.Add(PoBoAdapter.BusPoBoAdapter(bus));
-                MessageBox.Show($"Bus added successfully!", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
-                Close();
-            }
-            catch( BO.BOInvalidInformationException ex)
-            {
-                MessageBox.Show($"{ex.Message}", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 
-            }
 
         }
 
@@ -67,9 +56,30 @@ namespace PL
         private void licenseNumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (licenseNumberTextBox.Text == "")
-                addBusButton.IsEnabled = false;
+                addButton.IsEnabled = false;
             else
-                addBusButton.IsEnabled = true;
+                addButton.IsEnabled = true;
+        }
+
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                App.bl.AddBus(bus);
+                MainWindow.busesCollection.Add(PoBoAdapter.BusPoBoAdapter(bus));
+                MessageBox.Show($"Bus added successfully!", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
+                Close();
+            }
+            catch (BO.BOInvalidInformationException ex)
+            {
+                MessageBox.Show($"{ex.Message}", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+
+            }
+        }
+
+        private void cancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

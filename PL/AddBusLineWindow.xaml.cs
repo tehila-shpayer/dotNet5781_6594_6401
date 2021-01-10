@@ -29,32 +29,16 @@ namespace PL
             areaComboBox.SelectedIndex = 0;
             firstStationComboBox.DataContext = MainWindow.stationsCollection;
             lastStationComboBox.DataContext = MainWindow.stationsCollection;
-            firstStationComboBox.DisplayMemberPath = "  Key  ";
-            lastStationComboBox.DisplayMemberPath = "  Key  ";
+            firstStationComboBox.DisplayMemberPath = "  ShowNameKey  ";
+            lastStationComboBox.DisplayMemberPath = "  ShowNameKey  ";
             firstStationComboBox.SelectedIndex = 0;
             lastStationComboBox.SelectedIndex = 0;
             grid1.DataContext = busLineBO;
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void addButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                //if (App.bl.GetStation(int.Parse(firstStationTextBox.Text)) == null)
-                //    MessageBox.Show($"Can't add bus line. First station doesnt exist", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                //if (App.bl.GetStation(int.Parse(lastStationTextBox.Text)) == null)
-                //    MessageBox.Show($"Can't add bus line. Last station doesnt exist", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                //busLineBO.LineNumber = int.Parse(lineNumberTextBox.Text);
-                //busLineBO.Area = (BO.Areas)(Areas)AreasString.IndexOf(areaComboBox.SelectedItem.ToString());
-                //busLineBO.Key = App.bl.AddBusLine(busLineBO);
-                //var x = firstStationComboBox.SelectedItem.ToString();
-                //int s1 = (firstStationComboBox.SelectedItem as Station).Key;
-                //App.bl.AddStationToLine(busLineBO.Key, s1);
-                //App.bl.AddStationToLine(busLineBO.Key, int.Parse(lastStationComboBox.SelectedItem.ToString()));
-                //busLineBO = App.bl.GetBusLine(busLineBO.Key);
-                ////BusLine busLinePO = PoBoAdapter.BusLinePoBoAdapter(busLine);
-                //MainWindow.busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(busLineBO));
-                //MessageBox.Show($"Bus added successfully!", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
                 busLineBO.Area = (BO.Areas)(Areas)AreasString.IndexOf(areaComboBox.SelectedItem.ToString());
                 busLineBO.Key = App.bl.AddBusLine(busLineBO);
                 App.bl.AddStationToLine(busLineBO.Key, (firstStationComboBox.SelectedItem as Station).Key);
@@ -64,10 +48,29 @@ namespace PL
                 MessageBox.Show($"Bus added successfully!", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show($"Can't add bus line. Invalid information", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
+        }
+
+        private void cancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void lineNumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string t = lineNumberTextBox.Text;
+            if (t != "" && int.Parse(t) > 0)
+                addButton.IsEnabled = true;
+            else
+                addButton.IsEnabled = false;
+        }
+
+        private void lineNumberTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            PL.PreviewKeyDown.GeneralPerviewKeyDown(sender, e);
         }
     }
 }

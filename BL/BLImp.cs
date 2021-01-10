@@ -12,7 +12,16 @@ namespace BL
 {
     class BLImp : IBL //internal
     {
+        //#region singelton
+        //static readonly BLImp instance = new BLImp();
+        //static BLImp() { }// static ctor to ensure instance init is done just before first usage
+        //BLImp() { } // default => private
+        //public static BLImp Instance { get => instance; }// The public Instance property to use
+        //#endregion
+
         IDL dl = DLFactory.GetDL();
+
+
         #region Bus
         public BO.Bus BusDoBoAdapter(DO.Bus BusDO)
         {
