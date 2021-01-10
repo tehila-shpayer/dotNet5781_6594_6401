@@ -15,7 +15,7 @@
             <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Width="230">
                 <TextBlock Text="{Binding LineNumber}" TextAlignment="Right" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI Black" />
                 <TextBlock Text="{Binding Key}" TextAlignment="Right"/>
-                <TextBlock Text="{Binding Area}" TextAlignment="Right" Foreground="#FF5A13CD" FontWeight="Bold" FontSize="15"/>
+                <TextBlock Text="{Binding Area}" TextAlignment="Right" Foreground="#FF477AA9" FontWeight="Bold" FontSize="15"/>
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="BusLineStationTemplate" DataType="local:BusLineStation">

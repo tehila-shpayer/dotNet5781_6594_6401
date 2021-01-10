@@ -289,7 +289,7 @@ namespace BL
             {
                 throw new BOInvalidInformationException($"Invalid longitude");
             }
-            if (station.Latitude < 29.3 || station.Latitude > 33.5 || station.Longitude > 33.7 || station.Longitude > 36.3)
+            if (station.Latitude < 29.3 || station.Latitude > 33.5 || station.Longitude < 33.7 || station.Longitude > 36.3)
                 throw new BOInvalidInformationException($"Location must be in Israel!");
         }
         public int AddStation(Station station)

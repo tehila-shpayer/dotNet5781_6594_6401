@@ -68,10 +68,29 @@ namespace PL
                 MessageBox.Show("Couldn't add bus!\n" + ex.ToString(), "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
-
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        //private void kMTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        //{
+        //    PL.PreviewKeyDown.GeneralPerviewKeyDown(sender, e);
+        //}
+
+        ////private void beforeTreatKMTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        //{
+        //    PL.PreviewKeyDown.GeneralPerviewKeyDown(sender, e);
+        //}
+
+        ////private void fuelTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        //{
+        //    PL.PreviewKeyDown.GeneralPerviewKeyDown(sender, e);
+        //}
+
+        private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            PL.PreviewKeyDown.GeneralPerviewKeyDown(sender, e);
         }
     }
 }

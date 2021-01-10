@@ -52,5 +52,15 @@ namespace PL
                 MessageBox.Show("Can't update the bus!\n" +$"{ex.Message}", "UPDATE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
+
+        private void cancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            PL.PreviewKeyDown.GeneralPerviewKeyDown(sender, e);
+        }
     }
 }
