@@ -175,18 +175,19 @@ namespace PL
                 //    }
                 //}
                 App.bl.DeleteStationFromLine(selectedStation.BusLineKey, selectedStation.StationKey);
-                //busLineBO = App.bl.GetBusLine(selectedStation.BusLineKey);
-                //busLinePO = PoBoAdapter.BusLinePoBoAdapter(busLineBO);
-                //MainWindow.busLinesCollection[index] = busLinePO;
                 MainWindow.InitializeBusLines();
                 lbBusLines.SelectedIndex = index;
                 MessageBox.Show($"Station {selectedStation.StationKey} was successfully\ndeleted from line {selectedStation.BusLineKey}", "ADD STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (BO.BOArgumentNotFoundException ex)
             {
-                MessageBox.Show($"{ex.Message}", "DELETE BUS LINE MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Cant delete station\n" + ex.ToString(), "DELETE BUS LINE MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
-            catch (Exception ex)
+            catch(BO.BOInvalidInformationException ex)
+            {
+                MessageBox.Show("Cant delete station\n" + ex.ToString(), "DELETE BUS LINE MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            catch (Exception)
             {
                 MessageBox.Show($"Please choose a bus line!", "DELETE BUS LINE MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.No);
             }

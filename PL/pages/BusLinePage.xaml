@@ -29,16 +29,16 @@
                     <TextBlock FontSize="15" Text=" מטר,  " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
                     <TextBlock FontSize="15" Text="{Binding TravelTimeFromLastStationMinutes}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
                     <TextBlock FontSize="15" Text=" דקות " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
-                    <Button x:Name="editButton" Margin="25,-12,5,0" Width="26" Padding="2" Height="26" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}" Click="editButton_Click">
-                        <materialDesign:PackIcon Kind="Edit" Height="18" Width="18"/>
+                    <Button Margin="5,-12,5,0" Width="26" Padding="2" Height="26" Foreground="#FF477AA9" Background="{x:Null}"  BorderBrush="{x:Null}">
+                        <materialDesign:PackIcon Kind="Edit" Height="20" Width="20"/>
                     </Button>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal">
                     <TextBlock Margin="10" Text="{Binding Position}" TextAlignment="Right" FontWeight="Bold" FontSize="14" FontFamily="Ariel"/>
                     <TextBlock Margin="6,10" Text="{Binding Name}" TextAlignment="Left" FontWeight="Bold" FontSize="14" FontFamily="Ariel"/>
                     <TextBlock Margin="10" Text="{Binding StationKey}" TextAlignment="Left" FontWeight="Bold" FontSize="14" FontFamily="Ariel"/>
-                    <Button Margin="0,5,10,10" Width="26" Padding="1" Height="26" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}" Click="deleteStationButton_Click" HorizontalAlignment="Right" HorizontalContentAlignment="Center">
-                    <materialDesign:PackIcon Kind="Delete" Height="19" Width="19"/>
+                    <Button Margin="0,5,10,10" Width="26" Padding="1" Height="26" Foreground="#FF477AA9" Background="{x:Null}" BorderBrush="{x:Null}" Click="deleteStationButton_Click" HorizontalAlignment="Right" HorizontalContentAlignment="Center">
+                    <materialDesign:PackIcon Kind="Delete" Height="22" Width="22"/>
                     </Button>
                 </StackPanel>
             </StackPanel>
@@ -108,7 +108,7 @@
                 </StackPanel>
                 <TextBlock Text="{Binding Key}" Margin="10" TextAlignment="Left" FontSize="16"/>
                 <TextBlock Text="תחנות:" Margin="15,5" TextAlignment="Left" FontSize="20" FontFamily="Segoe UI Semibold"/>
-                <ListBox x:Name="lbBusLineStations" Margin="15,10" Padding="0,-25,0,0" HorizontalContentAlignment="Left" HorizontalAlignment="Left" ItemsSource="{Binding BusLineStations}" ItemTemplate="{StaticResource BusLineStationTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="419" Height="305" SelectionChanged="lbBusLineStations_SelectionChanged">
+                <ListBox x:Name="lbBusLineStations" Margin="15,10" Padding="0,-25,0,0" ItemsSource="{Binding BusLineStations}" ItemTemplate="{StaticResource BusLineStationTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="419" Height="305">
                 </ListBox>
             </StackPanel>
         </Grid>
