@@ -207,5 +207,12 @@ namespace PL
         {
 
         }
+
+        private void editButton_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedStation = (sender as Button).DataContext as BusLineStation;
+            UpdateConsecutiveStations updateConsecutiveStations = new UpdateConsecutiveStations(selectedStation);
+            updateConsecutiveStations.Show();
+        }
     }
 }

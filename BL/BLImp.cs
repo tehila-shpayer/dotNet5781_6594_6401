@@ -521,6 +521,23 @@ namespace BL
                                         select BusLineStationDoBoAdapter(blsDO);
             return BusLineBO;
         }
+        public Station GetPreviouseStation(int lineStationKey, int position)
+        {
+            if(position == 1)
+                throw new BOArgumentNotFoundException($"Can't find previouse station of station in position 1");
+            BusLineStation bls = GetBusLineStation(lineStationKey, position);
+            BusLineStation prev = GetBusLineStation(bls.BusLineKey, bls.Position - 1);
+            if (prev == null)
+                throw new BOArgumentNotFoundException($"Can't find previouse station");
+            return GetStation(prev.StationKey);
+        }
+        public BusLineStation GetBusLineStation(int busKey, int Position)
+        {
+            foreach (BusLineStation bls in GetAllStationsOfLine(busKey))
+                if (bls.Position == Position)
+                    return bls;
+            return null;
+        }
         public BusLine GetBusLine(int busLineKey)
         {
             try
