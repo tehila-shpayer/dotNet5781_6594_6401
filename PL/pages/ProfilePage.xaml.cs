@@ -22,66 +22,15 @@ namespace PL
     {
         public string userName;
         public User user;
+        public BO.User userBO;
         public ProfilePage(User _user)
         {
             InitializeComponent();
             user = _user;
             ProfilGrid.DataContext = user;
-            
+            userBO = new BO.User();
+            user.Clone(userBO);
         }
-
-        //private void testb_Click(object sender, RoutedEventArgs e)
-        //{
-        //    oneblock.Visibility = Visibility.Hidden;
-        //    onebox.Visibility = Visibility.Visible;
-        //}
-
-        //private void oldPassword_GotFocus(object sender, RoutedEventArgs e)
-        //{
-        //    if (tbOldPassword.Text == " Old password")
-        //    {
-        //        tbOldPassword.Text = "";
-        //    }
-        //}
-
-        //private void oldPassword_LostFocus(object sender, RoutedEventArgs e)
-        //{
-        //    if (oldPassword.Password == "")
-        //    {
-        //        tbOldPassword.Text = " Old Password";
-        //    }
-        //}
-
-        //private void newPassword_GotFocus(object sender, RoutedEventArgs e)
-        //{
-        //    if (tbNewPassword.Text == " New password")
-        //    {
-        //        tbNewPassword.Text = "";
-        //    }
-        //}
-
-        //private void newPassword_LostFocus(object sender, RoutedEventArgs e)
-        //{
-        //    if (newPassword.Password == "")
-        //    {
-        //        tbNewPassword.Text = " New Password";
-        //    }
-        //}
-
-        //private void changePasswordButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if ((string)changePasswordButton.Content == "change password")
-        //    {
-        //        changePasswordStack.Visibility = Visibility.Visible;
-        //        changePasswordButton.Content = "save";
-        //    }
-        //    else
-        //    {
-        //        if(oldPassword.Password == password)
-        //            App.bl.UpdateUser(userName, u => u.Password = newPassword.Password);
-
-        //    }
-        //}
         private void ChangePasswordButton_Click(object sender, RoutedEventArgs e)
         {
             ChangePasswordButton.Visibility = Visibility.Collapsed;
@@ -89,7 +38,7 @@ namespace PL
             tbOldPassword.Visibility = Visibility.Visible;
             NewPassword.Visibility = Visibility.Visible;
             tbNewPassword.Visibility = Visibility.Visible;
-            saveUndoButtons.Visibility = Visibility.Visible;
+            saveUndoPasswordButtons.Visibility = Visibility.Visible;
         }
 
         #region focus
@@ -122,26 +71,43 @@ namespace PL
             }
         }
         #endregion
-
-
-        private void undoButton_Click(object sender, RoutedEventArgs e)
+        private void undoChangeButton_Click(object sender, RoutedEventArgs e)
         {
-            ChangePasswordButton.Visibility = Visibility;
-            OldPassword.Visibility = Visibility.Collapsed;
-            tbOldPassword.Visibility = Visibility.Collapsed;
-            NewPassword.Visibility = Visibility.Collapsed;
-            tbNewPassword.Visibility = Visibility.Collapsed;
-            saveUndoButtons.Visibility = Visibility.Collapsed;
+            user = PoBoAdapter.UserPoBoAdapter(userBO);
+            ProfilGrid.DataContext = user;
+            VisibilityTextBlock();
         }
 
-        private void saveButton_Click(object sender, RoutedEventArgs e)
+        private void saveChangeButton_Click(object sender, RoutedEventArgs e)
         {
-            ChangePasswordButton.Visibility = Visibility;
-            OldPassword.Visibility = Visibility.Collapsed;
-            tbOldPassword.Visibility = Visibility.Collapsed;
-            NewPassword.Visibility = Visibility.Collapsed;
-            tbNewPassword.Visibility = Visibility.Collapsed;
-            saveUndoButtons.Visibility = Visibility.Collapsed;
+            user.Clone(userBO);            
+            App.bl.UpdateUser(userBO);
+            VisibilityTextBlock();
+        }
+
+
+        private void undoPasswordButton_Click(object sender, RoutedEventArgs e)
+        {
+            VisibilityChangePasswordButton();
+        }
+
+        private void savePasswordButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (OldPassword.Password != user.Password)
+            {
+                MessageBox.Show("Incorect password!\nPlease try again", "UPDATE PASSWORD MESSAGE", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            userBO.Password = NewPassword.Password;
+            try
+            {
+                App.bl.UpdateUser(userBO);
+                VisibilityChangePasswordButton();
+            }
+            catch (BO.BOInvalidInformationException ex)
+            {
+                MessageBox.Show("Can't change password!\n"+ ex.Message + "\nPlease choose another password", "UPDATE PASSWORD MESSAGE", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void uploadImageButton_Click(object sender, RoutedEventArgs e)
@@ -151,7 +117,49 @@ namespace PL
 
         private void editButton_Click(object sender, RoutedEventArgs e)
         {
+            editButton.Visibility = Visibility.Collapsed;
+            saveUndoChangeButtons.Visibility = Visibility.Visible;
+            VisibilityTextBox();
+        }
+        private void VisibilityTextBox()
+        {
+            firstNameTextBlock.Visibility = Visibility.Collapsed;
+            lastNameTextBlock.Visibility = Visibility.Collapsed;
+            emailTextBlock.Visibility = Visibility.Collapsed;
+            phoneNumberTextBlock.Visibility = Visibility.Collapsed;
+            addressTextBlock.Visibility = Visibility.Collapsed;
 
+            firstNameTextBox.Visibility = Visibility.Visible;
+            lastNameTextBox.Visibility = Visibility.Visible;
+            emailTextBox.Visibility = Visibility.Visible;
+            phoneNumberTextBox.Visibility = Visibility.Visible;
+            addressTextBox.Visibility = Visibility.Visible;
+        }
+        private void VisibilityTextBlock()
+        {
+            editButton.Visibility = Visibility;
+            saveUndoChangeButtons.Visibility = Visibility.Collapsed;
+
+            firstNameTextBlock.Visibility = Visibility.Visible;
+            lastNameTextBlock.Visibility = Visibility.Visible;
+            emailTextBlock.Visibility = Visibility.Visible;
+            phoneNumberTextBlock.Visibility = Visibility.Visible;
+            addressTextBlock.Visibility = Visibility.Visible;
+
+            firstNameTextBox.Visibility = Visibility.Collapsed;
+            lastNameTextBox.Visibility = Visibility.Collapsed;
+            emailTextBox.Visibility = Visibility.Collapsed;
+            phoneNumberTextBox.Visibility = Visibility.Collapsed;
+            addressTextBox.Visibility = Visibility.Collapsed;
+        }
+        private void VisibilityChangePasswordButton()
+        {
+            ChangePasswordButton.Visibility = Visibility;
+            OldPassword.Visibility = Visibility.Collapsed;
+            tbOldPassword.Visibility = Visibility.Collapsed;
+            NewPassword.Visibility = Visibility.Collapsed;
+            tbNewPassword.Visibility = Visibility.Collapsed;
+            saveUndoPasswordButtons.Visibility = Visibility.Collapsed;
         }
     }
 }

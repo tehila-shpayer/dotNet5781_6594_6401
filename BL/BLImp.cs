@@ -185,16 +185,16 @@ namespace BL
             string name = user.UserName;
             string password = user.Password;
             if (name.Length < 4)
-                throw new BOInvalidInformationException("User name is short.");
+                throw new BOInvalidInformationException("User name is too short, it mustbe at least 4 characters long.");
             if (name.Length > 16)
-                throw new BOInvalidInformationException("User name is long.");
+                throw new BOInvalidInformationException("User name is too long. it must be at most 16 characters long.");
             foreach (char key in name)
                 if (!char.IsLetterOrDigit(key))
                     throw new BOInvalidInformationException("User name contains invalid keybords.");
             if (password.Length < 4)
-                throw new BOInvalidInformationException("Password is short.");
+                throw new BOInvalidInformationException("Password is too short, it mustbe at least 4 characters long.");
             if (password.Length > 16)
-                throw new BOInvalidInformationException("Password is long.");
+                throw new BOInvalidInformationException("Password is too long, it must be at most 16 characters long.");
             foreach (char key in password)
                 if (!char.IsLetterOrDigit(key))
                     throw new BOInvalidInformationException("Password contains invalid keybords.");
