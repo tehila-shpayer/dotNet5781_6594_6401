@@ -11,13 +11,23 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Indigo.xaml" />
+                <ResourceDictionary Source="/res/languages/AppString_EN.xaml"/>
+                <ResourceDictionary Source="/res/languages/AppString_HE.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
             <!--<Style x:Key="ButtonStyle" TargetType="Button">
                 <Setter Property="Width" Value="145"/>
                 <Setter Property="Background" Value="#FF477AA9"/>
                 <Setter Property="Margin" Value="5,10"/>
             </Style>-->
         </ResourceDictionary>
+        
+        <!--<ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/res/languages/AppString_English.xaml"/>
+                <ResourceDictionary Source="/res/languages/AppString_Hebrew.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>-->
 
     </Application.Resources>
 </Application>
