@@ -8,37 +8,35 @@
       xmlns:local="clr-namespace:PL"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-     Title="BusLinePage" Background="White">
+     Title="BusLinePage" Background="White" FlowDirection="RightToLeft">
     <Page.Resources>
         <local:BoolToVisibilityConverter x:Key="aConverter"/>
         <DataTemplate x:Key="BusLineTemplate" DataType="local:Bus">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Width="230">
-                <TextBlock Text="{Binding LineNumber}" TextAlignment="Right" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI Black" />
-                <TextBlock Text="{Binding Key}" TextAlignment="Right"/>
-                <TextBlock Text="{Binding Area}" TextAlignment="Right" Foreground="#FF477AA9" FontWeight="Bold" FontSize="15"/>
+                <TextBlock Text="{Binding LineNumber}" TextAlignment="Left" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI Black" />
+                <TextBlock Text="{Binding Key}" TextAlignment="Left"/>
+                <TextBlock Text="{Binding Area}" TextAlignment="Right" Foreground="#FF477AA9" FontWeight="Bold" FontSize="15" FlowDirection="LeftToRight"/>
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="BusLineStationTemplate" DataType="local:BusLineStation">
             <StackPanel Margin="0,30,0,0">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,-35,0,0" Visibility="{Binding IsFirstStation,Converter={StaticResource aConverter}}">
-                    <TextBlock FontSize="15" Text="דקות " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
-                    <TextBlock FontSize="17" Text="{Binding TravelTimeFromLastStationMinutes}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
-                    <TextBlock FontSize="15" Text=" ,מטר " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
-                    <TextBlock FontSize="15" Text="{Binding DistanceFromLastStationMeters}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
-                    <materialDesign:PackIcon Kind="ArrowBottom" Width="20" Height="20" Margin="12,2" Foreground="#FF0BD380"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,-35,0,0" Visibility="{Binding IsFirstStation,Converter={StaticResource aConverter}}">
                     <Button Margin="25,-12,5,0" Width="26" Padding="2" Height="26" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}" Click="addStationButton_Click">
                         <materialDesign:PackIcon Kind="AddThick" Height="18" Width="18"/>
-                        
                     </Button>
+                    <materialDesign:PackIcon Kind="ArrowBottom" Width="20" Height="20" Margin="12,2" Foreground="#FF0BD380"/>
+                    <TextBlock FontSize="15" Text="{Binding DistanceFromLastStationMeters}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
+                    <TextBlock FontSize="15" Text=" מטר,  " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
+                    <TextBlock FontSize="17" Text="{Binding TravelTimeFromLastStationMinutes}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
+                    <TextBlock FontSize="15" Text=" דקות " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Margin="0,5,10,10" Width="26" Padding="1" Height="26" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}" Click="deleteStationButton_Click">
-                        <materialDesign:PackIcon Kind="Delete" Height="19" Width="19"/>
-                    </Button>
-                    <TextBlock Margin="10" Text="{Binding StationKey}" TextAlignment="Right" FontWeight="Bold" FontSize="14" FontFamily="Ariel"/>
-                    <TextBlock Margin="6,10" Text="{Binding Name}" TextAlignment="Right" FontWeight="Bold" FontSize="14" FontFamily="Ariel"/>
                     <TextBlock Margin="10" Text="{Binding Position}" TextAlignment="Right" FontWeight="Bold" FontSize="14" FontFamily="Ariel"/>
-
+                    <TextBlock Margin="6,10" Text="{Binding Name}" TextAlignment="Left" FontWeight="Bold" FontSize="14" FontFamily="Ariel"/>
+                    <TextBlock Margin="10" Text="{Binding StationKey}" TextAlignment="Left" FontWeight="Bold" FontSize="14" FontFamily="Ariel"/>
+                    <Button Margin="0,5,10,10" Width="26" Padding="1" Height="26" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}" Click="deleteStationButton_Click" HorizontalAlignment="Right" HorizontalContentAlignment="Center">
+                    <materialDesign:PackIcon Kind="Delete" Height="19" Width="19"/>
+                    </Button>
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
@@ -46,8 +44,8 @@
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -58,8 +56,8 @@
                 <GradientStop Color="LightGray" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Label Content="Buse Lines:" Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontSize="30"/>
-        <StackPanel Grid.Row="1" Grid.Column="1" x:Name="spStations">
+        <Label Content="קוי אוטובוס:" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontSize="30"/>
+        <StackPanel Grid.Row="1" Grid.Column="0" x:Name="spStations">
             <StackPanel.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="LightGray" Offset="1"/>
@@ -71,10 +69,10 @@
                 </LinearGradientBrush>
             </StackPanel.Background>
             <StackPanel Orientation="Vertical" Margin="30,2">
-                <Label Content="Show By specific area:" Foreground="#FF476972" FontWeight="Bold" FontSize="14"/>
-                <ComboBox x:Name="areas"  ItemsSource="{Binding}" Background="White" Margin="10,0" AllowDrop="True" SelectionChanged="areas_SelectionChanged"/>
+                <Label Content="הראה על פי איזור:" Foreground="#FF476972" FontWeight="Bold" FontSize="14"/>
+                <ComboBox x:Name="areas"  ItemsSource="{Binding}" Background="White" Margin="10,0" AllowDrop="True" SelectionChanged="areas_SelectionChanged" HorizontalContentAlignment="Right"/>
             </StackPanel>
-            <ComboBox x:Name="cbBusLines" ItemsSource="{Binding}" Height="40" Background="#FFBBD0D6" SelectionChanged="cbBusLines_SelectionChanged">
+            <ComboBox x:Name="cbBusLines" ItemsSource="{Binding}" Height="40" Background="#FFBBD0D6" SelectionChanged="cbBusLines_SelectionChanged" HorizontalContentAlignment="Right">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
@@ -91,26 +89,24 @@
             <ListBox x:Name="lbBusLines" Height="360" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusLineTemplate}" BorderBrush="#FF222222" SelectionChanged="lbBusLines_SelectionChanged" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="updateButton" Width="145" Margin="5,10" Content="UPDATE BUS LINE" Background="#FF477AA9" Click="updateButton_Click" BorderBrush="{x:Null}"/>
-            <Button x:Name="deleteButton" Width="145" Margin="5,10" Content="DELETE BUS LINE" Background="#FF477AA9" Click="deleteButton_Click" BorderBrush="{x:Null}"/>
-            <Button x:Name="addButton" Width="145" Margin="5,10" Content="ADD BUS LINE" Background="#FF477AA9" Click="addButton_Click" BorderBrush="{x:Null}"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1">
+            <Button x:Name="updateButton" Width="145" Margin="5,10" Content="עדכן קו" Background="#FF477AA9" Click="updateButton_Click" BorderBrush="{x:Null}"/>
+            <Button x:Name="deleteButton" Width="145" Margin="5,10" Content="מחק קו" Background="#FF477AA9" Click="deleteButton_Click" BorderBrush="{x:Null}"/>
+            <Button x:Name="addButton" Width="145" Margin="5,10" Content="הוסף קו" Background="#FF477AA9" Click="addButton_Click" BorderBrush="{x:Null}"/>
         </StackPanel>
 
-        <Rectangle Grid.Column="0" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
+        <Rectangle Grid.Column="1" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
         </Rectangle>
-        <Grid x:Name="BusLineInfoGrid" Grid.Column="0" Grid.Row="1" Margin="60,55,60,45" DataContext="{Binding}">
+        <Grid x:Name="BusLineInfoGrid" Grid.Column="1" Grid.Row="1" Margin="60,55,60,45" DataContext="{Binding}">
             <StackPanel Grid.Column="0">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <TextBlock Text="{Binding Area}" Margin="10,0" TextAlignment="Right" FontSize="22" FontFamily="Segoe UI Black"/>
-                    <TextBlock Text="{Binding LineNumber}" Margin="10,0" TextAlignment="Right" FontWeight="Bold" FontSize="22" FontFamily="Segoe UI Black"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <TextBlock Text="{Binding LineNumber}" Margin="10,0" TextAlignment="Left" FontWeight="Bold" FontSize="22" FontFamily="Segoe UI Black"/>
+                    <TextBlock Text="{Binding Area}" Margin="10,0" TextAlignment="Left" FontSize="22" FontFamily="Segoe UI Black"/>
                 </StackPanel>
-                <TextBlock Text="{Binding Key}" Margin="10" TextAlignment="Right" FontSize="16"/>
-                <TextBlock Text=":תחנות" Margin="15,5" TextAlignment="Right" FontSize="20" FontFamily="Segoe UI Semibold"/>
-                <ListBox x:Name="lbBusLineStations" Margin="15,10" Padding="0,-25,0,0" HorizontalContentAlignment="Right" HorizontalAlignment="Right" ItemsSource="{Binding BusLineStations}" ItemTemplate="{StaticResource BusLineStationTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="419" Height="305">
-
+                <TextBlock Text="{Binding Key}" Margin="10" TextAlignment="Left" FontSize="16"/>
+                <TextBlock Text="תחנות:" Margin="15,5" TextAlignment="Left" FontSize="20" FontFamily="Segoe UI Semibold"/>
+                <ListBox x:Name="lbBusLineStations" Margin="15,10" Padding="0,-25,0,0" HorizontalContentAlignment="Left" HorizontalAlignment="Left" ItemsSource="{Binding BusLineStations}" ItemTemplate="{StaticResource BusLineStationTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="419" Height="305">
                 </ListBox>
-
             </StackPanel>
         </Grid>
     </Grid>
