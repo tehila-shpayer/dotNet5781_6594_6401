@@ -137,7 +137,8 @@ namespace PL
             //    ProblemMessage.Text = "User name or password are incorrect.\n try again";
             //    spProblem.Visibility = Visibility.Visible;
             //}
-            NavigationService.Navigate(new ManagerPage(userName.Text, Password.Password));
+            BO.User user = App.bl.GetUser(userName.Text, Password.Password);
+            NavigationService.Navigate(new ManagerPage(PoBoAdapter.UserPoBoAdapter(user)));
         }
 
         private void NewAccountButton_Click(object sender, RoutedEventArgs e)

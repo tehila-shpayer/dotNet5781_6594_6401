@@ -8,11 +8,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Profile" Background="White">
-    <Page.Resources>
-        <CollectionViewSource x:Key="userViewSource" d:DesignSource="{d:DesignInstance {x:Type local:User}, CreateList=True}"/>
-    </Page.Resources>
 
-    <Grid>
+    <Grid FlowDirection="RightToLeft">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                 <GradientStop Color="LightGray" Offset="1"/>
@@ -34,20 +31,20 @@
 
         <Grid x:Name="ProfilGrid" Margin="50" DataContext="{Binding}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="1.6*"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
+            <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0">
-                    <Image Height="130"/>
+                    <Image Height="170"/>
                     <Button x:Name="uploadImageButton" Content="בחר תמונה" BorderBrush="{x:Null}" Background="{x:Null}" FontSize="16" Foreground="Blue" Click="uploadImageButton_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Row="1">
-                    <Button x:Name="ChangePasswordButton" Content="שנה סיסמה" Click="ChangePasswordButton_Click" Background="#FF477AA9" Width="140" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                    <Button x:Name="ChangePasswordButton" Content="שנה סיסמה" Click="ChangePasswordButton_Click" Margin="40" Background="#FF477AA9" Width="140" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
                     <TextBlock x:Name="tbOldPassword" Text=" Old Password" FontSize="22" Margin="40,15,40,-42" Foreground="Gray" Visibility="Collapsed"/>
                     <PasswordBox x:Name="OldPassword" Height="50" Margin="40,0" FontSize="22" Foreground="black" Visibility="Collapsed" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" GotFocus="OldPassword_GotFocus" LostFocus="OldPassword_LostFocus"/>
                     <TextBlock x:Name="tbNewPassword" Text=" New Password" FontSize="22" Margin="40,15,40,-42" Foreground="Gray" Visibility="Collapsed"/>
@@ -69,7 +66,7 @@
                 </StackPanel>
             </Grid>
 
-            <Grid Grid.Column="1">
+            <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="3.2*"/>
@@ -83,7 +80,7 @@
                     </Button>
                     <TextBlock Text="הפרופיל שלי" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </StackPanel>
-                <Grid x:Name="grid1" DataContext="{StaticResource userViewSource}" HorizontalAlignment="Left" Margin="81,29.8,0,0" Grid.Row="1" VerticalAlignment="Top">
+                <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="81,29.8,0,0" Grid.Row="1" VerticalAlignment="Top">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
@@ -113,11 +110,7 @@
                     <TextBlock x:Name="userNameTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="6" Text="{Binding UserName}" VerticalAlignment="Center"/>
                 </Grid>
             </Grid>
-            <StackPanel Grid.Column="0">
-                <TextBlock Text="{Binding LicenseNumberFormat}" Margin="10,0" TextAlignment="Right" FontWeight="Bold" FontSize="25" FontFamily="Segoe UI Black"/>
-                <TextBlock Text="{Binding Status}" Margin="15,10,15,20" TextAlignment="Right" FontSize="24"/>
-
-
+            
                 <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,6,20,6">
                     <TextBlock FontSize="20" TextAlignment="Right" FontFamily="Segoe UI Emoji">
                     <Run Text="{Binding Fuel}"/>
@@ -132,8 +125,6 @@
                             <TextBlock Text="נסיעה" VerticalAlignment="Center" Margin="5,0,0,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
                         </StackPanel>
                 </StackPanel>-->
-
-            </StackPanel>
         </Grid>
     </Grid>
 </Page>

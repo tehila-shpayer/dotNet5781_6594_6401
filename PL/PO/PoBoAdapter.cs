@@ -63,5 +63,11 @@ namespace PL
                                  select PoBoAdapter.PresentBusLineForStationPoBoAdapter(App.bl.GetBusLine(line));
             return StationPO;
         }
+        static public PL.User UserPoBoAdapter(BO.User UserBO)
+        {
+            PL.User UserPO = new PL.User();
+            UserBO.Clone(UserPO);
+            return UserPO;
+        }
     }
 }

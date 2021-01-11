@@ -21,15 +21,14 @@ namespace PL
     public partial class ManagerPage : Page
     {
         public string userName;
-        public string password;
+        public User user;
         public Button currentButton;
         Brush mainBlueColor;
-        public ManagerPage(string un, string pw)
+        public ManagerPage(User _user)
         {
             InitializeComponent();
-            userName = un;
-            password = pw;
             mainBlueColor = profileButton.Background;
+            user = _user;
         }
         void changeColors( Button b)
         {
@@ -44,7 +43,7 @@ namespace PL
         }
         private void profileButton_Click(object sender, RoutedEventArgs e)
         {
-            currentPage.Content = new ProfilePage(userName, password);
+            currentPage.Content = new ProfilePage(user);
             changeColors(profileButton);
         }
 
