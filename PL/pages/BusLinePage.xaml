@@ -42,7 +42,7 @@
         </DataTemplate>
         <CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Bus}, CreateList=True}"/>
     </Page.Resources>
-    <Grid>
+    <Grid FlowDirection="RightToLeft">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2*"/>
