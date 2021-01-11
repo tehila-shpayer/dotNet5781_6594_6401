@@ -21,12 +21,12 @@ namespace PL
     public partial class ProfilePage : Page
     {
         public string userName;
-        public string password;
-        public ProfilePage(string un, string pw)
+        public User user;
+        public ProfilePage(User _user)
         {
             InitializeComponent();
-            userName = un;
-            password = pw;
+            user = _user;
+            ProfilGrid.DataContext = user;
             
         }
 
