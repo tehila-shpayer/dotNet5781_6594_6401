@@ -24,16 +24,6 @@ namespace PL
         {
             InitializeComponent();
         }
-
-        private void forgotPassword_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void forgotPassword_MouseEnter(object sender, MouseEventArgs e)
-        {
-        }
-
         #region focus
         private void UserName_GotFocus(object sender, RoutedEventArgs e)
         {
