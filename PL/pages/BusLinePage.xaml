@@ -29,6 +29,9 @@
                     <TextBlock FontSize="15" Text=" מטר,  " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
                     <TextBlock FontSize="15" Text="{Binding TravelTimeFromLastStationMinutes}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
                     <TextBlock FontSize="15" Text=" דקות " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
+                    <Button Margin="25,-12,5,0" Width="26" Padding="2" Height="26" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
+                        <materialDesign:PackIcon Kind="Edit" Height="18" Width="18"/>
+                    </Button>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Margin="10" Text="{Binding Position}" TextAlignment="Right" FontWeight="Bold" FontSize="14" FontFamily="Ariel"/>

@@ -1,0 +1,68 @@
+﻿<Window x:Class="PL.UpdateConsecutiveStations"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="UpdateConsecutiveStations" Height="500" Width="500">
+    <Grid FlowDirection="RightToLeft">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="LightGray" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Rectangle Grid.Column="0" Grid.Row="0" Fill="White" Margin="20,15" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
+        </Rectangle>
+        <Rectangle Grid.Column="0" Grid.Row="1" Fill="White" Margin="20,15" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
+        </Rectangle>
+        <Rectangle Grid.Column="0" Grid.Row="2" Fill="White" Margin="20,15" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
+        </Rectangle>
+        <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0">
+            <materialDesign:PackIcon Kind="ArrowBottom" Width="20" Height="20" Margin="0" Foreground="#FF0BD380"/>
+            <TextBlock FontSize="15" Text="{Binding DistanceFromLastStationMeters}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
+            <TextBlock FontSize="15" Text=" מטר,  " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
+            <TextBlock FontSize="15" Text="{Binding TravelTimeFromLastStationMinutes}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
+            <TextBlock FontSize="15" Text=" דקות " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
+            <Button Margin="25,-12,5,0" Width="26" Padding="2" Height="26" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
+                <materialDesign:PackIcon Kind="Edit" Height="18" Width="18"/>
+            </Button>
+        </StackPanel>-->
+        <TextBlock Margin="0" Text="{Binding Position}" TextAlignment="Left" FontWeight="Bold" FontSize="14" FontFamily="Ariel"/>
+        <StackPanel Margin="30,25" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="שם תחנה:    " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="20" FontFamily="Ariel"/>
+                <TextBlock Margin="0" Text="{Binding Name}" TextAlignment="Left" FontWeight="Black" FontSize="14" FontFamily="Ariel" Width="180"/>
+                <Label Content="מפתח:   " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="20" FontFamily="Ariel"/>
+                <TextBlock Margin="0" Text="{Binding Key}" TextAlignment="Left" FontWeight="Black"  FontSize="14" FontFamily="Ariel"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10">
+                <Label Content="מיקום:   " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="20" FontFamily="Ariel"/>
+                <TextBlock Margin="0" Text="{Binding Latitude}" TextAlignment="Left" FontWeight="Bold" FontSize="14" FontFamily="Ariel"/>
+            </StackPanel>
+        </StackPanel>
+        <TextBlock Margin="0" Text="{Binding Position}" TextAlignment="Left" FontWeight="Bold" FontSize="14" FontFamily="Ariel" Grid.Row="2"/>
+        <StackPanel Margin="30,25" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="שם תחנה:    " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="20" FontFamily="Ariel"/>
+                <TextBlock Margin="0" Text="{Binding Name}" TextAlignment="Left" FontWeight="Black" FontSize="14" FontFamily="Ariel" Width="180"/>
+                <Label Content="מפתח:   " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="20" FontFamily="Ariel"/>
+                <TextBlock Margin="0" Text="{Binding Key}" TextAlignment="Left" FontWeight="Black"  FontSize="14" FontFamily="Ariel"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10">
+                <Label Content="מיקום:   " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="20" FontFamily="Ariel"/>
+                <TextBlock Margin="0" Text="{Binding Latitude}" TextAlignment="Left" FontWeight="Bold" FontSize="14" FontFamily="Ariel"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

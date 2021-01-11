@@ -36,6 +36,7 @@ namespace BLAPI
         IEnumerable<BusLine> GetAllBusLines();
         IEnumerable<BusLine> GetAllBusLinesOrderedBy(string orderBy);
         int AddBusLine(BusLine busline);
+        int AddBusLine(BusLine bus, int stationKey1, int stationKey2);
         void AddStationToLine(int busLineKey, int stationKey, int position = 0);
         void DeleteBusLine(int busLineKey);
         void DeleteStationFromLine(int busKey, int stationKey);

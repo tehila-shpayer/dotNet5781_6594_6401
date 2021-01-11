@@ -45,13 +45,14 @@ namespace PL
                 int lastKey = (lastStationComboBox.SelectedItem as Station).Key;
                 if (firstKey == lastKey)
                     throw new InvalidOperationException("ERROR: Invalid Information\nFirst station and last station must be different!");
-
                 busLineBO.Area = (BO.Areas)(Areas)AreasString.IndexOf(areaComboBox.SelectedItem.ToString());
-                busLineBO.Key = App.bl.AddBusLine(busLineBO);
-                App.bl.AddStationToLine(busLineBO.Key, firstKey);
-                App.bl.AddStationToLine(busLineBO.Key, lastKey);
-                busLineBO = App.bl.GetBusLine(busLineBO.Key);
-                MainWindow.busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(busLineBO));
+                busLineBO.Key = App.bl.AddBusLine(busLineBO, firstKey, lastKey);
+                //App.bl.AddStationToLine(busLineBO.Key, firstKey);
+                //App.bl.AddStationToLine(busLineBO.Key, lastKey);
+                //busLineBO = App.bl.GetBusLine(busLineBO.Key);
+                //MainWindow.busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(busLineBO));
+                MainWindow.InitializeBusLines();
+                MainWindow.InitializeStations();
                 MessageBox.Show($"Bus added successfully!", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
                 

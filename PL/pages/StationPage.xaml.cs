@@ -66,9 +66,11 @@ namespace PL
         {
             try
             {
+                int index = lbStations.SelectedIndex;
                 UpdateStationWindow updateStationWindow = new UpdateStationWindow(MainWindow.stationsCollection[lbStations.SelectedIndex]);
                 updateStationWindow.ShowDialog();
-                Sort();
+                lbStations.SelectedIndex = index;
+                Sort();                
             }
             catch (Exception ex)
             {
@@ -106,8 +108,10 @@ namespace PL
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
+            int index = lbStations.Items.Count;
             AddStationWindow addStationWindow = new AddStationWindow();
             addStationWindow.ShowDialog();
+            lbStations.SelectedIndex = index;
             Sort();
         }
 
