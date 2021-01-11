@@ -50,7 +50,7 @@
                 <GradientStop Color="#FFC7D0D2" Offset="0.46"/>-->
             </LinearGradientBrush>
         </Grid.Background>
-        <Label Content="תחנות:" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontSize="30"/>
+        <Label Content="{DynamicResource stationPageTitleString}" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontSize="30"/>
         <StackPanel Grid.Row="1" Grid.Column="0" x:Name="spStations">
             <StackPanel.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">

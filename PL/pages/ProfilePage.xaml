@@ -29,7 +29,7 @@
                 </LinearGradientBrush>
             </StackPanel.Background>-->
 
-        <Grid x:Name="ProfilGrid" Margin="50" DataContext="{Binding}">
+        <Grid x:Name="ProfilGrid" Margin="60,45" DataContext="{Binding}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.6*"/>
                 <ColumnDefinition Width="1*"/>
@@ -66,23 +66,24 @@
                 </StackPanel>
             </Grid>
 
-            <Grid Grid.Column="0">
+            <Grid Grid.Column="0" Margin="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="3.2*"/>
                 </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button x:Name="editButton" Margin="20,5" Width="120" Height="50" Padding="0" Click="editButton_Click"  Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
+                <StackPanel Orientation="Horizontal" Margin="30,0">
+                    <TextBlock Text="הפרופיל שלי" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Button x:Name="editButton" Margin="30,5" Width="120" Height="50"  Click="editButton_Click"  Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Margin="0" Kind="Edit" Height="30" Width="30"/>
                             <TextBlock Text="ערוך" VerticalAlignment="Center" Margin="5,0" FontFamily="Champagne &amp; Limousines" FontSize="22"/>
                         </StackPanel>
                     </Button>
-                    <TextBlock Text="הפרופיל שלי" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </StackPanel>
-                <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="81,29.8,0,0" Grid.Row="1" VerticalAlignment="Top">
+                <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="24,82,0,0" VerticalAlignment="Top" Height="272" Width="354" Grid.RowSpan="2">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="0.967"/>
+                        <ColumnDefinition Width="115.033"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -94,31 +95,31 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Label Content="Address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-                    <TextBox x:Name="addressTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-                    <Label Content="Authorization Management:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-                    <TextBlock x:Name="authorizationManagementTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="1" Text="{Binding AuthorizationManagement}" VerticalAlignment="Center"/>
-                    <Label Content="Email:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-                    <TextBox x:Name="emailTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-                    <Label Content="First Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-                    <TextBox x:Name="firstNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding FirstName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-                    <Label Content="Last Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-                    <TextBox x:Name="lastNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding LastName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-                    <Label Content="Phone Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
-                    <TextBox x:Name="phoneNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding PhoneNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-                    <Label Content="User Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
-                    <TextBlock x:Name="userNameTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="6" Text="{Binding UserName}" VerticalAlignment="Center"/>
+                    <Label Content="שם משתמש:" FontSize="18" Grid.Column="1" HorizontalAlignment="Left" Margin="2.033,3,0,3.4" Grid.Row="0" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="userNameTextBlock" FontSize="18" Grid.Column="2" HorizontalAlignment="Left" Margin="3,7,0,7.4" Grid.Row="0" Text="{Binding UserName}" VerticalAlignment="Center"/>
+                    <Label Content="הרשאה:" FontSize="18" Grid.Column="1" HorizontalAlignment="Left" Margin="2.033,3.6,0,2.8" Grid.Row="1" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="authorizationManagementTextBlock" FontSize="18" Grid.Column="2" HorizontalAlignment="Left" Margin="3,7.6,0,6.8" Grid.Row="1" Text="{Binding AuthorizationManagement}" VerticalAlignment="Center"/>
+                    <Label Content="שם פרטי" FontSize="18" Grid.Column="1" HorizontalAlignment="Left" Margin="2.033,3.2,0,3.2" Grid.Row="2" VerticalAlignment="Center"/>
+                    <TextBox x:Name="firstNameTextBox" FontSize="18" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="3,7.2,0,7.2" Grid.Row="2" Text="{Binding FirstName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                    <Label Content="שם משפחה" FontSize="18" Grid.Column="1" HorizontalAlignment="Left" Margin="2.033,2.8,0,3.6" Grid.Row="3" VerticalAlignment="Center"/>
+                    <TextBox x:Name="lastNameTextBox" FontSize="18" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="3,7.8,0,7.6" Grid.Row="3" Text="{Binding LastName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                    <Label Content="אימייל:" FontSize="18" Grid.Column="1" HorizontalAlignment="Left" Margin="2.033,3.4,0,3" Grid.Row="4" VerticalAlignment="Center"/>
+                    <TextBox x:Name="emailTextBox" FontSize="18" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="3,7.4,0,8" Grid.Row="4" Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" MinWidth="120"/>
+                    <Label Content="מספר טלפון:" FontSize="18" Grid.Column="1" HorizontalAlignment="Left" Margin="2.033,3,0,3.4" Grid.Row="5" VerticalAlignment="Center"/>
+                    <TextBox x:Name="phoneNumberTextBox" FontSize="18" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="3,8,0,7.4" Grid.Row="5" Text="{Binding PhoneNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                    <Label Content="כתובת:" FontSize="18" Grid.Column="1" HorizontalAlignment="Left" Margin="2.033,3.6,0,2.8" Grid.Row="6" VerticalAlignment="Center"/>
+                    <TextBox x:Name="addressTextBox" FontSize="18" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="3,7.6,0,7.8" Grid.Row="6" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" MinWidth="120"/>
                 </Grid>
             </Grid>
-            
-                <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,6,20,6">
+
+            <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,6,20,6">
                     <TextBlock FontSize="20" TextAlignment="Right" FontFamily="Segoe UI Emoji">
                     <Run Text="{Binding Fuel}"/>
                     <Run Text=" :דלק "/>
                     </TextBlock>
                     <materialDesign:PackIcon Kind="Fuel" Foreground="#FF477AA9" Width="30" Height="30"/>
                 </StackPanel>-->
-                <!--<StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" Margin="0,10" HorizontalAlignment="Center">
+            <!--<StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" Margin="0,10" HorizontalAlignment="Center">
                     <Button Margin="10,5" Width="120" Height="45" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Margin="0,0,5,0" Kind="Travel" Height="30" Width="30"/>
