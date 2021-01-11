@@ -38,24 +38,35 @@ namespace PL
         }
         static public void InitializeCollections()
         {
-            //busLinesCollection.Clear();
-            //busesCollection.Clear();
-            //stationsCollection.Clear();
+            InitializeBusLines();
+            InitializeBuses();
+            InitializeStations();
+        }
+        static public void InitializeBusLines()
+        {
+            busLinesCollection.Clear();
             foreach (BO.BusLine bl in App.bl.GetAllBusLines())
             {
                 busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(bl));
             }
-
-            foreach (BO.Station s in App.bl.GetAllStations())
-            {
-                stationsCollection.Add(PoBoAdapter.StationPoBoAdapter(s));
-            }
+        }
+        static public void InitializeBuses()
+        {
+            busesCollection.Clear();
             foreach (BO.Bus b in App.bl.GetAllBuses())
             {
                 busesCollection.Add(PoBoAdapter.BusPoBoAdapter(b));
             }
         }
-        private void powerButton_Click(object sender, RoutedEventArgs e)
+        static public void InitializeStations()
+        {
+            stationsCollection.Clear();
+            foreach (BO.Station s in App.bl.GetAllStations())
+            {
+                stationsCollection.Add(PoBoAdapter.StationPoBoAdapter(s));
+            }
+        }
+    private void powerButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }

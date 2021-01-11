@@ -12,15 +12,33 @@ namespace BL
 {
     class BLImp : IBL //internal
     {
-        //#region singelton
-        //static readonly BLImp instance = new BLImp();
-        //static BLImp() { }// static ctor to ensure instance init is done just before first usage
-        //BLImp() { } // default => private
-        //public static BLImp Instance { get => instance; }// The public Instance property to use
-        //#endregion
+        #region singelton
+        static readonly BLImp instance = new BLImp();
+        static BLImp() { }// static ctor to ensure instance init is done just before first usage
+        BLImp() { } // default => private
+        public static BLImp Instance { get => instance; }// The public Instance property to use
+        #endregion
 
         IDL dl = DLFactory.GetDL();
-
+        int GetDistance(int stationKey1, int stationKey2)
+        {
+            Station station1 = GetStation(stationKey1);
+            Station station2 = GetStation(stationKey2);
+            GeoCoordinate s1 = new GeoCoordinate(station1.Latitude, station1.Longitude);//מיקום תחנה 1
+            GeoCoordinate s2 = new GeoCoordinate(station2.Latitude, station2.Longitude);//מיקום תחנה 2
+            return Convert.ToInt32(s1.GetDistanceTo(s2) * 1.3 + 1);//חישוב מרחק
+        }
+        int GetTime(double distance)
+        {
+            Random rand = new Random();
+            int speed = rand.Next(30, 60);
+            int time = Convert.ToInt32(distance / (speed * 1000 / 60));//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש
+            return time;
+        }
+        int GetTime(int stationKey1, int stationKey2)
+        {
+            return GetTime(GetDistance(stationKey1, stationKey2));
+        }
 
         #region Bus
         public BO.Bus BusDoBoAdapter(DO.Bus BusDO)
@@ -313,6 +331,32 @@ namespace BL
             try
             {
                 DO.Station StationDO = new DO.Station();
+                if (station.Latitude != StationDO.Latitude || station.Longitude != StationDO.Longitude)
+                {
+                    foreach (DO.BusLineStation bls in dl.GetAllBusLineStationsBy(ls => ls.StationKey == station.Key))
+                    {
+                        DO.ConsecutiveStations cs = new DO.ConsecutiveStations();
+                        DO.BusLineStation nextLineStation = dl.GetBusLineStationBy(ls => ls.BusLineKey == bls.BusLineKey && ls.Position == bls.Position + 1);
+                        DO.BusLineStation prevLineStation = dl.GetBusLineStationBy(ls => ls.BusLineKey == bls.BusLineKey && ls.Position == bls.Position - 1);
+                        if (prevLineStation != null)
+                        {
+                            cs.StationKey1 = prevLineStation.StationKey;
+                            cs.StationKey2 = station.Key;
+                            cs.Distance = GetDistance(prevLineStation.StationKey, station.Key);
+                            cs.AverageTime = GetTime(cs.Distance);
+                            dl.UpdateConsecutiveStations(cs);
+                        }
+                        if (nextLineStation != null)
+                        {
+                            cs.StationKey1 = station.Key;
+                            cs.StationKey2 = nextLineStation.StationKey;
+                            cs.Distance = GetDistance(station.Key, nextLineStation.StationKey);
+                            cs.AverageTime = GetTime(cs.Distance);
+                            dl.UpdateConsecutiveStations(cs);
+                        }
+                    }
+                }
+                //dl.UpdateConsecutiveStations(dl.GetBusLineStationBy(ls => ls.BusLineKey == st))
                 station.Clone(StationDO);
                 dl.UpdateStation(StationDO);
             }
