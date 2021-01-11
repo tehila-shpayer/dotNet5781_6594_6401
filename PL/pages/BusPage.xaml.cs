@@ -24,6 +24,7 @@ namespace PL
         public BusPage()
         {
             InitializeComponent();
+            MainWindow.InitializeBuses();
             lbBuses.DataContext = MainWindow.busesCollection;
             List<string> OrderByString = new List<string> { "Order by license number", "Order by status" };
             cbBuses.DataContext = OrderByString;
@@ -59,6 +60,7 @@ namespace PL
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
+            int index = lbBuses.SelectedIndex;
             try
             {
                 UpdateBusWindow updateBusWindow = new UpdateBusWindow(MainWindow.busesCollection[lbBuses.SelectedIndex]);
@@ -69,6 +71,7 @@ namespace PL
             {
                 MessageBox.Show($"Please choose a bus!", "UPDATE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.No);
             }
+            lbBuses.SelectedIndex = index;
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
