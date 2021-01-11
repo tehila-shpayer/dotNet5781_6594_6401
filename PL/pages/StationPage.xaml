@@ -94,22 +94,22 @@
                 <TextBlock Text="{Binding Name}" Margin="10" TextAlignment="Left" FontWeight="Bold" FontSize="22" FontFamily="Segoe UI Black"/>
                 <TextBlock Text="{Binding Key}" Margin="10,0" TextAlignment="Left" FontSize="20"/>
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <TextBlock FontSize="20" TextAlignment="Right" Margin="15" FontFamily="Segoe UI Emoji">
-                    <Run Text="{Binding Latitude}"/>
-                    <Run Text="N° ,"/>
-                    <Run Text="{Binding Longitude}"/>
-                    <Run Text="E°"/>
-                    </TextBlock>
-                    <Button x:Name="mapButton" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="#FF477AA9" Click="mapButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontSize="20" Text="°E " Margin="0,15" FontFamily="Segoe UI Emoji"/>
+                    <TextBlock FontSize="20" Text="{Binding Longitude}" Margin="0,15" FontFamily="Segoe UI Emoji"/>
+                    <TextBlock FontSize="20" Text=" ,°N " Margin="0,15" FontFamily="Segoe UI Emoji"/>
+                    <TextBlock FontSize="20" Text="{Binding Latitude}" Margin="0,15" FontFamily="Segoe UI Emoji"/>
+
+                    <!--<Run Text="{Binding Longitude}"/>
+                    <Run Text="E°"/>-->
+
+
+                    <Button x:Name="mapButton" Margin="10" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="#FF477AA9" Click="mapButton_Click">
                         <materialDesign:PackIcon Kind="MapMarkerOutline" Height="30" Width="30"/>
                     </Button>
                 </StackPanel>
                 <TextBlock FontSize="20" Text="קוים העוברים בתחנה:" TextAlignment="Left" Margin="15" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left"/>
-                <!--<ListBox x:Name="lbLines" HorizontalContentAlignment="Right" HorizontalAlignment="Right" ItemsSource="{Binding PresentBusLines}" ItemTemplate="{StaticResource BusLineTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="419" Height="364" Margin="-5,0,-0.4,0">
-
-                </ListBox>-->
-                <ListBox x:Name="lbBusLineStations" Margin="-20,10,14.6,10" Padding="0,0,0,0"  HorizontalAlignment="Center" ItemsSource="{Binding PresentBusLines}" ItemTemplate="{StaticResource BusLineTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="419" Height="183" HorizontalContentAlignment="Left">
+                <ListBox x:Name="lbBusLineStations" Margin="30,10,-10,10" Padding="0,0,0,0"  HorizontalAlignment="Center" ItemsSource="{Binding PresentBusLines}" ItemTemplate="{StaticResource BusLineTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="419" Height="183" HorizontalContentAlignment="Left">
 
                 </ListBox>
             </StackPanel>
