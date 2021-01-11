@@ -725,7 +725,7 @@ namespace BL
                         dl.UpdateBusLineStation(bls.BusLineKey, bls.StationKey, b => b.Position -= 1);
             }
             else
-                throw new BOInvalidInformationException("Cant delete station,\n bus must have at least 2 stations!");
+                throw new BOInvalidInformationException("bus must have at least 2 stations!");
         }
         public String ToStringBusLine(BusLine b)
         {

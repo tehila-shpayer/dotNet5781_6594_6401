@@ -29,16 +29,16 @@
                     <TextBlock FontSize="15" Text=" מטר,  " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
                     <TextBlock FontSize="15" Text="{Binding TravelTimeFromLastStationMinutes}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
                     <TextBlock FontSize="15" Text=" דקות " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
-                    <Button Margin="25,-12,5,0" Width="26" Padding="2" Height="26" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
-                        <materialDesign:PackIcon Kind="Edit" Height="18" Width="18"/>
+                    <Button Margin="5,-12,5,0" Width="26" Padding="2" Height="26" Foreground="#FF477AA9" Background="{x:Null}"  BorderBrush="{x:Null}">
+                        <materialDesign:PackIcon Kind="Edit" Height="20" Width="20"/>
                     </Button>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Margin="10" Text="{Binding Position}" TextAlignment="Right" FontWeight="Bold" FontSize="14" FontFamily="Ariel"/>
                     <TextBlock Margin="6,10" Text="{Binding Name}" TextAlignment="Left" FontWeight="Bold" FontSize="14" FontFamily="Ariel"/>
                     <TextBlock Margin="10" Text="{Binding StationKey}" TextAlignment="Left" FontWeight="Bold" FontSize="14" FontFamily="Ariel"/>
-                    <Button Margin="0,5,10,10" Width="26" Padding="1" Height="26" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}" Click="deleteStationButton_Click" HorizontalAlignment="Right" HorizontalContentAlignment="Center">
-                    <materialDesign:PackIcon Kind="Delete" Height="19" Width="19"/>
+                    <Button Margin="0,5,10,10" Width="26" Padding="1" Height="26" Foreground="#FF477AA9" Background="{x:Null}" BorderBrush="{x:Null}" Click="deleteStationButton_Click" HorizontalAlignment="Right" HorizontalContentAlignment="Center">
+                    <materialDesign:PackIcon Kind="Delete" Height="22" Width="22"/>
                     </Button>
                 </StackPanel>
             </StackPanel>
