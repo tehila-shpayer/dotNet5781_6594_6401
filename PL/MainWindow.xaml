@@ -23,6 +23,15 @@
                 <Button x:Name="languageButton" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Click="languageButton_Click">
                     <materialDesign:PackIcon Kind="LanguageBox" Height="30" Width="30" />
                 </Button>
+                <!--<materialDesign:PopupBox Foreground="White" PopupMode="Click" PlacementMode="BottomAndAlignCentres" StaysOpen="False">
+                    <StackPanel>
+                        <Button x:Name="HebrewButton" Content ="Hebrew" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" >
+
+                        </Button>
+                        <Button x:Name="EnglishButton" Content ="English" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" >
+                        </Button>
+                    </StackPanel>
+                </materialDesign:PopupBox>-->
                 <Button x:Name="logoutButton" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Click="logoutButton_Click">
                     <materialDesign:PackIcon Kind="Logout" Height="30" Width="30" />
                 </Button>

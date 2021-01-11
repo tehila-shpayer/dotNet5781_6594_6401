@@ -102,6 +102,7 @@ namespace PL
             try
             {
                 App.bl.UpdateUser(userBO);
+                user = PoBoAdapter.UserPoBoAdapter(userBO);
                 VisibilityChangePasswordButton();
             }
             catch (BO.BOInvalidInformationException ex)
@@ -154,12 +155,17 @@ namespace PL
         }
         private void VisibilityChangePasswordButton()
         {
+            OldPassword.Password = "";
+            NewPassword.Password = "";
+            tbOldPassword.Text = " Old Password";
+            tbNewPassword.Text = " New Password";
             ChangePasswordButton.Visibility = Visibility;
             OldPassword.Visibility = Visibility.Collapsed;
             tbOldPassword.Visibility = Visibility.Collapsed;
             NewPassword.Visibility = Visibility.Collapsed;
             tbNewPassword.Visibility = Visibility.Collapsed;
             saveUndoPasswordButtons.Visibility = Visibility.Collapsed;
+            
         }
     }
 }
