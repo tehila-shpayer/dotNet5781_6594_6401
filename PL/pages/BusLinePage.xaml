@@ -29,6 +29,9 @@
                     <TextBlock FontSize="15" Text=" מטר,  " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
                     <TextBlock FontSize="15" Text="{Binding TravelTimeFromLastStationMinutes}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
                     <TextBlock FontSize="15" Text=" דקות " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
+                    <Button Margin="25,-12,5,0" Width="26" Padding="2" Height="26" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
+                        <materialDesign:PackIcon Kind="Edit" Height="18" Width="18"/>
+                    </Button>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Margin="10" Text="{Binding Position}" TextAlignment="Right" FontWeight="Bold" FontSize="14" FontFamily="Ariel"/>
@@ -105,7 +108,7 @@
                 </StackPanel>
                 <TextBlock Text="{Binding Key}" Margin="10" TextAlignment="Left" FontSize="16"/>
                 <TextBlock Text="תחנות:" Margin="15,5" TextAlignment="Left" FontSize="20" FontFamily="Segoe UI Semibold"/>
-                <ListBox x:Name="lbBusLineStations" Margin="15,10" Padding="0,-25,0,0" HorizontalContentAlignment="Left" HorizontalAlignment="Left" ItemsSource="{Binding BusLineStations}" ItemTemplate="{StaticResource BusLineStationTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="419" Height="305">
+                <ListBox x:Name="lbBusLineStations" Margin="15,10" Padding="0,-25,0,0" HorizontalContentAlignment="Left" HorizontalAlignment="Left" ItemsSource="{Binding BusLineStations}" ItemTemplate="{StaticResource BusLineStationTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="419" Height="305" SelectionChanged="lbBusLineStations_SelectionChanged">
                 </ListBox>
             </StackPanel>
         </Grid>

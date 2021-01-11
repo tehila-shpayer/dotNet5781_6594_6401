@@ -338,21 +338,22 @@ namespace BL
                         DO.ConsecutiveStations cs = new DO.ConsecutiveStations();
                         DO.BusLineStation nextLineStation = dl.GetBusLineStationBy(ls => ls.BusLineKey == bls.BusLineKey && ls.Position == bls.Position + 1);
                         DO.BusLineStation prevLineStation = dl.GetBusLineStationBy(ls => ls.BusLineKey == bls.BusLineKey && ls.Position == bls.Position - 1);
+                        StationDO = dl.GetStation(station.Key);
                         if (prevLineStation != null)
                         {
-                            cs.StationKey1 = prevLineStation.StationKey;
-                            cs.StationKey2 = station.Key;
-                            cs.Distance = GetDistance(prevLineStation.StationKey, station.Key);
-                            cs.AverageTime = GetTime(cs.Distance);
-                            dl.UpdateConsecutiveStations(cs);
+                            //cs.StationKey1 = prevLineStation.StationKey;
+                            //cs.StationKey2 = station.Key;
+                            //cs.Distance = GetDistance(prevLineStation.StationKey, station.Key);
+                            //cs.AverageTime = GetTime(cs.Distance);
+                            dl.UpdateConsecutiveStations(CalculateConsecutiveStations(dl.GetStation(prevLineStation.StationKey), StationDO));
                         }
                         if (nextLineStation != null)
                         {
-                            cs.StationKey1 = station.Key;
-                            cs.StationKey2 = nextLineStation.StationKey;
-                            cs.Distance = GetDistance(station.Key, nextLineStation.StationKey);
-                            cs.AverageTime = GetTime(cs.Distance);
-                            dl.UpdateConsecutiveStations(cs);
+                            //cs.StationKey1 = station.Key;
+                            //cs.StationKey2 = nextLineStation.StationKey;
+                            //cs.Distance = GetDistance(station.Key, nextLineStation.StationKey);
+                            //cs.AverageTime = GetTime(cs.Distance);
+                            dl.UpdateConsecutiveStations(CalculateConsecutiveStations(StationDO, dl.GetStation(nextLineStation.StationKey)));
                         }
                     }
                 }
@@ -568,7 +569,13 @@ namespace BL
                 default: return GetAllBusLines();
             }
         }
-
+        public int AddBusLine(BusLine bus, int stationKey1, int stationKey2)
+        {
+            int key = AddBusLine(bus);
+            AddStationToLine(key, stationKey1);
+            AddStationToLine(key, stationKey2);
+            return key;
+        }
         public int AddBusLine(BusLine bus)
         {
             try
@@ -584,6 +591,7 @@ namespace BL
                 throw new BOInvalidInformationException($"Can't add bus line {bus.Key}.", ex);
             }
         }
+
         DO.ConsecutiveStations CalculateConsecutiveStations(DO.Station station1, DO.Station station2)
         {
             Random rand = new Random();

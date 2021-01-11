@@ -202,5 +202,10 @@ namespace PL
                 MainWindow.busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(bus));
             ShowByArea();
         }
+
+        private void lbBusLineStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
