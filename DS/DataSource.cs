@@ -45,7 +45,7 @@ namespace DS
         static int GetTime(double distance)
         {
             Random rand = new Random();
-            int speed = rand.Next(30, 60);
+            int speed = 50;
             int time = Convert.ToInt32(distance / (speed * 1000 / 60));//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש
             return time;
         }

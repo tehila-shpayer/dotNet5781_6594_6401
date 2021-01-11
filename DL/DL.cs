@@ -165,6 +165,13 @@ namespace DL
                            select bls.Clone();
             return AllBusLineStations;
         }
+        public IEnumerable<BusLineStation> GetAllBusLineStationsBy(Predicate<BusLineStation> predicate)
+        {
+            var AllBusLineStations = from bls in DataSource.ListBusLineStations
+                                     where predicate(bls)
+                                     select bls.Clone();
+            return AllBusLineStations;
+        }
         public BusLineStation GetBusLineStationBy(Predicate<BusLineStation> predicate)
         {
             BusLineStation busLineStation = DataSource.ListBusLineStations.Find(b => predicate(b));

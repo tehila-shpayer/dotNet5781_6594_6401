@@ -23,7 +23,9 @@ namespace PL
     {
         public BusLinePage()
         {
+            
             InitializeComponent();
+            MainWindow.InitializeCollections();
             lbBusLines.DataContext = MainWindow.busLinesCollection;
             List<string> AreasString = new List<string> { "All", "Center", "General", "Hifa", "Jerusalem", "North", "South", "TelAviv", "YehudaAndShomron" };
             List<string> OrderByString = new List<string> { "Order by key", "Order by number", "Order by area" };
@@ -103,13 +105,16 @@ namespace PL
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
+            int index = lbBusLines.Items.Count;
             AddBusLineWindow addBusLineWindow = new AddBusLineWindow();
             addBusLineWindow.ShowDialog();
+            lbBusLines.SelectedIndex = index;
             Sort();
         }
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
+            int index = lbBusLines.SelectedIndex;
             try
             {
                 UpdateBusLineWindow update = new UpdateBusLineWindow(MainWindow.busLinesCollection[lbBusLines.SelectedIndex]);
@@ -120,6 +125,7 @@ namespace PL
             {
                 MessageBox.Show($"Please choose a bus line!", "UPDATE BUS LINE MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.No);
             }
+            lbBusLines.SelectedIndex = index;
         }
 
         private void areas_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -145,31 +151,35 @@ namespace PL
 
         private void addStationButton_Click(object sender, RoutedEventArgs e)
         {
+            int index = lbBusLines.SelectedIndex;
             var selectedStation = (sender as Button).DataContext as BusLineStation;
             AddBusLineStation addBusLineStation = new AddBusLineStation(selectedStation);
             addBusLineStation.ShowDialog();
+            lbBusLines.SelectedIndex = index;
         }
 
         private void deleteStationButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                int index = 0;
+                int index = lbBusLines.SelectedIndex;
                 var selectedStation = (sender as Button).DataContext as BusLineStation;
-                BO.BusLine busLineBO = App.bl.GetBusLine(selectedStation.BusLineKey);
-                BusLine busLinePO = PoBoAdapter.BusLinePoBoAdapter(busLineBO);
-                foreach (BusLine bl in MainWindow.busLinesCollection)
-                {
-                    if (bl.Key == busLinePO.Key)
-                    {
-                        index = MainWindow.busLinesCollection.IndexOf(bl);
-                        break;
-                    }
-                }
+                //BO.BusLine busLineBO = App.bl.GetBusLine(selectedStation.BusLineKey);
+                //BusLine busLinePO = PoBoAdapter.BusLinePoBoAdapter(busLineBO);
+                //foreach (BusLine bl in MainWindow.busLinesCollection)
+                //{
+                //    if (bl.Key == busLinePO.Key)
+                //    {
+                //        index = MainWindow.busLinesCollection.IndexOf(bl);
+                //        break;
+                //    }
+                //}
                 App.bl.DeleteStationFromLine(selectedStation.BusLineKey, selectedStation.StationKey);
-                busLineBO = App.bl.GetBusLine(selectedStation.BusLineKey);
-                busLinePO = PoBoAdapter.BusLinePoBoAdapter(busLineBO);
-                MainWindow.busLinesCollection[index] = busLinePO;
+                //busLineBO = App.bl.GetBusLine(selectedStation.BusLineKey);
+                //busLinePO = PoBoAdapter.BusLinePoBoAdapter(busLineBO);
+                //MainWindow.busLinesCollection[index] = busLinePO;
+                MainWindow.InitializeBusLines();
+                lbBusLines.SelectedIndex = index;
                 MessageBox.Show($"Station {selectedStation.StationKey} was successfully\ndeleted from line {selectedStation.BusLineKey}", "ADD STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (BO.BOArgumentNotFoundException ex)
