@@ -357,11 +357,11 @@ namespace DS
             };
             ListUsers = new List<User>
             {
-                new User{UserName = "shpayer", Password = "Rif1234",Email="tehila1742@gmail.com", AuthorizationManagement = AuthorizationManagement.Manager},
-                new User{UserName = "hodaya", Password = "hodaya1000", AuthorizationManagement = AuthorizationManagement.Manager},
+                new User{UserName = "shpayer", Password = "Rif1234",Email="tehila1742@gmail.com", AuthorizationManagement = AuthorizationManagement.Manager, FirstName="Tehila", LastName = "Shpayer", Address="כוכב יעקב דבש וחלב", PhoneNumber="0543844738"},
+                new User{UserName = "hodaya", Password = "hodaya1000", AuthorizationManagement = AuthorizationManagement.Traveler},
                 new User{UserName = "girl9", Password = "shyomi78", AuthorizationManagement = AuthorizationManagement.Traveler},
-                new User{UserName = "oalbo", Password = "theBest111", AuthorizationManagement = AuthorizationManagement.Manager},
-                new User{UserName = "sarahmal", Password = "1blunder", Email="saramalka2003@gmail.com", AuthorizationManagement = AuthorizationManagement.Manager},
+                new User{UserName = "oalbo", Password = "theBest111", AuthorizationManagement = AuthorizationManagement.Traveler},
+                new User{UserName = "sarahmal", Password = "1blunder", Email="saramalka2003@gmail.com", AuthorizationManagement = AuthorizationManagement.Manager, FirstName="שרה מלכה", LastName = "חמו", Address="כוכב השחר מול נבו", PhoneNumber="0544325928"},
                 new User{UserName = "iyov", Password = "missreble", AuthorizationManagement = AuthorizationManagement.Traveler},
                 new User{UserName = "mobileFord12", Password = "sportscar13", AuthorizationManagement = AuthorizationManagement.Traveler},
                 new User{UserName = "Lucky13Number", Password = "cazino666", AuthorizationManagement = AuthorizationManagement.Traveler},
