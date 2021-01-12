@@ -19,9 +19,15 @@ namespace PL
     /// </summary>
     public partial class UpdateConsecutiveStations : Window
     {
-        public UpdateConsecutiveStations()
+        public UpdateConsecutiveStations(BusLineStation bls)
         {
             InitializeComponent();
+            BO.Station station1 = App.bl.GetPreviouseStation(bls.BusLineKey, bls.Position);
+            BO.Station station2 = App.bl.GetStation(bls.StationKey);
+            tbFirstPosition.DataContext = station1;
+            tbSecondPosition.DataContext = station2;
+            spFirstStation.DataContext = station1;
+            spSecondStation.DataContext = station2;
         }
     }
 }
