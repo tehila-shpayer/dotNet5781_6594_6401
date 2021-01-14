@@ -313,9 +313,9 @@ namespace DL
         #endregion
 
         #region LineSchedule
-        public LineSchedule GetLineSchedule(int line, DateTime startTime)
+        public LineSchedule GetLineSchedule(int line, TimeSpan startTime)
         {
-            LineSchedule lineSchedule = DataSource.ListLineSchedules.FirstOrDefault(ls => ls.LineKey == line && ls.StartTime.ToString("HH:mm") == startTime.ToString("HH:mm"));
+            LineSchedule lineSchedule = DataSource.ListLineSchedules.FirstOrDefault(ls => ls.LineKey == line && ls.StartTime == startTime);
             if (lineSchedule == null)
                 throw new DO.ArgumentNotFoundException($"Line schedule of line {line} and starting time {startTime.ToString("HH:mm")} not found.");
             return lineSchedule.Clone();
@@ -335,8 +335,8 @@ namespace DL
         }
         public void AddLineSchedule(LineSchedule lineSchedule)
         {
-            if (DataSource.ListLineSchedules.FirstOrDefault(ls => ls.LineKey == lineSchedule.LineKey && ls.StartTime.ToString("HH:mm") == lineSchedule.StartTime.ToString("HH:mm")) != null)
-                throw new InvalidInformationException($"There is already a line schedule {lineSchedule.LineKey} that start at {lineSchedule.StartTime.ToString("HH:mm")}");
+            if (DataSource.ListLineSchedules.FirstOrDefault(ls => ls.LineKey == lineSchedule.LineKey && ls.StartTime == lineSchedule.StartTime) != null)
+                throw new InvalidInformationException($"There is already a line schedule {lineSchedule.LineKey} that start at {lineSchedule.StartTime.ToString()}");
             DataSource.ListLineSchedules.Add(lineSchedule);
         }
         public void UpdateLineSchedule(LineSchedule lineSchedule) 
@@ -347,12 +347,12 @@ namespace DL
             
             DataSource.ListLineSchedules[indexOfLineScheduleToUpdate] = lineSchedule;
         }
-        public void UpdateLineSchedule(int line, DateTime startTime, Action<LineSchedule> update)
+        public void UpdateLineSchedule(int line, TimeSpan startTime, Action<LineSchedule> update)
         {
             LineSchedule lineSchedule = GetLineSchedule(line, startTime);
             update(lineSchedule);
         }
-        public void DeleteLineSchedule(int line, DateTime startTime)
+        public void DeleteLineSchedule(int line, TimeSpan startTime)
         {
             LineSchedule lineSchedule = GetLineSchedule(line, startTime);
             DataSource.ListLineSchedules.Remove(lineSchedule);
