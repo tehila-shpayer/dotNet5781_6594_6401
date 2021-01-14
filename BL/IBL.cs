@@ -71,13 +71,13 @@ namespace BLAPI
 
         #region LineSchedule
         BO.LineSchedule LineScheduleDoBoAdapter(DO.LineSchedule LineScheduleDO);
-        LineSchedule GetLineSchedule(int lineKey, DateTime startTime);
+        LineSchedule GetLineSchedule(int lineKey, TimeSpan startTime);
         IEnumerable<LineSchedule> GetAllLineSchedules();
         IEnumerable<LineSchedule> GetAllLineSchedulesOfLine(int Line);
         void AddLineSchedule(LineSchedule lineSchedule);
         void UpdateLineSchedule(LineSchedule lineSchedule);
-        void UpdateLineSchedule(int lineKey, DateTime startTime, Action<LineSchedule> update);
-        void DeleteLineSchedule(int lineKey, DateTime startTime);
+        void UpdateLineSchedule(int lineKey, TimeSpan startTime, Action<LineSchedule> update);
+        void DeleteLineSchedule(int lineKey, TimeSpan startTime);
         #endregion
 
         #region BusInTravel

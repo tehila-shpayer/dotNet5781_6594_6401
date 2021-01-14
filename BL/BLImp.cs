@@ -767,7 +767,7 @@ namespace BL
             LineScheduleDO.Clone(LineScheduleBO);
             return LineScheduleBO;
         }
-        public LineSchedule GetLineSchedule(int lineKey, DateTime startTime)
+        public LineSchedule GetLineSchedule(int lineKey, TimeSpan startTime)
         {
             try
             {
@@ -815,7 +815,7 @@ namespace BL
             }
             catch (DO.ArgumentNotFoundException ex) { throw new BOArgumentNotFoundException($"Can't update line schedule.", ex); }
         }
-        public void UpdateLineSchedule(int lineKey, DateTime startTime, Action<LineSchedule> update)
+        public void UpdateLineSchedule(int lineKey, TimeSpan startTime, Action<LineSchedule> update)
         {
             try
             {
@@ -827,7 +827,7 @@ namespace BL
             }
             catch (DO.ArgumentNotFoundException ex) { throw new BOArgumentNotFoundException($"Can't update line schedule.", ex); }
         }
-        public void DeleteLineSchedule(int lineKey, DateTime startTime)
+        public void DeleteLineSchedule(int lineKey, TimeSpan startTime)
         {
             try
             {

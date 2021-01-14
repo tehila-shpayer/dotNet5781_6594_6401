@@ -350,10 +350,10 @@ namespace DS
 
             ListLineSchedules = new List<LineSchedule>
             {
-                new LineSchedule{LineKey = 1, Frequency = 20, StartTime=new DateTime(1,1,1,8,0,0), EndTime=new DateTime(1,1,1,17,20,0)},
-                new LineSchedule{LineKey = 1, Frequency = 30, StartTime=new DateTime(1,1,1,17,20,0), EndTime=new DateTime(1,1,1,22,20,0)},
-                new LineSchedule{LineKey = 2, Frequency = 90, StartTime=new DateTime(1,1,1,7,30,0), EndTime=new DateTime(1,1,1,0,0,0)},
-                //new LineSchedule{LineKey = 1, Frequency = 20, StartTime=new DateTime(1,1,1,8,0,0), EndTime=new DateTime(1,1,1,0,0,0)},
+                new LineSchedule{LineKey = 1, Frequency = 20, StartTime=new TimeSpan(8,0,0), EndTime=new TimeSpan(17,20,0)},
+                new LineSchedule{LineKey = 1, Frequency = 30, StartTime=new TimeSpan(17,20,0), EndTime=new TimeSpan(22,20,0)},
+                new LineSchedule{LineKey = 2, Frequency = 90, StartTime=new TimeSpan(7,30,0), EndTime=new TimeSpan(0,0,0)},
+                //new LineSchedule{LineKey = 1, Frequency = 20, StartTime=new TimeSpan(8,0,0), EndTime=new TimeSpan(0,0,0)},
             };
             ListUsers = new List<User>
             {
