@@ -20,6 +20,8 @@ namespace BL
         #endregion
 
         IDL dl = DLFactory.GetDL();
+
+        #region BLFunctions
         int GetDistance(int stationKey1, int stationKey2)
         {
             Station station1 = GetStation(stationKey1);
@@ -40,6 +42,9 @@ namespace BL
             return GetTime(GetDistance(stationKey1, stationKey2));
         }
 
+        //TimeSpan GetTimeFromStartToStation()
+        #endregion
+        
         #region Bus
         public BO.Bus BusDoBoAdapter(DO.Bus BusDO)
         {
