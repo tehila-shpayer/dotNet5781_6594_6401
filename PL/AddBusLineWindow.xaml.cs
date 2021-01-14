@@ -39,8 +39,6 @@ namespace PL
         {
             try
             {
-                //int firstKey = busLineBO.FirstStation;
-                //int lastKey = busLineBO.LastStation;
                 int firstKey = (firstStationComboBox.SelectedItem as Station).Key;
                 int lastKey = (lastStationComboBox.SelectedItem as Station).Key;
                 if (firstKey == lastKey)
@@ -53,7 +51,7 @@ namespace PL
                 //MainWindow.busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(busLineBO));
                 MainWindow.InitializeBusLines();
                 MainWindow.InitializeStations();
-                MessageBox.Show($"Bus added successfully!", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"Bus line added successfully!", "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
                 
             }

@@ -73,6 +73,7 @@ namespace PL
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             AddBusLineStationToLine(selectedStation.BusLineKey, (cbStationKey.SelectedItem as Station).Key, selectedStation.Position);
+            
             Close();
         }
 

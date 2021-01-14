@@ -66,7 +66,7 @@ namespace PL
                 ListBoxItem bus = (ListBoxItem)lbBusLines.ItemContainerGenerator.ContainerFromItem(item);
                 String searchS = searchBox.Text;
                 int num = searchS.Length;
-                //Show only buses which there license number have the typed perfix
+
                 if (bus != null)
                 {
                     if ((num <= item.LineNumber.ToString().Length && searchS == (item as BusLine).LineNumber.ToString().Substring(0, num)))
@@ -108,8 +108,8 @@ namespace PL
             int index = lbBusLines.Items.Count;
             AddBusLineWindow addBusLineWindow = new AddBusLineWindow();
             addBusLineWindow.ShowDialog();
+            Sort(index);
             lbBusLines.SelectedIndex = index;
-            Sort();
         }
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
@@ -119,7 +119,7 @@ namespace PL
             {
                 UpdateBusLineWindow update = new UpdateBusLineWindow(MainWindow.busLinesCollection[lbBusLines.SelectedIndex]);
                 update.ShowDialog();
-                Sort();
+                Sort(lbBusLines.SelectedIndex);
             }
             catch (Exception ex)
             {
@@ -194,14 +194,15 @@ namespace PL
         }
         private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Sort();
+            Sort(lbBusLines.SelectedIndex);
         }
-        void Sort()
+        void Sort(int index)
         {
             MainWindow.busLinesCollection.Clear();
             foreach (BO.BusLine bus in App.bl.GetAllBusLinesOrderedBy(cbBusLines.SelectedItem.ToString()))
                 MainWindow.busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(bus));
             ShowByArea();
+            lbBusLines.SelectedIndex = index;
         }
 
         private void lbBusLineStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
