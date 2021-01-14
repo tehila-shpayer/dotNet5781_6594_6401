@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace PL
 {
@@ -113,7 +114,15 @@ namespace PL
 
         private void uploadImageButton_Click(object sender, RoutedEventArgs e)
         {
-
+                OpenFileDialog op = new OpenFileDialog();
+                op.Title = "Select a picture";
+                op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+                  "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+                  "Portable Network Graphic (*.png)|*.png";
+                if (op.ShowDialog() == true)
+                {
+                    imgPhoto.Source = new BitmapImage(new Uri(op.FileName));
+                }
         }
 
         private void editButton_Click(object sender, RoutedEventArgs e)

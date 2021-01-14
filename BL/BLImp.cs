@@ -466,6 +466,8 @@ namespace BL
             {
                 DO.BusLineStation busLineStationDO = new DO.BusLineStation();
                 station.Clone(busLineStationDO);
+                Station s = GetPreviouseStation(station.BusLineKey, station.Position);
+                dl.UpdateConsecutiveStations(s.Key, station.StationKey, cs => { cs.AverageTime = station.TravelTimeFromLastStationMinutes; cs.Distance = station.DistanceFromLastStationMeters; });
                 dl.UpdateBusLineStation(busLineStationDO);
             }
             catch (DO.InvalidInformationException ex)

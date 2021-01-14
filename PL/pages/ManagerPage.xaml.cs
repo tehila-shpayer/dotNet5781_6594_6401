@@ -29,6 +29,9 @@ namespace PL
             InitializeComponent();
             mainBlueColor = profileButton.Background;
             user = _user;
+            WelcomPage welcomPage = new WelcomPage();
+            currentPage.Content = welcomPage;
+
         }
         void changeColors( Button b)
         {
