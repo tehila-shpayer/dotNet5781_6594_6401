@@ -34,13 +34,15 @@ namespace PL
             tbTitle.DataContext = bls;
             spFirstStation.DataContext = station1;
             spSecondStation.DataContext = station2;
-            spDistanceAndTime.DataContext = bls;
+            spDistanceAndTime.DataContext = blsBO;
         }
 
         private void saveChangeButton_Click(object sender, RoutedEventArgs e)
         {
             App.bl.UpdateBusLineStation(blsBO);
+            BO.BusLineStation b = App.bl.GetBusLineStation(blsBO.BusLineKey, blsBO.Position);
             MainWindow.InitializeBusLines();
+            Close();
         }
     }
 }

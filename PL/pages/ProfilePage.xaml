@@ -40,11 +40,11 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0">
-                    <Image Height="170"/>
-                    <Button x:Name="uploadImageButton" Content="בחר תמונה" BorderBrush="{x:Null}" Background="{x:Null}" FontSize="16" Foreground="Blue" Click="uploadImageButton_Click"/>
+                    <Image x:Name="imgPhoto" Height="150" Margin="0,0,0,0"/>
                 </StackPanel>
                 <StackPanel Grid.Row="1">
-                    <Button x:Name="ChangePasswordButton" Content="שנה סיסמה" Click="ChangePasswordButton_Click" Margin="40" Background="#FF477AA9" Width="140" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                    <Button x:Name="uploadImageButton" Content="בחר תמונה" BorderBrush="{x:Null}" Background="{x:Null}" FontSize="16" Foreground="Blue" Click="uploadImageButton_Click" Margin="0,-50,0,0" Height="68"/>
+                    <Button x:Name="ChangePasswordButton" Content="שנה סיסמה" Click="ChangePasswordButton_Click" Margin="40,0,40,40" Background="#FF477AA9" Width="140" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
                     <TextBlock x:Name="tbOldPassword" Text=" Old Password" FontSize="22" Margin="40,15,40,-42" Foreground="Gray" Visibility="Collapsed"/>
                     <PasswordBox x:Name="OldPassword" Height="50" Margin="40,0" FontSize="22" Foreground="black" Visibility="Collapsed" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" GotFocus="OldPassword_GotFocus" LostFocus="OldPassword_LostFocus"/>
                     <TextBlock x:Name="tbNewPassword" Text=" New Password" FontSize="22" Margin="40,15,40,-42" Foreground="Gray" Visibility="Collapsed"/>

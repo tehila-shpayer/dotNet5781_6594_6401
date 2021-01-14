@@ -276,19 +276,19 @@ namespace DL
         }
         public void UpdateConsecutiveStations(ConsecutiveStations stations)
         {
-            ConsecutiveStations consecutiveStations = DataSource.ListConsecutiveStations.Find(cs => cs.StationKey1 == stations.StationKey1 && cs.StationKey2 == stations.StationKey2);
-            if (consecutiveStations != null)
-                consecutiveStations = stations;
-            else
-                throw new ArgumentNotFoundException($"Consecutive stations of first station  {stations.StationKey1} and second station {stations.StationKey1} were not found.");
+            int indexOfConsecutiveStationToUpdate = DataSource.ListConsecutiveStations.FindIndex(s => s.StationKey1 == stations.StationKey1 && s.StationKey2 == stations.StationKey2);
+            if (indexOfConsecutiveStationToUpdate == -1)
+                throw new ArgumentNotFoundException($"Consecutive stations not found with keys: {stations.StationKey1} and {stations.StationKey2}.");
+            DataSource.ListConsecutiveStations[indexOfConsecutiveStationToUpdate] = stations;
         }
         public void UpdateConsecutiveStations(int stationKey1, int stationKey2, Action<ConsecutiveStations> update) //method that knows to updt specific fields in Person
         {
-            ConsecutiveStations consecutiveStations = DataSource.ListConsecutiveStations.Find(cs => cs.StationKey1 == stationKey1 && cs.StationKey2 == stationKey2);
-            if (consecutiveStations != null)
-                update(consecutiveStations);
-            else
+            int indexOfConsecutiveStationToUpdate = DataSource.ListConsecutiveStations.FindIndex(s => s.StationKey1 == stationKey1 && s.StationKey2 == stationKey2);
+            if (indexOfConsecutiveStationToUpdate == -1)
                 throw new ArgumentNotFoundException($"Consecutive stations of first station  {stationKey1} and second station {stationKey2} were not found.");
+            ConsecutiveStations consecutiveStations = DataSource.ListConsecutiveStations[indexOfConsecutiveStationToUpdate];
+            update(consecutiveStations);
+            DataSource.ListConsecutiveStations[indexOfConsecutiveStationToUpdate] = consecutiveStations;
         }
         public void DeleteConsecutiveStations(int stationKey1, int stationKey2)
         {
@@ -389,12 +389,15 @@ namespace DL
         }
         public void UpdateStation(int stationKey, Action<Station> update)//method that knows to updt specific fields in Station
         {
+            int indexOfStationToUpdate = DataSource.ListStations.FindIndex(s => s.Key == stationKey);
             Station station = DataSource.ListStations.Find(s => s.Key == stationKey);
             if (station == null)
                 throw new ArgumentNotFoundException($"Station not found with key: {stationKey}");
             update(station);
+            DataSource.ListStations[indexOfStationToUpdate] = station;
+
         }
-        
+
         public void DeleteStation(int stationKey)
         {
             Station station = DataSource.ListStations.Find(s => s.Key == stationKey);
