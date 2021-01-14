@@ -29,7 +29,7 @@
                     <TextBlock FontSize="15" Text=" מטר,  " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
                     <TextBlock FontSize="15" Text="{Binding TravelTimeFromLastStationMinutes}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
                     <TextBlock FontSize="15" Text=" דקות " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
-                    <Button x:Name="editButton" Margin="5,-12,5,0" Width="26" Padding="2" Height="26" Foreground="#FF477AA9" Background="{x:Null}"  BorderBrush="{x:Null}">
+                    <Button x:Name="editButton" Margin="5,-12,5,0" Width="26" Padding="2" Height="26" Foreground="#FF477AA9" Background="{x:Null}"  BorderBrush="{x:Null}" Click="editButton_Click">
                         <materialDesign:PackIcon Kind="Edit" Height="20" Width="20"/>
                     </Button>
                 </StackPanel>
