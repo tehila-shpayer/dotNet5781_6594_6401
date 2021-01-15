@@ -11,13 +11,11 @@ namespace BO
         public static int BUS_TRAVEL_KEY = 0;
         public int Key { get; set; }
         public string BusLicenseNumber { get; set; }
-        public int BusLineNumber { get; set; }
-        public String LineStartingTime { get; set; }
-        public String BusStartingTime { get; set; }
-        public int LastStationKey { get; set; }
+        public int LineKey { get; set; }
+        public TimeSpan StartTime { get; set; }
+        public String LastStationName { get; set; }
         public String LastStationTime { get; set; }
         public String NextStationTime { get; set; }
-        public String Driver { get; set; }
         public override string ToString()
         {
             return this.ToStringProperty();
