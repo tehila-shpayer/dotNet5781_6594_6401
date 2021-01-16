@@ -9,7 +9,7 @@
       Title="WelcomPage"  Background="#FF85C8CA">
     <!--Background="{Binding ElementName=backround, Path=Source}"-->
     <Grid>
-        <Image x:Name="backround" Source="bus-grape-icon.png"/>
+        <Image x:Name="backround"/>
         <TextBlock Text="WELCOM!" TextAlignment="Center" VerticalAlignment="Center" FontSize="110" Margin="0,190,0,126" Foreground="White" FontWeight="Bold" FontStyle="Italic" TextDecorations="{x:Null}" FontFamily="Ravie">
             <TextBlock.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.4">

@@ -7,6 +7,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using System.Device.Location;
+using System.ComponentModel;
+using System.Diagnostics;
 
 namespace BL
 {
@@ -42,9 +44,20 @@ namespace BL
             return GetTime(GetDistance(stationKey1, stationKey2));
         }
 
+        public void StartSimulator(TimeSpan startTime, int simulatorRate, Action<TimeSpan> updateTime)
+        {
+            Clock simulatorClock;
+            //clockObserver(new TimeSpan(simulatorClock.Time.Hours, simulatorClock.Time.Minutes, simulatorClock.Time.Seconds));
+            //Thread.Sleep(your - sleep - time -in -msec);
+
+        }
+        public void StopSimulator()
+        {
+
+        }
         //TimeSpan GetTimeFromStartToStation()
         #endregion
-        
+
         #region Bus
         public BO.Bus BusDoBoAdapter(DO.Bus BusDO)
         {
@@ -845,10 +858,17 @@ namespace BL
         #endregion
 
         #region BusInTravel
-        public BusInTravel CreateBusInTravel(string licenseNumber, int line, DateTime startingTime)
+        public BusInTravel CreateBusInTravel(string licenseNumber, LineSchedule lineSchedule, Station station)
         {
+            BusInTravel bit = new BusInTravel();
+            bit.Key = BusInTravel.BUS_TRAVEL_KEY++;
+            bit.BusLicenseNumber = licenseNumber;
+            bit.LineKey = lineSchedule.LineKey;
+            bit.StationKey = station.Key;
+            bit.StartTime = lineSchedule.StartTime;
             return new BusInTravel();
         }
+
         #endregion
 
     }

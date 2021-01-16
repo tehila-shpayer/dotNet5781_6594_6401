@@ -70,7 +70,10 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1">
 
             <Button x:Name="SimulationButton" Width="145" Margin="5,10" Content="התחל סימולציה" Click="SimulationButton_Click" Background="#FF477AA9" BorderBrush="{x:Null}"/>
-            <materialDesign:TimePicker x:Name="tpTime" Margin="15,10" FontSize="15" Foreground="Black"/>
+            <!--<materialDesign:TimePicker x:Name="tpTime" Margin="15,10" FontSize="15" Foreground="Black" Width="100"/>-->
+            <TextBox Width="30"/>
+            <TextBlock x:Name="tbClock" Width="100" Margin="10" FontSize="15" Text="{Binding}"  Foreground="Black"/>
+            <!---->
         </StackPanel>
 
         <Rectangle Grid.Column="1" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
@@ -92,9 +95,17 @@
                     </Button>
                 </StackPanel>-->
                 <TextBlock FontSize="20" Text="קוים העוברים בתחנה:" TextAlignment="Left" Margin="15" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left"/>
-                <ListBox x:Name="lbLines" Margin="12,10,10,10" Padding="0,0,0,0"  HorizontalAlignment="Center" ItemsSource="{Binding PresentBusLines}" ItemTemplate="{StaticResource BusLineTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="382" Height="213" HorizontalContentAlignment="Left">
-
-                </ListBox>
+                <ListBox x:Name="lbLines" Margin="12,10,10,10" Padding="0,0,0,0"  HorizontalAlignment="Center" ItemsSource="{Binding PresentBusLines}" ItemTemplate="{StaticResource BusLineTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="382" Height="110" HorizontalContentAlignment="Left"/>
+                <ListView x:Name="lvCommingLines" ItemsSource="{Binding}">
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
+                        <GridViewColumn DisplayMemberBinding= "{Binding Path=LastStationName}" Header="תחנה" Width="100"/>
+                        <GridViewColumn DisplayMemberBinding= "{Binding Path=StartTime}" Width="100" Header="התחלה"/>
+                        <GridViewColumn DisplayMemberBinding= "{Binding Path=TimeLeft}" Header="נשאר" Width="100"/>
+                        <GridViewColumn DisplayMemberBinding= "{Binding Path=LineKey}" Header="קו" Width="100"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </StackPanel>
         </Grid>
     </Grid>
