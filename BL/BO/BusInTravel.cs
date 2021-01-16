@@ -13,9 +13,9 @@ namespace BO
         public string BusLicenseNumber { get; set; }
         public int LineKey { get; set; }
         public int StationKey { get; set; }
-        public TimeSpan StartTime { get; set; }     
-        public TimeSpan TimeLeft { get; set; }
         public String LastStationName { get; set; }
+        public TimeSpan StartTime { get; set; }
+        public TimeSpan TimeLeft { get; set; }
         public override string ToString()
         {
             return this.ToStringProperty();

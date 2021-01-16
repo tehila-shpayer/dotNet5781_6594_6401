@@ -23,7 +23,6 @@ namespace PL
     {
         public StationPage()
         {
-
             //MainWindow.stationsCollection.Clear();
             //foreach (BO.Station s in App.bl.GetAllStations())
             //    MainWindow.stationsCollection.Add(PoBoAdapter.StationPoBoAdapter(s));

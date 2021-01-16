@@ -7,6 +7,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using System.Device.Location;
+using System.ComponentModel;
+using System.Diagnostics;
 
 namespace BL
 {
@@ -41,10 +43,64 @@ namespace BL
         {
             return GetTime(GetDistance(stationKey1, stationKey2));
         }
+        int GetTimeFromFirstStationInMillySeconds(BusLineStation bls)
+        {
+            int timeInMinutes = 0;
+            Stopwatch stopwatch = new Stopwatch();
+            BusLineStation tempBls = new BusLineStation();
+            for (int i = 2; i <= bls.Position; i++) 
+            {
+                tempBls = GetBusLineStation(bls.BusLineKey, i);
+                timeInMinutes += tempBls.TravelTimeFromLastStationMinutes;
+            }
+            return timeInMinutes * 1000 * 60;
+        }
+        public void StartSimulator(TimeSpan startTime, int Rate, int stationKey)
+        {
+            
+            //simulatorClock = new Clock(simulatorStartTime + new TimeSpan(stopwatch.ElapsedTicks * simulatorRate));
+            //clockObserver(new TimeSpan(simulatorClock.Time.Hours, simulatorClock.Time.Minutes, simulatorClock.Time.Seconds));
+            //Thread.Sleep(your - sleep - time -in -msec);
+
+        }
+        public List<BusInTravel> GetLineTimingsPerStation(int stationKey, TimeSpan startTime)
+        {
+            List<BusInTravel> busInTravels = new List<BusInTravel>();
+            foreach (LineSchedule ls in GetAllLineSchedules())
+            {
+                if (ls.StartTime.TotalSeconds < startTime.TotalSeconds && startTime.TotalSeconds < ls.EndTime.TotalSeconds)
+                {
+                    BusLineStation bls = GetBusLineStationByKey(ls.LineKey, stationKey);
+                    String lastStationName = GetStation(GetBusLine(ls.LineKey).LastStation).Name;
+                    int frequenciesCount = Convert.ToInt32((ls.EndTime.TotalMinutes - startTime.TotalMinutes) / ls.Frequency);
+                    for (int i = 0; i < frequenciesCount; i++)
+                    {
+                        BusInTravel bit = new BusInTravel();
+                        Random rand = new Random();
+                        var buses = GetAllBuses();
+                        int busIndex = rand.Next(0, buses.Count());
+                        string licenseNumber = buses.ElementAt(busIndex).LicenseNumber;
+                        bit.Key = BusInTravel.BUS_TRAVEL_KEY++;
+                        bit.BusLicenseNumber = licenseNumber;
+                        bit.LineKey = ls.LineKey;
+                        bit.StationKey = stationKey;
+                        bit.StartTime = ls.StartTime;
+                        bit.LastStationName = lastStationName;
+                        bit.TimeLeft = new TimeSpan(GetTimeFromFirstStationInMillySeconds(bls) * TimeSpan.TicksPerMillisecond);
+                    }
+
+                }
+            }
+            return busInTravels;
+        }
+        public void StopSimulator()
+        {
+
+        }
 
         //TimeSpan GetTimeFromStartToStation()
         #endregion
-        
+
         #region Bus
         public BO.Bus BusDoBoAdapter(DO.Bus BusDO)
         {
@@ -845,10 +901,17 @@ namespace BL
         #endregion
 
         #region BusInTravel
-        public BusInTravel CreateBusInTravel(string licenseNumber, int line, DateTime startingTime)
+        public BusInTravel CreateBusInTravel(string licenseNumber, LineSchedule lineSchedule, Station station)
         {
+            BusInTravel bit = new BusInTravel();
+            bit.Key = BusInTravel.BUS_TRAVEL_KEY++;
+            bit.BusLicenseNumber = licenseNumber;
+            bit.LineKey = lineSchedule.LineKey;
+            bit.StationKey = station.Key;
+            bit.StartTime = lineSchedule.StartTime;
             return new BusInTravel();
         }
+
         #endregion
 
     }

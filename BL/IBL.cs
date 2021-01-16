@@ -9,6 +9,10 @@ namespace BLAPI
 {
     public interface IBL
     {
+        void StartSimulator(TimeSpan startTime, int Rate, int StationKey);
+        void StopSimulator();
+        List<BusInTravel> GetLineTimingsPerStation(int stationKey, TimeSpan startTime);
+
         #region Bus
         IEnumerable<Bus> GetAllBuses();
         IEnumerable<Bus> GetAllBusesBy(Predicate<Bus> predicate);
@@ -83,8 +87,7 @@ namespace BLAPI
         #region BusInTravel
         //BusInTravel GetBusInTravel(int key);
         //IEnumerable<BusInTravel> GetAllBusInTravelsBy(Predicate<BusInTravel> predicate);
-        //IEnumerable<BusInTravel> GetAllBusInTravels();
-        BusInTravel CreateBusInTravel(string licenseNumber, int line, DateTime startingTime);
+        //BusInTravel CreateBusInTravel(string licenseNumber, int line, DateTime startingTime);
         //void DeleteBusInTravel(string licenseNumber, int lineKey, int formalTime);
         //void UpdateBusInTravel(BusInTravel bus);
         //void UpdateBusInTravel(int key, Action<BusInTravel> update); //method that knows to updt specific fields in BusInTravel
