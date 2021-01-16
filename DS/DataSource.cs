@@ -350,10 +350,47 @@ namespace DS
 
             ListLineSchedules = new List<LineSchedule>
             {
-                new LineSchedule{LineKey = 1, Frequency = 20, StartTime=new TimeSpan(8,0,0), EndTime=new TimeSpan(17,20,0)},
-                new LineSchedule{LineKey = 1, Frequency = 30, StartTime=new TimeSpan(17,20,0), EndTime=new TimeSpan(22,20,0)},
-                new LineSchedule{LineKey = 2, Frequency = 90, StartTime=new TimeSpan(7,30,0), EndTime=new TimeSpan(0,0,0)},
-                //new LineSchedule{LineKey = 1, Frequency = 20, StartTime=new TimeSpan(8,0,0), EndTime=new TimeSpan(0,0,0)},
+                //949
+                new LineSchedule{LineKey = 1784, Frequency = 20, StartTime=new TimeSpan(8,0,0), EndTime=new TimeSpan(17,20,0)},
+                new LineSchedule{LineKey = 1784, Frequency = 30, StartTime=new TimeSpan(17,20,0), EndTime=new TimeSpan(22,20,0)},
+
+                new LineSchedule{LineKey = 1790, Frequency = 20, StartTime=new TimeSpan(8,0,0), EndTime=new TimeSpan(17,20,0)},
+                new LineSchedule{LineKey = 1790, Frequency = 30, StartTime=new TimeSpan(17,20,0), EndTime=new TimeSpan(22,20,0)},
+                
+                //488
+                new LineSchedule{LineKey = 1785, Frequency = 90, StartTime=new TimeSpan(7,30,0), EndTime=new TimeSpan(0,0,0)},
+
+                //236
+                new LineSchedule{LineKey = 1786, Frequency = 15, StartTime=new TimeSpan(7,15,0), EndTime=new TimeSpan(10,0,0)},
+                new LineSchedule{LineKey = 1786, Frequency = 25, StartTime=new TimeSpan(10,0,0), EndTime=new TimeSpan(13,20,0)},
+                new LineSchedule{LineKey = 1786, Frequency = 20, StartTime=new TimeSpan(13,20,0), EndTime=new TimeSpan(21,0,0)},
+
+                //934
+                new LineSchedule{LineKey = 1787, Frequency = 30, StartTime=new TimeSpan(9,0,0), EndTime=new TimeSpan(15,0,0)},
+                new LineSchedule{LineKey = 1787, Frequency = 60, StartTime=new TimeSpan(16,0,0), EndTime=new TimeSpan(23,0,0)},
+
+                //400
+                new LineSchedule{LineKey = 1789, Frequency = 30, StartTime=new TimeSpan(8,0,0), EndTime=new TimeSpan(13,0,0)},
+                new LineSchedule{LineKey = 1789, Frequency = 10, StartTime=new TimeSpan(13,0,0), EndTime=new TimeSpan(14,40,0)},
+                new LineSchedule{LineKey = 1789, Frequency = 20, StartTime=new TimeSpan(14,40,0), EndTime=new TimeSpan(18,0,0)},
+                new LineSchedule{LineKey = 1789, Frequency = 30, StartTime=new TimeSpan(18,0,0), EndTime=new TimeSpan(20,30,0)},
+                new LineSchedule{LineKey = 1789, Frequency = 50, StartTime=new TimeSpan(20,30,0), EndTime=new TimeSpan(2,20,0)},
+                
+                //86
+                new LineSchedule{LineKey = 1788, Frequency = 30, StartTime=new TimeSpan(7,0,0), EndTime=new TimeSpan(11,0,0)},
+                new LineSchedule{LineKey = 1788, Frequency = 20, StartTime=new TimeSpan(11,0,0), EndTime=new TimeSpan(21,0,0)},
+
+                new LineSchedule{LineKey = 1793, Frequency = 30, StartTime=new TimeSpan(7,0,0), EndTime=new TimeSpan(11,0,0)},
+                new LineSchedule{LineKey = 1793, Frequency = 20, StartTime=new TimeSpan(11,0,0), EndTime=new TimeSpan(21,0,0)},
+
+                //218
+                new LineSchedule{LineKey = 1791, Frequency = 30, StartTime=new TimeSpan(6,30,0), EndTime=new TimeSpan(23,30,0)},
+
+                //143
+                new LineSchedule{LineKey = 1792, Frequency = 60, StartTime=new TimeSpan(9,0,0), EndTime=new TimeSpan(12,0,0)},
+                new LineSchedule{LineKey = 1792, Frequency = 90, StartTime=new TimeSpan(12,0,0), EndTime=new TimeSpan(18,0,0)},
+                new LineSchedule{LineKey = 1792, Frequency = 120, StartTime=new TimeSpan(18,0,0), EndTime=new TimeSpan(22,0,0)},
+
             };
             ListUsers = new List<User>
             {

@@ -37,6 +37,7 @@ namespace PL
                 spProblem.Visibility = Visibility.Visible;
                 return;
             }
+            spProblem.Visibility = Visibility.Collapsed;
             try
             {
                 BO.User user = App.bl.GetUser(userName.Text);
@@ -58,19 +59,19 @@ namespace PL
 
                 MailMessage mail = new MailMessage();
                 mail.To.Add(user.Email);
-                mail.From = new MailAddress("saramalka2003@gmail.com");
-                mail.Subject = "Password Reset";
-                mail.Body = $"Hi {user.UserName}"
-                    +$"\n\nYour new password is: {newPassword}.\nYou can change it in the user profile after logging in.\n\nHave a nice day,\n   The Bus Company";
+                mail.From = new MailAddress("netivimcompany@gmail.com", "חברת נתיבים");
+                mail.Subject = "אתחול סיסמה";
+                mail.Body = "שלום, "
+                    +"הסיסמה החדשה שלך היא: " + newPassword;
                 mail.IsBodyHtml = true;
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = "smtp.gmail.com";
                 smtp.Port = 587;
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                smtp.Credentials = new NetworkCredential("saramalka2003@gmail.com", "hebrewland1");
+                smtp.Credentials = new NetworkCredential("netivimcompany@gmail.com", "100project");
                 smtp.EnableSsl = true;
                 smtp.Send(mail);
-                MessageBox.Show("A temporary password has been sent to you by email\nYou must use this password to log in.", "Security Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("A new password has been sent to you by email\nYou must use this password to log in.", "Security Message", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (BO.BOArgumentNotFoundException)
             {
@@ -94,6 +95,7 @@ namespace PL
                 userName.Text = "";
                 userName.Foreground = Brushes.Black;
             }
+            spProblem.Visibility = Visibility.Collapsed;
         }
 
 
@@ -103,6 +105,7 @@ namespace PL
             {
                 tbPassword.Text = "";
             }
+            spProblem.Visibility = Visibility.Collapsed;
         }
 
         private void userName_LostFocus(object sender, RoutedEventArgs e)
@@ -124,21 +127,21 @@ namespace PL
         #endregion
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-            //    BO.User user = App.bl.GetUser(userName.Text, Password.Password);
-            //    if (user.AuthorizationManagement == BO.AuthorizationManagement.Manager)
-            //        NavigationService.Navigate(new ManagerPage(PoBoAdapter.UserPoBoAdapter(user)));
-            //    else
-            //        NavigationService.Navigate(new TravelerPage(userName.Text, Password.Password));
-            //}
-            //catch (BO.BOArgumentNotFoundException ex)
-            //{
-            //    ProblemMessage.Text = "User name or password are incorrect.\n try again";
-            //    spProblem.Visibility = Visibility.Visible;
-            //}
+            try
+            {
+                BO.User user = App.bl.GetUser(userName.Text, Password.Password);
+                if (user.AuthorizationManagement == BO.AuthorizationManagement.Manager)
+                    NavigationService.Navigate(new ManagerPage(PoBoAdapter.UserPoBoAdapter(user)));
+                else
+                    NavigationService.Navigate(new TravelerPage(userName.Text, Password.Password));
+            }
+            catch (BO.BOArgumentNotFoundException ex)
+            {
+                ProblemMessage.Text = "User name or password are incorrect.\n try again";
+                spProblem.Visibility = Visibility.Visible;
+            }
             //BO.User user = App.bl.GetUser(userName.Text, Password.Password);
-            NavigationService.Navigate(new ManagerPage(PoBoAdapter.UserPoBoAdapter(new BO.User())));
+            //NavigationService.Navigate(new ManagerPage(PoBoAdapter.UserPoBoAdapter(new BO.User())));
         }
 
         private void NewAccountButton_Click(object sender, RoutedEventArgs e)
