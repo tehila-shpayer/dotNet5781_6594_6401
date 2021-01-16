@@ -59,7 +59,7 @@ namespace PL
 
                 MailMessage mail = new MailMessage();
                 mail.To.Add(user.Email);
-                mail.From = new MailAddress("netivimcompany@gmail.com");
+                mail.From = new MailAddress("netivimcompany@gmail.com", "חברת נתיבים");
                 mail.Subject = "אתחול סיסמה";
                 mail.Body = "שלום, "
                     +"הסיסמה החדשה שלך היא: " + newPassword;
