@@ -28,13 +28,15 @@ namespace PL
         BackgroundWorker worker;
         Station currentStation = new Station();
         Stopwatch stopWatch;
-        bool isTimerRun;
+        TimeSpan time;
         public SimulationPage()
         {
             InitializeComponent();
             lbStations.DataContext = MainWindow.stationsCollection;
             lbStations.SelectedIndex = 0;
-            lvCommingLines.DataContext = App.bl.GetLineTimingsPerStation((lbStations.SelectedItem as Station).Key, new TimeSpan(DateTime.Now.TimeOfDay.Ticks));
+            lvCommingLines.DataContext = new List<BO.BusInTravel>();
+            time = new TimeSpan();
+            tbClock.DataContext = time;
             currentStation = lbStations.SelectedItem as Station;
             stopWatch = new Stopwatch();
             worker = new BackgroundWorker();
@@ -56,11 +58,7 @@ namespace PL
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            while (isTimerRun)
-            {
-                worker.ReportProgress(231);
-                Thread.Sleep(1000);
-            }
+
         }
 
         private void lbStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -71,12 +69,18 @@ namespace PL
 
         private void SimulationButton_Click(object sender, RoutedEventArgs e)
         {
-            stopWatch.Restart();
-            isTimerRun = true;
-            worker.RunWorkerAsync();
+            //time = new TimeSpan(tpTime.SelectedTime.Value.TimeOfDay.Ticks);
+            //tbClock.DataContext = time;
+            //stopWatch.Restart();
+            //isTimerRun = true;
+            //worker.RunWorkerAsync();
+            //lvCommingLines.DataContext = App.bl.GetLineTimingsPerStation((lbStations.SelectedItem as Station).Key, new TimeSpan(8,0,0));
         }
         void UpdateTime(TimeSpan ts)
         {
+            //Thread.Sleep(1000);
+            //time.Add(new TimeSpan(50*TimeSpan.TicksPerSecond));
+            //tbClock.DataContext = time;
         }
     }
 }

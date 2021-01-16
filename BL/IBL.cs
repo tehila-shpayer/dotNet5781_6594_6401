@@ -9,9 +9,9 @@ namespace BLAPI
 {
     public interface IBL
     {
-        void StartSimulator(TimeSpan startTime, int Rate, int StationKey);
+        void StartSimulator(TimeSpan startTime, int simulatorRate, Action<TimeSpan> updateTime);
         void StopSimulator();
-        List<BusInTravel> GetLineTimingsPerStation(int stationKey, TimeSpan startTime);
+        //List<BusInTravel> GetLineTimingsPerStation(int stationKey, TimeSpan startTime);
 
         #region Bus
         IEnumerable<Bus> GetAllBuses();
