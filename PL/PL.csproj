@@ -63,13 +63,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddBusLineWindow.xaml.cs">
+    <Compile Include="AddWindows\AddBusLineWindow.xaml.cs">
       <DependentUpon>AddBusLineWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddBusLineStation.xaml.cs">
+    <Compile Include="AddWindows\AddBusLineStation.xaml.cs">
       <DependentUpon>AddBusLineStation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddStationWindow.xaml.cs">
+    <Compile Include="AddWindows\AddStationWindow.xaml.cs">
       <DependentUpon>AddStationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Convertors.cs" />
@@ -79,13 +79,16 @@
     <Compile Include="pages\BusPage.xaml.cs">
       <DependentUpon>BusPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="pages\SimulationPage.xaml.cs">
+      <DependentUpon>SimulationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\StationPage.xaml.cs">
       <DependentUpon>StationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\BusLinePage.xaml.cs">
       <DependentUpon>BusLinePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddBusWindow.xaml.cs">
+    <Compile Include="AddWindows\AddBusWindow.xaml.cs">
       <DependentUpon>AddBusWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="PO\PresentBusLineForStation.cs" />
@@ -116,30 +119,30 @@
     <Compile Include="pages\TravelerPage.xaml.cs">
       <DependentUpon>TravelerPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UpdateBusLineWindow.xaml.cs">
+    <Compile Include="UpdateWindows\UpdateBusLineWindow.xaml.cs">
       <DependentUpon>UpdateBusLineWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UpdateBusWindow.xaml.cs">
+    <Compile Include="UpdateWindows\UpdateBusWindow.xaml.cs">
       <DependentUpon>UpdateBusWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UpdateConsecutiveStations.xaml.cs">
+    <Compile Include="UpdateWindows\UpdateConsecutiveStations.xaml.cs">
       <DependentUpon>UpdateConsecutiveStations.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UpdateStationWindow.xaml.cs">
+    <Compile Include="UpdateWindows\UpdateStationWindow.xaml.cs">
       <DependentUpon>UpdateStationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WelcomPage.xaml.cs">
+    <Compile Include="pages\WelcomPage.xaml.cs">
       <DependentUpon>WelcomPage.xaml</DependentUpon>
     </Compile>
-    <Page Include="AddBusLineWindow.xaml">
+    <Page Include="AddWindows\AddBusLineWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddBusLineStation.xaml">
+    <Page Include="AddWindows\AddBusLineStation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddStationWindow.xaml">
+    <Page Include="AddWindows\AddStationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -150,6 +153,10 @@
     <Page Include="pages\BusPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\SimulationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\StationPage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -196,7 +203,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddBusWindow.xaml">
+    <Page Include="AddWindows\AddBusWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -208,23 +215,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UpdateBusLineWindow.xaml">
+    <Page Include="UpdateWindows\UpdateBusLineWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UpdateBusWindow.xaml">
+    <Page Include="UpdateWindows\UpdateBusWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UpdateConsecutiveStations.xaml">
+    <Page Include="UpdateWindows\UpdateConsecutiveStations.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UpdateStationWindow.xaml">
+    <Page Include="UpdateWindows\UpdateStationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WelcomPage.xaml">
+    <Page Include="pages\WelcomPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -267,7 +274,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="AccountIcon.png" />
+    <Resource Include="Images\AccountIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="pages\AccountIcon.png" />
@@ -276,8 +283,9 @@
     <Resource Include="Fasticon-Happy-Bus-Bus-orange.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bus-grape-icon.png" />
+    <Resource Include="Images\bus-grape-icon.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

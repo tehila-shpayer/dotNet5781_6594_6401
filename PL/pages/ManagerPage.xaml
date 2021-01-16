@@ -69,6 +69,12 @@
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="הגדרות" FontFamily="Champagne &amp; Limousines" FontSize="14" Width="132" Margin="0" TextAlignment="Center"/>
                     </Grid>
                 </Button>
+                <Button x:Name="simulationButton" Margin="10" Background="#FF68A5B6" Foreground="White" BorderBrush="{x:Null}" Click="simulationButton_Click">
+                <Grid Width="150" Height="25">
+                        <materialDesign:PackIcon Kind="Timer" VerticalAlignment="Center" Margin="0" HorizontalAlignment="Left" Width="20" Height="20"/>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="סימולציה" FontFamily="Champagne &amp; Limousines" FontSize="14" Width="132" Margin="0" TextAlignment="Center"/>
+                    </Grid>
+                </Button>
             </StackPanel>
         </Grid>
 

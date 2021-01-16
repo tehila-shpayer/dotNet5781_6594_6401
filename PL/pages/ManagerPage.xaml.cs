@@ -71,5 +71,11 @@ namespace PL
         private void configurationButton_Click(object sender, RoutedEventArgs e)
         {
         }
+
+        private void simulationButton_Click(object sender, RoutedEventArgs e)
+        {
+            currentPage.Content = new SimulationPage();
+            changeColors(simulationButton);
+        }
     }
 }
