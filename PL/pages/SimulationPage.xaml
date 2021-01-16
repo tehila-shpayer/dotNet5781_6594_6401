@@ -62,23 +62,23 @@
                     <GradientStop Color="#FFC7D0D2" Offset="0.46"/>
                 </LinearGradientBrush>
             </StackPanel.Background>
-            
-            <ListBox x:Name="lbStations" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource StationTemplate}" BorderBrush="#FF222222" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="400" Margin="0,0,0.4,0">
+
+            <ListBox x:Name="lbStations" SelectionChanged="lbStations_SelectionChanged"  IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource StationTemplate}" BorderBrush="#FF222222" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="400" Margin="0,0,0.4,0">
             </ListBox>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1">
-            
-            <Button x:Name="SimulationButton" Width="145" Margin="5,10" Content="התחל סימולציה" Background="#FF477AA9" BorderBrush="{x:Null}"/>
-            <materialDesign:TimePicker Margin="15,10" FontSize="15" Foreground="Black"/>
+
+            <Button x:Name="SimulationButton" Width="145" Margin="5,10" Content="התחל סימולציה" Click="SimulationButton_Click" Background="#FF477AA9" BorderBrush="{x:Null}"/>
+            <materialDesign:TimePicker x:Name="tpTime" Margin="15,10" FontSize="15" Foreground="Black"/>
         </StackPanel>
 
         <Rectangle Grid.Column="1" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
         </Rectangle>
         <Grid x:Name="StationInfoGrid" Grid.Column="1" Grid.Row="1" Margin="60,60,60,45" DataContext="{Binding}">
-           
+
             <StackPanel Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,-0.4,0" Width="404">
-                <TextBlock Text="{Binding Name}" Margin="10" TextAlignment="Left" FontWeight="Bold" FontSize="22" FontFamily="Segoe UI Black"/>
+                <!--<TextBlock Text="{Binding Name}" Margin="10" TextAlignment="Left" FontWeight="Bold" FontSize="22" FontFamily="Segoe UI Black"/>
                 <TextBlock Text="{Binding Key}" Margin="10,0" TextAlignment="Left" FontSize="20"/>
 
                 <StackPanel Orientation="Horizontal">
@@ -90,9 +90,9 @@
                     <Button x:Name="mapButton" Margin="10" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="#FF477AA9">
                         <materialDesign:PackIcon Kind="MapMarkerOutline" Height="30" Width="30"/>
                     </Button>
-                </StackPanel>
+                </StackPanel>-->
                 <TextBlock FontSize="20" Text="קוים העוברים בתחנה:" TextAlignment="Left" Margin="15" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left"/>
-                <ListBox x:Name="lbBusLineStations" Margin="30,10,-10,10" Padding="0,0,0,0"  HorizontalAlignment="Center" ItemsSource="{Binding PresentBusLines}" ItemTemplate="{StaticResource BusLineTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="419" Height="183" HorizontalContentAlignment="Left">
+                <ListBox x:Name="lbLines" Margin="12,10,10,10" Padding="0,0,0,0"  HorizontalAlignment="Center" ItemsSource="{Binding PresentBusLines}" ItemTemplate="{StaticResource BusLineTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="382" Height="213" HorizontalContentAlignment="Left">
 
                 </ListBox>
             </StackPanel>
