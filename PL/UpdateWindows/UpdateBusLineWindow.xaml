@@ -15,7 +15,7 @@
         <Rectangle Grid.Column="0" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
         </Rectangle>
         <StackPanel Margin="70,50,70.333,47.667">
-            <Label Content="עדכן קו" FontSize="25" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
+            <Label Content="{DynamicResource UpdateLineWindow_Title}" FontSize="25" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
             <Grid x:Name="grid1" HorizontalAlignment="Center" Margin="52,20,51.333,30" VerticalAlignment="Center" Height="366" Width="350">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -30,11 +30,11 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label Content="מפתח:" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource UpdateLineWindow_Key}" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <TextBlock x:Name="keyTextBlock" Grid.Column="1" Grid.Row="0" Text="{Binding Key, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10" />
-                <Label Content="מספר קו:" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Height="Auto" Margin="9.667,1,10,9" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource AddLineWindow_LineNumber}" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Height="Auto" Margin="9.667,1,10,9" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <TextBox x:Name="lineNumberTextBox" Grid.Column="1" Grid.Row="1" Text="{Binding LineNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" TextChanged="lineNumberTextBox_TextChanged" PreviewKeyDown="lineNumberTextBox_PreviewKeyDown"/>
-                <Label Content="איזור:" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource AddLineWindow_Area}" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <ComboBox x:Name="areaComboBox" Grid.Column="1"  ItemsSource="{Binding}"  Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom">
                     <ComboBox.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -42,9 +42,9 @@
                         </ItemsPanelTemplate>
                     </ComboBox.ItemsPanel>
                 </ComboBox>
-                <Label Content="תחנה ראשונה:" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource AddLineWindow_FirstStation}" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <TextBlock x:Name="firstStationTextBlock" Grid.Column="1" Grid.Row="3" Text="{Binding FirstStation, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10" />
-                <Label Content="תחנה אחרונה:" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource AddLineWindow_LastStation}" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <TextBlock x:Name="lastStationTextBlock" Grid.Column="1" Grid.Row="4" Text="{Binding LastStation, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10" />
                 <Label Content="תחנות בקו:" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="5" VerticalAlignment="Stretch" Height="Auto" Margin="9.667,5,10,5" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <ComboBox x:Name="stationsComboBox" Grid.Column="1"  ItemsSource="{Binding}"  Grid.Row="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom">
@@ -54,7 +54,7 @@
                         </ItemsPanelTemplate>
                     </ComboBox.ItemsPanel>
                 </ComboBox>
-                <Button x:Name="addBusLineStationButton" Content="הוסף" Grid.Column="0" Grid.Row="6"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" Click="addBusLineStationButton_Click" Background="#FF477AA9" />
+                <Button x:Name="addBusLineStationButton" Content="{DynamicResource Add}" Grid.Column="0" Grid.Row="6"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" Click="addBusLineStationButton_Click" Background="#FF477AA9" />
                 <StackPanel Grid.Column="1" Grid.Row="6" Orientation="Horizontal">
                     <ComboBox x:Name="addStationComboBox" Width="100" ItemsSource="{Binding}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,10,5,10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom">
                         <ComboBox.ItemsPanel>
@@ -77,8 +77,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="addButton" Grid.Column="0" Margin="20,0" Background="#FF477AA9" Content="שמור" BorderBrush="{x:Null}" Click="updateButton_Click" IsEnabled="False"/>
-                <Button x:Name="cancelButton" Grid.Column="1" Margin="20,0" Background="#FF477AA9" Content="ביטול" BorderBrush="{x:Null}" Click="cancelButton_Click"/>
+                <Button x:Name="addButton" Grid.Column="0" Margin="20,0" Background="#FF477AA9" Content="{DynamicResource Save}" BorderBrush="{x:Null}" Click="updateButton_Click" IsEnabled="False"/>
+                <Button x:Name="cancelButton" Grid.Column="1" Margin="20,0" Background="#FF477AA9" Content="{DynamicResource Cancel}" BorderBrush="{x:Null}" Click="cancelButton_Click"/>
             </Grid>
         </StackPanel>
     </Grid>

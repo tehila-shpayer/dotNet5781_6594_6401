@@ -29,8 +29,12 @@
     <System:String x:Key="BusPage_Treatment">Treat</System:String>
     <System:String x:Key="BusPage_Refuel">Refuel</System:String>
 
-    <System:String x:Key="ProfilePage_ProfileTitle">My Profile</System:String>
     <System:String x:Key="Edit">Edit</System:String>
+    <System:String x:Key="Save">Save</System:String>
+    <System:String x:Key="Cancel">Cancel</System:String>
+    <System:String x:Key="Add">Add</System:String>
+
+    <System:String x:Key="ProfilePage_ProfileTitle">My Profile</System:String>
     <System:String x:Key="ProfilePage_ChangePassword">Change Password</System:String>
     <System:String x:Key="ProfilePage_UploadImage">Upload Image</System:String>
     <System:String x:Key="ProfilePage_UserName">User Name:</System:String>
@@ -40,8 +44,6 @@
     <System:String x:Key="ProfilePage_Email">Email:</System:String>
     <System:String x:Key="ProfilePage_Phone">Phone:</System:String>
     <System:String x:Key="ProfilePage_Address">Address:</System:String>
-    <System:String x:Key="ProfilePage_Save">Save</System:String>
-    <System:String x:Key="ProfilePage_Undo">Undo</System:String>
     <System:String x:Key="ProfilePage_OldPassword" xml:space="preserve"> Old Password</System:String>
     <System:String x:Key="ProfilePage_NewPassword" xml:space="preserve"> New Password</System:String>
     
@@ -55,4 +57,15 @@
     <System:String x:Key="Menue_Buses">BUSES</System:String>
     <System:String x:Key="Menue_Settings">SETTINGS</System:String>
     <System:String x:Key="Menue_Simulation">SIMULATION</System:String>
+    
+    <System:String x:Key="AddBusLineStationWindow_ChooseStation">Choose station:</System:String>
+
+    <System:String x:Key="AddLineWindow_Title">Add Line</System:String>
+    <System:String x:Key="AddLineWindow_LineNumber">Line Number:</System:String>
+    <System:String x:Key="AddLineWindow_Area">Area:</System:String>
+    <System:String x:Key="AddLineWindow_FirstStation">First Station:</System:String>
+    <System:String x:Key="AddLineWindow_LastStation">Last Station:</System:String>
+
+    <System:String x:Key="UpdateLineWindow_Title">Update Line</System:String>
+    <System:String x:Key="UpdateLineWindow_Key">Key:</System:String>
 </ResourceDictionary>

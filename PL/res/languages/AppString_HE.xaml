@@ -28,8 +28,12 @@
     <System:String x:Key="BusPage_Treatment">טיפול</System:String>
     <System:String x:Key="BusPage_Refuel">תדלוק</System:String>
     
-    <System:String x:Key="ProfilePage_ProfileTitle">הפרופיל שלי</System:String>
     <System:String x:Key="Edit">ערוך</System:String>
+    <System:String x:Key="Save">שמור</System:String>
+    <System:String x:Key="Cancel">ביטול</System:String>
+    <System:String x:Key="Add">הוסף</System:String>
+
+    <System:String x:Key="ProfilePage_ProfileTitle">הפרופיל שלי</System:String>
     <System:String x:Key="ProfilePage_ChangePassword">שנה סיסמה</System:String>
     <System:String x:Key="ProfilePage_UploadImage">בחר תמונה</System:String>
     <System:String x:Key="ProfilePage_UserName">שם משתמש:</System:String>
@@ -39,8 +43,6 @@
     <System:String x:Key="ProfilePage_Email">אימייל:</System:String>
     <System:String x:Key="ProfilePage_Phone">מספר טלפון:</System:String>
     <System:String x:Key="ProfilePage_Address">כתובת:</System:String>
-    <System:String x:Key="ProfilePage_Save">שמור</System:String>
-    <System:String x:Key="ProfilePage_Undo">ביטול</System:String>
     <System:String x:Key="ProfilePage_OldPassword" xml:space="preserve"> Old Password</System:String>
     <System:String x:Key="ProfilePage_NewPassword" xml:space="preserve"> New Password</System:String>
 
@@ -54,4 +56,16 @@
     <System:String x:Key="Menue_Buses">אוטובוסים</System:String>
     <System:String x:Key="Menue_Settings">הגדרות</System:String>
     <System:String x:Key="Menue_Simulation">סימולציה</System:String>
+
+    <System:String x:Key="AddBusLineStationWindow_ChooseStation">בחר תחנה:</System:String>
+    
+    <System:String x:Key="AddLineWindow_Title">הוסף קו</System:String>
+    <System:String x:Key="AddLineWindow_LineNumber">מספר קו:</System:String>
+    <System:String x:Key="AddLineWindow_Area">איזור:</System:String>
+    <System:String x:Key="AddLineWindow_FirstStation">תחנה ראשונה:</System:String>
+    <System:String x:Key="AddLineWindow_LastStation">תחנה אחרונה:</System:String>
+    
+    <System:String x:Key="UpdateLineWindow_Title">עדכן קו</System:String>
+    <System:String x:Key="UpdateLineWindow_Key">מפתח:</System:String>
+
 </ResourceDictionary>

@@ -53,13 +53,13 @@
                         <Button x:Name="savePasswordButton" Margin="10,5" Width="100" Height="40" Padding="0" Click="savePasswordButton_Click" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Margin="0" Kind="ContentSave" Height="30" Width="30"/>
-                                <TextBlock Text="{DynamicResource ProfilePage_Save}" VerticalAlignment="Center" Margin="5,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                                <TextBlock Text="{DynamicResource Save}" VerticalAlignment="Center" Margin="5,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
                             </StackPanel>
                         </Button>
                         <Button x:Name="undoPasswordButton" Margin="10,5" Width="100" Height="40" Padding="0" Click="undoPasswordButton_Click" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Margin="0" Kind="UndoVariant" Height="30" Width="30"/>
-                                <TextBlock Text="{DynamicResource ProfilePage_Undo}" VerticalAlignment="Center" Margin="5,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                                <TextBlock Text="{DynamicResource Cancel}" VerticalAlignment="Center" Margin="5,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
                             </StackPanel>
                         </Button>
                     </StackPanel>
@@ -83,13 +83,13 @@
                         <Button x:Name="saveChangeButton" Margin="5" Width="100" Height="40" Padding="0" Click="saveChangeButton_Click" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Margin="0" Kind="ContentSave" Height="30" Width="30"/>
-                                <TextBlock Text="{DynamicResource ProfilePage_Save}" VerticalAlignment="Center" Margin="5,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                                <TextBlock Text="{DynamicResource Save}" VerticalAlignment="Center" Margin="5,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
                             </StackPanel>
                         </Button>
                         <Button x:Name="undoChangeButton" Margin="5" Width="100" Height="40" Padding="0" Click="undoChangeButton_Click" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Margin="0" Kind="UndoVariant" Height="30" Width="30"/>
-                                <TextBlock Text="{DynamicResource ProfilePage_Undo}" VerticalAlignment="Center" Margin="5,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                                <TextBlock Text="{DynamicResource Cancel}" VerticalAlignment="Center" Margin="5,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
                             </StackPanel>
                         </Button>
                     </StackPanel>

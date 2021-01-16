@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="AddBus" Height="500" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Add Line" Height="500" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid FlowDirection="RightToLeft">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -15,7 +15,7 @@
         <Rectangle Grid.Column="0" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
         </Rectangle>
         <StackPanel Margin="70,50,70.333,47.667">
-            <Label Content="הוסף קו" FontSize="25" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
+            <Label Content="{DynamicResource AddLineWindow_Title}" FontSize="25" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
             <Grid x:Name="grid1" HorizontalAlignment="Center" Margin="20,20,20,30" VerticalAlignment="Center" Height="238" Width="333">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -27,9 +27,9 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label Content="מספר קו:" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource AddLineWindow_LineNumber}" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <TextBox x:Name="lineNumberTextBox" Grid.Column="1" Grid.Row="0" Text="{Binding LineNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" TextChanged="lineNumberTextBox_TextChanged" PreviewKeyDown="lineNumberTextBox_PreviewKeyDown"/>
-                <Label Content="איזור:" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource AddLineWindow_Area}" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <ComboBox x:Name="areaComboBox" Grid.Column="1"  ItemsSource="{Binding}"  Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom">
                     <ComboBox.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -37,7 +37,7 @@
                         </ItemsPanelTemplate>
                     </ComboBox.ItemsPanel>
                 </ComboBox>
-                <Label Content="תחנה ראשונה:" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource AddLineWindow_FirstStation}" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <ComboBox x:Name="firstStationComboBox" Grid.Column="1" Grid.Row="2" ItemsSource="{Binding}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom">
                     <ComboBox.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -45,7 +45,7 @@
                         </ItemsPanelTemplate>
                     </ComboBox.ItemsPanel>
                 </ComboBox>
-                <Label Content="תחנה אחרונה:" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource AddLineWindow_LastStation}" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <ComboBox x:Name="lastStationComboBox" Grid.Column="1" Grid.Row="3" ItemsSource="{Binding}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom">
                     <ComboBox.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -59,8 +59,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-            <Button x:Name="addButton" Grid.Column="0" Margin="20,0" Background="#FF477AA9" Content="שמור" BorderBrush="{x:Null}" Click="addButton_Click" IsEnabled="False"/>
-            <Button x:Name="cancelButton" Grid.Column="1" Margin="20,0" Background="#FF477AA9" Content="ביטול" BorderBrush="{x:Null}" Click="cancelButton_Click"/>
+            <Button x:Name="addButton" Grid.Column="0" Margin="20,0" Background="#FF477AA9" Content="{DynamicResource Save}" BorderBrush="{x:Null}" Click="addButton_Click" IsEnabled="False"/>
+            <Button x:Name="cancelButton" Grid.Column="1" Margin="20,0" Background="#FF477AA9" Content="{DynamicResource Cancel}" BorderBrush="{x:Null}" Click="cancelButton_Click"/>
             </Grid>
         </StackPanel>
     </Grid>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="ADD STATION" Height="266" Width="382" ResizeMode="NoResize" FontFamily="Segoe UI Semibold" WindowStartupLocation="CenterScreen">
-    <Grid Margin="0,0,0,0">
+    <Grid Margin="0,0,0,0" FlowDirection="RightToLeft">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                 <GradientStop Color="LightGray" Offset="1"/>
@@ -15,17 +15,16 @@
         <Rectangle Grid.Column="0" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
         </Rectangle>
         <StackPanel Orientation="Vertical">
-        <Label Content="Choose station:" FontSize="25" Margin="20,50,20,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
+        <Label Content="{DynamicResource AddBusLineStationWindow_ChooseStation}" FontSize="25" Margin="20,50,20,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
         <ComboBox x:Name="cbStationKey"  Margin="50,5,50,10" FontSize="18" ItemsSource="{Binding}"/>
             <Grid Margin="50,10,50,25">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="addButton" Grid.Column="1" Margin="20,0" Background="#FF477AA9" Content="ADD" BorderBrush="{x:Null}" Click="addButton_Click"/>
-                <Button x:Name="cancelButton" Grid.Column="0" Margin="20,0" Background="#FF477AA9" Content="CANCEL" BorderBrush="{x:Null}" Click="cancelButton_Click"/>
+                <Button x:Name="cancelButton" Grid.Column="0" Margin="20,0" Background="#FF477AA9" Content="{DynamicResource Cancel}" BorderBrush="{x:Null}" Click="cancelButton_Click"/>
+                <Button x:Name="addButton" Grid.Column="1" Margin="20,0" Background="#FF477AA9" Content="{DynamicResource Add}" BorderBrush="{x:Null}" Click="addButton_Click"/>
             </Grid>
-            <!--<Button x:Name="addButton" Margin="140,10,140,25" Background="#FF477AA9" Content="ADD" BorderBrush="{x:Null}" Click="addButton_Click"/>-->
         </StackPanel>
     </Grid>
 </Window>
