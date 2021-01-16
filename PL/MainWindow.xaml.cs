@@ -76,11 +76,6 @@ namespace PL
             DragMove();
         }
 
-        private void languageButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void minimizeButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
@@ -95,6 +90,20 @@ namespace PL
         private void logoutButton_Click(object sender, RoutedEventArgs e)
         {
             openingPage.Content = new LoginPage();
+        }
+
+        private void HebrewBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Uri dictUri = new Uri(@"res/languages/AppString_HE.xaml", UriKind.Relative);
+            ResourceDictionary resDict = Application.LoadComponent(dictUri) as ResourceDictionary;
+            Application.Current.Resources.MergedDictionaries.Add(resDict);
+        }
+
+        private void EnglishBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Uri dictUri = new Uri(@"res/languages/AppString_EN.xaml", UriKind.Relative);
+            ResourceDictionary resDict = Application.LoadComponent(dictUri) as ResourceDictionary;
+            Application.Current.Resources.MergedDictionaries.Add(resDict);
         }
     }
 }

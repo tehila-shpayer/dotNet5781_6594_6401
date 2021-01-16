@@ -3,5 +3,17 @@
                     xmlns:local="clr-namespace:PL.res.languages" xmlns:System="clr-namespace:System;assembly=mscorlib"
                    >
     <System:String x:Key="BusPageTitleString">אוטובוסים:</System:String>
+    <System:String x:Key="StationPage_StationsTitle">תחנות:</System:String>
+    <System:String x:Key="StationPage_DeleteStation">מחק תחנה</System:String>
+    <System:String x:Key="StationPage_AddStation">הוסף תחנה</System:String>
+    <System:String x:Key="StationPage_UpdateStation">עדכן תחנה</System:String>
+    <System:String x:Key="StationPage_LinesInStation">קוים העוברים בתחנה:</System:String>
+    
+    <System:String x:Key="BusLinePage_LinesTitle">קוי אוטובוס:</System:String>
+    <System:String x:Key="BusLinePage_Stations">תחנות:</System:String>
+    <System:String x:Key="BusLinePage_UpdateLine">עדכן קו</System:String>
+    <System:String x:Key="BusLinePage_DeleteLine">מחק קו</System:String>
+    <System:String x:Key="BusLinePage_AddLine">הוסף קו</System:String>
+    <System:String x:Key="BusLinePage_ShowByArea">הראה על פי איזור:</System:String>
 
 </ResourceDictionary>

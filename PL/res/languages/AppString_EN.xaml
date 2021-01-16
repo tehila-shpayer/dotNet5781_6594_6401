@@ -1,5 +1,19 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:PL.res.languages">
-    
+                    xmlns:local="clr-namespace:PL.res.languages"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib"
+>
+    <System:String x:Key="BusPageTitleString">אוטובוסים:</System:String>
+    <System:String x:Key="StationPage_StationsTitle">Stations:</System:String>
+    <System:String x:Key="StationPage_DeleteStation">DELETE STATION</System:String>
+    <System:String x:Key="StationPage_AddStation">ADD STATION</System:String>
+    <System:String x:Key="StationPage_UpdateStation">UPDATE STATION</System:String>
+    <System:String x:Key="StationPage_LinesInStation">Lines in station:</System:String>
+
+    <System:String x:Key="BusLinePage_LinesTitle">Lines:</System:String>
+    <System:String x:Key="BusLinePage_Stations">Stations:</System:String>
+    <System:String x:Key="BusLinePage_UpdateLine">UPDATE LINE</System:String>
+    <System:String x:Key="BusLinePage_DeleteLine">DELETE LINE</System:String>
+    <System:String x:Key="BusLinePage_AddLine">ADD LINE</System:String>
+    <System:String x:Key="BusLinePage_ShowByArea">Show by area:</System:String>
 </ResourceDictionary>

@@ -43,14 +43,9 @@
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                 <GradientStop Color="LightGray" Offset="1"/>
-                <!--<GradientStop Color="#FFA6C8D1" Offset="0.25"/>
-                <GradientStop Color="#FFD9DCDD" Offset="0.086"/>
-                <GradientStop Color="#FFBBD0D6" Offset="0.18"/>
-                <GradientStop Color="#FFABC9D1" Offset="0.608"/>
-                <GradientStop Color="#FFC7D0D2" Offset="0.46"/>-->
             </LinearGradientBrush>
         </Grid.Background>
-        <Label Content="{DynamicResource stationPageTitleString}" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontSize="30"/>
+        <Label Content="{DynamicResource StationPage_StationsTitle}" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontSize="30"/>
         <StackPanel Grid.Row="1" Grid.Column="0" x:Name="spStations">
             <StackPanel.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -78,18 +73,14 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1">
-            <Button x:Name="updateButton" Width="145" Margin="0,10,5,10" Background="#FF477AA9" Content="עדכן תחנה" Click="updateButton_Click" BorderBrush="{x:Null}"/>
-            <Button x:Name="deleteButton" Width="145" Margin="5,10" Content="מחק תחנה" Background="#FF477AA9" Click="deleteButton_Click" BorderBrush="{x:Null}"/>
-            <Button x:Name="addButton" Width="145" Margin="5,10,15,10" Content="הוסף תחנה" Background="#FF477AA9" Click="addButton_Click" BorderBrush="{x:Null}"/>
+            <Button x:Name="updateButton" Width="145" Margin="0,10,5,10" Background="#FF477AA9" Content="{DynamicResource StationPage_UpdateStation}" Click="updateButton_Click" BorderBrush="{x:Null}"/>
+            <Button x:Name="deleteButton" Width="145" Margin="5,10" Content="{DynamicResource StationPage_DeleteStation}" Background="#FF477AA9" Click="deleteButton_Click" BorderBrush="{x:Null}"/>
+            <Button x:Name="addButton" Width="145" Margin="5,10,15,10" Content="{DynamicResource StationPage_AddStation}" Background="#FF477AA9" Click="addButton_Click" BorderBrush="{x:Null}"/>
         </StackPanel>
 
         <Rectangle Grid.Column="1" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
         </Rectangle>
         <Grid x:Name="StationInfoGrid" Grid.Column="1" Grid.Row="1" Margin="60,60,60,45" DataContext="{Binding}">
-            <!--<Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="1.5*"/>
-            </Grid.ColumnDefinitions>-->
             <StackPanel Grid.Column="0" HorizontalAlignment="Right">
                 <TextBlock Text="{Binding Name}" Margin="10" TextAlignment="Left" FontWeight="Bold" FontSize="22" FontFamily="Segoe UI Black"/>
                 <TextBlock Text="{Binding Key}" Margin="10,0" TextAlignment="Left" FontSize="20"/>
@@ -100,15 +91,11 @@
                     <TextBlock FontSize="20" Text=" ,°N " Margin="0,15" FontFamily="Segoe UI Emoji"/>
                     <TextBlock FontSize="20" Text="{Binding Latitude}" Margin="0,15" FontFamily="Segoe UI Emoji"/>
 
-                    <!--<Run Text="{Binding Longitude}"/>
-                    <Run Text="E°"/>-->
-
-
                     <Button x:Name="mapButton" Margin="10" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="#FF477AA9" Click="mapButton_Click">
                         <materialDesign:PackIcon Kind="MapMarkerOutline" Height="30" Width="30"/>
                     </Button>
                 </StackPanel>
-                <TextBlock FontSize="20" Text="קוים העוברים בתחנה:" TextAlignment="Left" Margin="15" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left"/>
+                <TextBlock FontSize="20" Text="{DynamicResource StationPage_LinesInStation}" TextAlignment="Left" Margin="15" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left"/>
                 <ListBox x:Name="lbBusLineStations" Margin="30,10,-10,10" Padding="0,0,0,0"  HorizontalAlignment="Center" ItemsSource="{Binding PresentBusLines}" ItemTemplate="{StaticResource BusLineTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="419" Height="183" HorizontalContentAlignment="Left">
 
                 </ListBox>

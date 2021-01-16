@@ -59,7 +59,7 @@
                 <GradientStop Color="LightGray" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Label Content="קוי אוטובוס:" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontSize="30"/>
+        <Label Content="{DynamicResource BusLinePage_LinesTitle}" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontSize="30"/>
         <StackPanel Grid.Row="1" Grid.Column="0" x:Name="spStations">
             <StackPanel.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -72,7 +72,7 @@
                 </LinearGradientBrush>
             </StackPanel.Background>
             <StackPanel Orientation="Vertical" Margin="30,2">
-                <Label Content="הראה על פי איזור:" Foreground="#FF476972" FontWeight="Bold" FontSize="14"/>
+                <Label Content="{DynamicResource BusLinePage_ShowByArea}" Foreground="#FF476972" FontWeight="Bold" FontSize="14"/>
                 <ComboBox x:Name="areas"  ItemsSource="{Binding}" Background="White" Margin="10,0" AllowDrop="True" SelectionChanged="areas_SelectionChanged" HorizontalContentAlignment="Right"/>
             </StackPanel>
             <ComboBox x:Name="cbBusLines" ItemsSource="{Binding}" Height="40" Background="#FFBBD0D6" SelectionChanged="cbBusLines_SelectionChanged" HorizontalContentAlignment="Right">
@@ -93,9 +93,9 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1">
-            <Button x:Name="updateButton" Width="145" Margin="5,10" Content="עדכן קו" Background="#FF477AA9" Click="updateButton_Click" BorderBrush="{x:Null}"/>
-            <Button x:Name="deleteButton" Width="145" Margin="5,10" Content="מחק קו" Background="#FF477AA9" Click="deleteButton_Click" BorderBrush="{x:Null}"/>
-            <Button x:Name="addButton" Width="145" Margin="5,10" Content="הוסף קו" Background="#FF477AA9" Click="addButton_Click" BorderBrush="{x:Null}"/>
+            <Button x:Name="updateButton" Width="145" Margin="5,10" Content="{DynamicResource BusLinePage_UpdateLine}" Background="#FF477AA9" Click="updateButton_Click" BorderBrush="{x:Null}"/>
+            <Button x:Name="deleteButton" Width="145" Margin="5,10" Content="{DynamicResource BusLinePage_DeleteLine}" Background="#FF477AA9" Click="deleteButton_Click" BorderBrush="{x:Null}"/>
+            <Button x:Name="addButton" Width="145" Margin="5,10" Content="{DynamicResource BusLinePage_AddLine}" Background="#FF477AA9" Click="addButton_Click" BorderBrush="{x:Null}"/>
         </StackPanel>
 
         <Rectangle Grid.Column="1" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
@@ -107,7 +107,7 @@
                     <TextBlock Text="{Binding Area}" Margin="10,0" TextAlignment="Left" FontSize="22" FontFamily="Segoe UI Black"/>
                 </StackPanel>
                 <TextBlock Text="{Binding Key}" Margin="10" TextAlignment="Left" FontSize="16"/>
-                <TextBlock Text="תחנות:" Margin="15,5" TextAlignment="Left" FontSize="20" FontFamily="Segoe UI Semibold"/>
+                <TextBlock Text="{DynamicResource BusLinePage_Stations}" Margin="15,5" TextAlignment="Left" FontSize="20" FontFamily="Segoe UI Semibold"/>
                 <ListBox x:Name="lbBusLineStations" Margin="15,10" Padding="0,-25,0,0" ItemsSource="{Binding BusLineStations}" ItemTemplate="{StaticResource BusLineStationTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="419" Height="305">
                 </ListBox>
             </StackPanel>
