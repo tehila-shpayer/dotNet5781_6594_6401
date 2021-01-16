@@ -32,7 +32,7 @@
                 <GradientStop Color="LightGray" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Label Content="{DynamicResource BusPageTitleString}" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontSize="30" FlowDirection="RightToLeft"/>
+        <Label Content="{DynamicResource BusPage_BusesTitle}" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontSize="30" FlowDirection="RightToLeft"/>
         <StackPanel Grid.Row="1" Grid.Column="0" x:Name="spStations">
             <StackPanel.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -60,9 +60,9 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1">
-            <Button x:Name="updateButton" Width="145" Margin="0,10,5,10" Background="#FF477AA9" Content="עדכן אוטובוס" Click="updateButton_Click" BorderBrush="{x:Null}"/>
-            <Button x:Name="deleteButton" Width="145" Margin="5,10" Content="מחק אוטובוס" Background="#FF477AA9" Click="deleteButton_Click" BorderBrush="{x:Null}"/>
-            <Button x:Name="addButton" Width="145" Margin="5,10,15,10" Content="הוסף אוטובוס" Background="#FF477AA9" Click="addButton_Click" BorderBrush="{x:Null}"/>
+            <Button x:Name="updateButton" Width="145" Margin="0,10,5,10" Background="#FF477AA9" Content="{DynamicResource BusPage_UpdaeBus}" Click="updateButton_Click" BorderBrush="{x:Null}"/>
+            <Button x:Name="deleteButton" Width="145" Margin="5,10" Content="{DynamicResource BusPage_DeleteBus}" Background="#FF477AA9" Click="deleteButton_Click" BorderBrush="{x:Null}"/>
+            <Button x:Name="addButton" Width="145" Margin="5,10,15,10" Content="{DynamicResource BusPage_AddBus}" Background="#FF477AA9" Click="addButton_Click" BorderBrush="{x:Null}"/>
         </StackPanel>
 
         <Rectangle Grid.Column="1" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
@@ -78,55 +78,55 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,6,20,6">
                     <materialDesign:PackIcon Kind="DateRange" Foreground="#FF477AA9" Width="30" Height="30"/>
                     <TextBlock FontSize="20" TextAlignment="Right" FontFamily="Segoe UI Emoji">
-                    <Run Text="  תאריך תחילת פעילות:"/>
+                    <Run Text="{DynamicResource BusPage_StartActivityDate}"/>
                     <Run Text="{Binding RunningDateFormat}"/>
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,6,20,6">
                     <materialDesign:PackIcon Kind="Odometer" Foreground="#FF477AA9" Width="30" Height="30"/>
                     <TextBlock FontSize="20" TextAlignment="Right" FontFamily="Segoe UI Emoji">
-                    <Run Text="  קילומטראז': "/>
+                    <Run Text="{DynamicResource BusPage_KM}"/>
                     <Run Text="{Binding KM}"/>
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,6,20,6">
                     <materialDesign:PackIcon Kind="DateRange" Foreground="#FF477AA9" Width="30" Height="30"/>
                     <TextBlock FontSize="20" TextAlignment="Left" FontFamily="Segoe UI Emoji">
-                    <Run Text="  תאריך טיפול אחרון: "/>
+                    <Run Text="{DynamicResource BusPage_LastTreatmentDate}"/>
                     <Run Text="{Binding LastTreatmentFormat}"/>
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,6,20,6">
                     <materialDesign:PackIcon Kind="Odometer" Foreground="#FF477AA9" Width="30" Height="30"/>
                     <TextBlock FontSize="20" TextAlignment="Right" FontFamily="Segoe UI Emoji">
-                    <Run Text="  קילומטראז' מאז טיפול אחרון: "/>
+                    <Run Text="{DynamicResource BusPage_KMSinceLastTreatment}"/>
                     <Run Text="{Binding BeforeTreatKM}"/>
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,6,20,6">
                     <materialDesign:PackIcon Kind="Fuel" Foreground="#FF477AA9" Width="30" Height="30"/>
                     <TextBlock FontSize="20" TextAlignment="Right" FontFamily="Segoe UI Emoji">
-                    <Run Text="  דלק: "/>
+                    <Run Text="{DynamicResource BusPage_Fuel}"/>
                     <Run Text="{Binding Fuel}"/>
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,10" HorizontalAlignment="Center">
                     <Button Margin="10,5" Width="120" Height="45" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="נסיעה" VerticalAlignment="Center" Margin="5,0,0,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
-                            <materialDesign:PackIcon Margin="0,0,5,0" Kind="Travel" Height="30" Width="30"/>
+                            <TextBlock Text="{DynamicResource BusPage_Ride}" VerticalAlignment="Center" Margin="5,0,0,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                            <materialDesign:PackIcon Margin="5,0,0,0" Kind="Travel" Height="30" Width="30"/>
                         </StackPanel>
                     </Button>
                     <Button Margin="10,5" Width="120" Height="45" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="טיפול" VerticalAlignment="Center" Margin="5,0,0,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
-                            <materialDesign:PackIcon Margin="0,0,5,0" Kind="Screwdriver" Height="30" Width="30"/>
+                            <TextBlock Text="{DynamicResource BusPage_Treatment}" VerticalAlignment="Center" Margin="5,0,0,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                            <materialDesign:PackIcon Margin="5,0,0,0" Kind="Screwdriver" Height="30" Width="30"/>
                         </StackPanel>
                     </Button>
                     <Button Margin="10,5" Width="120" Height="45" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="תדלוק" VerticalAlignment="Center" Margin="5,0,0,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
-                            <materialDesign:PackIcon Margin="0,0,5,0" Kind="FuelPump" Height="30" Width="30"/>
+                            <TextBlock Text="{DynamicResource BusPage_Refuel}" VerticalAlignment="Center" Margin="5,0,0,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                            <materialDesign:PackIcon Margin="5,0,0,0" Kind="FuelPump" Height="30" Width="30"/>
                         </StackPanel>
                     </Button>
 

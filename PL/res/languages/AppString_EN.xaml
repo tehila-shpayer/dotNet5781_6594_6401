@@ -1,9 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:PL.res.languages"
-                    xmlns:System="clr-namespace:System;assembly=mscorlib"
->
-    <System:String x:Key="BusPageTitleString">אוטובוסים:</System:String>
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+    
     <System:String x:Key="StationPage_StationsTitle">Stations:</System:String>
     <System:String x:Key="StationPage_DeleteStation">DELETE STATION</System:String>
     <System:String x:Key="StationPage_AddStation">ADD STATION</System:String>
@@ -16,4 +15,17 @@
     <System:String x:Key="BusLinePage_DeleteLine">DELETE LINE</System:String>
     <System:String x:Key="BusLinePage_AddLine">ADD LINE</System:String>
     <System:String x:Key="BusLinePage_ShowByArea">Show by area:</System:String>
+
+    <System:String x:Key="BusPage_BusesTitle">Buses:</System:String>
+    <System:String x:Key="BusPage_UpdaeBus">UPDATE BUS</System:String>
+    <System:String x:Key="BusPage_DeleteBus">DELETE BUS</System:String>
+    <System:String x:Key="BusPage_AddBus">ADD BUS</System:String>
+    <System:String x:Key="BusPage_StartActivityDate" xml:space="preserve">  Starting Date: </System:String>
+    <System:String x:Key="BusPage_KM" xml:space="preserve">  KM: </System:String>
+    <System:String x:Key="BusPage_LastTreatmentDate" xml:space="preserve">  Last Treatment Date: </System:String>
+    <System:String x:Key="BusPage_KMSinceLastTreatment" xml:space="preserve">  KM Since Last Treatment: </System:String>
+    <System:String x:Key="BusPage_Fuel" xml:space="preserve">  Fuel: </System:String>
+    <System:String x:Key="BusPage_Ride">Drive</System:String>
+    <System:String x:Key="BusPage_Treatment">Treat</System:String>
+    <System:String x:Key="BusPage_Refuel">Refuel</System:String>
 </ResourceDictionary>

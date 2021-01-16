@@ -1,8 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:PL.res.languages" xmlns:System="clr-namespace:System;assembly=mscorlib"
-                   >
-    <System:String x:Key="BusPageTitleString">אוטובוסים:</System:String>
+                    xmlns:local="clr-namespace:PL.res.languages"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
     <System:String x:Key="StationPage_StationsTitle">תחנות:</System:String>
     <System:String x:Key="StationPage_DeleteStation">מחק תחנה</System:String>
     <System:String x:Key="StationPage_AddStation">הוסף תחנה</System:String>
@@ -15,5 +14,18 @@
     <System:String x:Key="BusLinePage_DeleteLine">מחק קו</System:String>
     <System:String x:Key="BusLinePage_AddLine">הוסף קו</System:String>
     <System:String x:Key="BusLinePage_ShowByArea">הראה על פי איזור:</System:String>
+    
+    <System:String x:Key="BusPage_BusesTitle">אוטובוסים:</System:String>
+    <System:String x:Key="BusPage_UpdaeBus">עדכן אוטובוס</System:String>
+    <System:String x:Key="BusPage_DeleteBus">מחק אוטובוס</System:String>
+    <System:String x:Key="BusPage_AddBus">הוסף אוטובוס</System:String>
+    <System:String x:Key="BusPage_StartActivityDate" xml:space="preserve">  תאריך תחילת פעילות:</System:String>
+    <System:String x:Key="BusPage_KM" xml:space="preserve">  קילומטראז': </System:String>
+    <System:String x:Key="BusPage_LastTreatmentDate" xml:space="preserve">  תאריך טיפול אחרון: </System:String>
+    <System:String x:Key="BusPage_KMSinceLastTreatment" xml:space="preserve">  קילומטראז' מאז טיפול אחרון: </System:String>
+    <System:String x:Key="BusPage_Fuel" xml:space="preserve">  דלק: </System:String>
+    <System:String x:Key="BusPage_Ride">נסיעה</System:String>
+    <System:String x:Key="BusPage_Treatment">טיפול</System:String>
+    <System:String x:Key="BusPage_Refuel">תדלוק</System:String>
 
 </ResourceDictionary>
