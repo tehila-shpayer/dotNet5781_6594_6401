@@ -22,7 +22,7 @@ namespace PL
         public MapWindow(Station station)
         {
             InitializeComponent();
-            wbMap.Source = $"https://www.google.com/maps/search/?api=1&query=+{station.Latitude}+,+{station.Longitude}";
+            //wbMap.Source = $"https://www.google.com/maps/search/?api=1&query=+{station.Latitude}+,+{station.Longitude}";
             //wbMaps.Source = $"tps://www.google.com/maps/search/?api=1&query=+{station.Latitude}+,+{station.Longitude}";
         }
 
