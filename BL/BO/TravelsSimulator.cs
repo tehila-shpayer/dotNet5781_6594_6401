@@ -11,7 +11,7 @@ namespace BO
 {
     class TravelsSimulator
     {
-        BackgroundWorker travels; 
+        BackgroundWorker travels;
         public TravelsSimulator()
         {
             //travels = new BackgroundWorker();
@@ -24,6 +24,7 @@ namespace BO
             //travels.RunWorkerAsync(travels);
         }
     }
+        
    
     //int GetTimeFromFirstStationInMillySeconds(BusLineStation bls)
     //{
