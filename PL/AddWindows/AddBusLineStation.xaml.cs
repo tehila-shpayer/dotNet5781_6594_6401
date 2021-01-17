@@ -26,12 +26,8 @@ namespace PL
             selectedStation = selectedBusLineStation;
             cbStationKey.DataContext = MainWindow.stationsCollection;
             cbStationKey.DisplayMemberPath = "  ShowNameKey  ";
+            mainGrid.DataContext = MainWindow.Language;
         }
-
-        //private void tbStationKey_PreviewKeyDown(object sender, KeyEventArgs e)
-        //{
-        //    PL.PreviewKeyDown.GeneralPerviewKeyDown(sender, e);
-        //}
         public static void AddBusLineStationToLine(int busKey, int stationKey, int position)
         {
             try
@@ -73,7 +69,6 @@ namespace PL
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             AddBusLineStationToLine(selectedStation.BusLineKey, (cbStationKey.SelectedItem as Station).Key, selectedStation.Position);
-            
             Close();
         }
 

@@ -10,6 +10,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
      Title="BusLinePage" Background="White">
     <Page.Resources>
+        <local:LanguageToAlignment x:Key="LanguageConvertor"/>
         <DataTemplate x:Key="BusTemplate" DataType="local:Bus">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Width="230">
                 <TextBlock Text="{Binding LicenseNumberFormat}" TextAlignment="Left" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI Black"/>
@@ -18,7 +19,7 @@
         </DataTemplate>
         <CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Bus}, CreateList=True}"/>
     </Page.Resources>
-    <Grid FlowDirection="RightToLeft">
+    <Grid x:Name="mainGrid" FlowDirection="{Binding Source, Converter={StaticResource LanguageConvertor}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=True}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2*"/>
@@ -32,7 +33,7 @@
                 <GradientStop Color="LightGray" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Label Content="{DynamicResource BusPage_BusesTitle}" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontSize="30" FlowDirection="RightToLeft"/>
+        <Label Content="{DynamicResource BusPage_BusesTitle}" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontSize="30"/>
         <StackPanel Grid.Row="1" Grid.Column="0" x:Name="spStations">
             <StackPanel.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">

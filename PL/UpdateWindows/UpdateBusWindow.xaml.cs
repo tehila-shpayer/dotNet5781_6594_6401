@@ -30,7 +30,7 @@ namespace PL
             updatingBus = bus;
             grid1.DataContext = busBO;
             beforeUpdateindex = MainWindow.busesCollection.IndexOf(updatingBus);
-
+            mainGrid.DataContext = MainWindow.Language;
         }
 
         private void updateBusButton_Click(object sender, RoutedEventArgs e)

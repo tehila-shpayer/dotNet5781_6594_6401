@@ -29,8 +29,11 @@ namespace PL
             InitializeComponent();
             user = _user;
             ProfilGrid.DataContext = user;
+            if(user.Picture != null)
+                imgPhoto.Source = new BitmapImage(new Uri(user.Picture));
             userBO = new BO.User();
             user.Clone(userBO);
+            mainGrid.DataContext = MainWindow.Language;
         }
         private void ChangePasswordButton_Click(object sender, RoutedEventArgs e)
         {
@@ -81,7 +84,7 @@ namespace PL
 
         private void saveChangeButton_Click(object sender, RoutedEventArgs e)
         {
-            user.Clone(userBO);            
+            user.Clone(userBO);
             App.bl.UpdateUser(userBO);
             VisibilityTextBlock();
         }
@@ -108,21 +111,24 @@ namespace PL
             }
             catch (BO.BOInvalidInformationException ex)
             {
-                MessageBox.Show("Can't change password!\n"+ ex.Message + "\nPlease choose another password", "UPDATE PASSWORD MESSAGE", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Can't change password!\n" + ex.Message + "\nPlease choose another password", "UPDATE PASSWORD MESSAGE", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void uploadImageButton_Click(object sender, RoutedEventArgs e)
         {
-                OpenFileDialog op = new OpenFileDialog();
-                op.Title = "Select a picture";
-                op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
-                  "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
-                  "Portable Network Graphic (*.png)|*.png";
-                if (op.ShowDialog() == true)
-                {
-                    imgPhoto.Source = new BitmapImage(new Uri(op.FileName));
-                }
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Select a picture";
+            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+              "Portable Network Graphic (*.png)|*.png";
+            if (op.ShowDialog() == true)
+            {
+                imgPhoto.Source = new BitmapImage(new Uri(op.FileName));
+            }
+            user.Picture = imgPhoto.Source.ToString();
+            userBO.Picture = imgPhoto.Source.ToString();
+            App.bl.UpdateUser(userBO);
         }
 
         private void editButton_Click(object sender, RoutedEventArgs e)
@@ -174,7 +180,7 @@ namespace PL
             NewPassword.Visibility = Visibility.Collapsed;
             tbNewPassword.Visibility = Visibility.Collapsed;
             saveUndoPasswordButtons.Visibility = Visibility.Collapsed;
-            
+
         }
     }
 }

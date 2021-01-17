@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="ADD STATION" Height="266" Width="382" ResizeMode="NoResize" FontFamily="Segoe UI Semibold" WindowStartupLocation="CenterScreen">
-    <Grid Margin="0,0,0,0" FlowDirection="RightToLeft">
+    <Window.Resources>
+        <local:LanguageToAlignment x:Key="LanguageConvertor"/>
+    </Window.Resources>
+    <Grid x:Name="mainGrid" Margin="0" FlowDirection="{Binding Source, Converter={StaticResource LanguageConvertor}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=True}">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                 <GradientStop Color="LightGray" Offset="1"/>
@@ -15,8 +18,8 @@
         <Rectangle Grid.Column="0" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
         </Rectangle>
         <StackPanel Orientation="Vertical">
-        <Label Content="{DynamicResource AddBusLineStationWindow_ChooseStation}" FontSize="25" Margin="20,50,20,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
-        <ComboBox x:Name="cbStationKey"  Margin="50,5,50,10" FontSize="18" ItemsSource="{Binding}"/>
+            <Label Content="{DynamicResource AddBusLineStationWindow_ChooseStation}" FontSize="25" Margin="20,50,20,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
+            <ComboBox x:Name="cbStationKey"  Margin="50,5,50,10" FontSize="18" ItemsSource="{Binding}"/>
             <Grid Margin="50,10,50,25">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>

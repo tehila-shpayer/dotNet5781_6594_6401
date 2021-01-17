@@ -28,6 +28,14 @@ namespace PL
         public static ObservableCollection<BusLine> busLinesCollection = new ObservableCollection<BusLine>();
         public static ObservableCollection<Station> stationsCollection = new ObservableCollection<Station>();
         public static ObservableCollection<Bus> busesCollection = new ObservableCollection<Bus>();
+        public Uri dictUriEN;
+        public Uri dictUriHE;
+        ResourceDictionary resDictEN;
+        ResourceDictionary resDictHE;
+        public static ResourceDictionary Language;
+        //static readonly DependencyProperty LanguageProperty = DependencyProperty.Register("Language", typeof(ResourceDictionary), typeof(MainWindow));
+        //public ResourceDictionary Language { get => (ResourceDictionary)GetValue(LanguageProperty); set => SetValue(LanguageProperty, value); }
+
 
         public MainWindow()
         {
@@ -35,6 +43,13 @@ namespace PL
             Height = 600;
             Width = 1024;
             InitializeCollections();
+            //dictUriEN = new Uri(@"res/languages/AppString_EN.xaml", UriKind.Relative);
+            //resDictEN = Application.LoadComponent(dictUriEN) as ResourceDictionary;
+            //dictUriHE = new Uri(@"res/languages/AppString_HE.xaml", UriKind.Relative);
+            //resDictHE = Application.LoadComponent(dictUriHE) as ResourceDictionary;
+            resDictEN = Application.Current.Resources.MergedDictionaries.FirstOrDefault(a => a.Source.OriginalString == @"/res/languages/AppString_EN.xaml");
+            resDictHE = Application.Current.Resources.MergedDictionaries.FirstOrDefault(a => a.Source.OriginalString == @"/res/languages/AppString_HE.xaml");
+            Language = Application.Current.Resources.MergedDictionaries.ElementAt(Application.Current.Resources.MergedDictionaries.Count - 1);
         }
         static public void InitializeCollections()
         {
@@ -94,16 +109,20 @@ namespace PL
 
         private void HebrewBtn_Click(object sender, RoutedEventArgs e)
         {
-            Uri dictUri = new Uri(@"res/languages/AppString_HE.xaml", UriKind.Relative);
-            ResourceDictionary resDict = Application.LoadComponent(dictUri) as ResourceDictionary;
-            Application.Current.Resources.MergedDictionaries.Add(resDict);
+            //Uri dictUri = new Uri(@"res/languages/AppString_HE.xaml", UriKind.Relative);
+            //ResourceDictionary resDict = Application.LoadComponent(dictUri) as ResourceDictionary;
+            Application.Current.Resources.MergedDictionaries.Remove(resDictEN);
+            Application.Current.Resources.MergedDictionaries.Add(resDictHE);
+            Language = Application.Current.Resources.MergedDictionaries.ElementAt(Application.Current.Resources.MergedDictionaries.Count - 1);
         }
 
         private void EnglishBtn_Click(object sender, RoutedEventArgs e)
         {
-            Uri dictUri = new Uri(@"res/languages/AppString_EN.xaml", UriKind.Relative);
-            ResourceDictionary resDict = Application.LoadComponent(dictUri) as ResourceDictionary;
-            Application.Current.Resources.MergedDictionaries.Add(resDict);
+            //Uri dictUri = new Uri(@"res/languages/AppString_EN.xaml", UriKind.Relative);
+            //ResourceDictionary resDict = Application.LoadComponent(dictUri) as ResourceDictionary;
+            Application.Current.Resources.MergedDictionaries.Remove(resDictHE);
+            Application.Current.Resources.MergedDictionaries.Add(resDictEN);
+            Language = Application.Current.Resources.MergedDictionaries.ElementAt(Application.Current.Resources.MergedDictionaries.Count - 1);
         }
     }
 }

@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="Add Line" Height="500" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-    <Grid FlowDirection="RightToLeft">
+    <Window.Resources>
+        <local:LanguageToAlignment x:Key="LanguageConvertor"/>
+    </Window.Resources>
+    <Grid x:Name="mainGrid" FlowDirection="{Binding Source, Converter={StaticResource LanguageConvertor}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=True}">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                 <GradientStop Color="LightGray" Offset="1"/>

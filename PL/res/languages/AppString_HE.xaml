@@ -47,9 +47,9 @@
     <System:String x:Key="ProfilePage_OldPassword" xml:space="preserve"> Old Password</System:String>
     <System:String x:Key="ProfilePage_NewPassword" xml:space="preserve"> New Password</System:String>
 
-    <System:String x:Key="LoginPage_ForgotPassword">שכחת סיסמה?</System:String>
+    <System:String x:Key="LoginPage_ForgotPassword">?שכחת סיסמה</System:String>
     <System:String x:Key="LoginPage_Login">התחבר</System:String>
-    <System:String x:Key="LoginPage_NewUser">משתמש חדש? הירשם!</System:String>
+    <System:String x:Key="LoginPage_NewUser">!משתמש חדש? הירשם</System:String>
     <System:String x:Key="SignUpPage_SignUp">הירשם</System:String>
 
     <System:String x:Key="Menue_Profile">פרופיל</System:String>

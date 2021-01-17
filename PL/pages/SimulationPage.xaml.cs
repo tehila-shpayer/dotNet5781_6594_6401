@@ -51,6 +51,7 @@ namespace PL
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
             worker.WorkerReportsProgress = true;
             worker.WorkerSupportsCancellation = true;
+            mainGrid.DataContext = MainWindow.Language;
         }
         public void TimeChange(Object sender, BO.ValueChangedEventArgs temp)
         {

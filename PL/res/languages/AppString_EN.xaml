@@ -2,20 +2,24 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:PL.res.languages"
                     xmlns:System="clr-namespace:System;assembly=mscorlib">
-    
+    <!--#region Station Page-->
     <System:String x:Key="StationPage_StationsTitle">Stations:</System:String>
     <System:String x:Key="StationPage_DeleteStation">DELETE STATION</System:String>
     <System:String x:Key="StationPage_AddStation">ADD STATION</System:String>
     <System:String x:Key="StationPage_UpdateStation">UPDATE STATION</System:String>
     <System:String x:Key="StationPage_LinesInStation">Lines in station:</System:String>
+    <!--#endregion-->
 
+    <!--#region Bus Line Page-->
     <System:String x:Key="BusLinePage_LinesTitle">Lines:</System:String>
     <System:String x:Key="BusLinePage_Stations">Stations:</System:String>
     <System:String x:Key="BusLinePage_UpdateLine">UPDATE LINE</System:String>
     <System:String x:Key="BusLinePage_DeleteLine">DELETE LINE</System:String>
     <System:String x:Key="BusLinePage_AddLine">ADD LINE</System:String>
     <System:String x:Key="BusLinePage_ShowByArea">Show by area:</System:String>
+    <!--#endregion-->
 
+    <!--#region Bus Page-->
     <System:String x:Key="BusPage_BusesTitle">Buses:</System:String>
     <System:String x:Key="BusPage_UpdaeBus">UPDATE BUS</System:String>
     <System:String x:Key="BusPage_DeleteBus">DELETE BUS</System:String>
@@ -28,13 +32,17 @@
     <System:String x:Key="BusPage_Ride">Drive</System:String>
     <System:String x:Key="BusPage_Treatment">Treat</System:String>
     <System:String x:Key="BusPage_Refuel">Refuel</System:String>
+    <!--#endregion-->
 
+    <!--#region  General Buttons-->
     <System:String x:Key="Edit">Edit</System:String>
     <System:String x:Key="Save">Save</System:String>
     <System:String x:Key="Cancel">Cancel</System:String>
     <System:String x:Key="Add">Add</System:String>
     <System:String x:Key="Key">Key:</System:String>
+    <!--#endregion-->
 
+    <!--#region Profile Page-->
     <System:String x:Key="ProfilePage_ProfileTitle">My Profile</System:String>
     <System:String x:Key="ProfilePage_ChangePassword">Change Password</System:String>
     <System:String x:Key="ProfilePage_UploadImage">Upload Image</System:String>
@@ -47,34 +55,47 @@
     <System:String x:Key="ProfilePage_Address">Address:</System:String>
     <System:String x:Key="ProfilePage_OldPassword" xml:space="preserve"> Old Password</System:String>
     <System:String x:Key="ProfilePage_NewPassword" xml:space="preserve"> New Password</System:String>
+    <!--#endregion-->
     
+    <!--#region Login Page-->
     <System:String x:Key="LoginPage_ForgotPassword">Forgot password?</System:String>
     <System:String x:Key="LoginPage_Login">Login</System:String>
     <System:String x:Key="LoginPage_NewUser">New user? sign up!</System:String>
     <System:String x:Key="SignUpPage_SignUp">Sign Up</System:String>
+    <!--#endregion-->
 
+
+    <!--#region Manager Menue-->
     <System:String x:Key="Menue_Profile">PROFILE</System:String>
     <System:String x:Key="Menue_Lines">LINES</System:String>
     <System:String x:Key="Menue_Stations">STATIONS</System:String>
     <System:String x:Key="Menue_Buses">BUSES</System:String>
     <System:String x:Key="Menue_Settings">SETTINGS</System:String>
     <System:String x:Key="Menue_Simulation">SIMULATION</System:String>
+    <!--#endregion-->
     
+    <!--#region Add Bus Line Station Window-->
     <System:String x:Key="AddBusLineStationWindow_ChooseStation">Choose station:</System:String>
+    <!--#endregion-->
 
+    <!--#region Add Line Window-->
     <System:String x:Key="AddLineWindow_Title">Add Line</System:String>
     <System:String x:Key="AddLineWindow_LineNumber">Line Number:</System:String>
     <System:String x:Key="AddLineWindow_Area">Area:</System:String>
     <System:String x:Key="AddLineWindow_FirstStation">First Station:</System:String>
     <System:String x:Key="AddLineWindow_LastStation">Last Station:</System:String>
     <System:String x:Key="UpdateLineWindow_Title">Update Line</System:String>
-    
+    <!--#endregion-->
+
+    <!--#region Add Station Window-->
     <System:String x:Key="AddStationWindow_Title">Add Station</System:String>
     <System:String x:Key="AddStationWindow_Name">Station Name:</System:String>
     <System:String x:Key="AddStationWindow_Latitude">Latitude:</System:String>
     <System:String x:Key="AddStationWindow_Longitude">Longitude:</System:String>
     <System:String x:Key="UpdateStationWindow_Title">Update Station</System:String>
+    <!--#endregion-->
 
+    <!--#region Add Bus Window-->
     <System:String x:Key="AddBusWindow_Title">Add Bus</System:String>
     <System:String x:Key="AddBusWindow_LicenseNumber">License Number:</System:String>
     <System:String x:Key="AddBusWindow_Status">Status:</System:String>
@@ -83,4 +104,5 @@
     <System:String x:Key="Location" xml:space="preserve">Location:</System:String>
     <System:String x:Key="UpdateConsecutiveStationsWindow_Title">Update Consecutive Stations</System:String>
 
+    <!--#endregion-->
 </ResourceDictionary>

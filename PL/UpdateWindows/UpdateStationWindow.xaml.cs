@@ -30,6 +30,7 @@ namespace PL
             updatingStation = station;
             grid1.DataContext = Station;
             beforeUpdateindex = MainWindow.stationsCollection.IndexOf(updatingStation);
+            mainGrid.DataContext = MainWindow.Language;
         }
         private void updateStationButton_Click(object sender, RoutedEventArgs e)
         {

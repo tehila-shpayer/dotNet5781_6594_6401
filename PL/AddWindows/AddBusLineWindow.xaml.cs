@@ -34,6 +34,7 @@ namespace PL
             firstStationComboBox.SelectedIndex = 0;
             lastStationComboBox.SelectedIndex = 0;
             grid1.DataContext = busLineBO;
+            mainGrid.DataContext = MainWindow.Language;
         }
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
