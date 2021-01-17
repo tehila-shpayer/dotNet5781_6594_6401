@@ -111,14 +111,16 @@ namespace BL
             //Clock simulatorClock = e.Argument as Clock;
             while (simulatorClock.IsTimerRun)
             {
-                timer.ReportProgress((int)(stopwatch.ElapsedTicks * simulatorClock.rate));
+                TimeSpan ts = new TimeSpan(simulatorClock.startTime.Ticks + stopwatch.ElapsedTicks * simulatorClock.rate);
+                timer.ReportProgress((int)(ts.TotalSeconds));
                 Thread.Sleep(1000/simulatorClock.rate);
             }
             stopwatch.Stop();
         }
         private void Timer_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            TimeSpan ts = simulatorClock.startTime + new TimeSpan(e.ProgressPercentage);
+            TimeSpan ts = new TimeSpan();
+            ts = TimeSpan.FromSeconds(e.ProgressPercentage);
             simulatorClock.Time = new TimeSpan(ts.Hours, ts.Minutes, ts.Seconds);
         }
         private void Timer_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

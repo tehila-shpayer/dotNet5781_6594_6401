@@ -139,7 +139,7 @@ namespace PL
 
         private void mapButton_Click(object sender, RoutedEventArgs e)
         {
-            MapWindow mapWindow = new MapWindow();
+            MapWindow mapWindow = new MapWindow(lbStations.SelectedItem as Station);
             mapWindow.Show();
         }
     }
