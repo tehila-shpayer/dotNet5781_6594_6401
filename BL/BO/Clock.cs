@@ -19,46 +19,20 @@ namespace BO
         public static Clock Instance { get => instance; }// The public Instance property to use
         #endregion
 
-        public event Action<TimeSpan> updateTime;
-        public TimeSpan time;
+        public event Action<TimeSpan> ClockObserver;
+        public TimeSpan Time { get; set; }
+        public TimeSpan startTime { get; set; }
+        public int rate { get; set; }
         internal volatile bool IsTimerRun;
-        public BackgroundWorker timer;
-        public Stopwatch stopwatch;
-        int rate;
         public Clock(TimeSpan tsStartTime, int simulatorRate)
         {
-            rate = simulatorRate;
-            time = tsStartTime;
-            timer = new BackgroundWorker();
-            stopwatch = new Stopwatch();
-            timer.DoWork += Timer_DoWork;
-            timer.ProgressChanged += Timer_ProgressChanged;
-            timer.RunWorkerCompleted += Timer_RunWorkerCompleted;
-            timer.WorkerReportsProgress = true;
-            updateTime(time);
+            Time = tsStartTime;
             IsTimerRun = true;
-            timer.RunWorkerAsync();
-           // stopwatch.Restart();
+            rate = simulatorRate;
         }
-
-        private void Timer_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        public void UpdateTime(TimeSpan ts)
         {
-
-        }
-
-        private void Timer_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            time.Add(new TimeSpan(e.ProgressPercentage));
-            updateTime(time);
-        }
-
-        private void Timer_DoWork(object sender, DoWorkEventArgs e)
-        {
-            while(IsTimerRun)
-            {
-                Thread.Sleep(1000);
-                timer.ReportProgress(Convert.ToInt32(rate * TimeSpan.TicksPerSecond));
-            }
+            ClockObserver(ts);
         }
     }
 }

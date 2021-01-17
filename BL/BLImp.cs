@@ -43,20 +43,50 @@ namespace BL
         {
             return GetTime(GetDistance(stationKey1, stationKey2));
         }
+        #endregion
 
+        #region Simulator
         public void StartSimulator(TimeSpan startTime, int simulatorRate, Action<TimeSpan> updateTime)
         {
-            Clock simulatorClock;
+            BackgroundWorker timer = new BackgroundWorker();
+            timer.DoWork += Timer_DoWork;
+            timer.ProgressChanged += Timer_ProgressChanged;
+            timer.RunWorkerCompleted += Timer_RunWorkerCompleted;
+            timer.WorkerReportsProgress = true;
+            Clock simulatorClock = new Clock(startTime, simulatorRate);
+            simulatorClock.ClockObserver += updateTime;
+            timer.RunWorkerAsync(simulatorClock);
             //clockObserver(new TimeSpan(simulatorClock.Time.Hours, simulatorClock.Time.Minutes, simulatorClock.Time.Seconds));
             //Thread.Sleep(your - sleep - time -in -msec);
 
+        }
+        private void Timer_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+        }
+
+        private void Timer_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
+        }
+
+        private void Timer_DoWork(object sender, DoWorkEventArgs e)
+        {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Restart();
+            Clock simulatorClock = e.Argument as Clock;
+            while (simulatorClock.IsTimerRun)
+            {
+                simulatorClock = new Clock(simulatorClock.startTime + new TimeSpan(stopwatch.ElapsedTicks * simulatorClock.rate), simulatorClock.rate);
+                simulatorClock.UpdateTime(new TimeSpan(simulatorClock.Time.Hours, simulatorClock.Time.Minutes, simulatorClock.Time.Seconds));
+                Thread.Sleep(1000);
+            }
         }
         public void StopSimulator()
         {
 
         }
-        //TimeSpan GetTimeFromStartToStation()
         #endregion
+
 
         #region Bus
         public BO.Bus BusDoBoAdapter(DO.Bus BusDO)

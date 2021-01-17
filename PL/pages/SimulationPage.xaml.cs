@@ -44,21 +44,22 @@ namespace PL
             worker.ProgressChanged += Worker_ProgressChanged;
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
             worker.WorkerReportsProgress = true;
+            worker.WorkerSupportsCancellation = true;
         }
 
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            throw new NotImplementedException();
+            App.bl.StopSimulator();
         }
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            tbClock.DataContext = time;
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-
+            App.bl.StartSimulator(time, 1, UpdateTime);
         }
 
         private void lbStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -69,18 +70,34 @@ namespace PL
 
         private void SimulationButton_Click(object sender, RoutedEventArgs e)
         {
-            //time = new TimeSpan(tpTime.SelectedTime.Value.TimeOfDay.Ticks);
-            //tbClock.DataContext = time;
+            if (SimulationButton.Content.ToString() == "הפעל סימולציה")
+            {
+                SimulationButton.Content = "עצור סימולציה";
+                tbHour.Visibility = Visibility.Collapsed;
+                tbMinutes.Visibility = Visibility.Collapsed;
+                tbSeconds.Visibility = Visibility.Collapsed;
+                time = new TimeSpan(int.Parse(tbHour.Text), int.Parse(tbMinutes.Text), int.Parse(tbSeconds.Text));
+                tbClock.DataContext = time;
+                tbClock.Visibility = Visibility.Visible;
+                worker.RunWorkerAsync();
+            }
+            else
+            {
+                SimulationButton.Content = "הפעל סימולציה";
+                worker.CancelAsync();
+                tbHour.Visibility = Visibility.Visible;
+                tbMinutes.Visibility = Visibility.Visible;
+                tbSeconds.Visibility = Visibility.Visible;
+                tbClock.Visibility = Visibility.Collapsed;
+            }
             //stopWatch.Restart();
             //isTimerRun = true;
             //worker.RunWorkerAsync();
             //lvCommingLines.DataContext = App.bl.GetLineTimingsPerStation((lbStations.SelectedItem as Station).Key, new TimeSpan(8,0,0));
         }
-        void UpdateTime(TimeSpan ts)
+        public void UpdateTime(TimeSpan ts)
         {
-            //Thread.Sleep(1000);
-            //time.Add(new TimeSpan(50*TimeSpan.TicksPerSecond));
-            //tbClock.DataContext = time;
+            worker.ReportProgress(0);
         }
     }
 }
