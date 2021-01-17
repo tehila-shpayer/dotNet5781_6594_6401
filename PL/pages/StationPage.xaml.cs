@@ -21,6 +21,11 @@ namespace PL
     /// </summary>
     public partial class StationPage : Page
     {
+        private void mapButton_Click(object sender, RoutedEventArgs e)
+        {
+            MapWindow mapWindow = new MapWindow(lbStations.SelectedItem as Station);
+            mapWindow.Show();
+        }
         public StationPage()
         {
             //MainWindow.stationsCollection.Clear();
@@ -135,12 +140,6 @@ namespace PL
             MainWindow.stationsCollection.Clear();
             foreach (Station station in collection)
                 MainWindow.stationsCollection.Add(station);
-        }
-
-        private void mapButton_Click(object sender, RoutedEventArgs e)
-        {
-            MapWindow mapWindow = new MapWindow(lbStations.SelectedItem as Station);
-            mapWindow.Show();
         }
     }
 }
