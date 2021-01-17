@@ -29,14 +29,20 @@ namespace PL
         Station currentStation = new Station();
         Stopwatch stopWatch;
         TimeSpan time;
+        BO.Clock clock;
         public SimulationPage()
         {
             InitializeComponent();
+            clock = new BO.Clock(new TimeSpan(0, 0, 0), 1);
+            clock.TimeChanged += this.TimeChange;
+
             lbStations.DataContext = MainWindow.stationsCollection;
             lbStations.SelectedIndex = 0;
             lvCommingLines.DataContext = new List<BO.BusInTravel>();
+
             time = new TimeSpan();
             tbClock.DataContext = time;
+
             currentStation = lbStations.SelectedItem as Station;
             stopWatch = new Stopwatch();
             worker = new BackgroundWorker();
@@ -46,20 +52,22 @@ namespace PL
             worker.WorkerReportsProgress = true;
             worker.WorkerSupportsCancellation = true;
         }
-
-        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        public void TimeChange(Object sender, BO.ValueChangedEventArgs temp)
         {
-            App.bl.StopSimulator();
+            tbClock.DataContext = temp.Time;
         }
-
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //App.bl.StartSimulator(time, 1, UpdateTime);
+            //App.bl.StartSimulator(time, 1, (lbStations.SelectedItem as Station).Key);
+        }
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             tbClock.DataContext = time;
         }
-
-        private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            App.bl.StartSimulator(time, 1, UpdateTime);
+            App.bl.StopSimulator();
         }
 
         private void lbStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -76,10 +84,13 @@ namespace PL
                 tbHour.Visibility = Visibility.Collapsed;
                 tbMinutes.Visibility = Visibility.Collapsed;
                 tbSeconds.Visibility = Visibility.Collapsed;
-                time = new TimeSpan(int.Parse(tbHour.Text), int.Parse(tbMinutes.Text), int.Parse(tbSeconds.Text));
+                time = new TimeSpan(int.Parse(tbHour.Text), int.Parse(tbMinutes.Text), int.Parse(tbSeconds.Text));              
                 tbClock.DataContext = time;
                 tbClock.Visibility = Visibility.Visible;
-                worker.RunWorkerAsync();
+                clock.startTime = time;
+                clock.Time = time;
+                App.bl.StartSimulator(clock, time, 1, (lbStations.SelectedItem as Station).Key);
+                //worker.RunWorkerAsync();
             }
             else
             {
@@ -89,6 +100,7 @@ namespace PL
                 tbMinutes.Visibility = Visibility.Visible;
                 tbSeconds.Visibility = Visibility.Visible;
                 tbClock.Visibility = Visibility.Collapsed;
+                App.bl.StopSimulator();
             }
             //stopWatch.Restart();
             //isTimerRun = true;

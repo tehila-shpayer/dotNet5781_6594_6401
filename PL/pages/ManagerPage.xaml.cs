@@ -74,6 +74,7 @@ namespace PL
 
         private void simulationButton_Click(object sender, RoutedEventArgs e)
         {
+            
             currentPage.Content = new SimulationPage();
             changeColors(simulationButton);
         }
