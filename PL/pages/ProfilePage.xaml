@@ -36,15 +36,15 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="1.3*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0">
-                    <Image x:Name="imgPhoto" Height="150" Margin="0"/>
+                <StackPanel Grid.Row="0" VerticalAlignment="Bottom">
+                    <Image x:Name="imgPhoto" Height="160" Margin="0"/>
+                    <Button x:Name="uploadImageButton" Content="{DynamicResource ProfilePage_UploadImage}" BorderBrush="{x:Null}" Background="{x:Null}" FontSize="16" Foreground="Blue" Click="uploadImageButton_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Row="1">
-                    <Button x:Name="uploadImageButton" Content="{DynamicResource ProfilePage_UploadImage}" BorderBrush="{x:Null}" Background="{x:Null}" FontSize="16" Foreground="Blue" Click="uploadImageButton_Click" Margin="0,-50,0,0" Height="68"/>
-                    <Button x:Name="ChangePasswordButton" Content="{DynamicResource ProfilePage_ChangePassword}" Click="ChangePasswordButton_Click" Margin="40,0,40,40" Background="#FF477AA9" Width="180" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                    <Button x:Name="ChangePasswordButton" Content="{DynamicResource ProfilePage_ChangePassword}" Click="ChangePasswordButton_Click" Margin="30" Background="#FF477AA9" Width="180" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
                     <TextBlock x:Name="tbOldPassword" Text="{DynamicResource ProfilePage_OldPassword}" FontSize="22" Margin="40,15,40,-42" Foreground="Gray" Visibility="Collapsed"/>
                     <PasswordBox x:Name="OldPassword" Height="50" Margin="40,0" FontSize="22" Foreground="black" Visibility="Collapsed" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" GotFocus="OldPassword_GotFocus" LostFocus="OldPassword_LostFocus"/>
                     <TextBlock x:Name="tbNewPassword" Text="{DynamicResource ProfilePage_NewPassword}" FontSize="22" Margin="40,15,40,-42" Foreground="Gray" Visibility="Collapsed"/>
