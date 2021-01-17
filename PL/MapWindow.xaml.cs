@@ -19,9 +19,10 @@ namespace PL
     /// </summary>
     public partial class MapWindow : Window
     {
-        public MapWindow()
+        public MapWindow(Station station)
         {
             InitializeComponent();
+            //wbMaps.Source = $"tps://www.google.com/maps/search/?api=1&query=+{station.Latitude}+,+{station.Longitude}";
         }
 
         private void Window_Initialized(object sender, EventArgs e)
