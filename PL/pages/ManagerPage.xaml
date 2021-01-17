@@ -34,7 +34,7 @@
             </Grid.Effect>
 
             <Grid Background="#FFDFEAED">
-                <TextBlock Text="LOGO" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="WS Simple Gallifreyan" Foreground="#FFFF" FontSize="16"/>
+                <Image Source="netivimLogo.png" Width="150" Height="150" Margin="2,-13,1.333,-26.333"/>
             </Grid>
 
             <StackPanel Grid.Row="1" Grid.Column="0">
