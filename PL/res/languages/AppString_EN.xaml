@@ -79,4 +79,8 @@
     <System:String x:Key="AddBusWindow_LicenseNumber">License Number:</System:String>
     <System:String x:Key="AddBusWindow_Status">Status:</System:String>
     <System:String x:Key="UpdateBusWindow_Title">Update Bus</System:String>
+
+    <System:String x:Key="Location" xml:space="preserve">Location:</System:String>
+    <System:String x:Key="UpdateConsecutiveStationsWindow_Title">Update Consecutive Stations</System:String>
+
 </ResourceDictionary>

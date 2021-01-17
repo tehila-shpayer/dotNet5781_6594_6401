@@ -52,7 +52,7 @@
                 <TextBlock FontSize="24" Text=" דקות " Margin="5,5,35,5" TextAlignment="Right" FontFamily="Segoe UI Emoji" VerticalAlignment="Center" />
                 <Button x:Name="saveChangeButton" Margin="5" Width="100" Height="40" Padding="0" Click="saveChangeButton_Click"  Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="שמור" VerticalAlignment="Center" Margin="5,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                        <TextBlock Text="{DynamicResource Save}" VerticalAlignment="Center" Margin="5,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
                         <materialDesign:PackIcon Margin="0" Kind="ContentSave" Height="30" Width="30"/>
                     </StackPanel>
                 </Button>
@@ -65,22 +65,20 @@
                 <materialDesign:PackIcon Kind="ArrowBottom" Width="40" Height="40" Margin="0" Foreground="#FF0BD380"/>
             </StackPanel>-->
         </StackPanel>
-        <TextBlock x:Name="tbTitle" Margin="30,20" TextAlignment="Left" FontWeight="Bold" FontSize="24" FontFamily="Broadway" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Run Text="עדכון תחנות עוקבות בקו " FontWeight="Bold"/>
-        </TextBlock>
+        <TextBlock x:Name="tbTitle" Text="{DynamicResource UpdateConsecutiveStationsWindow_Title}" Margin="30,20" TextAlignment="Left" FontWeight="Bold" FontSize="24" FontFamily="Broadway" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <StackPanel x:Name="spFirstStation" Margin="20,15,25,10" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="010">
-                <Label Content="שם תחנה:    " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="20" FontFamily="Ariel"/>
+                <Label Content="{DynamicResource AddStationWindow_Name}" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="20" FontFamily="Ariel"/>
                 <TextBlock Margin="0" Text="{Binding Name}" TextAlignment="Left" FontSize="20" FontFamily="Segoe UI Emoji" Width="400" VerticalAlignment="Center"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="10,-10">
-                <Label Content="מפתח:   " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="20" FontFamily="Ariel"/>
+                <Label Content="{DynamicResource Key}" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="20" FontFamily="Ariel"/>
                 <TextBlock Margin="0" Text="{Binding Key}" TextAlignment="Left"  FontSize="14" FontFamily="Segoe UI Emoji" VerticalAlignment="Center"/>
 
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,-5">
-                <Label Content="מיקום:   " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="20" FontFamily="Ariel"/>
+                <Label Content="{DynamicResource Location}" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="20" FontFamily="Ariel"/>
                 <TextBlock FontSize="20" Text="°E " Margin="0,15" FontFamily="Segoe UI Emoji"/>
                 <TextBlock FontSize="20" Text="{Binding Longitude}" Margin="0,15" FontFamily="Segoe UI Emoji"/>
                 <TextBlock FontSize="20" Text=" ,°N " Margin="0,15" FontFamily="Segoe UI Emoji"/>
@@ -93,16 +91,16 @@
         <StackPanel x:Name="spSecondStation" Margin="20,15,25,10" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="010">
-                <Label Content="שם תחנה:    " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="20" FontFamily="Ariel"/>
+                <Label Content="{DynamicResource AddStationWindow_Name}" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="20" FontFamily="Ariel"/>
                 <TextBlock Margin="0" Text="{Binding Name}" TextAlignment="Left" FontSize="20" FontFamily="Segoe UI Emoji" Width="400" VerticalAlignment="Center"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="10,-10">
-                <Label Content="מפתח:   " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="20" FontFamily="Ariel"/>
+                <Label Content="{DynamicResource Key}" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="20" FontFamily="Ariel"/>
                 <TextBlock Margin="0" Text="{Binding Key}" TextAlignment="Left"  FontSize="14" FontFamily="Segoe UI Emoji" VerticalAlignment="Center"/>
 
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,-5">
-                <Label Content="מיקום:   " VerticalContentAlignment="Center" FontWeight="Bold" FontSize="20" FontFamily="Ariel"/>
+                <Label Content="{DynamicResource Location}" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="20" FontFamily="Ariel"/>
                 <TextBlock FontSize="20" Text="°E " Margin="0,15" FontFamily="Segoe UI Emoji"/>
                 <TextBlock FontSize="20" Text="{Binding Longitude}" Margin="0,15" FontFamily="Segoe UI Emoji"/>
                 <TextBlock FontSize="20" Text=" ,°N " Margin="0,15" FontFamily="Segoe UI Emoji"/>

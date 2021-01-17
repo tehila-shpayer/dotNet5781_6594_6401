@@ -79,4 +79,7 @@
     <System:String x:Key="AddBusWindow_Status">סטטוס:</System:String>
     <System:String x:Key="UpdateBusWindow_Title">עדכן אוטובוס</System:String>
 
+    <System:String x:Key="Location" xml:space="preserve">מיקום:</System:String>
+    <System:String x:Key="UpdateConsecutiveStationsWindow_Title">עדכון תחנות עוקבות בקו</System:String>
+
 </ResourceDictionary>
