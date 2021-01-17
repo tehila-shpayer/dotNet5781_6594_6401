@@ -51,6 +51,7 @@
     <System:String x:Key="LoginPage_ForgotPassword">Forgot password?</System:String>
     <System:String x:Key="LoginPage_Login">Login</System:String>
     <System:String x:Key="LoginPage_NewUser">New user? sign up!</System:String>
+    <System:String x:Key="SignUpPage_SignUp">Sign Up</System:String>
 
     <System:String x:Key="Menue_Profile">PROFILE</System:String>
     <System:String x:Key="Menue_Lines">LINES</System:String>
