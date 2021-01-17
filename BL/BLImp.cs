@@ -99,12 +99,8 @@ namespace BL
             timer.WorkerReportsProgress = true;
             timer.WorkerSupportsCancellation = true;
             simulatorClock = clock;
-            //simulatorClock.startTime = startTime;
-            //simulatorClock.Time = new TimeSpan(17, 20, 23);
-
-            timer.RunWorkerAsync(simulatorClock);
-            //clockObserver(new TimeSpan(simulatorClock.Time.Hours, simulatorClock.Time.Minutes, simulatorClock.Time.Seconds));
-            //Thread.Sleep(your - sleep - time -in -msec);
+            clock.rate = simulatorRate;
+            timer.RunWorkerAsync();
 
         }
 
@@ -112,12 +108,13 @@ namespace BL
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Restart();
-            Clock simulatorClock = e.Argument as Clock;
+            //Clock simulatorClock = e.Argument as Clock;
             while (simulatorClock.IsTimerRun)
             {
-                timer.ReportProgress((int)stopwatch.ElapsedTicks * simulatorClock.rate);
-                Thread.Sleep(1000);
+                timer.ReportProgress((int)(stopwatch.ElapsedTicks * simulatorClock.rate));
+                Thread.Sleep(1000/simulatorClock.rate);
             }
+            stopwatch.Stop();
         }
         private void Timer_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {

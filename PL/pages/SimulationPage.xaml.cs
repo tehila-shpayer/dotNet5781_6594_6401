@@ -33,8 +33,8 @@ namespace PL
         public SimulationPage()
         {
             InitializeComponent();
-            clock = new BO.Clock(new TimeSpan(0, 0, 0), 1);
-            clock.TimeChanged += this.TimeChange;
+            //clock = new BO.Clock(new TimeSpan(0, 0, 0), 1);
+            //clock.TimeChanged += this.TimeChange;
 
             lbStations.DataContext = MainWindow.stationsCollection;
             lbStations.SelectedIndex = 0;
@@ -45,31 +45,31 @@ namespace PL
 
             currentStation = lbStations.SelectedItem as Station;
             stopWatch = new Stopwatch();
-            worker = new BackgroundWorker();
-            worker.DoWork += Worker_DoWork;
-            worker.ProgressChanged += Worker_ProgressChanged;
-            worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
-            worker.WorkerReportsProgress = true;
-            worker.WorkerSupportsCancellation = true;
+            //worker = new BackgroundWorker();
+            //worker.DoWork += Worker_DoWork;
+            //worker.ProgressChanged += Worker_ProgressChanged;
+            //worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+            //worker.WorkerReportsProgress = true;
+            //worker.WorkerSupportsCancellation = true;
             mainGrid.DataContext = MainWindow.Language;
         }
         public void TimeChange(Object sender, BO.ValueChangedEventArgs temp)
         {
             tbClock.DataContext = temp.Time;
         }
-        private void Worker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            //App.bl.StartSimulator(time, 1, UpdateTime);
-            //App.bl.StartSimulator(time, 1, (lbStations.SelectedItem as Station).Key);
-        }
-        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            tbClock.DataContext = time;
-        }
-        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            App.bl.StopSimulator();
-        }
+        //private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        //{
+        //    //App.bl.StartSimulator(time, 1, UpdateTime);
+        //    //App.bl.StartSimulator(time, 1, (lbStations.SelectedItem as Station).Key);
+        //}
+        //private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        //{
+        //    tbClock.DataContext = time;
+        //}
+        //private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        //{
+        //    App.bl.StopSimulator();
+        //}
 
         private void lbStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -83,22 +83,24 @@ namespace PL
             {
                 clock = new BO.Clock(new TimeSpan(0, 0, 0), 1);
                 clock.TimeChanged += this.TimeChange;
+
                 SimulationButton.Content = "עצור סימולציה";
                 tbHour.Visibility = Visibility.Collapsed;
                 tbMinutes.Visibility = Visibility.Collapsed;
                 tbSeconds.Visibility = Visibility.Collapsed;
+
                 time = new TimeSpan(int.Parse(tbHour.Text), int.Parse(tbMinutes.Text), int.Parse(tbSeconds.Text));              
                 tbClock.DataContext = time;
                 tbClock.Visibility = Visibility.Visible;
                 clock.startTime = time;
                 clock.Time = time;
-                App.bl.StartSimulator(clock, time, 1, (lbStations.SelectedItem as Station).Key);
-                //worker.RunWorkerAsync();
+                App.bl.StartSimulator(clock, time, int.Parse(tbRate.Text), (lbStations.SelectedItem as Station).Key);
+                
             }
             else
             {
                 SimulationButton.Content = "הפעל סימולציה";
-                worker.CancelAsync();
+                clock.TimeChanged -= this.TimeChange;
                 tbHour.Visibility = Visibility.Visible;
                 tbMinutes.Visibility = Visibility.Visible;
                 tbSeconds.Visibility = Visibility.Visible;
