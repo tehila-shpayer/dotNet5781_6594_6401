@@ -33,6 +33,7 @@
     <System:String x:Key="Save">Save</System:String>
     <System:String x:Key="Cancel">Cancel</System:String>
     <System:String x:Key="Add">Add</System:String>
+    <System:String x:Key="Key">Key:</System:String>
 
     <System:String x:Key="ProfilePage_ProfileTitle">My Profile</System:String>
     <System:String x:Key="ProfilePage_ChangePassword">Change Password</System:String>
@@ -65,7 +66,11 @@
     <System:String x:Key="AddLineWindow_Area">Area:</System:String>
     <System:String x:Key="AddLineWindow_FirstStation">First Station:</System:String>
     <System:String x:Key="AddLineWindow_LastStation">Last Station:</System:String>
-
     <System:String x:Key="UpdateLineWindow_Title">Update Line</System:String>
-    <System:String x:Key="UpdateLineWindow_Key">Key:</System:String>
+    
+    <System:String x:Key="AddStationWindow_Title">Add Station</System:String>
+    <System:String x:Key="AddStationWindow_Name">Station Name:</System:String>
+    <System:String x:Key="AddStationWindow_Latitude">Latitude:</System:String>
+    <System:String x:Key="AddStationWindow_Longitude">Longitude:</System:String>
+    <System:String x:Key="UpdateStationWindow_Title">Update Station</System:String>
 </ResourceDictionary>

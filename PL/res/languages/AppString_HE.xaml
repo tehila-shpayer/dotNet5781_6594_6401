@@ -32,6 +32,7 @@
     <System:String x:Key="Save">שמור</System:String>
     <System:String x:Key="Cancel">ביטול</System:String>
     <System:String x:Key="Add">הוסף</System:String>
+    <System:String x:Key="Key">מפתח:</System:String>
 
     <System:String x:Key="ProfilePage_ProfileTitle">הפרופיל שלי</System:String>
     <System:String x:Key="ProfilePage_ChangePassword">שנה סיסמה</System:String>
@@ -64,8 +65,12 @@
     <System:String x:Key="AddLineWindow_Area">איזור:</System:String>
     <System:String x:Key="AddLineWindow_FirstStation">תחנה ראשונה:</System:String>
     <System:String x:Key="AddLineWindow_LastStation">תחנה אחרונה:</System:String>
-    
     <System:String x:Key="UpdateLineWindow_Title">עדכן קו</System:String>
-    <System:String x:Key="UpdateLineWindow_Key">מפתח:</System:String>
+    
+    <System:String x:Key="AddStationWindow_Title">הוסף תחנה</System:String>
+    <System:String x:Key="AddStationWindow_Name">שם תחנה:</System:String>
+    <System:String x:Key="AddStationWindow_Latitude">קו רוחב:</System:String>
+    <System:String x:Key="AddStationWindow_Longitude">קו אורך:</System:String>
+    <System:String x:Key="UpdateStationWindow_Title">עדכן תחנה</System:String>
 
 </ResourceDictionary>

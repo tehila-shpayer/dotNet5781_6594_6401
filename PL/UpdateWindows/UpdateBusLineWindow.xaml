@@ -30,7 +30,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label Content="{DynamicResource UpdateLineWindow_Key}" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource Key}" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <TextBlock x:Name="keyTextBlock" Grid.Column="1" Grid.Row="0" Text="{Binding Key, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10" />
                 <Label Content="{DynamicResource AddLineWindow_LineNumber}" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Height="Auto" Margin="9.667,1,10,9" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <TextBox x:Name="lineNumberTextBox" Grid.Column="1" Grid.Row="1" Text="{Binding LineNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" TextChanged="lineNumberTextBox_TextChanged" PreviewKeyDown="lineNumberTextBox_PreviewKeyDown"/>
