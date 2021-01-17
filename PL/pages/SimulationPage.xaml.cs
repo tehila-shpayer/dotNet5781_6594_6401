@@ -81,6 +81,8 @@ namespace PL
         {
             if (SimulationButton.Content.ToString() == "הפעל סימולציה")
             {
+                clock = new BO.Clock(new TimeSpan(0, 0, 0), 1);
+                clock.TimeChanged += this.TimeChange;
                 SimulationButton.Content = "עצור סימולציה";
                 tbHour.Visibility = Visibility.Collapsed;
                 tbMinutes.Visibility = Visibility.Collapsed;

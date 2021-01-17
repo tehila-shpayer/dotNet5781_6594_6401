@@ -114,9 +114,7 @@ namespace BL
             stopwatch.Restart();
             Clock simulatorClock = e.Argument as Clock;
             while (simulatorClock.IsTimerRun)
-            //for (int i = 0; i<7; i++)
             {
-                //simulatorClock = new Clock(simulatorClock.startTime + new TimeSpan(stopwatch.ElapsedTicks * simulatorClock.rate), simulatorClock.rate);
                 timer.ReportProgress((int)stopwatch.ElapsedTicks * simulatorClock.rate);
                 Thread.Sleep(1000);
             }
@@ -133,7 +131,6 @@ namespace BL
         public void StopSimulator()
         {
             simulatorClock.IsTimerRun = false;
-            //timer.CancelAsync();
         }
         #endregion
 
