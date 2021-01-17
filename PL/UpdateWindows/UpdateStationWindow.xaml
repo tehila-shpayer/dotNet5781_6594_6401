@@ -15,7 +15,7 @@
         <Rectangle Grid.Column="0" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
         </Rectangle>
         <StackPanel Margin="70,50,70.333,47.667">
-            <Label Content="עדכן תחנה" FontSize="25" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
+            <Label Content="{DynamicResource UpdateStationWindow_Title}" FontSize="25" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
             <Grid x:Name="grid1" HorizontalAlignment="Center" Margin="20,20,20,30" VerticalAlignment="Center" Height="238" Width="333">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -27,13 +27,13 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label Content="מפתח:" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource Key}" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <TextBlock x:Name="keyTextBox" Grid.Column="1" Grid.Row="0" Text="{Binding Key, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="20,10"/>
-                <Label Content="שם התחנה:" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource AddStationWindow_Name}" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <TextBox x:Name="namerTextBox" Grid.Column="1" Grid.Row="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" TextChanged="TextBox_TextChanged"/>
-                <Label Content="קו רוחב:" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource AddStationWindow_Latitude}" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <TextBox x:Name="latitudeTextBox" Grid.Column="1" Grid.Row="2" Text="{Binding Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" TextChanged="TextBox_TextChanged"/>
-                <Label Content="קו אורך:" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource AddStationWindow_Longitude}" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <TextBox x:Name="longitudeTextBox" Grid.Column="1" Grid.Row="3" Text="{Binding Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" TextChanged="TextBox_TextChanged"/>
             </Grid>
             <Grid>
@@ -41,8 +41,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="updateButton" Grid.Column="0" Margin="20,0" Background="#FF477AA9" Content="שמור" BorderBrush="{x:Null}" Click="updateStationButton_Click"  IsEnabled="False"/>
-                <Button x:Name="cancelButton" Grid.Column="1" Margin="20,0" Background="#FF477AA9" Content="ביטול" BorderBrush="{x:Null}" Click="cancelButton_Click"/>
+                <Button x:Name="updateButton" Grid.Column="0" Margin="20,0" Background="#FF477AA9" Content="{DynamicResource Save}" BorderBrush="{x:Null}" Click="updateStationButton_Click"  IsEnabled="False"/>
+                <Button x:Name="cancelButton" Grid.Column="1" Margin="20,0" Background="#FF477AA9" Content="{DynamicResource Cancel}" BorderBrush="{x:Null}" Click="cancelButton_Click"/>
             </Grid>
         </StackPanel>
     </Grid>

@@ -19,11 +19,11 @@
     <System:String x:Key="BusPage_UpdaeBus">עדכן אוטובוס</System:String>
     <System:String x:Key="BusPage_DeleteBus">מחק אוטובוס</System:String>
     <System:String x:Key="BusPage_AddBus">הוסף אוטובוס</System:String>
-    <System:String x:Key="BusPage_StartActivityDate" xml:space="preserve">  תאריך תחילת פעילות:</System:String>
-    <System:String x:Key="BusPage_KM" xml:space="preserve">  קילומטראז': </System:String>
-    <System:String x:Key="BusPage_LastTreatmentDate" xml:space="preserve">  תאריך טיפול אחרון: </System:String>
-    <System:String x:Key="BusPage_KMSinceLastTreatment" xml:space="preserve">  קילומטראז' מאז טיפול אחרון: </System:String>
-    <System:String x:Key="BusPage_Fuel" xml:space="preserve">  דלק: </System:String>
+    <System:String x:Key="BusPage_StartActivityDate" xml:space="preserve">תאריך תחילת פעילות: </System:String>
+    <System:String x:Key="BusPage_KM" xml:space="preserve">קילומטראז': </System:String>
+    <System:String x:Key="BusPage_LastTreatmentDate" xml:space="preserve">תאריך טיפול אחרון: </System:String>
+    <System:String x:Key="BusPage_KMSinceLastTreatment" xml:space="preserve">קילומטראז' מאז טיפול אחרון: </System:String>
+    <System:String x:Key="BusPage_Fuel" xml:space="preserve">דלק: </System:String>
     <System:String x:Key="BusPage_Ride">נסיעה</System:String>
     <System:String x:Key="BusPage_Treatment">טיפול</System:String>
     <System:String x:Key="BusPage_Refuel">תדלוק</System:String>
@@ -32,6 +32,7 @@
     <System:String x:Key="Save">שמור</System:String>
     <System:String x:Key="Cancel">ביטול</System:String>
     <System:String x:Key="Add">הוסף</System:String>
+    <System:String x:Key="Key">מפתח:</System:String>
 
     <System:String x:Key="ProfilePage_ProfileTitle">הפרופיל שלי</System:String>
     <System:String x:Key="ProfilePage_ChangePassword">שנה סיסמה</System:String>
@@ -64,8 +65,17 @@
     <System:String x:Key="AddLineWindow_Area">איזור:</System:String>
     <System:String x:Key="AddLineWindow_FirstStation">תחנה ראשונה:</System:String>
     <System:String x:Key="AddLineWindow_LastStation">תחנה אחרונה:</System:String>
-    
     <System:String x:Key="UpdateLineWindow_Title">עדכן קו</System:String>
-    <System:String x:Key="UpdateLineWindow_Key">מפתח:</System:String>
+    
+    <System:String x:Key="AddStationWindow_Title">הוסף תחנה</System:String>
+    <System:String x:Key="AddStationWindow_Name">שם תחנה:</System:String>
+    <System:String x:Key="AddStationWindow_Latitude">קו רוחב:</System:String>
+    <System:String x:Key="AddStationWindow_Longitude">קו אורך:</System:String>
+    <System:String x:Key="UpdateStationWindow_Title">עדכן תחנה</System:String>
+    
+    <System:String x:Key="AddBusWindow_Title">הוסף אוטובוס</System:String>
+    <System:String x:Key="AddBusWindow_LicenseNumber">מספר רישוי:</System:String>
+    <System:String x:Key="AddBusWindow_Status">סטטוס:</System:String>
+    <System:String x:Key="UpdateBusWindow_Title">עדכן אוטובוס</System:String>
 
 </ResourceDictionary>
