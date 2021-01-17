@@ -50,7 +50,8 @@
     <System:String x:Key="LoginPage_ForgotPassword">?שכחת סיסמה</System:String>
     <System:String x:Key="LoginPage_Login">התחבר</System:String>
     <System:String x:Key="LoginPage_NewUser">!משתמש חדש? הירשם</System:String>
-    
+    <System:String x:Key="SignUpPage_SignUp">הירשם</System:String>
+
     <System:String x:Key="Menue_Profile">פרופיל</System:String>
     <System:String x:Key="Menue_Lines">קוי אוטובוס</System:String>
     <System:String x:Key="Menue_Stations">תחנות</System:String>
@@ -77,5 +78,8 @@
     <System:String x:Key="AddBusWindow_LicenseNumber">מספר רישוי:</System:String>
     <System:String x:Key="AddBusWindow_Status">סטטוס:</System:String>
     <System:String x:Key="UpdateBusWindow_Title">עדכן אוטובוס</System:String>
+
+    <System:String x:Key="Location" xml:space="preserve">מיקום:</System:String>
+    <System:String x:Key="UpdateConsecutiveStationsWindow_Title">עדכון תחנות עוקבות בקו</System:String>
 
 </ResourceDictionary>

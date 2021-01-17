@@ -61,7 +61,9 @@
     <System:String x:Key="LoginPage_ForgotPassword">Forgot password?</System:String>
     <System:String x:Key="LoginPage_Login">Login</System:String>
     <System:String x:Key="LoginPage_NewUser">New user? sign up!</System:String>
+    <System:String x:Key="SignUpPage_SignUp">Sign Up</System:String>
     <!--#endregion-->
+
 
     <!--#region Manager Menue-->
     <System:String x:Key="Menue_Profile">PROFILE</System:String>
@@ -98,5 +100,9 @@
     <System:String x:Key="AddBusWindow_LicenseNumber">License Number:</System:String>
     <System:String x:Key="AddBusWindow_Status">Status:</System:String>
     <System:String x:Key="UpdateBusWindow_Title">Update Bus</System:String>
+
+    <System:String x:Key="Location" xml:space="preserve">Location:</System:String>
+    <System:String x:Key="UpdateConsecutiveStationsWindow_Title">Update Consecutive Stations</System:String>
+
     <!--#endregion-->
 </ResourceDictionary>
