@@ -69,9 +69,11 @@
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1">
 
-            <Button x:Name="SimulationButton" Width="145" Margin="5,10" Content="התחל סימולציה" Click="SimulationButton_Click" Background="#FF477AA9" BorderBrush="{x:Null}"/>
+            <Button x:Name="SimulationButton" Width="145" Margin="5,10" Content="הפעל סימולציה" Click="SimulationButton_Click" Background="#FF477AA9" BorderBrush="{x:Null}"/>
             <!--<materialDesign:TimePicker x:Name="tpTime" Margin="15,10" FontSize="15" Foreground="Black" Width="100"/>-->
-            <TextBox Width="30"/>
+            <TextBox x:Name="tbSeconds" Width="30" Margin="10" Text="13"/>
+            <TextBox x:Name="tbMinutes" Width="30" Margin="10" Text="58"/>
+            <TextBox x:Name="tbHour" Width="30" Margin="10" Text="23"/>
             <TextBlock x:Name="tbClock" Width="100" Margin="10" FontSize="15" Text="{Binding}"  Foreground="Black"/>
             <!---->
         </StackPanel>
