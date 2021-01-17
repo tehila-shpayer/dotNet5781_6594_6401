@@ -20,11 +20,11 @@
     <System:String x:Key="BusPage_UpdaeBus">UPDATE BUS</System:String>
     <System:String x:Key="BusPage_DeleteBus">DELETE BUS</System:String>
     <System:String x:Key="BusPage_AddBus">ADD BUS</System:String>
-    <System:String x:Key="BusPage_StartActivityDate" xml:space="preserve">  Starting Date: </System:String>
-    <System:String x:Key="BusPage_KM" xml:space="preserve">  KM: </System:String>
-    <System:String x:Key="BusPage_LastTreatmentDate" xml:space="preserve">  Last Treatment Date: </System:String>
-    <System:String x:Key="BusPage_KMSinceLastTreatment" xml:space="preserve">  KM Since Last Treatment: </System:String>
-    <System:String x:Key="BusPage_Fuel" xml:space="preserve">  Fuel: </System:String>
+    <System:String x:Key="BusPage_StartActivityDate" xml:space="preserve">Starting Date: </System:String>
+    <System:String x:Key="BusPage_KM" xml:space="preserve">KM: </System:String>
+    <System:String x:Key="BusPage_LastTreatmentDate" xml:space="preserve">Last Treatment Date: </System:String>
+    <System:String x:Key="BusPage_KMSinceLastTreatment" xml:space="preserve">KM Since Last Treatment: </System:String>
+    <System:String x:Key="BusPage_Fuel" xml:space="preserve">Fuel: </System:String>
     <System:String x:Key="BusPage_Ride">Drive</System:String>
     <System:String x:Key="BusPage_Treatment">Treat</System:String>
     <System:String x:Key="BusPage_Refuel">Refuel</System:String>
@@ -73,4 +73,9 @@
     <System:String x:Key="AddStationWindow_Latitude">Latitude:</System:String>
     <System:String x:Key="AddStationWindow_Longitude">Longitude:</System:String>
     <System:String x:Key="UpdateStationWindow_Title">Update Station</System:String>
+
+    <System:String x:Key="AddBusWindow_Title">Add Bus</System:String>
+    <System:String x:Key="AddBusWindow_LicenseNumber">License Number:</System:String>
+    <System:String x:Key="AddBusWindow_Status">Status:</System:String>
+    <System:String x:Key="UpdateBusWindow_Title">Update Bus</System:String>
 </ResourceDictionary>

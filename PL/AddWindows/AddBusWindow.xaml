@@ -53,10 +53,10 @@
         <Rectangle Grid.Column="0" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
         </Rectangle>
         <StackPanel Margin="70,50,70.333,47.667">
-            <Label Content="הוסף קו" FontSize="25" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
+            <Label Content="{DynamicResource AddBusWindow_Title}" FontSize="25" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
             <Grid x:Name="grid1" HorizontalAlignment="Center" Margin="10,20,10,10" VerticalAlignment="Center" Height="350" Width="434">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="134*"/>
+                    <ColumnDefinition Width="155*"/>
                     <ColumnDefinition Width="83*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -68,19 +68,19 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label Content="מספר רישוי:" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Stretch" Height="Auto" Margin="12,10,10,10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource AddBusWindow_LicenseNumber}" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Stretch" Height="Auto" Margin="12,10,10,10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <TextBox x:Name="licenseNumberTextBox" Grid.Column="1" Grid.Row="0" Text="{Binding LicenseNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,10,8,10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" PreviewKeyDown="TextBox_PreviewKeyDown"/>
-                <Label Content="סטטוס:" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Height="Auto" Margin="12,10,10,10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource AddBusWindow_Status}" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Height="Auto" Margin="12,10,10,10" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <TextBlock x:Name="statusTextBox" Grid.Column="1"  Text="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"   Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,10,8,10"/>
-                <Label Content="תאריך תחילת פעילות" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Height="Auto" Margin="12,10,10,0" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource BusPage_StartActivityDate}" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Height="Auto" Margin="12,10,10,0" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <DatePicker x:Name="runningDateDatePicker" Grid.Column="1" Grid.Row="2" Text="{Binding RunningDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,10,8,10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" />
-                <Label Content="קילומטראז':" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Margin="12,10,10,0" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource BusPage_KM}" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Margin="12,10,10,0" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <TextBox x:Name="kMTextBox" Grid.Column="1" Grid.Row="3" Text="{Binding KM, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,10,8,10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" PreviewKeyDown="TextBox_PreviewKeyDown"/>
-                <Label Content="תאריך מאז טיפול אחרון:" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Margin="12,10,10,0" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource BusPage_LastTreatmentDate}" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Margin="12,10,10,0" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <DatePicker x:Name="lastTreatmentDatePicker" Grid.Column="1" Grid.Row="4" Text="{Binding LastTreatment, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" SelectedDateChanged="lastTreatmentFormatTextBox_SelectedDateChanged" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,10,8,10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" />
-                <Label Content="קילומטראז' מטיפול אחרון:" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Margin="12,10,10,0" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource BusPage_KMSinceLastTreatment}" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Margin="12,10,10,0" Width="Auto" VerticalContentAlignment="Bottom" FontSize="19" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <TextBox x:Name="beforeTreatKMTextBox" Grid.Column="1" Grid.Row="5" Text="{Binding BeforeTreatKM, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" TextChanged="beforeTreatKMTextBox_TextChanged" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,10,8,10" HorizontalContentAlignment="Right" VerticalContentAlignment="Bottom" PreviewKeyDown="TextBox_PreviewKeyDown"/>
-                <Label Content="דלק:" Grid.Column="0" Grid.Row="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Margin="11,10,10,0" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource BusPage_Fuel}" Grid.Column="0" Grid.Row="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Margin="11,10,10,0" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <TextBox x:Name="fuelTextBox" Grid.Column="1" Grid.Row="6" Text="{Binding Fuel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,10,8,10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" PreviewKeyDown="TextBox_PreviewKeyDown"/>
             </Grid>
             <Grid>
@@ -88,8 +88,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="addButton" Grid.Column="0" Margin="20,0" Background="#FF477AA9" Content="שמור" BorderBrush="{x:Null}" Click="addButton_Click" />
-                <Button x:Name="cancelButton" Grid.Column="1" Margin="20,0" Background="#FF477AA9" Content="ביטול" BorderBrush="{x:Null}" Click="cancelButton_Click"/>
+                <Button x:Name="addButton" Grid.Column="0" Margin="20,0" Background="#FF477AA9" Content="{DynamicResource Save}" BorderBrush="{x:Null}" Click="addButton_Click" />
+                <Button x:Name="cancelButton" Grid.Column="1" Margin="20,0" Background="#FF477AA9" Content="{DynamicResource Cancel}" BorderBrush="{x:Null}" Click="cancelButton_Click"/>
             </Grid>
         </StackPanel>
     </Grid>

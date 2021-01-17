@@ -19,11 +19,11 @@
     <System:String x:Key="BusPage_UpdaeBus">עדכן אוטובוס</System:String>
     <System:String x:Key="BusPage_DeleteBus">מחק אוטובוס</System:String>
     <System:String x:Key="BusPage_AddBus">הוסף אוטובוס</System:String>
-    <System:String x:Key="BusPage_StartActivityDate" xml:space="preserve">  תאריך תחילת פעילות:</System:String>
-    <System:String x:Key="BusPage_KM" xml:space="preserve">  קילומטראז': </System:String>
-    <System:String x:Key="BusPage_LastTreatmentDate" xml:space="preserve">  תאריך טיפול אחרון: </System:String>
-    <System:String x:Key="BusPage_KMSinceLastTreatment" xml:space="preserve">  קילומטראז' מאז טיפול אחרון: </System:String>
-    <System:String x:Key="BusPage_Fuel" xml:space="preserve">  דלק: </System:String>
+    <System:String x:Key="BusPage_StartActivityDate" xml:space="preserve">תאריך תחילת פעילות: </System:String>
+    <System:String x:Key="BusPage_KM" xml:space="preserve">קילומטראז': </System:String>
+    <System:String x:Key="BusPage_LastTreatmentDate" xml:space="preserve">תאריך טיפול אחרון: </System:String>
+    <System:String x:Key="BusPage_KMSinceLastTreatment" xml:space="preserve">קילומטראז' מאז טיפול אחרון: </System:String>
+    <System:String x:Key="BusPage_Fuel" xml:space="preserve">דלק: </System:String>
     <System:String x:Key="BusPage_Ride">נסיעה</System:String>
     <System:String x:Key="BusPage_Treatment">טיפול</System:String>
     <System:String x:Key="BusPage_Refuel">תדלוק</System:String>
@@ -72,5 +72,10 @@
     <System:String x:Key="AddStationWindow_Latitude">קו רוחב:</System:String>
     <System:String x:Key="AddStationWindow_Longitude">קו אורך:</System:String>
     <System:String x:Key="UpdateStationWindow_Title">עדכן תחנה</System:String>
+    
+    <System:String x:Key="AddBusWindow_Title">הוסף אוטובוס</System:String>
+    <System:String x:Key="AddBusWindow_LicenseNumber">מספר רישוי:</System:String>
+    <System:String x:Key="AddBusWindow_Status">סטטוס:</System:String>
+    <System:String x:Key="UpdateBusWindow_Title">עדכן אוטובוס</System:String>
 
 </ResourceDictionary>
