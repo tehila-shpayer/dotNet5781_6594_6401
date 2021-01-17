@@ -27,6 +27,7 @@ namespace PL
             bus.RunningDate = DateTime.Now;
             bus.LastTreatment = DateTime.Now;
             grid1.DataContext = bus;
+            mainGrid.DataContext = MainWindow.Language;
         }
 
         private void lastTreatmentFormatTextBox_SelectedDateChanged(object sender, SelectionChangedEventArgs e)

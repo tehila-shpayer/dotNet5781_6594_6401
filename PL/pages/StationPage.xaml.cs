@@ -31,7 +31,7 @@ namespace PL
             List<string> OrderByString = new List<string> { "Order by key", "Order by name" };
             cbStations.DataContext = OrderByString;
             cbStations.SelectedIndex = 0;
-
+            mainGrid.DataContext = MainWindow.Language;
         }
 
         private void stations_SelectionChanged(object sender, SelectionChangedEventArgs e)

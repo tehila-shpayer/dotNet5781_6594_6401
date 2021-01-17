@@ -33,6 +33,7 @@ namespace PL
             areas.SelectedIndex = 0;
             cbBusLines.DataContext = OrderByString;
             cbBusLines.SelectedIndex = 0;
+            mainGrid.DataContext = MainWindow.Language;
         }
 
         private void lbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)

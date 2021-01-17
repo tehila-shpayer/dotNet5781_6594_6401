@@ -44,6 +44,7 @@ namespace PL
             positionsComboBox.SelectedIndex = 0;
             areaComboBox.SelectedIndex = (int)busLine.Area;
             grid1.DataContext = updatingBusLine;
+            mainGrid.DataContext = MainWindow.Language;
         }
         private void lineNumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {

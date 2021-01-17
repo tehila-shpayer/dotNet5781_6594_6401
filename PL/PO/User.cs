@@ -16,6 +16,7 @@ namespace PL
         public String FirstName { get; set; }
         public String LastName { get; set; }
         public bool IsActive { get; set; }
+        public String Picture { get; set; }
 
         public override string ToString()
         {

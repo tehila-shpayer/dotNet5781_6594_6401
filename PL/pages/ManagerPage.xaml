@@ -8,8 +8,11 @@
       mc:Ignorable="d" 
       d:DesignHeight="554" d:DesignWidth="768"
       Title="ManagerPage" Background="White" Height="auto">
-
-    <Grid x:Name="mainGrid" FlowDirection="RightToLeft">
+    <Page.Resources>
+        <local:LanguageToAlignment x:Key="LanguageConvertor"/>
+    </Page.Resources>
+    <Grid x:Name="mainGrid" FlowDirection="{Binding Source, Converter={StaticResource LanguageConvertor}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=True}">
+        <!--FlowDirection="{Binding , Converter=LanguageConvertor}">-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="4*"/>

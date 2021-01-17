@@ -35,6 +35,7 @@ namespace PL
             spFirstStation.DataContext = station1;
             spSecondStation.DataContext = station2;
             spDistanceAndTime.DataContext = blsBO;
+            mainGrid.DataContext = MainWindow.Language;
         }
 
         private void saveChangeButton_Click(object sender, RoutedEventArgs e)

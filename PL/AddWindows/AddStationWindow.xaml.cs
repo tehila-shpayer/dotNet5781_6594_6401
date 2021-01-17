@@ -25,6 +25,7 @@ namespace PL
             InitializeComponent();
             stationBO = new BO.Station();
             grid1.DataContext = stationBO;
+            mainGrid.DataContext = MainWindow.Language;
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)

@@ -29,6 +29,7 @@ namespace PL
             List<string> OrderByString = new List<string> { "Order by license number", "Order by status" };
             cbBuses.DataContext = OrderByString;
             cbBuses.SelectedIndex = 0;
+            mainGrid.DataContext = MainWindow.Language;
         }
 
         private void stations_SelectionChanged(object sender, SelectionChangedEventArgs e)

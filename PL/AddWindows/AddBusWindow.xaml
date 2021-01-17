@@ -7,44 +7,10 @@
         xmlns:PL="clr-namespace:PL" x:Class="PL.AddBusWindow"
         mc:Ignorable="d"
         Title="AddBusWindow" Height="600" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" >
-    <!--<StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
-        <Label Content="add bus"/>
-        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="60,0" VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Label Content="License Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="licenseNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding LicenseNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="licenseNumberTextBox_TextChanged"/>
-             -->
-    <!--<Label Content="Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBlock x:Name="statusTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="1" Text="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>-->
-    <!--
-            <Label Content="Running Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <DatePicker x:Name="runningDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding RunningDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" />
-            <Label Content="KM:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <TextBox x:Name="kMTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding KM, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Last Treatment Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <DatePicker x:Name="lastTreatmentDatePicker" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding LastTreatment, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" SelectedDateChanged="lastTreatmentFormatTextBox_SelectedDateChanged"/>
-            <Label Content="Before Treat KM:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
-            <TextBox x:Name="beforeTreatKMTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding BeforeTreatKM, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="beforeTreatKMTextBox_TextChanged"/>
-            <Label Content="Fuel:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
-            <TextBox x:Name="fuelTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding Fuel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-               </Grid>
-        <Label Height="10"/>
-        <Button x:Name="addBusButton" Content="Add" Click="addBusButton_Click" IsEnabled="False"/>
-    </StackPanel>-->
-    <Grid FlowDirection="RightToLeft">
+    <Window.Resources>
+        <local:LanguageToAlignment x:Key="LanguageConvertor"/>
+    </Window.Resources>
+    <Grid x:Name="mainGrid" FlowDirection="{Binding Source, Converter={StaticResource LanguageConvertor}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=True}">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                 <GradientStop Color="LightGray" Offset="1"/>
@@ -79,7 +45,7 @@
                 <Label Content="{DynamicResource BusPage_LastTreatmentDate}" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Margin="12,10,10,0" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <DatePicker x:Name="lastTreatmentDatePicker" Grid.Column="1" Grid.Row="4" Text="{Binding LastTreatment, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" SelectedDateChanged="lastTreatmentFormatTextBox_SelectedDateChanged" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,10,8,10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" />
                 <Label Content="{DynamicResource BusPage_KMSinceLastTreatment}" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Margin="12,10,10,0" Width="Auto" VerticalContentAlignment="Bottom" FontSize="19" FontWeight="Bold" HorizontalContentAlignment="Left"/>
-                <TextBox x:Name="beforeTreatKMTextBox" Grid.Column="1" Grid.Row="5" Text="{Binding BeforeTreatKM, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" TextChanged="beforeTreatKMTextBox_TextChanged" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,10,8,10" HorizontalContentAlignment="Right" VerticalContentAlignment="Bottom" PreviewKeyDown="TextBox_PreviewKeyDown"/>
+                <TextBox x:Name="beforeTreatKMTextBox" Grid.Column="1" Grid.Row="5" Text="{Binding BeforeTreatKM, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" TextChanged="beforeTreatKMTextBox_TextChanged" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,10,8,10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" PreviewKeyDown="TextBox_PreviewKeyDown"/>
                 <Label Content="{DynamicResource BusPage_Fuel}" Grid.Column="0" Grid.Row="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Margin="11,10,10,0" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <TextBox x:Name="fuelTextBox" Grid.Column="1" Grid.Row="6" Text="{Binding Fuel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,10,8,10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" PreviewKeyDown="TextBox_PreviewKeyDown"/>
             </Grid>

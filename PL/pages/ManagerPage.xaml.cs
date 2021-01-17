@@ -31,7 +31,7 @@ namespace PL
             user = _user;
             WelcomPage welcomPage = new WelcomPage();
             currentPage.Content = welcomPage;
-
+            mainGrid.DataContext = MainWindow.Language;
         }
         void changeColors( Button b)
         {

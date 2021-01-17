@@ -14,13 +14,13 @@ namespace PL
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             bool boolValue = (bool)value;
-            if (boolValue == true)//if the bus is ready
+            if (boolValue == true)
             {
-                return Visibility.Collapsed;//the ride button is enable
+                return Visibility.Collapsed;
             }
             else
             {
-                return Visibility.Visible;//else, the ride button is not enable
+                return Visibility.Visible;
             }
         }
         //The opposite converter (not used in our program)
@@ -36,21 +36,25 @@ namespace PL
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            bool boolValue = (bool)value;
-            if (boolValue == true)//if the bus is ready
+            Uri resourceValue = (Uri)value;
+            Uri dictUriEN = new Uri(@"/res/languages/AppString_EN.xaml", UriKind.Relative);
+            //Uri dictUriHE = new Uri(@"res/languages/AppString_HE.xaml", UriKind.Relative);
+            //ResourceDictionary resDictEN = Application.LoadComponent(dictUriEN) as ResourceDictionary;
+            //ResourceDictionary resDictHE = Application.LoadComponent(dictUriHE) as ResourceDictionary;
+            if (resourceValue == dictUriEN)
             {
-                return Visibility.Collapsed;//the ride button is enable
+                return FlowDirection.LeftToRight;
             }
             else
             {
-                return Visibility.Visible;//else, the ride button is not enable
+                return FlowDirection.RightToLeft;
             }
         }
         //The opposite converter (not used in our program)
         public object ConvertBack(object value,
-        Type targetType,
-        object parameter,
-        CultureInfo culture)
+                Type targetType,
+                object parameter,
+                CultureInfo culture)
         {
             throw new NotImplementedException();
         }

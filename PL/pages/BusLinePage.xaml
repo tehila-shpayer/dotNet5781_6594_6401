@@ -11,6 +11,7 @@
      Title="BusLinePage" Background="White" FlowDirection="RightToLeft">
     <Page.Resources>
         <local:BoolToVisibilityConverter x:Key="aConverter"/>
+        <local:LanguageToAlignment x:Key="LanguageConvertor"/>
         <DataTemplate x:Key="BusLineTemplate" DataType="local:Bus">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Width="230">
                 <TextBlock Text="{Binding LineNumber}" TextAlignment="Left" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI Black" />
@@ -45,7 +46,7 @@
         </DataTemplate>
         <CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Bus}, CreateList=True}"/>
     </Page.Resources>
-    <Grid FlowDirection="RightToLeft">
+    <Grid x:Name="mainGrid" FlowDirection="{Binding Source, Converter={StaticResource LanguageConvertor}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=True}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2*"/>

@@ -10,6 +10,7 @@
       Title="SimulationPage">
 
     <Page.Resources>
+        <local:LanguageToAlignment x:Key="LanguageConvertor"/>
         <DataTemplate x:Key="StationTemplate" DataType="local:Station">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="230">
                 <TextBlock Text="{Binding Name}" TextAlignment="Left" FontWeight="Bold" FontSize="15" FontFamily="Segoe UI Black"/>
@@ -31,7 +32,7 @@
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
-    <Grid FlowDirection="RightToLeft">
+    <Grid x:Name="mainGrid" FlowDirection="{Binding Source, Converter={StaticResource LanguageConvertor}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=True}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2*"/>

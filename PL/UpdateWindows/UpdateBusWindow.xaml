@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="UpdateBusWindow" Height="600" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-    <Grid FlowDirection="RightToLeft">
+    <Window.Resources>
+        <local:LanguageToAlignment x:Key="LanguageConvertor"/>
+    </Window.Resources>
+    <Grid x:Name="mainGrid" FlowDirection="{Binding Source, Converter={StaticResource LanguageConvertor}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=True}">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                 <GradientStop Color="LightGray" Offset="1"/>
@@ -41,7 +44,7 @@
                 <Label Content="{DynamicResource BusPage_LastTreatmentDate}" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Margin="12,10,10,0" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <DatePicker x:Name="lastTreatmentDatePicker" Grid.Column="1" Grid.Row="4" Text="{Binding LastTreatment, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,10,8,10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" />
                 <Label Content="{DynamicResource BusPage_KMSinceLastTreatment}" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Margin="12,10,10,0" Width="Auto" VerticalContentAlignment="Bottom" FontSize="19" FontWeight="Bold" HorizontalContentAlignment="Left"/>
-                <TextBox x:Name="beforeTreatKMTextBox" Grid.Column="1" Grid.Row="5" Text="{Binding BeforeTreatKM, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Left" Margin="10,10,8,10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" PreviewKeyDown="TextBox_PreviewKeyDown"/>
+                <TextBox x:Name="beforeTreatKMTextBox" Grid.Column="1" Grid.Row="5" Text="{Binding BeforeTreatKM, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,10,8,10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" PreviewKeyDown="TextBox_PreviewKeyDown"/>
                 <Label Content="{DynamicResource BusPage_Fuel}" Grid.Column="0" Grid.Row="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="Auto" Margin="11,10,10,0" Width="Auto" VerticalContentAlignment="Bottom" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <TextBox x:Name="fuelTextBox" Grid.Column="1" Grid.Row="6" Text="{Binding Fuel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,10,8,10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" PreviewKeyDown="TextBox_PreviewKeyDown"/>
             </Grid>
