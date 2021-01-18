@@ -933,17 +933,105 @@ namespace BL
         #endregion
 
         #region BusInTravel
-        public BusInTravel CreateBusInTravel(string licenseNumber, LineSchedule lineSchedule, Station station)
+        public BusInTravel CreateBusInTravel(LineSchedule lineSchedule, int i, Station station, string licenseNumber = "00000000")
         {
             BusInTravel bit = new BusInTravel();
             bit.Key = BusInTravel.BUS_TRAVEL_KEY++;
             bit.BusLicenseNumber = licenseNumber;
             bit.LineKey = lineSchedule.LineKey;
             bit.StationKey = station.Key;
-            bit.StartTime = lineSchedule.StartTime;
+            bit.StartTime = lineSchedule.StartTime + new TimeSpan(0, i * lineSchedule.Frequency, 0);
+            bit.TimeLeft = GetTimeLeft(bit);
+            if (bit.TimeLeft < new TimeSpan(0, 0, 0))
+                return null;
             return bit;
         }
+        TimeSpan GetTimeLeft(BusInTravel bit)
+        {
+            return GetTimeFromFirstStation(bit.LineKey, bit.StationKey) - (simulatorClock.Time - bit.StartTime);            
+        }
+        TimeSpan GetTimeFromFirstStation(int lineKey, int stationKey)
+        {
+            BusLine line = GetBusLine(lineKey);
+            int totalMinutes = 0;
+            foreach (BusLineStation bls in line.BusLineStations)
+            {
+                totalMinutes += bls.TravelTimeFromLastStationMinutes;
+                if (bls.StationKey == stationKey)
+                    break;
+            }
+            return new TimeSpan(0, totalMinutes, 0);
+        }
+        public IEnumerable<BusInTravel> GetLineTimingsPerStation(int stationKey, TimeSpan time)
+        {
+            Station station = GetStation(stationKey);
+            IEnumerable<BusInTravel> busInTravels = new List<BusInTravel>();
+            var a = from bl in station.BusLines
+                    let schedules = GetAllLineSchedulesOfLine(bl)
+                    from ls in schedules
+                    where Between(ls, time)
+                    select ls;
+            foreach (LineSchedule schedule in a)
+            {
+                for (int i = 0; schedule.StartTime + new TimeSpan(0, i * schedule.Frequency, 0) < time; i++)
+                {
+                    BusInTravel busInTravel = CreateBusInTravel(schedule, i, station);
+                    if (busInTravel != null)
+                        busInTravels = busInTravels.Append(busInTravel);
+                }
+            }
+            return busInTravels;
+        }
+        bool Between(LineSchedule lineSchedule, TimeSpan time)
+        {
+            return (lineSchedule.StartTime < time && lineSchedule.EndTime > time);
+        }
+        //public IEnumerable<BusInTravel> GetLineTimingsPerStation(int stationKey, TimeSpan startTime)
+        //{
+        //    Station station = GetStation(stationKey);
+        //    IEnumerable<BusInTravel> busInTravels = new List<BusInTravel>();
+        //    foreach (int line in station.BusLines)
+        //    {
+        //        foreach (LineSchedule ls in GetAllLineSchedulesOfLine(line))
+        //        {
+        //            if (ls.StartTime.TotalSeconds <= startTime.TotalSeconds && startTime.TotalSeconds <= ls.EndTime.TotalSeconds)
+        //            {
+        //                BusLineStation bls = GetBusLineStationByKey(ls.LineKey, stationKey);
+        //                String lastStationName = GetStation(GetBusLine(ls.LineKey).LastStation).Name;
+        //                int frequenciesCount = Convert.ToInt32((ls.EndTime.TotalMinutes - startTime.TotalMinutes) / ls.Frequency) + 1;
+        //                for (int i = 0; i < frequenciesCount; i++)
+        //                {
+        //                    BusInTravel bit = new BusInTravel();
+        //                    Random rand = new Random();
+        //                    var buses = GetAllBuses();
+        //                    int busIndex = rand.Next(0, buses.Count());
+        //                    string licenseNumber = buses.ElementAt(busIndex).LicenseNumber;
+        //                    bit.Key = BusInTravel.BUS_TRAVEL_KEY++;
+        //                    bit.BusLicenseNumber = licenseNumber;
+        //                    bit.LineKey = ls.LineKey;
+        //                    bit.StationKey = stationKey;
+        //                    bit.StartTime = new TimeSpan(startTime.Ticks + ls.Frequency * i * TimeSpan.TicksPerMinute);
+        //                    bit.LastStationName = lastStationName;
+        //                    bit.TimeLeft = new TimeSpan(GetTimeFromFirstStationInMillySeconds(bls) * TimeSpan.TicksPerMillisecond);
 
+        //                }
+        //            }
+        //        }
+        //    }
+        //    return busInTravels;
+        //}
+        //int GetTimeFromFirstStationInMillySeconds(BusLineStation bls)
+        //{
+        //    int timeInMinutes = 0;
+        //    Stopwatch stopwatch = new Stopwatch();
+        //    BusLineStation tempBls = new BusLineStation();
+        //    for (int i = 2; i <= bls.Position; i++)
+        //    {
+        //        tempBls = GetBusLineStation(bls.BusLineKey, i);
+        //        timeInMinutes += tempBls.TravelTimeFromLastStationMinutes;
+        //    }
+        //    return timeInMinutes * 1000 * 60;
+        //}
         #endregion
 
     }

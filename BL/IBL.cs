@@ -87,9 +87,11 @@ namespace BLAPI
         #endregion
 
         #region BusInTravel
+        IEnumerable<BusInTravel> GetLineTimingsPerStation(int stationKey, TimeSpan startTime);
         //BusInTravel GetBusInTravel(int key);
+        //IEnumerable<BusInTravel> GetAllBusesInTravel(Station s, TimeSpan t);
         //IEnumerable<BusInTravel> GetAllBusInTravelsBy(Predicate<BusInTravel> predicate);
-        //BusInTravel CreateBusInTravel(string licenseNumber, int line, DateTime startingTime);
+        //BusInTravel CreateBusInTravel(LineSchedule lineSchedule, Station station, string licenseNumber = "00000000");
         //void DeleteBusInTravel(string licenseNumber, int lineKey, int formalTime);
         //void UpdateBusInTravel(BusInTravel bus);
         //void UpdateBusInTravel(int key, Action<BusInTravel> update); //method that knows to updt specific fields in BusInTravel
