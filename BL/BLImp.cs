@@ -933,7 +933,7 @@ namespace BL
         #endregion
 
         #region BusInTravel
-        public BusInTravel CreateBusInTravel(LineSchedule lineSchedule, TimeSpan i, Station station, string licenseNumber = "00000000")
+        public BusInTravel CreateBusInTravel(TimeSpan time, LineSchedule lineSchedule, TimeSpan i, Station station, string licenseNumber = "00000000")
         {
             BusInTravel bit = new BusInTravel();
             bit.Key = BusInTravel.BUS_TRAVEL_KEY++;
@@ -942,14 +942,14 @@ namespace BL
             bit.StationKey = station.Key;
             //bit.StartTime = lineSchedule.StartTime + new TimeSpan(0, i * lineSchedule.Frequency, 0);
             bit.StartTime = i;
-            bit.TimeLeft = GetTimeLeft(bit);
+            bit.TimeLeft = GetTimeLeft(bit, time);
             if (bit.TimeLeft < new TimeSpan(0, 0, 0) || bit.TimeLeft > new TimeSpan(1, 30, 0))
                 return null;
             return bit;
         }
-        TimeSpan GetTimeLeft(BusInTravel bit)
+        TimeSpan GetTimeLeft(BusInTravel bit, TimeSpan time)
         {
-            return GetTimeFromFirstStation(bit.LineKey, bit.StationKey) - (simulatorClock.Time - bit.StartTime);            
+            return GetTimeFromFirstStation(bit.LineKey, bit.StationKey) - (time - bit.StartTime);            
         }
         TimeSpan GetTimeFromFirstStation(int lineKey, int stationKey)
         {
@@ -982,7 +982,7 @@ namespace BL
                 //}
                 for (TimeSpan i = GetFirstTravelTime(schedule, time); i < time + new TimeSpan(1,0,0) && i <= schedule.EndTime ; i += new TimeSpan(0, schedule.Frequency,0))
                 {
-                    BusInTravel busInTravel = CreateBusInTravel(schedule, i, station);
+                    BusInTravel busInTravel = CreateBusInTravel(time, schedule, i, station);
                     if (busInTravel != null)
                         busInTravels = busInTravels.Append(busInTravel);
                 }
