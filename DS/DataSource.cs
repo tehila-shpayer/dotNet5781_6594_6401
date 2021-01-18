@@ -361,8 +361,8 @@ namespace DS
                 new LineSchedule{LineKey = 1785, Frequency = 90, StartTime=new TimeSpan(7,30,0), EndTime=new TimeSpan(0,0,0)},
 
                 //236
-                new LineSchedule{LineKey = 1786, Frequency = 15, StartTime=new TimeSpan(7,15,0), EndTime=new TimeSpan(10,0,0)},
-                new LineSchedule{LineKey = 1786, Frequency = 25, StartTime=new TimeSpan(10,0,0), EndTime=new TimeSpan(13,20,0)},
+                new LineSchedule{LineKey = 1786, Frequency = 15, StartTime=new TimeSpan(7,15,0), EndTime=new TimeSpan(9,45,0)},
+                new LineSchedule{LineKey = 1786, Frequency = 25, StartTime=new TimeSpan(10,0,0), EndTime=new TimeSpan(13,0,0)},
                 new LineSchedule{LineKey = 1786, Frequency = 20, StartTime=new TimeSpan(13,20,0), EndTime=new TimeSpan(21,0,0)},
 
                 //934
