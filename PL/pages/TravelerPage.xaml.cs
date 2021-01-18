@@ -74,8 +74,14 @@ namespace PL
         {
             tbClock.DataContext = temp.Time;
             busesInTravelCollection.Clear();
+            int i = 0;
             foreach (var lineTiming in App.bl.GetLineTimingsPerStation((lbStations.SelectedItem as Station).Key, temp.Time))
+            {
+                i++;
+                if (i > 5)
+                    break;
                 busesInTravelCollection.Add(PoBoAdapter.BusInTravelPoBoAdapter(lineTiming));
+            }
 
             lvCommingLines.DataContext = busesInTravelCollection;
         }
