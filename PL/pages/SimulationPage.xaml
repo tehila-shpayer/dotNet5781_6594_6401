@@ -72,10 +72,10 @@
 
             <Button x:Name="SimulationButton" Width="145" Margin="5,10" Content="הפעל סימולציה" Click="SimulationButton_Click" Background="#FF477AA9" BorderBrush="{x:Null}"/>
             <!--<materialDesign:TimePicker x:Name="tpTime" Margin="15,10" FontSize="15" Foreground="Black" Width="100"/>-->
-            <TextBox x:Name="tbRate" Width="30" Margin="10" Text="60"/>
+            <TextBox x:Name="tbRate" Width="30" Margin="10" Text="1"/>
             <TextBox x:Name="tbSeconds" Width="30" Margin="10" Text="0"/>
-            <TextBox x:Name="tbMinutes" Width="30" Margin="10" Text="0"/>
-            <TextBox x:Name="tbHour" Width="30" Margin="10" Text="14"/>
+            <TextBox x:Name="tbMinutes" Width="30" Margin="10" Text="6"/>
+            <TextBox x:Name="tbHour" Width="30" Margin="10" Text="10"/>
             <TextBlock x:Name="tbClock" Width="100" Margin="10" FontSize="15" Text="{Binding}"  Foreground="Black"/>
             <!---->
         </StackPanel>

@@ -933,23 +933,23 @@ namespace BL
         #endregion
 
         #region BusInTravel
-        public BusInTravel CreateBusInTravel(LineSchedule lineSchedule, int i, Station station, string licenseNumber = "00000000")
+        public BusInTravel CreateBusInTravel(TimeSpan time, LineSchedule lineSchedule, TimeSpan i, Station station, string licenseNumber = "00000000")
         {
             BusInTravel bit = new BusInTravel();
             bit.Key = BusInTravel.BUS_TRAVEL_KEY++;
             bit.BusLicenseNumber = licenseNumber;
             bit.LineKey = lineSchedule.LineKey;
-            //bit.LineNumber = 
             bit.StationKey = station.Key;
-            bit.StartTime = lineSchedule.StartTime + new TimeSpan(0, i * lineSchedule.Frequency, 0);
-            bit.TimeLeft = GetTimeLeft(bit);
+            //bit.StartTime = lineSchedule.StartTime + new TimeSpan(0, i * lineSchedule.Frequency, 0);
+            bit.StartTime = i;
+            bit.TimeLeft = GetTimeLeft(bit, time);
             if (bit.TimeLeft < new TimeSpan(0, 0, 0) || bit.TimeLeft > new TimeSpan(1, 30, 0))
                 return null;
             return bit;
         }
-        TimeSpan GetTimeLeft(BusInTravel bit)
+        TimeSpan GetTimeLeft(BusInTravel bit, TimeSpan time)
         {
-            return GetTimeFromFirstStation(bit.LineKey, bit.StationKey) - (simulatorClock.Time - bit.StartTime);            
+            return GetTimeFromFirstStation(bit.LineKey, bit.StationKey) - (time - bit.StartTime);            
         }
         TimeSpan GetTimeFromFirstStation(int lineKey, int stationKey)
         {
@@ -967,25 +967,55 @@ namespace BL
         {
             Station station = GetStation(stationKey);
             IEnumerable<BusInTravel> busInTravels = new List<BusInTravel>();
-            var a = from bl in station.BusLines
+            var lineSchedules = from bl in station.BusLines
                     let schedules = GetAllLineSchedulesOfLine(bl)
                     from ls in schedules
                     where Between(ls, time)
                     select ls;
-            foreach (LineSchedule schedule in a)
+            foreach (LineSchedule schedule in lineSchedules)
             {
-                for (int i = 0; schedule.StartTime + new TimeSpan(0, i * schedule.Frequency, 0) < time; i++)
+                //for (int i = 0; schedule.StartTime + new TimeSpan(0, i * schedule.Frequency -30, 0) < time; i++)
+                //{
+                //    BusInTravel busInTravel = CreateBusInTravel(schedule, i, station);
+                //    if (busInTravel != null)
+                //        busInTravels = busInTravels.Append(busInTravel);
+                //}
+                for (TimeSpan i = GetFirstTravelTime(schedule, time); i < time + new TimeSpan(1,0,0) && i <= schedule.EndTime ; i += new TimeSpan(0, schedule.Frequency,0))
                 {
-                    BusInTravel busInTravel = CreateBusInTravel(schedule, i, station);
+                    BusInTravel busInTravel = CreateBusInTravel(time, schedule, i, station);
                     if (busInTravel != null)
                         busInTravels = busInTravels.Append(busInTravel);
                 }
             }
             return busInTravels.OrderBy(s => s.TimeLeft);
         }
+        TimeSpan GetFirstTravelTime(LineSchedule lineSchedule, TimeSpan time)
+        {
+            TimeSpan tmp = lineSchedule.StartTime;
+            //if (time > lineSchedule.StartTime)
+            //{
+            //    while (time - new TimeSpan(1, 0, 0) > tmp)
+            //    {
+            //        tmp += new TimeSpan(0, lineSchedule.Frequency, 0);
+            //    }
+            //    return lineSchedule.StartTime;
+            //}
+            
+            while (time - new TimeSpan(1, 0, 0) > tmp)
+            {
+                tmp += new TimeSpan(0, lineSchedule.Frequency, 0);
+            }
+            return tmp;
+        }
         bool Between(LineSchedule lineSchedule, TimeSpan time)
         {
-            return (lineSchedule.StartTime < time && lineSchedule.EndTime > time);
+            return (lineSchedule.StartTime < time && lineSchedule.EndTime > time) || lineSchedule.StartTime < time -new TimeSpan(1, 0, 0) && lineSchedule.EndTime > time - new TimeSpan(1,0,0)|| lineSchedule.StartTime < time + new TimeSpan(1, 0, 0) && lineSchedule.EndTime > time + new TimeSpan(1, 0, 0);
+        }
+        TimeSpan Max(TimeSpan t1, TimeSpan t2)
+        {
+            if (t1 > t2)
+                return t1;
+            return t2;
         }
         //public IEnumerable<BusInTravel> GetLineTimingsPerStation(int stationKey, TimeSpan startTime)
         //{
