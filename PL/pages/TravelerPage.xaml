@@ -7,20 +7,137 @@
       xmlns:local="clr-namespace:PL"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="TravelerPage" Background="White">
+      Title="TravelerSimulationPage" Background="White" Width="Auto">
+    <Page.Resources>
+        <local:LanguageToAlignment x:Key="LanguageConvertor"/>
+        <DataTemplate x:Key="StationTemplate" DataType="local:Station">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="230">
+                <TextBlock Text="{Binding Name}" TextAlignment="Left" FontWeight="Bold" FontSize="15" FontFamily="Segoe UI Black"/>
+                <TextBlock Text="{Binding Key}" TextAlignment="Left" FontSize="15"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="BusLineTemplate" DataType="local:PresentBusLineForStation">
+            <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden" HorizontalContentAlignment="Right">-->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="Auto" >
+                <TextBlock Text="{Binding LineNumber}" TextAlignment="Left" FontWeight="Bold" FontSize="15" FontFamily="Segoe UI Black"/>
+                <Label Width="10"/>
+                <TextBlock Text="{Binding NameLastStation}" TextAlignment="Right" FontSize="15" FontFamily="Segoe UI Black"/>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid x:Name="mainGrid" FlowDirection="{Binding Source, Converter={StaticResource LanguageConvertor}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=True}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="LightGray" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Label Content="{DynamicResource StationPage_StationsTitle}" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontSize="30"/>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <!--<Button x:Name="SimulationButton" Width="155" Margin="0,10,0,-10"  Click="SimulationButton_Click" Background="#FF477AA9" BorderBrush="{x:Null}">
+            <Grid Width="145" Height="25">
+                <materialDesign:PackIcon Kind="Timer" VerticalAlignment="Center" Margin="0" HorizontalAlignment="Left" Width="20" Height="20"/>
+                <TextBlock x:Name="simulationButtonContent"  HorizontalAlignment="Center" VerticalAlignment="Center" Text="הפעל סימולציה" FontFamily="Champagne &amp; Limousines" FontSize="14" Width="132" Margin="0" TextAlignment="Center"/>
+            </Grid>
+            </Button>-->
+            <Grid HorizontalAlignment="Stretch" Margin="63,0,62.333,-19">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                </Grid.ColumnDefinitions>
+                <!--<Button x:Name="1SimulationButton" Width="145" Margin="5,10" Content="הפעל סימולציה" Click="SimulationButton_Click" Background="#FF477AA9" BorderBrush="{x:Null}"/>-->
+                <!--<materialDesign:TimePicker x:Name="tpTime" Margin="15,10" FontSize="15" Foreground="Black" Width="100"/>-->
+                <Label Content="קצב:" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" FontFamily="Segoe UI Black" Grid.Column="0" VerticalContentAlignment="Center"/>
+                <TextBlock x:Name="tblRate" Width="60" Margin="0" Text="{Binding ElementName=tbRate, Path=Text}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" FontSize="40" FontFamily="Segoe UI Black" FontWeight="Bold" Foreground="#FF2B703D" Grid.Column="1"/>
+                <TextBox x:Name="tbRate" Width="60" Margin="74,1,14.667,-1" Text="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="40" FontWeight="Bold" FontFamily="Segoe UI Black" Foreground="#FF2B703D" Grid.ColumnSpan="2" BorderBrush="{x:Null}"/>
+                <Label Content="שעון:" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="Segoe UI Black" FontWeight="Bold" VerticalContentAlignment="Center" Grid.Column="2"/>
+                <StackPanel Grid.Column="3" Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0" VerticalAlignment="Center" Width="200">
+                    <TextBox x:Name="tbSeconds"  Margin="2" Text="00" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" FontSize="40" FontFamily="Segoe UI Black" FontWeight="Bold" BorderBrush="{x:Null}" Foreground="#FF2B703D"/>
+                    <TextBlock x:Name="tbDots1" Margin="2" Text=":" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="40" FontFamily="Segoe UI Black" FontWeight="Bold" Foreground="#FF2B703D"/>
+                    <TextBox x:Name="tbMinutes" Margin="2" Text="00" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" FontSize="40" FontFamily="Segoe UI Black" FontWeight="Bold" Foreground="#FF2B703D" BorderBrush="{x:Null}"/>
+                    <TextBlock x:Name="tbDots2" Margin="2" Text=":" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="40" FontFamily="Segoe UI Black" FontWeight="Bold" Foreground="#FF2B703D"/>
+                    <TextBox x:Name="tbHour" Margin="2" Text="00" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" FontSize="40" FontFamily="Segoe UI Black" FontWeight="Bold" Foreground="#FF2B703D" BorderBrush="{x:Null}"/>
+                </StackPanel>
+                <TextBlock x:Name="tbClock" Width="200" Margin="2.333,8,-17,8" FontSize="40" Text="{Binding}"  Foreground="#FF2B703D"  HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="Collapsed" FontFamily="Segoe UI Black" FontWeight="Bold" Grid.Column="3" />
+                <!---->
+            </Grid>
+        </Grid>
 
-    <StackPanel Orientation="Vertical" FlowDirection="RightToLeft">
-        <Grid Height="60">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="0.5*"/>
-                <ColumnDefinition Width="0.5*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <materialDesign:TimePicker Grid.Column="0" Margin="40,10"/>
-            <TextBlock Grid.Column="1" Margin="40,15" Text="קצב:" TextAlignment="Right" VerticalAlignment="Center" HorizontalAlignment="Right" FontWeight="Bold" FontSize="20"/>
-            <TextBox Grid.Column="2" Margin="40,13,40.333,17"/>
-            <Button Grid.Column="3" Margin="40,10" Content="הפעל סימולטור"/>
+        <StackPanel Grid.Row="1" Grid.Column="0" x:Name="spStations">
+            <StackPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="LightGray" Offset="1"/>
+                    <GradientStop Color="#FFA6C8D1" Offset="0.25"/>
+                    <GradientStop Color="#FFD9DCDD" Offset="0.086"/>
+                    <GradientStop Color="#FFBBD0D6" Offset="0.18"/>
+                    <GradientStop Color="#FFABC9D1" Offset="0.608"/>
+                    <GradientStop Color="#FFC7D0D2" Offset="0.46"/>
+                </LinearGradientBrush>
+            </StackPanel.Background>
+            <Button x:Name="SimulationButton" Width="159" Margin="5,10"  Click="SimulationButton_Click" Background="#FF477AA9" BorderBrush="{x:Null}" Height="38">
+                <Grid Width="145" Height="25">
+                    <materialDesign:PackIcon Kind="Timer" VerticalAlignment="Center" Margin="0,3,0,2" HorizontalAlignment="Left" Width="20" Height="20" Grid.RowSpan="2"/>
+                    <TextBlock x:Name="simulationButtonContent"  HorizontalAlignment="Center" VerticalAlignment="Center" Text="הפעל סימולציה" FontFamily="Champagne &amp; Limousines" FontSize="14" Width="132" Margin="7,4,6,4" TextAlignment="Center" Grid.RowSpan="2"/>
+                </Grid>
+            </Button>
+            <ComboBox x:Name="cbStations" ItemsSource="{Binding}" Height="40" Background="#FFBBD0D6" SelectionChanged="cbStations_SelectionChanged" HorizontalContentAlignment="Right">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+            <ListBox x:Name="lbStations" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource StationTemplate}" BorderBrush="#FF222222" SelectionChanged="stations_SelectionChanged" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="400" Margin="0,0,0.4,0"/>
+        </StackPanel>
+
+        <Rectangle Grid.Column="1" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
+        </Rectangle>
+        <Grid x:Name="StationInfoGrid" Grid.Column="1" Grid.Row="1" Margin="40,30" DataContext="{Binding}">
+            <StackPanel>
+                <StackPanel Grid.Column="0" HorizontalAlignment="Right" Margin="20,20,20,0" Width="433" Height="150">
+                    <StackPanel.Background>
+                        <SolidColorBrush Color="#FF80D095" Opacity="0.6"/>
+                    </StackPanel.Background>
+
+                    <StackPanel Orientation="Horizontal" Margin="0">
+                        <TextBlock Text="{Binding Name}" Margin="20,10,5,10" TextAlignment="Left" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding Key}" Margin="5,10" TextAlignment="Left" FontSize="16" VerticalAlignment="Center"/>
+                        
+                    </StackPanel>
+                    <ListBox x:Name="lbBusLineStations" Margin="0" Padding="0,0,0,0"  HorizontalAlignment="Center" ItemsSource="{Binding PresentBusLines}" ItemTemplate="{StaticResource BusLineTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="395" Height="115" HorizontalContentAlignment="Left">
+                    </ListBox>
+                </StackPanel>
+                <ListView x:Name="lvCommingLines" ItemsSource="{Binding}" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="250" HorizontalContentAlignment="Center">
+                    <ListView.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF2C4142" Offset="0"/>
+                            <GradientStop Color="#FFBADADC" Offset="0.847"/>
+                            <GradientStop Color="#FF457E82" Offset="0.449"/>
+                            <GradientStop Color="#FF30797E" Offset="0.665"/>
+                            <GradientStop Color="#FF62B9D1" Offset="0.27"/>
+                        </LinearGradientBrush>
+                    </ListView.BorderBrush>
+                    <ListView.View>
+
+                        <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Travel Information" TextBlock.TextAlignment="Center">
+                            <GridViewColumn DisplayMemberBinding= "{Binding Path=LineNumber}" Header="קו"/>
+                            <GridViewColumn DisplayMemberBinding= "{Binding Path=LastStationName}" Header="תחנה אחרונה"/>
+                            <GridViewColumn DisplayMemberBinding= "{Binding Path=StartTime}" Header="שעת יציאה"/>
+                            <GridViewColumn DisplayMemberBinding= "{Binding Path=TimeLeft}" Header="מגיע בעוד"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </Grid>
+
     </Grid>
-    </StackPanel>
 </Page>

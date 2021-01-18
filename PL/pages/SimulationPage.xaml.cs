@@ -26,7 +26,7 @@ namespace PL
     public partial class SimulationPage : Page
     {
         //BackgroundWorker worker;
-        public static ObservableCollection<BO.BusInTravel> busesInTravelCollection = new ObservableCollection<BO.BusInTravel>();
+        public static ObservableCollection<BusInTravel> busesInTravelCollection = new ObservableCollection<BusInTravel>();
         Station currentStation = new Station();
         Stopwatch stopWatch;
         TimeSpan time;
@@ -40,7 +40,7 @@ namespace PL
             lbStations.DataContext = MainWindow.stationsCollection;
             lbStations.SelectedIndex = 0;
             //lvCommingLines.DataContext = new List<BO.BusInTravel>();
-            lvCommingLines.DataContext = busesInTravelCollection;
+           // lvCommingLines.DataContext = busesInTravelCollection;
 
             time = new TimeSpan();
             tbClock.DataContext = time;
@@ -59,7 +59,11 @@ namespace PL
         public void TimeChange(Object sender, BO.ValueChangedEventArgs temp)
         {
             tbClock.DataContext = temp.Time;
-            lvCommingLines.DataContext = App.bl.GetLineTimingsPerStation((lbStations.SelectedItem as Station).Key, temp.Time);
+            busesInTravelCollection.Clear();
+            foreach (var lineTiming in App.bl.GetLineTimingsPerStation((lbStations.SelectedItem as Station).Key, temp.Time))
+                busesInTravelCollection.Add(PoBoAdapter.BusInTravelPoBoAdapter(lineTiming));
+
+            lvCommingLines.DataContext = busesInTravelCollection;
         }
         //private void Worker_DoWork(object sender, DoWorkEventArgs e)
         //{

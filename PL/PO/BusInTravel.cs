@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BO
+namespace PL
 {
     public class BusInTravel
     {
@@ -15,6 +15,9 @@ namespace BO
         public int StationKey { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan TimeLeft { get; set; }
+        public int LineNumber { get; set; }
+        public String LastStationName { get; set; }
+
         public override string ToString()
         {
             return this.ToStringProperty();

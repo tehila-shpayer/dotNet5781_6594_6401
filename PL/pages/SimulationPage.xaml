@@ -103,7 +103,7 @@
                 <ListView x:Name="lvCommingLines" ItemsSource="{Binding}" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="250">
                     <ListView.View>
                         <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Travel Information">
-                        <GridViewColumn DisplayMemberBinding= "{Binding Path=LineKey}" Header="קו" Width="50"/>
+                        <GridViewColumn DisplayMemberBinding= "{Binding Path=LineNumber}" Header="קו" Width="50"/>
                         <GridViewColumn DisplayMemberBinding= "{Binding Path=LastStationName}" Header="תחנה אחרונה" Width="100"/>
                         <GridViewColumn DisplayMemberBinding= "{Binding Path=StartTime}" Width="100" Header="התחלה"/>
                         <GridViewColumn DisplayMemberBinding= "{Binding Path=TimeLeft}" Header="נשאר" Width="100"/>

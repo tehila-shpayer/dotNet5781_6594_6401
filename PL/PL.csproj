@@ -105,7 +105,11 @@
     <Compile Include="AddWindows\AddStationWindow.xaml.cs">
       <DependentUpon>AddStationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Convertors.cs" />
+    <Compile Include="pages\TravelerMenuPage.xaml.cs">
+      <DependentUpon>TravelerMenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PO\BusInTravel.cs" />
+    <Compile Include="PO\Convertors.cs" />
     <Compile Include="MapWindow.xaml.cs">
       <DependentUpon>MapWindow.xaml</DependentUpon>
     </Compile>
@@ -229,6 +233,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\ManagerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\TravelerMenuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

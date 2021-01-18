@@ -69,5 +69,14 @@ namespace PL
             UserBO.Clone(UserPO);
             return UserPO;
         }
+        static public PL.BusInTravel BusInTravelPoBoAdapter(BO.BusInTravel BusInTravelBO)
+        {
+            PL.BusInTravel BusInTravelPO = new PL.BusInTravel();
+            BusInTravelBO.Clone(BusInTravelPO);
+            var busLine = App.bl.GetBusLine(BusInTravelPO.LineKey);
+            BusInTravelPO.LineNumber = busLine.LineNumber;
+            BusInTravelPO.LastStationName = App.bl.GetStation(busLine.LastStation).Name;
+            return BusInTravelPO;
+        }
     }
 }
