@@ -77,9 +77,15 @@ namespace PL
             var lastBus = busesInTravelCollection.FirstOrDefault(bit => bit.TimeLeft == new TimeSpan(0,0,0));
             if (lastBus != null)
                 LastBusGrid.DataContext = lastBus;
+            int i = 0;
             foreach (var lineTiming in App.bl.GetLineTimingsPerStation((lbStations.SelectedItem as Station).Key, temp.Time))
+            {
+                i++;
+                if (i > 5)
+                    break;
                 busesInTravelCollection.Add(PoBoAdapter.BusInTravelPoBoAdapter(lineTiming));
-            //LastBusGrid.DataContext =  busesInTravelCollection.FirstOrDefault(bit => bit.TimeLeft == TimeSpan.Zero);
+            }
+
             lvCommingLines.DataContext = busesInTravelCollection;
         }
 
