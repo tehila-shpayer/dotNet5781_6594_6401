@@ -939,6 +939,7 @@ namespace BL
             bit.Key = BusInTravel.BUS_TRAVEL_KEY++;
             bit.BusLicenseNumber = licenseNumber;
             bit.LineKey = lineSchedule.LineKey;
+            //bit.LineNumber = 
             bit.StationKey = station.Key;
             bit.StartTime = lineSchedule.StartTime + new TimeSpan(0, i * lineSchedule.Frequency, 0);
             bit.TimeLeft = GetTimeLeft(bit);

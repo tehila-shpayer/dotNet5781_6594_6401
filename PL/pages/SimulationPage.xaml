@@ -102,9 +102,9 @@
                 <ListBox x:Name="lbLines" Margin="10" Padding="0,0,0,0"  HorizontalAlignment="Center" ItemsSource="{Binding PresentBusLines}" ItemTemplate="{StaticResource BusLineTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="382" Height="110" HorizontalContentAlignment="Left"/>
                 <ListView x:Name="lvCommingLines" ItemsSource="{Binding}" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="250">
                     <ListView.View>
-                        <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
+                        <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Travel Information">
                         <GridViewColumn DisplayMemberBinding= "{Binding Path=LineKey}" Header="קו" Width="50"/>
-                        <GridViewColumn DisplayMemberBinding= "{Binding Path=LastStationName}" Header="תחנה אחרונה" Width="150"/>
+                        <GridViewColumn DisplayMemberBinding= "{Binding Path=LastStationName}" Header="תחנה אחרונה" Width="100"/>
                         <GridViewColumn DisplayMemberBinding= "{Binding Path=StartTime}" Width="100" Header="התחלה"/>
                         <GridViewColumn DisplayMemberBinding= "{Binding Path=TimeLeft}" Header="נשאר" Width="100"/>
                         </GridView>

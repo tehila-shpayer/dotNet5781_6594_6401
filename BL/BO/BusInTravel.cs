@@ -16,6 +16,7 @@ namespace BO
         public String LastStationName { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan TimeLeft { get; set; }
+        public int LineNumber { get; }
         public override string ToString()
         {
             return this.ToStringProperty();
