@@ -25,7 +25,8 @@ namespace PL
     /// </summary>
     public partial class SimulationPage : Page
     {
-        BackgroundWorker worker;
+        //BackgroundWorker worker;
+        public static ObservableCollection<BO.BusInTravel> busesInTravelCollection = new ObservableCollection<BO.BusInTravel>();
         Station currentStation = new Station();
         Stopwatch stopWatch;
         TimeSpan time;
@@ -38,7 +39,8 @@ namespace PL
 
             lbStations.DataContext = MainWindow.stationsCollection;
             lbStations.SelectedIndex = 0;
-            lvCommingLines.DataContext = new List<BO.BusInTravel>();
+            //lvCommingLines.DataContext = new List<BO.BusInTravel>();
+            lvCommingLines.DataContext = busesInTravelCollection;
 
             time = new TimeSpan();
             tbClock.DataContext = time;
@@ -52,10 +54,12 @@ namespace PL
             //worker.WorkerReportsProgress = true;
             //worker.WorkerSupportsCancellation = true;
             mainGrid.DataContext = MainWindow.Language;
+            
         }
         public void TimeChange(Object sender, BO.ValueChangedEventArgs temp)
         {
             tbClock.DataContext = temp.Time;
+            lvCommingLines.DataContext = App.bl.GetLineTimingsPerStation((lbStations.SelectedItem as Station).Key, temp.Time);
         }
         //private void Worker_DoWork(object sender, DoWorkEventArgs e)
         //{
@@ -112,9 +116,9 @@ namespace PL
             //worker.RunWorkerAsync();
             //lvCommingLines.DataContext = App.bl.GetLineTimingsPerStation((lbStations.SelectedItem as Station).Key, new TimeSpan(8,0,0));
         }
-        public void UpdateTime(TimeSpan ts)
-        {
-            worker.ReportProgress(0);
-        }
+        //public void UpdateTime(TimeSpan ts)
+        //{
+        //    worker.ReportProgress(0);
+        //}
     }
 }

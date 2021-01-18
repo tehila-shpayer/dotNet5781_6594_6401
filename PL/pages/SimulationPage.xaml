@@ -100,13 +100,13 @@
                 </StackPanel>-->
                 <TextBlock FontSize="20" Text="קוים העוברים בתחנה:" TextAlignment="Left" Margin="15" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left"/>
                 <ListBox x:Name="lbLines" Margin="12,10,10,10" Padding="0,0,0,0"  HorizontalAlignment="Center" ItemsSource="{Binding PresentBusLines}" ItemTemplate="{StaticResource BusLineTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="382" Height="110" HorizontalContentAlignment="Left"/>
-                <ListView x:Name="lvCommingLines" ItemsSource="{Binding}">
+                <ListView x:Name="lvCommingLines" ItemsSource="{Binding}" ScrollViewer.VerticalScrollBarVisibility="Visible">
                     <ListView.View>
                         <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
-                        <GridViewColumn DisplayMemberBinding= "{Binding Path=LastStationName}" Header="תחנה" Width="100"/>
+                        <GridViewColumn DisplayMemberBinding= "{Binding Path=LineKey}" Header="קו" Width="80"/>
+                        <GridViewColumn DisplayMemberBinding= "{Binding Path=LastStationName}" Header="תחנה אחרונה" Width="150"/>
                         <GridViewColumn DisplayMemberBinding= "{Binding Path=StartTime}" Width="100" Header="התחלה"/>
                         <GridViewColumn DisplayMemberBinding= "{Binding Path=TimeLeft}" Header="נשאר" Width="100"/>
-                        <GridViewColumn DisplayMemberBinding= "{Binding Path=LineKey}" Header="קו" Width="100"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
