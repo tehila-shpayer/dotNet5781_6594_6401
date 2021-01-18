@@ -966,14 +966,14 @@ namespace BL
         {
             Station station = GetStation(stationKey);
             IEnumerable<BusInTravel> busInTravels = new List<BusInTravel>();
-            var a = from bl in station.BusLines
+            var lineSchedules = from bl in station.BusLines
                     let schedules = GetAllLineSchedulesOfLine(bl)
                     from ls in schedules
                     where Between(ls, time)
                     select ls;
-            foreach (LineSchedule schedule in a)
+            foreach (LineSchedule schedule in lineSchedules)
             {
-                for (int i = 0; schedule.StartTime + new TimeSpan(0, i * schedule.Frequency, 0) < time; i++)
+                for (int i = 0; schedule.StartTime + new TimeSpan(0, i * schedule.Frequency -30, 0) < time; i++)
                 {
                     BusInTravel busInTravel = CreateBusInTravel(schedule, i, station);
                     if (busInTravel != null)
