@@ -74,9 +74,12 @@ namespace PL
         {
             tbClock.DataContext = temp.Time;
             busesInTravelCollection.Clear();
+            var lastBus = busesInTravelCollection.FirstOrDefault(bit => bit.TimeLeft == new TimeSpan(0,0,0));
+            if (lastBus != null)
+                LastBusGrid.DataContext = lastBus;
             foreach (var lineTiming in App.bl.GetLineTimingsPerStation((lbStations.SelectedItem as Station).Key, temp.Time))
                 busesInTravelCollection.Add(PoBoAdapter.BusInTravelPoBoAdapter(lineTiming));
-
+            //LastBusGrid.DataContext =  busesInTravelCollection.FirstOrDefault(bit => bit.TimeLeft == TimeSpan.Zero);
             lvCommingLines.DataContext = busesInTravelCollection;
         }
 
@@ -88,13 +91,13 @@ namespace PL
 
         private void SimulationButton_Click(object sender, RoutedEventArgs e)
         {
-            if (simulationButtonContent.Text == "הפעל סימולציה")
+            if (simulationButtonContent.Text == "הפעל")
             {
                 cbStations.IsEnabled = false;
                 clock = new BO.Clock(new TimeSpan(0, 0, 0), 1);
                 clock.TimeChanged += this.TimeChange;
 
-                simulationButtonContent.Text = "עצור סימולציה";
+                simulationButtonContent.Text = "עצור";
                 tbHour.Visibility = Visibility.Collapsed;
                 tbDots1.Visibility = Visibility.Collapsed;
                 tbMinutes.Visibility = Visibility.Collapsed;
@@ -113,7 +116,7 @@ namespace PL
             else
             {
                 cbStations.IsEnabled = true;
-                simulationButtonContent.Text = "הפעל סימולציה";
+                simulationButtonContent.Text = "הפעל";
                 clock.TimeChanged -= this.TimeChange;
                 tbHour.Visibility = Visibility.Visible;
                 tbDots1.Visibility = Visibility.Visible;

@@ -297,6 +297,7 @@
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Bus.datasource" />
+    <None Include="Properties\DataSources\BusInTravel.datasource" />
     <None Include="Properties\DataSources\BusLine.datasource" />
     <None Include="Properties\DataSources\Station.datasource" />
     <None Include="Properties\DataSources\User.datasource" />

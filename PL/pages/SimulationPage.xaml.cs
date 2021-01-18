@@ -62,7 +62,6 @@ namespace PL
             busesInTravelCollection.Clear();
             foreach (var lineTiming in App.bl.GetLineTimingsPerStation((lbStations.SelectedItem as Station).Key, temp.Time))
                 busesInTravelCollection.Add(PoBoAdapter.BusInTravelPoBoAdapter(lineTiming));
-
             lvCommingLines.DataContext = busesInTravelCollection;
         }
         //private void Worker_DoWork(object sender, DoWorkEventArgs e)

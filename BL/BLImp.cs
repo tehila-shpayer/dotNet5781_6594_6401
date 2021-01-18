@@ -943,7 +943,7 @@ namespace BL
             //bit.StartTime = lineSchedule.StartTime + new TimeSpan(0, i * lineSchedule.Frequency, 0);
             bit.StartTime = i;
             bit.TimeLeft = GetTimeLeft(bit, time);
-            if (bit.TimeLeft < new TimeSpan(0, 0, 0) || bit.TimeLeft > new TimeSpan(1, 30, 0))
+            if (bit.TimeLeft <= new TimeSpan(0, 0, 0) || bit.TimeLeft > new TimeSpan(1, 30, 0))
                 return null;
             return bit;
         }
