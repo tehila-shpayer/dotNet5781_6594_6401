@@ -16,12 +16,13 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <StackPanel>
+            <Button x:Name="closeButton" Grid.Column="1" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignFlatButton}" Click="closeButton_Click">
+                <materialDesign:PackIcon Kind="Close"/>
+            </Button>
+        </StackPanel>
 
-        <Button x:Name="closeButton" Grid.Column="1" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignFlatButton}" Click="closeButton_Click">
-            <materialDesign:PackIcon Kind="Close"/>
-        </Button>
-
-        <maps:Map x:Name="map" CredentialsProvider="AttsGkqIHCOIEA11KtQZDphl5bi8lppin64jeg-ZOOhiS4cdHA_EXJwHSbyZi4Xo" Mode="Road" Grid.Column="1" Grid.Row="1" ZoomLevel="16" Center="{Binding}">
+        <maps:Map x:Name="map" CredentialsProvider="AttsGkqIHCOIEA11KtQZDphl5bi8lppin64jeg-ZOOhiS4cdHA_EXJwHSbyZi4Xo" Mode="Road" Grid.Column="1" Grid.Row="1" ZoomLevel="18" Center="{Binding}">
             <Canvas x:Name="mapCanves" maps:MapLayer.Position="{Binding}" maps:MapLayer.PositionOrigin="BottomCenter" Width="30" Height="30">
                 <materialDesign:PackIcon Kind="MapMarker" Width="40" Height="40" Foreground="#FFE00F0F" BorderBrush="Black"/>
             </Canvas>
