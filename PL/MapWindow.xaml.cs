@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Device.Location;
 
 namespace PL
 {
@@ -22,11 +23,14 @@ namespace PL
         public MapWindow(Station station)
         {
             InitializeComponent();
+            map.Center = new Microsoft.Maps.MapControl.WPF.Location(station.Latitude, station.Longitude);
+            mapCanves.DataContext = map.Center;
             //wbMaps.Source = $"tps://www.google.com/maps/search/?api=1&query=+{station.Latitude}+,+{station.Longitude}";
         }
 
-        private void Window_Initialized(object sender, EventArgs e)
+        private void closeButton_Click(object sender, RoutedEventArgs e)
         {
+            Close();
         }
     }
 }

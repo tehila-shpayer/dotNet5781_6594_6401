@@ -20,6 +20,8 @@ namespace PL
     public partial class UpdateConsecutiveStations : Window
     {
         public BO.BusLineStation blsBO = new BO.BusLineStation();
+        BO.Station station1;
+        BO.Station station2;
         public UpdateConsecutiveStations(BusLineStation bls)
         {
             InitializeComponent();
@@ -29,8 +31,8 @@ namespace PL
             //blsBO.Position = bls.Position;
             //blsBO.TravelTimeFromLastStationMinutes = bls.TravelTimeFromLastStationMinutes;
             //blsBO.DistanceFromLastStationMeters = bls.DistanceFromLastStationMeters;
-            BO.Station station1 = App.bl.GetPreviouseStation(bls.BusLineKey, bls.Position);
-            BO.Station station2 = App.bl.GetStation(bls.StationKey);
+            station1 = App.bl.GetPreviouseStation(bls.BusLineKey, bls.Position);
+            station2 = App.bl.GetStation(bls.StationKey);
             tbTitle.DataContext = bls;
             spFirstStation.DataContext = station1;
             spSecondStation.DataContext = station2;
@@ -44,6 +46,18 @@ namespace PL
             BO.BusLineStation b = App.bl.GetBusLineStation(blsBO.BusLineKey, blsBO.Position);
             MainWindow.InitializeBusLines();
             Close();
+        }
+
+        private void mapButton1_Click(object sender, RoutedEventArgs e)
+        {
+            MapWindow mapWindow = new MapWindow(PoBoAdapter.StationPoBoAdapter(station1));
+            mapWindow.Show();
+        }
+
+        private void mapButton2_Click(object sender, RoutedEventArgs e)
+        {
+            MapWindow mapWindow = new MapWindow(PoBoAdapter.StationPoBoAdapter(station2));
+            mapWindow.Show();
         }
     }
 }
