@@ -942,7 +942,7 @@ namespace BL
             bit.StationKey = station.Key;
             bit.StartTime = lineSchedule.StartTime + new TimeSpan(0, i * lineSchedule.Frequency, 0);
             bit.TimeLeft = GetTimeLeft(bit);
-            if (bit.TimeLeft < new TimeSpan(0, 0, 0))
+            if (bit.TimeLeft < new TimeSpan(0, 0, 0) || bit.TimeLeft > new TimeSpan(1, 30, 0))
                 return null;
             return bit;
         }
@@ -980,7 +980,7 @@ namespace BL
                         busInTravels = busInTravels.Append(busInTravel);
                 }
             }
-            return busInTravels;
+            return busInTravels.OrderBy(s => s.TimeLeft);
         }
         bool Between(LineSchedule lineSchedule, TimeSpan time)
         {
