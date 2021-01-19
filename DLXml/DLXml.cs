@@ -335,85 +335,98 @@ namespace DL
 
         #endregion
 
-        //#region BusLineStation
-        //public IEnumerable<BusLineStation> GetAllBusLineStations()
-        //{
-        //    var AllBusLineStations = from bls in DataSource.ListBusLineStations
-        //                             select bls.Clone();
-        //    return AllBusLineStations;
-        //}
-        //public IEnumerable<BusLineStation> GetAllBusLineStationsBy(Predicate<BusLineStation> predicate)
-        //{
-        //    var AllBusLineStations = from bls in DataSource.ListBusLineStations
-        //                             where predicate(bls)
-        //                             select bls.Clone();
-        //    return AllBusLineStations;
-        //}
-        //public BusLineStation GetBusLineStationBy(Predicate<BusLineStation> predicate)
-        //{
-        //    BusLineStation busLineStation = DataSource.ListBusLineStations.Find(b => predicate(b));
-        //    if (busLineStation != null)
-        //        return busLineStation.Clone();
-        //    else
-        //        throw new ArgumentNotFoundException($"Bus line station required was not found.");
-        //}
-        //public BusLineStation GetBusLineStationByKey(int line, int stationKey)
-        //{
-        //    BusLineStation busLineStation = DataSource.ListBusLineStations.Find(b => b.BusLineKey == line && b.StationKey == stationKey);
-        //    if (busLineStation != null)
-        //        return busLineStation.Clone();
-        //    else
-        //        throw new ArgumentNotFoundException($"Bus line station of line {line} and station {stationKey} was not found.");
-        //}
-        //public IEnumerable<BusLineStation> GetAllStationsOfLine(int busLine)
-        //{
-        //    var AllStationsOfLine = from station in DataSource.ListBusLineStations
-        //                            where station.BusLineKey == busLine
-        //                            select station.Clone();
-        //    return AllStationsOfLine.OrderBy(bls => bls.Position);
-        //}
-        //public void AddBusLineStation(BusLineStation station)
-        //{
-        //    if (DataSource.ListBusLineStations.FirstOrDefault(s => s.BusLineKey == station.BusLineKey && s.StationKey == station.StationKey) != null)
-        //        throw new InvalidInformationException("Duplicate station bus line number and station key");
-        //    if (DataSource.ListStations.FirstOrDefault(s => s.Key == station.StationKey) == null)
-        //        throw new InvalidInformationException($"No station with key {station.StationKey} exists.");
-        //    if (DataSource.ListBusLines.FirstOrDefault(b => b.Key == station.BusLineKey) == null)
-        //        throw new InvalidInformationException($"No Bus Line with key {station.BusLineKey} exists.");
-        //    DataSource.ListBusLineStations.Add(station.Clone());
-        //}
-        //public void UpdateBusLineStation(BusLineStation station)
-        //{
-        //    int index = DataSource.ListBusLineStations.FindIndex(s => s.BusLineKey == station.BusLineKey && s.StationKey == station.StationKey);
-        //    if (index != -1)
-        //        DataSource.ListBusLineStations[index] = station;
-        //    else
-        //        throw new ArgumentNotFoundException($"Bus station of line {station.BusLineKey} and station {station.StationKey} was not found.");
-        //}
-        //public void UpdateBusLineStation(int line, int stationKey, Action<BusLineStation> update) //method that knows to updt specific fields in Person
-        //{
-        //    BusLineStation busLineStation = DataSource.ListBusLineStations.Find(s => s.BusLineKey == line && s.StationKey == stationKey);
-        //    if (busLineStation != null)
-        //        update(busLineStation);
-        //    else
-        //        throw new ArgumentNotFoundException($"Bus station of line {line} and station {stationKey} was not found.");
-        //}
-        //public void DeleteBusLineStation(int line, int stationKey)
-        //{
-        //    BusLineStation busLineStation = DataSource.ListBusLineStations.Find(b => b.BusLineKey == line && b.StationKey == stationKey);
-        //    if (busLineStation == null)
-        //        throw new ArgumentNotFoundException($"Bus station of line {line} and station {stationKey} was not found.");
-        //    DataSource.ListBusLineStations.Remove(busLineStation);
-        //}
-        //public void DeleteBusLineStationsByStation(int stationKey)
-        //{
-        //    DataSource.ListBusLineStations.RemoveAll(bls => bls.StationKey == stationKey);
-        //}
-        //public void DeleteBusLineStationsByLine(int lineKey)
-        //{
-        //    DataSource.ListBusLineStations.RemoveAll(bls => bls.BusLineKey == lineKey);
-        //}
-        //#endregion
+        #region BusLineStation
+        public IEnumerable<BusLineStation> GetAllBusLineStations()
+        {
+            List<BusLineStation> ListBusLineStations = XmlTools.LoadListFromXMLSerializer<BusLineStation>(busLineStationsPath);
+            return from bls in ListBusLineStations
+                   select bls;
+        }
+        public IEnumerable<BusLineStation> GetAllBusLineStationsBy(Predicate<BusLineStation> predicate)
+        {
+            List<BusLineStation> ListBusLineStations = XmlTools.LoadListFromXMLSerializer<BusLineStation>(busLineStationsPath);
+            return from bls in ListBusLineStations
+                   where predicate(bls)
+                   select bls;
+        }
+        public BusLineStation GetBusLineStationBy(Predicate<BusLineStation> predicate)
+        {
+            List<BusLineStation> ListBusLineStations = XmlTools.LoadListFromXMLSerializer<BusLineStation>(busLineStationsPath);
+            BusLineStation busLineStation = ListBusLineStations.Find(b => predicate(b));
+            if (busLineStation != null)
+                return busLineStation;
+            else
+                throw new ArgumentNotFoundException($"Bus line station required was not found.");
+        }
+        public BusLineStation GetBusLineStationByKey(int line, int stationKey)
+        {
+            List<BusLineStation> ListBusLineStations = XmlTools.LoadListFromXMLSerializer<BusLineStation>(busLineStationsPath);
+            BusLineStation busLineStation = ListBusLineStations.Find(b => b.BusLineKey == line && b.StationKey == stationKey);
+            if (busLineStation != null)
+                return busLineStation;
+            else
+                throw new ArgumentNotFoundException($"Bus line station of line {line} and station {stationKey} was not found.");
+        }
+        public IEnumerable<BusLineStation> GetAllStationsOfLine(int busLine)
+        {
+            List<BusLineStation> ListBusLineStations = XmlTools.LoadListFromXMLSerializer<BusLineStation>(busLineStationsPath);
+            var AllStationsOfLine = from bls in ListBusLineStations
+                                    where bls.BusLineKey == busLine
+                                    select bls;
+            return AllStationsOfLine.OrderBy(bls => bls.Position);
+        }
+        public void AddBusLineStation(BusLineStation lineStation)
+        {
+            List<BusLineStation> ListBusLineStations = XmlTools.LoadListFromXMLSerializer<BusLineStation>(busLineStationsPath);
+            if (ListBusLineStations.FirstOrDefault(s => s.BusLineKey == lineStation.BusLineKey && s.StationKey == lineStation.StationKey) != null)
+                throw new InvalidInformationException("Duplicate bus line station");
+            GetStation(lineStation.StationKey);//if not found, an exception is thrown
+            GetBusLine(lineStation.BusLineKey);//if not found, an exception is thrown
+            ListBusLineStations.Add(lineStation);
+            XmlTools.SaveListToXMLSerializer(ListBusLineStations, busLineStationsPath);
+        }
+        public void UpdateBusLineStation(BusLineStation station)
+        {
+            List<BusLineStation> ListBusLineStations = XmlTools.LoadListFromXMLSerializer<BusLineStation>(busLineStationsPath);
+            int index = ListBusLineStations.FindIndex(s => s.BusLineKey == station.BusLineKey && s.StationKey == station.StationKey);
+            if (index == -1)
+                throw new ArgumentNotFoundException($"Bus station of line {station.BusLineKey} and station {station.StationKey} was not found.");
+            ListBusLineStations[index] = station;          
+            XmlTools.SaveListToXMLSerializer(ListBusLineStations, busLineStationsPath);
+        }
+        public void UpdateBusLineStation(int line, int stationKey, Action<BusLineStation> update) //method that knows to updt specific fields in Person
+        {
+            List<BusLineStation> ListBusLineStations = XmlTools.LoadListFromXMLSerializer<BusLineStation>(busLineStationsPath);
+            int index = ListBusLineStations.FindIndex(s => s.BusLineKey == station.BusLineKey && s.StationKey == station.StationKey);
+            if (index == -1)
+                throw new ArgumentNotFoundException($"Bus station of line {line} and station {stationKey} was not found.");
+            BusLineStation lineStation = ListBusLineStations.Find(s => s.BusLineKey == line && s.StationKey == stationKey);
+            update(lineStation);
+            ListBusLineStations[index] = lineStation;
+            XmlTools.SaveListToXMLSerializer(ListBusLineStations, busLineStationsPath);
+        }
+        public void DeleteBusLineStation(int line, int stationKey)
+        {
+            List<BusLineStation> ListBusLineStations = XmlTools.LoadListFromXMLSerializer<BusLineStation>(busLineStationsPath);
+            BusLineStation busLineStation = ListBusLineStations.Find(b => b.BusLineKey == line && b.StationKey == stationKey);
+            if (busLineStation == null)
+                throw new ArgumentNotFoundException($"Bus station of line {line} and station {stationKey} was not found.");
+            ListBusLineStations.Remove(busLineStation);
+            XmlTools.SaveListToXMLSerializer(ListBusLineStations, busLineStationsPath);
+        }
+        public void DeleteBusLineStationsByStation(int stationKey)
+        {
+            List<BusLineStation> ListBusLineStations = XmlTools.LoadListFromXMLSerializer<BusLineStation>(busLineStationsPath);
+            ListBusLineStations.RemoveAll(bls => bls.BusLineKey == stationKey);
+            XmlTools.SaveListToXMLSerializer(ListBusLineStations, busLineStationsPath);
+        }
+        public void DeleteBusLineStationsByLine(int lineKey)
+        {
+            List<BusLineStation> ListBusLineStations = XmlTools.LoadListFromXMLSerializer<BusLineStation>(busLineStationsPath);
+            ListBusLineStations.RemoveAll(bls => bls.BusLineKey == lineKey);
+            XmlTools.SaveListToXMLSerializer(ListBusLineStations, busLineStationsPath);
+        }
+        #endregion
 
         #region ConsecutiveStations
         public ConsecutiveStations GetConsecutiveStations(int stationKey1, int stationKey2)
@@ -568,7 +581,6 @@ namespace DL
         public Station GetStation(int stationKey)
         {
             List<Station> ListStations = XmlTools.LoadListFromXMLSerializer<Station>(stationsPath);
-
             Station station = ListStations.Find(s => s.Key == stationKey);
             if (station != null)
                 return station;
