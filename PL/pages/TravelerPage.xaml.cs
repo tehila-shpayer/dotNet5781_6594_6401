@@ -100,8 +100,9 @@ namespace PL
 
         private void SimulationButton_Click(object sender, RoutedEventArgs e)
         {
+            Random rand = new Random();
             //if (simulationButtonContent.Text == "הפעל")
-
+            latePrecentage = (double)rand.Next(85, 115) / (double)100;
             cbStations.IsEnabled = false;
             clock = new BO.Clock(new TimeSpan(0, 0, 0), 1);
 
