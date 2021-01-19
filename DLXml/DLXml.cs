@@ -25,7 +25,7 @@ namespace DL
         string stationsPath = @"StationsXml.xml"; //XMLSerializer
         string busLinesPath = @"BusLinesXml.xml"; //XMLSerializer
         string busLineStationsPath = @"BusLineStationsXml.xml"; //XMLSerializer
-        string consecutiveStationsPath = @"ConsecutiveStationsXml.xml"; //XMLSerializer
+        string consecutiveStationsPath = @"ConsecutiveStationsXml.xml"; //XElement
         string usersPath = @"UsersXml.xml"; //XMLSerializer
         #endregion
 
@@ -450,63 +450,102 @@ namespace DL
         }
         public void AddConsecutiveStations(int stationKey1, int stationKey2)
         {
-            //if (stationKey1 == stationKey2)
-            //    throw new InvalidInformationException("Duplicate station!");
-            //Station station1 = GetStation(stationKey1);
-            //Station station2 = GetStation(stationKey2);
-            //AddConsecutiveStations(CalculateConsecutiveStations(station1, station2));
+            if (stationKey1 == stationKey2)
+                throw new InvalidInformationException("Duplicate station!");
+            Station station1 = GetStation(stationKey1);
+            Station station2 = GetStation(stationKey2);
+            AddConsecutiveStations(CalculateConsecutiveStations(station1, station2));
         }
-        //ConsecutiveStations CalculateConsecutiveStations(Station station1, Station station2)
-        //{
-        //    ConsecutiveStations consecutiveStations = new DO.ConsecutiveStations();
-        //    consecutiveStations.StationKey1 = station1.Key;
-        //    consecutiveStations.StationKey2 = station2.Key;
-        //    GeoCoordinate location1 = new GeoCoordinate(station1.Latitude, station1.Longitude);//מיקום התחנה המחושבת
-        //    GeoCoordinate location2 = new GeoCoordinate(station2.Latitude, station2.Longitude);//מיקום התחנה הקודמת
-        //    double distance = location1.GetDistanceTo(location2);//חישוב מרחק
-        //    consecutiveStations.Distance = distance;
-        //    Random rand = new Random();
-        //    int speed = rand.Next(30, 60);
-        //    int time = (int)Math.Ceiling(distance / (speed * 1000 / 60));//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש
-        //    consecutiveStations.AverageTime = time;
-        //    return consecutiveStations;
-        //}
-        //public void UpdateConsecutiveStations(ConsecutiveStations stations)
-        //{
-        //    int indexOfConsecutiveStationToUpdate = DataSource.ListConsecutiveStations.FindIndex(s => s.StationKey1 == stations.StationKey1 && s.StationKey2 == stations.StationKey2);
-        //    if (indexOfConsecutiveStationToUpdate == -1)
-        //        throw new ArgumentNotFoundException($"Consecutive stations not found with keys: {stations.StationKey1} and {stations.StationKey2}.");
-        //    DataSource.ListConsecutiveStations[indexOfConsecutiveStationToUpdate] = stations;
-        //}
-        //public void UpdateConsecutiveStations(int stationKey1, int stationKey2, Action<ConsecutiveStations> update) //method that knows to updt specific fields in Person
-        //{
-        //    int indexOfConsecutiveStationToUpdate = DataSource.ListConsecutiveStations.FindIndex(s => s.StationKey1 == stationKey1 && s.StationKey2 == stationKey2);
-        //    if (indexOfConsecutiveStationToUpdate == -1)
-        //        throw new ArgumentNotFoundException($"Consecutive stations of first station  {stationKey1} and second station {stationKey2} were not found.");
-        //    ConsecutiveStations consecutiveStations = DataSource.ListConsecutiveStations[indexOfConsecutiveStationToUpdate];
-        //    update(consecutiveStations);
-        //    DataSource.ListConsecutiveStations[indexOfConsecutiveStationToUpdate] = consecutiveStations;
-        //}
-        //public void DeleteConsecutiveStations(int stationKey1, int stationKey2)
-        //{
-        //    ConsecutiveStations consecutiveStations = DataSource.ListConsecutiveStations.Find(s => s.StationKey1 == stationKey1 && s.StationKey2 == stationKey2);
-        //    if (consecutiveStations == null)
-        //        throw new ArgumentNotFoundException($"Consecutive stations of first station  {stationKey1} and second station {stationKey2} was not found.");
-        //    DataSource.ListConsecutiveStations.Remove(consecutiveStations);
-        //}
-        //public void DeleteConsecutiveStations(int stationKey)
-        //{
-        //    try
-        //    {
-        //        GetStation(stationKey);
-        //        DataSource.ListConsecutiveStations.RemoveAll(cs => stationKey == cs.StationKey1 || stationKey == cs.StationKey2);
-        //    }
-        //    catch
-        //    {
-        //        throw;
-        //    }
+        ConsecutiveStations CalculateConsecutiveStations(Station station1, Station station2)
+        {
+            ConsecutiveStations consecutiveStations = new DO.ConsecutiveStations();
+            consecutiveStations.StationKey1 = station1.Key;
+            consecutiveStations.StationKey2 = station2.Key;
+            GeoCoordinate location1 = new GeoCoordinate(station1.Latitude, station1.Longitude);//מיקום התחנה המחושבת
+            GeoCoordinate location2 = new GeoCoordinate(station2.Latitude, station2.Longitude);//מיקום התחנה הקודמת
+            double distance = location1.GetDistanceTo(location2);//חישוב מרחק
+            consecutiveStations.Distance = distance;
+            Random rand = new Random();
+            int speed = rand.Next(30, 60);
+            int time = (int)Math.Ceiling(distance / (speed * 1000 / 60));//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש
+            consecutiveStations.AverageTime = time;
+            return consecutiveStations;
+        }
+        public void UpdateConsecutiveStations(ConsecutiveStations consecutiveStations)
+        {
+            XElement consecutiveStationsRootElem = XmlTools.LoadListFromXMLElement(consecutiveStationsPath);
 
-        //}
+            XElement consecutiveStations1 = (from cs in consecutiveStationsRootElem.Elements()
+                                             where int.Parse(cs.Element("StationKey1").Value) == consecutiveStations.StationKey1 &&
+                                             int.Parse(cs.Element("StationKey2").Value) == consecutiveStations.StationKey2
+                                             select cs).FirstOrDefault();
+
+            if (consecutiveStations1 != null)
+            {
+                consecutiveStations1.Element("StationKey1").Value = consecutiveStations.StationKey1.ToString();
+                consecutiveStations1.Element("StationKey2").Value = consecutiveStations.StationKey2.ToString();
+                consecutiveStations1.Element("Distance").Value = consecutiveStations.Distance.ToString();
+                consecutiveStations1.Element("AverageTime").Value = consecutiveStations.AverageTime.ToString();
+ 
+                XmlTools.SaveListToXMLElement(consecutiveStationsRootElem, consecutiveStationsPath);
+            }
+            else
+                throw new ArgumentNotFoundException($"Consecutive stations not found with keys: {consecutiveStations.StationKey1} and {consecutiveStations.StationKey2}.");
+        }
+        public void UpdateConsecutiveStations(int stationKey1, int stationKey2, Action<ConsecutiveStations> update) //method that knows to updt specific fields in Person
+        {
+            XElement consecutiveStationsRootElem = XmlTools.LoadListFromXMLElement(consecutiveStationsPath);
+
+            XElement consecutiveStations = (from cs in consecutiveStationsRootElem.Elements()
+                                             where int.Parse(cs.Element("StationKey1").Value) == stationKey1 &&
+                                             int.Parse(cs.Element("StationKey2").Value) == stationKey2
+                                             select cs).FirstOrDefault();
+
+            if (consecutiveStations != null)
+            {
+                ConsecutiveStations cs = GetConsecutiveStations(stationKey1, stationKey2);
+                update(cs);
+                consecutiveStations.Element("StationKey1").Value = cs.StationKey1.ToString();
+                consecutiveStations.Element("StationKey2").Value = cs.StationKey2.ToString();
+                consecutiveStations.Element("Distance").Value = cs.Distance.ToString();
+                consecutiveStations.Element("AverageTime").Value = cs.AverageTime.ToString();
+
+                XmlTools.SaveListToXMLElement(consecutiveStationsRootElem, consecutiveStationsPath);
+            }
+            else
+                throw new ArgumentNotFoundException($"Consecutive stations not found with keys: {stationKey1} and {stationKey2}.");
+        }
+        public void DeleteConsecutiveStations(int stationKey1, int stationKey2)
+        {
+            XElement consecutiveStationsRootElem = XmlTools.LoadListFromXMLElement(consecutiveStationsPath);
+
+            XElement consecutiveStations = (from cs in consecutiveStationsRootElem.Elements()
+                                            where int.Parse(cs.Element("StationKey1").Value) == stationKey1 &&
+                                            int.Parse(cs.Element("StationKey2").Value) == stationKey2
+                                            select cs).FirstOrDefault();
+            if (consecutiveStations != null)
+            {
+                consecutiveStations.Remove(); //<==>   Remove consecutive stations from consecutiveStationsRootElem
+
+                XmlTools.SaveListToXMLElement(consecutiveStationsRootElem, consecutiveStationsPath);
+            }
+            else
+                throw new ArgumentNotFoundException($"Consecutive stations of first station  {stationKey1} and second station {stationKey2} was not found.");
+        }
+        public void DeleteConsecutiveStations(int stationKey)
+        {
+            XElement consecutiveStationsRootElem = XmlTools.LoadListFromXMLElement(consecutiveStationsPath);
+
+
+            IEnumerable<XElement> consecutiveStations = (from cs in consecutiveStationsRootElem.Elements()
+                                                         where int.Parse(cs.Element("StationKey1").Value) == stationKey ||
+                                                         int.Parse(cs.Element("StationKey2").Value) == stationKey
+                                                         select cs);            
+            foreach(var cs in consecutiveStations)
+                cs.Remove(); //<==>   Remove consecutive stations from consecutiveStationsRootElem
+
+            XmlTools.SaveListToXMLElement(consecutiveStationsRootElem, consecutiveStationsPath);
+        }
         #endregion
 
         //#region LineSchedule
