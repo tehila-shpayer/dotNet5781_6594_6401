@@ -29,7 +29,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "~Exercise", "~Exercise", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{72B553CD-4FF0-477D-831F-196703BB9B40}"
 	ProjectSection(SolutionItems) = preProject
-		BusesXml.xml = BusesXml.xml
 		config.xml = config.xml
 	EndProjectSection
 EndProject
