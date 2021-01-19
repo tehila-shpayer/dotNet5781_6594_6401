@@ -30,73 +30,7 @@ namespace DL
         #endregion
 
         //#region Person
-        //public void AddPerson(DO.Person person)
-        //{
-        //    XElement personsRootElem = XMLTools.LoadListFromXMLElement(personsPath);
 
-        //    XElement per1 = (from p in personsRootElem.Elements()
-        //                     where int.Parse(p.Element("ID").Value) == person.ID
-        //                     select p).FirstOrDefault();
-
-        //    if (per1 != null)
-        //        throw new DO.BadPersonIdException(person.ID, "Duplicate person ID");
-
-        //    XElement personElem = new XElement("Person", new XElement("ID", person.ID),
-        //                          new XElement("Name", person.Name),
-        //                          new XElement("Street", person.Street),
-        //                          new XElement("HouseNumber", person.HouseNumber.ToString()),
-        //                          new XElement("City", person.City),
-        //                          new XElement("BirthDate", person.BirthDate),
-        //                          new XElement("PersonalStatus", person.PersonalStatus.ToString()),
-        //                          new XElement("Duration", person.Duration.ToString()));
-
-        //    personsRootElem.Add(personElem);
-
-        //    XMLTools.SaveListToXMLElement(personsRootElem, personsPath);
-        //}
-
-        //public void DeletePerson(int id)
-        //{
-        //    XElement personsRootElem = XMLTools.LoadListFromXMLElement(personsPath);
-
-        //    XElement per = (from p in personsRootElem.Elements()
-        //                    where int.Parse(p.Element("ID").Value) == id
-        //                    select p).FirstOrDefault();
-
-        //    if (per != null)
-        //    {
-        //        per.Remove(); //<==>   Remove per from personsRootElem
-
-        //        XMLTools.SaveListToXMLElement(personsRootElem, personsPath);
-        //    }
-        //    else
-        //        throw new DO.BadPersonIdException(id, $"bad person id: {id}");
-        //}
-
-        //public void UpdatePerson(DO.Person person)
-        //{
-        //    XElement personsRootElem = XMLTools.LoadListFromXMLElement(personsPath);
-
-        //    XElement per = (from p in personsRootElem.Elements()
-        //                    where int.Parse(p.Element("ID").Value) == person.ID
-        //                    select p).FirstOrDefault();
-
-        //    if (per != null)
-        //    {
-        //        per.Element("ID").Value = person.ID.ToString();
-        //        per.Element("Name").Value = person.Name;
-        //        per.Element("Street").Value = person.Street;
-        //        per.Element("HouseNumber").Value = person.HouseNumber.ToString();
-        //        per.Element("City").Value = person.City;
-        //        per.Element("BirthDate").Value = person.BirthDate.ToString();
-        //        per.Element("PersonalStatus").Value = person.PersonalStatus.ToString();
-        //        per.Element("Duration").Value = person.Duration.ToString();
-
-        //        XMLTools.SaveListToXMLElement(personsRootElem, personsPath);
-        //    }
-        //    else
-        //        throw new DO.BadPersonIdException(person.ID, $"bad person id: {person.ID}");
-        //}
 
         //public void UpdatePerson(int id, Action<DO.Person> update)
         //{
@@ -226,12 +160,12 @@ namespace DL
                    where predicate(bus)
                    select bus;
         }
-        public Bus GetBus(string LicenseNumber)
+        public Bus GetBus(string licenseNumber)
         {
             XElement busesRootElem = XmlTools.LoadListFromXMLElement(busesPath);
 
             Bus bus = (from b in busesRootElem.Elements()
-                        where b.Element("LicenseNumber").Value == LicenseNumber
+                        where b.Element("LicenseNumber").Value == licenseNumber
                         select new Bus()
                         {
                             LicenseNumber = b.Element("LicenseNumber").Value,
@@ -271,61 +205,72 @@ namespace DL
 
             XmlTools.SaveListToXMLElement(busesRootElem, busesPath);
         }
-        //public void UpdateBus(Bus bus)
-        //{
-        //    int indexOfBusToUpdate = DataSource.ListBuses.FindIndex(s => s.LicenseNumber == bus.LicenseNumber);
-        //    if (indexOfBusToUpdate >= 0)
-        //        DataSource.ListBuses[indexOfBusToUpdate] = bus;
-        //    else
-        //        throw new ArgumentNotFoundException($"Bus {bus.LicenseNumber} not found.");
-        //}
-        //public void UpdateBus(string LicenseNumber, Action<Bus> update) //method that knows to updt specific fields in Bus
-        //{
-        //    int indexOfBusToUpdate = DataSource.ListBuses.FindIndex(s => s.LicenseNumber == LicenseNumber);
-        //    if (indexOfBusToUpdate >= 0)
-        //    {
-        //        update(DataSource.ListBuses[indexOfBusToUpdate]);
-        //    }
-        //    else
-        //        throw new ArgumentNotFoundException($"Bus {LicenseNumber} not found.");
-        //}
-        //public void DeleteBus(string LicenseNumber)
-        //{
-        //    Bus bus = DataSource.ListBuses.Find(b => b.LicenseNumber == LicenseNumber);
-        //    if (bus == null)
-        //        throw new ArgumentNotFoundException($"Bus {bus.LicenseNumber} not found.");
-        //    DataSource.ListBuses.Remove(bus);
-        //}
+        public void UpdateBus(Bus bus)
+        {
+            XElement busesRootElem = XmlTools.LoadListFromXMLElement(busesPath);
+
+            XElement bus1 = (from b in busesRootElem.Elements()
+                             where b.Element("LicenseNumber").Value == bus.LicenseNumber
+                             select b).FirstOrDefault();
+
+            if (bus1 != null)
+            {
+                bus1.Element("LicenseNumber").Value = bus.LicenseNumber;
+                bus1.Element("RunningDate").Value = bus.RunningDate.ToString();
+                bus1.Element("LastTreatment").Value = bus.LastTreatment.ToString();
+                bus1.Element("Fuel").Value = bus.Fuel.ToString();
+                bus1.Element("KM").Value = bus.KM.ToString();
+                bus1.Element("BeforeTreatKM").Value = bus.BeforeTreatKM.ToString();
+                bus1.Element("Status").Value = bus.Status.ToString();
+
+                XmlTools.SaveListToXMLElement(busesRootElem, busesPath);
+            }
+            else
+                throw new ArgumentNotFoundException($"Bus {bus.LicenseNumber} not found.");
+        }
+        public void UpdateBus(string licenseNumber, Action<Bus> update) //method that knows to updt specific fields in Bus
+        {
+            XElement busesRootElem = XmlTools.LoadListFromXMLElement(busesPath);
+
+            XElement bus = (from b in busesRootElem.Elements()
+                             where b.Element("LicenseNumber").Value == licenseNumber
+                             select b).FirstOrDefault();
+
+            if (bus != null)
+            {
+                Bus bus1 = GetBus(licenseNumber);
+                update(bus1);
+                bus.Element("LicenseNumber").Value = bus1.LicenseNumber;
+                bus.Element("RunningDate").Value = bus1.RunningDate.ToString();
+                bus.Element("LastTreatment").Value = bus1.LastTreatment.ToString();
+                bus.Element("Fuel").Value = bus1.Fuel.ToString();
+                bus.Element("KM").Value = bus1.KM.ToString();
+                bus.Element("BeforeTreatKM").Value = bus1.BeforeTreatKM.ToString();
+                bus.Element("Status").Value = bus1.Status.ToString();
+
+                XmlTools.SaveListToXMLElement(busesRootElem, busesPath);
+            }
+            else
+                throw new ArgumentNotFoundException($"Bus {licenseNumber} not found.");
+        }
+        public void DeleteBus(string licenseNumber)
+        {
+            XElement busesRootElem = XmlTools.LoadListFromXMLElement(busesPath);
+
+            XElement bus = (from b in busesRootElem.Elements()
+                             where b.Element("LicenseNumber").Value == licenseNumber
+                             select b).FirstOrDefault();
+
+            if (bus != null)
+            {
+                bus.Remove(); //<==>   Remove bus from busesRootElem
+
+                XmlTools.SaveListToXMLElement(busesRootElem, busesPath);
+            }
+            else
+                throw new ArgumentNotFoundException($"Bus {licenseNumber} not found.");
+        }
         #endregion
-
-        //#region BusInTravel
-        ////public BusInTravel GetBusInTravel(int key) 
-        //// {
-        ////     BusInTravel busInTravel = DataSource.ListBusesInTravel.Find(b => b.Key== key);
-        ////     if (busInTravel != null)
-        ////         return busInTravel.Clone();
-        ////     else
-        ////         throw new ArgumentNotFoundException(key, $"Bus in travel with key {key} not found.");
-        //// }
-        ////public IEnumerable<BusInTravel> GetAllBusInTravelsBy(Predicate<BusInTravel> predicate) 
-        //// {
-        ////     var AllBusesInTravelsBy = from bus in DataSource.ListBusesInTravel
-        ////                               where predicate(bus)
-        ////                               select bus.Clone();
-        ////     return AllBusesInTravelsBy;
-        //// }
-        ////public IEnumerable<BusInTravel> GetAllBusInTravels()
-        //// {
-        ////     var AllBusesInTravels = from bus in DataSource.ListBusesInTravel
-        ////                    select bus.Clone();
-        ////     return AllBusesInTravels;
-        //// }
-        //// public void AddBusInTravel(BusInTravel busInTravel) { }
-        //// public void DeleteBusInTravel(string licenseNumber, int lineKey, int formalTime) { }
-        //// public void UpdateBusInTravel(BusInTravel bus) { }
-        //// public void UpdateBusInTravel(int key, Action<BusInTravel> update) { } //method that knows to updt specific fields in BusInTravel
-
-        //#endregion
 
         #region BusLine
         public BusLine GetBusLine(int busLineKey)
@@ -470,27 +415,55 @@ namespace DL
         //}
         //#endregion
 
-        //#region ConsecutiveStations
-        //public ConsecutiveStations GetConsecutiveStations(int stationKey1, int stationKey2)
-        //{
-        //    ConsecutiveStations consecutiveStations = DataSource.ListConsecutiveStations.Find(cs => cs.StationKey1 == stationKey1 && cs.StationKey2 == stationKey2);
-        //    if (consecutiveStations != null)
-        //        return consecutiveStations.Clone();
-        //    else
-        //        throw new ArgumentNotFoundException($"Consecutive stations of first station  {stationKey1} and second station {stationKey2} was not found.");
-        //}
-        //public void AddConsecutiveStations(ConsecutiveStations consecutiveStations)
-        //{
-        //    DataSource.ListConsecutiveStations.Add(consecutiveStations.Clone());
-        //}
-        //public void AddConsecutiveStations(int stationKey1, int stationKey2)
-        //{
-        //    if (stationKey1 == stationKey2)
-        //        throw new InvalidInformationException("Duplicate station!");
-        //    Station station1 = GetStation(stationKey1);
-        //    Station station2 = GetStation(stationKey2);
-        //    AddConsecutiveStations(CalculateConsecutiveStations(station1, station2));
-        //}
+        #region ConsecutiveStations
+        public ConsecutiveStations GetConsecutiveStations(int stationKey1, int stationKey2)
+        {
+            XElement consecutiveStationsRootElem = XmlTools.LoadListFromXMLElement(consecutiveStationsPath);
+
+            ConsecutiveStations consecutiveStations = (from cs in consecutiveStationsRootElem.Elements()
+                       where int.Parse(cs.Element("StationKey1").Value) == stationKey1 &&
+                       int.Parse(cs.Element("StationKey2").Value) == stationKey2
+                       select new ConsecutiveStations()
+                       {
+                           StationKey1 = int.Parse(cs.Element("StationKey1").Value),
+                           StationKey2 = int.Parse(cs.Element("StationKey2").Value),
+                           Distance = double.Parse(cs.Element("Distance").Value),
+                           AverageTime = int.Parse(cs.Element("AverageTime").Value),
+                       }).FirstOrDefault();
+
+            if (consecutiveStations == null)
+                throw new ArgumentNotFoundException($"Consecutive stations of first station  {stationKey1} and second station {stationKey2} was not found.");
+            return consecutiveStations;
+        }
+        public void AddConsecutiveStations(ConsecutiveStations consecutiveStations)
+        {
+            XElement consecutiveStationsRootElem = XmlTools.LoadListFromXMLElement(consecutiveStationsPath);
+
+            XElement consecutiveStations1 = (from cs in consecutiveStationsRootElem.Elements()
+                                             where int.Parse(cs.Element("StationKey1").Value) == consecutiveStations.StationKey1 &&
+                                             int.Parse(cs.Element("StationKey2").Value) == consecutiveStations.StationKey2
+                                             select cs).FirstOrDefault();
+
+            if (consecutiveStations1 != null)
+                throw new DO.InvalidInformationException("Duplicate stations keys.");
+
+            XElement consecutiveStationsElem = new XElement("ConsecutiveStations", new XElement("StationKey1", consecutiveStations.StationKey1.ToString()),
+                                  new XElement("StationKey2", consecutiveStations.StationKey2.ToString()),
+                                  new XElement("Distance", consecutiveStations.Distance.ToString()),
+                                  new XElement("AverageTime", consecutiveStations.AverageTime.ToString()));
+            
+            consecutiveStationsRootElem.Add(consecutiveStationsElem);
+
+            XmlTools.SaveListToXMLElement(consecutiveStationsRootElem, consecutiveStationsPath);
+        }
+        public void AddConsecutiveStations(int stationKey1, int stationKey2)
+        {
+            //if (stationKey1 == stationKey2)
+            //    throw new InvalidInformationException("Duplicate station!");
+            //Station station1 = GetStation(stationKey1);
+            //Station station2 = GetStation(stationKey2);
+            //AddConsecutiveStations(CalculateConsecutiveStations(station1, station2));
+        }
         //ConsecutiveStations CalculateConsecutiveStations(Station station1, Station station2)
         //{
         //    ConsecutiveStations consecutiveStations = new DO.ConsecutiveStations();
@@ -542,7 +515,7 @@ namespace DL
         //    }
 
         //}
-        //#endregion
+        #endregion
 
         //#region LineSchedule
         //public LineSchedule GetLineSchedule(int line, TimeSpan startTime)
