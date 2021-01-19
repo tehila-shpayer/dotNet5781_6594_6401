@@ -113,7 +113,8 @@ namespace BL
             {
                 TimeSpan ts = new TimeSpan(simulatorClock.startTime.Ticks + stopwatch.ElapsedTicks * simulatorClock.rate);
                 timer.ReportProgress((int)(ts.TotalSeconds));
-                Thread.Sleep(1000/simulatorClock.rate);
+                //Thread.Sleep(1000/simulatorClock.rate);
+                Thread.Sleep(1000);
             }
             stopwatch.Stop();
         }
