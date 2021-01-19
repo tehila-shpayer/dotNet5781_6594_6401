@@ -629,62 +629,69 @@ namespace DL
         }
         #endregion
 
-        //#region User
-
-        //public User GetUser(string userName)
-        //{
-        //    User user = DataSource.ListUsers.Find(s => s.UserName == userName);
-        //    if (user != null)
-        //        return user.Clone();
-        //    else
-        //        throw new ArgumentNotFoundException($"User not found with user name: {userName}");
-        //}
-        //public User GetUser(string userName, string password)
-        //{
-        //    User user = DataSource.ListUsers.Find(s => s.UserName == userName && s.Password == password);
-        //    if (user != null)
-        //        return user.Clone();
-        //    else
-        //        throw new ArgumentNotFoundException($"User not found with user name: {userName}");
-        //}
-        //public IEnumerable<User> GetAllUsers()
-        //{
-        //    var AllUsers = from user in DataSource.ListUsers
-        //                   select user.Clone();
-        //    return AllUsers;
-        //}
-        //public void AddUser(User user)
-        //{
-        //    if (DataSource.ListUsers.FirstOrDefault(s => s.UserName == user.UserName) != null)
-        //        throw new InvalidInformationException("Duplicate user name");
-        //    DataSource.ListUsers.Add(user.Clone());
-        //}
-        //public void UpdateUser(User user)
-        //{
-        //    int indexOfUserToUpdate = DataSource.ListUsers.FindIndex(s => s.UserName == user.UserName);
-        //    if (indexOfUserToUpdate >= 0)
-        //        DataSource.ListUsers[indexOfUserToUpdate] = user;
-        //    else
-        //        throw new ArgumentNotFoundException($"User not found with license number: {user.UserName}");
-        //}
-        //public void UpdateUser(string userName, Action<User> update)
-        //{
-        //    int indexOfUserToUpdate = DataSource.ListUsers.FindIndex(s => s.UserName == userName);
-        //    if (indexOfUserToUpdate >= 0)
-        //    {
-        //        update(DataSource.ListUsers[indexOfUserToUpdate]);
-        //    }
-        //    else
-        //        throw new ArgumentNotFoundException($"User not found with user name: {userName}");
-        //}
-        //public void DeleteUser(string userName)
-        //{
-        //    User user = DataSource.ListUsers.Find(b => b.UserName == userName);
-        //    if (user == null)
-        //        throw new ArgumentNotFoundException($"User not found with user name: {userName}");
-        //    DataSource.ListUsers.Remove(user);
-        //}
-        //#endregion
+        #region User
+        public User GetUser(string userName)
+        {
+            List<User> ListUsers = XmlTools.LoadListFromXMLSerializer<User>(usersPath);
+            User user = ListUsers.Find(u => u.UserName == userName);
+            if (user != null)
+                return user;
+            else
+                throw new ArgumentNotFoundException($"User not found with user name: {userName}");
+        }
+        public User GetUser(string userName, string password)
+        {
+            List<User> ListUsers = XmlTools.LoadListFromXMLSerializer<User>(usersPath);
+            User user = ListUsers.Find(u => u.UserName == userName && u.Password == password);
+            if (user != null)
+                return user;
+            else
+                throw new ArgumentNotFoundException($"User {userName} with the password not found");
+        }
+        public IEnumerable<User> GetAllUsers()
+        {
+            List<User> ListUsers = XmlTools.LoadListFromXMLSerializer<User>(usersPath);
+            return from user in ListUsers
+                   select user;
+        }
+        public void AddUser(User user)
+        {
+            List<User> ListUsers = XmlTools.LoadListFromXMLSerializer<User>(usersPath);
+            if (ListUsers.FirstOrDefault(u => u.UserName == user.UserName) != null)
+                throw new InvalidInformationException("Duplicate user name");
+            ListUsers.Add(user);
+            XmlTools.SaveListToXMLSerializer(ListUsers, usersPath);
+        }
+        public void UpdateUser(User user)
+        {
+            List<User> ListUsers = XmlTools.LoadListFromXMLSerializer<User>(usersPath);
+            int indexOfUserToUpdate = ListUsers.FindIndex(s => s.UserName == user.UserName);
+            if (indexOfUserToUpdate == -1)
+                throw new ArgumentNotFoundException($"User {user.UserName} not found");
+            ListUsers[indexOfUserToUpdate] = user;
+            XmlTools.SaveListToXMLSerializer(ListUsers, usersPath);
+        }
+        public void UpdateUser(string userName, Action<User> update)
+        {
+            List<User> ListUsers = XmlTools.LoadListFromXMLSerializer<User>(usersPath);
+            int indexOfUserToUpdate = ListUsers.FindIndex(s => s.UserName == userName);
+            if (indexOfUserToUpdate == -1)
+                throw new ArgumentNotFoundException($"User {userName} not found");
+            User user = ListUsers.Find(u => u.UserName == userName);
+            update(user);
+            ListUsers[indexOfUserToUpdate] = user;
+            XmlTools.SaveListToXMLSerializer(ListUsers, usersPath);
+        }
+        public void DeleteUser(string userName)
+        {
+            List<User> ListUsers = XmlTools.LoadListFromXMLSerializer<User>(usersPath);
+            User user = ListUsers.Find(b => b.UserName == userName);
+            if (user == null)
+                throw new ArgumentNotFoundException($"User not found with user name: {userName}");
+            ListUsers.Remove(user);
+            XmlTools.SaveListToXMLSerializer(ListUsers, usersPath);
+        }
+        #endregion
 
     }
 }
