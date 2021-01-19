@@ -304,7 +304,7 @@ namespace DL
         public void UpdateBusLineStation(int line, int stationKey, Action<BusLineStation> update) //method that knows to updt specific fields in Person
         {
             List<BusLineStation> ListBusLineStations = XmlTools.LoadListFromXMLSerializer<BusLineStation>(busLineStationsPath);
-            int index = ListBusLineStations.FindIndex(s => s.BusLineKey == station.BusLineKey && s.StationKey == station.StationKey);
+            int index = ListBusLineStations.FindIndex(s => s.BusLineKey == line && s.StationKey == stationKey);
             if (index == -1)
                 throw new ArgumentNotFoundException($"Bus station of line {line} and station {stationKey} was not found.");
             BusLineStation lineStation = ListBusLineStations.Find(s => s.BusLineKey == line && s.StationKey == stationKey);
