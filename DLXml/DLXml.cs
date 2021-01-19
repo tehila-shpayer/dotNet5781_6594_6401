@@ -27,6 +27,8 @@ namespace DL
         string busLineStationsPath = @"BusLineStationsXml.xml"; //XMLSerializer
         string consecutiveStationsPath = @"ConsecutiveStationsXml.xml"; //XElement
         string usersPath = @"UsersXml.xml"; //XMLSerializer
+        string lineSchedulesPath = @"LineSchedulesXml.xml"; //XMLSerializer
+
         #endregion
 
         //#region Person
@@ -545,63 +547,150 @@ namespace DL
             XElement consecutiveStationsRootElem = XmlTools.LoadListFromXMLElement(consecutiveStationsPath);
 
 
-            IEnumerable<XElement> consecutiveStations = (from cs in consecutiveStationsRootElem.Elements()
-                                                         where int.Parse(cs.Element("StationKey1").Value) == stationKey ||
-                                                         int.Parse(cs.Element("StationKey2").Value) == stationKey
-                                                         select cs);            
-            foreach(var cs in consecutiveStations)
-                cs.Remove(); //<==>   Remove consecutive stations from consecutiveStationsRootElem
+            List<XElement> consecutiveStations = (from cs in consecutiveStationsRootElem.Elements()
+                                                  select cs).ToList();
+
+            //<==>   Remove consecutive stations asocieted with station of key stationKey
+            consecutiveStations.RemoveAll(cs => int.Parse(cs.Element("StationKey1").Value) == stationKey ||
+                                                  int.Parse(cs.Element("StationKey2").Value) == stationKey);
 
             XmlTools.SaveListToXMLElement(consecutiveStationsRootElem, consecutiveStationsPath);
         }
         #endregion
 
-        //#region LineSchedule
-        //public LineSchedule GetLineSchedule(int line, TimeSpan startTime)
-        //{
-        //    LineSchedule lineSchedule = DataSource.ListLineSchedules.FirstOrDefault(ls => ls.LineKey == line && ls.StartTime == startTime);
-        //    if (lineSchedule == null)
-        //        throw new DO.ArgumentNotFoundException($"Line schedule of line {line} and starting time {startTime.ToString("HH:mm")} not found.");
-        //    return lineSchedule.Clone();
-        //}
-        //public IEnumerable<LineSchedule> GetAllLineSchedules()
-        //{
-        //    var lineSchedules = from ls in DataSource.ListLineSchedules
-        //                        select ls;
-        //    return lineSchedules;
-        //}
-        //public IEnumerable<LineSchedule> GetAllLineSchedulesOfLine(int Line)
-        //{
-        //    var lineSchedules = from ls in DataSource.ListLineSchedules
-        //                        where ls.LineKey == Line
-        //                        select ls;
-        //    return lineSchedules;
-        //}
-        //public void AddLineSchedule(LineSchedule lineSchedule)
-        //{
-        //    if (DataSource.ListLineSchedules.FirstOrDefault(ls => ls.LineKey == lineSchedule.LineKey && ls.StartTime == lineSchedule.StartTime) != null)
-        //        throw new InvalidInformationException($"There is already a line schedule {lineSchedule.LineKey} that start at {lineSchedule.StartTime.ToString()}");
-        //    DataSource.ListLineSchedules.Add(lineSchedule);
-        //}
-        //public void UpdateLineSchedule(LineSchedule lineSchedule)
-        //{
-        //    int indexOfLineScheduleToUpdate = DataSource.ListLineSchedules.FindIndex(ls => ls.LineKey == lineSchedule.LineKey && ls.StartTime.ToString("HH:mm") == lineSchedule.StartTime.ToString("HH:mm"));
-        //    if (indexOfLineScheduleToUpdate == -1)
-        //        throw new ArgumentNotFoundException($"Line schedule of line {lineSchedule.LineKey} and starting time {lineSchedule.StartTime.ToString("HH:mm")} not found.");
+        #region LineSchedule
+        public LineSchedule GetLineSchedule(int lineKey, TimeSpan startTime)
+        {
+            XElement lineScheduleRootElem = XmlTools.LoadListFromXMLElement(lineSchedulesPath);
 
-        //    DataSource.ListLineSchedules[indexOfLineScheduleToUpdate] = lineSchedule;
-        //}
-        //public void UpdateLineSchedule(int line, TimeSpan startTime, Action<LineSchedule> update)
-        //{
-        //    LineSchedule lineSchedule = GetLineSchedule(line, startTime);
-        //    update(lineSchedule);
-        //}
-        //public void DeleteLineSchedule(int line, TimeSpan startTime)
-        //{
-        //    LineSchedule lineSchedule = GetLineSchedule(line, startTime);
-        //    DataSource.ListLineSchedules.Remove(lineSchedule);
-        //}
-        //#endregion
+            LineSchedule schedule = (from ls in lineScheduleRootElem.Elements()
+                       where int.Parse(ls.Element("LineKey").Value) == lineKey &&
+                       TimeSpan.Parse(ls.Element("StartTime").Value) == startTime 
+                       select new LineSchedule()
+                       {
+                           LineKey = int.Parse(ls.Element("LicenseNumber").Value),
+                           StartTime = TimeSpan.Parse(ls.Element("StartTime").Value),
+                           EndTime = TimeSpan.Parse(ls.Element("EndTime").Value),
+                           Frequency = Int32.Parse(ls.Element("Frequency").Value),
+                       }).FirstOrDefault();
+
+            if (schedule == null)
+                throw new DO.ArgumentNotFoundException($"Line schedule of line {lineKey} and starting time {startTime.ToString("HH:mm")} not found.");
+            return schedule;
+        }
+        public IEnumerable<LineSchedule> GetAllLineSchedules()
+        {
+            XElement lineScheduleRootElem = XmlTools.LoadListFromXMLElement(lineSchedulesPath);
+
+            return from ls in lineScheduleRootElem.Elements()
+                   select new LineSchedule()
+                   {
+                       LineKey = int.Parse(ls.Element("LicenseNumber").Value),
+                       StartTime = TimeSpan.Parse(ls.Element("StartTime").Value),
+                       EndTime = TimeSpan.Parse(ls.Element("EndTime").Value),
+                       Frequency = Int32.Parse(ls.Element("Frequency").Value),
+                   };
+        }
+        public IEnumerable<LineSchedule> GetAllLineSchedulesOfLine(int lineKey)
+        {
+            XElement lineScheduleRootElem = XmlTools.LoadListFromXMLElement(lineSchedulesPath);
+
+            return from ls in lineScheduleRootElem.Elements()
+                   where int.Parse(ls.Element("LineKey").Value) == lineKey
+                   select new LineSchedule()
+                   {
+                       LineKey = int.Parse(ls.Element("LicenseNumber").Value),
+                       StartTime = TimeSpan.Parse(ls.Element("StartTime").Value),
+                       EndTime = TimeSpan.Parse(ls.Element("EndTime").Value),
+                       Frequency = Int32.Parse(ls.Element("Frequency").Value),
+                   };
+            var lineSchedules = from ls in DataSource.ListLineSchedules
+                                where ls.LineKey == Line
+                                select ls;
+            return lineSchedules;
+        }
+        public void AddLineSchedule(LineSchedule lineSchedule)
+        {
+            XElement lineScheduleRootElem = XmlTools.LoadListFromXMLElement(lineSchedulesPath);
+
+            XElement lineSchedule1 = (from ls in lineScheduleRootElem.Elements()
+                                      where int.Parse(ls.Element("LineKey").Value) == lineSchedule.LineKey &&
+                                      TimeSpan.Parse(ls.Element("StartTime").Value) == lineSchedule.StartTime
+                                      select ls).FirstOrDefault();
+            if (lineSchedule1 != null)
+                throw new InvalidInformationException($"There is already a line schedule {lineSchedule.LineKey} that start at {lineSchedule.StartTime}");
+
+            XElement lineScheduleElem = new XElement("LineSchedule", new XElement("LineKey", lineSchedule.LineKey.ToString()),
+                                  new XElement("StartTime", lineSchedule.StartTime.ToString()),
+                                  new XElement("EndTime", lineSchedule.EndTime.ToString()),
+                                  new XElement("Frequency", lineSchedule.Frequency.ToString()));
+
+            lineScheduleRootElem.Add(lineScheduleElem);
+
+            XmlTools.SaveListToXMLElement(lineScheduleRootElem, lineSchedulesPath);
+        }
+        public void UpdateLineSchedule(LineSchedule lineSchedule)
+        {
+            XElement lineScheduleRootElem = XmlTools.LoadListFromXMLElement(lineSchedulesPath);
+
+            XElement lineSchedule1 = (from ls in lineScheduleRootElem.Elements()
+                                      where int.Parse(ls.Element("LineKey").Value) == lineSchedule.LineKey &&
+                                      TimeSpan.Parse(ls.Element("StartTime").Value) == lineSchedule.StartTime
+                                      select ls).FirstOrDefault();
+
+            if (lineSchedule1 != null)
+            {
+                lineSchedule1.Element("LineKey").Value = lineSchedule.LineKey.ToString();
+                lineSchedule1.Element("StartTime").Value = lineSchedule.StartTime.ToString();
+                lineSchedule1.Element("EndTime").Value = lineSchedule.EndTime.ToString();
+                lineSchedule1.Element("Frequency").Value = lineSchedule.Frequency.ToString();
+
+                XmlTools.SaveListToXMLElement(lineScheduleRootElem, lineSchedulesPath);
+            }
+            else
+                throw new ArgumentNotFoundException($"Line schedule of line {lineSchedule.LineKey} and starting time {lineSchedule.StartTime.ToString("HH:mm")} not found.");
+        }
+        public void UpdateLineSchedule(int lineKey, TimeSpan startTime, Action<LineSchedule> update)
+        {
+            XElement lineScheduleRootElem = XmlTools.LoadListFromXMLElement(lineSchedulesPath);
+
+            XElement lineSchedule1 = (from ls in lineScheduleRootElem.Elements()
+                                      where int.Parse(ls.Element("LineKey").Value) == lineKey &&
+                                      TimeSpan.Parse(ls.Element("StartTime").Value) == startTime
+                                      select ls).FirstOrDefault();
+
+            if (lineSchedule1 != null)
+            {
+                LineSchedule lineSchedule = GetLineSchedule(lineKey, startTime);
+                update(lineSchedule);
+                lineSchedule1.Element("LineKey").Value = lineSchedule.LineKey.ToString();
+                lineSchedule1.Element("StartTime").Value = lineSchedule.StartTime.ToString();
+                lineSchedule1.Element("EndTime").Value = lineSchedule.EndTime.ToString();
+                lineSchedule1.Element("Frequency").Value = lineSchedule.Frequency.ToString();
+
+                XmlTools.SaveListToXMLElement(lineScheduleRootElem, lineSchedulesPath);
+            }
+            else
+                throw new ArgumentNotFoundException($"Line schedule of line {lineKey} and starting time {startTime.ToString("HH:mm")} not found.");
+        }
+        public void DeleteLineSchedule(int lineKey, TimeSpan startTime)
+        {
+            XElement lineScheduleRootElem = XmlTools.LoadListFromXMLElement(lineSchedulesPath);
+
+            XElement lineScheduleElem = (from ls in lineScheduleRootElem.Elements()
+                                      where int.Parse(ls.Element("LineKey").Value) == lineKey &&
+                                      TimeSpan.Parse(ls.Element("StartTime").Value) == startTime
+                                      select ls).FirstOrDefault();
+
+            if (lineScheduleElem != null)
+            {
+                lineScheduleElem.Remove();
+                XmlTools.SaveListToXMLElement(lineScheduleRootElem, lineSchedulesPath);
+            }
+            else
+                throw new ArgumentNotFoundException($"Line schedule of line {lineKey} and starting time {startTime.ToString("HH:mm")} not found.");
+        }
+        #endregion
 
         #region Station
         public Station GetStation(int stationKey)
