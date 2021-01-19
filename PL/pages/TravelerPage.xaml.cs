@@ -85,9 +85,9 @@ namespace PL
             }
 
             lvCommingLines.DataContext = busesInTravelCollection;
-            //var lastBus = busesInTravelCollection.FirstOrDefault(bit => bit.TimeLeft == new TimeSpan(0, 0, 0));
-            //if (lastBus != null)
-            //    LastBusGrid.DataContext = lastBus;
+            BusInTravel lastBus = busesInTravelCollection.FirstOrDefault(bit => bit.TimeLeft == new TimeSpan(0, 0, 0));
+            if (lastBus != null)
+                LastBusGrid.DataContext = lastBus;
         }
 
         private void lbStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -141,6 +141,23 @@ namespace PL
             //isTimerRun = true;
             //worker.RunWorkerAsync();
             //lvCommingLines.DataContext = App.bl.GetLineTimingsPerStation((lbStations.SelectedItem as Station).Key, new TimeSpan(8,0,0));
+        }
+
+        private void StopButton_Click(object sender, RoutedEventArgs e)
+        {
+            cbStations.IsEnabled = true;
+            //LastBusGrid.DataContext = null;
+            simulationButtonContent.Text = "הפעל";
+            clock.TimeChanged -= this.TimeChange;
+            tbHour.Visibility = Visibility.Visible;
+            tbDots1.Visibility = Visibility.Visible;
+            tbMinutes.Visibility = Visibility.Visible;
+            tbDots2.Visibility = Visibility.Visible;
+            tbSeconds.Visibility = Visibility.Visible;
+            tbRate.Visibility = Visibility.Visible;
+            tbClock.Visibility = Visibility.Collapsed;
+            tblRate.Visibility = Visibility.Collapsed;
+            App.bl.StopSimulator();
         }
     }
 }

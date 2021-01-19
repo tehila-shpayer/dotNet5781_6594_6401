@@ -55,10 +55,16 @@
                     <ColumnDefinition Width="0.8*"/>
                     <ColumnDefinition Width="2.5*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="SimulationButton" Width="100" Margin="5,0"  Click="SimulationButton_Click" Background="#FF477AA9" BorderBrush="{x:Null}" Height="38" VerticalAlignment="Center">
+                <Button x:Name="SimulationButton" Grid.Column="0" Width="100" Margin="5,0"  Click="SimulationButton_Click" Background="#FF477AA9" BorderBrush="{x:Null}" Height="38" VerticalAlignment="Center">
                     <Grid Width="145" Height="25">
                         <materialDesign:PackIcon Kind="Timer" VerticalAlignment="Center" Margin="0,3,0,2" HorizontalAlignment="Left" Width="20" Height="20" Grid.RowSpan="2"/>
                         <TextBlock x:Name="simulationButtonContent"  HorizontalAlignment="Center" VerticalAlignment="Center" Text="הפעל" FontFamily="Champagne &amp; Limousines" FontSize="14" Width="50" Margin="19,4,76,4" TextAlignment="Center"/>
+                    </Grid>
+                </Button>
+                <Button x:Name="StopButton" Grid.Column="0" Width="100" Margin="5,0" Visibility="Collapsed" Click="StopButton_Click"  Background="#FF477AA9" BorderBrush="{x:Null}" Height="38" VerticalAlignment="Center">
+                    <Grid Width="145" Height="25">
+                        <materialDesign:PackIcon Kind="Timer" VerticalAlignment="Center" Margin="0,3,0,2" HorizontalAlignment="Left" Width="20" Height="20" Grid.RowSpan="2"/>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="עצור" FontFamily="Champagne &amp; Limousines" FontSize="14" Width="50" Margin="19,4,76,4" TextAlignment="Center"/>
                     </Grid>
                 </Button>
                 <!--<Button x:Name="1SimulationButton" Width="145" Margin="5,10" Content="הפעל סימולציה" Click="SimulationButton_Click" Background="#FF477AA9" BorderBrush="{x:Null}"/>-->
