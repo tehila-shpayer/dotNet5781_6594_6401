@@ -583,60 +583,70 @@ namespace DL
         //}
         //#endregion
 
-        //#region Station
-        //public Station GetStation(int stationKey)
-        //{
-        //    Station station = DataSource.ListStations.Find(s => s.Key == stationKey);
-        //    if (station != null)
-        //        return station.Clone();
-        //    else
-        //        throw new ArgumentNotFoundException($"Station not found with key: {stationKey}");
-        //}
-        //public IEnumerable<Station> GetAllStations()
-        //{
-        //    var AllStations = from station in DataSource.ListStations
-        //                      select station.Clone();
-        //    return AllStations;
-        //}
-        //public int AddStation(Station station)
-        //{
-        //    station.Key = Station.STATION_KEY++;
-        //    DataSource.ListStations.Add(station.Clone());
-        //    return station.Key;
-        //}
-        //public void UpdateStation(Station station)
-        //{
-        //    int indexOfStationToUpdate = DataSource.ListStations.FindIndex(s => s.Key == station.Key);
-        //    if (indexOfStationToUpdate == -1)
-        //        throw new ArgumentNotFoundException($"Station not found with key: {station.Key}");
-        //    DataSource.ListStations[indexOfStationToUpdate] = station;
-        //}
-        //public void UpdateStation(int stationKey, Action<Station> update)//method that knows to updt specific fields in Station
-        //{
-        //    int indexOfStationToUpdate = DataSource.ListStations.FindIndex(s => s.Key == stationKey);
-        //    Station station = DataSource.ListStations.Find(s => s.Key == stationKey);
-        //    if (station == null)
-        //        throw new ArgumentNotFoundException($"Station not found with key: {stationKey}");
-        //    update(station);
-        //    DataSource.ListStations[indexOfStationToUpdate] = station;
+        #region Station
+        public Station GetStation(int stationKey)
+        {
+            List<Station> ListStations = XmlTools.LoadListFromXMLSerializer<Station>(stationsPath);
 
-        //}
+            Station station = ListStations.Find(s => s.Key == stationKey);
+            if (station != null)
+                return station;
+            else
+                throw new ArgumentNotFoundException($"Station not found with key: {stationKey}");
+        }
+        public IEnumerable<Station> GetAllStations()
+        {
+            List<Station> ListStations = XmlTools.LoadListFromXMLSerializer<Station>(stationsPath);
+            return from station in ListStations
+                   select station;
+        }
+        public int AddStation(Station station)
+        {
+            List<Station> ListStations = XmlTools.LoadListFromXMLSerializer<Station>(stationsPath);
+            station.Key = Station.STATION_KEY++;
+            ListStations.Add(station);
+            XmlTools.SaveListToXMLSerializer(ListStations, stationsPath);
+            return station.Key;
+        }
+        public void UpdateStation(Station station)
+        {
+            List<Station> ListStations = XmlTools.LoadListFromXMLSerializer<Station>(stationsPath);
+            int indexOfStationToUpdate = ListStations.FindIndex(s => s.Key == station.Key);
+            if (indexOfStationToUpdate == -1)
+                throw new ArgumentNotFoundException($"Station not found with key: {station.Key}");
+            ListStations[indexOfStationToUpdate] = station;
+            XmlTools.SaveListToXMLSerializer(ListStations, stationsPath);
+        }
+        public void UpdateStation(int stationKey, Action<Station> update)//method that knows to updt specific fields in Station
+        {
+            List<Station> ListStations = XmlTools.LoadListFromXMLSerializer<Station>(stationsPath);
+            int indexOfStationToUpdate = ListStations.FindIndex(s => s.Key == stationKey);
+            if (indexOfStationToUpdate == -1)
+                throw new ArgumentNotFoundException($"Station not found with key: {stationKey}");
+            Station station = ListStations.Find(s => s.Key == stationKey);
+            update(station);
+            ListStations[indexOfStationToUpdate] = station;
+            XmlTools.SaveListToXMLSerializer(ListStations, stationsPath);
+        }
 
-        //public void DeleteStation(int stationKey)
-        //{
-        //    Station station = DataSource.ListStations.Find(s => s.Key == stationKey);
-        //    if (station == null)
-        //        throw new ArgumentNotFoundException($"Station: {stationKey} not found!");
-        //    DataSource.ListStations.Remove(station);
-        //}
-        //public IEnumerable<int> GetAllLinesInStation(int stationKey)
-        //{
-        //    var allLines = from bls in DataSource.ListBusLineStations
-        //                   where bls.StationKey == stationKey
-        //                   select bls.BusLineKey;
-        //    return allLines;
-        //}
-        //#endregion
+        public void DeleteStation(int stationKey)
+        {
+            List<Station> ListStations = XmlTools.LoadListFromXMLSerializer<Station>(stationsPath);
+            Station station = ListStations.Find(s => s.Key == stationKey);
+            if (station == null)
+                throw new ArgumentNotFoundException($"Station: {stationKey} not found!");
+            ListStations.Remove(station);
+            XmlTools.SaveListToXMLSerializer(ListStations, stationsPath);
+        }
+        public IEnumerable<int> GetAllLinesInStation(int stationKey)
+        {
+            List<BusLineStation> ListBusLineStations = XmlTools.LoadListFromXMLSerializer<BusLineStation>(busLineStationsPath);
+            var allLines = from bls in ListBusLineStations
+                           where bls.StationKey == stationKey
+                           select bls.BusLineKey;
+            return allLines;
+        }
+        #endregion
 
         //#region User
 
