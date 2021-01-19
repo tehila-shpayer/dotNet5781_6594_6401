@@ -19,6 +19,7 @@ namespace DL
         DLXml() { } // default => private
         public static DLXml Instance { get => instance; }// The public Instance property to use
         #endregion
+
         #region DS XML Files
 
         string busesPath = @"BusesXml.xml"; //XElement
@@ -30,102 +31,6 @@ namespace DL
         string lineSchedulesPath = @"LineSchedulesXml.xml"; //XMLSerializer
 
         #endregion
-
-        //#region Person
-
-
-        //public void UpdatePerson(int id, Action<DO.Person> update)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //#endregion Person
-
-        //#region Student
-        //public DO.Student GetStudent(int id)
-        //{
-        //    List<Student> ListStudents = XMLTools.LoadListFromXMLSerializer<Student>(studentsPath);
-
-        //    DO.Student stu = ListStudents.Find(p => p.ID == id);
-        //    if (stu != null)
-        //        return stu; //no need to Clone()
-        //    else
-        //        throw new DO.BadPersonIdException(id, $"bad student id: {id}");
-        //}
-        //public void AddStudent(DO.Student student)
-        //{
-        //    List<Student> ListStudents = XMLTools.LoadListFromXMLSerializer<Student>(studentsPath);
-
-        //    if (ListStudents.FirstOrDefault(s => s.ID == student.ID) != null)
-        //        throw new DO.BadPersonIdException(student.ID, "Duplicate student ID");
-
-        //    if (GetPerson(student.ID) == null)
-        //        throw new DO.BadPersonIdException(student.ID, "Missing person ID");
-
-        //    ListStudents.Add(student); //no need to Clone()
-
-        //    XMLTools.SaveListToXMLSerializer(ListStudents, studentsPath);
-
-        //}
-        //public IEnumerable<DO.Student> GetAllStudents()
-        //{
-        //    List<Student> ListStudents = XMLTools.LoadListFromXMLSerializer<Student>(studentsPath);
-
-        //    return from student in ListStudents
-        //           select student; //no need to Clone()
-        //}
-        //public IEnumerable<object> GetStudentFields(Func<int, string, object> generate)
-        //{
-        //    List<Student> ListStudents = XMLTools.LoadListFromXMLSerializer<Student>(studentsPath);
-
-        //    return from student in ListStudents
-        //           select generate(student.ID, GetPerson(student.ID).Name);
-        //}
-
-        //public IEnumerable<object> GetStudentListWithSelectedFields(Func<DO.Student, object> generate)
-        //{
-        //    List<Student> ListStudents = XMLTools.LoadListFromXMLSerializer<Student>(studentsPath);
-
-        //    return from student in ListStudents
-        //           select generate(student);
-        //}
-        //public void UpdateStudent(DO.Student student)
-        //{
-        //    List<Student> ListStudents = XMLTools.LoadListFromXMLSerializer<Student>(studentsPath);
-
-        //    DO.Student stu = ListStudents.Find(p => p.ID == student.ID);
-        //    if (stu != null)
-        //    {
-        //        ListStudents.Remove(stu);
-        //        ListStudents.Add(student); //no nee to Clone()
-        //    }
-        //    else
-        //        throw new DO.BadPersonIdException(student.ID, $"bad student id: {student.ID}");
-
-        //    XMLTools.SaveListToXMLSerializer(ListStudents, studentsPath);
-        //}
-
-        //public void UpdateStudent(int id, Action<DO.Student> update)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void DeleteStudent(int id)
-        //{
-        //    List<Student> ListStudents = XMLTools.LoadListFromXMLSerializer<Student>(studentsPath);
-
-        //    DO.Student stu = ListStudents.Find(p => p.ID == id);
-
-        //    if (stu != null)
-        //    {
-        //        ListStudents.Remove(stu);
-        //    }
-        //    else
-        //        throw new DO.BadPersonIdException(id, $"bad student id: {id}");
-
-        //    XMLTools.SaveListToXMLSerializer(ListStudents, studentsPath);
-        //}
-        //#endregion Student
 
         #region Bus
         public IEnumerable<Bus> GetAllBuses()
