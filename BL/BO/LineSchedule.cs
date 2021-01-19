@@ -12,8 +12,6 @@ namespace BO
         public int Frequency { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
-
-        public bool IsActive { get; set; }
         public override string ToString()
         {
             return this.ToStringProperty();

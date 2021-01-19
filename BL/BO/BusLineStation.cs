@@ -13,9 +13,6 @@ namespace BO
         public int Position { get; set; }
         public double DistanceFromLastStationMeters { get; set; }
         public int TravelTimeFromLastStationMinutes { get; set; }
-
-        public bool _isActive = true;
-        public bool IsActive { get; set; }
         public override string ToString()
         {
             return this.ToStringProperty();

@@ -16,7 +16,6 @@ namespace BO
         public int KM { get; set; }
         public int BeforeTreatKM { get; set; }
         public Status Status { get; set; }
-        public bool IsActive { get; set; }
         public override string ToString()
         {
             return this.ToStringProperty();

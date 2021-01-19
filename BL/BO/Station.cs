@@ -13,9 +13,6 @@ namespace BO
         public double Longitude { get; set; }
         public String Name { get; set; }
         public IEnumerable<int> BusLines { get; set; }
-
-        public bool _isActive = true;
-        public bool IsActive { get; set; }
         public override string ToString()
         {
             return this.ToStringProperty();

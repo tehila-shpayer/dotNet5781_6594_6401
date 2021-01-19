@@ -35,17 +35,17 @@ namespace BO
         /// </summary>
         /// <param name="index">האינדקס שמוכנס</param>
         /// <returns></returns>
-        public BusLineStation this[int index]
-        {
-            get //מחזיר את התחנה במקום האינדקס ברשימת התחנות
-            {
-                try
-                {
-                    return BusLineStations.ElementAt(index);
-                }
-                catch
-                { return null; }
-            }
-        }
+        //public BusLineStation this[int index]
+        //{
+        //    get //מחזיר את התחנה במקום האינדקס ברשימת התחנות
+        //    {
+        //        try
+        //        {
+        //            return BusLineStations.ElementAt(index);
+        //        }
+        //        catch
+        //        { return null; }
+        //    }
+        //}
     }
 }

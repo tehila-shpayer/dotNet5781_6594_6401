@@ -10,8 +10,6 @@ namespace PL
     public class Bus : DependencyObject
     {
         static readonly DependencyProperty LicenseNumberProperty = DependencyProperty.Register("LicenseNumber", typeof(String), typeof(Bus));
-        //static readonly DependencyProperty RunningDateProperty = DependencyProperty.Register("RunningDate", typeof(DateTime), typeof(Bus));
-        //static readonly DependencyProperty LastTreatmentProperty = DependencyProperty.Register("LastTreatment", typeof(DateTime), typeof(Bus));
         static readonly DependencyProperty RunningDateFormatProperty = DependencyProperty.Register("RunningDateFormat", typeof(String), typeof(Bus));
         static readonly DependencyProperty LastTreatmentFormatProperty = DependencyProperty.Register("LastTreatmentFormat", typeof(String), typeof(Bus));
         static readonly DependencyProperty FuelProperty = DependencyProperty.Register("Fuel", typeof(int), typeof(Bus));

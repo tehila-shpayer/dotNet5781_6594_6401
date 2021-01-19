@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 
 namespace DL
 {
-    class DLXml : IDL
+    sealed class DLXml : IDL
     {
         #region singelton
         static readonly DLXml instance = new DLXml();
