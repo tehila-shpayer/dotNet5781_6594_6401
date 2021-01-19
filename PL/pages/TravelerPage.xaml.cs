@@ -69,14 +69,12 @@ namespace PL
             MainWindow.stationsCollection.Clear();
             foreach (Station station in collection)
                 MainWindow.stationsCollection.Add(station);
+            //lbStations.SelectedIndex = 0;
         }
         public void TimeChange(Object sender, BO.ValueChangedEventArgs temp)
         {
             tbClock.DataContext = temp.Time;
             busesInTravelCollection.Clear();
-            var lastBus = busesInTravelCollection.FirstOrDefault(bit => bit.TimeLeft == new TimeSpan(0,0,0));
-            if (lastBus != null)
-                LastBusGrid.DataContext = lastBus;
             int i = 0;
             foreach (var lineTiming in App.bl.GetLineTimingsPerStation((lbStations.SelectedItem as Station).Key, temp.Time))
             {
@@ -87,10 +85,14 @@ namespace PL
             }
 
             lvCommingLines.DataContext = busesInTravelCollection;
+            //var lastBus = busesInTravelCollection.FirstOrDefault(bit => bit.TimeLeft == new TimeSpan(0, 0, 0));
+            //if (lastBus != null)
+            //    LastBusGrid.DataContext = lastBus;
         }
 
         private void lbStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //LastBusGrid.DataContext = null;
             if (lbStations.SelectedIndex >= 0)
                 StationInfoGrid.DataContext = MainWindow.stationsCollection.ElementAt(lbStations.SelectedIndex);
         }
@@ -102,7 +104,7 @@ namespace PL
                 cbStations.IsEnabled = false;
                 clock = new BO.Clock(new TimeSpan(0, 0, 0), 1);
                 clock.TimeChanged += this.TimeChange;
-
+                //LastBusGrid.DataContext = null;
                 simulationButtonContent.Text = "עצור";
                 tbHour.Visibility = Visibility.Collapsed;
                 tbDots1.Visibility = Visibility.Collapsed;
@@ -122,6 +124,7 @@ namespace PL
             else
             {
                 cbStations.IsEnabled = true;
+                //LastBusGrid.DataContext = null;
                 simulationButtonContent.Text = "הפעל";
                 clock.TimeChanged -= this.TimeChange;
                 tbHour.Visibility = Visibility.Visible;
