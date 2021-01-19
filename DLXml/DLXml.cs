@@ -327,60 +327,68 @@ namespace DL
 
         //#endregion
 
-        //#region BusLine
-        //public BusLine GetBusLine(int busLineKey)
-        //{
-        //    BusLine line = DataSource.ListBusLines.Find(b => b.Key == busLineKey);
-        //    if (line != null)
-        //        return line.Clone();
-        //    else
-        //        throw new ArgumentNotFoundException($"Bus not found with license number: {busLineKey}");
-        //}
-        //public IEnumerable<BusLine> GetBusLinesBy(Predicate<BusLine> predicate)
-        //{
-        //    var AllBuseLinesBy = from line in DataSource.ListBusLines
-        //                         where predicate(line)
-        //                         select line.Clone();
-        //    return AllBuseLinesBy;
-        //}
-        //public IEnumerable<BusLine> GetAllBusLines()
-        //{
-        //    var AllBuseLines = from line in DataSource.ListBusLines
-        //                       select line.Clone();
-        //    return AllBuseLines;
-        //}
-        //public int AddBusLine(BusLine bus)
-        //{
-        //    bus.Key = BusLine.BUS_LINE_KEY++;
-        //    //if (DataSource.ListBusLines.FirstOrDefault(l => l.Key == bus.Key) != null)
-        //    //    throw new InvalidInformationException("Duplicate bus line key");
-        //    DataSource.ListBusLines.Add(bus.Clone());
-        //    return bus.Key;
-        //}
-        //public void UpdateBusLine(BusLine line)
-        //{
-        //    int indexOfBusLineToUpdate = DataSource.ListBusLines.FindIndex(s => s.Key == line.Key);
-        //    if (indexOfBusLineToUpdate == -1)
-        //        throw new ArgumentNotFoundException($"BusLine not found with key: {line.Key}");
-        //    DataSource.ListBusLines[indexOfBusLineToUpdate] = line;
-        //}
-        //public void UpdateBusLine(int busLineKey, Action<BusLine> update)//method that knows to updt specific fields in BusLine
-        //{
-        //    BusLine bus = DataSource.ListBusLines.Find(b => b.Key == busLineKey);
-        //    if (bus != null)
-        //        update(bus);
-        //    else
-        //        throw new ArgumentNotFoundException($"Bus not found with license number: {busLineKey}");
-        //}
-        //public void DeleteBusLine(int busLineKey)
-        //{
-        //    BusLine bus = DataSource.ListBusLines.Find(b => b.Key == busLineKey);
-        //    if (bus == null)
-        //        throw new ArgumentNotFoundException($"Bus not found with license number: {busLineKey}");
-        //    DataSource.ListBusLines.Remove(bus);
-        //}
+        #region BusLine
+        public BusLine GetBusLine(int busLineKey)
+        {
+            List<BusLine> ListBusLines = XmlTools.LoadListFromXMLSerializer<BusLine>(busLinesPath);
+            BusLine line = ListBusLines.Find(b => b.Key == busLineKey);
+            if (line != null)
+                return line;
+            else
+                throw new ArgumentNotFoundException($"Bus line not found with key: {busLineKey}");
+        }
+        public IEnumerable<BusLine> GetBusLinesBy(Predicate<BusLine> predicate)
+        {
+            List<BusLine> ListBusLines = XmlTools.LoadListFromXMLSerializer<BusLine>(busLinesPath);
+            return from line in ListBusLines
+                   where predicate(line)
+                   select line;
+        }
+        public IEnumerable<BusLine> GetAllBusLines()
+        {
+            List<BusLine> ListBusLines = XmlTools.LoadListFromXMLSerializer<BusLine>(busLinesPath);
+            return from line in ListBusLines
+                   select line;
+        }
+        public int AddBusLine(BusLine line)
+        {
+            List<BusLine> ListBusLines = XmlTools.LoadListFromXMLSerializer<BusLine>(busLinesPath);
+            line.Key = BusLine.BUS_LINE_KEY++;
+            ListBusLines.Add(line);
+            XmlTools.SaveListToXMLSerializer(ListBusLines, busLinesPath);
+            return line.Key;
+        }
+        public void UpdateBusLine(BusLine line)
+        {
+            List<BusLine> ListBusLines = XmlTools.LoadListFromXMLSerializer<BusLine>(busLinesPath);
+            int indexOfBusLineToUpdate = ListBusLines.FindIndex(l => l.Key == line.Key);
+            if (indexOfBusLineToUpdate == -1)
+                throw new ArgumentNotFoundException($"Bus line not found with key: {line.Key}");
+            ListBusLines[indexOfBusLineToUpdate] = line;
+            XmlTools.SaveListToXMLSerializer(ListBusLines, busLinesPath);
+        }
+        public void UpdateBusLine(int lineKey, Action<BusLine> update)//method that knows to updt specific fields in BusLine
+        {
+            List<BusLine> ListBusLines = XmlTools.LoadListFromXMLSerializer<BusLine>(busLinesPath);
+            int indexOfBusLineToUpdate = ListBusLines.FindIndex(l => l.Key == lineKey);
+            if (indexOfBusLineToUpdate == -1)
+                throw new ArgumentNotFoundException($"Bus line not found with key: {lineKey}");
+            BusLine line = ListBusLines.Find(b => b.Key == lineKey);
+            update(line);
+            ListBusLines[indexOfBusLineToUpdate] = line;
+            XmlTools.SaveListToXMLSerializer(ListBusLines, busLinesPath);
+        }
+        public void DeleteBusLine(int busLineKey)
+        {
+            List<BusLine> ListBusLines = XmlTools.LoadListFromXMLSerializer<BusLine>(busLinesPath);
+            BusLine line = ListBusLines.Find(b => b.Key == busLineKey);
+            if (line == null)
+                throw new ArgumentNotFoundException($"Bus line not found with key: {busLineKey}");
+            ListBusLines.Remove(line);
+            XmlTools.SaveListToXMLSerializer(ListBusLines, busLinesPath);
+        }
 
-        //#endregion
+        #endregion
 
         //#region BusLineStation
         //public IEnumerable<BusLineStation> GetAllBusLineStations()
