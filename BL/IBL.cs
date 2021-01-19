@@ -87,7 +87,7 @@ namespace BLAPI
         #endregion
 
         #region BusInTravel
-        IEnumerable<BusInTravel> GetLineTimingsPerStation(int stationKey, TimeSpan startTime);
+        IEnumerable<BusInTravel> GetLineTimingsPerStation(int stationKey, TimeSpan startTime, double latePrecentage);
         //BusInTravel GetBusInTravel(int key);
         //IEnumerable<BusInTravel> GetAllBusesInTravel(Station s, TimeSpan t);
         //IEnumerable<BusInTravel> GetAllBusInTravelsBy(Predicate<BusInTravel> predicate);

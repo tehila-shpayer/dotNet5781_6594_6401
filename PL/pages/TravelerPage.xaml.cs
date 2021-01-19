@@ -27,6 +27,7 @@ namespace PL
         Stopwatch stopWatch;
         TimeSpan time;
         BO.Clock clock;
+        double latePrecentage;
         public TravelerPage()
         {
             InitializeComponent();
@@ -76,7 +77,7 @@ namespace PL
             tbClock.DataContext = temp.Time;
             busesInTravelCollection.Clear();
             int i = 0;
-            foreach (var lineTiming in App.bl.GetLineTimingsPerStation((lbStations.SelectedItem as Station).Key, temp.Time))
+            foreach (var lineTiming in App.bl.GetLineTimingsPerStation((lbStations.SelectedItem as Station).Key, temp.Time, latePrecentage))
             {
                 i++;
                 if (i > 5)
@@ -99,8 +100,10 @@ namespace PL
 
         private void SimulationButton_Click(object sender, RoutedEventArgs e)
         {
+            Random rand = new Random();
             if (simulationButtonContent.Text == "הפעל")
             {
+                latePrecentage = (double)rand.Next(85, 115)/ (double)100;
                 cbStations.IsEnabled = false;
                 clock = new BO.Clock(new TimeSpan(0, 0, 0), 1);
                 clock.TimeChanged += this.TimeChange;

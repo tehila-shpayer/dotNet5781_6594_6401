@@ -31,6 +31,7 @@ namespace PL
         Stopwatch stopWatch;
         TimeSpan time;
         BO.Clock clock;
+        double latePrecentage = 1;
         public SimulationPage()
         {
             InitializeComponent();
@@ -60,7 +61,7 @@ namespace PL
         {
             tbClock.DataContext = temp.Time;
             busesInTravelCollection.Clear();
-            foreach (var lineTiming in App.bl.GetLineTimingsPerStation((lbStations.SelectedItem as Station).Key, temp.Time))
+            foreach (var lineTiming in App.bl.GetLineTimingsPerStation((lbStations.SelectedItem as Station).Key, temp.Time, latePrecentage))
                 busesInTravelCollection.Add(PoBoAdapter.BusInTravelPoBoAdapter(lineTiming));
             lvCommingLines.DataContext = busesInTravelCollection;
         }

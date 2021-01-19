@@ -933,7 +933,7 @@ namespace BL
         #endregion
 
         #region BusInTravel
-        public BusInTravel CreateBusInTravel(TimeSpan time, LineSchedule lineSchedule, TimeSpan i, Station station, string licenseNumber = "00000000")
+        public BusInTravel CreateBusInTravel(TimeSpan time, LineSchedule lineSchedule, TimeSpan i, Station station, double latePrecentage, string licenseNumber = "00000000")
         {
             BusInTravel bit = new BusInTravel();
             bit.Key = BusInTravel.BUS_TRAVEL_KEY++;
@@ -941,7 +941,7 @@ namespace BL
             bit.LineKey = lineSchedule.LineKey;
             bit.StationKey = station.Key;
             //bit.StartTime = lineSchedule.StartTime + new TimeSpan(0, i * lineSchedule.Frequency, 0);
-            bit.StartTime = i;
+            bit.StartTime = TimeSpan.FromSeconds(Convert.ToInt32(i.TotalSeconds*latePrecentage));
             bit.TimeLeft = GetTimeLeft(bit, time);
             if (bit.TimeLeft < new TimeSpan(0, 0, 0) || bit.TimeLeft > new TimeSpan(1, 30, 0))
                 return null;
@@ -963,7 +963,7 @@ namespace BL
             }
             return new TimeSpan(0, totalMinutes, 0);
         }
-        public IEnumerable<BusInTravel> GetLineTimingsPerStation(int stationKey, TimeSpan time)
+        public IEnumerable<BusInTravel> GetLineTimingsPerStation(int stationKey, TimeSpan time , double latePrecentage)
         {
             Station station = GetStation(stationKey);
             IEnumerable<BusInTravel> busInTravels = new List<BusInTravel>();
@@ -982,7 +982,7 @@ namespace BL
                 //}
                 for (TimeSpan i = GetFirstTravelTime(schedule, time); i < time + new TimeSpan(1,0,0) && i <= schedule.EndTime ; i += new TimeSpan(0, schedule.Frequency,0))
                 {
-                    BusInTravel busInTravel = CreateBusInTravel(time, schedule, i, station);
+                    BusInTravel busInTravel = CreateBusInTravel(time, schedule, i, station, latePrecentage);
                     if (busInTravel != null)
                         busInTravels = busInTravels.Append(busInTravel);
                 }
