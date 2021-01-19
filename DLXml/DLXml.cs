@@ -25,8 +25,10 @@ namespace DL
         string stationsPath = @"StationsXml.xml"; //XMLSerializer
         string busLinesPath = @"BusLinesXml.xml"; //XMLSerializer
         string busLineStationsPath = @"BusLineStationsXml.xml"; //XMLSerializer
-        string consecutiveStationsPath = @"ConsecutiveStationsXml.xml"; //XMLSerializer
+        string consecutiveStationsPath = @"ConsecutiveStationsXml.xml"; //XElement
         string usersPath = @"UsersXml.xml"; //XMLSerializer
+        string lineSchedulesPath = @"LineSchedulesXml.xml"; //XMLSerializer
+
         #endregion
 
         //#region Person
@@ -471,111 +473,237 @@ namespace DL
         }
         public void AddConsecutiveStations(int stationKey1, int stationKey2)
         {
-            //if (stationKey1 == stationKey2)
-            //    throw new InvalidInformationException("Duplicate station!");
-            //Station station1 = GetStation(stationKey1);
-            //Station station2 = GetStation(stationKey2);
-            //AddConsecutiveStations(CalculateConsecutiveStations(station1, station2));
+            if (stationKey1 == stationKey2)
+                throw new InvalidInformationException("Duplicate station!");
+            Station station1 = GetStation(stationKey1);
+            Station station2 = GetStation(stationKey2);
+            AddConsecutiveStations(CalculateConsecutiveStations(station1, station2));
         }
-        //ConsecutiveStations CalculateConsecutiveStations(Station station1, Station station2)
-        //{
-        //    ConsecutiveStations consecutiveStations = new DO.ConsecutiveStations();
-        //    consecutiveStations.StationKey1 = station1.Key;
-        //    consecutiveStations.StationKey2 = station2.Key;
-        //    GeoCoordinate location1 = new GeoCoordinate(station1.Latitude, station1.Longitude);//מיקום התחנה המחושבת
-        //    GeoCoordinate location2 = new GeoCoordinate(station2.Latitude, station2.Longitude);//מיקום התחנה הקודמת
-        //    double distance = location1.GetDistanceTo(location2);//חישוב מרחק
-        //    consecutiveStations.Distance = distance;
-        //    Random rand = new Random();
-        //    int speed = rand.Next(30, 60);
-        //    int time = (int)Math.Ceiling(distance / (speed * 1000 / 60));//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש
-        //    consecutiveStations.AverageTime = time;
-        //    return consecutiveStations;
-        //}
-        //public void UpdateConsecutiveStations(ConsecutiveStations stations)
-        //{
-        //    int indexOfConsecutiveStationToUpdate = DataSource.ListConsecutiveStations.FindIndex(s => s.StationKey1 == stations.StationKey1 && s.StationKey2 == stations.StationKey2);
-        //    if (indexOfConsecutiveStationToUpdate == -1)
-        //        throw new ArgumentNotFoundException($"Consecutive stations not found with keys: {stations.StationKey1} and {stations.StationKey2}.");
-        //    DataSource.ListConsecutiveStations[indexOfConsecutiveStationToUpdate] = stations;
-        //}
-        //public void UpdateConsecutiveStations(int stationKey1, int stationKey2, Action<ConsecutiveStations> update) //method that knows to updt specific fields in Person
-        //{
-        //    int indexOfConsecutiveStationToUpdate = DataSource.ListConsecutiveStations.FindIndex(s => s.StationKey1 == stationKey1 && s.StationKey2 == stationKey2);
-        //    if (indexOfConsecutiveStationToUpdate == -1)
-        //        throw new ArgumentNotFoundException($"Consecutive stations of first station  {stationKey1} and second station {stationKey2} were not found.");
-        //    ConsecutiveStations consecutiveStations = DataSource.ListConsecutiveStations[indexOfConsecutiveStationToUpdate];
-        //    update(consecutiveStations);
-        //    DataSource.ListConsecutiveStations[indexOfConsecutiveStationToUpdate] = consecutiveStations;
-        //}
-        //public void DeleteConsecutiveStations(int stationKey1, int stationKey2)
-        //{
-        //    ConsecutiveStations consecutiveStations = DataSource.ListConsecutiveStations.Find(s => s.StationKey1 == stationKey1 && s.StationKey2 == stationKey2);
-        //    if (consecutiveStations == null)
-        //        throw new ArgumentNotFoundException($"Consecutive stations of first station  {stationKey1} and second station {stationKey2} was not found.");
-        //    DataSource.ListConsecutiveStations.Remove(consecutiveStations);
-        //}
-        //public void DeleteConsecutiveStations(int stationKey)
-        //{
-        //    try
-        //    {
-        //        GetStation(stationKey);
-        //        DataSource.ListConsecutiveStations.RemoveAll(cs => stationKey == cs.StationKey1 || stationKey == cs.StationKey2);
-        //    }
-        //    catch
-        //    {
-        //        throw;
-        //    }
+        ConsecutiveStations CalculateConsecutiveStations(Station station1, Station station2)
+        {
+            ConsecutiveStations consecutiveStations = new DO.ConsecutiveStations();
+            consecutiveStations.StationKey1 = station1.Key;
+            consecutiveStations.StationKey2 = station2.Key;
+            GeoCoordinate location1 = new GeoCoordinate(station1.Latitude, station1.Longitude);//מיקום התחנה המחושבת
+            GeoCoordinate location2 = new GeoCoordinate(station2.Latitude, station2.Longitude);//מיקום התחנה הקודמת
+            double distance = location1.GetDistanceTo(location2);//חישוב מרחק
+            consecutiveStations.Distance = distance;
+            Random rand = new Random();
+            int speed = rand.Next(30, 60);
+            int time = (int)Math.Ceiling(distance / (speed * 1000 / 60));//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש
+            consecutiveStations.AverageTime = time;
+            return consecutiveStations;
+        }
+        public void UpdateConsecutiveStations(ConsecutiveStations consecutiveStations)
+        {
+            XElement consecutiveStationsRootElem = XmlTools.LoadListFromXMLElement(consecutiveStationsPath);
 
-        //}
+            XElement consecutiveStations1 = (from cs in consecutiveStationsRootElem.Elements()
+                                             where int.Parse(cs.Element("StationKey1").Value) == consecutiveStations.StationKey1 &&
+                                             int.Parse(cs.Element("StationKey2").Value) == consecutiveStations.StationKey2
+                                             select cs).FirstOrDefault();
+
+            if (consecutiveStations1 != null)
+            {
+                consecutiveStations1.Element("StationKey1").Value = consecutiveStations.StationKey1.ToString();
+                consecutiveStations1.Element("StationKey2").Value = consecutiveStations.StationKey2.ToString();
+                consecutiveStations1.Element("Distance").Value = consecutiveStations.Distance.ToString();
+                consecutiveStations1.Element("AverageTime").Value = consecutiveStations.AverageTime.ToString();
+ 
+                XmlTools.SaveListToXMLElement(consecutiveStationsRootElem, consecutiveStationsPath);
+            }
+            else
+                throw new ArgumentNotFoundException($"Consecutive stations not found with keys: {consecutiveStations.StationKey1} and {consecutiveStations.StationKey2}.");
+        }
+        public void UpdateConsecutiveStations(int stationKey1, int stationKey2, Action<ConsecutiveStations> update) //method that knows to updt specific fields in Person
+        {
+            XElement consecutiveStationsRootElem = XmlTools.LoadListFromXMLElement(consecutiveStationsPath);
+
+            XElement consecutiveStations = (from cs in consecutiveStationsRootElem.Elements()
+                                             where int.Parse(cs.Element("StationKey1").Value) == stationKey1 &&
+                                             int.Parse(cs.Element("StationKey2").Value) == stationKey2
+                                             select cs).FirstOrDefault();
+
+            if (consecutiveStations != null)
+            {
+                ConsecutiveStations cs = GetConsecutiveStations(stationKey1, stationKey2);
+                update(cs);
+                consecutiveStations.Element("StationKey1").Value = cs.StationKey1.ToString();
+                consecutiveStations.Element("StationKey2").Value = cs.StationKey2.ToString();
+                consecutiveStations.Element("Distance").Value = cs.Distance.ToString();
+                consecutiveStations.Element("AverageTime").Value = cs.AverageTime.ToString();
+
+                XmlTools.SaveListToXMLElement(consecutiveStationsRootElem, consecutiveStationsPath);
+            }
+            else
+                throw new ArgumentNotFoundException($"Consecutive stations not found with keys: {stationKey1} and {stationKey2}.");
+        }
+        public void DeleteConsecutiveStations(int stationKey1, int stationKey2)
+        {
+            XElement consecutiveStationsRootElem = XmlTools.LoadListFromXMLElement(consecutiveStationsPath);
+
+            XElement consecutiveStations = (from cs in consecutiveStationsRootElem.Elements()
+                                            where int.Parse(cs.Element("StationKey1").Value) == stationKey1 &&
+                                            int.Parse(cs.Element("StationKey2").Value) == stationKey2
+                                            select cs).FirstOrDefault();
+            if (consecutiveStations != null)
+            {
+                consecutiveStations.Remove(); //<==>   Remove consecutive stations from consecutiveStationsRootElem
+
+                XmlTools.SaveListToXMLElement(consecutiveStationsRootElem, consecutiveStationsPath);
+            }
+            else
+                throw new ArgumentNotFoundException($"Consecutive stations of first station  {stationKey1} and second station {stationKey2} was not found.");
+        }
+        public void DeleteConsecutiveStations(int stationKey)
+        {
+            XElement consecutiveStationsRootElem = XmlTools.LoadListFromXMLElement(consecutiveStationsPath);
+
+
+            List<XElement> consecutiveStations = (from cs in consecutiveStationsRootElem.Elements()
+                                                  select cs).ToList();
+
+            //<==>   Remove consecutive stations asocieted with station of key stationKey
+            consecutiveStations.RemoveAll(cs => int.Parse(cs.Element("StationKey1").Value) == stationKey ||
+                                                  int.Parse(cs.Element("StationKey2").Value) == stationKey);
+
+            XmlTools.SaveListToXMLElement(consecutiveStationsRootElem, consecutiveStationsPath);
+        }
         #endregion
 
-        //#region LineSchedule
-        //public LineSchedule GetLineSchedule(int line, TimeSpan startTime)
-        //{
-        //    LineSchedule lineSchedule = DataSource.ListLineSchedules.FirstOrDefault(ls => ls.LineKey == line && ls.StartTime == startTime);
-        //    if (lineSchedule == null)
-        //        throw new DO.ArgumentNotFoundException($"Line schedule of line {line} and starting time {startTime.ToString("HH:mm")} not found.");
-        //    return lineSchedule.Clone();
-        //}
-        //public IEnumerable<LineSchedule> GetAllLineSchedules()
-        //{
-        //    var lineSchedules = from ls in DataSource.ListLineSchedules
-        //                        select ls;
-        //    return lineSchedules;
-        //}
-        //public IEnumerable<LineSchedule> GetAllLineSchedulesOfLine(int Line)
-        //{
-        //    var lineSchedules = from ls in DataSource.ListLineSchedules
-        //                        where ls.LineKey == Line
-        //                        select ls;
-        //    return lineSchedules;
-        //}
-        //public void AddLineSchedule(LineSchedule lineSchedule)
-        //{
-        //    if (DataSource.ListLineSchedules.FirstOrDefault(ls => ls.LineKey == lineSchedule.LineKey && ls.StartTime == lineSchedule.StartTime) != null)
-        //        throw new InvalidInformationException($"There is already a line schedule {lineSchedule.LineKey} that start at {lineSchedule.StartTime.ToString()}");
-        //    DataSource.ListLineSchedules.Add(lineSchedule);
-        //}
-        //public void UpdateLineSchedule(LineSchedule lineSchedule)
-        //{
-        //    int indexOfLineScheduleToUpdate = DataSource.ListLineSchedules.FindIndex(ls => ls.LineKey == lineSchedule.LineKey && ls.StartTime.ToString("HH:mm") == lineSchedule.StartTime.ToString("HH:mm"));
-        //    if (indexOfLineScheduleToUpdate == -1)
-        //        throw new ArgumentNotFoundException($"Line schedule of line {lineSchedule.LineKey} and starting time {lineSchedule.StartTime.ToString("HH:mm")} not found.");
+        #region LineSchedule
+        public LineSchedule GetLineSchedule(int lineKey, TimeSpan startTime)
+        {
+            XElement lineScheduleRootElem = XmlTools.LoadListFromXMLElement(lineSchedulesPath);
 
-        //    DataSource.ListLineSchedules[indexOfLineScheduleToUpdate] = lineSchedule;
-        //}
-        //public void UpdateLineSchedule(int line, TimeSpan startTime, Action<LineSchedule> update)
-        //{
-        //    LineSchedule lineSchedule = GetLineSchedule(line, startTime);
-        //    update(lineSchedule);
-        //}
-        //public void DeleteLineSchedule(int line, TimeSpan startTime)
-        //{
-        //    LineSchedule lineSchedule = GetLineSchedule(line, startTime);
-        //    DataSource.ListLineSchedules.Remove(lineSchedule);
-        //}
-        //#endregion
+            LineSchedule schedule = (from ls in lineScheduleRootElem.Elements()
+                       where int.Parse(ls.Element("LineKey").Value) == lineKey &&
+                       TimeSpan.Parse(ls.Element("StartTime").Value) == startTime 
+                       select new LineSchedule()
+                       {
+                           LineKey = int.Parse(ls.Element("LicenseNumber").Value),
+                           StartTime = TimeSpan.Parse(ls.Element("StartTime").Value),
+                           EndTime = TimeSpan.Parse(ls.Element("EndTime").Value),
+                           Frequency = Int32.Parse(ls.Element("Frequency").Value),
+                       }).FirstOrDefault();
+
+            if (schedule == null)
+                throw new DO.ArgumentNotFoundException($"Line schedule of line {lineKey} and starting time {startTime.ToString("HH:mm")} not found.");
+            return schedule;
+        }
+        public IEnumerable<LineSchedule> GetAllLineSchedules()
+        {
+            XElement lineScheduleRootElem = XmlTools.LoadListFromXMLElement(lineSchedulesPath);
+
+            return from ls in lineScheduleRootElem.Elements()
+                   select new LineSchedule()
+                   {
+                       LineKey = int.Parse(ls.Element("LicenseNumber").Value),
+                       StartTime = TimeSpan.Parse(ls.Element("StartTime").Value),
+                       EndTime = TimeSpan.Parse(ls.Element("EndTime").Value),
+                       Frequency = Int32.Parse(ls.Element("Frequency").Value),
+                   };
+        }
+        public IEnumerable<LineSchedule> GetAllLineSchedulesOfLine(int lineKey)
+        {
+            XElement lineScheduleRootElem = XmlTools.LoadListFromXMLElement(lineSchedulesPath);
+
+            return from ls in lineScheduleRootElem.Elements()
+                   where int.Parse(ls.Element("LineKey").Value) == lineKey
+                   select new LineSchedule()
+                   {
+                       LineKey = int.Parse(ls.Element("LicenseNumber").Value),
+                       StartTime = TimeSpan.Parse(ls.Element("StartTime").Value),
+                       EndTime = TimeSpan.Parse(ls.Element("EndTime").Value),
+                       Frequency = Int32.Parse(ls.Element("Frequency").Value),
+                   };
+            var lineSchedules = from ls in DataSource.ListLineSchedules
+                                where ls.LineKey == Line
+                                select ls;
+            return lineSchedules;
+        }
+        public void AddLineSchedule(LineSchedule lineSchedule)
+        {
+            XElement lineScheduleRootElem = XmlTools.LoadListFromXMLElement(lineSchedulesPath);
+
+            XElement lineSchedule1 = (from ls in lineScheduleRootElem.Elements()
+                                      where int.Parse(ls.Element("LineKey").Value) == lineSchedule.LineKey &&
+                                      TimeSpan.Parse(ls.Element("StartTime").Value) == lineSchedule.StartTime
+                                      select ls).FirstOrDefault();
+            if (lineSchedule1 != null)
+                throw new InvalidInformationException($"There is already a line schedule {lineSchedule.LineKey} that start at {lineSchedule.StartTime}");
+
+            XElement lineScheduleElem = new XElement("LineSchedule", new XElement("LineKey", lineSchedule.LineKey.ToString()),
+                                  new XElement("StartTime", lineSchedule.StartTime.ToString()),
+                                  new XElement("EndTime", lineSchedule.EndTime.ToString()),
+                                  new XElement("Frequency", lineSchedule.Frequency.ToString()));
+
+            lineScheduleRootElem.Add(lineScheduleElem);
+
+            XmlTools.SaveListToXMLElement(lineScheduleRootElem, lineSchedulesPath);
+        }
+        public void UpdateLineSchedule(LineSchedule lineSchedule)
+        {
+            XElement lineScheduleRootElem = XmlTools.LoadListFromXMLElement(lineSchedulesPath);
+
+            XElement lineSchedule1 = (from ls in lineScheduleRootElem.Elements()
+                                      where int.Parse(ls.Element("LineKey").Value) == lineSchedule.LineKey &&
+                                      TimeSpan.Parse(ls.Element("StartTime").Value) == lineSchedule.StartTime
+                                      select ls).FirstOrDefault();
+
+            if (lineSchedule1 != null)
+            {
+                lineSchedule1.Element("LineKey").Value = lineSchedule.LineKey.ToString();
+                lineSchedule1.Element("StartTime").Value = lineSchedule.StartTime.ToString();
+                lineSchedule1.Element("EndTime").Value = lineSchedule.EndTime.ToString();
+                lineSchedule1.Element("Frequency").Value = lineSchedule.Frequency.ToString();
+
+                XmlTools.SaveListToXMLElement(lineScheduleRootElem, lineSchedulesPath);
+            }
+            else
+                throw new ArgumentNotFoundException($"Line schedule of line {lineSchedule.LineKey} and starting time {lineSchedule.StartTime.ToString("HH:mm")} not found.");
+        }
+        public void UpdateLineSchedule(int lineKey, TimeSpan startTime, Action<LineSchedule> update)
+        {
+            XElement lineScheduleRootElem = XmlTools.LoadListFromXMLElement(lineSchedulesPath);
+
+            XElement lineSchedule1 = (from ls in lineScheduleRootElem.Elements()
+                                      where int.Parse(ls.Element("LineKey").Value) == lineKey &&
+                                      TimeSpan.Parse(ls.Element("StartTime").Value) == startTime
+                                      select ls).FirstOrDefault();
+
+            if (lineSchedule1 != null)
+            {
+                LineSchedule lineSchedule = GetLineSchedule(lineKey, startTime);
+                update(lineSchedule);
+                lineSchedule1.Element("LineKey").Value = lineSchedule.LineKey.ToString();
+                lineSchedule1.Element("StartTime").Value = lineSchedule.StartTime.ToString();
+                lineSchedule1.Element("EndTime").Value = lineSchedule.EndTime.ToString();
+                lineSchedule1.Element("Frequency").Value = lineSchedule.Frequency.ToString();
+
+                XmlTools.SaveListToXMLElement(lineScheduleRootElem, lineSchedulesPath);
+            }
+            else
+                throw new ArgumentNotFoundException($"Line schedule of line {lineKey} and starting time {startTime.ToString("HH:mm")} not found.");
+        }
+        public void DeleteLineSchedule(int lineKey, TimeSpan startTime)
+        {
+            XElement lineScheduleRootElem = XmlTools.LoadListFromXMLElement(lineSchedulesPath);
+
+            XElement lineScheduleElem = (from ls in lineScheduleRootElem.Elements()
+                                      where int.Parse(ls.Element("LineKey").Value) == lineKey &&
+                                      TimeSpan.Parse(ls.Element("StartTime").Value) == startTime
+                                      select ls).FirstOrDefault();
+
+            if (lineScheduleElem != null)
+            {
+                lineScheduleElem.Remove();
+                XmlTools.SaveListToXMLElement(lineScheduleRootElem, lineSchedulesPath);
+            }
+            else
+                throw new ArgumentNotFoundException($"Line schedule of line {lineKey} and starting time {startTime.ToString("HH:mm")} not found.");
+        }
+        #endregion
 
         #region Station
         public Station GetStation(int stationKey)
