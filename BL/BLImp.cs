@@ -942,11 +942,15 @@ namespace BL
             bit.LineKey = lineSchedule.LineKey;
             bit.StationKey = station.Key;
             //bit.StartTime = lineSchedule.StartTime + new TimeSpan(0, i * lineSchedule.Frequency, 0);
-            bit.StartTime = TimeSpan.FromSeconds(Convert.ToInt32(i.TotalSeconds*latePrecentage));
+            bit.StartTime = TimeSpan.FromSeconds(i.TotalSeconds*mix(lineSchedule.LineKey)/100);
             bit.TimeLeft = GetTimeLeft(bit, time);
             if (bit.TimeLeft < new TimeSpan(0, 0, 0) || bit.TimeLeft > new TimeSpan(1, 30, 0))
                 return null;
             return bit;
+        }
+        int mix(int lineKey)
+        {
+            return Convert.ToInt32((Math.Log(Math.Sqrt(lineKey) * 500) * Math.PI)) % 10 + 95;
         }
         TimeSpan GetTimeLeft(BusInTravel bit, TimeSpan time)
         {

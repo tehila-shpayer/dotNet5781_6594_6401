@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 
 namespace DL
 {
-    class DLXml : IDL
+    class DLXml 
     {
         #region singelton
         static readonly DLXml instance = new DLXml();
@@ -27,7 +27,7 @@ namespace DL
         string busLineStationsPath = @"BusLineStationsXml.xml"; //XMLSerializer
         string consecutiveStationsPath = @"ConsecutiveStationsXml.xml"; //XElement
         string usersPath = @"UsersXml.xml"; //XMLSerializer
-        string lineSchedulesPath = @"LineSchedulesXml.xml"; //XMLSerializer
+        string lineSchedulesPath = @"LineSchedulesXml.xml"; //XElement
 
         #endregion
 
@@ -604,10 +604,6 @@ namespace DL
                        EndTime = TimeSpan.Parse(ls.Element("EndTime").Value),
                        Frequency = Int32.Parse(ls.Element("Frequency").Value),
                    };
-            var lineSchedules = from ls in DataSource.ListLineSchedules
-                                where ls.LineKey == Line
-                                select ls;
-            return lineSchedules;
         }
         public void AddLineSchedule(LineSchedule lineSchedule)
         {

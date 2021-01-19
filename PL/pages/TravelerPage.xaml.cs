@@ -70,7 +70,7 @@ namespace PL
             MainWindow.stationsCollection.Clear();
             foreach (Station station in collection)
                 MainWindow.stationsCollection.Add(station);
-            //lbStations.SelectedIndex = 0;
+            lbStations.SelectedIndex = 0;
         }
         public void TimeChange(Object sender, BO.ValueChangedEventArgs temp)
         {
@@ -88,12 +88,12 @@ namespace PL
             lvCommingLines.DataContext = busesInTravelCollection;
             BusInTravel lastBus = busesInTravelCollection.FirstOrDefault(bit => bit.TimeLeft == new TimeSpan(0, 0, 0));
             if (lastBus != null)
-                LastBusGrid.DataContext = lastBus;
+                spLastBus.DataContext = lastBus;
         }
 
         private void lbStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //LastBusGrid.DataContext = null;
+            spLastBus.DataContext = null;
             if (lbStations.SelectedIndex >= 0)
                 StationInfoGrid.DataContext = MainWindow.stationsCollection.ElementAt(lbStations.SelectedIndex);
         }
@@ -109,7 +109,7 @@ namespace PL
             SimulationButton.Visibility = Visibility.Collapsed;
             StopButton.Visibility = Visibility.Visible;
             clock.TimeChanged += this.TimeChange;
-            //LastBusGrid.DataContext = null;
+            spLastBus.DataContext = null;
             //simulationButtonContent.Text = "עצור";
             tbHour.Visibility = Visibility.Collapsed;
             tbDots1.Visibility = Visibility.Collapsed;
@@ -132,7 +132,7 @@ namespace PL
         private void StopButton_Click(object sender, RoutedEventArgs e)
         {
             cbStations.IsEnabled = true;
-            //LastBusGrid.DataContext = null;
+            spLastBus.DataContext = null;
             StopButton.Visibility = Visibility.Collapsed;
             SimulationButton.Visibility = Visibility.Visible;
             clock.TimeChanged -= this.TimeChange;
