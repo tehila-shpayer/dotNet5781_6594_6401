@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using System.Device.Location;
 using DLAPI;
 using DO;
-using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace DL
 {
@@ -20,79 +21,15 @@ namespace DL
         #endregion
         #region DS XML Files
 
-        string personsPath = @"PersonsXml.xml"; //XElement
-
-        string studentsPath = @"StudentsXml.xml"; //XMLSerializer
-        string coursesPath = @"CoursesXml.xml"; //XMLSerializer
-        string lecturersPath = @"LecturersXml.xml"; //XMLSerializer
-        string lectInCoursesPath = @"LecturerInCourseXml.xml"; //XMLSerializer
-        string studInCoursesPath = @"StudentInCoureseXml.xml"; //XMLSerializer
-
-
+        string busesPath = @"BusesXml.xml"; //XElement
+        string stationsPath = @"StationsXml.xml"; //XMLSerializer
+        string busLinesPath = @"BusLinesXml.xml"; //XMLSerializer
+        string busLineStationsPath = @"BusLineStationsXml.xml"; //XMLSerializer
+        string consecutiveStationsPath = @"ConsecutiveStationsXml.xml"; //XMLSerializer
+        string usersPath = @"UsersXml.xml"; //XMLSerializer
         #endregion
 
         //#region Person
-        //public DO.Person GetPerson(int id)
-        //{
-        //    XElement personsRootElem = XMLTools.LoadListFromXMLElement(personsPath);
-
-        //    Person p = (from per in personsRootElem.Elements()
-        //                where int.Parse(per.Element("ID").Value) == id
-        //                select new Person()
-        //                {
-        //                    ID = Int32.Parse(per.Element("ID").Value),
-        //                    Name = per.Element("Name").Value,
-        //                    Street = per.Element("Street").Value,
-        //                    HouseNumber = Int32.Parse(per.Element("HouseNumber").Value),
-        //                    City = per.Element("City").Value,
-        //                    BirthDate = DateTime.Parse(per.Element("BirthDate").Value),
-        //                    PersonalStatus = (PersonalStatus)Enum.Parse(typeof(PersonalStatus), per.Element("PersonalStatus").Value),
-        //                    Duration = TimeSpan.ParseExact(per.Element("Duration").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture)
-        //                }
-        //                ).FirstOrDefault();
-
-        //    if (p == null)
-        //        throw new DO.BadPersonIdException(id, $"bad person id: {id}");
-
-        //    return p;
-        //}
-        //public IEnumerable<DO.Person> GetAllPersons()
-        //{
-        //    XElement personsRootElem = XMLTools.LoadListFromXMLElement(personsPath);
-
-        //    return (from p in personsRootElem.Elements()
-        //            select new Person()
-        //            {
-        //                ID = Int32.Parse(p.Element("ID").Value),
-        //                Name = p.Element("Name").Value,
-        //                Street = p.Element("Street").Value,
-        //                HouseNumber = Int32.Parse(p.Element("HouseNumber").Value),
-        //                City = p.Element("City").Value,
-        //                BirthDate = DateTime.Parse(p.Element("BirthDate").Value),
-        //                PersonalStatus = (PersonalStatus)Enum.Parse(typeof(PersonalStatus), p.Element("PersonalStatus").Value),
-        //                Duration = TimeSpan.ParseExact(p.Element("Duration").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture)
-        //            }
-        //           );
-        //}
-        //public IEnumerable<DO.Person> GetAllPersonsBy(Predicate<DO.Person> predicate)
-        //{
-        //    XElement personsRootElem = XMLTools.LoadListFromXMLElement(personsPath);
-
-        //    return from p in personsRootElem.Elements()
-        //           let p1 = new Person()
-        //           {
-        //               ID = Int32.Parse(p.Element("ID").Value),
-        //               Name = p.Element("Name").Value,
-        //               Street = p.Element("Street").Value,
-        //               HouseNumber = Int32.Parse(p.Element("HouseNumber").Value),
-        //               City = p.Element("City").Value,
-        //               BirthDate = DateTime.Parse(p.Element("BirthDate").Value),
-        //               PersonalStatus = (PersonalStatus)Enum.Parse(typeof(PersonalStatus), p.Element("PersonalStatus").Value),
-        //               Duration = TimeSpan.ParseExact(p.Element("Duration").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture)
-        //           }
-        //           where predicate(p1)
-        //           select p1;
-        //}
         //public void AddPerson(DO.Person person)
         //{
         //    XElement personsRootElem = XMLTools.LoadListFromXMLElement(personsPath);
@@ -255,33 +192,85 @@ namespace DL
         //#endregion Student
 
         #region Bus
-        //public IEnumerable<Bus> GetAllBuses()
-        //{
-        //    var AllBuses = from bus in DataSource.ListBuses
-        //                   select bus.Clone();
-        //    return AllBuses;
-        //}
-        //public IEnumerable<Bus> GetAllBusesBy(Predicate<Bus> predicate)
-        //{
-        //    var AllBusesBy = from bus in DataSource.ListBuses
-        //                     where predicate(bus)
-        //                     select bus.Clone();
-        //    return AllBusesBy;
-        //}
-        //public Bus GetBus(string LicenseNumber)
-        //{
-        //    Bus bus = DataSource.ListBuses.Find(b => b.LicenseNumber == LicenseNumber);
-        //    if (bus != null)
-        //        return bus.Clone();
-        //    else
-        //        throw new ArgumentNotFoundException($"Bus {bus.LicenseNumber} not found.");
-        //}
-        //public void AddBus(Bus bus)
-        //{
-        //    if (DataSource.ListBuses.FirstOrDefault(p => p.LicenseNumber == bus.LicenseNumber) != null)
-        //        throw new InvalidInformationException("Duplicate bus license number");
-        //    DataSource.ListBuses.Add(bus.Clone());
-        //}
+        public IEnumerable<Bus> GetAllBuses()
+        {
+            XElement busesRootElem = XmlTools.LoadListFromXMLElement(busesPath);
+
+            return from b in busesRootElem.Elements()
+                   select new Bus()
+                   {
+                       LicenseNumber = b.Element("LicenseNumber").Value,
+                       RunningDate = DateTime.Parse(b.Element("RunningDate").Value),
+                       LastTreatment = DateTime.Parse(b.Element("LastTreatment").Value),
+                       Fuel = Int32.Parse(b.Element("Fuel").Value),
+                       KM = Int32.Parse(b.Element("KM").Value),
+                       BeforeTreatKM = Int32.Parse(b.Element("BeforeTreatKM").Value),
+                       Status = (Status)Enum.Parse(typeof(Status), b.Element("Status").Value),
+                   };
+        }
+        public IEnumerable<Bus> GetAllBusesBy(Predicate<Bus> predicate)
+        {
+            XElement busesRootElem = XmlTools.LoadListFromXMLElement(busesPath);
+
+            return from b in busesRootElem.Elements()
+                   let bus = new Bus()
+                   {
+                       LicenseNumber = b.Element("LicenseNumber").Value,
+                       RunningDate = DateTime.Parse(b.Element("RunningDate").Value),
+                       LastTreatment = DateTime.Parse(b.Element("LastTreatment").Value),
+                       Fuel = Int32.Parse(b.Element("Fuel").Value),
+                       KM = Int32.Parse(b.Element("KM").Value),
+                       BeforeTreatKM = Int32.Parse(b.Element("BeforeTreatKM").Value),
+                       Status = (Status)Enum.Parse(typeof(Status), b.Element("Status").Value),
+                   }
+                   where predicate(bus)
+                   select bus;
+        }
+        public Bus GetBus(string LicenseNumber)
+        {
+            XElement busesRootElem = XmlTools.LoadListFromXMLElement(busesPath);
+
+            Bus bus = (from b in busesRootElem.Elements()
+                        where b.Element("LicenseNumber").Value == LicenseNumber
+                        select new Bus()
+                        {
+                            LicenseNumber = b.Element("LicenseNumber").Value,
+                            RunningDate = DateTime.Parse(b.Element("RunningDate").Value),
+                            LastTreatment = DateTime.Parse(b.Element("LastTreatment").Value),
+                            Fuel = Int32.Parse(b.Element("Fuel").Value),
+                            KM = Int32.Parse(b.Element("KM").Value),
+                            BeforeTreatKM = Int32.Parse(b.Element("BeforeTreatKM").Value),
+                            Status = (Status)Enum.Parse(typeof(Status), b.Element("Status").Value),
+                        }
+                        ).FirstOrDefault();
+
+            if (bus == null)
+                throw new ArgumentNotFoundException($"Bus {bus.LicenseNumber} not found.");
+            return bus;
+        }
+        public void AddBus(Bus bus)
+        {
+            XElement busesRootElem = XmlTools.LoadListFromXMLElement(busesPath);
+
+            XElement bus1 = (from b in busesRootElem.Elements()
+                             where b.Element("LicenseNumber").Value == bus.LicenseNumber
+                             select b).FirstOrDefault();
+
+            if (bus1 != null)
+                throw new DO.InvalidInformationException("Duplicate bus license number");
+
+            XElement busElem = new XElement("Bus", new XElement("LicenseNumber", bus.LicenseNumber),
+                                  new XElement("RunningDate", bus.RunningDate.ToString()),
+                                  new XElement("LastTreatment", bus.LastTreatment.ToString()),
+                                  new XElement("Fuel", bus.Fuel.ToString()),
+                                  new XElement("KM", bus.KM.ToString()),
+                                  new XElement("BeforeTreatKM", bus.BeforeTreatKM.ToString()),
+                                  new XElement("Status", bus.Status.ToString()));
+
+            busesRootElem.Add(busElem);
+
+            XmlTools.SaveListToXMLElement(busesRootElem, busesPath);
+        }
         //public void UpdateBus(Bus bus)
         //{
         //    int indexOfBusToUpdate = DataSource.ListBuses.FindIndex(s => s.LicenseNumber == bus.LicenseNumber);
@@ -307,7 +296,7 @@ namespace DL
         //        throw new ArgumentNotFoundException($"Bus {bus.LicenseNumber} not found.");
         //    DataSource.ListBuses.Remove(bus);
         //}
-        //#endregion
+        #endregion
 
         //#region BusInTravel
         ////public BusInTravel GetBusInTravel(int key) 
