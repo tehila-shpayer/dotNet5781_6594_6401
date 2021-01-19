@@ -163,11 +163,11 @@
                     </ListView.View>
                 </ListView>
                 <StackPanel x:Name="spLastBus" Orientation="Horizontal" Background="#FFB3E3BF" Margin="20,0">
-                    <Label Content="אוטובוס אחרון:" Margin="20,3,10,3" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black"/>
+                    <Label Content="אוטובוס אחרון:" Margin="20,3,3,3" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black"/>
                     <TextBlock x:Name="lastStationNameTextBlock1"  HorizontalAlignment="Left" Margin="20,3" Grid.Row="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black">
                         <Run Text="קו "/>                        
                         <Run Text="{Binding LineNumber}"/>
-                        <Run Text="ל - "/>
+                        <Run Text="ל-"/>
                         <Run Text="{Binding LastStationName}"/>
                     </TextBlock>
                     <Label Content="שעת יציאה:"  HorizontalAlignment="Left" Margin="10,3" Grid.Row="2" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black"/>
