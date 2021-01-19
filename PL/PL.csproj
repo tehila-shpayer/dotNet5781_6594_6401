@@ -105,6 +105,9 @@
     <Compile Include="AddWindows\AddStationWindow.xaml.cs">
       <DependentUpon>AddStationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="pages\ContactUsPage.xaml.cs">
+      <DependentUpon>ContactUsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\TravelerMenuPage.xaml.cs">
       <DependentUpon>TravelerMenuPage.xaml</DependentUpon>
     </Compile>
@@ -190,6 +193,10 @@
     <Page Include="pages\BusPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="pages\ContactUsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\SimulationPage.xaml">
       <SubType>Designer</SubType>

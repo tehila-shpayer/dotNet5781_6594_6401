@@ -100,49 +100,31 @@ namespace PL
 
         private void SimulationButton_Click(object sender, RoutedEventArgs e)
         {
-            Random rand = new Random();
-            if (simulationButtonContent.Text == "הפעל")
-            {
-                latePrecentage = (double)rand.Next(85, 115)/ (double)100;
-                cbStations.IsEnabled = false;
-                clock = new BO.Clock(new TimeSpan(0, 0, 0), 1);
-                clock.TimeChanged += this.TimeChange;
-                //LastBusGrid.DataContext = null;
-                simulationButtonContent.Text = "עצור";
-                tbHour.Visibility = Visibility.Collapsed;
-                tbDots1.Visibility = Visibility.Collapsed;
-                tbMinutes.Visibility = Visibility.Collapsed;
-                tbDots2.Visibility = Visibility.Collapsed;
-                tbSeconds.Visibility = Visibility.Collapsed;
-                tbRate.Visibility = Visibility.Collapsed;
-                tbClock.Visibility = Visibility.Visible;
-                tblRate.Visibility = Visibility.Visible;
-                time = new TimeSpan(int.Parse(tbHour.Text), int.Parse(tbMinutes.Text), int.Parse(tbSeconds.Text));
-                tbClock.DataContext = time;
-                clock.startTime = time;
-                clock.Time = time;
-                App.bl.StartSimulator(clock, time, int.Parse(tbRate.Text), (lbStations.SelectedItem as Station).Key);
+            //if (simulationButtonContent.Text == "הפעל")
 
-            }
-            else
-            {
-                cbStations.IsEnabled = true;
-                //LastBusGrid.DataContext = null;
-                simulationButtonContent.Text = "הפעל";
-                clock.TimeChanged -= this.TimeChange;
-                tbHour.Visibility = Visibility.Visible;
-                tbDots1.Visibility = Visibility.Visible;
-                tbMinutes.Visibility = Visibility.Visible;
-                tbDots2.Visibility = Visibility.Visible;
-                tbSeconds.Visibility = Visibility.Visible;
-                tbRate.Visibility = Visibility.Visible;
-                tbClock.Visibility = Visibility.Collapsed;
-                tblRate.Visibility = Visibility.Collapsed;
-                App.bl.StopSimulator();
-            }
-            //stopWatch.Restart();
-            //isTimerRun = true;
-            //worker.RunWorkerAsync();
+            cbStations.IsEnabled = false;
+            clock = new BO.Clock(new TimeSpan(0, 0, 0), 1);
+
+            SimulationButton.Visibility = Visibility.Collapsed;
+            StopButton.Visibility = Visibility.Visible;
+            clock.TimeChanged += this.TimeChange;
+            //LastBusGrid.DataContext = null;
+            //simulationButtonContent.Text = "עצור";
+            tbHour.Visibility = Visibility.Collapsed;
+            tbDots1.Visibility = Visibility.Collapsed;
+            tbMinutes.Visibility = Visibility.Collapsed;
+            tbDots2.Visibility = Visibility.Collapsed;
+            tbSeconds.Visibility = Visibility.Collapsed;
+            tbRate.Visibility = Visibility.Collapsed;
+            tbClock.Visibility = Visibility.Visible;
+            tblRate.Visibility = Visibility.Visible;
+            time = new TimeSpan(int.Parse(tbHour.Text), int.Parse(tbMinutes.Text), int.Parse(tbSeconds.Text));
+            tbClock.DataContext = time;
+            clock.startTime = time;
+            clock.Time = time;
+            App.bl.StartSimulator(clock, time, int.Parse(tbRate.Text), (lbStations.SelectedItem as Station).Key);
+
+
             //lvCommingLines.DataContext = App.bl.GetLineTimingsPerStation((lbStations.SelectedItem as Station).Key, new TimeSpan(8,0,0));
         }
 
@@ -150,7 +132,8 @@ namespace PL
         {
             cbStations.IsEnabled = true;
             //LastBusGrid.DataContext = null;
-            simulationButtonContent.Text = "הפעל";
+            StopButton.Visibility = Visibility.Collapsed;
+            SimulationButton.Visibility = Visibility.Visible;
             clock.TimeChanged -= this.TimeChange;
             tbHour.Visibility = Visibility.Visible;
             tbDots1.Visibility = Visibility.Visible;
