@@ -470,12 +470,5 @@ namespace DL
             DataSource.ListUsers.Remove(user);
         }
         #endregion
-
-        #region UserTravel
-        //UserTravel GetUserTravel(int id){}
-        //IEnumerable<UserTravel> GetAllUserTravels(){}
-        //public void AddUserTravel(UserTravel user){}
-        //public void DeleteUserTravel(int id){}
-        #endregion
     }
 }

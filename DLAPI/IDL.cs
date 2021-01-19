@@ -95,12 +95,5 @@ namespace DLAPI
         void UpdateUser(string userName, Action<User> update); //method that knows to updt specific fields in Person
         void DeleteUser(string userName);
         #endregion
-
-        #region UserTravel
-        //UserTravel GetUserTravel(int id);
-        //IEnumerable<UserTravel> GetAllUserTravels();
-        //void AddUserTravel(UserTravel user);
-        //void DeleteUserTravel(int id);
-        #endregion
     }
 }

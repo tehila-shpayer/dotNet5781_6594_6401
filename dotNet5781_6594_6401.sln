@@ -29,8 +29,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "~Exercise", "~Exercise", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{72B553CD-4FF0-477D-831F-196703BB9B40}"
 	ProjectSection(SolutionItems) = preProject
+		Bus.xml = Bus.xml
+		BusLineStationxml.xml = BusLineStationxml.xml
 		config.xml = config.xml
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLXml", "DLXml\DLXml.csproj", "{6A9F1EB4-6531-4769-A03F-A82E548A17C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -82,6 +86,10 @@ Global
 		{5F1A485F-5C36-4123-9FEA-34FB1FBA8262}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F1A485F-5C36-4123-9FEA-34FB1FBA8262}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F1A485F-5C36-4123-9FEA-34FB1FBA8262}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A9F1EB4-6531-4769-A03F-A82E548A17C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A9F1EB4-6531-4769-A03F-A82E548A17C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A9F1EB4-6531-4769-A03F-A82E548A17C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A9F1EB4-6531-4769-A03F-A82E548A17C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
