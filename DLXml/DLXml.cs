@@ -378,29 +378,6 @@ namespace DL
 
             XmlTools.SaveListToXMLElement(consecutiveStationsRootElem, consecutiveStationsPath);
         }
-        public void AddConsecutiveStations(int stationKey1, int stationKey2)
-        {
-            if (stationKey1 == stationKey2)
-                throw new InvalidInformationException("Duplicate station!");
-            Station station1 = GetStation(stationKey1);
-            Station station2 = GetStation(stationKey2);
-            AddConsecutiveStations(CalculateConsecutiveStations(station1, station2));
-        }
-        ConsecutiveStations CalculateConsecutiveStations(Station station1, Station station2)
-        {
-            ConsecutiveStations consecutiveStations = new DO.ConsecutiveStations();
-            consecutiveStations.StationKey1 = station1.Key;
-            consecutiveStations.StationKey2 = station2.Key;
-            GeoCoordinate location1 = new GeoCoordinate(station1.Latitude, station1.Longitude);//מיקום התחנה המחושבת
-            GeoCoordinate location2 = new GeoCoordinate(station2.Latitude, station2.Longitude);//מיקום התחנה הקודמת
-            double distance = location1.GetDistanceTo(location2);//חישוב מרחק
-            consecutiveStations.Distance = distance;
-            Random rand = new Random();
-            int speed = rand.Next(30, 60);
-            int time = (int)Math.Ceiling(distance / (speed * 1000 / 60));//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש
-            consecutiveStations.AverageTime = time;
-            return consecutiveStations;
-        }
         public void UpdateConsecutiveStations(ConsecutiveStations consecutiveStations)
         {
             XElement consecutiveStationsRootElem = XmlTools.LoadListFromXMLElement(consecutiveStationsPath);

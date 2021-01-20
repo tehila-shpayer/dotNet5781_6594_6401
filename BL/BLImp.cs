@@ -521,7 +521,7 @@ namespace BL
             }
 
             DO.BusLineStation SecondBusLineStationDO = dl.GetBusLineStationBy(s => s.Position == BusLineStationDO.Position - 1 && s.BusLineKey == BusLineStationDO.BusLineKey);
-            BusLineStationBO.DistanceFromLastStationMeters = dl.GetConsecutiveStations(SecondBusLineStationDO.StationKey, BusLineStationDO.StationKey).Distance;
+            BusLineStationBO.DistanceFromLastStationMeters = (int)dl.GetConsecutiveStations(SecondBusLineStationDO.StationKey, BusLineStationDO.StationKey).Distance;
             BusLineStationBO.TravelTimeFromLastStationMinutes = dl.GetConsecutiveStations(SecondBusLineStationDO.StationKey, BusLineStationDO.StationKey).AverageTime;
             //BusLineStationBO.DistanceFromLastStationMeters = dl.GetConsecutiveStations(BusLineStationDO.StationKey, SecondBusLineStationDO.StationKey).Distance;
             //BusLineStationBO.TravelTimeFromLastStationMinutes = dl.GetConsecutiveStations(BusLineStationDO.StationKey, SecondBusLineStationDO.StationKey).AverageTime;
@@ -720,6 +720,16 @@ namespace BL
             consecutiveStations.AverageTime = time;
             return consecutiveStations;
         }
+        DO.ConsecutiveStations CalculateConsecutiveStations(int s1, int s2)
+        {
+            DO.ConsecutiveStations consecutiveStations = new DO.ConsecutiveStations();
+            consecutiveStations.StationKey1 = s1;
+            consecutiveStations.StationKey2 = s2;
+            double d = GetDistance(s1, s2);
+            consecutiveStations.Distance = d;
+            consecutiveStations.AverageTime = GetTime(d);
+            return consecutiveStations;
+        }
         public void AddStationToLine(int busLineKey, int stationKey, int position = 0)
         {
             try
@@ -742,14 +752,13 @@ namespace BL
                 busLineStationBO.StationKey = stationKey;
                 busLineStationBO.Position = position;
                 AddBusLineStation(busLineStationBO);
-
                 if (prevBusLineStation != null)
                 {
-                    dl.AddConsecutiveStations(prevBusLineStation.StationKey, stationKey);
+                    dl.AddConsecutiveStations(CalculateConsecutiveStations(prevBusLineStation.StationKey, stationKey));
                 }
                 if (nextBusLineStation != null)
                 {
-                    dl.AddConsecutiveStations(stationKey, nextBusLineStation.StationKey);
+                    dl.AddConsecutiveStations(CalculateConsecutiveStations(stationKey, nextBusLineStation.StationKey));
                 }
 
 

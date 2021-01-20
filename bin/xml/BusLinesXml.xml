@@ -6,8 +6,13 @@
     <Area>YehudaAndShomron</Area>
   </BusLine>
   <BusLine>
-    <Key>1786</Key>
+    <Key>1788</Key>
     <LineNumber>144</LineNumber>
     <Area>YehudaAndShomron</Area>
+  </BusLine>
+  <BusLine>
+    <Key>1789</Key>
+    <LineNumber>141</LineNumber>
+    <Area>Jerusalem</Area>
   </BusLine>
 </ArrayOfBusLine>
