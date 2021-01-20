@@ -1395,8 +1395,8 @@
   <ConsecutiveStations>
     <StationKey1>71008</StationKey1>
     <StationKey2>71009</StationKey2>
-    <Distance>1480</Distance>
-    <AverageTime>2</AverageTime>
+    <Distance>1137.84576595969</Distance>
+    <AverageTime>3</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71008</StationKey1>
@@ -1569,8 +1569,8 @@
   <ConsecutiveStations>
     <StationKey1>71009</StationKey1>
     <StationKey2>71010</StationKey2>
-    <Distance>5460</Distance>
-    <AverageTime>7</AverageTime>
+    <Distance>4199.00385424184</Distance>
+    <AverageTime>8</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71009</StationKey1>
@@ -2091,7 +2091,7 @@
   <ConsecutiveStations>
     <StationKey1>71012</StationKey1>
     <StationKey2>71013</StationKey2>
-    <Distance>529</Distance>
+    <Distance>406.484477091555</Distance>
     <AverageTime>1</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
@@ -2265,8 +2265,8 @@
   <ConsecutiveStations>
     <StationKey1>71013</StationKey1>
     <StationKey2>71014</StationKey2>
-    <Distance>387</Distance>
-    <AverageTime>0</AverageTime>
+    <Distance>296.55286806908</Distance>
+    <AverageTime>2</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71013</StationKey1>
