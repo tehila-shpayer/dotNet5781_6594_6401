@@ -38,7 +38,7 @@ namespace PLConsole
         {
             Random rand = new Random();
             int speed = 50;
-            int time = Convert.ToInt32(distance / (speed * 1000 / 60));//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש
+            int time = Convert.ToInt32(distance / (speed * 1000 / 60) +1);//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש
             return time;
         }
         static int GetTime(int stationKey1, int stationKey2)
