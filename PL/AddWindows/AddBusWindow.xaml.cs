@@ -30,9 +30,9 @@ namespace PL
             bus.LastTreatment = DateTime.Now;
             grid1.DataContext = bus;
             mainGrid.DataContext = MainWindow.Language;
-            //CultureInfo ci = CultureInfo.CreateSpecificCulture(CultureInfo.CurrentCulture.Name);
-            //ci.DateTimeFormat.ShortDatePattern = "MM/dd/yyyy";
-            //Thread.CurrentThread.CurrentCulture = ci;
+            CultureInfo ci = CultureInfo.CreateSpecificCulture(CultureInfo.CurrentCulture.Name);
+            ci.DateTimeFormat.ShortDatePattern = "MM/dd/yyyy";
+            Thread.CurrentThread.CurrentCulture = ci;
         }
 
         private void lastTreatmentFormatTextBox_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
