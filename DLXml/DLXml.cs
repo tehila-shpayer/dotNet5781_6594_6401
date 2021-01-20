@@ -367,7 +367,7 @@ namespace DL
                                              select cs).FirstOrDefault();
 
             if (consecutiveStations1 != null)
-                throw new DO.InvalidInformationException("Duplicate stations keys.");
+                return;
 
             XElement consecutiveStationsElem = new XElement("ConsecutiveStations", new XElement("StationKey1", consecutiveStations.StationKey1.ToString()),
                                   new XElement("StationKey2", consecutiveStations.StationKey2.ToString()),
