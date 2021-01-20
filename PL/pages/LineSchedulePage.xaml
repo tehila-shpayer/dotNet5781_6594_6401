@@ -4,19 +4,21 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      xmlns:local="clr-namespace:PL.pages"
+      xmlns:local="clr-namespace:PL"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="LineSchedulePage">
-    <!--<Page.Resources>
+    <Page.Resources>
         <local:LanguageToAlignment x:Key="LanguageConvertor"/>
-        <DataTemplate x:Key="BusTemplate" DataType="local:Bus">
+        <DataTemplate x:Key="LineScheduleTemplate" DataType="local:LineSchedule">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Width="230">
-                <TextBlock Text="{Binding LicenseNumberFormat}" TextAlignment="Left" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI Black"/>
-                <TextBlock Text="{Binding Status}" TextAlignment="Left" FontSize="15"/>
+                <TextBlock Text="{Binding LineNumber}" TextAlignment="Left" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI Black"/>
+                <TextBlock Text="{Binding LineKey}" TextAlignment="Left" FontSize="14"/>
+                <TextBlock Text="{Binding StartTime}" TextAlignment="Left" FontSize="16"/>
             </StackPanel>
         </DataTemplate>
-        <CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Bus}, CreateList=True}"/>
+        <CollectionViewSource x:Key="lineScheduleViewSource" d:DesignSource="{d:DesignInstance {x:Type local:LineSchedule}, CreateList=True}"/>
+        <!--<CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Bus}, CreateList=True}"/>-->
     </Page.Resources>
     <Grid x:Name="mainGrid" FlowDirection="{Binding Source, Converter={StaticResource LanguageConvertor}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=True}">
         <Grid.ColumnDefinitions>
@@ -32,8 +34,8 @@
                 <GradientStop Color="LightGray" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Label Content="{DynamicResource BusPage_BusesTitle}" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontSize="30"/>
-        <StackPanel Grid.Row="1" Grid.Column="0" x:Name="spStations">
+        <Label Content="יציאות קווים:" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontSize="30"/>
+        <StackPanel Grid.Row="1" Grid.Column="0" x:Name="spSchedules">
             <StackPanel.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="LightGray" Offset="1"/>
@@ -44,18 +46,18 @@
                     <GradientStop Color="#FFC7D0D2" Offset="0.46"/>
                 </LinearGradientBrush>
             </StackPanel.Background>
-            <ComboBox x:Name="cbBuses" ItemsSource="{Binding}" Height="40" Background="#FFBBD0D6" SelectionChanged="cbBuses_SelectionChanged" HorizontalContentAlignment="Right">
+            <!--<ComboBox x:Name="cbBuses" ItemsSource="{Binding}" Height="40" Background="#FFBBD0D6" SelectionChanged="cbBuses_SelectionChanged" HorizontalContentAlignment="Right">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
-            </ComboBox>
-            <StackPanel>
+            </ComboBox>-->
+            <!--<StackPanel>
                 <TextBox x:Name="searchBox" FontSize="16" TextChanged="SearchBox_TextChanged" Background="White" BorderBrush="#FF1D2744" Height="30"/>
                 <materialDesign:PackIcon Kind="Search" Margin="0,-28,10,5" Width="25" Height="25" HorizontalAlignment="Right" Foreground="Gray"/>
-            </StackPanel>
-            <ListBox x:Name="lbBuses" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" BorderBrush="#FF222222" SelectionChanged="stations_SelectionChanged" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="400" Margin="0,0,0.4,0" HorizontalContentAlignment="Right">
+            </StackPanel>-->
+            <ListBox x:Name="lbLineSchedules" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource LineScheduleTemplate}" BorderBrush="#FF222222" SelectionChanged="stations_SelectionChanged" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="400" Margin="0,0,0.4,0" HorizontalContentAlignment="Right">
             </ListBox>
         </StackPanel>
 
@@ -67,7 +69,36 @@
 
         <Rectangle Grid.Column="1" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
         </Rectangle>
-        <Grid x:Name="BusInfoGrid" Grid.Column="1" Grid.Row="1" Margin="60,60,60,45" DataContext="{Binding}"/>
+        <Grid x:Name="ScheduleInfoGrid" Grid.Column="1" Grid.Row="1" Margin="60,60,60,45" DataContext="{Binding}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+                <!--<RowDefinition Height="*"/>-->
+                <RowDefinition Height="28*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+            <TextBlock Text="{Binding LineNumber}" Margin="10,0" TextAlignment="Left" FontWeight="Bold" FontSize="24" FontFamily="Segoe UI Black"/>
+            <TextBlock Text="{Binding LineKey}" Margin="15,10,15,20" TextAlignment="Left" FontSize="20"/>
+            </StackPanel>
+                <Grid x:Name="grid1" Grid.Row="1" Margin="20,10" DataContext="{StaticResource lineScheduleViewSource}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="160" Width="250">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Content="Start Time:" Grid.Column="0" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+                <TextBlock x:Name="startTimeTextBlock" Grid.Column="1" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="0" Text="{Binding StartTime}" VerticalAlignment="Center"/>
+                <Label Content="End Time:" Grid.Column="0" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                <TextBlock x:Name="endTimeTextBlock" Grid.Column="1" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="1" Text="{Binding EndTime}" VerticalAlignment="Center"/>
+                <Label Content="Frequency:" Grid.Column="0" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                <TextBlock x:Name="frequencyTextBlock" Grid.Column="1" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="2" Text="{Binding Frequency}" VerticalAlignment="Center"/>
 
-    </Grid>-->
+            </Grid>
+
+        </Grid>
+
+    </Grid>
 </Page>
