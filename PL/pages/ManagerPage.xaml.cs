@@ -78,5 +78,11 @@ namespace PL
             currentPage.Content = new SimulationPage();
             changeColors(simulationButton);
         }
+
+        private void lineSchedulesButton_Click(object sender, RoutedEventArgs e)
+        {
+            currentPage.Content = new LineSchedulePage();
+            changeColors(lineSchedulesButton);
+        }
     }
 }

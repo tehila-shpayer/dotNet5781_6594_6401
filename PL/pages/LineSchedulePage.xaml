@@ -57,7 +57,7 @@
                 <TextBox x:Name="searchBox" FontSize="16" TextChanged="SearchBox_TextChanged" Background="White" BorderBrush="#FF1D2744" Height="30"/>
                 <materialDesign:PackIcon Kind="Search" Margin="0,-28,10,5" Width="25" Height="25" HorizontalAlignment="Right" Foreground="Gray"/>
             </StackPanel>-->
-            <ListBox x:Name="lbLineSchedules" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource LineScheduleTemplate}" BorderBrush="#FF222222" SelectionChanged="stations_SelectionChanged" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="400" Margin="0,0,0.4,0" HorizontalContentAlignment="Right">
+            <ListBox x:Name="lbLineSchedules" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource LineScheduleTemplate}" BorderBrush="#FF222222" SelectionChanged="lbLineSchedules_SelectionChanged"  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="400" Margin="0,0,0.4,0" HorizontalContentAlignment="Right">
             </ListBox>
         </StackPanel>
 
