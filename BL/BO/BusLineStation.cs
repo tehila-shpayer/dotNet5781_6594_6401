@@ -11,7 +11,7 @@ namespace BO
         public int BusLineKey { get; set; }
         public int StationKey { get; set; }
         public int Position { get; set; }
-        public double DistanceFromLastStationMeters { get; set; }
+        public int DistanceFromLastStationMeters { get; set; }
         public int TravelTimeFromLastStationMinutes { get; set; }
         public override string ToString()
         {

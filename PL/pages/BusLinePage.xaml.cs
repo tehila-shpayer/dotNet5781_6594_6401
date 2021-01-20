@@ -44,24 +44,6 @@ namespace PL
 
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
-            //for (int i=0; i< MainWindow.busLinesCollection.Count();i++)
-            //{
-            //    BusLine item = MainWindow.busLinesCollection[i];
-            //    ListBoxItem bus = (ListBoxItem)lbBusLines.ItemContainerGenerator.ContainerFromIndex(i);
-            //    String searchS = searchBox.Text;
-            //    int num = searchS.Length;
-            //    //Show only buses which there license number have the typed perfix
-            //    if (bus != null)
-            //    {
-            //        if ((num <= item.LineNumber.ToString().Length && searchS == (item as BusLine).LineNumber.ToString().Substring(0, num)))
-            //        {
-            //            bus.Visibility = Visibility.Visible;
-            //        }
-            //        else
-            //            bus.Visibility = Visibility.Collapsed;
-            //    }
-            //}
             foreach (var item in MainWindow.busLinesCollection)
             {
                 ListBoxItem bus = (ListBoxItem)lbBusLines.ItemContainerGenerator.ContainerFromItem(item);
