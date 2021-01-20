@@ -28,6 +28,7 @@ namespace PL
         public static ObservableCollection<BusLine> busLinesCollection = new ObservableCollection<BusLine>();
         public static ObservableCollection<Station> stationsCollection = new ObservableCollection<Station>();
         public static ObservableCollection<Bus> busesCollection = new ObservableCollection<Bus>();
+        public static ObservableCollection<LineSchedule> lineSchedulesCollection = new ObservableCollection<LineSchedule>();
         public Uri dictUriEN;
         public Uri dictUriHE;
         ResourceDictionary resDictEN;
@@ -56,6 +57,7 @@ namespace PL
             InitializeBusLines();
             InitializeBuses();
             InitializeStations();
+            InitializeLineSchedules();
         }
         static public void InitializeBusLines()
         {
@@ -81,7 +83,15 @@ namespace PL
                 stationsCollection.Add(PoBoAdapter.StationPoBoAdapter(s));
             }
         }
-    private void powerButton_Click(object sender, RoutedEventArgs e)
+        static public void InitializeLineSchedules()
+        {
+            lineSchedulesCollection.Clear();
+            foreach (BO.LineSchedule ls in App.bl.GetAllLineSchedules())
+            {
+                lineSchedulesCollection.Add(PoBoAdapter.LineSchedulePoBoAdapter(ls));
+            }
+        }
+        private void powerButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }

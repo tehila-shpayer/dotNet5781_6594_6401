@@ -108,6 +108,9 @@
     <Compile Include="pages\ContactUsPage.xaml.cs">
       <DependentUpon>ContactUsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="pages\LineSchedulePage.xaml.cs">
+      <DependentUpon>LineSchedulePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\TravelerMenuPage.xaml.cs">
       <DependentUpon>TravelerMenuPage.xaml</DependentUpon>
     </Compile>
@@ -131,6 +134,7 @@
     <Compile Include="AddWindows\AddBusWindow.xaml.cs">
       <DependentUpon>AddBusWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PO\LineSchedule.cs" />
     <Compile Include="PO\PresentBusLineForStation.cs" />
     <Compile Include="PO\Cloning.cs" />
     <Compile Include="PO\Enum.cs" />
@@ -195,6 +199,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="pages\ContactUsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\LineSchedulePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

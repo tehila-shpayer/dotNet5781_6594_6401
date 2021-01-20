@@ -69,6 +69,13 @@ namespace PL
             UserBO.Clone(UserPO);
             return UserPO;
         }
+        static public LineSchedule LineSchedulePoBoAdapter(BO.LineSchedule LineScheduleBO)
+        {
+            LineSchedule LineSchedulePO = new LineSchedule();
+            LineScheduleBO.Clone(LineSchedulePO);
+            LineSchedulePO.LineNumber = App.bl.GetBusLine(LineSchedulePO.LineKey).LineNumber;
+            return LineSchedulePO;
+        }
         static public PL.BusInTravel BusInTravelPoBoAdapter(BO.BusInTravel BusInTravelBO)
         {
             PL.BusInTravel BusInTravelPO = new PL.BusInTravel();
