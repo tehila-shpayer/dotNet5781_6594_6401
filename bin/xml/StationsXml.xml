@@ -474,4 +474,88 @@
     <Longitude>35.13691</Longitude>
     <Name>בי''ס מיתרים</Name>
   </Station>
+  <Station>
+    <Key>40925</Key>
+    <Latitude>31.787171</Latitude>
+    <Longitude>35.199532</Longitude>
+    <Name>גשר המיתרים/שד' הרצל</Name>
+  </Station>
+  <Station>
+    <Key>40926</Key>
+    <Latitude>31.790818</Latitude>
+    <Longitude>35.197613</Longitude>
+    <Name>שערי ירושלים/ליפתא</Name>
+  </Station>
+  <Station>
+    <Key>40927</Key>
+    <Latitude>31.911475</Latitude>
+    <Longitude>35.250072</Longitude>
+    <Name>גבעת אסף</Name>
+  </Station>
+  <Station>
+    <Key>40928</Key>
+    <Latitude>31.93624</Latitude>
+    <Longitude>35.223451</Longitude>
+    <Name>שדרות לוז/מבצע שלמה</Name>
+  </Station>
+  <Station>
+    <Key>40929</Key>
+    <Latitude>31.937392</Latitude>
+    <Longitude>35.222598</Longitude>
+    <Name>דרך החלוצים/שבות סיני</Name>
+  </Station>
+  <Station>
+    <Key>40930</Key>
+    <Latitude>31.937669</Latitude>
+    <Longitude>35.221088</Longitude>
+    <Name>דרך החלוצים/אבשלום</Name>
+  </Station>
+  <Station>
+    <Key>40931</Key>
+    <Latitude>31.940048</Latitude>
+    <Longitude>35.21954</Longitude>
+    <Name>דרך החלוצים/מבוא האורנים</Name>
+  </Station>
+  <Station>
+    <Key>40932</Key>
+    <Latitude>31.94076</Latitude>
+    <Longitude>35.222094</Longitude>
+    <Name>דרך החלוצים/ברקת</Name>
+  </Station>
+  <Station>
+    <Key>40933</Key>
+    <Latitude>31.94499</Latitude>
+    <Longitude>35.220351</Longitude>
+    <Name>ארץ חמדה/הנצי''ב</Name>
+  </Station>
+  <Station>
+    <Key>40934</Key>
+    <Latitude>31.942357</Latitude>
+    <Longitude>35.223972</Longitude>
+    <Name>מועצה מקומית/תורה ועבודה</Name>
+  </Station>
+  <Station>
+    <Key>40935</Key>
+    <Latitude>31.94301</Latitude>
+    <Longitude>35.227524</Longitude>
+    <Name>המסילה/דרך החיים</Name>
+  </Station>
+  <Station>
+    <Key>40936</Key>
+    <Latitude>31.934341</Latitude>
+    <Longitude>35.340348</Longitude>
+    <Name>רימונים/מזכירות</Name>
+  </Station>
+  <Station>
+    <Key>40937</Key>
+    <Latitude>31.956364</Latitude>
+    <Longitude>35.341963</Longitude>
+    <Name>כוכב השחר/יציאה</Name>
+  </Station>
+  <Station>
+    <Key>40938</Key>
+    <Latitude>32.070823</Latitude>
+    <Longitude>35.397354</Longitude>
+    <Name>מחנה אפיק</Name>
+  </Station>
 </ArrayOfStation>
