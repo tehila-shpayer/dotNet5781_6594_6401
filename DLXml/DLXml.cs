@@ -29,6 +29,7 @@ namespace DL
         string consecutiveStationsPath = @"ConsecutiveStationsXml.xml"; //XElement
         string usersPath = @"UsersXml.xml"; //XMLSerializer
         string lineSchedulesPath = @"LineSchedulesXml.xml"; //XElement
+        string runningNumbersPath = @"RunningNumbers";
 
         #endregion
 
@@ -625,6 +626,7 @@ namespace DL
         public int AddStation(Station station)
         {
             List<Station> ListStations = XmlTools.LoadListFromXMLSerializer<Station>(stationsPath);
+           // int key = XmlTools.LoadListFromXMLSerializer<int>(runningNumbersPath).FirstOrDefault(key = key.);
             station.Key = Station.STATION_KEY++;
             ListStations.Add(station);
             XmlTools.SaveListToXMLSerializer(ListStations, stationsPath);

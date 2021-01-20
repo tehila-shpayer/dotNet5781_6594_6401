@@ -30,7 +30,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bin", "bin", "{72B553CD-4FF0-477D-831F-196703BB9B40}"
 	ProjectSection(SolutionItems) = preProject
 		bin\xml\BusesXml.xml = bin\xml\BusesXml.xml
+		bin\xml\BusLineStationsXml.xml = bin\xml\BusLineStationsXml.xml
 		bin\config.xml = bin\config.xml
+		RunningNumbers.xml = RunningNumbers.xml
 		bin\xml\StationsXml.xml = bin\xml\StationsXml.xml
 		bin\xml\UsersXml.xml = bin\xml\UsersXml.xml
 	EndProjectSection

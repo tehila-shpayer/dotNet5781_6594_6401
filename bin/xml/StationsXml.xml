@@ -1,11 +1,27 @@
 <?xml version="1.0"?>
 <ArrayOfStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Station>
-    <_isActive>true</_isActive>
     <Key>71000</Key>
     <Latitude>32.57843</Latitude>
     <Longitude>35.74839</Longitude>
     <Name>המכבים</Name>
-    <IsActive>false</IsActive>
+  </Station>
+  <Station>
+    <Key>71001</Key>
+    <Latitude>31.79766</Latitude>
+    <Longitude>35.22883</Longitude>
+    <Name>גבעת התחמושת/שרגאי</Name>
+  </Station>
+  <Station>
+    <Key>71002</Key>
+    <Latitude>31.7983</Latitude>
+    <Longitude>35.22649</Longitude>
+    <Name>רנה קסין/שרגאי</Name>
+  </Station>
+  <Station>
+    <Key>71003</Key>
+    <Latitude>31.798993</Latitude>
+    <Longitude>35.225267</Longitude>
+    <Name>קרל נטר/שדרות לוי אשכול</Name>
   </Station>
 </ArrayOfStation>

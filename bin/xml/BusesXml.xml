@@ -9,4 +9,13 @@
     <BeforeTreatKM>0</BeforeTreatKM>
     <Status>Ready</Status>
   </Bus>
+  <Bus>
+    <LicenseNumber>1234567</LicenseNumber>
+    <RunningDate>01/01/2013 00:00:00</RunningDate>
+    <LastTreatment>01/07/2021 00:00:00</LastTreatment>
+    <Fuel>276</Fuel>
+    <KM>3475542</KM>
+    <BeforeTreatKM>2345</BeforeTreatKM>
+    <Status>Ready</Status>
+  </Bus>
 </Buses>
