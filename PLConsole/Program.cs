@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BLAPI;
+using DLAPI;
 
 
 namespace PLConsole
@@ -11,49 +12,60 @@ namespace PLConsole
     public class Program
     {
         static IBL bl = BLFactory.GetBL("1");
+        static IDL dl = DLFactory.GetDL();
         static void Main(string[] args)
         {
             string s;
             Console.WriteLine("Welcome!");
-            do
+            foreach (DO.Station s1 in dl.GetAllStations())
             {
-
-                Console.WriteLine(@"
-  Choose one of the following actions to do on the collection:
-  a: Add 
-  d: Delete 
-  s: Search
-  p: Print
-  e: Exit:");
-                s = Console.ReadLine().Trim();
-                try
+                foreach (DO.Station s2 in dl.GetAllStations())
                 {
-                    switch (s)
+                    if (!(s1.Key == s2.Key))
                     {
-                        case "a":
-                            AddToCollection();//הוספה למערכת
-                            break;
-                        case "d":
-                            DeleteFromCollection();//מחיקה מהמערכת
-                            break;
-                        case "s":
-                            //SearchInCollection();//חיפוש במערכת
-                            break;
-                        case "p"://הדפסת נתונים
-                            PrintDataOfCollection();
-                            break;
-                        case "e"://יציאה
-                            break;
-                        default:
-                            Console.WriteLine("ERROR");
-                            break;
+                       // dl.AddConsecutiveStations(new DO.ConsecutiveStations { StationKey1 = s1.Key, StationKey2 = s2.Key, Distance = GetDistance(s1.Key, s2.Key), AverageTime = GetTime(s1.Key, s2.Key) });
                     }
                 }
-                catch (Exception ex)// תופס חריגות הקשורות לקלטים לא מתאימים הקשורים לאוטובוסים/תחנות 
-                {
-                    Console.WriteLine(ex);
-                }
-            } while (s != "e");
+            }
+            /*           do
+                       {
+
+                           Console.WriteLine(@"
+             Choose one of the following actions to do on the collection:
+             a: Add 
+             d: Delete 
+             s: Search
+             p: Print
+             e: Exit:");
+                           s = Console.ReadLine().Trim();
+                           try
+                           {
+                               switch (s)
+                               {
+                                   case "a":
+                                       AddToCollection();//הוספה למערכת
+                                       break;
+                                   case "d":
+                                       DeleteFromCollection();//מחיקה מהמערכת
+                                       break;
+                                   case "s":
+                                       //SearchInCollection();//חיפוש במערכת
+                                       break;
+                                   case "p"://הדפסת נתונים
+                                       PrintDataOfCollection();
+                                       break;
+                                   case "e"://יציאה
+                                       break;
+                                   default:
+                                       Console.WriteLine("ERROR");
+                                       break;
+                               }
+                           }
+                           catch (Exception ex)// תופס חריגות הקשורות לקלטים לא מתאימים הקשורים לאוטובוסים/תחנות 
+                           {
+                               Console.WriteLine(ex);
+                           }
+                       } while (s != "e");*/
 
 
         }

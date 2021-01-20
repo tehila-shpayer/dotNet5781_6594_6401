@@ -27,10 +27,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLConsole", "PLConsole\PLCo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "~Exercise", "~Exercise", "{9227B7D6-D57A-4649-BCEC-5164B82A419B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{72B553CD-4FF0-477D-831F-196703BB9B40}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bin", "bin", "{72B553CD-4FF0-477D-831F-196703BB9B40}"
 	ProjectSection(SolutionItems) = preProject
-		BusesXml.xml = BusesXml.xml
-		config.xml = config.xml
+		bin\xml\BusesXml.xml = bin\xml\BusesXml.xml
+		bin\config.xml = bin\config.xml
+		bin\xml\StationsXml.xml = bin\xml\StationsXml.xml
+		bin\xml\UsersXml.xml = bin\xml\UsersXml.xml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLXml", "DLXml\DLXml.csproj", "{6A9F1EB4-6531-4769-A03F-A82E548A17C4}"
