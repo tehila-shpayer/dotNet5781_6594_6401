@@ -31,6 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bin", "bin", "{72B553CD-4FF
 	ProjectSection(SolutionItems) = preProject
 		bin\xml\BusesXml.xml = bin\xml\BusesXml.xml
 		bin\xml\BusLineStationsXml.xml = bin\xml\BusLineStationsXml.xml
+		bin\xml\BusLinesXml.xml = bin\xml\BusLinesXml.xml
 		bin\config.xml = bin\config.xml
 		ConsecutiveStationsXml.xml = ConsecutiveStationsXml.xml
 		bin\xml\RunningNumbersXml.xml = bin\xml\RunningNumbersXml.xml

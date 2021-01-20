@@ -18,4 +18,94 @@
     <BeforeTreatKM>2345</BeforeTreatKM>
     <Status>Ready</Status>
   </Bus>
+  <Bus>
+    <LicenseNumber>65346558</LicenseNumber>
+    <RunningDate>24/07/2021 00:00:00</RunningDate>
+    <LastTreatment>24/07/2021 00:00:00</LastTreatment>
+    <Fuel>82</Fuel>
+    <KM>4422</KM>
+    <BeforeTreatKM>1117</BeforeTreatKM>
+    <Status>Ready</Status>
+  </Bus>
+  <Bus>
+    <LicenseNumber>9530113</LicenseNumber>
+    <RunningDate>06/07/1976 00:00:00</RunningDate>
+    <LastTreatment>08/06/2019 00:00:00</LastTreatment>
+    <Fuel>1063</Fuel>
+    <KM>26974</KM>
+    <BeforeTreatKM>6590</BeforeTreatKM>
+    <Status>NotReady</Status>
+  </Bus>
+  <Bus>
+    <LicenseNumber>55058269</LicenseNumber>
+    <RunningDate>06/11/2018 00:00:00</RunningDate>
+    <LastTreatment>06/11/2018 00:00:00</LastTreatment>
+    <Fuel>0</Fuel>
+    <KM>17355</KM>
+    <BeforeTreatKM>11352</BeforeTreatKM>
+    <Status>Ready</Status>
+  </Bus>
+  <Bus>
+    <LicenseNumber>1586687</LicenseNumber>
+    <RunningDate>26/09/1986 00:00:00</RunningDate>
+    <LastTreatment>01/06/2021 00:00:00</LastTreatment>
+    <Fuel>780</Fuel>
+    <KM>10883</KM>
+    <BeforeTreatKM>8284</BeforeTreatKM>
+    <Status>Ready</Status>
+  </Bus>
+  <Bus>
+    <LicenseNumber>96417688</LicenseNumber>
+    <RunningDate>22/09/2019 00:00:00</RunningDate>
+    <LastTreatment>01/09/2021 00:00:00</LastTreatment>
+    <Fuel>1138</Fuel>
+    <KM>22909</KM>
+    <BeforeTreatKM>2572</BeforeTreatKM>
+    <Status>Ready</Status>
+  </Bus>
+  <Bus>
+    <LicenseNumber>8765607</LicenseNumber>
+    <RunningDate>26/07/1929 00:00:00</RunningDate>
+    <LastTreatment>01/04/2021 00:00:00</LastTreatment>
+    <Fuel>929</Fuel>
+    <KM>25408</KM>
+    <BeforeTreatKM>15931</BeforeTreatKM>
+    <Status>Ready</Status>
+  </Bus>
+  <Bus>
+    <LicenseNumber>49964828</LicenseNumber>
+    <RunningDate>09/11/2018 00:00:00</RunningDate>
+    <LastTreatment>09/11/2018 00:00:00</LastTreatment>
+    <Fuel>1081</Fuel>
+    <KM>22115</KM>
+    <BeforeTreatKM>1029</BeforeTreatKM>
+    <Status>Ready</Status>
+  </Bus>
+  <Bus>
+    <LicenseNumber>9528305</LicenseNumber>
+    <RunningDate>09/01/2012 00:00:00</RunningDate>
+    <LastTreatment>09/01/2012 00:00:00</LastTreatment>
+    <Fuel>0</Fuel>
+    <KM>705</KM>
+    <BeforeTreatKM>497</BeforeTreatKM>
+    <Status>Ready</Status>
+  </Bus>
+  <Bus>
+    <LicenseNumber>99421433</LicenseNumber>
+    <RunningDate>17/07/2018 00:00:00</RunningDate>
+    <LastTreatment>01/02/2021 00:00:00</LastTreatment>
+    <Fuel>438</Fuel>
+    <KM>21086</KM>
+    <BeforeTreatKM>104</BeforeTreatKM>
+    <Status>Ready</Status>
+  </Bus>
+  <Bus>
+    <LicenseNumber>5312280</LicenseNumber>
+    <RunningDate>09/05/1998 00:00:00</RunningDate>
+    <LastTreatment>09/05/2020 00:00:00</LastTreatment>
+    <Fuel>1071</Fuel>
+    <KM>25872</KM>
+    <BeforeTreatKM>4855</BeforeTreatKM>
+    <Status>Ready</Status>
+  </Bus>
 </Buses>
