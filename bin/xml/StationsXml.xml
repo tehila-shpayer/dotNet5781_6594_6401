@@ -174,4 +174,10 @@
     <Longitude>35.2386</Longitude>
     <Name>מסוף תל ציון</Name>
   </Station>
+  <Station>
+    <Key>71029</Key>
+    <Latitude>31.809325</Latitude>
+    <Longitude>34.784347</Longitude>
+    <Name>דרך הפרחים/יסמין</Name>
+  </Station>
 </ArrayOfStation>
