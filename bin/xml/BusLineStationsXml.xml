@@ -1,2 +1,18 @@
 <?xml version="1.0"?>
-<ArrayOfBusLineStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+<ArrayOfBusLineStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <BusLineStation>
+    <BusLineKey>1794</BusLineKey>
+    <StationKey>71001</StationKey>
+    <Position>1</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1794</BusLineKey>
+    <StationKey>71002</StationKey>
+    <Position>2</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1794</BusLineKey>
+    <StationKey>71028</StationKey>
+    <Position>3</Position>
+  </BusLineStation>
+</ArrayOfBusLineStation>

@@ -29,7 +29,7 @@ namespace DL
         string consecutiveStationsPath = @"ConsecutiveStationsXml.xml"; //XElement
         string usersPath = @"UsersXml.xml"; //XMLSerializer
         string lineSchedulesPath = @"LineSchedulesXml.xml"; //XElement
-        string runningNumbersPath = @"RunningNumbers";
+        string runningNumbersPath = @"RunningNumbersXml.xml";
 
         #endregion
 
@@ -206,8 +206,9 @@ namespace DL
         public int AddBusLine(BusLine line)
         {
             List<BusLine> ListBusLines = XmlTools.LoadListFromXMLSerializer<BusLine>(busLinesPath);
-            line.Key = BusLine.BUS_LINE_KEY++;
-            ListBusLines.Add(line);
+            List<int> ListKeys = XmlTools.LoadListFromXMLSerializer<int>(runningNumbersPath);
+            line.Key = ListKeys[1]++;
+            XmlTools.SaveListToXMLSerializer(ListKeys, runningNumbersPath); ListBusLines.Add(line);
             XmlTools.SaveListToXMLSerializer(ListBusLines, busLinesPath);
             return line.Key;
         }
@@ -626,8 +627,9 @@ namespace DL
         public int AddStation(Station station)
         {
             List<Station> ListStations = XmlTools.LoadListFromXMLSerializer<Station>(stationsPath);
-           // int key = XmlTools.LoadListFromXMLSerializer<int>(runningNumbersPath).FirstOrDefault(key = key.);
-            station.Key = Station.STATION_KEY++;
+            List<int> ListKeys = XmlTools.LoadListFromXMLSerializer<int>(runningNumbersPath);
+            station.Key = ListKeys[0]++;
+            XmlTools.SaveListToXMLSerializer(ListKeys, runningNumbersPath);
             ListStations.Add(station);
             XmlTools.SaveListToXMLSerializer(ListStations, stationsPath);
             return station.Key;

@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Device" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,9 +59,9 @@
       <Project>{0ae5e0ac-5fa4-4bed-b222-314d1da6c8ce}</Project>
       <Name>DLAPI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DL\DL.csproj">
-      <Project>{79899db4-bb45-44c4-a201-334d284ec160}</Project>
-      <Name>DL</Name>
+    <ProjectReference Include="..\DLXml\DLXml.csproj">
+      <Project>{6a9f1eb4-6531-4769-a03f-a82e548a17c4}</Project>
+      <Name>DLXml</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

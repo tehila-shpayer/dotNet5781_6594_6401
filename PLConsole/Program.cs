@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Device.Location;
 using BLAPI;
 using DLAPI;
 
@@ -13,20 +14,48 @@ namespace PLConsole
     {
         static IBL bl = BLFactory.GetBL("1");
         static IDL dl = DLFactory.GetDL();
+        static int GetDistance(double x1, double y1, double x2, double y2)
+        {
+            GeoCoordinate s1 = new GeoCoordinate(x1, y1);//מיקום תחנה 1
+            GeoCoordinate s2 = new GeoCoordinate(x2, y2);//מיקום תחנה 2
+            return Convert.ToInt32(s1.GetDistanceTo(s2) * 1.3 + 1);//חישוב מרחק
+        }
+        static int GetDistance(int stationKey1, int stationKey2)
+        {
+            DO.Station station1 = dl.GetAllStations().FirstOrDefault(s => s.Key == stationKey1);
+            DO.Station station2 = dl.GetAllStations().FirstOrDefault(s => s.Key == stationKey2);
+            GeoCoordinate s1 = new GeoCoordinate(station1.Latitude, station1.Longitude);//מיקום תחנה 1
+            GeoCoordinate s2 = new GeoCoordinate(station2.Latitude, station2.Longitude);//מיקום תחנה 2
+            return Convert.ToInt32(s1.GetDistanceTo(s2) * 1.3 + 1);//חישוב מרחק
+        }
+        static int GetTime(double distance)
+        {
+            Random rand = new Random();
+            int speed = 50;
+            int time = Convert.ToInt32(distance / (speed * 1000 / 60));//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש
+            return time;
+        }
+        static int GetTime(int stationKey1, int stationKey2)
+        {
+            return GetTime(GetDistance(stationKey1, stationKey2));
+        }
         static void Main(string[] args)
         {
             string s;
+            string runningNumbersPath = @"RunningNumbersXml.xml";
             Console.WriteLine("Welcome!");
-            foreach (DO.Station s1 in dl.GetAllStations())
-            {
-                foreach (DO.Station s2 in dl.GetAllStations())
-                {
-                    if (!(s1.Key == s2.Key))
-                    {
-                       // dl.AddConsecutiveStations(new DO.ConsecutiveStations { StationKey1 = s1.Key, StationKey2 = s2.Key, Distance = GetDistance(s1.Key, s2.Key), AverageTime = GetTime(s1.Key, s2.Key) });
-                    }
-                }
-            }
+            //List<int> ListKeys = XmlTools.LoadListFromXMLSerializer<int>(runningNumbersPath);
+            //XmlTools.SaveListToXMLSerializer(ListKeys, runningNumbersPath);
+            //foreach (DO.Station s1 in dl.GetAllStations())
+            //{
+            //    foreach (DO.Station s2 in dl.GetAllStations())
+            //    {
+            //        if (!(s1.Key == s2.Key))
+            //        {
+            //             dl.AddConsecutiveStations(new DO.ConsecutiveStations { StationKey1 = s1.Key, StationKey2 = s2.Key, Distance = GetDistance(s1.Key, s2.Key), AverageTime = GetTime(s1.Key, s2.Key) });
+            //        }
+            //    }
+            //}
             /*           do
                        {
 

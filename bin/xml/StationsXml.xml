@@ -24,4 +24,154 @@
     <Longitude>35.225267</Longitude>
     <Name>קרל נטר/שדרות לוי אשכול</Name>
   </Station>
+  <Station>
+    <Key>71004</Key>
+    <Latitude>31.80022</Latitude>
+    <Longitude>35.22673</Longitude>
+    <Name>שדרות לוי אשכול/קרל נטר</Name>
+  </Station>
+  <Station>
+    <Key>71005</Key>
+    <Latitude>31.80015</Latitude>
+    <Longitude>35.23114</Longitude>
+    <Name>שד' אשכול/בר לב</Name>
+  </Station>
+  <Station>
+    <Key>71006</Key>
+    <Latitude>31.80071</Latitude>
+    <Longitude>35.23316</Longitude>
+    <Name>שד' חיים ברלב/ שד' האוניברסיטה העברית</Name>
+  </Station>
+  <Station>
+    <Key>71007</Key>
+    <Latitude>31.82649</Latitude>
+    <Longitude>35.23819</Longitude>
+    <Name>מכבי אש/פאגלין</Name>
+  </Station>
+  <Station>
+    <Key>71008</Key>
+    <Latitude>31.82549</Latitude>
+    <Longitude>35.24069</Longitude>
+    <Name>סיירת דוכיפת/משה דיין</Name>
+  </Station>
+  <Station>
+    <Key>71009</Key>
+    <Latitude>31.82805</Latitude>
+    <Longitude>35.25234</Longitude>
+    <Name>סיירת דוכיפת מחסום חיזמה</Name>
+  </Station>
+  <Station>
+    <Key>71010</Key>
+    <Latitude>31.86494</Latitude>
+    <Longitude>35.26166</Longitude>
+    <Name>מסוף שער בנימין/איסוף</Name>
+  </Station>
+  <Station>
+    <Key>71011</Key>
+    <Latitude>31.87295</Latitude>
+    <Longitude>35.25934</Longitude>
+    <Name>תחנת דלק/כוכב יעקב</Name>
+  </Station>
+  <Station>
+    <Key>71012</Key>
+    <Latitude>31.87722</Latitude>
+    <Longitude>35.24707</Longitude>
+    <Name>דרך כוכב יעקב</Name>
+  </Station>
+  <Station>
+    <Key>71013</Key>
+    <Latitude>31.87967</Latitude>
+    <Longitude>35.24388</Longitude>
+    <Name>שמחת עולם.אור חדש</Name>
+  </Station>
+  <Station>
+    <Key>71014</Key>
+    <Latitude>31.88018</Latitude>
+    <Longitude>35.24696</Longitude>
+    <Name>משכנות הרועים/אבני חפץ</Name>
+  </Station>
+  <Station>
+    <Key>71015</Key>
+    <Latitude>31.87919</Latitude>
+    <Longitude>35.24804</Longitude>
+    <Name>משכנות הרועים/נהר שלום</Name>
+  </Station>
+  <Station>
+    <Key>71016</Key>
+    <Latitude>31.87846</Latitude>
+    <Longitude>35.24782</Longitude>
+    <Name>אביר יעקב/מעייני הישועה</Name>
+  </Station>
+  <Station>
+    <Key>71017</Key>
+    <Latitude>31.87995</Latitude>
+    <Longitude>35.24531</Longitude>
+    <Name>אבירי יעקב/אבני חפץ</Name>
+  </Station>
+  <Station>
+    <Key>71018</Key>
+    <Latitude>31.88009</Latitude>
+    <Longitude>35.24437</Longitude>
+    <Name>שמחת עולם/ שד' אביר יעקב</Name>
+  </Station>
+  <Station>
+    <Key>71019</Key>
+    <Latitude>31.88033</Latitude>
+    <Longitude>35.24303</Longitude>
+    <Name>דרך כוכב יעקב/ שמחת עולם</Name>
+  </Station>
+  <Station>
+    <Key>71020</Key>
+    <Latitude>31.88056</Latitude>
+    <Longitude>35.24066</Longitude>
+    <Name>אהבת ישראל/מעלות החכמה</Name>
+  </Station>
+  <Station>
+    <Key>71021</Key>
+    <Latitude>31.87828</Latitude>
+    <Longitude>35.23984</Longitude>
+    <Name>מקור ברוך/אהבת ישראל</Name>
+  </Station>
+  <Station>
+    <Key>71022</Key>
+    <Latitude>31.87732</Latitude>
+    <Longitude>35.24013</Longitude>
+    <Name>מקור ברוך 4</Name>
+  </Station>
+  <Station>
+    <Key>71023</Key>
+    <Latitude>31.87704</Latitude>
+    <Longitude>35.23909</Longitude>
+    <Name>מקור ברוך 2</Name>
+  </Station>
+  <Station>
+    <Key>71024</Key>
+    <Latitude>31.87773</Latitude>
+    <Longitude>35.23739</Longitude>
+    <Name>אהבת ישראל א</Name>
+  </Station>
+  <Station>
+    <Key>71025</Key>
+    <Latitude>31.87894</Latitude>
+    <Longitude>35.238</Longitude>
+    <Name>מועדון/אהבת ישראל</Name>
+  </Station>
+  <Station>
+    <Key>71026</Key>
+    <Latitude>31.88015</Latitude>
+    <Longitude>35.23864</Longitude>
+    <Name>אהבת ישראל/מנחת אהרון</Name>
+  </Station>
+  <Station>
+    <Key>71027</Key>
+    <Latitude>31.88145</Latitude>
+    <Longitude>35.23812</Longitude>
+    <Name>אהבת ישראל ד</Name>
+  </Station>
+  <Station>
+    <Key>71028</Key>
+    <Latitude>31.88226</Latitude>
+    <Longitude>35.2386</Longitude>
+    <Name>מסוף תל ציון</Name>
+  </Station>
 </ArrayOfStation>
