@@ -140,4 +140,19 @@
     <StationKey>71027</StationKey>
     <Position>27</Position>
   </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1786</BusLineKey>
+    <StationKey>71001</StationKey>
+    <Position>1</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1786</BusLineKey>
+    <StationKey>71028</StationKey>
+    <Position>2</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1786</BusLineKey>
+    <StationKey>71002</StationKey>
+    <Position>2</Position>
+  </BusLineStation>
 </ArrayOfBusLineStation>
