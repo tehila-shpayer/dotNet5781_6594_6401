@@ -175,9 +175,303 @@
     <Name>מסוף תל ציון</Name>
   </Station>
   <Station>
-    <Key>71029</Key>
+    <Key>38880</Key>
     <Latitude>31.809325</Latitude>
     <Longitude>34.784347</Longitude>
     <Name>דרך הפרחים/יסמין</Name>
+  </Station>
+  <Station>
+    <Key>38882</Key>
+    <Latitude>31.80037</Latitude>
+    <Longitude>34.778239</Longitude>
+    <Name>יצחק רבין/פנחס ספיר</Name>
+  </Station>
+  <Station>
+    <Key>38881</Key>
+    <Latitude>31.799224</Latitude>
+    <Longitude>34.782985</Longitude>
+    <Name>מנחם בגין/יצחק רבין</Name>
+  </Station>
+  <Station>
+    <Key>38879</Key>
+    <Latitude>31.800334</Latitude>
+    <Longitude>34.785069</Longitude>
+    <Name>חיים הרצוג/דולב</Name>
+  </Station>
+  <Station>
+    <Key>38885</Key>
+    <Latitude>31.802319</Latitude>
+    <Longitude>34.786735</Longitude>
+    <Name>בית ספר גוונים/ארז</Name>
+  </Station>
+  <Station>
+    <Key>38887</Key>
+    <Latitude>31.804595</Latitude>
+    <Longitude>34.786623</Longitude>
+    <Name>דרך האילנות/אלון</Name>
+  </Station>
+  <Station>
+    <Key>38888</Key>
+    <Latitude>31.805041</Latitude>
+    <Longitude>34.785098</Longitude>
+    <Name>דרך האילנות מנחם/בגין</Name>
+  </Station>
+  <Station>
+    <Key>388889</Key>
+    <Latitude>31.816751</Latitude>
+    <Longitude>34.782252</Longitude>
+    <Name>העצמאות/ויצמן</Name>
+  </Station>
+  <Station>
+    <Key>38890</Key>
+    <Latitude>31.816579</Latitude>
+    <Longitude>34.779753</Longitude>
+    <Name>וייצמן/מרבד הקסמים</Name>
+  </Station>
+  <Station>
+    <Key>38891</Key>
+    <Latitude>31.801182</Latitude>
+    <Longitude>34.787199</Longitude>
+    <Name>צאלה/אלמוג</Name>
+  </Station>
+  <Station>
+    <Key>38892</Key>
+    <Latitude>31.802279</Latitude>
+    <Longitude>34.786055</Longitude>
+    <Name>גן חצב/צאלה</Name>
+  </Station>
+  <Station>
+    <Key>38893</Key>
+    <Latitude>31.814676</Latitude>
+    <Longitude>34.777574</Longitude>
+    <Name>פינס/לוינסון</Name>
+  </Station>
+  <Station>
+    <Key>38894</Key>
+    <Latitude>31.813285</Latitude>
+    <Longitude>34.775928</Longitude>
+    <Name>פיינברג/שגביץ</Name>
+  </Station>
+  <Station>
+    <Key>38895</Key>
+    <Latitude>31.806959</Latitude>
+    <Longitude>34.773504</Longitude>
+    <Name>בן גוריון/פוקס</Name>
+  </Station>
+  <Station>
+    <Key>38898</Key>
+    <Latitude>31.884187</Latitude>
+    <Longitude>34.805494</Longitude>
+    <Name>לוי אשכול/הרב דוד ישראל</Name>
+  </Station>
+  <Station>
+    <Key>38899</Key>
+    <Latitude>31.910118</Latitude>
+    <Longitude>34.805809</Longitude>
+    <Name>שושן/אופנהיימר</Name>
+  </Station>
+  <Station>
+    <Key>38901</Key>
+    <Latitude>31.882474</Latitude>
+    <Longitude>34.805806</Longitude>
+    <Name>האב דוד ישראל/אריה דולצין</Name>
+  </Station>
+  <Station>
+    <Key>38903</Key>
+    <Latitude>31.878667</Latitude>
+    <Longitude>34.81138</Longitude>
+    <Name>קרוננברג/ארגמן</Name>
+  </Station>
+  <Station>
+    <Key>38904</Key>
+    <Latitude>31.975479</Latitude>
+    <Longitude>34.813355</Longitude>
+    <Name>יעקב פריינמן/בנימין שמוטקין</Name>
+  </Station>
+  <Station>
+    <Key>38905</Key>
+    <Latitude>31.982177</Latitude>
+    <Longitude>34.789445</Longitude>
+    <Name>אניליביץ'/שלום אש</Name>
+  </Station>
+  <Station>
+    <Key>38906</Key>
+    <Latitude>31.948552</Latitude>
+    <Longitude>34.822422</Longitude>
+    <Name>נחמיה/בית העלמין</Name>
+  </Station>
+  <Station>
+    <Key>38907</Key>
+    <Latitude>31.967732</Latitude>
+    <Longitude>34.816339</Longitude>
+    <Name>יהודה הלוי/יוחנן הסנדלר</Name>
+  </Station>
+  <Station>
+    <Key>38908</Key>
+    <Latitude>31.893823</Latitude>
+    <Longitude>34.824617</Longitude>
+    <Name>ההגנה/חי"ש</Name>
+  </Station>
+  <Station>
+    <Key>38909</Key>
+    <Latitude>31.854169</Latitude>
+    <Longitude>34.824714</Longitude>
+    <Name>קרית עקרון/כביש 411</Name>
+  </Station>
+  <Station>
+    <Key>38910</Key>
+    <Latitude>31.811907</Latitude>
+    <Longitude>34.900793</Longitude>
+    <Name>צומת חולדה/כביש 411</Name>
+  </Station>
+  <Station>
+    <Key>38911</Key>
+    <Latitude>31.956842</Latitude>
+    <Longitude>34.814839</Longitude>
+    <Name>גריןשפן/יגאל אלון</Name>
+  </Station>
+  <Station>
+    <Key>38912</Key>
+    <Latitude>31.959821</Latitude>
+    <Longitude>34.814747</Longitude>
+    <Name>השומר/האבות</Name>
+  </Station>
+  <Station>
+    <Key>39184</Key>
+    <Latitude>32.294995</Latitude>
+    <Longitude>34.849667</Longitude>
+    <Name>יצחק גרינבוים/אפריים אלנקווה</Name>
+  </Station>
+  <Station>
+    <Key>39185</Key>
+    <Latitude>32.294705</Latitude>
+    <Longitude>34.851791</Longitude>
+    <Name>יצחק גרינבוים/ד"ר שמורק</Name>
+  </Station>
+  <Station>
+    <Key>39186</Key>
+    <Latitude>32.294485</Latitude>
+    <Longitude>34.851985</Longitude>
+    <Name>גרינבוים/בן צבי</Name>
+  </Station>
+  <Station>
+    <Key>39187</Key>
+    <Latitude>32.293898</Latitude>
+    <Longitude>34.852491</Longitude>
+    <Name>משטרה/בן צבי</Name>
+  </Station>
+  <Station>
+    <Key>39188</Key>
+    <Latitude>32.29569</Latitude>
+    <Longitude>34.851774</Longitude>
+    <Name>הנרייטה סולד/סטופ</Name>
+  </Station>
+  <Station>
+    <Key>39189</Key>
+    <Latitude>32.29686</Latitude>
+    <Longitude>34.853099</Longitude>
+    <Name>הנביאים/שד. בן צבי</Name>
+  </Station>
+  <Station>
+    <Key>39190</Key>
+    <Latitude>32.297873</Latitude>
+    <Longitude>34.85357</Longitude>
+    <Name>שד. בן צבי/ שמחה ארליך</Name>
+  </Station>
+  <Station>
+    <Key>39191</Key>
+    <Latitude>32.297381</Latitude>
+    <Longitude>34.855518</Longitude>
+    <Name>יחזקאל הנביאים</Name>
+  </Station>
+  <Station>
+    <Key>39192</Key>
+    <Latitude>32.300595</Latitude>
+    <Longitude>34.854651</Longitude>
+    <Name>נחום/ישעיהו</Name>
+  </Station>
+  <Station>
+    <Key>39193</Key>
+    <Latitude>32.297593</Latitude>
+    <Longitude>34.855673</Longitude>
+    <Name>בית כנסת הבוכרים/בן בוזי</Name>
+  </Station>
+  <Station>
+    <Key>40912</Key>
+    <Latitude>32.707282</Latitude>
+    <Longitude>35.123845</Longitude>
+    <Name>כצנלסון/אלכסנדר זייד</Name>
+  </Station>
+  <Station>
+    <Key>40913</Key>
+    <Latitude>32.711688</Latitude>
+    <Longitude>35.125015</Longitude>
+    <Name>כיכר הציונות</Name>
+  </Station>
+  <Station>
+    <Key>40914</Key>
+    <Latitude>32.711688</Latitude>
+    <Longitude>35.125015</Longitude>
+    <Name>חנה סנש/יזרעאל</Name>
+  </Station>
+  <Station>
+    <Key>40915</Key>
+    <Latitude>32.711127</Latitude>
+    <Longitude>35.12738</Longitude>
+    <Name>חנה סנש/בן צבי</Name>
+  </Station>
+  <Station>
+    <Key>40916</Key>
+    <Latitude>32.712736</Latitude>
+    <Longitude>35.125069</Longitude>
+    <Name>צומת קרית טבעון/האלונים</Name>
+  </Station>
+  <Station>
+    <Key>40917</Key>
+    <Latitude>32.715943</Latitude>
+    <Longitude>35.124415</Longitude>
+    <Name>אלונים/הרימונים</Name>
+  </Station>
+  <Station>
+    <Key>40918</Key>
+    <Latitude>32.716826</Latitude>
+    <Longitude>35.126544</Longitude>
+    <Name>אלונים/סמטת הלבנה</Name>
+  </Station>
+  <Station>
+    <Key>40919</Key>
+    <Latitude>32.716995</Latitude>
+    <Longitude>35.128928</Longitude>
+    <Name>בית ספר רימונים</Name>
+  </Station>
+  <Station>
+    <Key>40920</Key>
+    <Latitude>32.718823</Latitude>
+    <Longitude>35.129646</Longitude>
+    <Name>אלונים/בריכה</Name>
+  </Station>
+  <Station>
+    <Key>40921</Key>
+    <Latitude>32.722066</Latitude>
+    <Longitude>35.130372</Longitude>
+    <Name>אלונים/כיכר בן גוריון</Name>
+  </Station>
+  <Station>
+    <Key>40922</Key>
+    <Latitude>32.723692</Latitude>
+    <Longitude>35.133621</Longitude>
+    <Name>שקדים/האלה</Name>
+  </Station>
+  <Station>
+    <Key>40923</Key>
+    <Latitude>32.725614</Latitude>
+    <Longitude>35.135896</Longitude>
+    <Name>שקדים/הסיגליות</Name>
+  </Station>
+  <Station>
+    <Key>40924</Key>
+    <Latitude>32.725906</Latitude>
+    <Longitude>35.13691</Longitude>
+    <Name>בי''ס מיתרים</Name>
   </Station>
 </ArrayOfStation>
