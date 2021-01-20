@@ -715,7 +715,7 @@ namespace BL
             GeoCoordinate locationOfFirst = new GeoCoordinate(station1.Latitude, station1.Longitude);//מיקום התחנה המחושבת
             GeoCoordinate locationOfSecond = new GeoCoordinate(station2.Latitude, station2.Longitude);//מיקום התחנה הקודמת
             double distance = locationOfFirst.GetDistanceTo(locationOfSecond);//חישוב מרחק
-            int time = Convert.ToInt32(distance / (speed * 1000 / 60));//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש
+            int time = Convert.ToInt32(distance / (speed * 1000 / 60)+1);//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש
             consecutiveStations.Distance = distance;
             consecutiveStations.AverageTime = time;
             return consecutiveStations;
