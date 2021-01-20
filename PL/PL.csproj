@@ -314,6 +314,7 @@
     <None Include="Properties\DataSources\Bus.datasource" />
     <None Include="Properties\DataSources\BusInTravel.datasource" />
     <None Include="Properties\DataSources\BusLine.datasource" />
+    <None Include="Properties\DataSources\LineSchedule.datasource" />
     <None Include="Properties\DataSources\Station.datasource" />
     <None Include="Properties\DataSources\User.datasource" />
     <None Include="Properties\Settings.settings">
