@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Threading;
+using System.Globalization;
 
 namespace PL
 {
@@ -28,6 +30,9 @@ namespace PL
             bus.LastTreatment = DateTime.Now;
             grid1.DataContext = bus;
             mainGrid.DataContext = MainWindow.Language;
+            //CultureInfo ci = CultureInfo.CreateSpecificCulture(CultureInfo.CurrentCulture.Name);
+            //ci.DateTimeFormat.ShortDatePattern = "MM/dd/yyyy";
+            //Thread.CurrentThread.CurrentCulture = ci;
         }
 
         private void lastTreatmentFormatTextBox_SelectedDateChanged(object sender, SelectionChangedEventArgs e)

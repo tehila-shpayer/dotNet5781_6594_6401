@@ -21,13 +21,6 @@
                 <Setter Property="Margin" Value="5,10"/>
             </Style>-->
         </ResourceDictionary>
-        
-        <!--<ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/res/languages/AppString_English.xaml"/>
-                <ResourceDictionary Source="/res/languages/AppString_Hebrew.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>-->
 
     </Application.Resources>
 </Application>

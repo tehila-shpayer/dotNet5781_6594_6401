@@ -11,7 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.Threading;
+using System.Globalization;
 namespace PL
 {
     /// <summary>
@@ -31,6 +32,9 @@ namespace PL
             grid1.DataContext = busBO;
             beforeUpdateindex = MainWindow.busesCollection.IndexOf(updatingBus);
             mainGrid.DataContext = MainWindow.Language;
+            //CultureInfo ci = CultureInfo.CreateSpecificCulture(CultureInfo.CurrentCulture.Name);
+            //ci.DateTimeFormat.ShortDatePattern = "MM/dd/yyyy";
+            //Thread.CurrentThread.CurrentCulture = ci;
         }
 
         private void updateBusButton_Click(object sender, RoutedEventArgs e)

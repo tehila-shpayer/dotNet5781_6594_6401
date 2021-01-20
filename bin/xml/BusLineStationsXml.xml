@@ -238,11 +238,76 @@
   <BusLineStation>
     <BusLineKey>1789</BusLineKey>
     <StationKey>40935</StationKey>
-    <Position>3</Position>
+    <Position>16</Position>
   </BusLineStation>
   <BusLineStation>
     <BusLineKey>1789</BusLineKey>
     <StationKey>40926</StationKey>
     <Position>2</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1789</BusLineKey>
+    <StationKey>71007</StationKey>
+    <Position>3</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1789</BusLineKey>
+    <StationKey>71008</StationKey>
+    <Position>4</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1789</BusLineKey>
+    <StationKey>71009</StationKey>
+    <Position>5</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1789</BusLineKey>
+    <StationKey>71010</StationKey>
+    <Position>6</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1789</BusLineKey>
+    <StationKey>71011</StationKey>
+    <Position>7</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1789</BusLineKey>
+    <StationKey>40927</StationKey>
+    <Position>8</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1789</BusLineKey>
+    <StationKey>40928</StationKey>
+    <Position>9</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1789</BusLineKey>
+    <StationKey>40929</StationKey>
+    <Position>10</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1789</BusLineKey>
+    <StationKey>40930</StationKey>
+    <Position>11</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1789</BusLineKey>
+    <StationKey>40931</StationKey>
+    <Position>12</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1789</BusLineKey>
+    <StationKey>40932</StationKey>
+    <Position>13</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1789</BusLineKey>
+    <StationKey>40934</StationKey>
+    <Position>15</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1789</BusLineKey>
+    <StationKey>40933</StationKey>
+    <Position>14</Position>
   </BusLineStation>
 </ArrayOfBusLineStation>
