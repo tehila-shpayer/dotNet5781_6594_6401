@@ -14,6 +14,12 @@ namespace PLConsole
     {
         static IBL bl = BLFactory.GetBL("1");
         static IDL dl = DLFactory.GetDL();
+        static int Min(int a, int b)
+        {
+            if (a > b)
+                return b;
+            return a;
+        }
         static int GetDistance(double x1, double y1, double x2, double y2)
         {
             GeoCoordinate s1 = new GeoCoordinate(x1, y1);//מיקום תחנה 1
@@ -41,7 +47,7 @@ namespace PLConsole
         }
         static void Main(string[] args)
         {
-            string s;
+            //string s;
             string runningNumbersPath = @"RunningNumbersXml.xml";
             Console.WriteLine("Welcome!");
             //List<int> ListKeys = XmlTools.LoadListFromXMLSerializer<int>(runningNumbersPath);
@@ -56,6 +62,37 @@ namespace PLConsole
             //        }
             //    }
             //}
+            Random rand = new Random(DateTime.Now.Millisecond);
+            DO.Bus bus = new DO.Bus();
+            for (int i = 1; i <= 10; i++)
+            {
+                String s;
+                int year;
+                //5 buses from before 2018 - 7 digit license number
+                if (i % 2 == 0)
+                {
+                    s = rand.Next(1000000, 9999999).ToString();
+                    year = rand.Next(1895, 2018);
+                }
+                //5 buses from 2018 and on - 8 digit license number
+                else
+                {
+                    s = rand.Next(10000000, 99999999).ToString();
+                    year = rand.Next(2018, DateTime.Now.Year + 1);
+                }
+                int KM = rand.Next(0, 30000);
+                int bt = rand.Next(0, Min(rand.Next(0, 20000), KM));//KM can't be smaller than bt
+                int fuel = rand.Next(0, 1201);
+                //some buses have low fuel
+                if (i % 5 == 3)
+                {
+                    fuel = 0;
+                }
+                bus.LicenseNumber = s;bus.RunningDate = new DateTime(year, rand.Next(1, 13), rand.Next(1, 30)); bus.Fuel = fuel;
+                bus.KM = KM; bus.BeforeTreatKM = bt; bus.LastTreatment = bus.RunningDate;
+                //some buses are after treatment
+                dl.AddBus(bus);
+            }
             /*           do
                        {
 
