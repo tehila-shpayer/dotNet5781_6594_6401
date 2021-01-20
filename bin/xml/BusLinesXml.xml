@@ -5,4 +5,9 @@
     <LineNumber>143</LineNumber>
     <Area>YehudaAndShomron</Area>
   </BusLine>
+  <BusLine>
+    <Key>1786</Key>
+    <LineNumber>144</LineNumber>
+    <Area>YehudaAndShomron</Area>
+  </BusLine>
 </ArrayOfBusLine>

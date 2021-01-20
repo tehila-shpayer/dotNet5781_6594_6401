@@ -163,15 +163,9 @@
     <AverageTime>1</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
-    <StationKey1>71003</StationKey1>
-    <StationKey2>71007</StationKey2>
-    <Distance>3295.19166128399</Distance>
-    <AverageTime>6</AverageTime>
-  </ConsecutiveStations>
-  <ConsecutiveStations>
-    <StationKey1>71004</StationKey1>
-    <StationKey2>71007</StationKey2>
-    <Distance>3118.03036882017</Distance>
-    <AverageTime>5</AverageTime>
+    <StationKey1>71001</StationKey1>
+    <StationKey2>71028</StationKey2>
+    <Distance>16369</Distance>
+    <AverageTime>36</AverageTime>
   </ConsecutiveStations>
 </ConsecutiveStations>
