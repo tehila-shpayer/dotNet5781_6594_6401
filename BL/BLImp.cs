@@ -30,13 +30,13 @@ namespace BL
             Station station2 = GetStation(stationKey2);
             GeoCoordinate s1 = new GeoCoordinate(station1.Latitude, station1.Longitude);//מיקום תחנה 1
             GeoCoordinate s2 = new GeoCoordinate(station2.Latitude, station2.Longitude);//מיקום תחנה 2
-            return Convert.ToInt32(s1.GetDistanceTo(s2) * 1.3 + 1);//חישוב מרחק
+            return Convert.ToInt32(s1.GetDistanceTo(s2) * 1.5 + 1);//חישוב מרחק
         }
         int GetTime(double distance)
         {
             Random rand = new Random();
             int speed = rand.Next(30, 60);
-            int time = Convert.ToInt32(distance / (speed * 1000 / 60));//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש
+            int time = Convert.ToInt32(distance / (speed * 1000 / 60) + 1);//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש
             return time;
         }
         int GetTime(int stationKey1, int stationKey2)
