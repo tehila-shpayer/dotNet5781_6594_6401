@@ -109,7 +109,7 @@
                 </StackPanel>
                 <TextBlock Text="{Binding Key}" Margin="10" TextAlignment="Left" FontSize="16"/>
                 <TextBlock Text="{DynamicResource BusLinePage_Stations}" Margin="15,5" TextAlignment="Left" FontSize="20" FontFamily="Segoe UI Semibold"/>
-                <ListBox x:Name="lbBusLineStations" Margin="15,10" Padding="0,-25,0,0" ItemsSource="{Binding BusLineStations}" ItemTemplate="{StaticResource BusLineStationTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="419" Height="305">
+                <ListBox x:Name="lbBusLineStations" Margin="15,10" Padding="0,-25,0,0" ItemsSource="{Binding BusLineStations}" ItemTemplate="{StaticResource BusLineStationTemplate}" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="419" Height="305">
                 </ListBox>
             </StackPanel>
         </Grid>
