@@ -51,7 +51,6 @@ namespace PL
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-
             try
             {
                 LineSchedule lineSchedule = lbLineSchedules.SelectedItem as LineSchedule;
