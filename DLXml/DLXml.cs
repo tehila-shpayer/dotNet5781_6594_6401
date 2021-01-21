@@ -264,8 +264,7 @@ namespace DL
             BusLineStation busLineStation = ListBusLineStations.Find(b => predicate(b));
             if (busLineStation != null)
                 return busLineStation;
-            else
-                throw new ArgumentNotFoundException($"Bus line station required was not found.");
+            return null;
         }
         public BusLineStation GetBusLineStationByKey(int line, int stationKey)
         {

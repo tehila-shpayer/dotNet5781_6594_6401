@@ -2,8 +2,8 @@
 <ArrayOfStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Station>
     <Key>71000</Key>
-    <Latitude>32.57843</Latitude>
-    <Longitude>35.74839</Longitude>
+    <Latitude>32.85556</Latitude>
+    <Longitude>35.24839</Longitude>
     <Name>המכבים</Name>
   </Station>
   <Station>

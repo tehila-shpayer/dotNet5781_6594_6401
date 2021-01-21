@@ -775,4 +775,14 @@
     <StationKey>38895</StationKey>
     <Position>12</Position>
   </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1799</BusLineKey>
+    <StationKey>71000</StationKey>
+    <Position>1</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1799</BusLineKey>
+    <StationKey>71016</StationKey>
+    <Position>2</Position>
+  </BusLineStation>
 </ArrayOfBusLineStation>

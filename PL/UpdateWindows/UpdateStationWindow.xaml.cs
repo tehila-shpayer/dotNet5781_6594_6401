@@ -21,14 +21,14 @@ namespace PL
     {
         public Station updatingStation;
         public int beforeUpdateindex;
-        public BO.Station Station;
+        public BO.Station stationBO;
 
         public UpdateStationWindow(Station station)
         {
             InitializeComponent();
-            Station = App.bl.GetStation(station.Key);
+            stationBO = App.bl.GetStation(station.Key);
             updatingStation = station;
-            grid1.DataContext = Station;
+            grid1.DataContext = stationBO;
             beforeUpdateindex = MainWindow.stationsCollection.IndexOf(updatingStation);
             mainGrid.DataContext = MainWindow.Language;
         }
@@ -36,10 +36,10 @@ namespace PL
         {
             try
             {
-                Station.Key = updatingStation.Key;
-                App.bl.UpdateStation(Station);
-                MainWindow.stationsCollection[beforeUpdateindex] = PoBoAdapter.StationPoBoAdapter(App.bl.GetStation(Station.Key));
-                MessageBox.Show($"Station {Station.Key} updated successfully.", "UPDATE STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
+                stationBO.Key = updatingStation.Key;
+                App.bl.UpdateStation(stationBO);
+                MainWindow.stationsCollection[beforeUpdateindex] = PoBoAdapter.StationPoBoAdapter(stationBO);
+                MessageBox.Show($"Station {stationBO.Key} updated successfully.", "UPDATE STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }
             catch (BO.BOInvalidInformationException ex)
