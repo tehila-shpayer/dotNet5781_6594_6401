@@ -84,4 +84,28 @@
     <EndTime>09:20:00</EndTime>
     <Frequency>40</Frequency>
   </LineSchedule>
+  <LineSchedule>
+    <LineKey>1796</LineKey>
+    <StartTime>07:20:00</StartTime>
+    <EndTime>21:00:00</EndTime>
+    <Frequency>35</Frequency>
+  </LineSchedule>
+  <LineSchedule>
+    <LineKey>1797</LineKey>
+    <StartTime>05:50:00</StartTime>
+    <EndTime>11:20:00</EndTime>
+    <Frequency>30</Frequency>
+  </LineSchedule>
+  <LineSchedule>
+    <LineKey>1797</LineKey>
+    <StartTime>11:50:00</StartTime>
+    <EndTime>14:50:00</EndTime>
+    <Frequency>60</Frequency>
+  </LineSchedule>
+  <LineSchedule>
+    <LineKey>1797</LineKey>
+    <StartTime>15:50:00</StartTime>
+    <EndTime>23:20:00</EndTime>
+    <Frequency>30</Frequency>
+  </LineSchedule>
 </lineSchedules>
