@@ -108,6 +108,9 @@
     <Compile Include="AddWindows\AddStationWindow.xaml.cs">
       <DependentUpon>AddStationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LineAndScheduleWindow.xaml.cs">
+      <DependentUpon>LineAndScheduleWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\ContactUsPage.xaml.cs">
       <DependentUpon>ContactUsPage.xaml</DependentUpon>
     </Compile>
@@ -200,6 +203,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddWindows\AddStationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LineAndScheduleWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
