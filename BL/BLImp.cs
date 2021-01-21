@@ -290,6 +290,7 @@ namespace BL
             //If all information is valid - add user to collection
             try
             {
+                user.Password = Tools.hashPassword(user.Password + user.Salt);
                 DO.User userDO = new DO.User();
                 user.Clone(userDO);
                 dl.AddUser(userDO);
@@ -299,9 +300,14 @@ namespace BL
         }
         public void UpdateUser(User user)
         {
-            CheckUserParameters(user);
-            try
+            string oldPassword = dl.GetUser(user.UserName).Password;
+            if (user.Password != oldPassword)
             {
+                CheckUserParameters(user);
+                user.Password = Tools.hashPassword(user.Password + user.Salt); 
+            }
+            try
+            { 
                 DO.User UserDO = new DO.User();
                 user.Clone(UserDO);
                 dl.UpdateUser(UserDO);

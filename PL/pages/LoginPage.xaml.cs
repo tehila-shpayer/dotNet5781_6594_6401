@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Net.Mail;
 using System.Net;
 using BLAPI;
+using System.Security.Cryptography;
 
 namespace PL
 {
@@ -127,21 +128,23 @@ namespace PL
         #endregion
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-            //    BO.User user = App.bl.GetUser(userName.Text, Password.Password);
-            //    if (user.AuthorizationManagement == BO.AuthorizationManagement.Manager)
-            //        NavigationService.Navigate(new ManagerPage(PoBoAdapter.UserPoBoAdapter(user)));
-            //    else
-            //        NavigationService.Navigate(new TravelerMenuPage(PoBoAdapter.UserPoBoAdapter(user)));
-            //}
-            //catch (BO.BOArgumentNotFoundException ex)
-            //{
-            //    ProblemMessage.Text = "User name or password are incorrect.\n try again";
-            //    spProblem.Visibility = Visibility.Visible;
-            //}
+            try
+            {
+
+                BO.User user = App.bl.GetUser(userName.Text);
+                user = App.bl.GetUser(userName.Text, Tools.hashPassword(Password.Password + user.Salt));
+                if (user.AuthorizationManagement == BO.AuthorizationManagement.Manager)
+                    NavigationService.Navigate(new ManagerPage(PoBoAdapter.UserPoBoAdapter(user)));
+                else
+                    NavigationService.Navigate(new TravelerMenuPage(PoBoAdapter.UserPoBoAdapter(user)));
+            }
+            catch (BO.BOArgumentNotFoundException ex)
+            {
+                ProblemMessage.Text = "User name or password are incorrect.\n try again";
+                spProblem.Visibility = Visibility.Visible;
+            }
             //BO.User user = App.bl.GetUser(userName.Text, Password.Password);
-            NavigationService.Navigate(new ManagerPage(PoBoAdapter.UserPoBoAdapter(new BO.User())));
+            //NavigationService.Navigate(new ManagerPage(PoBoAdapter.UserPoBoAdapter(new BO.User())));
             //NavigationService.Navigate(new TravelerMenuPage(PoBoAdapter.UserPoBoAdapter(new BO.User())));
         }
 

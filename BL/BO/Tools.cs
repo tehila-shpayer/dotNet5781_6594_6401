@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
-
+using System.Security.Cryptography;
 namespace BO
 {
     public static class Tools
@@ -23,6 +23,11 @@ namespace BO
                 if (item.Name != "IsActive")
                     str += "\n" + item.Name + ": " + item.GetValue(t, null);
             return str;
+        }
+        public static string hashPassword(string passwordWithSalt)
+        {
+            SHA512 shaM = new SHA512Managed();
+            return Convert.ToBase64String(shaM.ComputeHash(Encoding.UTF8.GetBytes(passwordWithSalt)));
         }
     }
 }
