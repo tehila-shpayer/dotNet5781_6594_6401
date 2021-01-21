@@ -45,7 +45,7 @@ namespace PL
             destination.Clone(s2);
             IEnumerable<BO.BusLine> busLines = App.bl.FindRoutes(s1, s2);
             lbLines.DataContext = (from l in App.bl.FindRoutes(s1, s2)
-                                  select PoBoAdapter.BusLinePoBoAdapter(l)).ToList();
+                                  select PoBoAdapter.PresentBusLineForStationPoBoAdapter(l)).ToList();
         }
 
         private void cbSource_SelectionChanged(object sender, SelectionChangedEventArgs e)
