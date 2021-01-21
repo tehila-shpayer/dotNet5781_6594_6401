@@ -17,8 +17,6 @@
                 <TextBlock Text="{Binding StartTime}" TextAlignment="Left" FontSize="16"/>
             </StackPanel>
         </DataTemplate>
-        <CollectionViewSource x:Key="lineScheduleViewSource" d:DesignSource="{d:DesignInstance {x:Type local:LineSchedule}, CreateList=True}"/>
-        <!--<CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Bus}, CreateList=True}"/>-->
     </Page.Resources>
     <Grid x:Name="mainGrid" FlowDirection="{Binding Source, Converter={StaticResource LanguageConvertor}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=True}">
         <Grid.ColumnDefinitions>
@@ -79,7 +77,7 @@
             <TextBlock Text="{Binding LineNumber}" Margin="10,0" TextAlignment="Left" FontWeight="Bold" FontSize="24" FontFamily="Segoe UI Black"/>
             <TextBlock Text="{Binding LineKey}" Margin="15,10,15,20" TextAlignment="Left" FontSize="20"/>
             </StackPanel>
-                <Grid x:Name="grid1" Grid.Row="1" Margin="20,10" DataContext="{StaticResource lineScheduleViewSource}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="160" Width="250">
+                <Grid x:Name="grid1" Grid.Row="1" Margin="20,10" DataContext="{Binding}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="160" Width="250">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
@@ -89,13 +87,16 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Label Content="Start Time:" Grid.Column="0" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+                <Label Content="שעת התחלה:" Grid.Column="0" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
                 <TextBlock x:Name="startTimeTextBlock" Grid.Column="1" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="0" Text="{Binding StartTime}" VerticalAlignment="Center"/>
-                <Label Content="End Time:" Grid.Column="0" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                <Label Content="שעת סיום:" Grid.Column="0" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
                 <TextBlock x:Name="endTimeTextBlock" Grid.Column="1" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="1" Text="{Binding EndTime}" VerticalAlignment="Center"/>
-                <Label Content="Frequency:" Grid.Column="0" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-                <TextBlock x:Name="frequencyTextBlock" Grid.Column="1" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="2" Text="{Binding Frequency}" VerticalAlignment="Center"/>
-
+                <Label Content="תדירות:" Grid.Column="0" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                <TextBlock x:Name="frequencyTextBlock" Grid.Column="1" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center">
+                    <Run Text="כל "/>
+                    <Run Text="{Binding Frequency}"/>
+                    <Run Text=" דקות"/>
+                </TextBlock>
             </Grid>
 
         </Grid>
