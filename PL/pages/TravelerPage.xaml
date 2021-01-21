@@ -58,21 +58,21 @@
                 <Button x:Name="SimulationButton" Grid.Column="0" Width="100" Margin="5,0"  Click="SimulationButton_Click" Background="#FF477AA9" BorderBrush="{x:Null}" Height="38" VerticalAlignment="Center">
                     <Grid Width="145" Height="25">
                         <materialDesign:PackIcon Kind="Timer" VerticalAlignment="Center" Margin="0,3,0,2" HorizontalAlignment="Left" Width="20" Height="20" Grid.RowSpan="2"/>
-                        <TextBlock x:Name="simulationButtonContent"  HorizontalAlignment="Center" VerticalAlignment="Center" Text="הפעל" FontFamily="Champagne &amp; Limousines" FontSize="14" Width="50" Margin="19,4,76,4" TextAlignment="Center"/>
+                        <TextBlock x:Name="simulationButtonContent"  HorizontalAlignment="Center" VerticalAlignment="Center" Text="{DynamicResource SimulationPage_Start}" FontFamily="Champagne &amp; Limousines" FontSize="14" Width="50" Margin="19,4,76,4" TextAlignment="Center"/>
                     </Grid>
                 </Button>
                 <Button x:Name="StopButton" Grid.Column="0" Width="100" Margin="5,0" Visibility="Collapsed" Click="StopButton_Click"  Background="#FF477AA9" BorderBrush="{x:Null}" Height="38" VerticalAlignment="Center">
                     <Grid Width="145" Height="25">
                         <materialDesign:PackIcon Kind="Timer" VerticalAlignment="Center" Margin="0,3,0,2" HorizontalAlignment="Left" Width="20" Height="20" Grid.RowSpan="2"/>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="עצור" FontFamily="Champagne &amp; Limousines" FontSize="14" Width="50" Margin="19,4,76,4" TextAlignment="Center"/>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{DynamicResource SimulationPage_Stop}" FontFamily="Champagne &amp; Limousines" FontSize="14" Width="50" Margin="19,4,76,4" TextAlignment="Center"/>
                     </Grid>
                 </Button>
                 <!--<Button x:Name="1SimulationButton" Width="145" Margin="5,10" Content="הפעל סימולציה" Click="SimulationButton_Click" Background="#FF477AA9" BorderBrush="{x:Null}"/>-->
                 <!--<materialDesign:TimePicker x:Name="tpTime" Margin="15,10" FontSize="15" Foreground="Black" Width="100"/>-->
-                <Label Content="קצב:" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" FontFamily="Segoe UI Black" Grid.Column="1" VerticalContentAlignment="Center"/>
+                <Label Content="{DynamicResource SimulationPage_Rate}" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" FontFamily="Segoe UI Black" Grid.Column="1" VerticalContentAlignment="Center"/>
                 <TextBlock x:Name="tblRate" Width="60" Margin="0" Text="{Binding ElementName=tbRate, Path=Text}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Visible" FontSize="40" FontFamily="Segoe UI Black" FontWeight="Bold" Foreground="#FF2B703D" Grid.Column="2" TextAlignment="Center"/>
                 <TextBox x:Name="tbRate" Width="60" Margin="0" Text="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="40" FontWeight="Bold" FontFamily="Segoe UI Black" Foreground="#FF2B703D" Grid.Column="2" BorderBrush="{x:Null}"/>
-                <Label Content="שעון:" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="Segoe UI Black" FontWeight="Bold" VerticalContentAlignment="Center" Grid.Column="3"/>
+                <Label Content="{DynamicResource SimulationPage_Clock}" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="Segoe UI Black" FontWeight="Bold" VerticalContentAlignment="Center" Grid.Column="3"/>
                 <StackPanel Orientation="Horizontal" Grid.Column="4" Margin="0" VerticalAlignment="Center" Width="200">
                     <TextBox x:Name="tbSeconds"  Margin="0" Text="00" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" FontSize="40" FontFamily="Segoe UI Black" FontWeight="Bold" BorderBrush="{x:Null}" Foreground="#FF2B703D"/>
                     <TextBlock x:Name="tbDots1" Margin="0" Text=":" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="40" FontFamily="Segoe UI Black" FontWeight="Bold" Foreground="#FF2B703D"/>
@@ -148,29 +148,29 @@
                                 </Style>
                             </GridView.ColumnHeaderContainerStyle>
                             <GridViewColumn DisplayMemberBinding= "{Binding Path=LineNumber}" Width="35">
-                                <GridViewColumnHeader Width="35" Content="קו" Margin="10,0,0,0" HorizontalAlignment="Left"/>
+                                <GridViewColumnHeader Width="35" Content="{DynamicResource Line}" Margin="10,0,0,0" HorizontalAlignment="Left"/>
                             </GridViewColumn>
                             <GridViewColumn DisplayMemberBinding= "{Binding Path=LastStationName}"  Width="170">
-                                <GridViewColumnHeader Width="190" Content="תחנה אחרונה" Margin="0" HorizontalAlignment="Left"/>
+                                <GridViewColumnHeader Width="190" Content="{DynamicResource AddLineWindow_LastStation}" Margin="0" HorizontalAlignment="Left"/>
                             </GridViewColumn>
                             <GridViewColumn DisplayMemberBinding= "{Binding Path=StartTime}" Width="100">
-                                <GridViewColumnHeader Width="120" Content="שעת יציאה" Margin="0" HorizontalAlignment="Left"/>
+                                <GridViewColumnHeader Width="120" Content="{DynamicResource LineSchedulePage_StartTime}" Margin="0" HorizontalAlignment="Left"/>
                             </GridViewColumn>
                             <GridViewColumn DisplayMemberBinding= "{Binding Path=TimeLeft}"  Width="100">
-                                <GridViewColumnHeader Width="120" Content="מגיע בעוד" Margin="0" HorizontalAlignment="Left"/>
+                                <GridViewColumnHeader Width="120" Content="{DynamicResource SimulationPage_ArrivesIn}" Margin="0" HorizontalAlignment="Left"/>
                             </GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>
                 <StackPanel x:Name="spLastBus" Orientation="Horizontal" Background="#FFB3E3BF" Margin="20,0">
-                    <Label Content="בתחנה:" Margin="20,3,3,3" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black"/>
+                    <Label Content="{DynamicResource SimulationPage_AtStation}" Margin="20,3,3,3" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black"/>
                     <TextBlock x:Name="lastStationNameTextBlock1"  HorizontalAlignment="Left" Margin="20,3" Grid.Row="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black">
-                        <Run Text="קו "/>                        
+                        <Run Text="{DynamicResource Line}"/>                        
                         <Run Text="{Binding LineNumber}"/>
-                        <Run Text="ל"/>
+                        <Run Text="{DynamicResource To}"/>
                         <Run Text="{Binding LastStationName}"/>
                     </TextBlock>
-                    <Label Content="ש.י."  HorizontalAlignment="Left" Margin="10,3" Grid.Row="2" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black"/>
+                    <Label Content="{DynamicResource SimulationPage_S.T}"  HorizontalAlignment="Left" Margin="10,3" Grid.Row="2" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black"/>
                     <TextBlock x:Name="startTimeTextBlock1"  HorizontalAlignment="Left" Margin="3" Grid.Row="2" Text="{Binding StartTime}" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black"/>
                 </StackPanel>
             </StackPanel>

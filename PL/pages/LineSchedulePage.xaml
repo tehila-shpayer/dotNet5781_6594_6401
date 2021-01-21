@@ -32,7 +32,7 @@
                 <GradientStop Color="LightGray" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Label Content="יציאות קווים:" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontSize="30"/>
+        <Label Content="{DynamicResource LineSchedulePage_Title}" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontSize="30"/>
         <StackPanel Grid.Row="1" Grid.Column="0" x:Name="spSchedules">
             <StackPanel.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -60,9 +60,9 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1">
-            <Button x:Name="updateButton" Width="145" Margin="0,10,5,10" Background="#FF477AA9" Content="עדכן יציאת קו" Click="updateButton_Click" BorderBrush="{x:Null}"/>
-            <Button x:Name="deleteButton" Width="145" Margin="5,10" Content="מחק יציאת קו" Background="#FF477AA9" Click="deleteButton_Click" BorderBrush="{x:Null}"/>
-            <Button x:Name="addButton" Width="145" Margin="5,10,15,10" Content="הוסף יציאת קו" Background="#FF477AA9" Click="addButton_Click" BorderBrush="{x:Null}"/>
+            <Button x:Name="updateButton" Width="145" Margin="0,10,5,10" Background="#FF477AA9" Content="{DynamicResource LineSchedulePage_UpdateLineSchedule}" Click="updateButton_Click" BorderBrush="{x:Null}"/>
+            <Button x:Name="deleteButton" Width="145" Margin="5,10" Content="{DynamicResource LineSchedulePage_DeleteLineSchedule}" Background="#FF477AA9" Click="deleteButton_Click" BorderBrush="{x:Null}"/>
+            <Button x:Name="addButton" Width="145" Margin="5,10,15,10" Content="{DynamicResource LineSchedulePage_AddLineSchedule}" Background="#FF477AA9" Click="addButton_Click" BorderBrush="{x:Null}"/>
         </StackPanel>
 
         <Rectangle Grid.Column="1" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
@@ -87,15 +87,15 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Label Content="שעת התחלה:" Grid.Column="0" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+                <Label Content="{DynamicResource LineSchedulePage_StartTime}" Grid.Column="0" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
                 <TextBlock x:Name="startTimeTextBlock" Grid.Column="1" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="0" Text="{Binding StartTime}" VerticalAlignment="Center"/>
-                <Label Content="שעת סיום:" Grid.Column="0" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                <Label Content="{DynamicResource LineSchedulePage_EndTime}" Grid.Column="0" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
                 <TextBlock x:Name="endTimeTextBlock" Grid.Column="1" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="1" Text="{Binding EndTime}" VerticalAlignment="Center"/>
-                <Label Content="תדירות:" Grid.Column="0" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                <Label Content="{DynamicResource LineSchedulePage_Frequency}" Grid.Column="0" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
                 <TextBlock x:Name="frequencyTextBlock" Grid.Column="1" FontSize="18" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center">
-                    <Run Text="כל "/>
+                    <Run Text="{DynamicResource LineSchedulePage_Each}"/>
                     <Run Text="{Binding Frequency}"/>
-                    <Run Text=" דקות"/>
+                    <Run Text="{DynamicResource LineSchedulePage_Minutes}"/>
                 </TextBlock>
             </Grid>
 

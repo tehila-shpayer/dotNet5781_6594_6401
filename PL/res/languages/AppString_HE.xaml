@@ -83,4 +83,30 @@
     <System:String x:Key="Location" xml:space="preserve">מיקום:</System:String>
     <System:String x:Key="UpdateConsecutiveStationsWindow_Title">עדכון תחנות עוקבות בקו</System:String>
 
+    <!--#region Line Schedule Page-->
+    <System:String x:Key="LineSchedulePage_Title">יציאות קווים:</System:String>
+    <System:String x:Key="LineSchedulePage_UpdateLineSchedule">עדכן יציאת קו</System:String>
+    <System:String x:Key="LineSchedulePage_DeleteLineSchedule">מחק יציאת קו</System:String>
+    <System:String x:Key="LineSchedulePage_AddLineSchedule">הוסף יציאת קו</System:String>
+    <System:String x:Key="LineSchedulePage_StartTime">שעת התחלה:</System:String>
+    <System:String x:Key="LineSchedulePage_EndTime">שעת סיום:</System:String>
+    <System:String x:Key="LineSchedulePage_Frequency">תדירות:</System:String>
+    <System:String x:Key="LineSchedulePage_Each" xml:space="preserve">כל </System:String>
+    <System:String x:Key="LineSchedulePage_Minutes" xml:space="preserve"> דקות</System:String>
+    <!--#endregion-->
+    <System:String x:Key="AddLineScheduleWindow_Title">הוסף יציאת קו</System:String>
+    <System:String x:Key="AddLineScheduleWindow_LineKey">מפתח קו:</System:String>
+    <System:String x:Key="UpdateLineScheduleWindow_Title">עדכן יציאת קו</System:String>
+
+    <!--#region Line Simulation Page-->
+    <System:String x:Key="SimulationPage_Start">הפעל</System:String>
+    <System:String x:Key="SimulationPage_Stop">עצור</System:String>
+    <System:String x:Key="SimulationPage_Rate">קצב:</System:String>
+    <System:String x:Key="SimulationPage_Clock">שעון:</System:String>
+    <System:String x:Key="Line">קו</System:String>
+    <System:String x:Key="SimulationPage_ArrivesIn">מגיע בעוד</System:String>
+    <System:String x:Key="SimulationPage_AtStation">בתחנה:</System:String>
+    <System:String x:Key="To">ל</System:String>
+    <System:String x:Key="SimulationPage_S.T">ש.י.</System:String>
+    <!--#endregion-->
 </ResourceDictionary>
