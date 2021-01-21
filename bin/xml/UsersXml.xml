@@ -22,4 +22,15 @@
     <LastName>חמו</LastName>
     <Picture>file:///C:/Users/שרה מלכה/Pictures/Bus Icon_files/bus(9).png</Picture>
   </User>
+  <User>
+    <UserName>saraTravel</UserName>
+    <Password>1111</Password>
+    <AuthorizationManagement>Traveler</AuthorizationManagement>
+    <Email>saramalka2003@gmail.com</Email>
+    <PhoneNumber>0544325928</PhoneNumber>
+    <Address>כוכב השחר, מול נבו 37</Address>
+    <FirstName>שרה מלכה</FirstName>
+    <LastName>חמו</LastName>
+    <Picture>file:///C:/Users/שרה מלכה/Pictures/Bus Icon_files/bus(9).png</Picture>
+  </User>
 </ArrayOfUser>
