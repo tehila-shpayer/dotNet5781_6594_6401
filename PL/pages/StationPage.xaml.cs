@@ -37,6 +37,8 @@ namespace PL
             cbStations.DataContext = OrderByString;
             cbStations.SelectedIndex = 0;
             mainGrid.DataContext = MainWindow.Language;
+            lbStations.SelectedIndex = 0;
+            StationInfoGrid.DataContext = MainWindow.stationsCollection.ElementAt(0);
         }
 
         private void stations_SelectionChanged(object sender, SelectionChangedEventArgs e)
