@@ -50,6 +50,7 @@ namespace PL
             foreach (var item in MainWindow.busLinesCollection)
             {
                 ListBoxItem bus = (ListBoxItem)lbBusLines.ItemContainerGenerator.ContainerFromItem(item);
+                //ContainerFromItem(item);
                 //String searchS = searchBox.Text;
                 //int num = searchS.Length;
 
@@ -168,16 +169,6 @@ namespace PL
             {
                 int index = lbBusLines.SelectedIndex;
                 var selectedStation = (sender as Button).DataContext as BusLineStation;
-                //BO.BusLine busLineBO = App.bl.GetBusLine(selectedStation.BusLineKey);
-                //BusLine busLinePO = PoBoAdapter.BusLinePoBoAdapter(busLineBO);
-                //foreach (BusLine bl in MainWindow.busLinesCollection)
-                //{
-                //    if (bl.Key == busLinePO.Key)
-                //    {
-                //        index = MainWindow.busLinesCollection.IndexOf(bl);
-                //        break;
-                //    }
-                //}
                 App.bl.DeleteStationFromLine(selectedStation.BusLineKey, selectedStation.StationKey);
                 MainWindow.InitializeBusLines();
                 lbBusLines.DataContext = MainWindow.busLinesCollection;
