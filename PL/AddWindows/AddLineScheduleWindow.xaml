@@ -1,0 +1,53 @@
+﻿<Window x:Class="PL.AddLineScheduleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="AddLineScheduleWindow" Height="500" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.Resources>
+        <local:LanguageToAlignment x:Key="LanguageConvertor"/>
+    </Window.Resources>
+    <Grid x:Name="mainGrid" FlowDirection="{Binding Source, Converter={StaticResource LanguageConvertor}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=True}">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="LightGray" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Rectangle Grid.Column="0" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
+        </Rectangle>
+        <StackPanel Margin="70,50,70.333,47.667">
+            <Label Content="{DynamicResource AddStationWindow_Title}" FontSize="25" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
+            <Grid x:Name="grid1" HorizontalAlignment="Center" Margin="20,20,20,30" VerticalAlignment="Center" Height="238" Width="333">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Content="מפתח קו:" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <TextBox x:Name="lineKeyTextBox" Grid.Column="1" Grid.Row="0" Text="{Binding LineKey, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" TextChanged="TextBox_TextChanged"/>
+                <Label Content="שעת יציאה:" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <materialDesign:TimePicker x:Name="startTimeTimePicker" Grid.Column="1" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" SelectedTimeFormat="Long"/>
+                <Label Content="שעת סיום:" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <materialDesign:TimePicker x:Name="endTimeTimePicker" Grid.Column="1" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" SelectedTimeFormat="Long"/>
+                <Label Content="תדירות:" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <TextBox x:Name="freqTextBox" Grid.Column="1" Grid.Row="3" Text="{Binding Frequency, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" TextChanged="TextBox_TextChanged"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="addButton" Grid.Column="0" Margin="20,0" Background="#FF477AA9" Content="{DynamicResource Save}" BorderBrush="{x:Null}" Click="addButton_Click"  IsEnabled="False"/>
+                <Button x:Name="cancelButton" Grid.Column="1" Margin="20,0" Background="#FF477AA9" Content="{DynamicResource Cancel}" BorderBrush="{x:Null}" Click="cancelButton_Click"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>
