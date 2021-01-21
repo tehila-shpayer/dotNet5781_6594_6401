@@ -23,22 +23,22 @@
   <BusLine>
     <Key>1791</Key>
     <LineNumber>86</LineNumber>
-    <Area>Center</Area>
+    <Area>Hifa</Area>
   </BusLine>
   <BusLine>
     <Key>1792</Key>
     <LineNumber>86</LineNumber>
-    <Area>Center</Area>
+    <Area>Hifa</Area>
   </BusLine>
   <BusLine>
     <Key>1793</Key>
     <LineNumber>1</LineNumber>
-    <Area>Center</Area>
+    <Area>South</Area>
   </BusLine>
   <BusLine>
     <Key>1795</Key>
     <LineNumber>32</LineNumber>
-    <Area>Hifa</Area>
+    <Area>Center</Area>
   </BusLine>
   <BusLine>
     <Key>1796</Key>
@@ -48,6 +48,11 @@
   <BusLine>
     <Key>1797</Key>
     <LineNumber>20</LineNumber>
+    <Area>General</Area>
+  </BusLine>
+  <BusLine>
+    <Key>1798</Key>
+    <LineNumber>424</LineNumber>
     <Area>Center</Area>
   </BusLine>
 </ArrayOfBusLine>
