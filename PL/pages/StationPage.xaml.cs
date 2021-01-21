@@ -58,7 +58,7 @@ namespace PL
                 //if ((num <= item.LineNumber.ToString().Length && searchS == (item as BusLine).LineNumber.ToString().Substring(0, num)))
                 if (station != null)
                 {
-                    if (num <= item.Name.Length && searchS == item.Name.Substring(0, num))
+                    if (num <= item.Name.Length && searchS == item.Name.Substring(0, num) || num <= item.Key.ToString().Length && searchS == item.Key.ToString().Substring(0, num))
                     {
                         station.Visibility = Visibility.Visible;
                     }
