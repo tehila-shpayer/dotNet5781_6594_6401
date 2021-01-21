@@ -77,41 +77,41 @@
                 <TextBlock Text="{Binding LicenseNumberFormat}" Margin="10,0" TextAlignment="Left" FontWeight="Bold" FontSize="25" FontFamily="Segoe UI Black"/>
                 <TextBlock Text="{Binding Status}" Margin="15,10,15,20" TextAlignment="Left" FontSize="24"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,6,20,6">
-                    <materialDesign:PackIcon Kind="DateRange" Foreground="#FF477AA9" Width="30" Height="30"/>
-                    <TextBlock FontSize="20" TextAlignment="Right" FontFamily="Segoe UI Emoji">
+                    <materialDesign:PackIcon Kind="DateRange" Foreground="#FF477AA9" Margin="8,0" Width="26" Height="26"/>
+                    <TextBlock FontSize="19" TextAlignment="Right" FontFamily="Segoe UI Emoji">
                     <Run Text="{DynamicResource BusPage_StartActivityDate}"/>
                     <Run Text="{Binding RunningDateFormat}"/>
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,6,20,6">
-                    <materialDesign:PackIcon Kind="Odometer" Foreground="#FF477AA9" Width="30" Height="30"/>
-                    <TextBlock FontSize="20" TextAlignment="Right" FontFamily="Segoe UI Emoji">
+                    <materialDesign:PackIcon Kind="Odometer" Foreground="#FF477AA9" Margin="8,0" Width="26" Height="26"/>
+                    <TextBlock FontSize="19" TextAlignment="Right" FontFamily="Segoe UI Emoji">
                     <Run Text="{DynamicResource BusPage_KM}"/>
                     <Run Text="{Binding KM}"/>
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,6,20,6">
-                    <materialDesign:PackIcon Kind="DateRange" Foreground="#FF477AA9" Width="30" Height="30"/>
-                    <TextBlock FontSize="20" TextAlignment="Left" FontFamily="Segoe UI Emoji">
+                    <materialDesign:PackIcon Kind="DateRange" Foreground="#FF477AA9" Margin="8,0" Width="26" Height="26"/>
+                    <TextBlock FontSize="19" TextAlignment="Left" FontFamily="Segoe UI Emoji">
                     <Run Text="{DynamicResource BusPage_LastTreatmentDate}"/>
                     <Run Text="{Binding LastTreatmentFormat}"/>
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,6,20,6">
-                    <materialDesign:PackIcon Kind="Odometer" Foreground="#FF477AA9" Width="30" Height="30"/>
-                    <TextBlock FontSize="20" TextAlignment="Right" FontFamily="Segoe UI Emoji">
+                    <materialDesign:PackIcon Kind="Odometer" Foreground="#FF477AA9" Margin="8,0" Width="26" Height="26"/>
+                    <TextBlock FontSize="19" TextAlignment="Right" FontFamily="Segoe UI Emoji">
                     <Run Text="{DynamicResource BusPage_KMSinceLastTreatment}"/>
                     <Run Text="{Binding BeforeTreatKM}"/>
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,6,20,6">
-                    <materialDesign:PackIcon Kind="Fuel" Foreground="#FF477AA9" Width="30" Height="30"/>
-                    <TextBlock FontSize="20" TextAlignment="Right" FontFamily="Segoe UI Emoji">
+                    <materialDesign:PackIcon Kind="Fuel" Foreground="#FF477AA9" Margin="8,0" Width="26" Height="26"/>
+                    <TextBlock FontSize="19" TextAlignment="Right" FontFamily="Segoe UI Emoji">
                     <Run Text="{DynamicResource BusPage_Fuel}"/>
                     <Run Text="{Binding Fuel}"/>
                     </TextBlock>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,10" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Margin="0,25" HorizontalAlignment="Center">
                     <Button Margin="10,5" Width="120" Height="45" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{DynamicResource BusPage_Ride}" VerticalAlignment="Center" Margin="5,0,0,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
