@@ -45,7 +45,7 @@ namespace BL
         }
         #endregion
 
-        #region Simulator2
+        #region Simulator
         BackgroundWorker timer = new BackgroundWorker();
         Clock simulatorClock = new Clock(new TimeSpan(0, 0, 0), 1);
         public void StartSimulator(Clock clock, TimeSpan startTime, int simulatorRate, int Key)
@@ -98,6 +98,21 @@ namespace BL
             BO.Bus BusBO = new BO.Bus();
             BusDO.Clone(BusBO);
             return BusBO;
+        }
+        public IEnumerable<Bus> GetAllBusesOrderedBy(string orderBy)
+        {
+            switch (orderBy)
+            {
+                case "Order by license number":
+                    return from b in dl.GetAllBuses()
+                           orderby b.LicenseNumber
+                           select BusDoBoAdapter(b);
+                case "Order by status":
+                    return from b in dl.GetAllBuses()
+                           orderby b.Status
+                           select BusDoBoAdapter(b);
+                default: return GetAllBuses();
+            }
         }
         public IEnumerable<Bus> GetAllBuses()
         {
@@ -408,23 +423,14 @@ namespace BL
                         StationDO = dl.GetStation(station.Key);
                         if (prevLineStation != null)
                         {
-                            //cs.StationKey1 = prevLineStation.StationKey;
-                            //cs.StationKey2 = station.Key;
-                            //cs.Distance = GetDistance(prevLineStation.StationKey, station.Key);
-                            //cs.AverageTime = GetTime(cs.Distance);
                             dl.UpdateConsecutiveStations(CalculateConsecutiveStations(dl.GetStation(prevLineStation.StationKey), StationDO));
                         }
                         if (nextLineStation != null)
                         {
-                            //cs.StationKey1 = station.Key;
-                            //cs.StationKey2 = nextLineStation.StationKey;
-                            //cs.Distance = GetDistance(station.Key, nextLineStation.StationKey);
-                            //cs.AverageTime = GetTime(cs.Distance);
                             dl.UpdateConsecutiveStations(CalculateConsecutiveStations(StationDO, dl.GetStation(nextLineStation.StationKey)));
                         }
                     }
                 }
-                //dl.UpdateConsecutiveStations(dl.GetBusLineStationBy(ls => ls.BusLineKey == st))
                 station.Clone(StationDO);
                 dl.UpdateStation(StationDO);
             }

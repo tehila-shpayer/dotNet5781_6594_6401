@@ -117,7 +117,7 @@ namespace PL
         }
         void Sort()
         {
-            MainWindow.busesCollection = new ObservableCollection<Bus>(from b in App.bl.GetAllBuses()
+            MainWindow.busesCollection = new ObservableCollection<Bus>(from b in App.bl.GetAllBusesOrderedBy(cbBuses.Text)
                                                                        select PoBoAdapter.BusPoBoAdapter(b));
             lbBuses.DataContext = MainWindow.busesCollection;
         }
