@@ -10,7 +10,7 @@ namespace DO
     {
         public int StationKey1 { get; set; }
         public int StationKey2 { get; set; }
-        public double Distance { get; set; }
+        public int Distance { get; set; }
         public int AverageTime { get; set; }
         public override string ToString()
         {

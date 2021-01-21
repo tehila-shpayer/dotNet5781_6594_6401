@@ -267,7 +267,7 @@ namespace DL
             GeoCoordinate location1 = new GeoCoordinate(station1.Latitude, station1.Longitude);//מיקום התחנה המחושבת
             GeoCoordinate location2 = new GeoCoordinate(station2.Latitude, station2.Longitude);//מיקום התחנה הקודמת
             double distance = location1.GetDistanceTo(location2);//חישוב מרחק
-            consecutiveStations.Distance = distance;
+            consecutiveStations.Distance = (int)distance;
             Random rand = new Random();
             int speed = rand.Next(30, 60);
             int time = (int)Math.Ceiling(distance / (speed * 1000 / 60));//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש

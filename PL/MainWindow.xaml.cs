@@ -27,10 +27,10 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static ObservableCollection<BusLine> busLinesCollection = new ObservableCollection<BusLine>();
-        public static ObservableCollection<Station> stationsCollection = new ObservableCollection<Station>();
-        public static ObservableCollection<Bus> busesCollection = new ObservableCollection<Bus>();
-        public static ObservableCollection<LineSchedule> lineSchedulesCollection = new ObservableCollection<LineSchedule>();
+        public static ObservableCollection<BusLine> busLinesCollection;
+        public static ObservableCollection<Station> stationsCollection;
+        public static ObservableCollection<Bus> busesCollection;
+        public static ObservableCollection<LineSchedule> lineSchedulesCollection;
         public Uri dictUriEN;
         public Uri dictUriHE;
         ResourceDictionary resDictEN;
@@ -38,18 +38,15 @@ namespace PL
         public static ResourceDictionary Language;
         //static readonly DependencyProperty LanguageProperty = DependencyProperty.Register("Language", typeof(ResourceDictionary), typeof(MainWindow));
         //public ResourceDictionary Language { get => (ResourceDictionary)GetValue(LanguageProperty); set => SetValue(LanguageProperty, value); }
-
-
         public MainWindow()
         {
             InitializeComponent();
             Height = 600;
             Width = 1024;
             InitializeCollections();
-            //dictUriEN = new Uri(@"res/languages/AppString_EN.xaml", UriKind.Relative);
-            //resDictEN = Application.LoadComponent(dictUriEN) as ResourceDictionary;
-            //dictUriHE = new Uri(@"res/languages/AppString_HE.xaml", UriKind.Relative);
-            //resDictHE = Application.LoadComponent(dictUriHE) as ResourceDictionary;
+            //CultureInfo ci = CultureInfo.CreateSpecificCulture(CultureInfo.CurrentCulture.Name);
+            //ci.DateTimeFormat.ShortDatePattern = "MM/dd/yyyy";
+            //Thread.CurrentThread.CurrentCulture = ci;
             resDictEN = Application.Current.Resources.MergedDictionaries.FirstOrDefault(a => a.Source.OriginalString == @"/res/languages/AppString_EN.xaml");
             resDictHE = Application.Current.Resources.MergedDictionaries.FirstOrDefault(a => a.Source.OriginalString == @"/res/languages/AppString_HE.xaml");
             Language = Application.Current.Resources.MergedDictionaries.ElementAt(Application.Current.Resources.MergedDictionaries.Count - 1);
@@ -63,35 +60,43 @@ namespace PL
         }
         static public void InitializeBusLines()
         {
-            busLinesCollection.Clear();
-            foreach (BO.BusLine bl in App.bl.GetAllBusLines())
-            {
-                busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(bl));
-            }
+            //busLinesCollection.Clear();
+            //foreach (BO.BusLine bl in App.bl.GetAllBusLines())
+            //{
+            //    busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(bl));
+            //}
+            busLinesCollection = new ObservableCollection<BusLine>(from bl in App.bl.GetAllBusLines()
+                                                                   select PoBoAdapter.BusLinePoBoAdapter(bl));
         }
         static public void InitializeBuses()
         {
-            busesCollection.Clear();
-            foreach (BO.Bus b in App.bl.GetAllBuses())
-            {
-                busesCollection.Add(PoBoAdapter.BusPoBoAdapter(b));
-            }
+            //busesCollection.Clear();
+            //foreach (BO.Bus b in App.bl.GetAllBuses())
+            //{
+            //    busesCollection.Add(PoBoAdapter.BusPoBoAdapter(b));
+            //}
+            busesCollection = new ObservableCollection<Bus>(from b in App.bl.GetAllBuses()
+                                                                   select PoBoAdapter.BusPoBoAdapter(b));
         }
         static public void InitializeStations()
         {
-            stationsCollection.Clear();
-            foreach (BO.Station s in App.bl.GetAllStations())
-            {
-                stationsCollection.Add(PoBoAdapter.StationPoBoAdapter(s));
-            }
+            //stationsCollection.Clear();
+            //foreach (BO.Station s in App.bl.GetAllStations())
+            //{
+            //    stationsCollection.Add(PoBoAdapter.StationPoBoAdapter(s));
+            //}
+            stationsCollection = new ObservableCollection<Station>(from s in App.bl.GetAllStations()
+                                                                   select PoBoAdapter.StationPoBoAdapter(s));
         }
         static public void InitializeLineSchedules()
         {
-            lineSchedulesCollection.Clear();
-            foreach (BO.LineSchedule ls in App.bl.GetAllLineSchedules())
-            {
-                lineSchedulesCollection.Add(PoBoAdapter.LineSchedulePoBoAdapter(ls));
-            }
+            //lineSchedulesCollection.Clear();
+            //foreach (BO.LineSchedule ls in App.bl.GetAllLineSchedules())
+            //{
+            //    lineSchedulesCollection.Add(PoBoAdapter.LineSchedulePoBoAdapter(ls));
+            //}
+            lineSchedulesCollection = new ObservableCollection<LineSchedule>(from ls in App.bl.GetAllLineSchedules()
+                                                                             select PoBoAdapter.LineSchedulePoBoAdapter(ls));
         }
         private void powerButton_Click(object sender, RoutedEventArgs e)
         {
@@ -105,8 +110,7 @@ namespace PL
 
         private void minimizeButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.MainWindow.WindowState = WindowState.Minimized;
-            
+            Application.Current.MainWindow.WindowState = WindowState.Minimized;   
         }
 
         private void Window_Initialized(object sender, EventArgs e)
@@ -121,8 +125,6 @@ namespace PL
 
         private void HebrewBtn_Click(object sender, RoutedEventArgs e)
         {
-            //Uri dictUri = new Uri(@"res/languages/AppString_HE.xaml", UriKind.Relative);
-            //ResourceDictionary resDict = Application.LoadComponent(dictUri) as ResourceDictionary;
             Application.Current.Resources.MergedDictionaries.Remove(resDictEN);
             Application.Current.Resources.MergedDictionaries.Add(resDictHE);
             Language = Application.Current.Resources.MergedDictionaries.ElementAt(Application.Current.Resources.MergedDictionaries.Count - 1);
@@ -130,8 +132,6 @@ namespace PL
 
         private void EnglishBtn_Click(object sender, RoutedEventArgs e)
         {
-            //Uri dictUri = new Uri(@"res/languages/AppString_EN.xaml", UriKind.Relative);
-            //ResourceDictionary resDict = Application.LoadComponent(dictUri) as ResourceDictionary;
             Application.Current.Resources.MergedDictionaries.Remove(resDictHE);
             Application.Current.Resources.MergedDictionaries.Add(resDictEN);
             Language = Application.Current.Resources.MergedDictionaries.ElementAt(Application.Current.Resources.MergedDictionaries.Count - 1);

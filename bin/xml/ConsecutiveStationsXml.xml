@@ -171,139 +171,139 @@
   <ConsecutiveStations>
     <StationKey1>71001</StationKey1>
     <StationKey2>71003</StationKey2>
-    <Distance>368.22027485684</Distance>
+    <Distance>368</Distance>
     <AverageTime>1</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71003</StationKey1>
     <StationKey2>71002</StationKey2>
-    <Distance>139.032250593903</Distance>
+    <Distance>139</Distance>
     <AverageTime>1</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71003</StationKey1>
     <StationKey2>71001</StationKey2>
-    <Distance>368.22027485684</Distance>
+    <Distance>368</Distance>
     <AverageTime>1</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71002</StationKey1>
     <StationKey2>71028</StationKey2>
-    <Distance>9413.86897010436</Distance>
+    <Distance>9413</Distance>
     <AverageTime>10</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71003</StationKey1>
     <StationKey2>71028</StationKey2>
-    <Distance>9352.20309656078</Distance>
+    <Distance>9352</Distance>
     <AverageTime>10</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71004</StationKey1>
     <StationKey2>71028</StationKey2>
-    <Distance>9199.01620349914</Distance>
+    <Distance>9199</Distance>
     <AverageTime>10</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71005</StationKey1>
     <StationKey2>71028</StationKey2>
-    <Distance>9165.27472816392</Distance>
+    <Distance>9165</Distance>
     <AverageTime>10</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71006</StationKey1>
     <StationKey2>71028</StationKey2>
-    <Distance>9090.33556962708</Distance>
+    <Distance>9090</Distance>
     <AverageTime>11</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71007</StationKey1>
     <StationKey2>71028</StationKey2>
-    <Distance>6206.81560124644</Distance>
+    <Distance>6206</Distance>
     <AverageTime>11</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71008</StationKey1>
     <StationKey2>71028</StationKey2>
-    <Distance>6321.07380721612</Distance>
+    <Distance>6321</Distance>
     <AverageTime>9</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71009</StationKey1>
     <StationKey2>71028</StationKey2>
-    <Distance>6171.30560673969</Distance>
+    <Distance>6171</Distance>
     <AverageTime>8</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71010</StationKey1>
     <StationKey2>71028</StationKey2>
-    <Distance>2909.51237864113</Distance>
+    <Distance>2909</Distance>
     <AverageTime>4</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71011</StationKey1>
     <StationKey2>71028</StationKey2>
-    <Distance>2217.05665068167</Distance>
+    <Distance>2217</Distance>
     <AverageTime>4</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71012</StationKey1>
     <StationKey2>71028</StationKey2>
-    <Distance>977.409428658931</Distance>
+    <Distance>977</Distance>
     <AverageTime>2</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71013</StationKey1>
     <StationKey2>71028</StationKey2>
-    <Distance>576.244643931445</Distance>
+    <Distance>576</Distance>
     <AverageTime>1</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71013</StationKey1>
     <StationKey2>71019</StationKey2>
-    <Distance>108.847426168382</Distance>
+    <Distance>108</Distance>
     <AverageTime>1</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71019</StationKey1>
     <StationKey2>71028</StationKey2>
-    <Distance>470.529687482426</Distance>
+    <Distance>470</Distance>
     <AverageTime>1</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71020</StationKey1>
     <StationKey2>71028</StationKey2>
-    <Distance>271.463678669649</Distance>
+    <Distance>271</Distance>
     <AverageTime>1</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71020</StationKey1>
     <StationKey2>71022</StationKey2>
-    <Distance>364.044695739414</Distance>
+    <Distance>364</Distance>
     <AverageTime>1</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71022</StationKey1>
     <StationKey2>71028</StationKey2>
-    <Distance>568.47279002018</Distance>
+    <Distance>568</Distance>
     <AverageTime>1</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71022</StationKey1>
     <StationKey2>71025</StationKey2>
-    <Distance>270.231621196065</Distance>
+    <Distance>270</Distance>
     <AverageTime>1</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71025</StationKey1>
     <StationKey2>71028</StationKey2>
-    <Distance>373.811279831393</Distance>
+    <Distance>373</Distance>
     <AverageTime>1</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>40925</StationKey1>
     <StationKey2>40935</StationKey2>
-    <Distance>17544.1121139906</Distance>
+    <Distance>17544</Distance>
     <AverageTime>24</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
@@ -449,5 +449,35 @@
     <StationKey2>40934</StationKey2>
     <Distance>677</Distance>
     <AverageTime>2</AverageTime>
+  </ConsecutiveStations>
+  <ConsecutiveStations>
+    <StationKey1>71000</StationKey1>
+    <StationKey2>71008</StationKey2>
+    <Distance>144714</Distance>
+    <AverageTime>148</AverageTime>
+  </ConsecutiveStations>
+  <ConsecutiveStations>
+    <StationKey1>71000</StationKey1>
+    <StationKey2>71002</StationKey2>
+    <Distance>149657</Distance>
+    <AverageTime>170</AverageTime>
+  </ConsecutiveStations>
+  <ConsecutiveStations>
+    <StationKey1>71002</StationKey1>
+    <StationKey2>71008</StationKey2>
+    <Distance>4967</Distance>
+    <AverageTime>10</AverageTime>
+  </ConsecutiveStations>
+  <ConsecutiveStations>
+    <StationKey1>71027</StationKey1>
+    <StationKey2>71000</StationKey2>
+    <Distance>136858</Distance>
+    <AverageTime>212</AverageTime>
+  </ConsecutiveStations>
+  <ConsecutiveStations>
+    <StationKey1>71000</StationKey1>
+    <StationKey2>71028</StationKey2>
+    <Distance>136707</Distance>
+    <AverageTime>243</AverageTime>
   </ConsecutiveStations>
 </ConsecutiveStations>

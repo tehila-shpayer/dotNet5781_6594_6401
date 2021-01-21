@@ -523,8 +523,6 @@ namespace BL
             DO.BusLineStation SecondBusLineStationDO = dl.GetBusLineStationBy(s => s.Position == BusLineStationDO.Position - 1 && s.BusLineKey == BusLineStationDO.BusLineKey);
             BusLineStationBO.DistanceFromLastStationMeters = (int)dl.GetConsecutiveStations(SecondBusLineStationDO.StationKey, BusLineStationDO.StationKey).Distance;
             BusLineStationBO.TravelTimeFromLastStationMinutes = dl.GetConsecutiveStations(SecondBusLineStationDO.StationKey, BusLineStationDO.StationKey).AverageTime;
-            //BusLineStationBO.DistanceFromLastStationMeters = dl.GetConsecutiveStations(BusLineStationDO.StationKey, SecondBusLineStationDO.StationKey).Distance;
-            //BusLineStationBO.TravelTimeFromLastStationMinutes = dl.GetConsecutiveStations(BusLineStationDO.StationKey, SecondBusLineStationDO.StationKey).AverageTime;
             return BusLineStationBO;
         }
         public BusLineStation GetBusLineStationByKey(int line, int stationKey)
@@ -716,7 +714,7 @@ namespace BL
             GeoCoordinate locationOfSecond = new GeoCoordinate(station2.Latitude, station2.Longitude);//מיקום התחנה הקודמת
             double distance = locationOfFirst.GetDistanceTo(locationOfSecond);//חישוב מרחק
             int time = Convert.ToInt32(distance / (speed * 1000 / 60)+1);//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש
-            consecutiveStations.Distance = distance;
+            consecutiveStations.Distance = (int)distance;
             consecutiveStations.AverageTime = time;
             return consecutiveStations;
         }
@@ -725,7 +723,7 @@ namespace BL
             DO.ConsecutiveStations consecutiveStations = new DO.ConsecutiveStations();
             consecutiveStations.StationKey1 = s1;
             consecutiveStations.StationKey2 = s2;
-            double d = GetDistance(s1, s2);
+            int d = GetDistance(s1, s2);
             consecutiveStations.Distance = d;
             consecutiveStations.AverageTime = GetTime(d);
             return consecutiveStations;

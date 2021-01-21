@@ -349,7 +349,7 @@ namespace DL
                        {
                            StationKey1 = int.Parse(cs.Element("StationKey1").Value),
                            StationKey2 = int.Parse(cs.Element("StationKey2").Value),
-                           Distance = double.Parse(cs.Element("Distance").Value),
+                           Distance = int.Parse(cs.Element("Distance").Value),
                            AverageTime = int.Parse(cs.Element("AverageTime").Value),
                        }).FirstOrDefault();
 
