@@ -550,4 +550,54 @@
     <StationKey>38895</StationKey>
     <Position>14</Position>
   </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1795</BusLineKey>
+    <StationKey>39187</StationKey>
+    <Position>1</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1795</BusLineKey>
+    <StationKey>39186</StationKey>
+    <Position>2</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1795</BusLineKey>
+    <StationKey>39185</StationKey>
+    <Position>3</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1795</BusLineKey>
+    <StationKey>39184</StationKey>
+    <Position>4</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1795</BusLineKey>
+    <StationKey>39188</StationKey>
+    <Position>5</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1795</BusLineKey>
+    <StationKey>39189</StationKey>
+    <Position>6</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1795</BusLineKey>
+    <StationKey>39190</StationKey>
+    <Position>7</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1795</BusLineKey>
+    <StationKey>39191</StationKey>
+    <Position>8</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1795</BusLineKey>
+    <StationKey>39192</StationKey>
+    <Position>10</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1795</BusLineKey>
+    <StationKey>39193</StationKey>
+    <Position>9</Position>
+  </BusLineStation>
 </ArrayOfBusLineStation>

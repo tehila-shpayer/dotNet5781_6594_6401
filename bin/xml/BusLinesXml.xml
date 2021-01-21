@@ -35,4 +35,9 @@
     <LineNumber>1</LineNumber>
     <Area>Center</Area>
   </BusLine>
+  <BusLine>
+    <Key>1795</Key>
+    <LineNumber>32</LineNumber>
+    <Area>Hifa</Area>
+  </BusLine>
 </ArrayOfBusLine>
