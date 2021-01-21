@@ -26,30 +26,13 @@ namespace PL
         {
             InitializeComponent();
             bus = new BO.Bus();
-            bus.RunningDate = DateTime.Now;
-            bus.LastTreatment = DateTime.Now;
+            bus.RunningDate = new DateTime(DateTime.Now.Year, 1, 1);
+            bus.LastTreatment = new DateTime(DateTime.Now.Year, 1, 1);
             grid1.DataContext = bus;
             mainGrid.DataContext = MainWindow.Language;
-            //CultureInfo ci = CultureInfo.CreateSpecificCulture(CultureInfo.CurrentCulture.Name);
-            //ci.DateTimeFormat.ShortDatePattern = "MM/dd/yyyy";
-            //Thread.CurrentThread.CurrentCulture = ci;
-        }
-
-        private void lastTreatmentFormatTextBox_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //UpdateStatus();
-        }
-
-        private void beforeTreatKMTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            //UpdateStatus();
-        }
-        void UpdateStatus()
-        {
-            //if (bus.BeforeTreatKM > 20000 || (DateTime.Now - bus.LastTreatment).TotalDays > 365)
-            //    statusTextBlock.Text = "Not Ready";
-            //else
-            //    statusTextBlock.Text = "Ready";
+            CultureInfo ci = CultureInfo.CreateSpecificCulture(CultureInfo.CurrentCulture.Name);
+            ci.DateTimeFormat.ShortDatePattern = "MM/dd/yyyy";
+            Thread.CurrentThread.CurrentCulture = ci;
         }
 
         private void licenseNumberTextBox_TextChanged(object sender, TextChangedEventArgs e)

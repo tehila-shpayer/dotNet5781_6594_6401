@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Security.Cryptography;
 
 namespace PL
 {
@@ -107,10 +108,15 @@ namespace PL
             }
             try
             {
-                BO.User user = new BO.User();
-                user.UserName = UserName.Text;
-                user.Email = Email.Text;
-                user.Password = Password.Password;
+                Random rnd = new Random();
+                int salt = rnd.Next();
+                BO.User user = new BO.User()
+                {
+                    UserName = UserName.Text,
+                    Email = Email.Text,
+                    Password = Password.Password,
+                    Salt = salt
+                };                
                 user.AuthorizationManagement = BO.AuthorizationManagement.Traveler;
                 App.bl.AddUser(user);
                 if (user.AuthorizationManagement == BO.AuthorizationManagement.Traveler)

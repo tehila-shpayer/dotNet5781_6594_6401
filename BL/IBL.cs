@@ -12,10 +12,11 @@ namespace BLAPI
         //void StartSimulator(TimeSpan startTime, int simulatorRate, Action<TimeSpan> updateTime);
         void StartSimulator(Clock simulatorClock, TimeSpan startTime, int simulatorRate, int Key);
         void StopSimulator();
-        
+
         //List<BusInTravel> GetLineTimingsPerStation(int stationKey, TimeSpan startTime);
 
         #region Bus
+        IEnumerable<Bus> GetAllBusesOrderedBy(string orderBy);
         IEnumerable<Bus> GetAllBuses();
         IEnumerable<Bus> GetAllBusesBy(Predicate<Bus> predicate);
         Bus GetBus(string LicenseNumber);

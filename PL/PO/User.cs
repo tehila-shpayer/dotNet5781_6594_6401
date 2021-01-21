@@ -9,6 +9,7 @@ namespace PL
     {
         public string UserName { get; set; }
         public string Password { get; set; }
+        public int Salt { get; set; }
         public AuthorizationManagement AuthorizationManagement { get; set; }
         public string Email { get; set; }
         public String PhoneNumber { get; set; }

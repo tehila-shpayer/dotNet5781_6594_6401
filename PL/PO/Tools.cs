@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Reflection;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Security.Cryptography;
 
 namespace PL
 {
@@ -26,9 +27,10 @@ namespace PL
                     str += "\n" + item.Name + ": " + item.GetValue(t, null);
             return str;
         }
-        public static void GeneralSearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        public static string hashPassword(string passwordWithSalt)
         {
-
+            SHA512 shaM = new SHA512Managed();
+            return Convert.ToBase64String(shaM.ComputeHash(Encoding.UTF8.GetBytes(passwordWithSalt)));
         }
     }
 }
