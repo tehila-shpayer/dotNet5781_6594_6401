@@ -120,9 +120,9 @@ namespace PL
                 user.AuthorizationManagement = BO.AuthorizationManagement.Traveler;
                 App.bl.AddUser(user);
                 if (user.AuthorizationManagement == BO.AuthorizationManagement.Traveler)
-                    currentPage.NavigationService.Navigate(new TravelerMenuPage(PoBoAdapter.UserPoBoAdapter(new BO.User())));
+                    NavigationService.Navigate(new TravelerMenuPage(PoBoAdapter.UserPoBoAdapter(new BO.User())));
                 else
-                    currentPage.NavigationService.Navigate(new ManagerPage(PoBoAdapter.UserPoBoAdapter(new BO.User())));
+                    NavigationService.Navigate(new ManagerPage(PoBoAdapter.UserPoBoAdapter(new BO.User())));
             }
             catch (BO.BOInvalidInformationException ex)
             {

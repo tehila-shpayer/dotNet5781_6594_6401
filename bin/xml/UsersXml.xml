@@ -20,6 +20,20 @@
     <Email>tehila1742@gmail.com</Email>
   </User>
   <User>
+    <UserName>arendel123</UserName>
+    <Password>LVtaL1CUpBSiQWVXOWcrLNXQ6NJQPU3YCp7H1KVNn26Qm0nWWj2K0b/Oghg2DfKfsmIPzUeyAj80PS9o4qOMcw==</Password>
+    <Salt>739471828</Salt>
+    <AuthorizationManagement>Traveler</AuthorizationManagement>
+    <Email>tehila4738@gmail.com</Email>
+  </User>
+  <User>
+    <UserName>Magi123</UserName>
+    <Password>eVZZw3I0xM6IpMparlkPv9c/DMF3mESPgbKbclnthN84MbvFeaSp0HjxF3JfO9seEXv3rA4bfg6Vkk5tYA39yA==</Password>
+    <Salt>1675489952</Salt>
+    <AuthorizationManagement>Traveler</AuthorizationManagement>
+    <Email>Magy@gmail.com</Email>
+  </User>
+  <User>
     <UserName>sara</UserName>
     <Password>hOs3U6Ih2sifsM4cC6dD/uODx2cjoPS/V6PCjxqE6uj3VORhVpm8wCfioQBJmJgoM8+yCEbMXZFueFr9XM7Z6w==</Password>
     <Salt>19206429</Salt>
