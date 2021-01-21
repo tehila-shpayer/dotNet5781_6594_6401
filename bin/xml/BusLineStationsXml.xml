@@ -7,11 +7,6 @@
   </BusLineStation>
   <BusLineStation>
     <BusLineKey>1779</BusLineKey>
-    <StationKey>71002</StationKey>
-    <Position>2</Position>
-  </BusLineStation>
-  <BusLineStation>
-    <BusLineKey>1779</BusLineKey>
     <StationKey>71003</StationKey>
     <Position>3</Position>
   </BusLineStation>
@@ -783,6 +778,11 @@
   <BusLineStation>
     <BusLineKey>1799</BusLineKey>
     <StationKey>71016</StationKey>
+    <Position>2</Position>
+  </BusLineStation>
+  <BusLineStation>
+    <BusLineKey>1779</BusLineKey>
+    <StationKey>71002</StationKey>
     <Position>2</Position>
   </BusLineStation>
 </ArrayOfBusLineStation>
