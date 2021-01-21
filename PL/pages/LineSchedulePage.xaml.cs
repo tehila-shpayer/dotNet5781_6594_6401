@@ -39,8 +39,8 @@ namespace PL
             int index = lbLineSchedules.SelectedIndex;
             try
             {
-                UpdateBusWindow updateBusWindow = new UpdateBusWindow(MainWindow.busesCollection[lbLineSchedules.SelectedIndex]);
-                updateBusWindow.ShowDialog();
+                UpdateLineScheduleWindow updateLineScheduleWindow = new UpdateLineScheduleWindow(MainWindow.lineSchedulesCollection[lbLineSchedules.SelectedIndex]);
+                updateLineScheduleWindow.ShowDialog();
                 //Sort();
             }
             catch (Exception ex)
