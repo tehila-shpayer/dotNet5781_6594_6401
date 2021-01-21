@@ -52,38 +52,36 @@ namespace PL
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-
             try
             {
-                Bus bus = MainWindow.busesCollection[lbLineSchedules.SelectedIndex];
-                string key = bus.LicenseNumber;
+                LineSchedule lineSchedule = lbLineSchedules.SelectedItem as LineSchedule;
+                int key = lineSchedule.LineKey;
                 MessageBoxResult mbResult = MessageBox.Show($"Are you sure you want to delete bus {key}?", "DELETE BUS MESSAGE", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
                 if (mbResult == MessageBoxResult.Yes)
                 {
-                    App.bl.DeleteBus(key);
-                    MainWindow.busesCollection.Remove(bus);
-                    MessageBox.Show($"Bus {key} was deleted.", "DELETE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.No);
+                    App.bl.DeleteLineSchedule(key, lineSchedule.StartTime);
+                    MainWindow.lineSchedulesCollection.Remove(lineSchedule);
+                    MessageBox.Show($"Line schedule of line {key} was deleted.", "DELETE LINE SCHEDULE MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.No);
 
                 }
                 else
-                    MessageBox.Show($"Delete operation was canceled.", "DELETE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.No);
+                    MessageBox.Show($"Delete operation was canceled.", "DELETE LINE SCHEDULE MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.No);
 
             }
             catch (BO.BOArgumentNotFoundException ex)
             {
-                MessageBox.Show($"{ex.Message}", "DELETE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.No);
+                MessageBox.Show($"{ex.Message}", "DELETE LINE SCHEDULE MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.No);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Please choose a bus!", "DELETE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.No);
+                MessageBox.Show($"Please choose a bus!", "DELETE LINE SCHEDULE MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.No);
             }
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            AddBusWindow addBusWindow = new AddBusWindow();
-            addBusWindow.ShowDialog();
-            //Sort();
+            AddLineScheduleWindow addLineScheduleWindow = new AddLineScheduleWindow();
+            addLineScheduleWindow.ShowDialog();
         }
 
     }

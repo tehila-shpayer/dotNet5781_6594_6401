@@ -96,6 +96,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddWindows\AddLineScheduleWindow.xaml.cs">
+      <DependentUpon>AddLineScheduleWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddWindows\AddBusLineWindow.xaml.cs">
       <DependentUpon>AddBusLineWindow.xaml</DependentUpon>
     </Compile>
@@ -163,6 +166,9 @@
     <Compile Include="pages\TravelerPage.xaml.cs">
       <DependentUpon>TravelerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpdateWindows\UpdateLineScheduleWindow.xaml.cs">
+      <DependentUpon>UpdateLineScheduleWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpdateWindows\UpdateBusLineWindow.xaml.cs">
       <DependentUpon>UpdateBusLineWindow.xaml</DependentUpon>
     </Compile>
@@ -178,6 +184,10 @@
     <Compile Include="pages\WelcomPage.xaml.cs">
       <DependentUpon>WelcomPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddWindows\AddLineScheduleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddWindows\AddBusLineWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -268,6 +278,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="res\languages\AppString_EN.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateWindows\UpdateLineScheduleWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
