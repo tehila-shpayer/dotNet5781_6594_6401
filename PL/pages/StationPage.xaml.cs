@@ -28,9 +28,6 @@ namespace PL
         }
         public StationPage()
         {
-            //MainWindow.stationsCollection.Clear();
-            //foreach (BO.Station s in App.bl.GetAllStations())
-            //    MainWindow.stationsCollection.Add(PoBoAdapter.StationPoBoAdapter(s));
             InitializeComponent();
             lbStations.DataContext = MainWindow.stationsCollection;
             List<string> OrderByString = new List<string> { "Order by key", "Order by name" };
@@ -44,7 +41,7 @@ namespace PL
         private void stations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (lbStations.SelectedIndex >= 0)
-                StationInfoGrid.DataContext = MainWindow.stationsCollection.ElementAt(lbStations.SelectedIndex);
+                StationInfoGrid.DataContext = lbStations.SelectedItem;
         }
 
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -86,7 +83,7 @@ namespace PL
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-            Station station = MainWindow.stationsCollection[lbStations.SelectedIndex];
+            Station station = lbStations.SelectedItem as Station;
             int key = station.Key;
             try
             {

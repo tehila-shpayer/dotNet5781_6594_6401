@@ -1110,4 +1110,34 @@
     <Distance>1945</Distance>
     <AverageTime>3</AverageTime>
   </ConsecutiveStations>
+  <ConsecutiveStations>
+    <StationKey1>38892</StationKey1>
+    <StationKey2>40942</StationKey2>
+    <Distance>44821</Distance>
+    <AverageTime>56</AverageTime>
+  </ConsecutiveStations>
+  <ConsecutiveStations>
+    <StationKey1>40942</StationKey1>
+    <StationKey2>38895</StationKey2>
+    <Distance>45485</Distance>
+    <AverageTime>47</AverageTime>
+  </ConsecutiveStations>
+  <ConsecutiveStations>
+    <StationKey1>71001</StationKey1>
+    <StationKey2>40942</StationKey2>
+    <Distance>46828</Distance>
+    <AverageTime>53</AverageTime>
+  </ConsecutiveStations>
+  <ConsecutiveStations>
+    <StationKey1>40942</StationKey1>
+    <StationKey2>71002</StationKey2>
+    <Distance>46521</Distance>
+    <AverageTime>81</AverageTime>
+  </ConsecutiveStations>
+  <ConsecutiveStations>
+    <StationKey1>71000</StationKey1>
+    <StationKey2>71016</StationKey2>
+    <Distance>89824</Distance>
+    <AverageTime>126</AverageTime>
+  </ConsecutiveStations>
 </ConsecutiveStations>

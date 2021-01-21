@@ -397,7 +397,7 @@ namespace BL
             CheckStationParameters(station);
             try
             {
-                DO.Station StationDO = new DO.Station();
+                DO.Station StationDO = dl.GetStation(station.Key);
                 if (station.Latitude != StationDO.Latitude || station.Longitude != StationDO.Longitude)
                 {
                     foreach (DO.BusLineStation bls in dl.GetAllBusLineStationsBy(ls => ls.StationKey == station.Key))

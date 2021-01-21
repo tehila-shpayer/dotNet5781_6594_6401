@@ -55,4 +55,9 @@
     <LineNumber>424</LineNumber>
     <Area>Center</Area>
   </BusLine>
+  <BusLine>
+    <Key>1799</Key>
+    <LineNumber>500</LineNumber>
+    <Area>Center</Area>
+  </BusLine>
 </ArrayOfBusLine>
