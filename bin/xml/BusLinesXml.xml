@@ -40,4 +40,14 @@
     <LineNumber>32</LineNumber>
     <Area>Hifa</Area>
   </BusLine>
+  <BusLine>
+    <Key>1796</Key>
+    <LineNumber>251</LineNumber>
+    <Area>Center</Area>
+  </BusLine>
+  <BusLine>
+    <Key>1797</Key>
+    <LineNumber>20</LineNumber>
+    <Area>Center</Area>
+  </BusLine>
 </ArrayOfBusLine>
