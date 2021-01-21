@@ -465,7 +465,7 @@ namespace DL
                        TimeSpan.Parse(ls.Element("StartTime").Value) == startTime 
                        select new LineSchedule()
                        {
-                           LineKey = int.Parse(ls.Element("LicenseNumber").Value),
+                           LineKey = int.Parse(ls.Element("LineKey").Value),
                            StartTime = TimeSpan.Parse(ls.Element("StartTime").Value),
                            EndTime = TimeSpan.Parse(ls.Element("EndTime").Value),
                            Frequency = Int32.Parse(ls.Element("Frequency").Value),
