@@ -15,4 +15,19 @@
     <LineNumber>141</LineNumber>
     <Area>Jerusalem</Area>
   </BusLine>
+  <BusLine>
+    <Key>1790</Key>
+    <LineNumber>949</LineNumber>
+    <Area>Jerusalem</Area>
+  </BusLine>
+  <BusLine>
+    <Key>1791</Key>
+    <LineNumber>86</LineNumber>
+    <Area>Center</Area>
+  </BusLine>
+  <BusLine>
+    <Key>1792</Key>
+    <LineNumber>86</LineNumber>
+    <Area>Center</Area>
+  </BusLine>
 </ArrayOfBusLine>
