@@ -59,5 +59,11 @@ namespace PL
             if (cbSource.SelectedItem != null)
                 searchButton.IsEnabled = true;
         }
+
+        private void lbLines_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            LineAndScheduleWindow w = new LineAndScheduleWindow((lbLines.SelectedItems as PresentBusLineForStation).Key, (cbSource.SelectedItem as Station).Key, (cbDestination.SelectedItem as Station).Key);
+            w.Show();
+        }
     }
 }
