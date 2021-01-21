@@ -56,7 +56,7 @@
                 <materialDesign:PackIcon Kind="Search" Margin="0,-28,10,5" Width="25" Height="25" HorizontalAlignment="Right" Foreground="Gray"/>
             </StackPanel>-->
             <StackPanel Orientation="Vertical" Margin="0">
-                <Label Content="הראה על פי קו" Foreground="#FF476972" FontWeight="Bold" FontSize="14"/>
+                <Label Content="{DynamicResource LineSchedulePage_ShowByLine}" Foreground="#FF476972" FontWeight="Bold" FontSize="14"/>
                 <ComboBox x:Name="linescb"  ItemsSource="{Binding}" Background="White" Margin="0,0" AllowDrop="True" SelectionChanged="linescb_SelectionChanged"  HorizontalContentAlignment="Right"/>
             </StackPanel>
             <ListBox x:Name="lbLineSchedules" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource LineScheduleTemplate}" BorderBrush="#FF222222" SelectionChanged="lbLineSchedules_SelectionChanged"  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="400" Margin="0,0,0.4,0" HorizontalContentAlignment="Right">

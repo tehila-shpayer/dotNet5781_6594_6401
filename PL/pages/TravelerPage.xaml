@@ -51,9 +51,9 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1.5*"/>
                     <ColumnDefinition Width="0.8*"/>
+                    <ColumnDefinition Width="0.7*"/>
                     <ColumnDefinition Width="0.8*"/>
-                    <ColumnDefinition Width="0.8*"/>
-                    <ColumnDefinition Width="2.5*"/>
+                    <ColumnDefinition Width="2.2*"/>
                 </Grid.ColumnDefinitions>
                 <Button x:Name="SimulationButton" Grid.Column="0" Width="100" Margin="5,0"  Click="SimulationButton_Click" Background="#FF477AA9" BorderBrush="{x:Null}" Height="38" VerticalAlignment="Center">
                     <Grid Width="145" Height="25">
@@ -73,7 +73,7 @@
                 <TextBlock x:Name="tblRate" Width="60" Margin="0" Text="{Binding ElementName=tbRate, Path=Text}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Visible" FontSize="40" FontFamily="Segoe UI Black" FontWeight="Bold" Foreground="#FF2B703D" Grid.Column="2" TextAlignment="Center"/>
                 <TextBox x:Name="tbRate" Width="60" Margin="0" Text="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="40" FontWeight="Bold" FontFamily="Segoe UI Black" Foreground="#FF2B703D" Grid.Column="2" BorderBrush="{x:Null}"/>
                 <Label Content="{DynamicResource SimulationPage_Clock}" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="Segoe UI Black" FontWeight="Bold" VerticalContentAlignment="Center" Grid.Column="3"/>
-                <StackPanel Orientation="Horizontal" Grid.Column="4" Margin="0" VerticalAlignment="Center" Width="200">
+                <StackPanel FlowDirection="RightToLeft" Orientation="Horizontal" Grid.Column="4" Margin="0" VerticalAlignment="Center" Width="170">
                     <TextBox x:Name="tbSeconds"  Margin="0" Text="00" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" FontSize="40" FontFamily="Segoe UI Black" FontWeight="Bold" BorderBrush="{x:Null}" Foreground="#FF2B703D"/>
                     <TextBlock x:Name="tbDots1" Margin="0" Text=":" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="40" FontFamily="Segoe UI Black" FontWeight="Bold" Foreground="#FF2B703D"/>
                     <TextBox x:Name="tbMinutes" Margin="0" Text="00" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" FontSize="40" FontFamily="Segoe UI Black" FontWeight="Bold" Foreground="#FF2B703D" BorderBrush="{x:Null}"/>
