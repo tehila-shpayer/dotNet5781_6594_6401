@@ -114,11 +114,12 @@
     <System:String x:Key="LineSchedulePage_UpdateLineSchedule">UPDATE SCHEDULE</System:String>
     <System:String x:Key="LineSchedulePage_DeleteLineSchedule">DELETE SCHEDULE</System:String>
     <System:String x:Key="LineSchedulePage_AddLineSchedule">ADD SCHEDULE</System:String>
+    <System:String x:Key="LineSchedulePage_ShowByLine">Show By Line</System:String>
     <System:String x:Key="LineSchedulePage_StartTime">Start Time:</System:String>
     <System:String x:Key="LineSchedulePage_EndTime">End Time:</System:String>
     <System:String x:Key="LineSchedulePage_Frequency">Frequency:</System:String>
-    <System:String x:Key="LineSchedulePage_Each" xml:space="preserve">Every </System:String>
-    <System:String x:Key="LineSchedulePage_Minutes" xml:space="preserve"> minuets</System:String>
+    <System:String x:Key="LineSchedulePage_Each" xml:space="preserve">Every</System:String>
+    <System:String x:Key="LineSchedulePage_Minutes" xml:space="preserve">minuets</System:String>
     <!--#endregion-->
     <System:String x:Key="AddLineScheduleWindow_Title">Add Line Schedule</System:String>
     <System:String x:Key="AddLineScheduleWindow_LineKey">Line Key:</System:String>
