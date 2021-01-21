@@ -25,6 +25,7 @@ namespace PL
             InitializeComponent();
             lbLineSchedules.DataContext = MainWindow.lineSchedulesCollection;
             lbLineSchedules.SelectedIndex = 0;
+            ScheduleInfoGrid.DataContext = MainWindow.lineSchedulesCollection.ElementAt(0);
             mainGrid.DataContext = MainWindow.Language;
         }
 
