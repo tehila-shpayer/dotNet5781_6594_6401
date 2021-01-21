@@ -19,7 +19,7 @@
         <Rectangle Grid.Column="0" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
         </Rectangle>
         <StackPanel Margin="70,50,70.333,47.667">
-            <Label Content="{DynamicResource AddStationWindow_Title}" FontSize="25" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
+            <Label Content="הוסף קו" FontSize="25" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
             <Grid x:Name="grid1" HorizontalAlignment="Center" Margin="20,20,20,30" VerticalAlignment="Center" Height="238" Width="333">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>

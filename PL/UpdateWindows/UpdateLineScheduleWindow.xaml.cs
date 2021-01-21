@@ -28,6 +28,7 @@ namespace PL
             lineScheduleBO = App.bl.GetLineSchedule(lineSchedule.LineKey, lineSchedule.StartTime);
             updatingLineSchedule = lineSchedule;
             grid1.DataContext = lineScheduleBO;
+            endTimeTimePicker.SelectedTime = new DateTime(lineSchedule.EndTime.Ticks);
             beforeUpdateindex = MainWindow.lineSchedulesCollection.IndexOf(updatingLineSchedule);
             mainGrid.DataContext = MainWindow.Language;
         }
@@ -47,6 +48,7 @@ namespace PL
             {
                 lineScheduleBO.LineKey = updatingLineSchedule.LineKey;
                 lineScheduleBO.StartTime = updatingLineSchedule.StartTime;
+                lineScheduleBO.EndTime = endTimeTimePicker.SelectedTime.Value.TimeOfDay;
                 App.bl.UpdateLineSchedule(lineScheduleBO);
                 MainWindow.lineSchedulesCollection[beforeUpdateindex] = PoBoAdapter.LineSchedulePoBoAdapter(lineScheduleBO);
                 MessageBox.Show($"Line schedule of line {lineScheduleBO.LineKey} updated successfully.", "UPDATE LINE SHEDULE MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
