@@ -127,21 +127,9 @@ namespace PL
         }
         void Sort()
         {
-            var collection = new ObservableCollection<Station>();
-            switch (cbStations.SelectedItem.ToString())
-            {
-                case "Order by key":
-                    foreach (Station station in MainWindow.stationsCollection.OrderBy(s => s.Key))
-                        collection.Add(station);
-                    break;
-                case "Order by name":
-                    foreach (Station station in MainWindow.stationsCollection.OrderBy(s => s.Name))
-                        collection.Add(station); break;
-                default: break;
-            }
-            MainWindow.stationsCollection.Clear();
-            foreach (Station station in collection)
-                MainWindow.stationsCollection.Add(station);
+            MainWindow.stationsCollection = new ObservableCollection<Station>(from s in App.bl.GetAllStationsOrderedBy(cbStations.SelectedItem.ToString())
+                                                                              select PoBoAdapter.StationPoBoAdapter(s));
+            lbStations.DataContext = MainWindow.stationsCollection;
         }
     }
 }

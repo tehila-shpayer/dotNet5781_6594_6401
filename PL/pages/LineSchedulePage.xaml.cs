@@ -27,6 +27,11 @@ namespace PL
             lbLineSchedules.SelectedIndex = 0;
             ScheduleInfoGrid.DataContext = MainWindow.lineSchedulesCollection.ElementAt(0);
             mainGrid.DataContext = MainWindow.Language;
+            //linescb.DataContext = from ls in MainWindow.lineSchedulesCollection
+            //                      group line = ls.Clone()
+            //                      where MainWindow.lineSchedulesCollection.Remove(ls)
+            //                      where !(MainWindow.lineSchedulesCollection.Contains(line))
+            //                      select line.LineNumber;
         }
 
         private void lbLineSchedules_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -83,6 +88,59 @@ namespace PL
             AddLineScheduleWindow addLineScheduleWindow = new AddLineScheduleWindow();
             addLineScheduleWindow.ShowDialog();
         }
+
+        private void linescb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var groupByLineNumber = from ls in MainWindow.lineSchedulesCollection
+                                    group ls by ls.LineNumber into newGroup
+                                    //orderby newGroup.Key
+                                    select newGroup;
+            lbLineSchedules.DataContext = groupByLineNumber.FirstOrDefault(ls => ls.Key == int.Parse(linescb.SelectedItem.ToString()));
+        }
+
+        private void cbLineSchedule_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+    //    void filter()
+    //    {
+    //        foreach (var item in MainWindow.lineSchedulesCollection)
+    //        {
+    //            ListBoxItem ls = (ListBoxItem)lbLineSchedules.ItemContainerGenerator.ContainerFromItem(item);
+    //            //ContainerFromItem(item);
+    //            //String searchS = searchBox.Text;
+    //            //int num = searchS.Length;
+
+    //            if (ls != null)
+    //            {
+    //                if (checkBusLineNumber(item) && checkLineNumberInSearchBox(item))
+    //                {
+    //                    bus.Visibility = Visibility.Visible;
+    //                }
+    //                else
+    //                    bus.Visibility = Visibility.Collapsed;
+    //            }
+    //        }
+    //    }
+    //    bool checkLineNumberInSearchBox(BusLine item)
+    //    {
+    //        String searchS = searchBox.Text;
+    //        int num = searchS.Length;
+    //        return (num <= item.LineNumber.ToString().Length
+    //               && searchS == (item as BusLine).LineNumber.ToString().Substring(0, num));
+    //    }
+    //    bool checkLineNumber(BusLine item)
+    //    {
+    //        var queryLastNames =    from student in students
+    //group student by student.LastName into newGroup
+    //orderby newGroup.Key
+    //select newGroup;
+    //    }
 
     }
 }

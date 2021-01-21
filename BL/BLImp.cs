@@ -168,7 +168,7 @@ namespace BL
             else
                 bus.Status = Status.Ready;
         }
-        
+
 
         public void AddBus(Bus bus)
         {
@@ -330,6 +330,21 @@ namespace BL
 
             StationBO.BusLines = dl.GetAllLinesInStation(StationBO.Key);
             return StationBO;
+        }
+        public IEnumerable<Station> GetAllStationsOrderedBy(string orderBy)
+        {
+            switch (orderBy)
+            {
+                case "Order by key":
+                    return from s in dl.GetAllStations()
+                           orderby s.Key
+                           select StationDoBoAdapter(s);
+                case "Order by name":
+                    return from s in dl.GetAllStations()
+                           orderby s.Name
+                           select StationDoBoAdapter(s);
+                default: return GetAllStations();
+            }
         }
         public Station GetStation(int stationKey)
         {
@@ -575,7 +590,7 @@ namespace BL
         }
         public Station GetPreviouseStation(int lineStationKey, int position)
         {
-            if(position == 1)
+            if (position == 1)
                 throw new BOArgumentNotFoundException($"Can't find previouse station of station in position 1");
             BusLineStation bls = GetBusLineStation(lineStationKey, position);
             BusLineStation prev = GetBusLineStation(bls.BusLineKey, bls.Position - 1);
@@ -671,7 +686,7 @@ namespace BL
             GeoCoordinate locationOfFirst = new GeoCoordinate(station1.Latitude, station1.Longitude);//מיקום התחנה המחושבת
             GeoCoordinate locationOfSecond = new GeoCoordinate(station2.Latitude, station2.Longitude);//מיקום התחנה הקודמת
             double distance = locationOfFirst.GetDistanceTo(locationOfSecond);//חישוב מרחק
-            int time = Convert.ToInt32(distance / (speed * 1000 / 60)+1);//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש
+            int time = Convert.ToInt32(distance / (speed * 1000 / 60) + 1);//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש
             consecutiveStations.Distance = (int)distance;
             consecutiveStations.AverageTime = time;
             return consecutiveStations;
@@ -785,7 +800,7 @@ namespace BL
             {
                 DO.BusLineStation busLineStationDO = dl.GetBusLineStationByKey(busKey, stationKey);
                 int position = busLineStationDO.Position;
-                
+
                 if (position != busLine.BusLineStations.Count() && position != 1)
                 {//אם זו לא התחנה האחרונה יש לעדכן את פרטי הזמן והמרחק של התחנה הבאה                     
                     DO.BusLineStation prevBusLineStationDO = dl.GetBusLineStationBy
@@ -843,7 +858,7 @@ namespace BL
         public IEnumerable<LineSchedule> GetAllLineSchedules()
         {
             var AllLineSchedules = from ls in dl.GetAllLineSchedules()
-                              select LineScheduleDoBoAdapter(ls);
+                                   select LineScheduleDoBoAdapter(ls);
             return AllLineSchedules;
         }
         public IEnumerable<LineSchedule> GetAllLineSchedulesOfLine(int Line)
@@ -866,7 +881,7 @@ namespace BL
             }
             catch (DO.ArgumentNotFoundException ex)
             {
-                throw new BOArgumentNotFoundException($"Can't add the line schedule. "+ ex.Message);
+                throw new BOArgumentNotFoundException($"Can't add the line schedule. " + ex.Message);
             }
         }
         public void UpdateLineSchedule(LineSchedule lineSchedule)
@@ -911,7 +926,7 @@ namespace BL
             bit.LineKey = lineSchedule.LineKey;
             bit.StationKey = station.Key;
             //bit.StartTime = lineSchedule.StartTime + new TimeSpan(0, i * lineSchedule.Frequency, 0);
-            bit.StartTime = TimeSpan.FromSeconds(i.TotalSeconds*mix(lineSchedule.LineKey)/100);
+            bit.StartTime = TimeSpan.FromSeconds(i.TotalSeconds * mix(lineSchedule.LineKey) / 100);
             bit.TimeLeft = GetTimeLeft(bit, time);
             if (bit.TimeLeft < new TimeSpan(0, 0, 0) || bit.TimeLeft > new TimeSpan(1, 30, 0))
                 return null;
@@ -923,7 +938,7 @@ namespace BL
         }
         TimeSpan GetTimeLeft(BusInTravel bit, TimeSpan time)
         {
-            return GetTimeFromFirstStation(bit.LineKey, bit.StationKey) - (time - bit.StartTime);            
+            return GetTimeFromFirstStation(bit.LineKey, bit.StationKey) - (time - bit.StartTime);
         }
         TimeSpan GetTimeFromFirstStation(int lineKey, int stationKey)
         {
@@ -937,15 +952,15 @@ namespace BL
             }
             return new TimeSpan(0, totalMinutes, 0);
         }
-        public IEnumerable<BusInTravel> GetLineTimingsPerStation(int stationKey, TimeSpan time , double latePrecentage)
+        public IEnumerable<BusInTravel> GetLineTimingsPerStation(int stationKey, TimeSpan time, double latePrecentage)
         {
             Station station = GetStation(stationKey);
             IEnumerable<BusInTravel> busInTravels = new List<BusInTravel>();
             var lineSchedules = from bl in station.BusLines
-                    let schedules = GetAllLineSchedulesOfLine(bl)
-                    from ls in schedules
-                    where Between(ls, time)
-                    select ls;
+                                let schedules = GetAllLineSchedulesOfLine(bl)
+                                from ls in schedules
+                                where Between(ls, time)
+                                select ls;
             foreach (LineSchedule schedule in lineSchedules)
             {
                 //for (int i = 0; schedule.StartTime + new TimeSpan(0, i * schedule.Frequency -30, 0) < time; i++)
@@ -954,7 +969,7 @@ namespace BL
                 //    if (busInTravel != null)
                 //        busInTravels = busInTravels.Append(busInTravel);
                 //}
-                for (TimeSpan i = GetFirstTravelTime(schedule, time); i < time + new TimeSpan(1,0,0) && i <= schedule.EndTime ; i += new TimeSpan(0, schedule.Frequency,0))
+                for (TimeSpan i = GetFirstTravelTime(schedule, time); i < time + new TimeSpan(1, 0, 0) && i <= schedule.EndTime; i += new TimeSpan(0, schedule.Frequency, 0))
                 {
                     BusInTravel busInTravel = CreateBusInTravel(time, schedule, i, station, latePrecentage);
                     if (busInTravel != null)
@@ -974,7 +989,7 @@ namespace BL
             //    }
             //    return lineSchedule.StartTime;
             //}
-            
+
             while (time - new TimeSpan(1, 0, 0) > tmp)
             {
                 tmp += new TimeSpan(0, lineSchedule.Frequency, 0);
@@ -983,7 +998,7 @@ namespace BL
         }
         bool Between(LineSchedule lineSchedule, TimeSpan time)
         {
-            return (lineSchedule.StartTime < time && lineSchedule.EndTime > time) || lineSchedule.StartTime < time -new TimeSpan(1, 0, 0) && lineSchedule.EndTime > time - new TimeSpan(1,0,0)|| lineSchedule.StartTime < time + new TimeSpan(1, 0, 0) && lineSchedule.EndTime > time + new TimeSpan(1, 0, 0);
+            return (lineSchedule.StartTime < time && lineSchedule.EndTime > time) || lineSchedule.StartTime < time - new TimeSpan(1, 0, 0) && lineSchedule.EndTime > time - new TimeSpan(1, 0, 0) || lineSchedule.StartTime < time + new TimeSpan(1, 0, 0) && lineSchedule.EndTime > time + new TimeSpan(1, 0, 0);
         }
         TimeSpan Max(TimeSpan t1, TimeSpan t2)
         {
@@ -991,52 +1006,6 @@ namespace BL
                 return t1;
             return t2;
         }
-        //public IEnumerable<BusInTravel> GetLineTimingsPerStation(int stationKey, TimeSpan startTime)
-        //{
-        //    Station station = GetStation(stationKey);
-        //    IEnumerable<BusInTravel> busInTravels = new List<BusInTravel>();
-        //    foreach (int line in station.BusLines)
-        //    {
-        //        foreach (LineSchedule ls in GetAllLineSchedulesOfLine(line))
-        //        {
-        //            if (ls.StartTime.TotalSeconds <= startTime.TotalSeconds && startTime.TotalSeconds <= ls.EndTime.TotalSeconds)
-        //            {
-        //                BusLineStation bls = GetBusLineStationByKey(ls.LineKey, stationKey);
-        //                String lastStationName = GetStation(GetBusLine(ls.LineKey).LastStation).Name;
-        //                int frequenciesCount = Convert.ToInt32((ls.EndTime.TotalMinutes - startTime.TotalMinutes) / ls.Frequency) + 1;
-        //                for (int i = 0; i < frequenciesCount; i++)
-        //                {
-        //                    BusInTravel bit = new BusInTravel();
-        //                    Random rand = new Random();
-        //                    var buses = GetAllBuses();
-        //                    int busIndex = rand.Next(0, buses.Count());
-        //                    string licenseNumber = buses.ElementAt(busIndex).LicenseNumber;
-        //                    bit.Key = BusInTravel.BUS_TRAVEL_KEY++;
-        //                    bit.BusLicenseNumber = licenseNumber;
-        //                    bit.LineKey = ls.LineKey;
-        //                    bit.StationKey = stationKey;
-        //                    bit.StartTime = new TimeSpan(startTime.Ticks + ls.Frequency * i * TimeSpan.TicksPerMinute);
-        //                    bit.LastStationName = lastStationName;
-        //                    bit.TimeLeft = new TimeSpan(GetTimeFromFirstStationInMillySeconds(bls) * TimeSpan.TicksPerMillisecond);
-
-        //                }
-        //            }
-        //        }
-        //    }
-        //    return busInTravels;
-        //}
-        //int GetTimeFromFirstStationInMillySeconds(BusLineStation bls)
-        //{
-        //    int timeInMinutes = 0;
-        //    Stopwatch stopwatch = new Stopwatch();
-        //    BusLineStation tempBls = new BusLineStation();
-        //    for (int i = 2; i <= bls.Position; i++)
-        //    {
-        //        tempBls = GetBusLineStation(bls.BusLineKey, i);
-        //        timeInMinutes += tempBls.TravelTimeFromLastStationMinutes;
-        //    }
-        //    return timeInMinutes * 1000 * 60;
-        //}
         #endregion
 
     }
