@@ -58,6 +58,7 @@
     <System:String x:Key="Menue_Buses">אוטובוסים</System:String>
     <System:String x:Key="Menue_Settings">הגדרות</System:String>
     <System:String x:Key="Menue_Simulation">סימולציה</System:String>
+    <System:String x:Key="Menue_LineSchedules">יציאות קווים</System:String>
 
     <System:String x:Key="AddBusLineStationWindow_ChooseStation">בחר תחנה:</System:String>
     
