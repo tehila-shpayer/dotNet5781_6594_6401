@@ -2,7 +2,7 @@
 <ArrayOfUser xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <User>
     <UserName>shpayer</UserName>
-    <Password>zIHhfLHA13qd/HT01Ul+KSqhElX4Xio+PO3v65NwmOXaTYFrz6US/bHb1W/IPUFJ1dxMkbd/GE0X6Yw2+Jpi8w==</Password>
+    <Password>UOu82XjQ0pg/M5PLIxEpqHeQdxc+eCpAfsctZVJl3qUl3hpy990TsHzrSo/KO/nRZgKL+CNJ4Dcc+ie0f3TBWQ==</Password>
     <Salt>2008385385</Salt>
     <AuthorizationManagement>Manager</AuthorizationManagement>
     <Email>tehila1742@gmail.com</Email>
@@ -10,6 +10,7 @@
     <Address>כוכב יעקב, דבש וחלב 348</Address>
     <FirstName>תהילה</FirstName>
     <LastName>שפייר</LastName>
+    <Picture>file:///C:/Users/tehil/OneDrive/תמונות/image.jpg</Picture>
   </User>
   <User>
     <UserName>sTraveler</UserName>

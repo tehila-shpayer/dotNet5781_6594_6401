@@ -104,7 +104,7 @@ namespace PL
 
         private void savePasswordButton_Click(object sender, RoutedEventArgs e)
         {
-            if (OldPassword.Password != user.Password)
+            if (Tools.hashPassword(OldPassword.Password + user.Salt) != user.Password)
             {
                 MessageBox.Show("Incorect password!\nPlease try again", "UPDATE PASSWORD MESSAGE", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
