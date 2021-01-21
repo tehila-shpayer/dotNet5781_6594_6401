@@ -1020,6 +1020,15 @@ namespace BL
         }
         #endregion
 
+        public IEnumerable<BusLine> FindRoutes(Station s1, Station s2)
+        {
+            s1.BusLines = dl.GetAllLinesInStation(s1.Key);
+            s2.BusLines = dl.GetAllLinesInStation(s2.Key);
+            return from line1 in s1.BusLines
+                        from line2 in s2.BusLines
+                        where line1 == line2 && GetBusLine(line1).BusLineStations.First(bls => bls.StationKey == s1.Key).Position < GetBusLine(line1).BusLineStations.First(bls => bls.StationKey == s2.Key).Position
+                        select GetBusLine(line1);
+        }
     }
 }
 
