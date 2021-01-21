@@ -28,7 +28,7 @@ namespace PL
             ScheduleInfoGrid.DataContext = MainWindow.lineSchedulesCollection.ElementAt(0);
             mainGrid.DataContext = MainWindow.Language;
             linescb.DataContext = from ls in MainWindow.lineSchedulesCollection
-                                  group ls by ls.LineNumber into newGroup
+                                  group ls by ls.LineKey into newGroup
                                   orderby newGroup.Key
                                   select newGroup.Key;
         }
@@ -91,8 +91,7 @@ namespace PL
         private void linescb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var groupByLineNumber = from ls in MainWindow.lineSchedulesCollection
-                                    group ls by ls.LineNumber into newGroup
-                                    //orderby newGroup.Key
+                                    group ls by ls.LineKey into newGroup
                                     select newGroup;
             lbLineSchedules.DataContext = groupByLineNumber.FirstOrDefault(ls => ls.Key == int.Parse(linescb.SelectedItem.ToString())).ToList();
         }
