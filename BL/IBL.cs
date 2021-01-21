@@ -66,6 +66,7 @@ namespace BLAPI
 
         #region Station
         BO.Station StationDoBoAdapter(DO.Station StationDO);
+        IEnumerable<Station> GetAllStationsOrderedBy(string orderBy);
         Station GetStation(int stationKey);
         IEnumerable<Station> GetAllStations();
         int AddStation(Station station);

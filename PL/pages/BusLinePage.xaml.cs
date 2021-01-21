@@ -25,7 +25,6 @@ namespace PL
         {
             
             InitializeComponent();
-            //MainWindow.InitializeCollections();
             lbBusLines.DataContext = MainWindow.busLinesCollection;
             List<string> AreasString = new List<string> { "All", "Center", "General", "Hifa", "Jerusalem", "North", "South", "TelAviv", "YehudaAndShomron" };
             List<string> OrderByString = new List<string> { "Order by key", "Order by number", "Order by area" };
@@ -121,7 +120,7 @@ namespace PL
             {
                 UpdateBusLineWindow update = new UpdateBusLineWindow(MainWindow.busLinesCollection[lbBusLines.SelectedIndex]);
                 update.ShowDialog();
-                //Sort(lbBusLines.SelectedIndex);
+                Sort();
             }
             catch (Exception ex)
             {
@@ -159,6 +158,7 @@ namespace PL
             addBusLineStation.ShowDialog();
             MainWindow.InitializeBusLines();
             MainWindow.InitializeStations();
+            Sort();
             lbBusLines.DataContext = MainWindow.busLinesCollection;
             lbBusLines.SelectedIndex = index;
         }
@@ -194,11 +194,6 @@ namespace PL
         }
         void Sort()
         {
-            //MainWindow.busLinesCollection.Clear();
-            //foreach (BO.BusLine bus in App.bl.GetAllBusLinesOrderedBy(cbBusLines.SelectedItem.ToString()))
-            //    MainWindow.busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(bus));
-            ////ShowByArea();
-            //lbBusLines.SelectedIndex = index;
             MainWindow.busLinesCollection = new ObservableCollection<BusLine>(from bl in App.bl.GetAllBusLinesOrderedBy(cbBusLines.SelectedItem.ToString())
                                                                               select PoBoAdapter.BusLinePoBoAdapter(bl));
             lbBusLines.DataContext = MainWindow.busLinesCollection;
