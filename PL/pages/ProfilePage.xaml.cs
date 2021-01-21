@@ -29,8 +29,15 @@ namespace PL
             InitializeComponent();
             user = _user;
             ProfilGrid.DataContext = user;
-            if(user.Picture != null)
-                imgPhoto.Source = new BitmapImage(new Uri(user.Picture));
+            try
+            {
+                if (user.Picture != null)
+                    imgPhoto.Source = new BitmapImage(new Uri(user.Picture));
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Can't upload photo.", "PROFILE PHOTO UPLOAD", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             userBO = new BO.User();
             user.Clone(userBO);
             mainGrid.DataContext = MainWindow.Language;
