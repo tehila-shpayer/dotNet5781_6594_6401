@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using System.Device.Location;
 using BLAPI;
 using DLAPI;
-
+using DL;
+using System.Xml.Linq;
 
 namespace PLConsole
 {
@@ -45,11 +46,30 @@ namespace PLConsole
         {
             return GetTime(GetDistance(stationKey1, stationKey2));
         }
+        
         static void Main(string[] args)
         {
             //string s;
-            string runningNumbersPath = @"RunningNumbersXml.xml";
+            string lineSchedulesPath = @"LineSchedulesXml.xml";
             Console.WriteLine("Welcome!");
+
+            #region Line Schedule
+            //DO.LineSchedule lineSchedule = new DO.LineSchedule();
+            //lineSchedule.LineKey = 1795;
+            //lineSchedule.StartTime = new TimeSpan(8, 15, 0);
+            //lineSchedule.EndTime = new TimeSpan(22, 45, 0);
+            //lineSchedule.Frequency = 15;
+            //XElement lineScheduleRootElem = XmlTools.LoadListFromXMLElement(lineSchedulesPath);
+
+            //XElement lineScheduleElem = new XElement("LineSchedule", new XElement("LineKey", lineSchedule.LineKey.ToString()),
+            //                      new XElement("StartTime", lineSchedule.StartTime.ToString()),
+            //                      new XElement("EndTime", lineSchedule.EndTime.ToString()),
+            //                      new XElement("Frequency", lineSchedule.Frequency.ToString()));
+
+            //lineScheduleRootElem.Add(lineScheduleElem);
+            //XmlTools.SaveListToXMLElement(lineScheduleRootElem, lineSchedulesPath);
+            #endregion
+
             //List<int> ListKeys = XmlTools.LoadListFromXMLSerializer<int>(runningNumbersPath);
             //XmlTools.SaveListToXMLSerializer(ListKeys, runningNumbersPath);
             //foreach (DO.Station s1 in dl.GetAllStations())
@@ -62,37 +82,37 @@ namespace PLConsole
             //        }
             //    }
             //}
-            Random rand = new Random(DateTime.Now.Millisecond);
-            DO.Bus bus = new DO.Bus();
-            for (int i = 1; i <= 10; i++)
-            {
-                String s;
-                int year;
-                //5 buses from before 2018 - 7 digit license number
-                if (i % 2 == 0)
-                {
-                    s = rand.Next(1000000, 9999999).ToString();
-                    year = rand.Next(1895, 2018);
-                }
-                //5 buses from 2018 and on - 8 digit license number
-                else
-                {
-                    s = rand.Next(10000000, 99999999).ToString();
-                    year = rand.Next(2018, DateTime.Now.Year + 1);
-                }
-                int KM = rand.Next(0, 30000);
-                int bt = rand.Next(0, Min(rand.Next(0, 20000), KM));//KM can't be smaller than bt
-                int fuel = rand.Next(0, 1201);
-                //some buses have low fuel
-                if (i % 5 == 3)
-                {
-                    fuel = 0;
-                }
-                bus.LicenseNumber = s;bus.RunningDate = new DateTime(year, rand.Next(1, 13), rand.Next(1, 30)); bus.Fuel = fuel;
-                bus.KM = KM; bus.BeforeTreatKM = bt; bus.LastTreatment = bus.RunningDate;
-                //some buses are after treatment
-                dl.AddBus(bus);
-            }
+            //Random rand = new Random(DateTime.Now.Millisecond);
+            //DO.Bus bus = new DO.Bus();
+            //for (int i = 1; i <= 10; i++)
+            //{
+            //    String s;
+            //    int year;
+            //    //5 buses from before 2018 - 7 digit license number
+            //    if (i % 2 == 0)
+            //    {
+            //        s = rand.Next(1000000, 9999999).ToString();
+            //        year = rand.Next(1895, 2018);
+            //    }
+            //    //5 buses from 2018 and on - 8 digit license number
+            //    else
+            //    {
+            //        s = rand.Next(10000000, 99999999).ToString();
+            //        year = rand.Next(2018, DateTime.Now.Year + 1);
+            //    }
+            //    int KM = rand.Next(0, 30000);
+            //    int bt = rand.Next(0, Min(rand.Next(0, 20000), KM));//KM can't be smaller than bt
+            //    int fuel = rand.Next(0, 1201);
+            //    //some buses have low fuel
+            //    if (i % 5 == 3)
+            //    {
+            //        fuel = 0;
+            //    }
+            //    bus.LicenseNumber = s;bus.RunningDate = new DateTime(year, rand.Next(1, 13), rand.Next(1, 30)); bus.Fuel = fuel;
+            //    bus.KM = KM; bus.BeforeTreatKM = bt; bus.LastTreatment = bus.RunningDate;
+            //    //some buses are after treatment
+            //    dl.AddBus(bus);
+            //}
             /*           do
                        {
 

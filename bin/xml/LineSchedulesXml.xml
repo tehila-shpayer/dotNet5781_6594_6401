@@ -1,4 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <lineSchedules>
-	
+  <LineSchedule>
+    <LineKey>1795</LineKey>
+    <StartTime>08:15:00</StartTime>
+    <EndTime>22:45:00</EndTime>
+    <Frequency>15</Frequency>
+  </LineSchedule>
 </lineSchedules>
