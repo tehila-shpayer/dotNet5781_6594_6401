@@ -1068,4 +1068,28 @@
     <Distance>711</Distance>
     <AverageTime>2</AverageTime>
   </ConsecutiveStations>
+  <ConsecutiveStations>
+    <StationKey1>71027</StationKey1>
+    <StationKey2>71000</StationKey2>
+    <Distance>136858</Distance>
+    <AverageTime>162</AverageTime>
+  </ConsecutiveStations>
+  <ConsecutiveStations>
+    <StationKey1>71000</StationKey1>
+    <StationKey2>71028</StationKey2>
+    <Distance>136707</Distance>
+    <AverageTime>179</AverageTime>
+  </ConsecutiveStations>
+  <ConsecutiveStations>
+    <StationKey1>71027</StationKey1>
+    <StationKey2>38879</StationKey2>
+    <Distance>65662</Distance>
+    <AverageTime>128</AverageTime>
+  </ConsecutiveStations>
+  <ConsecutiveStations>
+    <StationKey1>38879</StationKey1>
+    <StationKey2>71028</StationKey2>
+    <Distance>65756</Distance>
+    <AverageTime>71</AverageTime>
+  </ConsecutiveStations>
 </ConsecutiveStations>

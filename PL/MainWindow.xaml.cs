@@ -65,8 +65,8 @@ namespace PL
             //{
             //    busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(bl));
             //}
-            busLinesCollection = new ObservableCollection<BusLine>(from bl in App.bl.GetAllBusLines()
-                                                                   select PoBoAdapter.BusLinePoBoAdapter(bl));
+            busLinesCollection = new ObservableCollection<BusLine>((from bl in App.bl.GetAllBusLines()
+                                                                   select PoBoAdapter.BusLinePoBoAdapter(bl)).ToList());
         }
         static public void InitializeBuses()
         {
