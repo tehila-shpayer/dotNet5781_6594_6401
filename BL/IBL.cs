@@ -98,5 +98,6 @@ namespace BLAPI
         //void UpdateBusInTravel(int key, Action<BusInTravel> update); //method that knows to updt specific fields in BusInTravel
         #endregion
 
+        IEnumerable<BusLine> FindRoutes(Station s1, Station s2);
     }
 }

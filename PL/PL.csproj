@@ -114,6 +114,9 @@
     <Compile Include="pages\LineSchedulePage.xaml.cs">
       <DependentUpon>LineSchedulePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="pages\PlanJourneyPage.xaml.cs">
+      <DependentUpon>PlanJourneyPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\TravelerMenuPage.xaml.cs">
       <DependentUpon>TravelerMenuPage.xaml</DependentUpon>
     </Compile>
@@ -213,6 +216,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\LineSchedulePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\PlanJourneyPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

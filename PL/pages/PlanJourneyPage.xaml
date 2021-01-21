@@ -1,0 +1,69 @@
+﻿<Page x:Class="PL.PlanJourneyPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PL"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PlanJourneyPage">
+    <Page.Resources>
+        <DataTemplate x:Key="BusLineTemplate" DataType="local:PresentBusLineForStation">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="Auto" >
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{Binding LineNumber}" TextAlignment="Left" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI Black"/>
+                    <TextBlock Text="{Binding Key}" TextAlignment="Left" FontSize="14"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="12,5">
+                    <TextBlock Text="{Binding NameFirstStation}" TextAlignment="Right" FontSize="15" FontFamily="Segoe UI Black"/>
+                    <materialDesign:PackIcon Kind="ArrowLeft" HorizontalAlignment="Right" Foreground="#FF0BD380" Width="22" Height="22" Margin="10,0"/>
+                    <TextBlock Text="{Binding NameLastStation}" TextAlignment="Right" FontSize="15" FontFamily="Segoe UI Black"/>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid Background="LightGray" FlowDirection="RightToLeft">
+        <Rectangle Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA"/>
+        <Grid x:Name="ProfilGrid" Margin="60,45" DataContext="{Binding}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2.3*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="תכנן נסיעה" Grid.Row="0" Grid.Column="0" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="תחנת מוצא" FontSize="20" HorizontalAlignment="Center"/>
+                    <ComboBox x:Name="cbSource" FontSize="18" ItemsSource="{Binding}" Width="180" SelectionChanged="cbSource_SelectionChanged" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="תחנת יעד" FontSize="20" HorizontalAlignment="Center"/>
+                    <ComboBox x:Name="cbDestination" FontSize="18" ItemsSource="{Binding}" Width="180" SelectionChanged="cbDestination_SelectionChanged"  HorizontalAlignment="Center"/>
+                </StackPanel>
+                <Button x:Name="searchButton" Grid.Column="1" Grid.Row="1" Padding="0" Width="100" Height="40" IsEnabled="False" Click="searchButton_Click"  Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="חפש" VerticalAlignment="Center" Margin="5,0" FontSize="18"/>
+                        <materialDesign:PackIcon Margin="0" Kind="Search" Height="26" Width="26"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+            <StackPanel Grid.Row="2" Margin="20,0">
+                <TextBlock Text="קווים אפשריים:" FontSize="18"/>
+                <ListBox x:Name="lbLines" ItemsSource="{Binding}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
