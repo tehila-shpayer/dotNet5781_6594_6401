@@ -19,7 +19,7 @@
         <Rectangle Grid.Column="0" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
         </Rectangle>
         <StackPanel Margin="70,50,70.333,47.667">
-            <Label Content="עדכו יציאת קו" FontSize="25" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
+            <Label Content="{DynamicResource UpdateLineScheduleWindow_Title}" FontSize="25" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
             <Grid x:Name="grid1" HorizontalAlignment="Center" Margin="20,20,20,30" VerticalAlignment="Center" Height="238" Width="333">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -31,13 +31,13 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label Content="מפתח קו:" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource AddLineScheduleWindow_LineKey}" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <TextBlock x:Name="lineKeyTextBlock" Grid.Column="1" Grid.Row="0" Text="{Binding LineKey, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10" PreviewKeyDown="lineKeyTextBox_PreviewKeyDown"/>
-                <Label Content="שעת יציאה:" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource LineSchedulePage_StartTime}" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <TextBlock x:Name="startTimeTextBlock" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Margin="20,10" Text="{Binding StartTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                <Label Content="שעת סיום:" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource LineSchedulePage_EndTime}" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <materialDesign:TimePicker x:Name="endTimeTimePicker" Grid.Column="1" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" SelectedTimeFormat="Long"/>
-                <Label Content="תדירות:" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                <Label Content="{DynamicResource LineSchedulePage_Frequency}" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" Height="Auto" Margin="10" Width="Auto" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 <TextBox x:Name="freqTextBox" Grid.Column="1" Grid.Row="3" Text="{Binding Frequency, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,10" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" TextChanged="TextBox_TextChanged" PreviewKeyDown="freqTextBox_PreviewKeyDown"/>
             </Grid>
             <Grid>

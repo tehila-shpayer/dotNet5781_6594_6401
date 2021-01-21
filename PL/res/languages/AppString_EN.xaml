@@ -40,6 +40,8 @@
     <System:String x:Key="Cancel">Cancel</System:String>
     <System:String x:Key="Add">Add</System:String>
     <System:String x:Key="Key">Key:</System:String>
+    <System:String x:Key="Line">Line</System:String>
+    <System:String x:Key="To">To</System:String>
     <!--#endregion-->
 
     <!--#region Profile Page-->
@@ -72,6 +74,7 @@
     <System:String x:Key="Menue_Buses">BUSES</System:String>
     <System:String x:Key="Menue_Settings">SETTINGS</System:String>
     <System:String x:Key="Menue_Simulation">SIMULATION</System:String>
+    <System:String x:Key="Menue_LineSchedules">SCHEDULES</System:String>
     <!--#endregion-->
     
     <!--#region Add Bus Line Station Window-->
@@ -104,5 +107,30 @@
     <System:String x:Key="Location" xml:space="preserve">Location:</System:String>
     <System:String x:Key="UpdateConsecutiveStationsWindow_Title">Update Consecutive Stations</System:String>
 
+    <!--#endregion-->
+
+    <!--#region Line Schedule Page-->
+    <System:String x:Key="LineSchedulePage_Title">Lines Schedules:</System:String>
+    <System:String x:Key="LineSchedulePage_UpdateLineSchedule">UPDATE SCHEDULE</System:String>
+    <System:String x:Key="LineSchedulePage_DeleteLineSchedule">DELETE SCHEDULE</System:String>
+    <System:String x:Key="LineSchedulePage_AddLineSchedule">ADD SCHEDULE</System:String>
+    <System:String x:Key="LineSchedulePage_StartTime">Start Time:</System:String>
+    <System:String x:Key="LineSchedulePage_EndTime">End Time:</System:String>
+    <System:String x:Key="LineSchedulePage_Frequency">Frequency:</System:String>
+    <System:String x:Key="LineSchedulePage_Each" xml:space="preserve">Every </System:String>
+    <System:String x:Key="LineSchedulePage_Minutes" xml:space="preserve"> minuets</System:String>
+    <!--#endregion-->
+    <System:String x:Key="AddLineScheduleWindow_Title">Add Line Schedule</System:String>
+    <System:String x:Key="AddLineScheduleWindow_LineKey">Line Key:</System:String>
+    <System:String x:Key="UpdateLineScheduleWindow_Title">Update Line Schedule</System:String>
+
+    <!--#region Line Simulation Page-->
+    <System:String x:Key="SimulationPage_Start">Start</System:String>
+    <System:String x:Key="SimulationPage_Stop">Stop</System:String>
+    <System:String x:Key="SimulationPage_Rate">Rate:</System:String>
+    <System:String x:Key="SimulationPage_Clock">Clock:</System:String>
+    <System:String x:Key="SimulationPage_ArrivesIn">Arrives in</System:String>
+    <System:String x:Key="SimulationPage_AtStation">At Station:</System:String>
+    <System:String x:Key="SimulationPage_S.T">S.T.</System:String>
     <!--#endregion-->
 </ResourceDictionary>
