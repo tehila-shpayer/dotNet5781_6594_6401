@@ -504,6 +504,7 @@ namespace DL
         }
         public void AddLineSchedule(LineSchedule lineSchedule)
         {
+            GetBusLine(lineSchedule.LineKey);
             XElement lineScheduleRootElem = XmlTools.LoadListFromXMLElement(lineSchedulesPath);
 
             XElement lineSchedule1 = (from ls in lineScheduleRootElem.Elements()

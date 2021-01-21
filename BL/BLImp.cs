@@ -906,6 +906,10 @@ namespace BL
             {
                 throw new BOInvalidInformationException($"Can't add the line schedule.", ex);
             }
+            catch (DO.ArgumentNotFoundException ex)
+            {
+                throw new BOArgumentNotFoundException($"Can't add the line schedule. "+ ex.Message);
+            }
         }
         public void UpdateLineSchedule(LineSchedule lineSchedule)
         {
