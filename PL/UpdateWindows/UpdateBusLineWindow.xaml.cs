@@ -30,7 +30,8 @@ namespace PL
             //busLineBO = new BO.BusLine();
             //busLineBO = App.bl.GetBusLine(busLine.Key);
             updatingBusLine = busLine;
-            for (int i = 1; i < busLine.BusLineStations.Count() + 1; i++)
+            int i;
+            for (i = 1; i <= busLine.BusLineStations.Count() + 1; i++)
                 Positions.Add(i);
             beforeUpdateindex = MainWindow.busLinesCollection.IndexOf(busLine);
             areaComboBox.DataContext = AreasString;
@@ -41,7 +42,7 @@ namespace PL
             stationsComboBox.DisplayMemberPath = "  ShowNameKey  ";
             stationsComboBox.SelectedIndex = 0;
             addStationComboBox.SelectedIndex = 0;
-            positionsComboBox.SelectedIndex = 0;
+            positionsComboBox.SelectedIndex = i-2;
             areaComboBox.SelectedIndex = (int)busLine.Area;
             grid1.DataContext = updatingBusLine;
             mainGrid.DataContext = MainWindow.Language;

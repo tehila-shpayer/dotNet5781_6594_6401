@@ -217,7 +217,7 @@
     <Name>דרך האילנות מנחם/בגין</Name>
   </Station>
   <Station>
-    <Key>388889</Key>
+    <Key>38889</Key>
     <Latitude>31.816751</Latitude>
     <Longitude>34.782252</Longitude>
     <Name>העצמאות/ויצמן</Name>
@@ -274,7 +274,7 @@
     <Key>38901</Key>
     <Latitude>31.882474</Latitude>
     <Longitude>34.805806</Longitude>
-    <Name>האב דוד ישראל/אריה דולצין</Name>
+    <Name>הרב דוד ישראל/אריה דולצין</Name>
   </Station>
   <Station>
     <Key>38903</Key>
@@ -328,7 +328,7 @@
     <Key>38911</Key>
     <Latitude>31.956842</Latitude>
     <Longitude>34.814839</Longitude>
-    <Name>גריןשפן/יגאל אלון</Name>
+    <Name>גרינשפן/יגאל אלון</Name>
   </Station>
   <Station>
     <Key>38912</Key>
