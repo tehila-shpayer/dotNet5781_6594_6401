@@ -1037,7 +1037,6 @@ namespace BL
 
         public IEnumerable<ArrivalTimes> GetArrivalTimes(int lineKey, int s1, int s2)
         {
-            //IEnumerable<ArrivalTimes> times;
             return from ls in GetAllLineSchedulesOfLine(lineKey)
                     from t in GetAllTimesOfSchedule(ls)
                     select new ArrivalTimes
