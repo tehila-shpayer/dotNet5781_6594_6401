@@ -68,17 +68,17 @@ namespace PL
             changeColors(busesButton);
         }
 
-        private void configurationButton_Click(object sender, RoutedEventArgs e)
-        {
-            currentPage.Content = new PlanJourneyPage();
-            changeColors(configurationButton);
-        }
+        //private void planJourneyButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    currentPage.Content = new PlanJourneyPage();
+        //    changeColors(configurationButton);
+        //}
 
-        private void simulationButton_Click(object sender, RoutedEventArgs e)
-        {
-            currentPage.Content = new TravelerPage();
-            changeColors(simulationButton);
-        }
+        //private void simulationButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    currentPage.Content = new TravelerPage();
+        //    changeColors(simulationButton);
+        //}
 
         private void lineSchedulesButton_Click(object sender, RoutedEventArgs e)
         {

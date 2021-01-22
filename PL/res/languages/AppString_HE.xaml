@@ -56,7 +56,7 @@
     <System:String x:Key="Menue_Lines">קוי אוטובוס</System:String>
     <System:String x:Key="Menue_Stations">תחנות</System:String>
     <System:String x:Key="Menue_Buses">אוטובוסים</System:String>
-    <System:String x:Key="Menue_Settings">הגדרות</System:String>
+    <System:String x:Key="Menue_JourneyPlan">חיפוש מסלול</System:String>
     <System:String x:Key="Menue_Simulation">סימולציה</System:String>
     <System:String x:Key="Menue_LineSchedules">יציאות קווים</System:String>
 
@@ -107,7 +107,7 @@
     <System:String x:Key="Line">קו</System:String>
     <System:String x:Key="SimulationPage_ArrivesIn">מגיע בעוד</System:String>
     <System:String x:Key="SimulationPage_AtStation">בתחנה:</System:String>
-    <System:String x:Key="To">ל</System:String>
+    <System:String x:Key="To"> ל-</System:String>
     <System:String x:Key="SimulationPage_S.T">ש.י.</System:String>
     <!--#endregion-->
 </ResourceDictionary>

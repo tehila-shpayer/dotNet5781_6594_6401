@@ -57,7 +57,11 @@ namespace PL
             currentPage.Content = new TravelerPage();
             changeColors(simulationButton);
         }
-
+        private void planJourneyButton_Click(object sender, RoutedEventArgs e)
+        {
+            currentPage.Content = new PlanJourneyPage();
+            changeColors(configurationButton);
+        }
     }
 }
 
