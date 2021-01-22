@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="LineAndScheduleWindow" Height="600" Width="800">
+        Title="LineAndScheduleWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <local:BoolToVisibilityConverter x:Key="aConverter"/>
         <local:TrueToVisibleConverter x:Key="trueToVisibleConvertor"/>
