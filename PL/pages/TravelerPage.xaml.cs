@@ -111,8 +111,6 @@ namespace PL
             clock.startTime = time;
             clock.Time = time;
             App.bl.StartSimulator(clock, time, int.Parse(tbRate.Text), (lbStations.SelectedItem as Station).Key);
-
-
             //lvCommingLines.DataContext = App.bl.GetLineTimingsPerStation((lbStations.SelectedItem as Station).Key, new TimeSpan(8,0,0));
         }
 
@@ -123,6 +121,9 @@ namespace PL
             StopButton.Visibility = Visibility.Collapsed;
             SimulationButton.Visibility = Visibility.Visible;
             clock.TimeChanged -= this.TimeChange;
+            tbHour.Text = tbClock.Text.Substring(0, 2);
+            tbMinutes.Text = tbClock.Text.Substring(3, 2);
+            tbSeconds.Text = tbClock.Text.Substring(6, 2);
             tbHour.Visibility = Visibility.Visible;
             tbDots1.Visibility = Visibility.Visible;
             tbMinutes.Visibility = Visibility.Visible;
@@ -132,6 +133,7 @@ namespace PL
             tbClock.Visibility = Visibility.Collapsed;
             tblRate.Visibility = Visibility.Collapsed;
             App.bl.StopSimulator();
+
         }
     }
 }

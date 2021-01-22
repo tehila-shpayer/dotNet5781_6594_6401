@@ -106,27 +106,26 @@ namespace PL
             int index = lbBusLines.Items.Count;
             AddBusLineWindow addBusLineWindow = new AddBusLineWindow();
             addBusLineWindow.ShowDialog();
-            MainWindow.InitializeBusLines();
-            MainWindow.InitializeStations();
             lbBusLines.DataContext = MainWindow.busLinesCollection;
-            //Sort(index);
-            lbBusLines.SelectedIndex = index;
+            Sort();
+            //lbBusLines.SelectedIndex = lbBusLines.Items.Count - 1;
         }
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
-            int index = lbBusLines.SelectedIndex;
+            //var item = lbBusLines.SelectedItem as BusLine;
             try
             {
                 UpdateBusLineWindow update = new UpdateBusLineWindow(MainWindow.busLinesCollection[lbBusLines.SelectedIndex]);
                 update.ShowDialog();
                 Sort();
+                lbBusLines.DataContext = MainWindow.busLinesCollection;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Please choose a bus line!", "UPDATE BUS LINE MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.No);
             }
-            lbBusLines.SelectedIndex = index;
+            //lbBusLines.SelectedItem = MainWindow.busLinesCollection.IndexOf(item);
         }
 
         private void areas_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -156,9 +155,9 @@ namespace PL
             var selectedStation = (sender as Button).DataContext as BusLineStation;
             AddBusLineStation addBusLineStation = new AddBusLineStation(selectedStation);
             addBusLineStation.ShowDialog();
-            MainWindow.InitializeBusLines();
-            MainWindow.InitializeStations();
-            Sort();
+            //MainWindow.InitializeBusLines();
+            //MainWindow.InitializeStations();
+            //Sort();
             lbBusLines.DataContext = MainWindow.busLinesCollection;
             lbBusLines.SelectedIndex = index;
         }
