@@ -16,7 +16,7 @@ using System.Net.Mail;
 using System.Net;
 using System.Text.RegularExpressions;
 
-namespace PL.pages
+namespace PL
 {
     /// <summary>
     /// Interaction logic for ContactUsPage.xaml
@@ -31,22 +31,21 @@ namespace PL.pages
         {
             int flag = 1;
 
-            if (txtTo.Text.Trim().Length == 0)
+            if (txtYourMail.Text.Trim().Length == 0)
             {
                 flag = 0;
                 txtbTo.Text = "Required";
-                txtTo.Focus();
+                txtYourMail.Focus();
             }
-            else if (!Regex.IsMatch(txtTo.Text, @"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}"))
+            else if (!Regex.IsMatch(txtYourMail.Text, @"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}"))
             {
                 flag = 0;
                 txtbTo.Text = "Invalid";
-                txtTo.Focus();
+                txtYourMail.Focus();
             }
             else
             {
                 flag = 1;
-                txtbTo.Text = "";
             }
             if (txtSubject.Text.Trim().Length == 0)
             {
@@ -64,74 +63,51 @@ namespace PL.pages
             {
                 MailMessage mail = new MailMessage();
                 mail.To.Add("netivimcompany@gmail.com");
-                mail.From = new MailAddress("netivimcompany@gmail.com", "חברת נתיבים");
-                mail.Subject = "אתחול סיסמה";
-                mail.Body = "";
+                mail.From = new MailAddress(txtYourMail.Text);
+                mail.Subject = txtSubject.Text;
+                mail.Body = txtContent.Text;
                 mail.IsBodyHtml = true;
+
+                MailMessage answer = new MailMessage();
+                answer.To.Add(txtYourMail.Text);
+                answer.From = new MailAddress("netivimcompany@gmail.com", "חברת נתיבים");
+                answer.Subject = "קבלת פנייה";
+                answer.Body = "שלום רב! הודעתך התקבלה בהצלחה ותועבר לטיפול. תודה על פנייתך ויום טוב!";
+                answer.IsBodyHtml = true;
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = "smtp.gmail.com";
                 smtp.Port = 587;
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtp.Credentials = new NetworkCredential("netivimcompany@gmail.com", "100project");
                 smtp.EnableSsl = true;
+                txtbTo.Text = "";
+                txtbSubject.Text = "";
+                txtbContent.Text = "";
                 try
                 {
                     smtp.Send(mail);
-                    MessageBox.Show("A new password has been sent to you by email\nYou must use this password to log in.", "Security Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Your message has been successfully sent!", "Contact Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                    txtYourMail.Text = "";
+                    txtSubject.Text = "";
+                    txtContent.Text = "";
+                    smtp.Send(answer);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
             }
-
-            //MailMessage mail = new MailMessage();
-            //mail.To.Add("tehila1742@gmail.com");
-            //mail.From = new MailAddress("saramalka2003@gmail.com");
-            //mail.Subject = "a";
-            //mail.Body = "work, please!!";
-            //mail.IsBodyHtml = true;
-            //SmtpClient smtp = new SmtpClient();
-            //smtp.Host = "smtp.gmail.com";
-            //smtp.Port = 587;
-            //smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-            ////smtp.Timeout = 1000;
-            //smtp.Credentials = new System.Net.NetworkCredential("saramalka2003@gmail.com", "hebrewland1");
-            //smtp.EnableSsl = true;
-
-            //try
-            //{
-            //    smtp.Send(mail);
-            //    txtbContent.Text = "Send successfully!";
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-            //var smptClient = new SmtpClient(smtpServerName, Convert.ToInt32(port))
-            //{
-            //    Credentials = new NetworkCredential(senderEmailId, senderPassword),
-            //    EnableSsl = true
-            //};
-            //smptClient.Send(senderEmailId, txtTo.Text.Trim(), txtSubject.Text, txtContent.Text);
-            //MessageBox.Show("Message Sent Successfully");
-            txtTo.Text = "";
-            txtSubject.Text = "";
-            txtContent.Text = "";
-            txtTo.Focus();
-
-            //}
         }
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
-            //txtTo.Text = "";
-            //txtSubject.Text = "";
-            //txtContent.Text = "";
-            //txtTo.Focus();
+            txtYourMail.Text = "";
+            txtSubject.Text = "";
+            txtContent.Text = "";
+            txtYourMail.Focus();
 
-            //txtbTo.Text = "";
-            //txtbSubject.Text = "";
-            //txtbContent.Text = "";
+            txtbTo.Text = "";
+            txtbSubject.Text = "";
+            txtbContent.Text = "";
         }
     }
 }

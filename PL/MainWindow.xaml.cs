@@ -110,7 +110,8 @@ namespace PL
 
         private void minimizeButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.MainWindow.WindowState = WindowState.Minimized;   
+            //Application.Current.MainWindow.WindowState = WindowState.Minimized; 
+            openingPage.Content = new ContactUsPage();
         }
 
         private void Window_Initialized(object sender, EventArgs e)
