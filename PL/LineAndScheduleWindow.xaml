@@ -53,7 +53,7 @@
                     <RowDefinition Height="5*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="לוח זמנים" Grid.Row="0" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <ListView x:Name="lvCSchedule" Grid.Row="1" ItemsSource="{Binding}" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Hidden" HorizontalContentAlignment="Center" Margin="0,10,-0.2,9.8">
+                <ListView x:Name="lvCSchedule" Grid.Row="1" ItemsSource="{Binding}" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Hidden" HorizontalContentAlignment="Center" Margin="0,10,-0.2,9.8" Foreground="#FF477AA9">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem" BasedOn="{StaticResource MaterialDesignGridViewItem}">
                             <Setter Property="HorizontalContentAlignment" 
