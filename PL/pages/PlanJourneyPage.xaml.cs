@@ -62,7 +62,7 @@ namespace PL
 
         private void lbLines_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            LineAndScheduleWindow w = new LineAndScheduleWindow((lbLines.SelectedItems as PresentBusLineForStation).Key, (cbSource.SelectedItem as Station).Key, (cbDestination.SelectedItem as Station).Key);
+            LineAndScheduleWindow w = new LineAndScheduleWindow((lbLines.SelectedItem as PresentBusLineForStation).Key, (cbSource.SelectedItem as Station).Key, (cbDestination.SelectedItem as Station).Key);
             w.Show();
         }
     }

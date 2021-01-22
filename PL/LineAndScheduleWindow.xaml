@@ -5,8 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="LineAndScheduleWindow" Height="450" Width="800">
+        Title="LineAndScheduleWindow" Height="600" Width="800">
     <Grid Background="LightGray" FlowDirection="RightToLeft">
         <Rectangle Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA"/>
+        <Grid Margin="60,45">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="1*"/>
+              <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+            <TextBlock Text="מסלול הקו" Grid.Row="0" Grid.Column="0" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="לוח זמנים" Grid.Row="0" Grid.Column="1" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            
+        </Grid>
     </Grid>
 </Window>
