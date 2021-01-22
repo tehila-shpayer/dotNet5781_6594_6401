@@ -50,4 +50,13 @@
     <LastName>חמו</LastName>
     <Picture>file:///C:/Users/שרה מלכה/Pictures/Bus Icon_files/bus2(3).png</Picture>
   </User>
+  <User>
+    <UserName>ora1</UserName>
+    <Password>N3IMvEnUl/mP7+qmiXJBEL2SMlIjIC7Ns51r5zdaed2VmQECOkebJBD+0BmU65AigHg7juk9IFJbi3SbYjeA0g==</Password>
+    <Salt>1063362859</Salt>
+    <AuthorizationManagement>Traveler</AuthorizationManagement>
+    <Email>orahana2009@gmail.com</Email>
+    <FirstName>אורה</FirstName>
+    <LastName>נחושת</LastName>
+  </User>
 </ArrayOfUser>
