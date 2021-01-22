@@ -100,5 +100,6 @@ namespace BLAPI
         #endregion
 
         IEnumerable<BusLine> FindRoutes(Station s1, Station s2);
+        IEnumerable<ArrivalTimes> GetArrivalTimes(int lineKey, int s1, int s2);
     }
 }

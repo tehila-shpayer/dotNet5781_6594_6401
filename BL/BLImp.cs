@@ -879,6 +879,11 @@ namespace BL
                                    select LineScheduleDoBoAdapter(ls);
             return AllLineSchedules;
         }
+        IEnumerable<TimeSpan> GetAllTimesOfSchedule(LineSchedule schedule)
+        {
+            for (TimeSpan i = schedule.StartTime; i < schedule.EndTime; i += new TimeSpan(0, schedule.Frequency, 0))
+                yield return i;
+        }
         public void AddLineSchedule(LineSchedule lineSchedule)
         {
             try
@@ -1028,6 +1033,15 @@ namespace BL
                         from line2 in s2.BusLines
                         where line1 == line2 && GetBusLine(line1).BusLineStations.First(bls => bls.StationKey == s1.Key).Position < GetBusLine(line1).BusLineStations.First(bls => bls.StationKey == s2.Key).Position
                         select GetBusLine(line1);
+        }
+
+        public IEnumerable<ArrivalTimes> GetArrivalTimes(int lineKey, int s1, int s2)
+        {
+            return from ls in GetAllLineSchedulesOfLine(lineKey)
+                    from t in GetAllTimesOfSchedule(ls)
+                    select new ArrivalTimes
+                    { Start = t, SourceArrive = t + GetTimeFromFirstStation(lineKey, s1), DestinationArrive = t + GetTimeFromFirstStation(lineKey, s2) };
+
         }
     }
 }
