@@ -28,12 +28,12 @@ namespace PL
             BusPO.LastTreatmentFormat = BusBO.LastTreatment.ToString("dd/MM/yyyy");
             return BusPO;
         }
-        static public  PL.BusLine BusLinePoBoAdapter(BO.BusLine BusLineBO)
+        static public PL.BusLine BusLinePoBoAdapter(BO.BusLine BusLineBO, int SRCKey = 0, int DSTKey = 0)
         {
-           PL.BusLine BusLinePO = new PL.BusLine();
-           BusLineBO.Clone(BusLinePO);
+            PL.BusLine BusLinePO = new PL.BusLine();
+            BusLineBO.Clone(BusLinePO);
             BusLinePO.BusLineStations = from bls in BusLineBO.BusLineStations
-                                        select PoBoAdapter.BusLineStationPoBoAdapter(bls);
+                                        select PoBoAdapter.BusLineStationPoBoAdapter(bls, SRCKey, DSTKey);
             return BusLinePO;
         }
         static public PL.PresentBusLineForStation PresentBusLineForStationPoBoAdapter(BO.BusLine BusLineBO)
@@ -44,7 +44,7 @@ namespace PL
             PresentBL.NameLastStation = App.bl.GetStation(BusLineBO.LastStation).Name;
             return PresentBL;
         }
-        static public PL.BusLineStation BusLineStationPoBoAdapter(BO.BusLineStation BusLineStationBO)
+        static public PL.BusLineStation BusLineStationPoBoAdapter(BO.BusLineStation BusLineStationBO, int SRCKey, int DSTKey)
         {
             PL.BusLineStation BusLineStationPO = new PL.BusLineStation();
             BusLineStationBO.Clone(BusLineStationPO);
@@ -53,6 +53,9 @@ namespace PL
                 BusLineStationPO.IsFirstStation = true;
             else
                 BusLineStationPO.IsFirstStation = false;
+           
+            BusLineStationPO.IsSource = (BusLineStationPO.StationKey == SRCKey);
+            BusLineStationPO.IsDestination = (BusLineStationPO.StationKey == DSTKey);
             return BusLineStationPO;
         }
         static public PL.Station StationPoBoAdapter(BO.Station StationBO)

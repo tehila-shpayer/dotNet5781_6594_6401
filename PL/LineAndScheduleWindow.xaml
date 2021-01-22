@@ -3,23 +3,83 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="LineAndScheduleWindow" Height="600" Width="800">
+    <Window.Resources>
+        <local:BoolToVisibilityConverter x:Key="aConverter"/>
+        <local:TrueToVisibleConverter x:Key="trueToVisibleConvertor"/>
+        <DataTemplate x:Key="BusLineStationTemplate" DataType="local:BusLineStation">
+            <StackPanel Margin="0,30,0,0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,-35,0,0" Visibility="{Binding IsFirstStation, Converter={StaticResource aConverter}}">
+                    <materialDesign:PackIcon Kind="ArrowBottom" Width="20" Height="20" Margin="12,2" Foreground="#FF0BD380"/>
+                    <TextBlock FontSize="15" Text="{Binding DistanceFromLastStationMeters}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
+                    <TextBlock FontSize="15" Text=" מטר,  " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
+                    <TextBlock FontSize="15" Text="{Binding TravelTimeFromLastStationMinutes}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
+                    <TextBlock FontSize="15" Text=" דקות " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="0,8" Text="עלייה" Foreground="Red" FontSize="14" Visibility="{Binding IsSource, Converter={StaticResource trueToVisibleConvertor}}"/>
+                    <TextBlock Margin="0,8" Text="ירידה" Foreground="Red" FontSize="14" Visibility="{Binding IsDestination, Converter={StaticResource trueToVisibleConvertor}}"/>
+                    <TextBlock Margin="10" Text="{Binding Position}" TextAlignment="Right" FontWeight="Bold" FontSize="14" FontFamily="Ariel"/>
+                    <TextBlock Margin="6,10" Text="{Binding Name}" TextAlignment="Left" FontWeight="Bold" FontSize="14" FontFamily="Ariel"/>
+                    <TextBlock Margin="10" Text="{Binding StationKey}" TextAlignment="Left" FontWeight="Bold" FontSize="14" FontFamily="Ariel"/>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
     <Grid Background="LightGray" FlowDirection="RightToLeft">
         <Rectangle Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA"/>
         <Grid Margin="60,45">
             <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="1.2*"/>
               <ColumnDefinition Width="1*"/>
-              <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="4*"/>
-        </Grid.RowDefinitions>
-            <TextBlock Text="מסלול הקו" Grid.Row="0" Grid.Column="0" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Text="לוח זמנים" Grid.Row="0" Grid.Column="1" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="StationsGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="מסלול הקו" Grid.Row="0" Grid.Column="0" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <ListBox x:Name="lbBusLineStations" Grid.Row="1" Grid.Column="0" Margin="15,10" Padding="0,-25,0,0" ItemsSource="{Binding BusLineStations}" ItemTemplate="{StaticResource BusLineStationTemplate}" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="340">
+
+                </ListBox>
+            </Grid>
+            <Grid x:Name="ScheduleGrid" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="לוח זמנים" Grid.Row="0" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <ListView x:Name="lvCommingLines" Grid.Row="1" ItemsSource="{Binding}" ScrollViewer.VerticalScrollBarVisibility="Hidden" Height="300" HorizontalContentAlignment="Center">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem" BasedOn="{StaticResource MaterialDesignGridViewItem}">
+                            <Setter Property="HorizontalContentAlignment" 
+                                    Value="Center" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Time Information" TextBlock.TextAlignment="Center">
+                            <GridView.ColumnHeaderContainerStyle>
+                                <Style TargetType="GridViewColumnHeader">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="BorderBrush" Value="{x:Null}"/>
+                                </Style>
+                            </GridView.ColumnHeaderContainerStyle>
+                            <GridViewColumn DisplayMemberBinding= "{Binding Path=LineNumber}" Width="95">
+                                <GridViewColumnHeader Content="שעת יציאה" Margin="0,0,0,0"/>
+                            </GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding= "{Binding Path=StartTime}" Width="110">
+                                <GridViewColumnHeader Content="הגעה לתחנת מוצא" Margin="0"/>
+                            </GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding= "{Binding Path=TimeLeft}"  Width="95">
+                                <GridViewColumnHeader Content="הגעה ליעד" Margin="0"/>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

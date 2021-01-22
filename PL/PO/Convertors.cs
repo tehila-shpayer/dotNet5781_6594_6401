@@ -59,4 +59,27 @@ namespace PL
             throw new NotImplementedException();
         }
     }
+    public class TrueToVisibleConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            bool boolValue = (bool)value;
+            if (boolValue == true)
+            {
+                return Visibility.Visible;
+            }
+            else
+            {
+                return Visibility.Collapsed;
+            }
+        }
+        //The opposite converter (not used in our program)
+        public object ConvertBack(object value,
+        Type targetType,
+        object parameter,
+        CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

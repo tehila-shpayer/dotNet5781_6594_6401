@@ -19,9 +19,11 @@ namespace PL
     /// </summary>
     public partial class LineAndScheduleWindow : Window
     {
-        public LineAndScheduleWindow(int LineKey, int sourceKey, int destinationKey)
+        public LineAndScheduleWindow(int lineKey, int sourceKey, int destinationKey)
         {
             InitializeComponent();
+            StationsGrid.DataContext = PoBoAdapter.BusLinePoBoAdapter(App.bl.GetBusLine(lineKey), sourceKey, destinationKey);
+            //ScheduleGrid.DataContext = App.bl
         }
     }
 }
