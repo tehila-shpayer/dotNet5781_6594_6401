@@ -23,7 +23,7 @@ namespace PL
         {
             InitializeComponent();
             StationsGrid.DataContext = PoBoAdapter.BusLinePoBoAdapter(App.bl.GetBusLine(lineKey), sourceKey, destinationKey);
-            //ScheduleGrid.DataContext = App.bl
+            lvCSchedule.DataContext = App.bl.GetArrivalTimes(lineKey, sourceKey, destinationKey);
         }
     }
 }
