@@ -23,11 +23,11 @@ namespace PL
     public partial class TravelerPage : Page
     {
         public static ObservableCollection<BusInTravel> busesInTravelCollection = new ObservableCollection<BusInTravel>();
-        Station currentStation = new Station();
-        Stopwatch stopWatch;
         TimeSpan time;
         BO.Clock clock;
         double latePrecentage;
+        int LastBusInStationDuration = 0;
+        BusInTravel lastBus;
         public TravelerPage()
         {
             InitializeComponent();
@@ -38,10 +38,10 @@ namespace PL
             cbStations.SelectedIndex = 0;
             mainGrid.DataContext = MainWindow.Language;
             time = new TimeSpan();
-            tbClock.DataContext = time;
-
-            currentStation = lbStations.SelectedItem as Station;
-            stopWatch = new Stopwatch();
+            tbClock.DataContext = time;                      
+            spLastBus.Visibility = Visibility.Hidden;
+            //currentStation = lbStations.SelectedItem as Station;
+            //stopWatch = new Stopwatch();
         }
 
         private void stations_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -64,6 +64,7 @@ namespace PL
             tbClock.DataContext = temp.Time;
             busesInTravelCollection.Clear();
             int i = 0;
+            int rate = int.Parse(tblRate.Text);
             foreach (var lineTiming in App.bl.GetLineTimingsPerStation((lbStations.SelectedItem as Station).Key, temp.Time, latePrecentage))
             {
                 i++;
@@ -73,9 +74,25 @@ namespace PL
             }
 
             lvCommingLines.DataContext = busesInTravelCollection;
-            BusInTravel lastBus = busesInTravelCollection.FirstOrDefault(bit => bit.TimeLeft == new TimeSpan(0, 0, 0));
-            if (lastBus != null)
+            BusInTravel oldLastBus = lastBus;
+            lastBus = busesInTravelCollection.FirstOrDefault(bit => bit.TimeLeft.TotalSeconds < rate && bit.TimeLeft.TotalSeconds >= 0);
+            if (lastBus != null && lastBus != oldLastBus)
+            {
                 spLastBus.DataContext = lastBus;
+                LastBusInStationDuration = 0;
+            }
+            else if(oldLastBus != null)
+            {
+                lastBus = oldLastBus;
+                LastBusInStationDuration++;
+                if ((LastBusInStationDuration >= 7 && oldLastBus == lastBus))
+                {
+                    spLastBus.Visibility = Visibility.Hidden;
+                }
+                else
+                    spLastBus.Visibility = Visibility.Visible;
+            }
+            
         }
 
         private void lbStations_SelectionChanged(object sender, SelectionChangedEventArgs e)

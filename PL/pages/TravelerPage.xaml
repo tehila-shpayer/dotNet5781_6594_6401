@@ -110,7 +110,7 @@
         </Rectangle>
         <Grid x:Name="StationInfoGrid" Grid.Column="1" Grid.Row="1" Margin="40,30" DataContext="{Binding}">
             <StackPanel>
-                <StackPanel Grid.Column="0" HorizontalAlignment="Right" Margin="0,10,20.333,10" Width="451" Height="150">
+                <StackPanel Grid.Column="0" HorizontalAlignment="Right" Margin="20,10,20,10" Height="150" Width="451.333333333333">
                     <StackPanel.Background>
                         <SolidColorBrush Color="#FF80D095" Opacity="0.6"/>
                     </StackPanel.Background>
@@ -162,19 +162,20 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
-                <StackPanel x:Name="spLastBus" Orientation="Horizontal" Background="#FFB3E3BF" Margin="20,0">
-                    <Label Content="{DynamicResource SimulationPage_AtStation}" Margin="20,3,3,3" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black"/>
-                    <TextBlock x:Name="lastStationNameTextBlock1"  HorizontalAlignment="Left" Margin="20,3" Grid.Row="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black">
+                <StackPanel Orientation="Horizontal" Background="#FFB3E3BF" Margin="20,0">
+                    <StackPanel x:Name="spLastBus" Orientation="Horizontal" Background="#FFB3E3BF" Margin="0">
+                        <Label Content="{DynamicResource SimulationPage_AtStation}" Margin="20,3,0,3" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black"/>
+                        <TextBlock x:Name="lastStationNameTextBlock1"  HorizontalAlignment="Left" Margin="20,3" Grid.Row="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black">
                         <Run Text="{DynamicResource Line}"/>                        
                         <Run Text="{Binding LineNumber}"/>
                         <Run Text="{DynamicResource To}"/>
                         <Run Text="{Binding LastStationName}"/>
-                    </TextBlock>
-                    <Label Content="{DynamicResource SimulationPage_S.T}"  HorizontalAlignment="Left" Margin="10,3" Grid.Row="2" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black"/>
-                    <TextBlock x:Name="startTimeTextBlock1"  HorizontalAlignment="Left" Margin="3" Grid.Row="2" Text="{Binding StartTime}" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black"/>
+                        </TextBlock>
+                        <Label Content="{DynamicResource SimulationPage_S.T}"  HorizontalAlignment="Left" Margin="5,3" Grid.Row="2" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black"/>
+                        <TextBlock x:Name="startTimeTextBlock1"  HorizontalAlignment="Left" Margin="3" Grid.Row="2" Text="{Binding StartTime}" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black"/>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </Grid>
     </Grid>
-
 </Page>

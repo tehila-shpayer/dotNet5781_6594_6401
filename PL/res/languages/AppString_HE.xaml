@@ -107,7 +107,7 @@
     <System:String x:Key="Line">קו</System:String>
     <System:String x:Key="SimulationPage_ArrivesIn">מגיע בעוד</System:String>
     <System:String x:Key="SimulationPage_AtStation">בתחנה:</System:String>
-    <System:String x:Key="To">ל</System:String>
+    <System:String x:Key="To"> ל-</System:String>
     <System:String x:Key="SimulationPage_S.T">ש.י.</System:String>
     <!--#endregion-->
 </ResourceDictionary>
