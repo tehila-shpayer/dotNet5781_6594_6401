@@ -9,7 +9,6 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PlanJourneyPage">
     <Page.Resources>
-        <local:LanguageToAlignment x:Key="LanguageConvertor"/>
         <DataTemplate x:Key="BusLineTemplate" DataType="local:PresentBusLineForStation">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="Auto" >
                 <StackPanel Orientation="Vertical">
@@ -24,7 +23,7 @@
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
-    <Grid x:Name="mainGrid" Background="LightGray" FlowDirection="{Binding Source, Converter={StaticResource LanguageConvertor}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=True}">
+    <Grid Background="LightGray" FlowDirection="RightToLeft">
         <Rectangle Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA"/>
         <Grid x:Name="ProfilGrid" Margin="60,45" DataContext="{Binding}">
             <Grid.ColumnDefinitions>
@@ -36,7 +35,7 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="2.3*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="{DynamicResource PlanJourneyPage_Title}" Grid.Row="0" Grid.Column="0" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="תכנן נסיעה" Grid.Row="0" Grid.Column="0" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Grid Grid.Row="1" Grid.Column="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*"/>
@@ -47,15 +46,15 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="{DynamicResource PlanJourneyPage_SRCStation}" FontSize="20" HorizontalAlignment="Center" Margin="10,0"/>
+                    <TextBlock Text="תחנת מוצא:" FontSize="20" HorizontalAlignment="Center" Margin="10,0"/>
                     <ComboBox x:Name="cbSource" FontSize="16" ItemsSource="{Binding}" Width="auto" MinWidth="140" SelectionChanged="cbSource_SelectionChanged" HorizontalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="{DynamicResource PlanJourneyPage_DSTStation}" FontSize="20" HorizontalAlignment="Center" Margin="10,0"/>
+                    <TextBlock Text="תחנת יעד:" FontSize="20" HorizontalAlignment="Center" Margin="10,0"/>
                     <ComboBox x:Name="cbDestination" FontSize="16" ItemsSource="{Binding}" Width="auto" MinWidth="140" SelectionChanged="cbDestination_SelectionChanged"  HorizontalAlignment="Center"/>
                     <Button x:Name="searchButton" Grid.Column="0" Grid.Row="1" Margin="40,0" Padding="0" Width="100" Height="40" IsEnabled="False" Click="searchButton_Click"  Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{DynamicResource Search}" VerticalAlignment="Center" Margin="5,0" FontSize="18"/>
+                            <TextBlock Text="חפש" VerticalAlignment="Center" Margin="5,0" FontSize="18"/>
                             <materialDesign:PackIcon Margin="0" Kind="Search" Height="26" Width="26"/>
                         </StackPanel>
                     </Button>
@@ -63,7 +62,7 @@
                 
             </Grid>
             <StackPanel Grid.Row="2" Margin="20,0">
-                <TextBlock Text="{DynamicResource PlanJourneyPage_PossibleLines}" FontSize="18"/>
+                <TextBlock Text="קווים אפשריים:" FontSize="18"/>
                 <ListBox x:Name="lbLines" MouseDoubleClick="lbLines_MouseDoubleClick" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusLineTemplate}"/>
             </StackPanel>
         </Grid>

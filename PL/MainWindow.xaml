@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="OpeningWindow"  ResizeMode="NoResize"  WindowStartupLocation="CenterScreen" WindowStyle="None" Initialized="Window_Initialized" Height="700" Width="1024" Icon="Fasticon-Happy-Bus-Bus-orange.ico">
+        Title="OpeningWindow"  ResizeMode="NoResize"  WindowStartupLocation="CenterScreen" WindowStyle="None" Initialized="Window_Initialized" Height="700" Width="1024" Icon="AddWindows/icons8-bus-50.png">
     <Grid x:Name="mainGrid" >
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
         <Grid x:Name="upGrid" Grid.ColumnSpan="2" VerticalAlignment="Stretch" Background="#FF56A0B5" MouseDown="upGrid_MouseDown" FlowDirection="RightToLeft" >
             <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right" >
-                <Button x:Name="contactUsButton" Margin="10,0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Click="minimizeButton_Click">
+                <Button x:Name="contactUsButton" Margin="10,0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Click="contactUsButton_Click">
                     <materialDesign:PackIcon Kind="HelpRhombus" Height="30" Width="30" />
                 </Button>
                 <materialDesign:PackIcon VerticalAlignment="Center" Margin="0,0,-40,0" Kind="LanguageBox" Height="30" Width="30" Background="#FF56A0B5" Foreground="White" />

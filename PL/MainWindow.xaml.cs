@@ -27,6 +27,7 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Declerations
         public static ObservableCollection<BusLine> busLinesCollection;
         public static ObservableCollection<Station> stationsCollection;
         public static ObservableCollection<Bus> busesCollection;
@@ -36,21 +37,23 @@ namespace PL
         ResourceDictionary resDictEN;
         ResourceDictionary resDictHE;
         public static ResourceDictionary Language;
-        //static readonly DependencyProperty LanguageProperty = DependencyProperty.Register("Language", typeof(ResourceDictionary), typeof(MainWindow));
-        //public ResourceDictionary Language { get => (ResourceDictionary)GetValue(LanguageProperty); set => SetValue(LanguageProperty, value); }
+        #endregion
         public MainWindow()
         {
             InitializeComponent();
             Height = 600;
             Width = 1024;
             InitializeCollections();
-            //CultureInfo ci = CultureInfo.CreateSpecificCulture(CultureInfo.CurrentCulture.Name);
-            //ci.DateTimeFormat.ShortDatePattern = "MM/dd/yyyy";
-            //Thread.CurrentThread.CurrentCulture = ci;
             resDictEN = Application.Current.Resources.MergedDictionaries.FirstOrDefault(a => a.Source.OriginalString == @"/res/languages/AppString_EN.xaml");
             resDictHE = Application.Current.Resources.MergedDictionaries.FirstOrDefault(a => a.Source.OriginalString == @"/res/languages/AppString_HE.xaml");
             Language = Application.Current.Resources.MergedDictionaries.ElementAt(Application.Current.Resources.MergedDictionaries.Count - 1);
         }
+        private void upGrid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        #region Initializations
         static public void InitializeCollections()
         {
             InitializeBusLines();
@@ -60,58 +63,34 @@ namespace PL
         }
         static public void InitializeBusLines()
         {
-            //busLinesCollection.Clear();
-            //foreach (BO.BusLine bl in App.bl.GetAllBusLines())
-            //{
-            //    busLinesCollection.Add(PoBoAdapter.BusLinePoBoAdapter(bl));
-            //}
             busLinesCollection = new ObservableCollection<BusLine>((from bl in App.bl.GetAllBusLines()
                                                                    select PoBoAdapter.BusLinePoBoAdapter(bl)).ToList());
         }
         static public void InitializeBuses()
         {
-            //busesCollection.Clear();
-            //foreach (BO.Bus b in App.bl.GetAllBuses())
-            //{
-            //    busesCollection.Add(PoBoAdapter.BusPoBoAdapter(b));
-            //}
             busesCollection = new ObservableCollection<Bus>(from b in App.bl.GetAllBuses()
                                                                    select PoBoAdapter.BusPoBoAdapter(b));
         }
         static public void InitializeStations()
         {
-            //stationsCollection.Clear();
-            //foreach (BO.Station s in App.bl.GetAllStations())
-            //{
-            //    stationsCollection.Add(PoBoAdapter.StationPoBoAdapter(s));
-            //}
             stationsCollection = new ObservableCollection<Station>(from s in App.bl.GetAllStations()
                                                                    select PoBoAdapter.StationPoBoAdapter(s));
         }
         static public void InitializeLineSchedules()
         {
-            //lineSchedulesCollection.Clear();
-            //foreach (BO.LineSchedule ls in App.bl.GetAllLineSchedules())
-            //{
-            //    lineSchedulesCollection.Add(PoBoAdapter.LineSchedulePoBoAdapter(ls));
-            //}
-            lineSchedulesCollection = new ObservableCollection<LineSchedule>(from ls in App.bl.GetAllLineSchedules()
-                                                                             select PoBoAdapter.LineSchedulePoBoAdapter(ls));
+            lineSchedulesCollection = new ObservableCollection<LineSchedule>(from ls in App.bl.GetAllLineSchedules()                                                                             select PoBoAdapter.LineSchedulePoBoAdapter(ls));
         }
+        #endregion
+
+        #region Buttons
         private void powerButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
 
-        private void upGrid_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
-        }
-
         private void minimizeButton_Click(object sender, RoutedEventArgs e)
         {
-            //Application.Current.MainWindow.WindowState = WindowState.Minimized; 
-            openingPage.Content = new ContactUsPage();
+            Application.Current.MainWindow.WindowState = WindowState.Minimized; 
         }
 
         private void Window_Initialized(object sender, EventArgs e)
@@ -137,5 +116,11 @@ namespace PL
             Application.Current.Resources.MergedDictionaries.Add(resDictEN);
             Language = Application.Current.Resources.MergedDictionaries.ElementAt(Application.Current.Resources.MergedDictionaries.Count - 1);
         }
+
+        private void contactUsButton_Click(object sender, RoutedEventArgs e)
+        {
+            openingPage.Content = new ContactUsPage();
+        }
+        #endregion
     }
 }

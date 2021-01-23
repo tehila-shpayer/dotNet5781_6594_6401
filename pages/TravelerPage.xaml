@@ -1,0 +1,181 @@
+﻿<Page x:Class="PL.TravelerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:PL"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="TravelerSimulationPage" Background="White" Width="Auto">
+    <Page.Resources>
+        <local:LanguageToAlignment x:Key="LanguageConvertor"/>
+        <DataTemplate x:Key="StationTemplate" DataType="local:Station">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="230">
+                <TextBlock Text="{Binding Name}" TextAlignment="Left" FontWeight="Bold" FontSize="15" FontFamily="Segoe UI Black"/>
+                <TextBlock Text="{Binding Key}" TextAlignment="Left" FontSize="15"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="BusLineTemplate" DataType="local:PresentBusLineForStation">
+            <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden" HorizontalContentAlignment="Right">-->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="Auto" >
+                <TextBlock Text="{Binding LineNumber}" TextAlignment="Left" FontWeight="Bold" FontSize="15" FontFamily="Segoe UI Black"/>
+                <Label Width="10"/>
+                <TextBlock Text="{Binding NameLastStation}" TextAlignment="Right" FontSize="15" FontFamily="Segoe UI Black"/>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid x:Name="mainGrid" FlowDirection="{Binding Source, Converter={StaticResource LanguageConvertor}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=True}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2.5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="LightGray" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Label Content="{DynamicResource StationPage_StationsTitle}" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontSize="30"/>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <!--<Button x:Name="SimulationButton" Width="155" Margin="0,10,0,-10"  Click="SimulationButton_Click" Background="#FF477AA9" BorderBrush="{x:Null}">
+            <Grid Width="145" Height="25">
+                <materialDesign:PackIcon Kind="Timer" VerticalAlignment="Center" Margin="0" HorizontalAlignment="Left" Width="20" Height="20"/>
+                <TextBlock x:Name="simulationButtonContent"  HorizontalAlignment="Center" VerticalAlignment="Center" Text="הפעל סימולציה" FontFamily="Champagne &amp; Limousines" FontSize="14" Width="132" Margin="0" TextAlignment="Center"/>
+            </Grid>
+            </Button>-->
+            <Grid HorizontalAlignment="Stretch" Margin="38,0,42.333,-19.333">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="0.8*"/>
+                    <ColumnDefinition Width="0.7*"/>
+                    <ColumnDefinition Width="0.8*"/>
+                    <ColumnDefinition Width="2.2*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="SimulationButton" Grid.Column="0" Width="100" Margin="5,0"  Click="SimulationButton_Click" Background="#FF477AA9" BorderBrush="{x:Null}" Height="38" VerticalAlignment="Center">
+                    <Grid Width="145" Height="25">
+                        <materialDesign:PackIcon Kind="Timer" VerticalAlignment="Center" Margin="0,3,0,2" HorizontalAlignment="Left" Width="20" Height="20" Grid.RowSpan="2"/>
+                        <TextBlock x:Name="simulationButtonContent"  HorizontalAlignment="Center" VerticalAlignment="Center" Text="{DynamicResource SimulationPage_Start}" FontFamily="Champagne &amp; Limousines" FontSize="14" Width="50" Margin="19,4,76,4" TextAlignment="Center"/>
+                    </Grid>
+                </Button>
+                <Button x:Name="StopButton" Grid.Column="0" Width="100" Margin="5,0" Visibility="Collapsed" Click="StopButton_Click"  Background="#FF477AA9" BorderBrush="{x:Null}" Height="38" VerticalAlignment="Center">
+                    <Grid Width="145" Height="25">
+                        <materialDesign:PackIcon Kind="Timer" VerticalAlignment="Center" Margin="0,3,0,2" HorizontalAlignment="Left" Width="20" Height="20" Grid.RowSpan="2"/>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{DynamicResource SimulationPage_Stop}" FontFamily="Champagne &amp; Limousines" FontSize="14" Width="50" Margin="19,4,76,4" TextAlignment="Center"/>
+                    </Grid>
+                </Button>
+                <!--<Button x:Name="1SimulationButton" Width="145" Margin="5,10" Content="הפעל סימולציה" Click="SimulationButton_Click" Background="#FF477AA9" BorderBrush="{x:Null}"/>-->
+                <!--<materialDesign:TimePicker x:Name="tpTime" Margin="15,10" FontSize="15" Foreground="Black" Width="100"/>-->
+                <Label Content="{DynamicResource SimulationPage_Rate}" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" FontFamily="Segoe UI Black" Grid.Column="1" VerticalContentAlignment="Center"/>
+                <TextBlock x:Name="tblRate" Width="60" Margin="0" Text="{Binding ElementName=tbRate, Path=Text}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Visible" FontSize="40" FontFamily="Segoe UI Black" FontWeight="Bold" Foreground="#FF2B703D" Grid.Column="2" TextAlignment="Center"/>
+                <TextBox x:Name="tbRate" Width="60" Margin="0" Text="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="40" FontWeight="Bold" FontFamily="Segoe UI Black" Foreground="#FF2B703D" Grid.Column="2" BorderBrush="{x:Null}"/>
+                <Label Content="{DynamicResource SimulationPage_Clock}" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="Segoe UI Black" FontWeight="Bold" VerticalContentAlignment="Center" Grid.Column="3"/>
+                <StackPanel FlowDirection="RightToLeft" Orientation="Horizontal" Grid.Column="4" Margin="0" VerticalAlignment="Center" Width="170">
+                    <TextBox x:Name="tbSeconds"  Margin="0" Text="00" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" FontSize="40" FontFamily="Segoe UI Black" FontWeight="Bold" BorderBrush="{x:Null}" Foreground="#FF2B703D"/>
+                    <TextBlock x:Name="tbDots1" Margin="0" Text=":" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="40" FontFamily="Segoe UI Black" FontWeight="Bold" Foreground="#FF2B703D"/>
+                    <TextBox x:Name="tbMinutes" Margin="0" Text="00" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" FontSize="40" FontFamily="Segoe UI Black" FontWeight="Bold" Foreground="#FF2B703D" BorderBrush="{x:Null}"/>
+                    <TextBlock x:Name="tbDots2" Margin="0" Text=":" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="40" FontFamily="Segoe UI Black" FontWeight="Bold" Foreground="#FF2B703D"/>
+                    <TextBox x:Name="tbHour" Margin="0" Text="11" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" FontSize="40" FontFamily="Segoe UI Black" FontWeight="Bold" Foreground="#FF2B703D" BorderBrush="{x:Null}"/>
+                </StackPanel>
+                <TextBlock x:Name="tbClock" Width="200" Margin="2.333,8,-17,8" FontSize="40" Text="{Binding}"  Foreground="#FF2B703D"  HorizontalAlignment="Center" VerticalAlignment="Center"  Visibility="Collapsed" FontFamily="Segoe UI Black" FontWeight="Bold" Grid.Column="4" />
+                <!---->
+            </Grid>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" x:Name="spStations">
+            <StackPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="LightGray" Offset="1"/>
+                    <GradientStop Color="#FFA6C8D1" Offset="0.25"/>
+                    <GradientStop Color="#FFD9DCDD" Offset="0.086"/>
+                    <GradientStop Color="#FFBBD0D6" Offset="0.18"/>
+                    <GradientStop Color="#FFABC9D1" Offset="0.608"/>
+                    <GradientStop Color="#FFC7D0D2" Offset="0.46"/>
+                </LinearGradientBrush>
+            </StackPanel.Background>
+            <ComboBox x:Name="cbStations" ItemsSource="{Binding}" Height="40" Background="#FFBBD0D6" SelectionChanged="cbStations_SelectionChanged" HorizontalContentAlignment="Right">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+            <ListBox x:Name="lbStations" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" ItemTemplate="{StaticResource StationTemplate}" BorderBrush="#FF222222" SelectionChanged="stations_SelectionChanged" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="400" Margin="0,0,0.4,0"/>
+        </StackPanel>
+
+        <Rectangle Grid.Column="1" Grid.Row="1" Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA">
+        </Rectangle>
+        <Grid x:Name="StationInfoGrid" Grid.Column="1" Grid.Row="1" Margin="40,30" DataContext="{Binding}">
+            <StackPanel>
+                <StackPanel Grid.Column="0" HorizontalAlignment="Center" Margin="20,20,20,10" Height="150" Width="451.333333333333">
+                    <StackPanel.Background>
+                        <SolidColorBrush Color="#FF80D095" Opacity="0.6"/>
+                    </StackPanel.Background>
+
+                    <StackPanel Orientation="Horizontal" Margin="0">
+                        <TextBlock Text="{Binding Name}" Margin="20,10,5,10" TextAlignment="Left" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding Key}" Margin="5,10" TextAlignment="Left" FontSize="16" VerticalAlignment="Center"/>
+
+                    </StackPanel>
+                    <ListBox x:Name="lbBusLineStations" Margin="28,0,196.667,0" Padding="0,0,0,0"  HorizontalAlignment="Center" ItemsSource="{Binding PresentBusLines}" ItemTemplate="{StaticResource BusLineTemplate}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="226" Height="115" HorizontalContentAlignment="Left">
+                    </ListBox>
+                </StackPanel>
+                <ListView x:Name="lvCommingLines" ItemsSource="{Binding}" ScrollViewer.VerticalScrollBarVisibility="Hidden" Height="187" HorizontalContentAlignment="Center" Margin="38,0,38,10" HorizontalAlignment="Center">
+                    <ListView.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF2C4142" Offset="0"/>
+                            <GradientStop Color="#FFBADADC" Offset="0.847"/>
+                            <GradientStop Color="#FF457E82" Offset="0.449"/>
+                            <GradientStop Color="#FF30797E" Offset="0.665"/>
+                            <GradientStop Color="#FF62B9D1" Offset="0.27"/>
+                        </LinearGradientBrush>
+                    </ListView.BorderBrush>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem" BasedOn="{StaticResource MaterialDesignGridViewItem}">
+                            <Setter Property="HorizontalContentAlignment" 
+                                    Value="Center" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Travel Information" TextBlock.TextAlignment="Center">
+                            <GridView.ColumnHeaderContainerStyle>
+                                <Style TargetType="GridViewColumnHeader">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="BorderBrush" Value="{x:Null}"/>
+                                </Style>
+                            </GridView.ColumnHeaderContainerStyle>
+                            <GridViewColumn DisplayMemberBinding= "{Binding Path=LineNumber}" Width="40">
+                                <GridViewColumnHeader Width="40" Content="{DynamicResource Line}" Margin="10,0,0,0" HorizontalAlignment="Left"/>
+                            </GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding= "{Binding Path=LastStationName}"  Width="170">
+                                <GridViewColumnHeader Width="190" Content="{DynamicResource AddLineWindow_LastStation}" Margin="0" HorizontalAlignment="Left"/>
+                            </GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding= "{Binding Path=StartTime}" Width="100">
+                                <GridViewColumnHeader Width="120" Content="{DynamicResource LineSchedulePage_StartTime}" Margin="0" HorizontalAlignment="Left"/>
+                            </GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding= "{Binding Path=TimeLeft}"  Width="100">
+                                <GridViewColumnHeader Width="120" Content="{DynamicResource SimulationPage_ArrivesIn}" Margin="0" HorizontalAlignment="Left"/>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <StackPanel Orientation="Horizontal" Background="#FFB3E3BF" Margin="20,0">
+                    <StackPanel x:Name="spLastBus" Orientation="Horizontal" Background="#FFB3E3BF" Margin="0">
+                        <Label Content="{DynamicResource SimulationPage_AtStation}" Margin="20,3,0,3" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black"/>
+                        <TextBlock x:Name="lastStationNameTextBlock1"  HorizontalAlignment="Left" Margin="20,3" Grid.Row="1" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black">
+                        <Run Text="{DynamicResource Line}"/>                        
+                        <Run Text="{Binding LineNumber}"/>
+                        <Run Text="{DynamicResource To}"/>
+                        <Run Text="{Binding LastStationName}"/>
+                        </TextBlock>
+                        <Label Content="{DynamicResource SimulationPage_S.T}"  HorizontalAlignment="Left" Margin="5,3" Grid.Row="2" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black"/>
+                        <TextBlock x:Name="startTimeTextBlock1"  HorizontalAlignment="Left" Margin="3" Grid.Row="2" Text="{Binding StartTime}" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI Black"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
