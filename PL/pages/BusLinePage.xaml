@@ -16,7 +16,7 @@
             <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Width="230">
                 <TextBlock Text="{Binding LineNumber}" TextAlignment="Left" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI Black" />
                 <TextBlock Text="{Binding Key}" TextAlignment="Left"/>
-                <TextBlock Text="{Binding Area}" TextAlignment="Right" Foreground="#FF477AA9" FontWeight="Bold" FontSize="15" FlowDirection="LeftToRight"/>
+                <TextBlock x:Name="areaTextBlock" Text="{Binding Area}" TextAlignment="Left" Foreground="#FF477AA9" FontWeight="Bold" FontSize="15" />
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="BusLineStationTemplate" DataType="local:BusLineStation">
@@ -74,9 +74,9 @@
             </StackPanel.Background>
             <StackPanel Orientation="Vertical" Margin="30,2">
                 <Label Content="{DynamicResource BusLinePage_ShowByArea}" Foreground="#FF476972" FontWeight="Bold" FontSize="14"/>
-                <ComboBox x:Name="areas"  ItemsSource="{Binding}" Background="White" Margin="10,0" AllowDrop="True" SelectionChanged="areas_SelectionChanged" HorizontalContentAlignment="Right"/>
+                <ComboBox x:Name="areas"  ItemsSource="{Binding}" Background="White" Margin="10,0" AllowDrop="True" SelectionChanged="areas_SelectionChanged" HorizontalContentAlignment="Left" FlowDirection="LeftToRight"/>
             </StackPanel>
-            <ComboBox x:Name="cbBusLines" ItemsSource="{Binding}" Height="40" Background="#FFBBD0D6" SelectionChanged="cbBusLines_SelectionChanged" HorizontalContentAlignment="Right">
+            <ComboBox x:Name="cbBusLines" ItemsSource="{Binding}" Height="40" Background="#FFBBD0D6" SelectionChanged="cbBusLines_SelectionChanged" HorizontalContentAlignment="Left">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
