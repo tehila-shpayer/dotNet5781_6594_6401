@@ -121,5 +121,15 @@ namespace PL
                                                                        select PoBoAdapter.BusPoBoAdapter(b));
             lbBuses.DataContext = MainWindow.busesCollection;
         }
+
+        private void TreatButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RefuelButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
