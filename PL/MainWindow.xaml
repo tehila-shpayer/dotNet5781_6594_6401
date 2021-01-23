@@ -36,7 +36,7 @@
                     <materialDesign:PackIcon Kind="Power" Height="30" Width="30"/>
                 </Button>
             </StackPanel>
-            <Button x:Name="minimizeUsButton" Margin="12,7,972,7" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Click="minimizeButton_Click" VerticalContentAlignment="Center">
+            <Button x:Name="minimizeUsButton" HorizontalAlignment="Left" Margin="10,0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Click="minimizeButton_Click" VerticalContentAlignment="Center">
                 <materialDesign:PackIcon Kind="WindowMinimize" Height="30" Width="30"/>
             </Button>
         </Grid>
