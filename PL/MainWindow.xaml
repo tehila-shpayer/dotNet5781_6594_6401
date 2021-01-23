@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
         <Grid x:Name="upGrid" Grid.ColumnSpan="2" VerticalAlignment="Stretch" Background="#FF56A0B5" MouseDown="upGrid_MouseDown" FlowDirection="RightToLeft" >
             <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right" >
-                <Button x:Name="contactUsButton" Margin="10,0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Click="minimizeButton_Click">
+                <Button x:Name="contactUsButton" Margin="10,0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Click="contactUsButton_Click">
                     <materialDesign:PackIcon Kind="HelpRhombus" Height="30" Width="30" />
                 </Button>
                 <materialDesign:PackIcon VerticalAlignment="Center" Margin="0,0,-40,0" Kind="LanguageBox" Height="30" Width="30" Background="#FF56A0B5" Foreground="White" />
