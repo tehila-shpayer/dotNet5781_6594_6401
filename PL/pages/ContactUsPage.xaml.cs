@@ -30,6 +30,9 @@ namespace PL
         }
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
+            txtbTo.Text = "";
+            txtbSubject.Text = "";
+            txtbContent.Text = "";
             int flag = 1;
 
             if (txtYourMail.Text.Trim().Length == 0)
