@@ -128,5 +128,7 @@
     <System:String x:Key="PlanJourneyPage_DSTStation">תחנת יעד:</System:String>
     <System:String x:Key="Search">חפש</System:String>
     <System:String x:Key="PlanJourneyPage_PossibleLines">קווים אפשריים:</System:String>
+    <System:String x:Key="BusLineStation_meter" xml:space="preserve"> מטר,  </System:String>
+    <System:String x:Key="BusLineStation_Minutes" xml:space="preserve">דקות </System:String>
 
 </ResourceDictionary>

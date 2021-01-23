@@ -16,9 +16,9 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,-35,0,0" Visibility="{Binding IsFirstStation, Converter={StaticResource aConverter}}">
                     <materialDesign:PackIcon Kind="ArrowBottom" Width="20" Height="20" Margin="12,2" Foreground="#FF0BD380"/>
                     <TextBlock FontSize="15" Text="{Binding DistanceFromLastStationMeters}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
-                    <TextBlock FontSize="15" Text=" מטר,  " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
+                    <TextBlock FontSize="15" Text="{DynamicResource BusLineStation_meter}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
                     <TextBlock FontSize="15" Text="{Binding TravelTimeFromLastStationMinutes}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
-                    <TextBlock FontSize="15" Text=" דקות " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
+                    <TextBlock FontSize="15" Text="{DynamicResource BusLineStation_Minutes}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Margin="0,8" Text="עלייה" Foreground="Red" FontSize="14" Visibility="{Binding IsSource, Converter={StaticResource trueToVisibleConvertor}}"/>

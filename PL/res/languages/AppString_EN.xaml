@@ -152,4 +152,7 @@
     <System:String x:Key="PlanJourneyPage_DSTStation">Destination Station:</System:String>
     <System:String x:Key="Search">Search</System:String>
     <System:String x:Key="PlanJourneyPage_PossibleLines">Possible Lines</System:String>
+
+    <System:String x:Key="BusLineStation_meter" xml:space="preserve"> meters, </System:String>
+    <System:String x:Key="BusLineStation_Minutes" xml:space="preserve"> minutes</System:String>
 </ResourceDictionary>
