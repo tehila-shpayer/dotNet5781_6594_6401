@@ -24,6 +24,7 @@ namespace PL
             InitializeComponent();
             StationsGrid.DataContext = PoBoAdapter.BusLinePoBoAdapter(App.bl.GetBusLine(lineKey), sourceKey, destinationKey);
             lvCSchedule.DataContext = App.bl.GetArrivalTimes(lineKey, sourceKey, destinationKey);
+            mainGrid.DataContext = MainWindow.Language;
         }
     }
 }

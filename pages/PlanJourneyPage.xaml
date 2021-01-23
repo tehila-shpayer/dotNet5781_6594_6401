@@ -9,7 +9,6 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PlanJourneyPage">
     <Page.Resources>
-        <local:LanguageToAlignment x:Key="LanguageConvertor"/>
         <DataTemplate x:Key="BusLineTemplate" DataType="local:PresentBusLineForStation">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="Auto" >
                 <StackPanel Orientation="Vertical">
@@ -24,7 +23,7 @@
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
-    <Grid x:Name="mainGrid" Background="LightGray" FlowDirection="{Binding Source, Converter={StaticResource LanguageConvertor}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=True}">
+    <Grid Background="LightGray" FlowDirection="RightToLeft">
         <Rectangle Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA"/>
         <Grid x:Name="ProfilGrid" Margin="60,45" DataContext="{Binding}">
             <Grid.ColumnDefinitions>

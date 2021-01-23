@@ -26,7 +26,6 @@ namespace PL
         public ContactUsPage()
         {
             InitializeComponent();
-            mainGrid.DataContext = MainWindow.Language;
         }
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {

@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="AddLineScheduleWindow" Height="500" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="AddLineScheduleWindow" Height="500" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="icons8-bus-50.png">
     <Window.Resources>
         <local:LanguageToAlignment x:Key="LanguageConvertor"/>
     </Window.Resources>

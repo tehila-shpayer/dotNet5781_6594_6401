@@ -6,9 +6,10 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="LineAndScheduleWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen">
+        Title="LineAndScheduleWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen" Icon="AddWindows/icons8-bus-50.png">
     <Window.Resources>
         <local:BoolToVisibilityConverter x:Key="aConverter"/>
+        <local:LanguageToAlignment x:Key="LanguageConvertor"/>
         <local:TrueToVisibleConverter x:Key="trueToVisibleConvertor"/>
         <DataTemplate x:Key="BusLineStationTemplate" DataType="local:BusLineStation">
             <StackPanel Margin="0,30,0,0">
@@ -29,7 +30,7 @@
             </StackPanel>
         </DataTemplate>
     </Window.Resources>
-    <Grid Background="LightGray" FlowDirection="RightToLeft">
+    <Grid x:Name="mainGrid" Background="LightGray" FlowDirection="{Binding Source, Converter={StaticResource LanguageConvertor}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=True}">
         <Rectangle Fill="White" Margin="40,30" RadiusX="10" RadiusY="10" Stroke="#FF3C61CA"/>
         <Grid Margin="60,45">
             <Grid.ColumnDefinitions>
