@@ -66,7 +66,6 @@
     <System:String x:Key="SignUpPage_SignUp">Sign Up</System:String>
     <!--#endregion-->
 
-
     <!--#region Manager Menue-->
     <System:String x:Key="Menue_Profile">PROFILE</System:String>
     <System:String x:Key="Menue_Lines">LINES</System:String>
