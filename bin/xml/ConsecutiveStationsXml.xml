@@ -1137,8 +1137,8 @@
   <ConsecutiveStations>
     <StationKey1>71000</StationKey1>
     <StationKey2>71016</StationKey2>
-    <Distance>89824</Distance>
-    <AverageTime>126</AverageTime>
+    <Distance>124806</Distance>
+    <AverageTime>198</AverageTime>
   </ConsecutiveStations>
   <ConsecutiveStations>
     <StationKey1>71000</StationKey1>
