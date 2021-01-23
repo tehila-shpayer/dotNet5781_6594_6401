@@ -277,7 +277,7 @@ namespace BL
                 if (!char.IsLetterOrDigit(key))
                     throw new BOInvalidInformationException("User name contains invalid keybords.");
             if (password.Length < 4)
-                throw new BOInvalidInformationException("Password is too short, it mustbe at least 4 characters long.");
+                throw new BOInvalidInformationException("Password is too short, it must be at least 4 characters long.");
             if (password.Length > 16)
                 throw new BOInvalidInformationException("Password is too long, it must be at most 16 characters long.");
             foreach (char key in password)
