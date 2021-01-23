@@ -14,7 +14,7 @@
     <Grid x:Name="mainGrid" Background="LightGray" FlowDirection="{Binding Source, Converter={StaticResource LanguageConvertor}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=True}">
         <Rectangle Grid.Column="1" Grid.Row="1" Fill="White" Width="700" Height="450" Margin="40,30" Stroke="#FF3C61CA">
         </Rectangle>
-        <Label Content="Enter details to send email" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="1" Height="24"/>
+        <Label Content="{DynamicResource ContactPage_EnterDetails}" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="1" Height="24"/>
         <Grid Margin="140,40">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="45*"/>
