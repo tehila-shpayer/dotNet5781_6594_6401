@@ -133,4 +133,25 @@
     <System:String x:Key="SimulationPage_AtStation">At Station:</System:String>
     <System:String x:Key="SimulationPage_S.T">S.T.</System:String>
     <!--#endregion-->
+    <System:String x:Key="ContactPage_EnterDetails">Enter details to send email</System:String>
+    <System:String x:Key="ContactPage_YourEmail">Your Email</System:String>
+    <System:String x:Key="ContactPage_Subject">Subject</System:String>
+    <System:String x:Key="ContactPage_Content">Content</System:String>
+    <System:String x:Key="ContactPage_Send">Send</System:String>
+    <System:String x:Key="ContactPage_Reset">Reset</System:String>
+
+    <System:String x:Key="LineAndScheduleWindow_Route" xml:space="preserve"> - Line Route</System:String>
+    <System:String x:Key="LineAndScheduleWindow_Schedule">Schedule</System:String>
+    <System:String x:Key="LineAndScheduleWindow_StartTime">Start</System:String>
+    <System:String x:Key="LineAndScheduleWindow_ArriveToSRC">Arrive To SRC</System:String>
+    <System:String x:Key="LineAndScheduleWindow_ArriveToDST">Arrive To DST</System:String>
+
+    <System:String x:Key="PlanJourneyPage_Title">Plan Your Journey</System:String>
+    <System:String x:Key="PlanJourneyPage_SRCStation">Origin Station:</System:String>
+    <System:String x:Key="PlanJourneyPage_DSTStation">Destination Station:</System:String>
+    <System:String x:Key="Search">Search</System:String>
+    <System:String x:Key="PlanJourneyPage_PossibleLines">Possible Lines</System:String>
+
+    <System:String x:Key="BusLineStation_meter" xml:space="preserve"> meters, </System:String>
+    <System:String x:Key="BusLineStation_Minutes" xml:space="preserve"> minutes</System:String>
 </ResourceDictionary>

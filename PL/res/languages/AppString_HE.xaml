@@ -110,4 +110,25 @@
     <System:String x:Key="To"> ל-</System:String>
     <System:String x:Key="SimulationPage_S.T">ש.י.</System:String>
     <!--#endregion-->
+    <System:String x:Key="ContactPage_EnterDetails">הכנס פרטים לשליחת מייל</System:String>
+    <System:String x:Key="ContactPage_YourEmail">המייל שלך</System:String>
+    <System:String x:Key="ContactPage_Subject">נושא</System:String>
+    <System:String x:Key="ContactPage_Content">תוכן</System:String>
+    <System:String x:Key="ContactPage_Send">שלח</System:String>
+    <System:String x:Key="ContactPage_Reset">אתחול</System:String>
+    
+    <System:String x:Key="LineAndScheduleWindow_Route" xml:space="preserve"> - מסלול הקו</System:String>
+    <System:String x:Key="LineAndScheduleWindow_Schedule">לוח זמנים</System:String>
+    <System:String x:Key="LineAndScheduleWindow_StartTime">שעת יציאה</System:String>
+    <System:String x:Key="LineAndScheduleWindow_ArriveToSRC">הגעה לתחנת מוצא</System:String>
+    <System:String x:Key="LineAndScheduleWindow_ArriveToDST">הגעה ליעד</System:String>
+    
+    <System:String x:Key="PlanJourneyPage_Title">תכנן נסיעה</System:String>
+    <System:String x:Key="PlanJourneyPage_SRCStation">תחנת מוצא:</System:String>
+    <System:String x:Key="PlanJourneyPage_DSTStation">תחנת יעד:</System:String>
+    <System:String x:Key="Search">חפש</System:String>
+    <System:String x:Key="PlanJourneyPage_PossibleLines">קווים אפשריים:</System:String>
+    <System:String x:Key="BusLineStation_meter" xml:space="preserve"> מטר,  </System:String>
+    <System:String x:Key="BusLineStation_Minutes" xml:space="preserve">דקות </System:String>
+
 </ResourceDictionary>

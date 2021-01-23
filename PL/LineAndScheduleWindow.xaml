@@ -16,9 +16,9 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,-35,0,0" Visibility="{Binding IsFirstStation, Converter={StaticResource aConverter}}">
                     <materialDesign:PackIcon Kind="ArrowBottom" Width="20" Height="20" Margin="12,2" Foreground="#FF0BD380"/>
                     <TextBlock FontSize="15" Text="{Binding DistanceFromLastStationMeters}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
-                    <TextBlock FontSize="15" Text=" מטר,  " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
+                    <TextBlock FontSize="15" Text="{DynamicResource BusLineStation_meter}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
                     <TextBlock FontSize="15" Text="{Binding TravelTimeFromLastStationMinutes}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
-                    <TextBlock FontSize="15" Text=" דקות " Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
+                    <TextBlock FontSize="15" Text="{DynamicResource BusLineStation_Minutes}" Margin="0" TextAlignment="Right" FontFamily="Segoe UI Emoji"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Margin="0,8" Text="עלייה" Foreground="Red" FontSize="14" Visibility="{Binding IsSource, Converter={StaticResource trueToVisibleConvertor}}"/>
@@ -44,7 +44,7 @@
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock Text="{Binding LineNumber}" FontSize="28" FontWeight="Bold"/>
-                    <TextBlock Text=" - מסלול הקו" FontSize="28"/>
+                    <TextBlock Text="{DynamicResource LineAndScheduleWindow_Route}" FontSize="28"/>
                 </StackPanel>
                 <ListBox x:Name="lbBusLineStations" Grid.Row="1" Grid.Column="0" Margin="15,30,14.8,9.8" Padding="0,-25,0,0" ItemsSource="{Binding BusLineStations}" ItemTemplate="{StaticResource BusLineStationTemplate}" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
             </Grid>
@@ -53,7 +53,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="5*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="לוח זמנים" Grid.Row="0" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="{DynamicResource LineAndScheduleWindow_Schedule}" Grid.Row="0" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <ListView x:Name="lvCSchedule" Grid.Row="1" ItemsSource="{Binding}" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Hidden" HorizontalContentAlignment="Center" Margin="0,10,-0.2,9.8" Foreground="#FF477AA9">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem" BasedOn="{StaticResource MaterialDesignGridViewItem}">
@@ -70,13 +70,13 @@
                                 </Style>
                             </GridView.ColumnHeaderContainerStyle>
                             <GridViewColumn DisplayMemberBinding="{Binding Path=Start}" Width="90">
-                                <GridViewColumnHeader Content="שעת יציאה" FontSize="14" Margin="0,0,0,0"/>
+                                <GridViewColumnHeader Content="{DynamicResource LineAndScheduleWindow_StartTime}" FontSize="14" Margin="0,0,0,0"/>
                             </GridViewColumn>
                             <GridViewColumn DisplayMemberBinding="{Binding Path=SourceArrive}">
-                                <GridViewColumnHeader Content="הגעה לתחנת מוצא" FontSize="14" Margin="0"/>
+                                <GridViewColumnHeader Content="{DynamicResource LineAndScheduleWindow_ArriveToSRC}" FontSize="14" Margin="0"/>
                             </GridViewColumn>
                             <GridViewColumn DisplayMemberBinding= "{Binding Path=DestinationArrive}"  Width="90">
-                                <GridViewColumnHeader Content="הגעה ליעד" FontSize="14" Margin="0"/>
+                                <GridViewColumnHeader Content="{DynamicResource LineAndScheduleWindow_ArriveToDST}" FontSize="14" Margin="0"/>
                             </GridViewColumn>
                         </GridView>
                     </ListView.View>
