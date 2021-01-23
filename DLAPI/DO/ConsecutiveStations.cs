@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace DO
 {
+    /// <summary>
+    /// DLמחלקה לייצוג תחנות עוקבות בקו אוטובוס בשכבת ה
+    /// המחלקה כוללת את פרטי המרחק והזמן בין התחנות
+    /// </summary>
     public class ConsecutiveStations
     {
         public int StationKey1 { get; set; }

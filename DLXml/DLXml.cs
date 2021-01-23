@@ -11,6 +11,8 @@ using System.Xml.Serialization;
 
 namespace DL
 {
+    //מימוש חוזה הממשק IDL ע"י Xml
+    //תקציר פונקציות בהגדרת הממשק
     sealed class DLXml : IDL
     {
         #region singelton
@@ -33,7 +35,7 @@ namespace DL
 
         #endregion
 
-        #region Bus
+        #region Bus XElement
         public IEnumerable<Bus> GetAllBuses()
         {
             XElement busesRootElem = XmlTools.LoadListFromXMLElement(busesPath);
@@ -180,7 +182,7 @@ namespace DL
         }
         #endregion
 
-        #region BusLine
+        #region BusLine XMLSerializer
         public BusLine GetBusLine(int busLineKey)
         {
             List<BusLine> ListBusLines = XmlTools.LoadListFromXMLSerializer<BusLine>(busLinesPath);
@@ -208,7 +210,8 @@ namespace DL
             List<BusLine> ListBusLines = XmlTools.LoadListFromXMLSerializer<BusLine>(busLinesPath);
             List<int> ListKeys = XmlTools.LoadListFromXMLSerializer<int>(runningNumbersPath);
             line.Key = ListKeys[1]++;
-            XmlTools.SaveListToXMLSerializer(ListKeys, runningNumbersPath); ListBusLines.Add(line);
+            XmlTools.SaveListToXMLSerializer(ListKeys, runningNumbersPath);
+            ListBusLines.Add(line);
             XmlTools.SaveListToXMLSerializer(ListBusLines, busLinesPath);
             return line.Key;
         }
@@ -244,7 +247,7 @@ namespace DL
 
         #endregion
 
-        #region BusLineStation
+        #region BusLineStation XMLSerializer
         public IEnumerable<BusLineStation> GetAllBusLineStations()
         {
             List<BusLineStation> ListBusLineStations = XmlTools.LoadListFromXMLSerializer<BusLineStation>(busLineStationsPath);
@@ -336,7 +339,7 @@ namespace DL
         }
         #endregion
 
-        #region ConsecutiveStations
+        #region ConsecutiveStations XElement
         public ConsecutiveStations GetConsecutiveStations(int stationKey1, int stationKey2)
         {
             XElement consecutiveStationsRootElem = XmlTools.LoadListFromXMLElement(consecutiveStationsPath);
@@ -454,7 +457,7 @@ namespace DL
         }
         #endregion
 
-        #region LineSchedule
+        #region LineSchedule XElement
         public LineSchedule GetLineSchedule(int lineKey, TimeSpan startTime)
         {
             XElement lineScheduleRootElem = XmlTools.LoadListFromXMLElement(lineSchedulesPath);
@@ -542,30 +545,7 @@ namespace DL
             }
             else
                 throw new ArgumentNotFoundException($"Line schedule of line {lineSchedule.LineKey} and starting time {lineSchedule.StartTime.ToString("HH:mm")} not found.");
-        }
-        public void UpdateLineSchedule(int lineKey, TimeSpan startTime, Action<LineSchedule> update)
-        {
-            XElement lineScheduleRootElem = XmlTools.LoadListFromXMLElement(lineSchedulesPath);
-
-            XElement lineSchedule1 = (from ls in lineScheduleRootElem.Elements()
-                                      where int.Parse(ls.Element("LineKey").Value) == lineKey &&
-                                      TimeSpan.Parse(ls.Element("StartTime").Value) == startTime
-                                      select ls).FirstOrDefault();
-
-            if (lineSchedule1 != null)
-            {
-                LineSchedule lineSchedule = GetLineSchedule(lineKey, startTime);
-                update(lineSchedule);
-                lineSchedule1.Element("LineKey").Value = lineSchedule.LineKey.ToString();
-                lineSchedule1.Element("StartTime").Value = lineSchedule.StartTime.ToString();
-                lineSchedule1.Element("EndTime").Value = lineSchedule.EndTime.ToString();
-                lineSchedule1.Element("Frequency").Value = lineSchedule.Frequency.ToString();
-
-                XmlTools.SaveListToXMLElement(lineScheduleRootElem, lineSchedulesPath);
-            }
-            else
-                throw new ArgumentNotFoundException($"Line schedule of line {lineKey} and starting time {startTime.ToString("HH:mm")} not found.");
-        }
+        }      
         public void DeleteLineSchedule(int lineKey, TimeSpan startTime)
         {
             XElement lineScheduleRootElem = XmlTools.LoadListFromXMLElement(lineSchedulesPath);
@@ -585,7 +565,7 @@ namespace DL
         }
         #endregion
 
-        #region Station
+        #region Station XMLSerializer
         public Station GetStation(int stationKey)
         {
             List<Station> ListStations = XmlTools.LoadListFromXMLSerializer<Station>(stationsPath);
@@ -651,7 +631,7 @@ namespace DL
         }
         #endregion
 
-        #region User
+        #region User XMLSerializer
         public User GetUser(string userName)
         {
             List<User> ListUsers = XmlTools.LoadListFromXMLSerializer<User>(usersPath);
@@ -690,17 +670,6 @@ namespace DL
             int indexOfUserToUpdate = ListUsers.FindIndex(s => s.UserName == user.UserName);
             if (indexOfUserToUpdate == -1)
                 throw new ArgumentNotFoundException($"User {user.UserName} not found");
-            ListUsers[indexOfUserToUpdate] = user;
-            XmlTools.SaveListToXMLSerializer(ListUsers, usersPath);
-        }
-        public void UpdateUser(string userName, Action<User> update)
-        {
-            List<User> ListUsers = XmlTools.LoadListFromXMLSerializer<User>(usersPath);
-            int indexOfUserToUpdate = ListUsers.FindIndex(s => s.UserName == userName);
-            if (indexOfUserToUpdate == -1)
-                throw new ArgumentNotFoundException($"User {userName} not found");
-            User user = ListUsers.Find(u => u.UserName == userName);
-            update(user);
             ListUsers[indexOfUserToUpdate] = user;
             XmlTools.SaveListToXMLSerializer(ListUsers, usersPath);
         }

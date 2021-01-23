@@ -9,6 +9,9 @@ using System.Xml.Serialization;
 
 namespace DL
 {
+    /// <summary>
+    /// מחלקה עזר לעבודה עם קבצי XML
+    /// </summary>
     public class XmlTools
     {
         static string dir = @"xml\";
@@ -18,6 +21,11 @@ namespace DL
                 Directory.CreateDirectory(dir);
         }
         #region SaveLoadWithXElement
+        /// <summary>
+        /// שמירה לקובץ XML על ידי שימוש במחלקה XElement
+        /// </summary>
+        /// <param name="rootElem">שורש הקובץ</param>
+        /// <param name="filePath">מיקום הקובץ</param>
         public static void SaveListToXMLElement(XElement rootElem, string filePath)
         {
             try
@@ -30,6 +38,11 @@ namespace DL
             }
         }
 
+        /// <summary>
+        /// העלאה מקובץ XML ע"י שימוש במחלקה XElement
+        /// </summary>
+        /// <param name="filePath">מיקום קובץ</param>
+        /// <returns>רשימת האלמנטים בקובץ</returns>
         public static XElement LoadListFromXMLElement(string filePath)
         {
             try
@@ -53,6 +66,12 @@ namespace DL
         #endregion
 
         #region SaveLoadWithXMLSerializer
+        /// <summary>
+        /// שמירה לקובץ XML ע"י שימוש בXMLSerializer
+        /// </summary>
+        /// <typeparam name="T">טיפוס האלמנטים בקובץ</typeparam>
+        /// <param name="list">רשימת אלמנטים מטיפוס גנרי לשמירה בקובץ</param>
+        /// <param name="filePath">מיקום הקובץ</param>
         public static void SaveListToXMLSerializer<T>(List<T> list, string filePath)
         {
             try
@@ -67,6 +86,12 @@ namespace DL
                 throw new DO.XMLFileLoadCreateException(filePath, $"fail to create xml file: {filePath}", ex);
             }
         }
+        /// <summary>
+        /// העלאה מקובץ XML ע"י שימוש בXMLSerializer
+        /// </summary>
+        /// <typeparam name="T">טיפוס האלמנטים בקובץ</typeparam>
+        /// <param name="filePath">מיקום הקובץ</param>
+        /// <returns>רשימת האלמנטים בקובץ מטיפוס גנרי</returns>
         public static List<T> LoadListFromXMLSerializer<T>(string filePath)
         {
             try

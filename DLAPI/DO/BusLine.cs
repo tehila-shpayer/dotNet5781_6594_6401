@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DO
 {
+    /// <summary>
+    /// DLמחלקה לייצוג קו אוטובוס בשכבת ה
+    /// </summary>
     public class BusLine
     {
         public static int BUS_LINE_KEY = 1794;

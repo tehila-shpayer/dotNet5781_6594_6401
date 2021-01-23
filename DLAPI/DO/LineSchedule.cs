@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DO
 {
+    /// <summary>
+    /// DLמחלקה לייצוג זמני יציאה של קו אוטובוס בשכבת ה
+    /// </summary>
     public class LineSchedule
     {
         public int LineKey { get; set; }

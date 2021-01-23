@@ -7,6 +7,9 @@ using System.Reflection;
 
 namespace DO
 {
+    /// <summary>
+    /// DLמחלקת עזר לטיפוסים בשכבת ה
+    /// </summary>
     public static class Tools
     {
         /// <summary>

@@ -10,32 +10,34 @@ using DS;
 
 namespace DL
 {
+    //מימוש ממשק החוזה IDL ע"י Object 
+    //תקציר פונקציות בהגדרת הממשק
     sealed class DL : IDL    //internal
     {
         #region singelton
         static readonly DL instance = new DL();
         static DL() { }// static ctor to ensure instance init is done just before first usage
         DL() { } // default => private
-       public static DL Instance { get => instance; }// The public Instance property to use
+        public static DL Instance { get => instance; }// The public Instance property to use
         #endregion
 
         #region Bus
-       public IEnumerable<Bus> GetAllBuses()
+        public IEnumerable<Bus> GetAllBuses()
         {
             var AllBuses = from bus in DataSource.ListBuses
                            select bus.Clone();
             return AllBuses;
         }
-       public IEnumerable<Bus> GetAllBusesBy(Predicate<Bus> predicate)
+        public IEnumerable<Bus> GetAllBusesBy(Predicate<Bus> predicate)
         {
             var AllBusesBy = from bus in DataSource.ListBuses
                              where predicate(bus)
                              select bus.Clone();
             return AllBusesBy;
         }
-       public Bus GetBus(string LicenseNumber)
+        public Bus GetBus(string LicenseNumber)
         {
-            Bus bus = DataSource.ListBuses.Find(b => b.LicenseNumber==LicenseNumber);
+            Bus bus = DataSource.ListBuses.Find(b => b.LicenseNumber == LicenseNumber);
             if (bus != null)
                 return bus.Clone();
             else
@@ -51,7 +53,7 @@ namespace DL
         {
             int indexOfBusToUpdate = DataSource.ListBuses.FindIndex(s => s.LicenseNumber == bus.LicenseNumber);
             if (indexOfBusToUpdate >= 0)
-                DataSource.ListBuses[indexOfBusToUpdate] = bus; 
+                DataSource.ListBuses[indexOfBusToUpdate] = bus;
             else
                 throw new ArgumentNotFoundException($"Bus {bus.LicenseNumber} not found.");
         }
@@ -65,42 +67,13 @@ namespace DL
             else
                 throw new ArgumentNotFoundException($"Bus {LicenseNumber} not found.");
         }
-       public void DeleteBus(string LicenseNumber)
+        public void DeleteBus(string LicenseNumber)
         {
             Bus bus = DataSource.ListBuses.Find(b => b.LicenseNumber == LicenseNumber);
             if (bus == null)
                 throw new ArgumentNotFoundException($"Bus {bus.LicenseNumber} not found.");
             DataSource.ListBuses.Remove(bus);
         }
-        #endregion
-
-        #region BusInTravel
-       //public BusInTravel GetBusInTravel(int key) 
-       // {
-       //     BusInTravel busInTravel = DataSource.ListBusesInTravel.Find(b => b.Key== key);
-       //     if (busInTravel != null)
-       //         return busInTravel.Clone();
-       //     else
-       //         throw new ArgumentNotFoundException(key, $"Bus in travel with key {key} not found.");
-       // }
-       //public IEnumerable<BusInTravel> GetAllBusInTravelsBy(Predicate<BusInTravel> predicate) 
-       // {
-       //     var AllBusesInTravelsBy = from bus in DataSource.ListBusesInTravel
-       //                               where predicate(bus)
-       //                               select bus.Clone();
-       //     return AllBusesInTravelsBy;
-       // }
-       //public IEnumerable<BusInTravel> GetAllBusInTravels()
-       // {
-       //     var AllBusesInTravels = from bus in DataSource.ListBusesInTravel
-       //                    select bus.Clone();
-       //     return AllBusesInTravels;
-       // }
-       // public void AddBusInTravel(BusInTravel busInTravel) { }
-       // public void DeleteBusInTravel(string licenseNumber, int lineKey, int formalTime) { }
-       // public void UpdateBusInTravel(BusInTravel bus) { }
-       // public void UpdateBusInTravel(int key, Action<BusInTravel> update) { } //method that knows to updt specific fields in BusInTravel
-
         #endregion
 
         #region BusLine
@@ -115,14 +88,14 @@ namespace DL
         public IEnumerable<BusLine> GetBusLinesBy(Predicate<BusLine> predicate)
         {
             var AllBuseLinesBy = from line in DataSource.ListBusLines
-                             where predicate(line)
-                             select line.Clone();
+                                 where predicate(line)
+                                 select line.Clone();
             return AllBuseLinesBy;
         }
         public IEnumerable<BusLine> GetAllBusLines()
         {
             var AllBuseLines = from line in DataSource.ListBusLines
-                                 select line.Clone();
+                               select line.Clone();
             return AllBuseLines;
         }
         public int AddBusLine(BusLine bus)
@@ -147,7 +120,7 @@ namespace DL
                 update(bus);
             else
                 throw new ArgumentNotFoundException($"Bus not found with license number: {busLineKey}");
-        } 
+        }
         public void DeleteBusLine(int busLineKey)
         {
             BusLine bus = DataSource.ListBusLines.Find(b => b.Key == busLineKey);
@@ -162,7 +135,7 @@ namespace DL
         public IEnumerable<BusLineStation> GetAllBusLineStations()
         {
             var AllBusLineStations = from bls in DataSource.ListBusLineStations
-                           select bls.Clone();
+                                     select bls.Clone();
             return AllBusLineStations;
         }
         public IEnumerable<BusLineStation> GetAllBusLineStationsBy(Predicate<BusLineStation> predicate)
@@ -209,7 +182,7 @@ namespace DL
         {
             int index = DataSource.ListBusLineStations.FindIndex(s => s.BusLineKey == station.BusLineKey && s.StationKey == station.StationKey);
             if (index != -1)
-            DataSource.ListBusLineStations[index] = station;
+                DataSource.ListBusLineStations[index] = station;
             else
                 throw new ArgumentNotFoundException($"Bus station of line {station.BusLineKey} and station {station.StationKey} was not found.");
         }
@@ -229,7 +202,7 @@ namespace DL
             DataSource.ListBusLineStations.Remove(busLineStation);
         }
         public void DeleteBusLineStationsByStation(int stationKey)
-        { 
+        {
             DataSource.ListBusLineStations.RemoveAll(bls => bls.StationKey == stationKey);
         }
         public void DeleteBusLineStationsByLine(int lineKey)
@@ -251,29 +224,29 @@ namespace DL
         {
             DataSource.ListConsecutiveStations.Add(consecutiveStations.Clone());
         }
-        public void AddConsecutiveStations(int stationKey1, int stationKey2)
-        {
-            if (stationKey1 == stationKey2)
-                throw new InvalidInformationException("Duplicate station!");
-            Station station1 = GetStation(stationKey1);
-            Station station2 = GetStation(stationKey2);
-            AddConsecutiveStations(CalculateConsecutiveStations(station1, station2));
-        }
-        ConsecutiveStations CalculateConsecutiveStations(Station station1, Station station2)
-        {
-            ConsecutiveStations consecutiveStations = new DO.ConsecutiveStations();
-            consecutiveStations.StationKey1 = station1.Key;
-            consecutiveStations.StationKey2 = station2.Key;
-            GeoCoordinate location1 = new GeoCoordinate(station1.Latitude, station1.Longitude);//מיקום התחנה המחושבת
-            GeoCoordinate location2 = new GeoCoordinate(station2.Latitude, station2.Longitude);//מיקום התחנה הקודמת
-            double distance = location1.GetDistanceTo(location2);//חישוב מרחק
-            consecutiveStations.Distance = (int)distance;
-            Random rand = new Random();
-            int speed = rand.Next(30, 60);
-            int time = (int)Math.Ceiling(distance / (speed * 1000 / 60));//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש
-            consecutiveStations.AverageTime = time;
-            return consecutiveStations;
-        }
+        //public void AddConsecutiveStations(int stationKey1, int stationKey2)
+        //{
+        //    if (stationKey1 == stationKey2)
+        //        throw new InvalidInformationException("Duplicate station!");
+        //    Station station1 = GetStation(stationKey1);
+        //    Station station2 = GetStation(stationKey2);
+        //    AddConsecutiveStations(CalculateConsecutiveStations(station1, station2));
+        //}
+        //ConsecutiveStations CalculateConsecutiveStations(Station station1, Station station2)
+        //{
+        //    ConsecutiveStations consecutiveStations = new DO.ConsecutiveStations();
+        //    consecutiveStations.StationKey1 = station1.Key;
+        //    consecutiveStations.StationKey2 = station2.Key;
+        //    GeoCoordinate location1 = new GeoCoordinate(station1.Latitude, station1.Longitude);//מיקום התחנה המחושבת
+        //    GeoCoordinate location2 = new GeoCoordinate(station2.Latitude, station2.Longitude);//מיקום התחנה הקודמת
+        //    double distance = location1.GetDistanceTo(location2);//חישוב מרחק
+        //    consecutiveStations.Distance = (int)distance;
+        //    Random rand = new Random();
+        //    int speed = rand.Next(30, 60);
+        //    int time = (int)Math.Ceiling(distance / (speed * 1000 / 60));//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש
+        //    consecutiveStations.AverageTime = time;
+        //    return consecutiveStations;
+        //}
         public void UpdateConsecutiveStations(ConsecutiveStations stations)
         {
             int indexOfConsecutiveStationToUpdate = DataSource.ListConsecutiveStations.FindIndex(s => s.StationKey1 == stations.StationKey1 && s.StationKey2 == stations.StationKey2);
@@ -308,7 +281,7 @@ namespace DL
             {
                 throw;
             }
-            
+
         }
         #endregion
 
@@ -339,18 +312,13 @@ namespace DL
                 throw new InvalidInformationException($"There is already a line schedule {lineSchedule.LineKey} that start at {lineSchedule.StartTime.ToString()}");
             DataSource.ListLineSchedules.Add(lineSchedule);
         }
-        public void UpdateLineSchedule(LineSchedule lineSchedule) 
+        public void UpdateLineSchedule(LineSchedule lineSchedule)
         {
             int indexOfLineScheduleToUpdate = DataSource.ListLineSchedules.FindIndex(ls => ls.LineKey == lineSchedule.LineKey && ls.StartTime.ToString("HH:mm") == lineSchedule.StartTime.ToString("HH:mm"));
             if (indexOfLineScheduleToUpdate == -1)
                 throw new ArgumentNotFoundException($"Line schedule of line {lineSchedule.LineKey} and starting time {lineSchedule.StartTime.ToString("HH:mm")} not found.");
-            
+
             DataSource.ListLineSchedules[indexOfLineScheduleToUpdate] = lineSchedule;
-        }
-        public void UpdateLineSchedule(int line, TimeSpan startTime, Action<LineSchedule> update)
-        {
-            LineSchedule lineSchedule = GetLineSchedule(line, startTime);
-            update(lineSchedule);
         }
         public void DeleteLineSchedule(int line, TimeSpan startTime)
         {
@@ -371,7 +339,7 @@ namespace DL
         public IEnumerable<Station> GetAllStations()
         {
             var AllStations = from station in DataSource.ListStations
-                           select station.Clone();
+                              select station.Clone();
             return AllStations;
         }
         public int AddStation(Station station)
@@ -397,7 +365,6 @@ namespace DL
             DataSource.ListStations[indexOfStationToUpdate] = station;
 
         }
-
         public void DeleteStation(int stationKey)
         {
             Station station = DataSource.ListStations.Find(s => s.Key == stationKey);
@@ -416,7 +383,7 @@ namespace DL
 
         #region User
 
-        public User GetUser(string userName) 
+        public User GetUser(string userName)
         {
             User user = DataSource.ListUsers.Find(s => s.UserName == userName);
             if (user != null)
@@ -435,7 +402,7 @@ namespace DL
         public IEnumerable<User> GetAllUsers()
         {
             var AllUsers = from user in DataSource.ListUsers
-                              select user.Clone();
+                           select user.Clone();
             return AllUsers;
         }
         public void AddUser(User user)
@@ -444,7 +411,7 @@ namespace DL
                 throw new InvalidInformationException("Duplicate user name");
             DataSource.ListUsers.Add(user.Clone());
         }
-        public void UpdateUser(User user) 
+        public void UpdateUser(User user)
         {
             int indexOfUserToUpdate = DataSource.ListUsers.FindIndex(s => s.UserName == user.UserName);
             if (indexOfUserToUpdate >= 0)
@@ -452,17 +419,7 @@ namespace DL
             else
                 throw new ArgumentNotFoundException($"User not found with license number: {user.UserName}");
         }
-        public void UpdateUser(string userName, Action<User> update) 
-        {
-            int indexOfUserToUpdate = DataSource.ListUsers.FindIndex(s => s.UserName == userName);
-            if (indexOfUserToUpdate >= 0)
-            {
-                update(DataSource.ListUsers[indexOfUserToUpdate]);
-            }
-            else
-                throw new ArgumentNotFoundException($"User not found with user name: {userName}");
-        }
-        public void DeleteUser(string userName) 
+        public void DeleteUser(string userName)
         {
             User user = DataSource.ListUsers.Find(b => b.UserName == userName);
             if (user == null)

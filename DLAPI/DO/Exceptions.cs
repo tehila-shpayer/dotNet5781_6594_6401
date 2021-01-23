@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DO
 {
+    /// <summary>
+    /// מחלקת חריגות לקלט בלתי תקין
+    /// </summary>
     [Serializable]
     public class InvalidInformationException : Exception
     {
@@ -17,6 +20,9 @@ namespace DO
             return base.ToString() + "\nInvalid Information Exception!\n" + Message;
         }
     }
+    /// <summary>
+    /// מחלקת חריגות לאי מציאת ארגומנט כלשהו
+    /// </summary>
     [Serializable]
     public class ArgumentNotFoundException : Exception
     {
@@ -28,6 +34,9 @@ namespace DO
             return base.ToString() + "\nArgument Not Found Exception!\n" + Message;
         }
     }
+    /// <summary>
+    /// XML מחלקת חריגות לכשל בהעלאה או יצירת קבצי 
+    /// </summary>
     public class XMLFileLoadCreateException : Exception
     {
         public string xmlFilePath;

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DO
 {
+    /// <summary>
+    /// DLמחלקה לייצוג אוטובוס פיזי בשכבת ה
+    /// </summary>
     public class Bus
     {
         //Bus properties:
@@ -17,19 +20,6 @@ namespace DO
         public int BeforeTreatKM { get; set; }
         public Status Status { get; set; }
 
-        //constructors
-        //public Bus()//default ctor
-        //{ }
-        //public Bus(string num, DateTime d = new DateTime(), int f = 0, int km = 0, int bt = 0)//parameters ctor
-        //{
-        //    LicenseNumber = num;
-        //    RunningDate = d;
-        //    LastTreatment = d;
-        //    Fuel = f;
-        //    KM = km;
-        //    BeforeTreatKM = bt;
-        //    IsActive = true;
-        //}
         public override string ToString()
         {
             return this.ToStringProperty();

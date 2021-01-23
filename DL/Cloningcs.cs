@@ -7,12 +7,14 @@ using System.Reflection;
 
 namespace DL
 {
+    /// <summary>
+    ///  העתקה עמוקה של אובייקטים ע"י פונקציות הרחבה
+    /// </summary>
     static class Cloning
     {
         internal static T Clone<T>(this T original)
         {
             T copyToObject = (T)Activator.CreateInstance(original.GetType());
-            //...
 
             foreach (PropertyInfo sourcePropertyInfo in original.GetType().GetProperties())
             {
@@ -23,7 +25,6 @@ namespace DL
 
             return copyToObject;
         }
-
 
     }
 }

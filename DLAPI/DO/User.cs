@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DO
 {
+    /// <summary>
+    /// DLמחלקה לייצוג משתמש בשכבת ה
+    /// </summary>
     public class User
     {
         public string UserName { get; set; }
