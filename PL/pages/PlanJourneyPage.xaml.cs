@@ -29,6 +29,7 @@ namespace PL
             cbSource.DisplayMemberPath = "  ShowNameKey  ";
             cbDestination.DisplayMemberPath = "  ShowNameKey  ";
             mainGrid.DataContext = MainWindow.Language;
+            lbLines.DataContext = null;
         }
 
         private void searchButton_Click(object sender, RoutedEventArgs e)

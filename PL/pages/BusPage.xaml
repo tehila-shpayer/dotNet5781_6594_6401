@@ -112,19 +112,19 @@
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,25" HorizontalAlignment="Center">
-                    <Button Margin="10,5" Width="120" Height="45" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
+                    <Button x:Name="DriveButton" Margin="10,5" Width="120" Height="45" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{DynamicResource BusPage_Ride}" VerticalAlignment="Center" Margin="5,0,0,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
                             <materialDesign:PackIcon Margin="5,0,0,0" Kind="Travel" Height="30" Width="30"/>
                         </StackPanel>
                     </Button>
-                    <Button Margin="10,5" Width="120" Height="45" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
+                    <Button x:Name="TreatButton" Margin="10,5" Width="120" Height="45" Background="#FF477AA9" Click="TreatButton_Click"  Foreground="White" BorderBrush="{x:Null}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{DynamicResource BusPage_Treatment}" VerticalAlignment="Center" Margin="5,0,0,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
                             <materialDesign:PackIcon Margin="5,0,0,0" Kind="Screwdriver" Height="30" Width="30"/>
                         </StackPanel>
                     </Button>
-                    <Button Margin="10,5" Width="120" Height="45" Background="#FF477AA9" Foreground="White" BorderBrush="{x:Null}">
+                    <Button x:Name="RefuelButton" Margin="10,5" Width="120" Height="45" Background="#FF477AA9" Foreground="White" Click="RefuelButton_Click" BorderBrush="{x:Null}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{DynamicResource BusPage_Refuel}" VerticalAlignment="Center" Margin="5,0,0,0" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
                             <materialDesign:PackIcon Margin="5,0,0,0" Kind="FuelPump" Height="30" Width="30"/>

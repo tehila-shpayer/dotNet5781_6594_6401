@@ -12,26 +12,33 @@
         <local:LanguageToAlignment x:Key="LanguageConvertor"/>
     </Page.Resources>
     <Grid x:Name="mainGrid" Background="LightGray" FlowDirection="{Binding Source, Converter={StaticResource LanguageConvertor}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=True}">
-        <Rectangle Grid.Column="1" Grid.Row="1" Fill="White" Width="700" Height="450" Margin="40,30" Stroke="#FF3C61CA">
-        </Rectangle>
-        <Label Content="{DynamicResource ContactPage_EnterDetails}" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="1" Height="24"/>
-        <Grid Margin="140,40">
+        <Rectangle Fill="White" Margin="140,40" Stroke="#FF3C61CA"/>
+        <Label Content="{DynamicResource ContactPage_EnterDetails}" Margin="8" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="1" FontSize="15"/>
+        <Grid Margin="145,45">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="45*"/>
-                <ColumnDefinition Width="177*"/>
-                <ColumnDefinition Width="38*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <Label Content="{DynamicResource ContactPage_YourEmail}" Grid.Column="0" Margin="30,38,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="24"/>
-            <TextBox x:Name="txtYourMail"  Height="23" Margin="32.6,41,34,0" Width="280" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Column="1" />
-            <Label Content="{DynamicResource ContactPage_Subject}" Grid.Column="0" Margin="35,79,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="24"/>
-            <TextBox x:Name="txtSubject"  Height="23" Margin="32.6,82,34,0" Width="280" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Column="1"/>
-            <Label Content="{DynamicResource ContactPage_Content}" Grid.Column="0" Margin="34,124,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="24"/>
-            <TextBox x:Name="txtContent"  Height="100" Margin="32.6,127,34,0" Width="280" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Column="1"/>
-            <Button Content="{DynamicResource ContactPage_Send}" HorizontalAlignment="Left" Margin="91.6,276,0,0" VerticalAlignment="Top" Width="75" x:Name="btnSend" Click="btnSend_Click" Background="#FF477AA9" BorderBrush="{x:Null}" Grid.Column="1"/>
-            <Button HorizontalAlignment="Left" Margin="191.6,276,0,0" VerticalAlignment="Top" Width="75" x:Name="btnReset" Click="btnReset_Click" Background="#FF477AA9" BorderBrush="{x:Null}" Grid.Column="1" Content="{DynamicResource ContactPage_Reset}"/>
-            <TextBlock HorizontalAlignment="Left" x:Name="txtbTo" Foreground="red" Margin="0,43,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="1.207,3.224" Grid.Column="2" Height="16" Width="80" Grid.ColumnSpan="2"/>
-            <TextBlock HorizontalAlignment="Left" x:Name="txtbSubject" Foreground="red" Margin="0,84,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="1.207,3.224" Grid.Column="2" Height="16" Width="80" Grid.ColumnSpan="2"/>
-            <TextBlock HorizontalAlignment="Left" x:Name="txtbContent" Foreground="red" Margin="0,137,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="1.207,3.224" Grid.Column="2" Height="16" Width="80" Grid.ColumnSpan="2"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2.4*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Content="{DynamicResource ContactPage_YourEmail}" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+            <TextBox x:Name="txtYourMail" Width="280" TextWrapping="Wrap" Text="" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" FontSize="16"/>
+            <Label Content="{DynamicResource ContactPage_Subject}" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+            <TextBox x:Name="txtSubject" Width="280" TextWrapping="Wrap" Text="" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" FontSize="16"/>
+            <Label Content="{DynamicResource ContactPage_Content}" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="2" VerticalAlignment="Top" Margin="0,20" FontSize="16" FontWeight="Bold"/>
+            <TextBox x:Name="txtContent" Height="110" Width="300" TextWrapping="Wrap" Text="" Grid.Column="1" Grid.Row="2" Margin="0,20" VerticalAlignment="top" FontSize="16"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center">
+                <Button Content="{DynamicResource ContactPage_Send}" VerticalAlignment="Center" Width="75" x:Name="btnSend" Click="btnSend_Click" Background="#FF477AA9" BorderBrush="{x:Null}"/>
+                <Button VerticalAlignment="Center" Width="75" x:Name="btnReset" Margin="30,0" Click="btnReset_Click" Background="#FF477AA9" BorderBrush="{x:Null}" Content="{DynamicResource ContactPage_Reset}"/>
+            </StackPanel>
+            <TextBlock x:Name="txtbTo" Foreground="red" TextWrapping="Wrap" Text="" RenderTransformOrigin="1.207,3.224" Height="16" Width="80" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBlock x:Name="txtbSubject" Foreground="red" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="1.207,3.224" Grid.Column="2" Grid.Row="1" Height="16" Width="80"/>
+            <TextBlock x:Name="txtbContent" Foreground="red" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="1.207,3.224" Grid.Column="2" Grid.Row="2" Height="16" Width="80"/>
         </Grid>
     </Grid>
 </Page>

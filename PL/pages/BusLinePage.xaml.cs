@@ -49,10 +49,6 @@ namespace PL
             foreach (var item in MainWindow.busLinesCollection)
             {
                 ListBoxItem bus = (ListBoxItem)lbBusLines.ItemContainerGenerator.ContainerFromItem(item);
-                //ContainerFromItem(item);
-                //String searchS = searchBox.Text;
-                //int num = searchS.Length;
-
                 if (bus != null)
                 {
                     if (checkBusLineArea(item) && checkBusLineNumberInSearchBox(item))
@@ -64,34 +60,34 @@ namespace PL
                 }
             }
         }
-        bool checkBusLineNumberInSearchBox(BusLine item)
+        bool checkBusLineNumberInSearchBox(BusLine item)//בודק האם המספר שהוכנס תואם לתחילית של מספר הקו
         {
             String searchS = searchBox.Text;
             int num = searchS.Length;
             return (num <= item.LineNumber.ToString().Length
                    && searchS == (item as BusLine).LineNumber.ToString().Substring(0, num));
         }
-        bool checkBusLineArea(BusLine item)
+        bool checkBusLineArea(BusLine item)//בודק האם הקו הוא באיזור שנבחר כדי שהחיפוש והקיבוץ לפי איזור יעבדו בו זמנית
         {
             int selectedArea = areas.SelectedIndex;
             return (selectedArea == 0 || (selectedArea - 1) == (int)item.Area);
         }
 
-        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        private void deleteButton_Click(object sender, RoutedEventArgs e)//מחיקת קו
         {
             BusLine busLine = MainWindow.busLinesCollection[lbBusLines.SelectedIndex];
             int key = busLine.Key;
             try
             {
                 MessageBoxResult mbResult = MessageBox.Show($"Are you sure you want to delete \nbus line of key {key}?", "DELETE BUS", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
-                if (mbResult == MessageBoxResult.Yes)
+                if (mbResult == MessageBoxResult.Yes)//אם המשתמש החליט למחוק את הקו
                 {
                     App.bl.DeleteBusLine(key);
                     MainWindow.busLinesCollection.Remove(busLine);
                     MessageBox.Show($"Bus of key {key} was deleted.", "DELETE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.No);
 
                 }
-                else
+                else//ביטול פעולת המחיקה
                     MessageBox.Show($"Operation was canceled.", "DELETE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.No);
 
             }
@@ -108,12 +104,10 @@ namespace PL
             addBusLineWindow.ShowDialog();
             lbBusLines.DataContext = MainWindow.busLinesCollection;
             Sort();
-            //lbBusLines.SelectedIndex = lbBusLines.Items.Count - 1;
         }
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
-            //var item = lbBusLines.SelectedItem as BusLine;
             try
             {
                 UpdateBusLineWindow update = new UpdateBusLineWindow(MainWindow.busLinesCollection[lbBusLines.SelectedIndex]);
@@ -125,39 +119,19 @@ namespace PL
             {
                 MessageBox.Show($"Please choose a bus line!", "UPDATE BUS LINE MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.No);
             }
-            //lbBusLines.SelectedItem = MainWindow.busLinesCollection.IndexOf(item);
         }
 
         private void areas_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             filter();
         }
-        //void ShowByArea()
-        //{
-        //    foreach (var item in MainWindow.busLinesCollection)
-        //    {
-        //        ListBoxItem bus = lbBusLines.ItemContainerGenerator.ContainerFromItem(item) as ListBoxItem;
-        //        int selectedArea = areas.SelectedIndex;
-        //        //Show only buses from the same area
-        //        if (bus != null)
-        //        {
-        //            if (selectedArea == 0 || (selectedArea - 1) == (int)item.Area)
-        //                bus.Visibility = Visibility.Visible;
-        //            else
-        //                bus.Visibility = Visibility.Collapsed;
-        //        }
-        //    }
-        //}
 
-        private void addStationButton_Click(object sender, RoutedEventArgs e)
+        private void addStationButton_Click(object sender, RoutedEventArgs e)//הוספת תחנה לקו
         {
             int index = lbBusLines.SelectedIndex;
             var selectedStation = (sender as Button).DataContext as BusLineStation;
             AddBusLineStation addBusLineStation = new AddBusLineStation(selectedStation);
             addBusLineStation.ShowDialog();
-            //MainWindow.InitializeBusLines();
-            //MainWindow.InitializeStations();
-            //Sort();
             lbBusLines.DataContext = MainWindow.busLinesCollection;
             lbBusLines.SelectedIndex = index;
         }
