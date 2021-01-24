@@ -68,10 +68,10 @@ namespace BL
             stopwatch.Restart();
             while (simulatorClock.IsTimerRun)
             {
-                TimeSpan ts = new TimeSpan(simulatorClock.startTime.Ticks + stopwatch.ElapsedTicks * simulatorClock.rate);
+                TimeSpan ts = new TimeSpan(simulatorClock.startTime.Ticks + stopwatch.ElapsedTicks * simulatorClock.rate);//חישוב השעה בהתאם לקצב
                 timer.ReportProgress((int)(ts.TotalSeconds));
-                //Thread.Sleep(1000/simulatorClock.rate);
-                Thread.Sleep(1000);
+                //Thread.Sleep(1000/simulatorClock.rate); //עדכון השעון בכל שניית סימולציה- כבד מידי בעבודה עם קבצי זאמל 
+                Thread.Sleep(1000);//עדכון השעון בכל שנייה אמיתית
             }
             stopwatch.Stop();
         }
@@ -79,7 +79,7 @@ namespace BL
         {
             TimeSpan ts = new TimeSpan();
             ts = TimeSpan.FromSeconds(e.ProgressPercentage);
-            simulatorClock.Time = new TimeSpan(ts.Hours, ts.Minutes, ts.Seconds);
+            simulatorClock.Time = new TimeSpan(ts.Hours, ts.Minutes, ts.Seconds);//שינוי זמן השעון- גורם לעדכון כל המשקיפים
         }
         private void Timer_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -152,7 +152,7 @@ namespace BL
             {
                 throw new BOInvalidInformationException("Starting date can't be later then last treatment date!");
             }
-            // length of license number must much running date
+            // length of license number must mach running date
             else if ((bus.LicenseNumber.Length == 7) && (bus.RunningDate.Year >= 2018))
             {
                 throw new BOInvalidInformationException("A 7 digit license number bus must be from earlier than 2018!");
@@ -171,10 +171,12 @@ namespace BL
             {
                 throw new BOInvalidInformationException("Fuel can't be over 1200!");
             }
+            //Fuel must be positive
             else if (bus.Fuel < 0)
             {
                 throw new BOInvalidInformationException("Fuel can't be negative!");
             }
+            //set the Status of the bus according to his data
             if ((DateTime.Now - bus.LastTreatment).TotalDays > 365 || bus.BeforeTreatKM >= 20000 || bus.Fuel == 0)
             {
                 bus.Status = Status.NotReady;
@@ -200,6 +202,7 @@ namespace BL
         public void UpdateBus(Bus bus)
         {
             CheckBusParameters(bus);
+            //If all information is valid - update bus
             try
             {
                 DO.Bus BusDO = new DO.Bus();
@@ -268,17 +271,23 @@ namespace BL
         {
             string name = user.UserName;
             string password = user.Password;
+            //שם משתמש חייב להיות לפחות 4 תווים
             if (name.Length < 4)
                 throw new BOInvalidInformationException("User name is too short, it mustbe at least 4 characters long.");
+            //שם משתמש לא יכול להכיל יותר מ16 תווים
             if (name.Length > 16)
                 throw new BOInvalidInformationException("User name is too long. it must be at most 16 characters long.");
+            //שם משתמש יכול להכיל רק אותיות וספרות
             foreach (char key in name)
                 if (!char.IsLetterOrDigit(key))
                     throw new BOInvalidInformationException("User name contains invalid keybords.");
+            //סיסמה חייבת להיות לפחות 4 תווים
             if (password.Length < 4)
                 throw new BOInvalidInformationException("Password is too short, it must be at least 4 characters long.");
+            //סיסמה לא יכולה להכיל יותר מ16 תווים
             if (password.Length > 16)
                 throw new BOInvalidInformationException("Password is too long, it must be at most 16 characters long.");
+            //סיסמה יכולה להכיל רק אותיות וספרות
             foreach (char key in password)
                 if (!char.IsLetterOrDigit(key))
                     throw new BOInvalidInformationException("Password contains invalid keybords.");
@@ -302,8 +311,8 @@ namespace BL
             string oldPassword = dl.GetUser(user.UserName).Password;
             if (user.Password != oldPassword)
             {
-                CheckUserParameters(user);
-                user.Password = Tools.hashPassword(user.Password + user.Salt); 
+                CheckUserParameters(user);//בדיקת תקינות הנתונים
+                user.Password = Tools.hashPassword(user.Password + user.Salt);//הצפנת הסיסמה החדשה
             }
             try
             { 
@@ -527,13 +536,14 @@ namespace BL
                 DO.BusLineStation busLineStationDO = new DO.BusLineStation();
                 station.Clone(busLineStationDO);
                 Station s = GetPreviouseStation(station.BusLineKey, station.Position);
+                //:עדכון המרחק והזמן מהתחנה הקודמת
                 dl.UpdateConsecutiveStations(s.Key, station.StationKey, cs => { cs.AverageTime = station.TravelTimeFromLastStationMinutes; cs.Distance = station.DistanceFromLastStationMeters; });
                 dl.UpdateBusLineStation(busLineStationDO);
             }
             catch (DO.InvalidInformationException ex)
             { throw new BOInvalidInformationException("Can't update bus line station. Invalid information.", ex); }
         }
-        public void UpdateBusLineStation(int line, int stationKey, Action<BusLineStation> update) //method that knows to updt specific fields in Person
+        public void UpdateBusLineStation(int line, int stationKey, Action<BusLineStation> update)
         {
             try
             {
@@ -920,7 +930,7 @@ namespace BL
             return bit;
         }
         /// <summary>
-        /// מחזיר מספר מעורבל (לא אקראי) בהינתן מספר הנסיעה. מספר זה קובע את אחוז האיחור או ההקדמה של הנסיעה
+        /// מחזיר מספר מעורבל (לא אקראי) בהינתן מספר הקו. מספר זה קובע את אחוז האיחור או ההקדמה של הנסיעה
         /// </summary>
         /// <param name="lineKey">מספר הנסיעה</param>
         /// <returns>אחוז בין 95 ל104</returns>
