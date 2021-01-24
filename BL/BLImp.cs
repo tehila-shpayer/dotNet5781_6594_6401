@@ -909,11 +909,11 @@ namespace BL
         public BusInTravel CreateBusInTravel(TimeSpan time, LineSchedule lineSchedule, TimeSpan i, Station station, double latePrecentage, string licenseNumber = "00000000")
         {
             BusInTravel bit = new BusInTravel();
-            bit.Key = BusInTravel.BUS_TRAVEL_KEY++;
+            //bit.Key = BusInTravel.BUS_TRAVEL_KEY++;
             bit.BusLicenseNumber = licenseNumber;
             bit.LineKey = lineSchedule.LineKey;
             bit.StationKey = station.Key;
-            bit.StartTime = TimeSpan.FromSeconds(i.TotalSeconds * mix(bit.Key) / 100);//זמן ההתחלה שווה לזמן ההתחלה המשוער כפול 95-104 אחוז
+            bit.StartTime = TimeSpan.FromSeconds(i.TotalSeconds * mix(bit.LineKey) / 100);//זמן ההתחלה שווה לזמן ההתחלה המשוער כפול 95-104 אחוז
             bit.TimeLeft = GetTimeLeft(bit, time);
             if (bit.TimeLeft < new TimeSpan(0, 0, 0) || bit.TimeLeft > new TimeSpan(1, 30, 0))//אם האוטובוס כבר הגיע לתחנה או שיגיע רק בעוד יותר משעה וחצי, מתעלמים ממנו
                 return null;
@@ -924,9 +924,9 @@ namespace BL
         /// </summary>
         /// <param name="lineKey">מספר הנסיעה</param>
         /// <returns>אחוז בין 95 ל104</returns>
-        int mix(int Key)
+        int mix(int lineKey)
         {
-            return Convert.ToInt32((Math.Log(Math.Sqrt(Key) * 500) * Math.PI)) % 10 + 95;
+            return Convert.ToInt32((Math.Log(Math.Sqrt(lineKey) * 500) * Math.PI)) % 10 + 95;
         }
         /// <summary>
         /// מחשב ומחזיר את הזמן שנשאר עד להגעת הקו לתחנה
