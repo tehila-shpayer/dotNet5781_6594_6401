@@ -60,4 +60,11 @@
     <LastName>נחושת</LastName>
     <Picture>file:///C:/Users/שרה מלכה/Pictures/Bus Icon_files/get-on-bus(1).png</Picture>
   </User>
+  <User>
+    <UserName>odelia</UserName>
+    <Password>FgEJqVbtGt6JUbaw/d8YGrejLUgmRpsg0897Vy0DvyxilZ+0DjoQ7RQVpx3hnuGZKIPn6C8alxXyZFLhbDhEQw==</Password>
+    <Salt>1680021454</Salt>
+    <AuthorizationManagement>Traveler</AuthorizationManagement>
+    <Email>tehila1742@gmail.com</Email>
+  </User>
 </ArrayOfUser>

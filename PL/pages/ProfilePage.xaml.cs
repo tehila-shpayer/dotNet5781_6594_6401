@@ -133,6 +133,8 @@ namespace PL
             {
                 imgPhoto.Source = new BitmapImage(new Uri(op.FileName));
             }
+            else
+                return;
             user.Picture = imgPhoto.Source.ToString();
             userBO.Picture = imgPhoto.Source.ToString();
             App.bl.UpdateUser(userBO);
