@@ -27,10 +27,9 @@ namespace PL
             lbLineSchedules.SelectedIndex = 0;
             ScheduleInfoGrid.DataContext = MainWindow.lineSchedulesCollection.ElementAt(0);
             mainGrid.DataContext = MainWindow.Language;
-            linescb.DataContext = from ls in MainWindow.lineSchedulesCollection
-                                  group ls by ls.LineKey into newGroup
-                                  orderby newGroup.Key
-                                  select newGroup.Key;
+            linescb.DataContext = (from ls in MainWindow.lineSchedulesCollection
+                                   orderby ls.LineKey
+                                   select ls.LineKey).Distinct();
         }
 
         private void lbLineSchedules_SelectionChanged(object sender, SelectionChangedEventArgs e)

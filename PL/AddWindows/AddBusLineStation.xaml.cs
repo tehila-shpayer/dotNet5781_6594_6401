@@ -47,15 +47,16 @@ namespace PL
             }
         }
 
+        #region Buttons
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             AddBusLineStationToLine(selectedStation.BusLineKey, (cbStationKey.SelectedItem as Station).Key, selectedStation.Position);
             Close();
         }
-
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
+        #endregion
     }
 }

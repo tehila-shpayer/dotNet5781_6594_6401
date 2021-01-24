@@ -28,10 +28,9 @@ namespace PL
             mainGrid.DataContext = MainWindow.Language;
             startTimeTimePicker.SelectedTime = DateTime.Now;
             endTimeTimePicker.SelectedTime = DateTime.Now;
-            lineKeycomboBox.DataContext = from ls in MainWindow.lineSchedulesCollection                                          
-                                          group ls by ls.LineKey into newGroup
-                                          orderby newGroup.Key
-                                          select newGroup.Key;
+            lineKeycomboBox.DataContext = (from ls in MainWindow.lineSchedulesCollection
+                                   orderby ls.LineKey
+                                   select ls.LineKey).Distinct();
             lineKeycomboBox.SelectedIndex = 0;
         }
 
