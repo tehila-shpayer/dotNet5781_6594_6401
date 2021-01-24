@@ -11,7 +11,7 @@ namespace BO
     /// </summary>
     public class BusInTravel
     {
-        public static int BUS_TRAVEL_KEY = 0;
+        public static int BUS_TRAVEL_KEY = 1;
         public int Key { get; set; }
         public string BusLicenseNumber { get; set; }
         public int LineKey { get; set; }
