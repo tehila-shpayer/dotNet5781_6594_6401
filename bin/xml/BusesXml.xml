@@ -111,9 +111,9 @@
   <Bus>
     <LicenseNumber>12345667</LicenseNumber>
     <RunningDate>01/21/2021 00:00:00</RunningDate>
-    <LastTreatment>01/21/2021 00:00:00</LastTreatment>
+    <LastTreatment>01/24/2021 18:41:28</LastTreatment>
     <Fuel>0</Fuel>
-    <KM>0</KM>
+    <KM>4</KM>
     <BeforeTreatKM>0</BeforeTreatKM>
     <Status>NotReady</Status>
   </Bus>
