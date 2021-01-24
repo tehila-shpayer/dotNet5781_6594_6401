@@ -28,8 +28,8 @@
             <Button x:Name="forgotPassword" Content="{DynamicResource LoginPage_ForgotPassword}" BorderBrush="{x:Null}" Background="{x:Null}" Cursor="Hand" Margin="40,5" FontSize="16" Foreground="Blue" Click="forgotPassword_Click"/>
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="loginButton" Content="{DynamicResource LoginPage_Login}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Margin="40,10,20,0" BorderBrush="{x:Null}" Background="#FF56A0B5" Foreground="White" Width="120" Height="50" Click="loginButton_Click"/>
-                <Button x:Name="newAccountButton" Content="{DynamicResource LoginPage_NewUser}" BorderBrush="{x:Null}" Background="{x:Null}" Cursor="Hand" FontSize="16" Foreground="Blue" Margin="40,10,0,0" Click="NewAccountButton_Click" Width="190" />
-            </StackPanel>
+                    <Button x:Name="newAccountButton" Content="{DynamicResource LoginPage_NewUser}" BorderBrush="{x:Null}" Background="{x:Null}" Cursor="Hand" FontSize="16" Foreground="Blue" Margin="15,10,0,0" Click="NewAccountButton_Click" Width="190" />
+                </StackPanel>
    </StackPanel>
     </Grid>
         <Frame x:Name="currentPage"  NavigationUIVisibility="Hidden" />
