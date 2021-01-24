@@ -344,7 +344,7 @@ namespace BLAPI
 
         #region BusInTravel
         /// <summary>
-        /// קבלת כול הנסיעות של קווים שיצאו בהתאם לשעת יציאה
+        /// קבלת כל הנסיעות של קווים שיצאו בהתאם לשעת יציאה
         /// </summary>
         /// <param name="stationKey">מפתח התחנה</param>
         /// <param name="startTime">שעת יציאה</param>
