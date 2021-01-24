@@ -62,7 +62,7 @@ namespace PL
         }
         void Sort()
         {
-            MainWindow.busesCollection = new ObservableCollection<Bus>(from b in App.bl.GetAllBusesOrderedBy(cbBuses.Text)
+            MainWindow.busesCollection = new ObservableCollection<Bus>(from b in App.bl.GetAllBusesOrderedBy(cbBuses.SelectedItem.ToString())
                                                                        select PoBoAdapter.BusPoBoAdapter(b));
             lbBuses.DataContext = MainWindow.busesCollection;
         }
