@@ -338,6 +338,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="BonusAndPasswords\הפרויקט - דף בונוסים.docx" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Bus.datasource" />
     <None Include="Properties\DataSources\BusInTravel.datasource" />

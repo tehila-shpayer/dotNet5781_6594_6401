@@ -48,7 +48,6 @@
     <Address>כוכב השחר, מול נבו 37</Address>
     <FirstName>שרה מלכה</FirstName>
     <LastName>חמו</LastName>
-    <Picture>file:///C:/Users/שרה מלכה/Pictures/Bus Icon_files/bus2(3).png</Picture>
   </User>
   <User>
     <UserName>ora1</UserName>
@@ -56,9 +55,9 @@
     <Salt>1063362859</Salt>
     <AuthorizationManagement>Traveler</AuthorizationManagement>
     <Email>orahana2009@gmail.com</Email>
-    <FirstName>אורה</FirstName>
+	<Address>ארץ הפלאת, רחוב השעונים 3</Address>
+	<FirstName>אורה</FirstName>
     <LastName>נחושת</LastName>
-    <Picture>file:///C:/Users/שרה מלכה/Pictures/Bus Icon_files/get-on-bus(1).png</Picture>
   </User>
   <User>
     <UserName>odelia</UserName>
