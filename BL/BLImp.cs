@@ -481,7 +481,6 @@ namespace BL
         public BO.BusLineStation BusLineStationDoBoAdapter(DO.BusLineStation BusLineStationDO)
         {
             BO.BusLineStation BusLineStationBO = new BO.BusLineStation();
-
             BusLineStationDO.Clone(BusLineStationBO);
             if (BusLineStationDO.Position == 1)
             {
@@ -489,7 +488,6 @@ namespace BL
                 BusLineStationBO.TravelTimeFromLastStationMinutes = 0;
                 return BusLineStationBO;
             }
-
             DO.BusLineStation SecondBusLineStationDO = dl.GetBusLineStationBy(s => s.Position == BusLineStationDO.Position - 1 && s.BusLineKey == BusLineStationDO.BusLineKey);
             BusLineStationBO.DistanceFromLastStationMeters = (int)dl.GetConsecutiveStations(SecondBusLineStationDO.StationKey, BusLineStationDO.StationKey).Distance;
             BusLineStationBO.TravelTimeFromLastStationMinutes = dl.GetConsecutiveStations(SecondBusLineStationDO.StationKey, BusLineStationDO.StationKey).AverageTime;
@@ -578,9 +576,7 @@ namespace BL
         public BO.BusLine BusLineDoBoAdapter(DO.BusLine BusLineDO)
         {
             BO.BusLine BusLineBO = new BO.BusLine();
-
             BusLineDO.Clone(BusLineBO);
-
             BusLineBO.BusLineStations = from blsDO in dl.GetAllStationsOfLine(BusLineBO.Key)
                                         select BusLineStationDoBoAdapter(blsDO);
             return BusLineBO;
@@ -595,9 +591,9 @@ namespace BL
                 throw new BOArgumentNotFoundException($"Can't find previouse station");
             return GetStation(prev.StationKey);
         }
-        public BusLineStation GetBusLineStation(int busKey, int Position)
+        public BusLineStation GetBusLineStation(int busLineKey, int Position)
         {
-            foreach (BusLineStation bls in GetAllStationsOfLine(busKey))
+            foreach (BusLineStation bls in GetAllStationsOfLine(busLineKey))
                 if (bls.Position == Position)
                     return bls;
             return null;
@@ -675,18 +671,7 @@ namespace BL
 
         DO.ConsecutiveStations CalculateConsecutiveStations(DO.Station station1, DO.Station station2)
         {
-            Random rand = new Random();
-            int speed = rand.Next(30, 60);
-            DO.ConsecutiveStations consecutiveStations = new DO.ConsecutiveStations();
-            consecutiveStations.StationKey1 = station1.Key;
-            consecutiveStations.StationKey2 = station2.Key;
-            GeoCoordinate locationOfFirst = new GeoCoordinate(station1.Latitude, station1.Longitude);//מיקום התחנה המחושבת
-            GeoCoordinate locationOfSecond = new GeoCoordinate(station2.Latitude, station2.Longitude);//מיקום התחנה הקודמת
-            double distance = locationOfFirst.GetDistanceTo(locationOfSecond);//חישוב מרחק
-            int time = Convert.ToInt32(distance / (speed * 1000 / 60) + 1);//חישוב זמן בהנחה שמהירות האוטובוס היא מספר בין 30 - 60 קמ"ש
-            consecutiveStations.Distance = (int)distance;
-            consecutiveStations.AverageTime = time;
-            return consecutiveStations;
+            return CalculateConsecutiveStations(station1.Key, station2.Key);
         }
         DO.ConsecutiveStations CalculateConsecutiveStations(int s1, int s2)
         {
@@ -705,7 +690,7 @@ namespace BL
                 BusLine busLine = GetBusLine(busLineKey);
                 if (position > busLine.BusLineStations.Count() + 1 || position < 0)//מיקום רלוונטי - כגודל רשימת התחנות
                     throw new ArgumentOutOfRangeException($"The index is illegal:\n There are only {busLine.BusLineStations.Count()} stations in line {busLineKey}");
-                if (position == 0)
+                if (position == 0)//ערך ברירת המחדל. משמעותו- הוספה לסוף
                     position = busLine.BusLineStations.Count() + 1;
 
                 BusLineStation prevBusLineStation = (from bls in GetAllStationsOfLine(busLineKey)
@@ -715,17 +700,17 @@ namespace BL
                                                      where bls.Position == position
                                                      select bls).FirstOrDefault();
 
-                BO.BusLineStation busLineStationBO = new BO.BusLineStation();//create the new busLineStation
+                BO.BusLineStation busLineStationBO = new BO.BusLineStation();
                 busLineStationBO.BusLineKey = busLineKey;
                 busLineStationBO.StationKey = stationKey;
                 busLineStationBO.Position = position;
                 AddBusLineStation(busLineStationBO);
-                if (prevBusLineStation != null)
-                {
+                if (prevBusLineStation != null)//אם יש תחנה קודמת, כלומר התחנה החדשה אינה הראשונה
+                {//יצירת תחנה-עוקבת עם התחנה הקודמת
                     dl.AddConsecutiveStations(CalculateConsecutiveStations(prevBusLineStation.StationKey, stationKey));
                 }
-                if (nextBusLineStation != null)
-                {
+                if (nextBusLineStation != null)//אם יש תחנה הבאה, כלומר התחנה החדשה אינה האחרונה
+                {//יצירת תחנה-עוקבת עם התחנה הבאה
                     dl.AddConsecutiveStations(CalculateConsecutiveStations(stationKey, nextBusLineStation.StationKey));
                 }
 
@@ -734,12 +719,12 @@ namespace BL
                           where bls.Position >= position && bls.StationKey != stationKey
                           select bls;
 
-                foreach (DO.BusLineStation bls in tmp)//update the position of the station in the line
+                foreach (DO.BusLineStation bls in tmp)//עדכון המיקומים של כל התחנות שנמצאות במסלול אחרי התחנה החדשה
                 {
                     bls.Position += 1;
                     dl.UpdateBusLineStation(bls);
                 }
-                UpdateStation(stationKey, s => s.BusLines.Append(busLineKey));
+                UpdateStation(stationKey, s => s.BusLines.Append(busLineKey));//עדכון התחנה הפיזית- הוספת הקו אליו התווספה התחנה לרשימת הקווים העוברים בתחנה
             }
             catch (DO.InvalidInformationException ex)
             {
@@ -782,8 +767,8 @@ namespace BL
         {
             try
             {
-                dl.DeleteBusLineStationsByLine(busLineKey);
-                dl.DeleteBusLine(busLineKey);
+                dl.DeleteBusLineStationsByLine(busLineKey);//מחיקת כל תחנות הקו של הקו
+                dl.DeleteBusLine(busLineKey);//מחיקת הקו עצמו
             }
             catch (DO.ArgumentNotFoundException ex)
             {
@@ -793,7 +778,7 @@ namespace BL
         public void DeleteStationFromLine(int busKey, int stationKey)
         {
             BusLine busLine = GetBusLine(busKey);
-            if (busLine.BusLineStations.Count() > 2)
+            if (busLine.BusLineStations.Count() > 2)//אם בקו נותרו יותר משתי תחנות
             {
                 DO.BusLineStation busLineStationDO = dl.GetBusLineStationByKey(busKey, stationKey);
                 int position = busLineStationDO.Position;
@@ -804,17 +789,16 @@ namespace BL
                     (bls => bls.BusLineKey == busKey && bls.Position == position - 1);
                     DO.BusLineStation nextBusLineStationDO = dl.GetBusLineStationBy
                         (bls => bls.BusLineKey == busKey && bls.Position == position + 1);
-                    DO.ConsecutiveStations consecutiveStations = CalculateConsecutiveStations
+                    DO.ConsecutiveStations consecutiveStations = CalculateConsecutiveStations//יצירת תחנה-עוקבת לתחנות שלפני ואחרי התחנה שנמחקה
     (dl.GetStation(prevBusLineStationDO.StationKey), dl.GetStation(nextBusLineStationDO.StationKey));
-                    if (dl.GetConsecutiveStations(prevBusLineStationDO.StationKey, nextBusLineStationDO.StationKey) == null)
-                        dl.AddConsecutiveStations(consecutiveStations);
+                    dl.AddConsecutiveStations(consecutiveStations);
                 }
                 dl.DeleteBusLineStation(busKey, stationKey);
-                foreach (DO.BusLineStation bls in dl.GetAllStationsOfLine(busKey))
+                foreach (DO.BusLineStation bls in dl.GetAllStationsOfLine(busKey))//עדכון מיקומי התחנות שאחרי התחנה שנמחקה
                     if (bls.Position > position)
                         dl.UpdateBusLineStation(bls.BusLineKey, bls.StationKey, b => b.Position -= 1);
             }
-            else
+            else//אחרת, לא ניתן למחוק תחנה כיוון שלקו חייבות להיות לפחות שתי תחנות
                 throw new BOInvalidInformationException("bus must have at least 2 stations!");
         }
         public String ToStringBusLine(BusLine b)
@@ -864,6 +848,11 @@ namespace BL
                                    select LineScheduleDoBoAdapter(ls);
             return AllLineSchedules;
         }
+        /// <summary>
+        /// בהינתן יציאת קו- מחשב ומחזיר את כל שעות היציאה של נסיעות ביציאת הקו הזו
+        /// </summary>
+        /// <param name="schedule">יציאת הקו</param>
+        /// <returns>רשימת זמני נסיעות</returns>
         IEnumerable<TimeSpan> GetAllTimesOfSchedule(LineSchedule schedule)
         {
             for (TimeSpan i = schedule.StartTime; i < schedule.EndTime; i += new TimeSpan(0, schedule.Frequency, 0))
@@ -891,7 +880,6 @@ namespace BL
             try
             {
                 DO.LineSchedule LineScheduleDO = new DO.LineSchedule();
-
                 lineSchedule.Clone(LineScheduleDO);
                 dl.UpdateLineSchedule(LineScheduleDO);
             }
@@ -908,6 +896,16 @@ namespace BL
         #endregion
 
         #region BusInTravel
+        /// <summary>
+        /// יצירת נסיעה של קו
+        /// </summary>
+        /// <param name="time">הזמן הנוכחי</param>
+        /// <param name="lineSchedule">יציאת הקו שממנה יוצרים את הנסיעה</param>
+        /// <param name="i">שעת התחלת הנסיעה המשוערת</param>
+        /// <param name="station">(התחנה הרצויה (שבה נמצא המשתמש</param>
+        /// <param name="latePrecentage"></param>
+        /// <param name="licenseNumber">מספר רישוי של האוטובוס הפיזי</param>
+        /// <returns></returns>
         public BusInTravel CreateBusInTravel(TimeSpan time, LineSchedule lineSchedule, TimeSpan i, Station station, double latePrecentage, string licenseNumber = "00000000")
         {
             BusInTravel bit = new BusInTravel();
@@ -915,26 +913,43 @@ namespace BL
             bit.BusLicenseNumber = licenseNumber;
             bit.LineKey = lineSchedule.LineKey;
             bit.StationKey = station.Key;
-            //bit.StartTime = lineSchedule.StartTime + new TimeSpan(0, i * lineSchedule.Frequency, 0);
-            bit.StartTime = TimeSpan.FromSeconds(i.TotalSeconds * mix(lineSchedule.LineKey) / 100);
+            bit.StartTime = TimeSpan.FromSeconds(i.TotalSeconds * mix(bit.Key) / 100);//זמן ההתחלה שווה לזמן ההתחלה המשוער כפול 95-104 אחוז
             bit.TimeLeft = GetTimeLeft(bit, time);
-            if (bit.TimeLeft < new TimeSpan(0, 0, 0) || bit.TimeLeft > new TimeSpan(1, 30, 0))
+            if (bit.TimeLeft < new TimeSpan(0, 0, 0) || bit.TimeLeft > new TimeSpan(1, 30, 0))//אם האוטובוס כבר הגיע לתחנה או שיגיע רק בעוד יותר משעה וחצי, מתעלמים ממנו
                 return null;
             return bit;
         }
-        int mix(int lineKey)
+        /// <summary>
+        /// מחזיר מספר מעורבל (לא אקראי) בהינתן מספר הנסיעה. מספר זה קובע את אחוז האיחור או ההקדמה של הנסיעה
+        /// </summary>
+        /// <param name="lineKey">מספר הנסיעה</param>
+        /// <returns>אחוז בין 95 ל104</returns>
+        int mix(int Key)
         {
-            return Convert.ToInt32((Math.Log(Math.Sqrt(lineKey) * 500) * Math.PI)) % 10 + 95;
+            return Convert.ToInt32((Math.Log(Math.Sqrt(Key) * 500) * Math.PI)) % 10 + 95;
         }
+        /// <summary>
+        /// מחשב ומחזיר את הזמן שנשאר עד להגעת הקו לתחנה
+        /// </summary>
+        /// <param name="bit">נסיעת הקו</param>
+        /// <param name="time">הזמן העכשיוי</param>
+        /// <returns>הזמן שנשאר עד להגעת הקו לתחנה</returns>
         TimeSpan GetTimeLeft(BusInTravel bit, TimeSpan time)
         {
+            //הזמן הנותר שווה לזמן הנסיעה מהתחנה הראשונה עד לתחנה הנוכחית פחות הזמן שעבר מתחילת הנסיעה
             return GetTimeFromFirstStation(bit.LineKey, bit.StationKey) - (time - bit.StartTime);
         }
+        /// <summary>
+        /// מחשב וחזיר את זמן הנסיעה מתחנה ראשונה לתחנה מסויימת
+        /// </summary>
+        /// <param name="lineKey">מפתח הקו</param>
+        /// <param name="stationKey">מפתח התחנה</param>
+        /// <returns>זמן הנסיעה מתחנה ראשונה לתחנה מסויימת</returns>
         TimeSpan GetTimeFromFirstStation(int lineKey, int stationKey)
         {
             BusLine line = GetBusLine(lineKey);
             int totalMinutes = 0;
-            foreach (BusLineStation bls in line.BusLineStations)
+            foreach (BusLineStation bls in line.BusLineStations)//עובר על כל התחנות מתחילת הקו עד לתחנה המבוקשת ומחבר את זמני הנסיעה בין התחנות
             {
                 totalMinutes += bls.TravelTimeFromLastStationMinutes;
                 if (bls.StationKey == stationKey)
@@ -946,19 +961,14 @@ namespace BL
         {
             Station station = GetStation(stationKey);
             IEnumerable<BusInTravel> busInTravels = new List<BusInTravel>();
-            var lineSchedules = from bl in station.BusLines
+            var lineSchedules = from bl in station.BusLines//מעבר על כל הקווים
                                 let schedules = GetAllLineSchedulesOfLine(bl)
-                                from ls in schedules
-                                where Between(ls, time)
-                                select ls;
-            foreach (LineSchedule schedule in lineSchedules)
+                                from ls in schedules//מעבר על כל יציאות הקו של הקו
+                                where Between(ls, time)//אם יציאת הקו היא בטווח המתאים לשעה הנוכחית
+                                select ls;//בחירת יציאת הקו
+            foreach (LineSchedule schedule in lineSchedules)//לכל יציאת קו שנבחרה
             {
-                //for (int i = 0; schedule.StartTime + new TimeSpan(0, i * schedule.Frequency -30, 0) < time; i++)
-                //{
-                //    BusInTravel busInTravel = CreateBusInTravel(schedule, i, station);
-                //    if (busInTravel != null)
-                //        busInTravels = busInTravels.Append(busInTravel);
-                //}
+                //יצירת כל נסיעות הקווים הרלוונטיות 
                 for (TimeSpan i = GetFirstTravelTime(schedule, time); i < time + new TimeSpan(1, 0, 0) && i <= schedule.EndTime; i += new TimeSpan(0, schedule.Frequency, 0))
                 {
                     BusInTravel busInTravel = CreateBusInTravel(time, schedule, i, station, latePrecentage);
@@ -966,26 +976,29 @@ namespace BL
                         busInTravels = busInTravels.Append(busInTravel);
                 }
             }
-            return busInTravels.OrderBy(s => s.TimeLeft);
+            return busInTravels.OrderBy(s => s.TimeLeft);//החזרת רשימת כל הנסיעות ממויינות לפי הזמן הנשאר עד להגעתן לתחנה
         }
+        /// <summary>
+        /// מחזיר את הנסיעה הראשונה שצריכה להתבצע בהתאם ביציאת הקו בהתאם לשעה הנוכחית
+        /// </summary>
+        /// <param name="lineSchedule">יציאת קו</param>
+        /// <param name="time">השעה הנוכחית</param>
+        /// <returns>זמן נסיעה ראשונה</returns>
         TimeSpan GetFirstTravelTime(LineSchedule lineSchedule, TimeSpan time)
         {
             TimeSpan tmp = lineSchedule.StartTime;
-            //if (time > lineSchedule.StartTime)
-            //{
-            //    while (time - new TimeSpan(1, 0, 0) > tmp)
-            //    {
-            //        tmp += new TimeSpan(0, lineSchedule.Frequency, 0);
-            //    }
-            //    return lineSchedule.StartTime;
-            //}
-
-            while (time - new TimeSpan(1, 0, 0) > tmp)
+            while (time - new TimeSpan(1, 0, 0) > tmp)//כל עוד השעה הנוכחית פחות שעה מאוחרת יותר משעת הנסיעה
             {
-                tmp += new TimeSpan(0, lineSchedule.Frequency, 0);
+                tmp += new TimeSpan(0, lineSchedule.Frequency, 0);//העלאת שעת הנסיעה לשעת הנסיעה הבאה- בהתאם לתדירות
             }
-            return tmp;
+            return tmp;//הנסיעה הראשונה של יציאת הקו שמתבצעת לא יותר משעה לפני השעה הנוכחית
         }
+        /// <summary>
+        /// בודק השעה הנוכחית נמצאת בין טווחי הזמן של יציאת הקו, פלוס מינוס שעה
+        /// </summary>
+        /// <param name="lineSchedule">יציאת הקו</param>
+        /// <param name="time">הזמן הנוכחי</param>
+        /// <returns>אמת אם השעה הנוכחית נמצאת בין טווחי הזמן של יציאת הקו, פלוס מינוס שעה. אחרת- שקר </returns>
         bool Between(LineSchedule lineSchedule, TimeSpan time)
         {
             return (lineSchedule.StartTime < time && lineSchedule.EndTime > time) || lineSchedule.StartTime < time - new TimeSpan(1, 0, 0) && lineSchedule.EndTime > time - new TimeSpan(1, 0, 0) || lineSchedule.StartTime < time + new TimeSpan(1, 0, 0) && lineSchedule.EndTime > time + new TimeSpan(1, 0, 0);

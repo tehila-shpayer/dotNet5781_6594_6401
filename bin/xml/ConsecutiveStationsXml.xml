@@ -1206,4 +1206,10 @@
     <Distance>18452</Distance>
     <AverageTime>29</AverageTime>
   </ConsecutiveStations>
+  <ConsecutiveStations>
+    <StationKey1>71002</StationKey1>
+    <StationKey2>71013</StationKey2>
+    <Distance>13807</Distance>
+    <AverageTime>22</AverageTime>
+  </ConsecutiveStations>
 </ConsecutiveStations>
