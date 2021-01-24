@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace BO
 {
+    /// <summary>
+    /// BLמחלקה לייצוג תחנת קו אוטובוס בשכבת ה
+    /// המחלקה כוללת את פרטי המרחק והזמן בין התחנה הנוכחית לתחנה הקודמת
+    /// </summary>
     public class BusLineStation
     {
         public int BusLineKey { get; set; }

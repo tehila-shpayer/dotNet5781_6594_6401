@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class BusLine //: IComparable //מחלקה ברת השוואה של קו אוטובוס
+    /// <summary>
+    /// BLמחלקה לייצוג קו אוטובוס בשכבת ה
+    /// </summary>
+    public class BusLine 
     {
-        public static int BUS_LINE_NUMBER = 1; //משתה רץ של מספרים של האוטובוסים
-        //משתנה שמציין האם הקו אוטובוס הוא תת קו של קו אחר
+       // public static int BUS_LINE_NUMBER = 1; //משתה רץ של מספרים של האוטובוסים
         public int Key { get; set; }
         public int LineNumber { get; set; }
         public Areas Area { get; set; }
-        public int FirstStation //הפנייה ךתחנה ראשונה
+        public int FirstStation //הפנייה לתחנה ראשונה
         {
             get { if (BusLineStations == null) return -1;
                 return BusLineStations.ElementAt(0).StationKey; }
@@ -30,22 +32,5 @@ namespace BO
         {
             return this.ToStringProperty();
         }
-        /// <summary>
-        /// אינדקסר 
-        /// </summary>
-        /// <param name="index">האינדקס שמוכנס</param>
-        /// <returns></returns>
-        //public BusLineStation this[int index]
-        //{
-        //    get //מחזיר את התחנה במקום האינדקס ברשימת התחנות
-        //    {
-        //        try
-        //        {
-        //            return BusLineStations.ElementAt(index);
-        //        }
-        //        catch
-        //        { return null; }
-        //    }
-        //}
     }
 }

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BO
 {
+    /// <summary>
+    /// BLמחלקה לייצוג קו אוטובוס בנסיעה בשכבת ה
+    /// </summary>
     public class BusInTravel
     {
         public static int BUS_TRAVEL_KEY = 0;

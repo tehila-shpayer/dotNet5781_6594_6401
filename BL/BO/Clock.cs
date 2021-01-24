@@ -10,14 +10,16 @@ using System.ComponentModel;
 
 namespace BO
 {
+    /// <summary>
+    /// מחלקה לייצוג שעון סימולציה
+    /// השעון מושקף ע"י הממשק הגרפי
+    /// הוא מופעל ע"י תהליכון בעת הפעלת הסימולציה
+    /// </summary>
     public class ValueChangedEventArgs : EventArgs
     {
-        //public readonly int OldValue, NewValue;
         public readonly TimeSpan Time;
         public ValueChangedEventArgs(TimeSpan time)
         {
-            //OldValue = oldTemp;
-            //NewValue = newTemp;
             Time = time;
         }
     }
@@ -57,15 +59,8 @@ namespace BO
 
         public TimeSpan startTime { get; set; }
         public int rate { get; set; }
+
         internal volatile bool IsTimerRun;
-        public Clock(TimeSpan tsStartTime, int simulatorRate, Action<TimeSpan> update)
-        {
-            startTime = tsStartTime;
-            Time = tsStartTime;
-            IsTimerRun = true;
-            rate = simulatorRate;
-            ClockObserver = update;
-        }
         public Clock(TimeSpan tsStartTime, int simulatorRate)
         {
             startTime = tsStartTime;
@@ -73,9 +68,5 @@ namespace BO
             IsTimerRun = true;
             rate = simulatorRate;
         }
-        //public void UpdateTime(TimeSpan ts = new TimeSpan())
-        //{
-        //    ClockObserver(ts);
-        //}
     }
 }

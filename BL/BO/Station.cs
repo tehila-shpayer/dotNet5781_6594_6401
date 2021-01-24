@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BO
 {
+    /// <summary>
+    /// BLמחלקה לייצוג תחנה פיזית בשכבת ה
+    /// </summary>
     public class Station
     {
         public int Key { get; set; }

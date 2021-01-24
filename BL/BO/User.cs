@@ -5,7 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BO
-{    public class User
+{
+    /// <summary>
+    /// BLמחלקה לייצוג משתמש בשכבת ה
+    /// </summary>
+    public class User
     {
         public string UserName { get; set; }
         public string Password { get; set; }

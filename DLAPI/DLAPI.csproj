@@ -43,7 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DO\Bus.cs" />
-    <Compile Include="DO\BusInTravel.cs" />
     <Compile Include="DO\BusLine.cs" />
     <Compile Include="DO\BusLineStation.cs" />
     <Compile Include="DO\ConsecutiveStations.cs" />

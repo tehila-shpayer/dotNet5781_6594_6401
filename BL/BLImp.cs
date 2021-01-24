@@ -317,19 +317,6 @@ namespace BL
                 throw new BOArgumentNotFoundException($"Can't update user {user.UserName}.", ex);
             }
         }
-        public void UpdateUser(string userName, Action<User> update)
-        {
-            try
-            {
-                DO.User userDO = new DO.User();
-                User userBO = GetUser(userName);
-                update(userBO);
-                userBO.Clone(userDO);
-                dl.UpdateUser(userDO);
-            }
-            catch (DO.ArgumentNotFoundException ex) { throw new BOArgumentNotFoundException($"Can't update user {userName}.", ex); }
-
-        }
         public void DeleteUser(string userName)
         {
             try
@@ -908,18 +895,6 @@ namespace BL
                 DO.LineSchedule LineScheduleDO = new DO.LineSchedule();
 
                 lineSchedule.Clone(LineScheduleDO);
-                dl.UpdateLineSchedule(LineScheduleDO);
-            }
-            catch (DO.ArgumentNotFoundException ex) { throw new BOArgumentNotFoundException($"Can't update line schedule.", ex); }
-        }
-        public void UpdateLineSchedule(int lineKey, TimeSpan startTime, Action<LineSchedule> update)
-        {
-            try
-            {
-                DO.LineSchedule LineScheduleDO = new DO.LineSchedule();
-                LineSchedule LineScheduleBO = GetLineSchedule(lineKey, startTime);
-                update(LineScheduleBO);
-                LineScheduleBO.Clone(LineScheduleDO);
                 dl.UpdateLineSchedule(LineScheduleDO);
             }
             catch (DO.ArgumentNotFoundException ex) { throw new BOArgumentNotFoundException($"Can't update line schedule.", ex); }

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BO
 {
+    /// <summary>
+    /// BLמחלקת חריגות לייצוג קלט בלתי תקין של שכבת ה
+    /// </summary>
     [Serializable]
     public class BOInvalidInformationException : Exception
     {
@@ -20,6 +23,9 @@ namespace BO
             return s;
         }
     }
+    /// <summary>
+    /// BLמחלקת חריגות לייצוג אי מציאת ארגומנט של שכבת ה
+    /// </summary>
     [Serializable]
     public class BOArgumentNotFoundException : Exception
     {
@@ -29,8 +35,6 @@ namespace BO
         public override string ToString()
         {
             String s = "ERROR: Argument Not Found Exception\n" + Message + "\n";
-            //if (InnerException != null)
-            //    s = InnerException.ToString() + "\n" + s;
             return s;
         }
     }

@@ -87,7 +87,7 @@ namespace DLAPI
         /// <param name="busLineKey">מפתח הקו</param>
         /// <param name="update">הדלגט</param>
         void UpdateBusLine(int busLineKey, Action<BusLine> update); //method that knows to updt specific fields in BusLine
-       /// <summary>
+        /// <summary>
        /// מחיקת קו ממאגר הנתונים
        /// </summary>
        /// <param name="busLineKey"></param>
@@ -144,7 +144,7 @@ namespace DLAPI
         /// <param name="update">דלגט עדכון</param>
         void UpdateBusLineStation(int line, int stationKey, Action<BusLineStation> update); //method that knows to updt specific fields in Person
        /// <summary>
-       /// מחיקת תחנה ממאגר הנתונים
+       /// מחיקת תחנה קו ממאגר הנתונים
        /// </summary>
        /// <param name="line">מפתח קו</param>
        /// <param name="stationKey">מפתח תחנה</param>
@@ -270,6 +270,11 @@ namespace DLAPI
         /// </summary>
         /// <param name="lineSchedule">האובייקט המעודכן</param>
         void UpdateLineSchedule(LineSchedule lineSchedule);
+        /// <summary>
+        /// מחיקת יציאת קו ממאגר הנתונים
+        /// </summary>
+        /// <param name="lineKey"></param>
+        /// <param name="startTime"></param>
         void DeleteLineSchedule(int lineKey, TimeSpan startTime);
         #endregion
 

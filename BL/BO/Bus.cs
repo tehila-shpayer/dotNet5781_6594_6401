@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BO
 {
+    /// <summary>
+    /// BLמחלקה לייצוג אוטובוס פיזי בשכבת ה
+    /// </summary>
     public class Bus
     {
         //Bus properties:
