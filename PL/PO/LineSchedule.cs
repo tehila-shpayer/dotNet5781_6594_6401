@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Windows;
 namespace PL
 {
+    /// <summary>
+    /// PLמחלקה לייצוג זמני יציאה של קו אוטובוס בשכבת ה
+    /// </summary>
     public class LineSchedule : DependencyObject
     {
         static readonly DependencyProperty LineKeyProperty = DependencyProperty.Register("LineKey", typeof(int), typeof(LineSchedule));

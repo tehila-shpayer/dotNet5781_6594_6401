@@ -26,11 +26,6 @@ namespace PL
         {
             InitializeComponent();
             bls.Clone(blsBO);
-            //blsBO.BusLineKey = bls.BusLineKey;
-            //blsBO.StationKey = bls.StationKey;
-            //blsBO.Position = bls.Position;
-            //blsBO.TravelTimeFromLastStationMinutes = bls.TravelTimeFromLastStationMinutes;
-            //blsBO.DistanceFromLastStationMeters = bls.DistanceFromLastStationMeters;
             station1 = App.bl.GetPreviouseStation(bls.BusLineKey, bls.Position);
             station2 = App.bl.GetStation(bls.StationKey);
             tbTitle.DataContext = bls;
@@ -40,6 +35,7 @@ namespace PL
             mainGrid.DataContext = MainWindow.Language;
         }
 
+        #region Buttons
         private void saveChangeButton_Click(object sender, RoutedEventArgs e)
         {
             App.bl.UpdateBusLineStation(blsBO);
@@ -59,5 +55,6 @@ namespace PL
             MapWindow mapWindow = new MapWindow(PoBoAdapter.StationPoBoAdapter(station2));
             mapWindow.Show();
         }
+        #endregion
     }
 }

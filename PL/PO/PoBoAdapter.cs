@@ -8,6 +8,9 @@ using BLAPI;
 
 namespace PL
 {
+    /// <summary>
+    ///PL לשכבת BL מחלקה להמרת טיפוסים משכבת
+    /// </summary>
     public static class PoBoAdapter
     {
         static public PL.Bus BusPoBoAdapter(BO.Bus BusBO)
@@ -27,16 +30,6 @@ namespace PL
             BusPO.RunningDateFormat = BusBO.RunningDate.ToString("dd/MM/yyyy");
             BusPO.LastTreatmentFormat = BusBO.LastTreatment.ToString("dd/MM/yyyy");
             BusPO.Time = "";
-            //BusPO.activity = new BackgroundWorker();
-            //BusPO.activity.DoWork += Activity_DoWork;
-            //BusPO.activity.ProgressChanged += Activity_ProgressChanged;
-            //BusPO.activity.RunWorkerCompleted += Activity_RunWorkerCompleted;
-            //BusPO.activity.WorkerReportsProgress = true;
-            //BusPO.timer = new BackgroundWorker();
-            //BusPO.timer.DoWork += Timer_DoWork;
-            //BusPO.timer.ProgressChanged += Timer_ProgressChanged;
-            //BusPO.timer.RunWorkerCompleted += Timer_RunWorkerCompleted;
-            //BusPO.timer.WorkerReportsProgress = true;
             return BusPO;
         }
         static public PL.BusLine BusLinePoBoAdapter(BO.BusLine BusLineBO, int SRCKey = 0, int DSTKey = 0)

@@ -10,7 +10,7 @@
         x:Class="PL.MapWindow"
         mc:Ignorable="d"
        Title="MainWindow" Height="500" Width="700" WindowStyle="None" ResizeMode="NoResize" 
-        WindowStartupLocation="CenterScreen" Background="#FF3A3A3A" Icon="AddWindows/icons8-bus-50.png">
+        WindowStartupLocation="CenterScreen" Background="#FF3A3A3A" Icon="Images/icons8-bus-50.png">
     <Grid x:Name="mainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>

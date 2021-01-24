@@ -8,6 +8,9 @@ using System.Windows;
 using System.Threading;
 namespace PL
 {
+    /// <summary>
+    /// PLמחלקה לייצוג אוטובוס פיזי בשכבת ה
+    /// </summary>
     public class Bus : DependencyObject
     {
         static readonly DependencyProperty LicenseNumberProperty = DependencyProperty.Register("LicenseNumber", typeof(String), typeof(Bus));

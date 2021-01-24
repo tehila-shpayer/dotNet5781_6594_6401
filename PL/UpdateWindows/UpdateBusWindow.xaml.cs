@@ -32,17 +32,14 @@ namespace PL
             grid1.DataContext = busBO;
             beforeUpdateindex = MainWindow.busesCollection.IndexOf(updatingBus);
             mainGrid.DataContext = MainWindow.Language;
-            //CultureInfo ci = CultureInfo.CreateSpecificCulture(CultureInfo.CurrentCulture.Name);
-            //ci.DateTimeFormat.ShortDatePattern = "MM/dd/yyyy";
-            //Thread.CurrentThread.CurrentCulture = ci;
         }
 
+        #region Buttons
         private void updateBusButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 App.bl.UpdateBus(busBO);
-                //updatingBus = 
                 MainWindow.busesCollection[beforeUpdateindex] = PoBoAdapter.BusPoBoAdapter(busBO);
                 MessageBox.Show($"Bus updated successfully.", "UPDATE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
@@ -61,6 +58,7 @@ namespace PL
         {
             Close();
         }
+        #endregion
 
         private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {

@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="ADD STATION" Height="266" Width="382" ResizeMode="NoResize" FontFamily="Segoe UI Semibold" WindowStartupLocation="CenterScreen" Icon="icons8-bus-50.png" Background="White" >
+        Title="ADD STATION" Height="266" Width="382" ResizeMode="NoResize" FontFamily="Segoe UI Semibold" WindowStartupLocation="CenterScreen" Icon="/PL;component/Images/icons8-bus-50.png" Background="White" >
     <Window.Resources>
         <local:LanguageToAlignment x:Key="LanguageConvertor"/>
     </Window.Resources>

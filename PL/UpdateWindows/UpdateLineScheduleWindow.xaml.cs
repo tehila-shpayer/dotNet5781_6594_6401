@@ -33,15 +33,7 @@ namespace PL
             mainGrid.DataContext = MainWindow.Language;
         }
 
-        private void lineKeyTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            PL.PreviewKeyDown.GeneralPerviewKeyDown(sender, e);
-        }
-
-        private void freqTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            PL.PreviewKeyDown.GeneralPerviewKeyDown(sender, e);
-        }
+        #region Buttons
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -68,6 +60,17 @@ namespace PL
         {
             Close();
         }
+        #endregion
+
+        #region Input Validation
+        private void lineKeyTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            PL.PreviewKeyDown.GeneralPerviewKeyDown(sender, e);
+        }
+        private void freqTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            PL.PreviewKeyDown.GeneralPerviewKeyDown(sender, e);
+        }
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             AllFieldsFull();
@@ -79,5 +82,6 @@ namespace PL
             else
                 updateButton.IsEnabled = false;
         }
+        #endregion
     }
 }

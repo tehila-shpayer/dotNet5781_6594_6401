@@ -39,7 +39,6 @@ namespace PL
             if (lbBusLines.SelectedIndex >= 0)
                 BusLineInfoGrid.DataContext = lbBusLines.SelectedItem;
         }
-
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             filter();
@@ -136,7 +135,7 @@ namespace PL
             lbBusLines.SelectedIndex = index;
         }
 
-        private void deleteStationButton_Click(object sender, RoutedEventArgs e)
+        private void deleteStationButton_Click(object sender, RoutedEventArgs e)//מחיקת תחנה מקו
         {
             try
             {
@@ -172,6 +171,7 @@ namespace PL
             lbBusLines.DataContext = MainWindow.busLinesCollection;
             filter();
         }
+        //עדכון זמן ומרחק בין תחנות בקו
         private void editButton_Click(object sender, RoutedEventArgs e)
         {
             int index = lbBusLines.SelectedIndex;

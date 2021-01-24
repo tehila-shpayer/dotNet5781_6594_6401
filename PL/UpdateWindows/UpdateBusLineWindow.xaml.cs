@@ -27,8 +27,6 @@ namespace PL
         public UpdateBusLineWindow(BusLine busLine)
         {
             InitializeComponent();
-            //busLineBO = new BO.BusLine();
-            //busLineBO = App.bl.GetBusLine(busLine.Key);
             updatingBusLine = busLine;
             int i;
             for (i = 1; i <= busLine.BusLineStations.Count() + 1; i++)
@@ -47,6 +45,8 @@ namespace PL
             grid1.DataContext = updatingBusLine;
             mainGrid.DataContext = MainWindow.Language;
         }
+
+        #region Input Validation
         private void lineNumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             string t = lineNumberTextBox.Text;
@@ -60,6 +60,9 @@ namespace PL
         {
             PL.PreviewKeyDown.GeneralPerviewKeyDown(sender, e);
         }
+        #endregion
+
+        #region Buttons
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -94,27 +97,10 @@ namespace PL
                 MessageBox.Show("Can't add bus line station\n" + ex.ToString(), "UPDATE BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
-
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
-
-        //private void addStationsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    if (addStationsComboBox.SelectedItem != null && positionsComboBox.SelectedItem != null)
-        //        addBusLineStationButton.IsEnabled = true;
-        //}
-
-        //private void positionsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    if (addStationsComboBox.SelectedItem != null && positionsComboBox.SelectedItem != null)
-        //        addBusLineStationButton.IsEnabled = true;
-        //}
-
-        //private void areaComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    areaTextBox.Text = areaComboBox.SelectedItem.ToString();
-        //}
+        #endregion
     }
 }

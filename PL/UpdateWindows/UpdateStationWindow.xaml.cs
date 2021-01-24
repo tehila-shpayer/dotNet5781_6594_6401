@@ -32,6 +32,8 @@ namespace PL
             beforeUpdateindex = MainWindow.stationsCollection.IndexOf(updatingStation);
             mainGrid.DataContext = MainWindow.Language;
         }
+
+        #region Buttons
         private void updateStationButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -56,6 +58,9 @@ namespace PL
         {
             Close();
         }
+        #endregion
+
+        #region Input Validation
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             AllFieldsFull();
@@ -67,5 +72,6 @@ namespace PL
             else
                 updateButton.IsEnabled = false;
         }
+        #endregion
     }
 }

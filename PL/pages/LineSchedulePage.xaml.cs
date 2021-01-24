@@ -44,7 +44,6 @@ namespace PL
             {
                 UpdateLineScheduleWindow updateLineScheduleWindow = new UpdateLineScheduleWindow(MainWindow.lineSchedulesCollection[lbLineSchedules.SelectedIndex]);
                 updateLineScheduleWindow.ShowDialog();
-                //Sort();
             }
             catch (Exception ex)
             {

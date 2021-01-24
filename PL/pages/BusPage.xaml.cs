@@ -45,8 +45,6 @@ namespace PL
                 ListBoxItem bus = (ListBoxItem)lbBuses.ItemContainerGenerator.ContainerFromItem(item);
                 String searchS = searchBox.Text;
                 int num = searchS.Length;
-                //Show only buses which there license number have the typed perfix
-                //if ((num <= item.LineNumber.ToString().Length && searchS == (item as BusLine).LineNumber.ToString().Substring(0, num)))
                 if (bus != null)
                 {
                     if (num <= item.LicenseNumber.Length && searchS == item.LicenseNumber.Substring(0, num))
@@ -58,7 +56,18 @@ namespace PL
                 }
             }
         }
+        private void cbBuses_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Sort();
+        }
+        void Sort()
+        {
+            MainWindow.busesCollection = new ObservableCollection<Bus>(from b in App.bl.GetAllBusesOrderedBy(cbBuses.Text)
+                                                                       select PoBoAdapter.BusPoBoAdapter(b));
+            lbBuses.DataContext = MainWindow.busesCollection;
+        }
 
+        #region Buttons
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
             int index = lbBuses.SelectedIndex;
@@ -111,25 +120,22 @@ namespace PL
             Sort();
         }
 
-        private void cbBuses_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Sort();
-        }
-        void Sort()
-        {
-            MainWindow.busesCollection = new ObservableCollection<Bus>(from b in App.bl.GetAllBusesOrderedBy(cbBuses.Text)
-                                                                       select PoBoAdapter.BusPoBoAdapter(b));
-            lbBuses.DataContext = MainWindow.busesCollection;
-        }
-
         private void TreatButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var bus = MainWindow.busesCollection[lbBuses.SelectedIndex];
+            BO.Bus busBO = App.bl.GetBus(bus.LicenseNumber);
+            busBO.KM += bus.BeforeTreatKM;
+            busBO.BeforeTreatKM = 0;
+            busBO.LastTreatment = DateTime.Now;
+            App.bl.UpdateBus(busBO);
+            MainWindow.busesCollection[lbBuses.SelectedIndex] = PoBoAdapter.BusPoBoAdapter(busBO);
         }
 
         private void RefuelButton_Click(object sender, RoutedEventArgs e)
         {
-
+            App.bl.UpdateBus((lbBuses.SelectedItem as Bus).LicenseNumber, b => b.Fuel = 1200);
+            MainWindow.busesCollection[lbBuses.SelectedIndex].Fuel = 1200;
         }
+        #endregion
     }
 }

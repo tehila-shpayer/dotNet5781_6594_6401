@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         xmlns:PL="clr-namespace:PL" x:Class="PL.AddBusWindow"
         mc:Ignorable="d"
-        Title="AddBusWindow" Height="600" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="icons8-bus-50.png" >
+        Title="AddBusWindow" Height="600" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/PL;component/Images/icons8-bus-50.png" >
     <Window.Resources>
         <local:LanguageToAlignment x:Key="LanguageConvertor"/>
     </Window.Resources>

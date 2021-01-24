@@ -34,15 +34,13 @@ namespace PL
             ci.DateTimeFormat.ShortDatePattern = "MM/dd/yyyy";
             Thread.CurrentThread.CurrentCulture = ci;
         }
-
-        private void licenseNumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (licenseNumberTextBox.Text == "")
-                addButton.IsEnabled = false;
-            else
-                addButton.IsEnabled = true;
-        }
-
+        #region Buttons
+        /// <summary>
+        /// כפתור הוספה
+        /// שמירת השינויים ויציאה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -57,29 +55,42 @@ namespace PL
                 MessageBox.Show("Couldn't add bus!\n" + ex.ToString(), "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
+        /// <summary>
+        /// כפתור ביטול
+        /// ביטול השינויים וציאה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
+        #endregion
 
-        //private void kMTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
-        //{
-        //    PL.PreviewKeyDown.GeneralPerviewKeyDown(sender, e);
-        //}
-
-        ////private void beforeTreatKMTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
-        //{
-        //    PL.PreviewKeyDown.GeneralPerviewKeyDown(sender, e);
-        //}
-
-        ////private void fuelTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
-        //{
-        //    PL.PreviewKeyDown.GeneralPerviewKeyDown(sender, e);
-        //}
-
+        #region Input Validation
+        /// <summary>
+        /// הפרמטרים המתאימים של אוטובוס
+        /// חייבים להיות חיוביים שלמים
+        /// מספר רישוי, קילומטראז' ודלק
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             PL.PreviewKeyDown.GeneralPerviewKeyDown(sender, e);
         }
+        /// <summary>
+        /// אוטובוס חייב להיות בעל מספר רישוי
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void licenseNumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (licenseNumberTextBox.Text == "")
+                addButton.IsEnabled = false;
+            else
+                addButton.IsEnabled = true;
+        }
+        #endregion
     }
 }

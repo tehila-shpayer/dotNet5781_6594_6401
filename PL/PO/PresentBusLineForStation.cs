@@ -7,6 +7,9 @@ using System.Windows;
 
 namespace PL
 {
+    /// <summary>
+    ///  מחלקה לייצוג קו אוטובוס בממשק הגרפי
+    /// </summary>
     public class PresentBusLineForStation : DependencyObject
     {
         static readonly DependencyProperty KeyProperty = DependencyProperty.Register("Key", typeof(int), typeof(PresentBusLineForStation));

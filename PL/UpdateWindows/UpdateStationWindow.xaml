@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="UpdateStationWindow" Height="500" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="/PL;component/AddWindows/icons8-bus-50.png">
+        Title="UpdateStationWindow" Height="500" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="/PL;component/Images/icons8-bus-50.png">
     <Window.Resources>
         <local:LanguageToAlignment x:Key="LanguageConvertor"/>
     </Window.Resources>

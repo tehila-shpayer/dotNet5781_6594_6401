@@ -34,17 +34,13 @@ namespace PL
             lineKeycomboBox.SelectedIndex = 0;
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            AllFieldsFull();
-        }
-        void AllFieldsFull()
-        {
-            if (startTimeTimePicker.Text != "" && endTimeTimePicker.Text != "" && freqTextBox.Text != "")
-                addButton.IsEnabled = true;
-            else
-                addButton.IsEnabled = false;
-        }
+        #region Buttons
+        /// <summary>
+        /// כפתור הוספה
+        /// שמירת השינויים ויציאה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -62,15 +58,37 @@ namespace PL
                 MessageBox.Show("Can't add the line schedule!\n" + ex.ToString(), "ADD LINE SCHEDULE MESSAGE", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
+        /// <summary>
+        /// כפתור ביטול
+        /// ביטול השינויים וציאה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
+        #endregion
 
+        #region Input Validation
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            AllFieldsFull();
+        }
+        /// <summary>
+        /// בדיקה שכול השדות ההכרחיים מלאים
+        /// </summary>
+        void AllFieldsFull()
+        {
+            if (startTimeTimePicker.Text != "" && endTimeTimePicker.Text != "" && freqTextBox.Text != "")
+                addButton.IsEnabled = true;
+            else
+                addButton.IsEnabled = false;
+        }
         private void freqTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             PL.PreviewKeyDown.GeneralPerviewKeyDown(sender, e);
         }
+        #endregion
     }
 }

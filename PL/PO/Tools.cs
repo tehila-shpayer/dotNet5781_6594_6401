@@ -27,6 +27,13 @@ namespace PL
                     str += "\n" + item.Name + ": " + item.GetValue(t, null);
             return str;
         }
+
+        /// <summary>
+        /// פונקציה להצפנת סיסמאות
+        /// הפונקציה מערבלת מספר כלשהו עם הסיסמא האמיתי
+        /// </summary>
+        /// <param name="passwordWithSalt">מחרוזת המספר והסיסמא מחוברים</param>
+        /// <returns>הסיסמא המוצפנת</returns>
         public static string hashPassword(string passwordWithSalt)
         {
             SHA512 shaM = new SHA512Managed();

@@ -2,9 +2,9 @@
 <Buses>
   <Bus>
     <LicenseNumber>43827491</LicenseNumber>
-    <RunningDate>03/03/2021 00:00:00</RunningDate>
+    <RunningDate>01/30/2020 00:00:00</RunningDate>
     <LastTreatment>01/04/2021 00:00:00</LastTreatment>
-    <Fuel>120</Fuel>
+    <Fuel>458</Fuel>
     <KM>0</KM>
     <BeforeTreatKM>0</BeforeTreatKM>
     <Status>Ready</Status>
@@ -56,11 +56,11 @@
   </Bus>
   <Bus>
     <LicenseNumber>96417688</LicenseNumber>
-    <RunningDate>2/09/2019 00:00:00</RunningDate>
-    <LastTreatment>01/09/2021 00:00:00</LastTreatment>
+    <RunningDate>02/09/2019 00:00:00</RunningDate>
+    <LastTreatment>01/24/2021 17:15:53</LastTreatment>
     <Fuel>1138</Fuel>
-    <KM>22909</KM>
-    <BeforeTreatKM>2572</BeforeTreatKM>
+    <KM>25481</KM>
+    <BeforeTreatKM>0</BeforeTreatKM>
     <Status>Ready</Status>
   </Bus>
   <Bus>

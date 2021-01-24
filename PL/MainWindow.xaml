@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="OpeningWindow"  ResizeMode="NoResize"  WindowStartupLocation="CenterScreen" WindowStyle="None" Initialized="Window_Initialized" Height="700" Width="1024" Icon="AddWindows/icons8-bus-50.png">
+        Title="OpeningWindow"  ResizeMode="NoResize"  WindowStartupLocation="CenterScreen" WindowStyle="None" Initialized="Window_Initialized" Height="700" Width="1024" Icon="Images/icons8-bus-50.png">
     <Grid x:Name="mainGrid" >
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

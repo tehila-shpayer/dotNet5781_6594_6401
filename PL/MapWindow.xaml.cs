@@ -25,7 +25,6 @@ namespace PL
             InitializeComponent();
             map.Center = new Microsoft.Maps.MapControl.WPF.Location(station.Latitude, station.Longitude);
             mapCanves.DataContext = map.Center;
-            //wbMaps.Source = $"tps://www.google.com/maps/search/?api=1&query=+{station.Latitude}+,+{station.Longitude}";
         }
 
         private void closeButton_Click(object sender, RoutedEventArgs e)

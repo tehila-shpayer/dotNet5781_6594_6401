@@ -8,6 +8,9 @@ using System.Windows;
 
 namespace PL
 {
+    /// <summary>
+    /// PLמחלקה לייצוג תחנה פיזית בשכבת ה
+    /// </summary>
     public class Station : DependencyObject
     {
         static readonly DependencyProperty KeyProperty = DependencyProperty.Register("Key", typeof(int), typeof(Station));

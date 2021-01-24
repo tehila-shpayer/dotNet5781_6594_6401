@@ -36,6 +36,14 @@ namespace PL
             grid1.DataContext = busLineBO;
             mainGrid.DataContext = MainWindow.Language;
         }
+
+        #region Buttons
+        /// <summary>
+        /// כפתור הוספה
+        /// שמירת השינויים ויציאה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -59,12 +67,22 @@ namespace PL
                 MessageBox.Show($"Can't add bus line\n" +ex.Message, "ADD BUS MESSAGE", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
-
+        /// <summary>
+        /// כפתור בטול
+        /// ביטול השינויים וציאה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
+        #endregion
 
+        #region Input Validation
+        /// <summary>
+        ///  קו אוטובוס חייב להיות בעל מספר כלשהו
+        /// </summary>
         private void lineNumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             string t = lineNumberTextBox.Text;
@@ -73,10 +91,15 @@ namespace PL
             else
                 addButton.IsEnabled = false;
         }
-
+        /// <summary>
+        /// מספר קו אוטובוס חייב להיות מספר חיובי שלם
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lineNumberTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             PL.PreviewKeyDown.GeneralPerviewKeyDown(sender, e);
         }
+        #endregion
     }
 }

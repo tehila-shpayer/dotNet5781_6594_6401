@@ -28,6 +28,12 @@ namespace PL
             InitializeComponent();
             mainGrid.DataContext = MainWindow.Language;
         }
+        /// <summary>
+        /// קבלת הודעת מייל מהמשתמש 
+        /// בנושא סיוע ועזרה למשתמש
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
             txtbTo.Text = "";

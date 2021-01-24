@@ -85,9 +85,6 @@ namespace PL
             }
         }
 
-        private void forgotPassword_MouseEnter(object sender, MouseEventArgs e)
-        {
-        }
         #region focus
         private void userName_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -143,8 +140,6 @@ namespace PL
                 ProblemMessage.Text = "User name or password are incorrect.\n try again";
                 spProblem.Visibility = Visibility.Visible;
             }
-            //NavigationService.Navigate(new ManagerPage(PoBoAdapter.UserPoBoAdapter(new BO.User())));
-            //NavigationService.Navigate(new TravelerMenuPage(PoBoAdapter.UserPoBoAdapter(new BO.User())));
         }
 
         private void NewAccountButton_Click(object sender, RoutedEventArgs e)

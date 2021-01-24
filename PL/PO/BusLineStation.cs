@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using System.Windows;
 namespace PL
 {
+    /// <summary>
+    /// PLמחלקה לייצוג תחנת קו אוטובוס בשכבת ה
+    /// המחלקה כוללת את פרטי המרחק והזמן בין התחנה הנוכחית לתחנה הקודמת
+    /// </summary>
     public class BusLineStation :DependencyObject
     {
         static readonly DependencyProperty BusLineKeyProperty = DependencyProperty.Register("BusLineKey", typeof(int), typeof(BusLineStation));

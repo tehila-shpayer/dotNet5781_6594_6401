@@ -12,6 +12,12 @@ namespace PL
 {
     public static class PreviewKeyDown
     {
+        /// <summary>
+        /// בדיקת תקינות קלט  כללית
+        /// הפונקציה בודקת שהקלט מספר חיובי שלם
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public static void GeneralPerviewKeyDown(object sender, KeyEventArgs e)//allow to enter only digits to the textBox
         {
             TextBox t = sender as TextBox;

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace PL
 {
+    /// <summary>
+    /// PLמחלקה להעתקה עמוקה בשכבת ה
+    /// </summary>
     public static class Cloning
     {
         public static void Clone<T, S>(this S from, T to)

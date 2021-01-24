@@ -9,6 +9,9 @@ using System.Windows.Data;
 
 namespace PL
 {
+    /// <summary>
+    /// ממיר ממשתנה בוליאני לתכונת נראות
+    /// </summary>
     public class BoolToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -32,15 +35,15 @@ namespace PL
             throw new NotImplementedException();
         }
     }
+    /// <summary>
+    /// ממיר מהשפה בשימוש באפליקציה לכיוון 
+    /// </summary>
     public class LanguageToAlignment : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             Uri resourceValue = (Uri)value;
             Uri dictUriEN = new Uri(@"/res/languages/AppString_EN.xaml", UriKind.Relative);
-            //Uri dictUriHE = new Uri(@"res/languages/AppString_HE.xaml", UriKind.Relative);
-            //ResourceDictionary resDictEN = Application.LoadComponent(dictUriEN) as ResourceDictionary;
-            //ResourceDictionary resDictHE = Application.LoadComponent(dictUriHE) as ResourceDictionary;
             if (resourceValue == dictUriEN)
             {
                 return FlowDirection.LeftToRight;

@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for DeleteBusWindow.xaml
+    /// Interaction logic for AddBusLineStationWindow.xaml
     /// </summary>
     public partial class AddBusLineStation : Window
     {
@@ -28,12 +28,19 @@ namespace PL
             cbStationKey.DisplayMemberPath = "  ShowNameKey  ";
             mainGrid.DataContext = MainWindow.Language;
         }
+        /// <summary>
+        /// פונקציה סטטית
+        /// הוספת תחנה לקו אוטובוס
+        /// </summary>
+        /// <param name="busKey">מפתח הקו</param>
+        /// <param name="stationKey">מפתח התחנה</param>
+        /// <param name="position">מיקום התחנה בקו</param>
         public static void AddBusLineStationToLine(int busKey, int stationKey, int position)
         {
             try
             {
                 App.bl.AddStationToLine(busKey, stationKey, position);
-                MainWindow.InitializeBusLines();
+                MainWindow.InitializeBusLines(); //PLעדכון האוסף ב
                 MessageBox.Show($"Station {stationKey} was successfully\n added to line of key {busKey}", "ADD STATION MESSAGE", MessageBoxButton.OK, MessageBoxImage.Information);
                 
             }
@@ -48,11 +55,23 @@ namespace PL
         }
 
         #region Buttons
+        /// <summary>
+        /// כפתור הוספה
+        /// שמירת השינויים ויציאה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             AddBusLineStationToLine(selectedStation.BusLineKey, (cbStationKey.SelectedItem as Station).Key, selectedStation.Position);
             Close();
         }
+        /// <summary>
+        /// כפתור בטול
+        /// ביטול השינויים וציאה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
             Close();

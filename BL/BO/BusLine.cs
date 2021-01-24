@@ -11,7 +11,6 @@ namespace BO
     /// </summary>
     public class BusLine 
     {
-       // public static int BUS_LINE_NUMBER = 1; //משתה רץ של מספרים של האוטובוסים
         public int Key { get; set; }
         public int LineNumber { get; set; }
         public Areas Area { get; set; }
