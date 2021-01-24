@@ -66,7 +66,6 @@ namespace BL
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Restart();
-            //Clock simulatorClock = e.Argument as Clock;
             while (simulatorClock.IsTimerRun)
             {
                 TimeSpan ts = new TimeSpan(simulatorClock.startTime.Ticks + stopwatch.ElapsedTicks * simulatorClock.rate);
@@ -333,9 +332,7 @@ namespace BL
         public BO.Station StationDoBoAdapter(DO.Station StationDO)
         {
             BO.Station StationBO = new BO.Station();
-
             StationDO.Clone(StationBO);
-
             StationBO.BusLines = dl.GetAllLinesInStation(StationBO.Key);
             return StationBO;
         }
@@ -345,11 +342,11 @@ namespace BL
             {
                 case "Order by key":
                     return from s in dl.GetAllStations()
-                           orderby s.Key
+                           orderby s.Key//החזרת התחנות ממויינות לפי מפתח
                            select StationDoBoAdapter(s);
                 case "Order by name":
                     return from s in dl.GetAllStations()
-                           orderby s.Name
+                           orderby s.Name//החזרת התחנות ממויינות לפי שם בסדר אלפבתי
                            select StationDoBoAdapter(s);
                 default: return GetAllStations();
             }
@@ -374,26 +371,25 @@ namespace BL
         }
         void CheckStationParameters(Station station)
         {
-            if (station.Latitude > 90 || station.Latitude < -90)
+            if (station.Latitude > 90 || station.Latitude < -90)//אם קו האורך נמצא בטווח ערכים לא חוקי
             {
                 throw new BOInvalidInformationException($"Invalid latitude");
             }
-            if (station.Longitude > 180 || station.Longitude < -180)
+            if (station.Longitude > 180 || station.Longitude < -180)//אם קו הרוחב נמצא בטווח ערכים לא חוקי
             {
                 throw new BOInvalidInformationException($"Invalid longitude");
             }
-            if (station.Latitude < 29.3 || station.Latitude > 33.5 || station.Longitude < 33.7 || station.Longitude > 36.3)
+            if (station.Latitude < 29.3 || station.Latitude > 33.5 || station.Longitude < 33.7 || station.Longitude > 36.3)//אם המיקום נמצא מחוץ לישראל
                 throw new BOInvalidInformationException($"Location must be in Israel!");
         }
         public int AddStation(Station station)
         {
-            CheckStationParameters(station);
+            CheckStationParameters(station);//בדיקת תקינות המיקום
             try
             {
                 DO.Station StationDO = new DO.Station();
                 station.Clone(StationDO);
-                return dl.AddStation(StationDO);
-
+                return dl.AddStation(StationDO);//מחזיר את מפתח התחנה שהוספה
             }
             catch (DO.InvalidInformationException ex)
             {
@@ -402,30 +398,35 @@ namespace BL
         }
         public void UpdateStation(Station station)
         {
-            CheckStationParameters(station);
+            CheckStationParameters(station);//בדיקת תקינות המיקום
             try
             {
                 DO.Station StationDO = dl.GetStation(station.Key);
-                if (station.Latitude != StationDO.Latitude || station.Longitude != StationDO.Longitude)
+                if (station.Latitude != StationDO.Latitude || station.Longitude != StationDO.Longitude)//אם המיקום השתנה, יש צורך לעדכן מרחקים ומנים של תחנות קו
                 {
-                    foreach (DO.BusLineStation bls in dl.GetAllBusLineStationsBy(ls => ls.StationKey == station.Key))
+                    station.Clone(StationDO);
+                    dl.UpdateStation(StationDO);
+                    foreach (DO.BusLineStation bls in dl.GetAllBusLineStationsBy(ls => ls.StationKey == station.Key))//מעבר על כל תחנות הקו שבתחנה שהתעדכנה
                     {
                         DO.ConsecutiveStations cs = new DO.ConsecutiveStations();
                         DO.BusLineStation nextLineStation = dl.GetBusLineStationBy(ls => ls.BusLineKey == bls.BusLineKey && ls.Position == bls.Position + 1);
                         DO.BusLineStation prevLineStation = dl.GetBusLineStationBy(ls => ls.BusLineKey == bls.BusLineKey && ls.Position == bls.Position - 1);
-                        StationDO = dl.GetStation(station.Key);
-                        if (prevLineStation != null)
-                        {
+                        
+                        if (prevLineStation != null)//אם יש תחנת קו קודמת, כלומר, זו לא התחנה הראשונה בקו
+                        {//עדכון התחנה-עוקבת של התחנה וזו שלפניה
                             dl.UpdateConsecutiveStations(CalculateConsecutiveStations(dl.GetStation(prevLineStation.StationKey), StationDO));
                         }
-                        if (nextLineStation != null)
-                        {
+                        if (nextLineStation != null)//אם יש תחנת קו הבאה, כלומר, זו לא התחנה האחרונה בקו
+                        {//עדכון התחנה-עוקבת של התחנה וזו שאחריה
                             dl.UpdateConsecutiveStations(CalculateConsecutiveStations(StationDO, dl.GetStation(nextLineStation.StationKey)));
                         }
                     }
                 }
-                station.Clone(StationDO);
-                dl.UpdateStation(StationDO);
+                else//אם המיקום לא השתנה
+                {
+                    station.Clone(StationDO);
+                    dl.UpdateStation(StationDO);//(עדכון (רק של שם התחנה
+                }
             }
             catch (DO.ArgumentNotFoundException ex)
             {
@@ -449,18 +450,15 @@ namespace BL
             try
             {
                 Station station = GetStation(stationKey);
-                List<int> currentBusLines = new List<int>();
-                foreach (int bl in station.BusLines)
-                    currentBusLines.Add(bl);
-                foreach (int bl in currentBusLines)
+                foreach (int bl in station.BusLines)//מעבר על הקווים העוברים בתחנה
                 {
-                    DeleteStationFromLine(bl, stationKey);
-                    if (!station.BusLines.Any())
+                    DeleteStationFromLine(bl, stationKey);//מחיקת התחנה מקווים אלו
+                    if (!station.BusLines.Any())//אם הגענו לסוף ואין עוד קווים העוברים בתחנה
                         break;
                 }
-                dl.DeleteBusLineStationsByStation(stationKey);
-                dl.DeleteConsecutiveStations(stationKey);
-                dl.DeleteStation(stationKey);
+                dl.DeleteBusLineStationsByStation(stationKey);//מחיקת כל תחנות הקו עם מפתח התחנה
+                dl.DeleteConsecutiveStations(stationKey);//מחיקת כל התחנות העקבות של התחנה הזו
+                dl.DeleteStation(stationKey);//מחיקת התחנה
             }
             catch (DO.ArgumentNotFoundException ex) { throw new BOArgumentNotFoundException($"Can't delete station {stationKey}.", ex); }
         }
@@ -1002,19 +1000,22 @@ namespace BL
 
         public IEnumerable<BusLine> FindRoutes(Station s1, Station s2)
         {
-            s1.BusLines = dl.GetAllLinesInStation(s1.Key);
-            s2.BusLines = dl.GetAllLinesInStation(s2.Key);
+            s1.BusLines = dl.GetAllLinesInStation(s1.Key);//רשימת הקווים העוברים בתחנה הראשונה
+            s2.BusLines = dl.GetAllLinesInStation(s2.Key);//רשימת הקווים העוברים בתחנה השנייה
             return from line1 in s1.BusLines
                         from line2 in s2.BusLines
+                        //מתוך רשימות הקווים העוברים בתחנה הראשונה והשנייה
+                        //אם יש קו שנמצא בשניהם וגם הקו עובר בתחנה הראשונה לפני התחנה השנייה: מכניס את הקו לרשימה המוחזרת
                         where line1 == line2 && GetBusLine(line1).BusLineStations.First(bls => bls.StationKey == s1.Key).Position < GetBusLine(line1).BusLineStations.First(bls => bls.StationKey == s2.Key).Position
                         select GetBusLine(line1);
         }
 
         public IEnumerable<ArrivalTimes> GetArrivalTimes(int lineKey, int s1, int s2)
         {
-            return from ls in GetAllLineSchedulesOfLine(lineKey)
-                    from t in GetAllTimesOfSchedule(ls)
-                    select new ArrivalTimes
+            return from ls in GetAllLineSchedulesOfLine(lineKey)//מעבר על כל יציאות הקו של הקו הנתון
+                    from t in GetAllTimesOfSchedule(ls)//לכל יציאת קו- עובר על רשימת שעות היציאה שלה
+                    select new ArrivalTimes//:לכל שעת יציאה- יוצר אובייקט של זמני הגעה הכולל 
+                    //זמן יציאת הקו, זמן הגעה לתחנת מוצא וזמן הגעה ליעד
                     { Start = t, SourceArrive = t + GetTimeFromFirstStation(lineKey, s1), DestinationArrive = t + GetTimeFromFirstStation(lineKey, s2) };
 
         }
