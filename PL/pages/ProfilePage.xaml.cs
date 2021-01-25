@@ -145,6 +145,7 @@ namespace PL
             editButton.Visibility = Visibility.Collapsed;
             saveUndoChangeButtons.Visibility = Visibility.Visible;
             VisibilityTextBox();
+            string s = "eeee";
         }
         private void VisibilityTextBox()
         {

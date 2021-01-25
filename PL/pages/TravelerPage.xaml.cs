@@ -40,14 +40,13 @@ namespace PL
             time = new TimeSpan();
             tbClock.DataContext = time;                      
             spLastBus.Visibility = Visibility.Hidden;
-            //currentStation = lbStations.SelectedItem as Station;
-            //stopWatch = new Stopwatch();
         }
 
         private void stations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (lbStations.SelectedIndex >= 0)
                 StationInfoGrid.DataContext = MainWindow.stationsCollection.ElementAt(lbStations.SelectedIndex);
+            LastBusInStationDuration = 10;
         }
         private void cbStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
