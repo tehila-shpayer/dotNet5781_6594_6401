@@ -27,6 +27,10 @@
                         </Button>
                         <Button x:Name="EnglishBtn" Width="80" Content ="English" FontSize="15" Click="EnglishBtn_Click">
                         </Button>
+                        <Button x:Name="FrenchBtn" Width="80" Content ="Français" FontSize="15" Click="FrenchBtn_Click">
+                        </Button>
+                        <Button x:Name="RussianBtn" Width="80" Content ="Pусский" FontSize="15" Click="RussianBtn_Click">
+                        </Button>
                     </StackPanel>
                 </materialDesign:PopupBox>
                 <Button x:Name="logoutButton" Margin="5,0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Click="logoutButton_Click">
