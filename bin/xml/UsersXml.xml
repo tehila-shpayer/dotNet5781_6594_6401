@@ -55,8 +55,8 @@
     <Salt>1063362859</Salt>
     <AuthorizationManagement>Traveler</AuthorizationManagement>
     <Email>orahana2009@gmail.com</Email>
-	<Address>ארץ הפלאת, רחוב השעונים 3</Address>
-	<FirstName>אורה</FirstName>
+    <Address>ארץ הפלאת, רחוב השעונים 3</Address>
+    <FirstName>אורה</FirstName>
     <LastName>נחושת</LastName>
   </User>
   <User>
@@ -65,5 +65,8 @@
     <Salt>1680021454</Salt>
     <AuthorizationManagement>Traveler</AuthorizationManagement>
     <Email>tehila1742@gmail.com</Email>
+    <FirstName>תהילה </FirstName>
+    <LastName>שפייר</LastName>
+    <Picture>file:///C:/Users/tehil/OneDrive/תמונות/netivimLogoIcon.png</Picture>
   </User>
 </ArrayOfUser>

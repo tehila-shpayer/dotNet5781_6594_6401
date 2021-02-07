@@ -1,0 +1,157 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:PL.res.languages"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+    <!--#region Station Page-->
+    <System:String x:Key="StationPage_StationsTitle">Stations:</System:String>
+    <System:String x:Key="StationPage_DeleteStation">SUPPRIMER</System:String>
+    <System:String x:Key="StationPage_AddStation">AJOUTER</System:String>
+    <System:String x:Key="StationPage_UpdateStation">MISE à JOUR</System:String>
+    <System:String x:Key="StationPage_LinesInStation">Lignes à la station:</System:String>
+    <!--#endregion-->
+
+    <!--#region Bus Line Page-->
+    <System:String x:Key="BusLinePage_LinesTitle">Lignes:</System:String>
+    <System:String x:Key="BusLinePage_Stations">Stations:</System:String>
+    <System:String x:Key="BusLinePage_UpdateLine">MISE à JOUR</System:String>
+    <System:String x:Key="BusLinePage_DeleteLine">SUPPRIMER</System:String>
+    <System:String x:Key="BusLinePage_AddLine">AJOUTER</System:String>
+    <System:String x:Key="BusLinePage_ShowByArea">Regrouper par région:</System:String>
+    <!--#endregion-->
+
+    <!--#region Bus Page-->
+    <System:String x:Key="BusPage_BusesTitle">Autobus:</System:String>
+    <System:String x:Key="BusPage_UpdaeBus">MISE à JOUR</System:String>
+    <System:String x:Key="BusPage_DeleteBus">SUPPRIMER</System:String>
+    <System:String x:Key="BusPage_AddBus">AJOUTER</System:String>
+    <System:String x:Key="BusPage_StartActivityDate" xml:space="preserve">Date du mise à service: </System:String>
+    <System:String x:Key="BusPage_KM" xml:space="preserve">KM: </System:String>
+    <System:String x:Key="BusPage_LastTreatmentDate" xml:space="preserve">Date du dernier traitement: </System:String>
+    <System:String x:Key="BusPage_KMSinceLastTreatment" xml:space="preserve">KM depuis le dernier traitement: </System:String>
+    <System:String x:Key="BusPage_Fuel" xml:space="preserve">Carburant: </System:String>
+    <System:String x:Key="BusPage_Ride">Démarrer</System:String>
+    <System:String x:Key="BusPage_Treatment">Traitement</System:String>
+    <System:String x:Key="BusPage_Refuel">Ravitailler</System:String>
+    <!--#endregion-->
+
+    <!--#region  General Buttons-->
+    <System:String x:Key="Edit">Modifier</System:String>
+    <System:String x:Key="Save">Sauvegarder</System:String>
+    <System:String x:Key="Cancel">Annuler</System:String>
+    <System:String x:Key="Add">AJOUTER</System:String>
+    <System:String x:Key="Key">clé:</System:String>
+    <System:String x:Key="Line">Ligne</System:String>
+    <System:String x:Key="To">Vers</System:String>
+    <!--#endregion-->
+
+    <!--#region Profile Page-->
+    <System:String x:Key="ProfilePage_ProfileTitle">Mon profil</System:String>
+    <System:String x:Key="ProfilePage_ChangePassword">Changer mot de passe</System:String>
+    <System:String x:Key="ProfilePage_UploadImage">Télécharger une image</System:String>
+    <System:String x:Key="ProfilePage_UserName">Nom d'utilisateur:</System:String>
+    <System:String x:Key="ProfilePage_Authorization">Autorisation:</System:String>
+    <System:String x:Key="ProfilePage_FirstName">Prénom:</System:String>
+    <System:String x:Key="ProfilePage_LastName">Nom de famille:</System:String>
+    <System:String x:Key="ProfilePage_Email">Email:</System:String>
+    <System:String x:Key="ProfilePage_Phone">Phone:</System:String>
+    <System:String x:Key="ProfilePage_Address">Address:</System:String>
+    <System:String x:Key="ProfilePage_OldPassword" xml:space="preserve"> Old Password</System:String>
+    <System:String x:Key="ProfilePage_NewPassword" xml:space="preserve"> New Password</System:String>
+    <!--#endregion-->
+    
+    <!--#region Login Page-->
+    <System:String x:Key="LoginPage_ForgotPassword">Forgot password?</System:String>
+    <System:String x:Key="LoginPage_Login">Login</System:String>
+    <System:String x:Key="LoginPage_NewUser">New user? sign up!</System:String>
+    <System:String x:Key="SignUpPage_SignUp">Sign Up</System:String>
+    <!--#endregion-->
+
+    <!--#region Manager Menue-->
+    <System:String x:Key="Menue_Profile">PROFILE</System:String>
+    <System:String x:Key="Menue_Lines">LINES</System:String>
+    <System:String x:Key="Menue_Stations">STATIONS</System:String>
+    <System:String x:Key="Menue_Buses">BUSES</System:String>
+    <System:String x:Key="Menue_JourneyPlan">ROUTE SEARCH</System:String>
+    <System:String x:Key="Menue_Simulation">SIMULATION</System:String>
+    <System:String x:Key="Menue_LineSchedules">SCHEDULES</System:String>
+    <!--#endregion-->
+    
+    <!--#region Add Bus Line Station Window-->
+    <System:String x:Key="AddBusLineStationWindow_ChooseStation">Choose station:</System:String>
+    <!--#endregion-->
+
+    <!--#region Add Line Window-->
+    <System:String x:Key="AddLineWindow_Title">Add Line</System:String>
+    <System:String x:Key="AddLineWindow_LineNumber">Line Number:</System:String>
+    <System:String x:Key="AddLineWindow_Area">Area:</System:String>
+    <System:String x:Key="AddLineWindow_FirstStation">First Station:</System:String>
+    <System:String x:Key="AddLineWindow_LastStation">Last Station:</System:String>
+    <System:String x:Key="UpdateLineWindow_Title">Update Line</System:String>
+    <!--#endregion-->
+
+    <!--#region Add Station Window-->
+    <System:String x:Key="AddStationWindow_Title">Add Station</System:String>
+    <System:String x:Key="AddStationWindow_Name">Station Name:</System:String>
+    <System:String x:Key="AddStationWindow_Latitude">Latitude:</System:String>
+    <System:String x:Key="AddStationWindow_Longitude">Longitude:</System:String>
+    <System:String x:Key="UpdateStationWindow_Title">Update Station</System:String>
+    <!--#endregion-->
+
+    <!--#region Add Bus Window-->
+    <System:String x:Key="AddBusWindow_Title">Add Bus</System:String>
+    <System:String x:Key="AddBusWindow_LicenseNumber">License Number:</System:String>
+    <System:String x:Key="AddBusWindow_Status">Status:</System:String>
+    <System:String x:Key="UpdateBusWindow_Title">Update Bus</System:String>
+
+    <System:String x:Key="Location" xml:space="preserve">Location:</System:String>
+    <System:String x:Key="UpdateConsecutiveStationsWindow_Title">Update Consecutive Stations</System:String>
+
+    <!--#endregion-->
+
+    <!--#region Line Schedule Page-->
+    <System:String x:Key="LineSchedulePage_Title">Lines Schedules:</System:String>
+    <System:String x:Key="LineSchedulePage_UpdateLineSchedule">UPDATE SCHEDULE</System:String>
+    <System:String x:Key="LineSchedulePage_DeleteLineSchedule">DELETE SCHEDULE</System:String>
+    <System:String x:Key="LineSchedulePage_AddLineSchedule">ADD SCHEDULE</System:String>
+    <System:String x:Key="LineSchedulePage_ShowByLine">Show By Line</System:String>
+    <System:String x:Key="LineSchedulePage_StartTime">Start Time:</System:String>
+    <System:String x:Key="LineSchedulePage_EndTime">End Time:</System:String>
+    <System:String x:Key="LineSchedulePage_Frequency">Frequency:</System:String>
+    <System:String x:Key="LineSchedulePage_Each" xml:space="preserve">Every</System:String>
+    <System:String x:Key="LineSchedulePage_Minutes" xml:space="preserve">minuets</System:String>
+    <!--#endregion-->
+    <System:String x:Key="AddLineScheduleWindow_Title">Add Line Schedule</System:String>
+    <System:String x:Key="AddLineScheduleWindow_LineKey">Line Key:</System:String>
+    <System:String x:Key="UpdateLineScheduleWindow_Title">Update Line Schedule</System:String>
+
+    <!--#region Line Simulation Page-->
+    <System:String x:Key="SimulationPage_Start">Start</System:String>
+    <System:String x:Key="SimulationPage_Stop">Stop</System:String>
+    <System:String x:Key="SimulationPage_Rate">Rate:</System:String>
+    <System:String x:Key="SimulationPage_Clock">Clock:</System:String>
+    <System:String x:Key="SimulationPage_ArrivesIn">Arrives in</System:String>
+    <System:String x:Key="SimulationPage_AtStation">At Station:</System:String>
+    <System:String x:Key="SimulationPage_S.T">S.T.</System:String>
+    <!--#endregion-->
+    <System:String x:Key="ContactPage_EnterDetails">Enter details to send email</System:String>
+    <System:String x:Key="ContactPage_YourEmail">Your Email</System:String>
+    <System:String x:Key="ContactPage_Subject">Subject</System:String>
+    <System:String x:Key="ContactPage_Content">Content</System:String>
+    <System:String x:Key="ContactPage_Send">Send</System:String>
+    <System:String x:Key="ContactPage_Reset">Reset</System:String>
+
+    <System:String x:Key="LineAndScheduleWindow_Route" xml:space="preserve"> - Line Route</System:String>
+    <System:String x:Key="LineAndScheduleWindow_Schedule">Schedule</System:String>
+    <System:String x:Key="LineAndScheduleWindow_StartTime">Start</System:String>
+    <System:String x:Key="LineAndScheduleWindow_ArriveToSRC">Arrive To SRC</System:String>
+    <System:String x:Key="LineAndScheduleWindow_ArriveToDST">Arrive To DST</System:String>
+
+    <System:String x:Key="PlanJourneyPage_Title">Plan Your Journey</System:String>
+    <System:String x:Key="PlanJourneyPage_SRCStation">Origin Station:</System:String>
+    <System:String x:Key="PlanJourneyPage_DSTStation">Destination Station:</System:String>
+    <System:String x:Key="Search">Search</System:String>
+    <System:String x:Key="PlanJourneyPage_PossibleLines">Possible Lines</System:String>
+
+    <System:String x:Key="BusLineStation_meter" xml:space="preserve"> meters, </System:String>
+    <System:String x:Key="BusLineStation_Minutes" xml:space="preserve"> minutes</System:String>
+</ResourceDictionary>
