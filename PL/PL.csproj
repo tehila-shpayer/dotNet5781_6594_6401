@@ -287,6 +287,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="res\languages\AppString_FR.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="res\languages\AppString_HE.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
