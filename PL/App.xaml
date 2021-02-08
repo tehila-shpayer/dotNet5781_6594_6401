@@ -12,9 +12,9 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Indigo.xaml" />
                 <ResourceDictionary Source="/res/languages/AppString_EN.xaml"/>
-                <ResourceDictionary Source="/res/languages/AppString_HE.xaml"/>
                 <ResourceDictionary Source="/res/languages/AppString_FR.xaml"/>
                 <ResourceDictionary Source="/res/languages/AppString_RU.xaml"/>
+                <ResourceDictionary Source="/res/languages/AppString_HE.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <!--<Style x:Key="ButtonStyle" TargetType="Button">

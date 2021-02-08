@@ -60,10 +60,10 @@
     <!--#endregion-->
     
     <!--#region Login Page-->
-    <System:String x:Key="LoginPage_ForgotPassword">Forgot password?</System:String>
-    <System:String x:Key="LoginPage_Login">Login</System:String>
-    <System:String x:Key="LoginPage_NewUser">New user? sign up!</System:String>
-    <System:String x:Key="SignUpPage_SignUp">Sign Up</System:String>
+    <System:String x:Key="LoginPage_ForgotPassword">Забыли пароль?</System:String>
+    <System:String x:Key="LoginPage_Login">авторизоваться</System:String>
+    <System:String x:Key="LoginPage_NewUser">новый пользователь? Зарегистрироваться!</System:String>
+    <System:String x:Key="SignUpPage_SignUp">Зарегистрироваться</System:String>
     <!--#endregion-->
 
     <!--#region Manager Menue-->

@@ -23,14 +23,14 @@
                 <materialDesign:PackIcon VerticalAlignment="Center" Margin="0,0,-40,0" Kind="LanguageBox" Height="30" Width="30" Background="#FF56A0B5" Foreground="White" />
                 <materialDesign:PopupBox Margin="0" Padding="0" Foreground="{x:Null}" PopupMode="Click" PlacementMode="BottomAndAlignCentres" StaysOpen="False" Background="Black">
                     <StackPanel x:Name="spLanguages" Width="80">
-                        <Button x:Name="HebrewBtn" Width="80" Content ="עברית" FontSize="15" Click="HebrewBtn_Click">
+                        <Button x:Name="HebrewBtn" Width="100" Content ="עברית" FontSize="15" Click="HebrewBtn_Click">
                         </Button>
-                        <Button x:Name="EnglishBtn" Width="80" Content ="English" FontSize="15" Click="EnglishBtn_Click">
+                        <Button x:Name="EnglishBtn" Width="100" Content ="English" FontSize="15" Click="EnglishBtn_Click">
                         </Button>
-                        <Button x:Name="FrenchBtn" Width="80" Content ="Français" FontSize="15" Click="FrenchBtn_Click">
+                        <Button x:Name="FrenchBtn" Width="100" Content ="Français" FontSize="15" Click="FrenchBtn_Click">
                         </Button>
-                        <Button x:Name="RussianBtn" Width="80" Content ="Pусский" FontSize="15" Click="RussianBtn_Click">
-                        </Button>
+                        <!--<Button x:Name="RussianBtn" Width="100" Content ="Pусский" FontSize="15" Click="RussianBtn_Click">
+                        </Button>-->
                     </StackPanel>
                 </materialDesign:PopupBox>
                 <Button x:Name="logoutButton" Margin="5,0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Click="logoutButton_Click">
