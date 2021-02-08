@@ -112,6 +112,7 @@ namespace PL
         private void HebrewBtn_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Resources.MergedDictionaries.Remove(resDictEN);
+            Application.Current.Resources.MergedDictionaries.Remove(resDictFR);
             Application.Current.Resources.MergedDictionaries.Add(resDictHE);
             Language = Application.Current.Resources.MergedDictionaries.ElementAt(Application.Current.Resources.MergedDictionaries.Count - 1);
         }
@@ -126,7 +127,8 @@ namespace PL
         private void FrenchBtn_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Resources.MergedDictionaries.Remove(resDictHE);
-            Application.Current.Resources.MergedDictionaries.Add(resDictEN);
+            Application.Current.Resources.MergedDictionaries.Remove(resDictEN);
+            Application.Current.Resources.MergedDictionaries.Add(resDictFR);
             Language = Application.Current.Resources.MergedDictionaries.ElementAt(Application.Current.Resources.MergedDictionaries.Count - 1);
         }
         //private void RussianBtn_Click(object sender, RoutedEventArgs e)

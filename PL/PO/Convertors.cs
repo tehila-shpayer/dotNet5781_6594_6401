@@ -43,14 +43,14 @@ namespace PL
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             Uri resourceValue = (Uri)value;
-            Uri dictUriEN = new Uri(@"/res/languages/AppString_EN.xaml", UriKind.Relative);
-            if (resourceValue == dictUriEN)
+            Uri dictUriHE = new Uri(@"/res/languages/AppString_HE.xaml", UriKind.Relative);
+            if (resourceValue == dictUriHE)
             {
-                return FlowDirection.LeftToRight;
+                return FlowDirection.RightToLeft;
             }
             else
             {
-                return FlowDirection.RightToLeft;
+                return FlowDirection.LeftToRight;
             }
         }
         //The opposite converter (not used in our program)
